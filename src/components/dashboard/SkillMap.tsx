@@ -8,6 +8,7 @@ import {
   getMasteryFill,
   getMasteryLabel,
   getMasteryIcon,
+  wrapSkillName,
   DOMAIN_LABELS,
 } from "./skill-map-layout";
 import { curriculum } from "@/lib/exam/curriculum";
@@ -62,13 +63,13 @@ export function SkillMap({ states }: SkillMapProps) {
   const NODE_RADIUS = 22;
 
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-800 p-4 bg-white dark:bg-gray-900 overflow-x-auto">
+    <div className="rounded-xl border border-surface-200 dark:border-surface-800 p-4 bg-surface-0 dark:bg-surface-900 overflow-x-auto">
       <h3 className="text-lg font-semibold mb-3">Skill Map</h3>
       <div className="relative">
         <svg
           viewBox={`0 0 ${layout.width} ${layout.height + 30}`}
           className="w-full"
-          style={{ minWidth: "600px", maxHeight: "520px" }}
+          style={{ minWidth: "750px", maxHeight: "620px" }}
           preserveAspectRatio="xMidYMid meet"
           role="img"
           aria-label="Skill tree showing mastery levels and prerequisite connections"
@@ -80,7 +81,7 @@ export function SkillMap({ states }: SkillMapProps) {
               x={50 + i * 300 + 150}
               y={24}
               textAnchor="middle"
-              className="fill-gray-500 dark:fill-gray-400"
+              className="fill-surface-500 dark:fill-surface-400"
               fontSize="13"
               fontWeight="600"
             >
@@ -102,7 +103,7 @@ export function SkillMap({ states }: SkillMapProps) {
                   stroke="#D1D5DB"
                   strokeWidth="1.5"
                   fill="none"
-                  className="dark:stroke-gray-700"
+                  className="dark:stroke-surface-700"
                 />
               );
             })}
@@ -116,11 +117,7 @@ export function SkillMap({ states }: SkillMapProps) {
               const label = getMasteryLabel(node.mastery);
               const percent = Math.round(node.mastery * 100);
 
-              // Truncate name to fit
-              const displayName =
-                node.name.length > 18
-                  ? node.name.slice(0, 16) + "..."
-                  : node.name;
+              const lines = wrapSkillName(node.name);
 
               return (
                 <g
@@ -163,15 +160,23 @@ export function SkillMap({ states }: SkillMapProps) {
                     {node.attemptsCount === 0 ? "?" : icon}
                   </text>
 
-                  {/* Label below node */}
+                  {/* Label below node — up to 2 lines */}
                   <text
                     x={node.x}
-                    y={node.y + NODE_RADIUS + 14}
+                    y={node.y + NODE_RADIUS + 16}
                     textAnchor="middle"
-                    fontSize="10"
-                    className="fill-gray-600 dark:fill-gray-400"
+                    fontSize="12"
+                    className="fill-surface-600 dark:fill-surface-400"
                   >
-                    {displayName}
+                    {lines.map((line, i) => (
+                      <tspan
+                        key={i}
+                        x={node.x}
+                        dy={i === 0 ? 0 : 15}
+                      >
+                        {line}
+                      </tspan>
+                    ))}
                   </text>
                 </g>
               );
@@ -182,7 +187,7 @@ export function SkillMap({ states }: SkillMapProps) {
         {/* Tooltip */}
         {hoveredSkill && (
           <div
-            className="absolute z-10 bg-gray-900 text-white text-sm rounded-lg px-3 py-2 shadow-lg pointer-events-none max-w-[200px]"
+            className="absolute z-10 bg-surface-900 text-white text-sm rounded-lg px-3 py-2 shadow-lg pointer-events-none max-w-[200px]"
             style={{
               left: `${tooltipPos.x}px`,
               top: `${tooltipPos.y - 70}px`,
@@ -194,7 +199,7 @@ export function SkillMap({ states }: SkillMapProps) {
             <div className="mt-1">
               Mastery: {Math.round(hoveredSkill.mastery * 100)}%
             </div>
-            <div className="text-gray-300">
+            <div className="text-surface-300">
               Trend:{" "}
               {hoveredSkill.confidenceTrend === "improving"
                 ? "↑ Improving"
@@ -202,13 +207,13 @@ export function SkillMap({ states }: SkillMapProps) {
                   ? "↓ Declining"
                   : "→ Stable"}
             </div>
-            <div className="text-gray-400 text-xs mt-1">Click to practice</div>
+            <div className="text-surface-400 text-xs mt-1">Click to practice</div>
           </div>
         )}
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-4 mt-3 text-sm text-gray-600 dark:text-gray-400">
+      <div className="flex flex-wrap gap-4 mt-3 text-sm text-surface-600 dark:text-surface-400">
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-full bg-green-500" aria-hidden="true" />
           <span>Mastered (&gt;70%)</span>
@@ -222,7 +227,7 @@ export function SkillMap({ states }: SkillMapProps) {
           <span>Needs Practice (&lt;40%)</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-full bg-gray-400 opacity-50" aria-hidden="true" />
+          <span className="w-3 h-3 rounded-full bg-surface-400 opacity-50" aria-hidden="true" />
           <span>Not Started</span>
         </div>
       </div>

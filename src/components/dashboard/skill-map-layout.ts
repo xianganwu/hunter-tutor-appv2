@@ -17,8 +17,8 @@ interface LayoutConfig {
 }
 
 const DESKTOP_CONFIG: LayoutConfig = {
-  columnWidth: 300,
-  rowHeight: 90,
+  columnWidth: 360,
+  rowHeight: 130,
   nodeRadius: 22,
   paddingX: 50,
   paddingY: 60,
@@ -62,12 +62,13 @@ export function computeSkillLayout(
 
     for (const [tier, skills] of Array.from(tierGroups.entries())) {
       const y = config.paddingY + (tier - 1) * config.rowHeight;
-      const totalWidth = (skills.length - 1) * 70;
+      const skillSpacing = 100;
+      const totalWidth = (skills.length - 1) * skillSpacing;
       const startX = columnCenterX - totalWidth / 2;
 
       for (let i = 0; i < skills.length; i++) {
         const skill = skills[i];
-        const x = skills.length === 1 ? columnCenterX : startX + i * 70;
+        const x = skills.length === 1 ? columnCenterX : startX + i * skillSpacing;
         const state = states.get(skill.skillId);
 
         positionMap.set(skill.skillId, { x, y });
@@ -134,6 +135,46 @@ export function getMasteryIcon(mastery: number): string {
   if (mastery > 0.7) return "✓";
   if (mastery >= 0.4) return "–";
   return "!";
+}
+
+/**
+ * Split a skill name into up to two lines for SVG rendering.
+ * Tries to break at a natural separator (&, /, comma) near the middle,
+ * falling back to a word boundary.
+ */
+export function wrapSkillName(name: string, maxLineChars = 18): string[] {
+  if (name.length <= maxLineChars) return [name];
+
+  // Try splitting at a natural separator near the middle
+  const mid = Math.floor(name.length / 2);
+  const separators = [" & ", ", ", " / "];
+  let bestIdx = -1;
+  let bestDist = Infinity;
+
+  for (const sep of separators) {
+    let idx = name.indexOf(sep);
+    while (idx !== -1) {
+      const dist = Math.abs(idx - mid);
+      if (dist < bestDist) {
+        bestDist = dist;
+        bestIdx = idx;
+      }
+      idx = name.indexOf(sep, idx + 1);
+    }
+  }
+
+  if (bestIdx > 0) {
+    return [name.slice(0, bestIdx).trim(), name.slice(bestIdx).trim()];
+  }
+
+  // Fallback: break at the last space before maxLineChars
+  const spaceIdx = name.lastIndexOf(" ", maxLineChars);
+  if (spaceIdx > 4) {
+    return [name.slice(0, spaceIdx), name.slice(spaceIdx + 1)];
+  }
+
+  // Last resort: hard truncate
+  return [name.slice(0, maxLineChars - 1) + "..."];
 }
 
 /** Domain labels for column headers */
