@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { PassageReader } from "./PassageReader";
 import { TypingIndicator } from "@/components/chat/TypingIndicator";
 import { useReadingStamina } from "@/hooks/useReadingStamina";
@@ -124,6 +124,8 @@ export function ReadingStaminaSession() {
             answers={state.answers}
             onAnswer={answerQuestion}
             wpm={state.currentWpm}
+            passageText={state.currentPassage.passageText}
+            preReadingContext={state.currentPassage.preReadingContext}
           />
         )}
 
@@ -185,6 +187,8 @@ function AnsweringPhase({
   answers,
   onAnswer,
   wpm,
+  passageText,
+  preReadingContext,
 }: {
   readonly passage: {
     readonly title: string;
@@ -199,7 +203,10 @@ function AnsweringPhase({
   readonly answers: readonly (number | null)[];
   readonly onAnswer: (choiceIndex: number) => void;
   readonly wpm: number;
+  readonly passageText: string;
+  readonly preReadingContext: string;
 }) {
+  const [showPassage, setShowPassage] = useState(false);
   const question = passage.questions[questionIndex];
 
   return (
@@ -233,6 +240,49 @@ function AnsweringPhase({
           Question {questionIndex + 1} of {passage.questions.length}
         </span>
       </div>
+
+      {/* View passage toggle */}
+      <button
+        onClick={() => setShowPassage((prev) => !prev)}
+        className="flex items-center gap-1.5 text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
+        aria-expanded={showPassage}
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 20 20"
+          fill="none"
+          aria-hidden="true"
+          className={`transition-transform ${showPassage ? "rotate-180" : ""}`}
+        >
+          <path
+            d="M5 8l5 5 5-5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        {showPassage ? "Hide passage" : "View passage"}
+      </button>
+
+      {/* Collapsible passage */}
+      {showPassage && (
+        <div className="space-y-2 animate-fade-in">
+          {preReadingContext && (
+            <div className="rounded-xl bg-brand-50 dark:bg-brand-600/10 border border-brand-200 dark:border-brand-800 px-4 py-3">
+              <p className="text-sm text-brand-700 dark:text-brand-300 italic">
+                {preReadingContext}
+              </p>
+            </div>
+          )}
+          <article className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 border border-surface-200 dark:border-surface-800 max-h-72 overflow-y-auto">
+            <div className="text-sm leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap">
+              {passageText}
+            </div>
+          </article>
+        </div>
+      )}
 
       {/* Question */}
       <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 border border-surface-200 dark:border-surface-800">
