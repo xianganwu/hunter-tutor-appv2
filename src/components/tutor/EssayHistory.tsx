@@ -27,11 +27,11 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
 
   if (essays.length === 0) {
     return (
-      <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 text-center">
-        <p className="text-gray-500">No essays yet. Complete a writing session to see your history!</p>
+      <div className="rounded-2xl shadow-soft bg-surface-0 dark:bg-surface-900 p-6 text-center">
+        <p className="text-surface-500">No essays yet. Complete a writing session to see your history!</p>
         <button
           onClick={onClose}
-          className="mt-4 rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-200 transition-colors"
+          className="mt-4 rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2 text-sm text-surface-600 dark:text-surface-400 hover:bg-surface-200 transition-colors"
         >
           Back
         </button>
@@ -45,7 +45,7 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
         <h3 className="text-lg font-semibold">Your Essays</h3>
         <button
           onClick={onClose}
-          className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+          className="text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
         >
           Back to workshop
         </button>
@@ -53,7 +53,7 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
 
       {/* Progress trend */}
       {essays.length >= 2 && (
-        <div className="rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3 text-sm text-blue-700 dark:text-blue-300">
+        <div className="rounded-xl bg-brand-50 dark:bg-brand-600/10 p-3 text-sm text-brand-700 dark:text-brand-300">
           You&apos;ve written {essays.length} essays!{" "}
           {avgScore(essays[essays.length - 1]) > avgScore(essays[0])
             ? "Your scores are improving — great progress!"
@@ -68,17 +68,17 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
         return (
           <div
             key={essay.id}
-            className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden"
+            className="rounded-2xl shadow-soft bg-surface-0 dark:bg-surface-900 overflow-hidden"
           >
             <button
               onClick={() => setExpandedId(expanded ? null : essay.id)}
-              className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors"
             >
               <div>
-                <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                <div className="text-sm font-medium text-surface-900 dark:text-surface-100">
                   {essay.promptText.slice(0, 60)}...
                 </div>
-                <div className="text-xs text-gray-500 mt-0.5">
+                <div className="text-xs text-surface-500 mt-0.5">
                   {formatDate(essay.createdAt)} · {essay.wordCount} words
                 </div>
               </div>
@@ -86,10 +86,10 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                 <span
                   className={`text-sm font-bold ${
                     avg >= 7
-                      ? "text-green-600"
+                      ? "text-success-500"
                       : avg >= 5
-                        ? "text-amber-600"
-                        : "text-red-600"
+                        ? "text-streak-500"
+                        : "text-red-500"
                   }`}
                 >
                   {avg}/10
@@ -98,7 +98,7 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                   width="16"
                   height="16"
                   viewBox="0 0 16 16"
-                  className={`text-gray-400 transition-transform ${expanded ? "rotate-180" : ""}`}
+                  className={`text-surface-400 transition-transform ${expanded ? "rotate-180" : ""}`}
                   aria-hidden="true"
                 >
                   <path
@@ -114,7 +114,7 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
             </button>
 
             {expanded && (
-              <div className="px-4 pb-4 space-y-3 border-t border-gray-100 dark:border-gray-800 pt-3">
+              <div className="px-4 pb-4 space-y-3 border-t border-surface-100 dark:border-surface-800 pt-3">
                 <div className="grid grid-cols-4 gap-2 text-center text-xs">
                   {(
                     [
@@ -126,22 +126,22 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                   ).map(([label, score]) => (
                     <div key={label}>
                       <span className="font-bold">{score}</span>
-                      <span className="text-gray-400">/{10}</span>
-                      <div className="text-gray-500">{label}</div>
+                      <span className="text-surface-400">/{10}</span>
+                      <div className="text-surface-500">{label}</div>
                     </div>
                   ))}
                 </div>
 
                 <details>
-                  <summary className="text-xs text-blue-600 cursor-pointer">
+                  <summary className="text-xs text-brand-600 cursor-pointer">
                     View essay
                   </summary>
-                  <div className="mt-2 rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-serif max-h-48 overflow-y-auto">
+                  <div className="mt-2 rounded-xl bg-surface-50 dark:bg-surface-800 p-3 text-sm text-surface-700 dark:text-surface-300 whitespace-pre-wrap font-serif max-h-48 overflow-y-auto">
                     {essay.essayText}
                   </div>
                 </details>
 
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-surface-600 dark:text-surface-400">
                   <strong>Feedback:</strong> {essay.feedback.overallFeedback}
                 </div>
               </div>

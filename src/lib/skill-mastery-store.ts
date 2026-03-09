@@ -16,7 +16,7 @@ export interface StoredSkillMastery {
 
 const STORAGE_KEY = "hunter-tutor-skill-mastery";
 
-function loadAll(): StoredSkillMastery[] {
+export function loadAllSkillMasteries(): StoredSkillMastery[] {
   try {
     if (typeof window === "undefined") return [];
     const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
@@ -37,11 +37,11 @@ function saveAll(entries: readonly StoredSkillMastery[]): void {
 }
 
 export function loadSkillMastery(skillId: string): StoredSkillMastery | null {
-  return loadAll().find((e) => e.skillId === skillId) ?? null;
+  return loadAllSkillMasteries().find((e) => e.skillId === skillId) ?? null;
 }
 
 export function saveSkillMastery(data: StoredSkillMastery): void {
-  const all = loadAll();
+  const all = loadAllSkillMasteries();
   const idx = all.findIndex((e) => e.skillId === data.skillId);
   if (idx >= 0) {
     all[idx] = data;

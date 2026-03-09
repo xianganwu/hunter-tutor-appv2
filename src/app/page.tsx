@@ -10,6 +10,7 @@ import {
   hasLegacyData,
   migrateAnonymousData,
 } from "@/lib/user-profile";
+import { Mascot } from "@/components/shared/Mascot";
 
 export default function ProfilePicker() {
   const router = useRouter();
@@ -68,11 +69,9 @@ export default function ProfilePicker() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-brand-50 to-surface-50 px-4 dark:from-surface-950 dark:to-surface-900">
       <div className="w-full max-w-md text-center animate-fade-in">
-        {/* Logo */}
+        {/* Mascot */}
         <div className="mb-6 flex justify-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-600 text-2xl font-bold text-white shadow-glow">
-            H
-          </span>
+          <Mascot tier={1} size="lg" />
         </div>
 
         <h1 className="mb-2 text-3xl font-bold text-surface-900 dark:text-surface-100">
@@ -116,7 +115,7 @@ export default function ProfilePicker() {
               placeholder="Enter your name"
               maxLength={20}
               autoFocus
-              className="w-full rounded-2xl border border-surface-300 bg-surface-0 px-5 py-3.5 text-lg text-surface-900 placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-100 dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
+              className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
             />
             {error && (
               <p className="text-sm text-red-500 dark:text-red-400">{error}</p>

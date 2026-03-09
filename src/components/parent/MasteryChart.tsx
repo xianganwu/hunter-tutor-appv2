@@ -7,8 +7,8 @@ interface MasteryChartProps {
 }
 
 const COLORS = {
-  reading: "#22c55e",  // green-500
-  mathQr: "#3b82f6",   // blue-500
+  reading: "#10b981",  // success-500
+  mathQr: "#1e40af",   // brand-600
   mathMa: "#8b5cf6",   // purple-500
 };
 
@@ -21,7 +21,7 @@ const INNER_H = H - PAD.top - PAD.bottom;
 export function MasteryChart({ data }: MasteryChartProps) {
   if (data.length === 0) {
     return (
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 text-center text-sm text-gray-400">
+      <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 text-center text-sm text-surface-400">
         No mastery data yet. Progress will appear here after practice sessions.
       </div>
     );
@@ -46,20 +46,20 @@ export function MasteryChart({ data }: MasteryChartProps) {
   const yTicks = [0, 25, 50, 75, 100];
 
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
+    <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4">
       {/* Legend */}
       <div className="flex items-center gap-4 mb-3 text-xs">
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-0.5 rounded" style={{ backgroundColor: COLORS.reading }} />
-          <span className="text-gray-600 dark:text-gray-400">Reading</span>
+          <span className="text-surface-600 dark:text-surface-400">Reading</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-0.5 rounded" style={{ backgroundColor: COLORS.mathQr }} />
-          <span className="text-gray-600 dark:text-gray-400">Math QR</span>
+          <span className="text-surface-600 dark:text-surface-400">Math QR</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-0.5 rounded" style={{ backgroundColor: COLORS.mathMa }} />
-          <span className="text-gray-600 dark:text-gray-400">Math Ach.</span>
+          <span className="text-surface-600 dark:text-surface-400">Math Ach.</span>
         </div>
       </div>
 
@@ -78,14 +78,14 @@ export function MasteryChart({ data }: MasteryChartProps) {
               x2={W - PAD.right}
               y2={toY(tick)}
               stroke="currentColor"
-              className="text-gray-100 dark:text-gray-700"
+              className="text-surface-200 dark:text-surface-700"
               strokeWidth="1"
             />
             <text
               x={PAD.left - 8}
               y={toY(tick) + 4}
               textAnchor="end"
-              className="fill-gray-400 text-[10px]"
+              className="fill-surface-400 text-[10px]"
             >
               {tick}%
             </text>
@@ -128,7 +128,7 @@ export function MasteryChart({ data }: MasteryChartProps) {
               x={toX(i)}
               y={H - 8}
               textAnchor="middle"
-              className="fill-gray-400 text-[10px]"
+              className="fill-surface-400 text-[10px]"
             >
               {formatDate(d.date)}
             </text>

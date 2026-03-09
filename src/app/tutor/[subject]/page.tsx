@@ -45,7 +45,7 @@ export default function TutorPage({ params, searchParams }: TutorPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <main className="min-h-screen bg-surface-50 dark:bg-surface-950">
       <TutoringSession skillId={skillId} subject={subject} />
     </main>
   );

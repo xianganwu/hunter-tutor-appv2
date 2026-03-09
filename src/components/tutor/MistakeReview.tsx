@@ -61,12 +61,12 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
     return (
       <div className="text-center py-12">
         <h3 className="text-lg font-semibold mb-2">No mistakes to review!</h3>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-surface-500 mb-4">
           All your mistakes are either reviewed or not yet due. Check back later!
         </p>
         <button
           onClick={onComplete}
-          className="rounded-xl bg-gray-100 dark:bg-gray-800 px-6 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 transition-colors"
+          className="rounded-xl bg-surface-100 dark:bg-surface-800 px-6 py-2.5 text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 transition-colors"
         >
           Back to Journal
         </button>
@@ -81,29 +81,29 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
         : 0;
 
     return (
-      <div className="text-center py-12 space-y-6">
+      <div className="text-center py-12 space-y-6 animate-slide-up">
         <h3 className="text-xl font-semibold">Review Complete!</h3>
         <div className="grid grid-cols-3 gap-4 max-w-xs mx-auto">
-          <div className="rounded-lg bg-blue-50 dark:bg-blue-900/30 p-3">
-            <div className="text-2xl font-bold text-blue-600">
+          <div className="rounded-2xl bg-brand-50 dark:bg-brand-600/10 p-3 shadow-card">
+            <div className="text-2xl font-bold text-brand-600">
               {results.total}
             </div>
-            <div className="text-xs text-gray-500">Reviewed</div>
+            <div className="text-xs text-surface-500">Reviewed</div>
           </div>
-          <div className="rounded-lg bg-green-50 dark:bg-green-900/30 p-3">
-            <div className="text-2xl font-bold text-green-600">
+          <div className="rounded-2xl bg-success-50 dark:bg-success-500/10 p-3 shadow-card">
+            <div className="text-2xl font-bold text-success-500">
               {results.correct}
             </div>
-            <div className="text-xs text-gray-500">Correct</div>
+            <div className="text-xs text-surface-500">Correct</div>
           </div>
-          <div className="rounded-lg bg-purple-50 dark:bg-purple-900/30 p-3">
-            <div className="text-2xl font-bold text-purple-600">
+          <div className="rounded-2xl bg-brand-50 dark:bg-brand-600/10 p-3 shadow-card">
+            <div className="text-2xl font-bold text-brand-500">
               {accuracy}%
             </div>
-            <div className="text-xs text-gray-500">Accuracy</div>
+            <div className="text-xs text-surface-500">Accuracy</div>
           </div>
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
+        <p className="text-sm text-surface-600 dark:text-surface-400">
           {accuracy >= 80
             ? "Excellent! You're really learning from your mistakes!"
             : accuracy >= 50
@@ -112,7 +112,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
         </p>
         <button
           onClick={onComplete}
-          className="rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+          className="rounded-xl bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
         >
           Back to Journal
         </button>
@@ -128,12 +128,12 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
     <div className="space-y-6">
       {/* Progress */}
       <div className="flex items-center justify-between">
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-surface-500">
           Question {currentIndex + 1} of {queue.length}
         </span>
-        <div className="w-32 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+        <div className="w-32 h-1.5 bg-surface-200 dark:bg-surface-700 rounded-full overflow-hidden">
           <div
-            className="h-full bg-blue-500 rounded-full transition-all duration-300"
+            className="h-full bg-brand-500 rounded-full transition-all duration-300"
             style={{
               width: `${((currentIndex + 1) / queue.length) * 100}%`,
             }}
@@ -142,13 +142,13 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
       </div>
 
       {/* Skill badge */}
-      <div className="text-xs text-gray-500">
+      <div className="text-xs text-surface-500">
         Skill: <span className="font-medium">{current.skillName}</span>
       </div>
 
       {/* Question */}
-      <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
-        <p className="text-sm text-gray-900 dark:text-gray-100 leading-relaxed">
+      <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4">
+        <p className="text-sm text-surface-900 dark:text-surface-100 leading-relaxed">
           {current.questionText}
         </p>
       </div>
@@ -162,22 +162,22 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
             letter === current.correctAnswer.trim().toUpperCase();
 
           let classes =
-            "w-full text-left rounded-xl border px-4 py-3 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500";
+            "w-full text-left rounded-xl border px-4 py-3 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500";
 
           if (showResult) {
             if (isCorrectChoice) {
               classes +=
-                " border-green-400 bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-300";
+                " border-success-400 bg-success-50 dark:bg-success-500/10 text-success-600 dark:text-success-400";
             } else if (isSelected && !isCorrect) {
               classes +=
-                " border-red-400 bg-red-50 dark:bg-red-900/30 text-red-800 dark:text-red-300";
+                " border-streak-400 bg-streak-50 dark:bg-streak-500/10 text-streak-600 dark:text-streak-400";
             } else {
               classes +=
-                " border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-500 opacity-60";
+                " border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 text-surface-500 opacity-60";
             }
           } else {
             classes +=
-              " border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-blue-50 dark:hover:bg-gray-700 hover:border-blue-400";
+              " border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-800 text-surface-900 dark:text-surface-100 hover:bg-brand-50 dark:hover:bg-surface-700 hover:border-brand-400";
           }
 
           return (
@@ -195,27 +195,27 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
 
       {/* Result + diagnosis */}
       {showResult && (
-        <div className="space-y-3">
+        <div className="space-y-3 animate-slide-up">
           <div
-            className={`rounded-xl p-4 ${
+            className={`rounded-2xl p-4 ${
               isCorrect
-                ? "bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800"
-                : "bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800"
+                ? "bg-success-50 dark:bg-success-500/10 border border-success-200 dark:border-success-600/30"
+                : "bg-streak-50 dark:bg-streak-500/10 border border-streak-200 dark:border-streak-600/30"
             }`}
           >
             <div
               className={`text-sm font-semibold mb-1 ${
                 isCorrect
-                  ? "text-green-700 dark:text-green-400"
-                  : "text-red-700 dark:text-red-400"
+                  ? "text-success-600 dark:text-success-400"
+                  : "text-streak-600 dark:text-streak-400"
               }`}
             >
               {isCorrect ? "Correct! You've learned from this mistake." : "Not quite — let's review why."}
             </div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-surface-700 dark:text-surface-300">
               {current.diagnosis.explanation}
             </p>
-            <div className="mt-2 text-xs text-gray-500">
+            <div className="mt-2 text-xs text-surface-500">
               Original mistake type:{" "}
               <span className="font-medium">
                 {CATEGORY_LABELS[current.diagnosis.category]}
@@ -225,7 +225,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
 
           <button
             onClick={handleNext}
-            className="w-full rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+            className="w-full rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
           >
             {currentIndex + 1 < queue.length ? "Next Question" : "See Results"}
           </button>

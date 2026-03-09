@@ -63,21 +63,21 @@ function GateScreen({
   return (
     <div className="max-w-lg mx-auto px-4 py-12 space-y-6">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-100">
           Full Practice Exam
         </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+        <p className="text-sm text-surface-500 dark:text-surface-400 mt-2">
           Simulate real Hunter exam conditions
         </p>
       </div>
 
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 space-y-3 text-sm">
-        <h2 className="font-semibold text-gray-900 dark:text-gray-100">
+      <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-3 text-sm">
+        <h2 className="font-semibold text-surface-900 dark:text-surface-100">
           What to expect
         </h2>
-        <div className="space-y-2 text-gray-600 dark:text-gray-400">
+        <div className="space-y-2 text-surface-600 dark:text-surface-400">
           <div className="flex gap-2">
-            <span className="font-medium text-gray-900 dark:text-gray-100 w-24 flex-shrink-0">
+            <span className="font-medium text-surface-900 dark:text-surface-100 w-24 flex-shrink-0">
               ELA Booklet
             </span>
             <span>
@@ -86,7 +86,7 @@ function GateScreen({
             </span>
           </div>
           <div className="flex gap-2">
-            <span className="font-medium text-gray-900 dark:text-gray-100 w-24 flex-shrink-0">
+            <span className="font-medium text-surface-900 dark:text-surface-100 w-24 flex-shrink-0">
               Math Booklet
             </span>
             <span>
@@ -95,7 +95,7 @@ function GateScreen({
             </span>
           </div>
           <div className="flex gap-2">
-            <span className="font-medium text-gray-900 dark:text-gray-100 w-24 flex-shrink-0">
+            <span className="font-medium text-surface-900 dark:text-surface-100 w-24 flex-shrink-0">
               Total
             </span>
             <span>
@@ -104,23 +104,23 @@ function GateScreen({
             </span>
           </div>
         </div>
-        <p className="text-xs text-gray-400 pt-1">
+        <p className="text-xs text-surface-400 pt-1">
           No hints. No teaching. Just like the real exam.
         </p>
       </div>
 
       {error && (
-        <div className="rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-3 text-sm text-red-700 dark:text-red-400">
+        <div className="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-3 text-sm text-red-700 dark:text-red-400">
           {error}
         </div>
       )}
 
       {!cooldown.allowed ? (
-        <div className="rounded-xl border-2 border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/10 p-5 space-y-2 text-center">
-          <p className="text-sm font-medium text-amber-800 dark:text-amber-300">
+        <div className="rounded-2xl border-2 border-streak-200 dark:border-streak-600/30 bg-streak-50 dark:bg-streak-500/10 p-5 space-y-2 text-center shadow-card">
+          <p className="text-sm font-medium text-streak-600 dark:text-streak-400">
             Next simulation available {cooldown.nextDate}
           </p>
-          <p className="text-xs text-amber-600 dark:text-amber-500">
+          <p className="text-xs text-streak-500 dark:text-streak-500">
             We limit full practice exams to once every {COOLDOWN_DAYS} days to
             prevent burnout. Use the time to practice specific skills!
           </p>
@@ -128,21 +128,21 @@ function GateScreen({
       ) : (
         <button
           onClick={onStart}
-          className="w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+          className="w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
         >
           Start Practice Exam
         </button>
       )}
 
       {history.length > 0 && (
-        <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 space-y-2">
-          <h3 className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+        <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4 space-y-2">
+          <h3 className="text-xs font-medium text-surface-500 uppercase tracking-wide">
             Past Simulations
           </h3>
           {history.map((h) => (
             <div
               key={h.id}
-              className="flex justify-between text-sm text-gray-600 dark:text-gray-400"
+              className="flex justify-between text-sm text-surface-600 dark:text-surface-400"
             >
               <span>
                 {new Date(h.completedAt).toLocaleDateString("en-US", {
@@ -162,7 +162,7 @@ function GateScreen({
       <div className="text-center">
         <a
           href="/dashboard"
-          className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+          className="text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
         >
           Back to Dashboard
         </a>
@@ -179,10 +179,10 @@ function GeneratingScreen({
   readonly progress: string;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 animate-fade-in">
       <TypingIndicator />
-      <p className="text-sm text-gray-500 dark:text-gray-400">{progress}</p>
-      <p className="text-xs text-gray-400">
+      <p className="text-sm text-surface-500 dark:text-surface-400">{progress}</p>
+      <p className="text-xs text-surface-400">
         This may take a minute — we&apos;re creating a unique exam for you.
       </p>
     </div>
@@ -198,16 +198,16 @@ function InstructionsScreen({
 }) {
   return (
     <div className="max-w-lg mx-auto px-4 py-12 space-y-6">
-      <h1 className="text-xl font-bold text-center text-gray-900 dark:text-gray-100">
+      <h1 className="text-xl font-bold text-center text-surface-900 dark:text-surface-100">
         Exam Instructions
       </h1>
 
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 space-y-4 text-sm text-gray-700 dark:text-gray-300">
+      <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-4 text-sm text-surface-700 dark:text-surface-300">
         <div>
-          <h2 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+          <h2 className="font-semibold text-surface-900 dark:text-surface-100 mb-1">
             Section 1: ELA Booklet ({ELA_DURATION_MINUTES} minutes)
           </h2>
-          <ul className="space-y-1 text-gray-600 dark:text-gray-400">
+          <ul className="space-y-1 text-surface-600 dark:text-surface-400">
             <li>
               - Read each passage carefully, then answer the questions
             </li>
@@ -217,26 +217,26 @@ function InstructionsScreen({
         </div>
 
         <div>
-          <h2 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+          <h2 className="font-semibold text-surface-900 dark:text-surface-100 mb-1">
             Break (5 minutes)
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-surface-600 dark:text-surface-400">
             Optional rest between sections.
           </p>
         </div>
 
         <div>
-          <h2 className="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+          <h2 className="font-semibold text-surface-900 dark:text-surface-100 mb-1">
             Section 2: Math Booklet ({MATH_DURATION_MINUTES} minutes)
           </h2>
-          <ul className="space-y-1 text-gray-600 dark:text-gray-400">
+          <ul className="space-y-1 text-surface-600 dark:text-surface-400">
             <li>- Quantitative Reasoning: {QR_QUESTION_COUNT} questions</li>
             <li>- Math Achievement: {MA_QUESTION_COUNT} questions</li>
             <li>- No calculator allowed</li>
           </ul>
         </div>
 
-        <div className="rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 p-3 text-xs text-amber-700 dark:text-amber-400">
+        <div className="rounded-xl bg-streak-50 dark:bg-streak-500/10 border border-streak-200 dark:border-streak-600/30 p-3 text-xs text-streak-600 dark:text-streak-400">
           No hints, explanations, or teaching will be given during the exam.
           Answer every question — there is no penalty for guessing.
         </div>
@@ -244,7 +244,7 @@ function InstructionsScreen({
 
       <button
         onClick={onBegin}
-        className="w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+        className="w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
       >
         Begin ELA Section
       </button>
@@ -295,10 +295,10 @@ function ExamTimer({
     <span
       className={`font-mono text-sm font-medium ${
         isCritical
-          ? "text-red-600 dark:text-red-400 animate-pulse"
+          ? "text-red-500 dark:text-red-400 animate-pulse"
           : isLow
-            ? "text-amber-600 dark:text-amber-400"
-            : "text-gray-700 dark:text-gray-300"
+            ? "text-streak-500 dark:text-streak-400"
+            : "text-surface-700 dark:text-surface-300"
       }`}
     >
       {mins}:{secs.toString().padStart(2, "0")}
@@ -322,10 +322,10 @@ function ElaBooklet({
     .filter((q) => state.answers[q.id]).length;
 
   return (
-    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-3xl mx-auto">
+    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-3xl mx-auto bg-surface-50 dark:bg-surface-950">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-        <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+      <header className="flex items-center justify-between px-4 py-2 border-b border-surface-200 dark:border-surface-800">
+        <div className="text-sm font-semibold text-surface-900 dark:text-surface-100">
           ELA Booklet
         </div>
         <div className="flex items-center gap-4">
@@ -335,7 +335,7 @@ function ElaBooklet({
           />
           <button
             onClick={sim.finishEla}
-            className="text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            className="text-xs text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
           >
             Submit ELA
           </button>
@@ -343,7 +343,7 @@ function ElaBooklet({
       </header>
 
       {/* Tabs */}
-      <div className="flex border-b border-gray-200 dark:border-gray-800">
+      <div className="flex border-b border-surface-200 dark:border-surface-800">
         <TabButton
           active={tab === "reading"}
           onClick={() => sim.setElaTab("reading")}
@@ -395,10 +395,10 @@ function ReadingSection({
               onClick={() => sim.setPassageIndex(i)}
               className={`px-2.5 py-1 text-xs rounded-lg border transition-colors ${
                 i === state.currentPassageIndex
-                  ? "bg-blue-600 text-white border-blue-600"
+                  ? "bg-brand-600 text-white border-brand-600"
                   : allAnswered
-                    ? "bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-300 dark:border-green-700"
-                    : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700 hover:border-blue-400"
+                    ? "bg-success-50 dark:bg-success-500/10 text-success-600 dark:text-success-400 border-success-200 dark:border-success-600/30"
+                    : "bg-surface-0 dark:bg-surface-800 text-surface-600 dark:text-surface-400 border-surface-200 dark:border-surface-700 hover:border-brand-400"
               }`}
             >
               Passage {i + 1}
@@ -409,14 +409,14 @@ function ReadingSection({
       </div>
 
       {/* Passage text */}
-      <article className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5">
-        <div className="text-xs text-blue-600 dark:text-blue-400 italic mb-2">
+      <article className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
+        <div className="text-xs text-brand-600 dark:text-brand-400 italic mb-2">
           {passage.preReadingContext}
         </div>
-        <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-3">
+        <h2 className="text-base font-semibold text-surface-900 dark:text-surface-100 mb-3">
           {passage.title}
         </h2>
-        <div className="text-sm leading-relaxed text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
+        <div className="text-sm leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap">
           {passage.passageText}
         </div>
       </article>
@@ -450,11 +450,11 @@ function WritingSection({
 
   return (
     <div className="px-4 py-4 space-y-4">
-      <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5">
-        <div className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
+      <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
+        <div className="text-xs font-medium text-surface-400 uppercase tracking-wide mb-2">
           Essay Prompt
         </div>
-        <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+        <p className="text-sm text-surface-800 dark:text-surface-200 leading-relaxed">
           {exam.writingPrompt.text}
         </p>
       </div>
@@ -464,10 +464,10 @@ function WritingSection({
           value={state.essayText}
           onChange={(e) => sim.setEssayText(e.target.value)}
           placeholder="Write your essay here..."
-          className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[400px] resize-y"
+          className="w-full rounded-2xl border border-surface-200 dark:border-surface-600 bg-surface-0 dark:bg-surface-900 px-4 py-3 text-sm leading-relaxed text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 min-h-[400px] resize-y"
           aria-label="Essay response"
         />
-        <div className="text-xs text-gray-400 text-right">
+        <div className="text-xs text-surface-400 text-right">
           {wc} words
         </div>
       </div>
@@ -501,11 +501,11 @@ function BreakScreen({
   const secs = countdown % 60;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 px-4">
-      <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6 px-4 animate-fade-in">
+      <h1 className="text-xl font-bold text-surface-900 dark:text-surface-100">
         ELA Section Complete
       </h1>
-      <p className="text-sm text-gray-500 dark:text-gray-400 text-center max-w-md">
+      <p className="text-sm text-surface-500 dark:text-surface-400 text-center max-w-md">
         Take a short break. Stretch, get some water, rest your eyes.
         The math section starts automatically in{" "}
         <span className="font-mono font-medium">
@@ -515,7 +515,7 @@ function BreakScreen({
       </p>
       <button
         onClick={onContinue}
-        className="rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+        className="rounded-xl bg-brand-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
       >
         Start Math Section Now
       </button>
@@ -543,10 +543,10 @@ function MathBooklet({
   const question = questions[currentIndex];
 
   return (
-    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-3xl mx-auto">
+    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-3xl mx-auto bg-surface-50 dark:bg-surface-950">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-        <div className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+      <header className="flex items-center justify-between px-4 py-2 border-b border-surface-200 dark:border-surface-800">
+        <div className="text-sm font-semibold text-surface-900 dark:text-surface-100">
           Math Booklet
         </div>
         <div className="flex items-center gap-4">
@@ -556,7 +556,7 @@ function MathBooklet({
           />
           <button
             onClick={() => void sim.finishMath()}
-            className="text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            className="text-xs text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
           >
             Submit Math
           </button>
@@ -564,7 +564,7 @@ function MathBooklet({
       </header>
 
       {/* Tabs */}
-      <div className="flex border-b border-gray-200 dark:border-gray-800">
+      <div className="flex border-b border-surface-200 dark:border-surface-800">
         <TabButton
           active={tab === "qr"}
           onClick={() => sim.setMathTab("qr")}
@@ -581,7 +581,7 @@ function MathBooklet({
       <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
         {question && (
           <div className="space-y-4">
-            <div className="text-xs text-gray-400">
+            <div className="text-xs text-surface-400">
               Question {currentIndex + 1} of {questions.length}
             </div>
 
@@ -597,7 +597,7 @@ function MathBooklet({
               <button
                 onClick={() => setQuestion(Math.max(0, currentIndex - 1))}
                 disabled={currentIndex === 0}
-                className="rounded-lg px-3 py-1.5 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 transition-colors"
+                className="rounded-lg px-3 py-1.5 text-sm text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 disabled:opacity-30 transition-colors"
               >
                 Previous
               </button>
@@ -606,7 +606,7 @@ function MathBooklet({
                   setQuestion(Math.min(questions.length - 1, currentIndex + 1))
                 }
                 disabled={currentIndex === questions.length - 1}
-                className="rounded-lg px-3 py-1.5 text-sm text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 disabled:opacity-30 transition-colors"
+                className="rounded-lg px-3 py-1.5 text-sm text-brand-600 hover:bg-brand-50 dark:hover:bg-brand-600/10 disabled:opacity-30 transition-colors"
               >
                 Next
               </button>
@@ -615,8 +615,8 @@ function MathBooklet({
         )}
 
         {/* Question grid */}
-        <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
-          <div className="text-xs text-gray-400 mb-2">Question Navigator</div>
+        <div className="pt-4 border-t border-surface-200 dark:border-surface-800">
+          <div className="text-xs text-surface-400 mb-2">Question Navigator</div>
           <div className="flex flex-wrap gap-1">
             {questions.map((q, i) => {
               const answered = !!state.answers[q.id];
@@ -626,10 +626,10 @@ function MathBooklet({
                   onClick={() => setQuestion(i)}
                   className={`w-7 h-7 text-xs rounded ${
                     i === currentIndex
-                      ? "bg-blue-600 text-white"
+                      ? "bg-brand-600 text-white"
                       : answered
-                        ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-500"
+                        ? "bg-success-50 dark:bg-success-500/10 text-success-600 dark:text-success-400"
+                        : "bg-surface-100 dark:bg-surface-800 text-surface-500"
                   }`}
                 >
                   {i + 1}
@@ -647,12 +647,12 @@ function MathBooklet({
 
 function SubmittingScreen() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 animate-fade-in">
       <TypingIndicator />
-      <p className="text-sm text-gray-500 dark:text-gray-400">
+      <p className="text-sm text-surface-500 dark:text-surface-400">
         Scoring your exam...
       </p>
-      <p className="text-xs text-gray-400">
+      <p className="text-xs text-surface-400">
         Evaluating your essay and generating your score report.
       </p>
     </div>
@@ -675,8 +675,8 @@ function TabButton({
       onClick={onClick}
       className={`px-4 py-2 text-xs font-medium transition-colors ${
         active
-          ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400"
-          : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+          ? "text-brand-600 dark:text-brand-400 border-b-2 border-brand-600 dark:border-brand-400"
+          : "text-surface-500 dark:text-surface-400 hover:text-surface-700 dark:hover:text-surface-300"
       }`}
     >
       {label}
@@ -696,9 +696,9 @@ function QuestionCard({
   readonly onSelect: (letter: string) => void;
 }) {
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
-      <p className="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">
-        <span className="text-gray-400 mr-1">{questionNumber}.</span>{" "}
+    <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4">
+      <p className="text-sm font-medium text-surface-900 dark:text-surface-100 mb-3">
+        <span className="text-surface-400 mr-1">{questionNumber}.</span>{" "}
         <MathText text={question.questionText} />
       </p>
 
@@ -707,10 +707,10 @@ function QuestionCard({
           <button
             key={choice.letter}
             onClick={() => onSelect(choice.letter)}
-            className={`w-full text-left rounded-lg border px-3 py-2 text-sm transition-colors ${
+            className={`w-full text-left rounded-xl border px-3 py-2 text-sm transition-colors ${
               selectedAnswer === choice.letter
-                ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-900 dark:text-blue-100"
-                : "border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-500"
+                ? "border-brand-500 bg-brand-50 dark:bg-brand-600/10 text-brand-900 dark:text-brand-100"
+                : "border-surface-200 dark:border-surface-600 text-surface-700 dark:text-surface-300 hover:border-surface-400 dark:hover:border-surface-500"
             }`}
           >
             <span className="font-medium mr-1.5">{choice.letter}.</span>

@@ -4,14 +4,24 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DarkModeToggle } from "./DarkModeToggle";
+import { Mascot, getMascotTier } from "./Mascot";
 import { getActiveUser } from "@/lib/user-profile";
+import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 
 export function TopNav() {
   const pathname = usePathname();
   const [userName, setUserName] = useState<string | null>(null);
+  const [mascotTier, setMascotTier] = useState<1 | 2 | 3 | 4 | 5>(1);
 
   useEffect(() => {
     setUserName(getActiveUser());
+
+    const stored = loadAllSkillMasteries();
+    if (stored.length > 0) {
+      const avg =
+        stored.reduce((sum, s) => sum + s.masteryLevel, 0) / stored.length;
+      setMascotTier(getMascotTier(avg));
+    }
   }, []);
 
   // Hide on profile picker page
@@ -32,9 +42,7 @@ export function TopNav() {
           href="/dashboard"
           className="flex items-center gap-2.5 text-lg font-bold text-brand-600 dark:text-brand-400"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm text-white">
-            H
-          </span>
+          <Mascot tier={mascotTier} size="sm" />
           <span className="hidden sm:inline">Hunter Tutor</span>
         </Link>
 

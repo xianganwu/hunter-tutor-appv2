@@ -204,7 +204,7 @@ export function MistakeJournal({ onStartReview }: MistakeJournalProps) {
 
       {/* Mistake list */}
       <div>
-        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <h4 className="text-sm font-medium text-surface-700 dark:text-surface-300 mb-2">
           All Mistakes ({filtered.length})
         </h4>
         <div className="space-y-2">
@@ -215,24 +215,24 @@ export function MistakeJournal({ onStartReview }: MistakeJournalProps) {
             return (
               <div
                 key={mistake.id}
-                className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden"
+                className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 overflow-hidden"
               >
                 <button
                   onClick={() =>
                     setExpandedId(expanded ? null : mistake.id)
                   }
-                  className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                  className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-surface-50 dark:hover:bg-surface-800 transition-colors"
                 >
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm text-gray-900 dark:text-gray-100 truncate">
+                    <div className="text-sm text-surface-900 dark:text-surface-100 truncate">
                       {mistake.questionText.slice(0, 80)}
                       {mistake.questionText.length > 80 ? "..." : ""}
                     </div>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-surface-500">
                         {mistake.skillName}
                       </span>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-surface-400">
                         {formatDate(mistake.createdAt)}
                       </span>
                     </div>
@@ -244,51 +244,51 @@ export function MistakeJournal({ onStartReview }: MistakeJournalProps) {
                       {CATEGORY_LABELS[mistake.diagnosis.category]}
                     </span>
                     {reviewDays === 0 && (
-                      <span className="w-2 h-2 rounded-full bg-blue-500" title="Due for review" />
+                      <span className="w-2 h-2 rounded-full bg-brand-500" title="Due for review" />
                     )}
                   </div>
                 </button>
 
                 {expanded && (
-                  <div className="px-4 pb-4 border-t border-gray-100 dark:border-gray-800 pt-3 space-y-3 text-sm">
+                  <div className="px-4 pb-4 border-t border-surface-100 dark:border-surface-800 pt-3 space-y-3 text-sm">
                     <div>
-                      <div className="text-xs font-medium text-gray-400 mb-1">
+                      <div className="text-xs font-medium text-surface-400 mb-1">
                         Question
                       </div>
-                      <p className="text-gray-700 dark:text-gray-300">
+                      <p className="text-surface-700 dark:text-surface-300">
                         {mistake.questionText}
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <div className="text-xs font-medium text-red-500 mb-1">
+                        <div className="text-xs font-medium text-streak-500 mb-1">
                           Your answer
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300">
+                        <p className="text-surface-700 dark:text-surface-300">
                           {mistake.studentAnswer}
                         </p>
                       </div>
                       <div>
-                        <div className="text-xs font-medium text-green-500 mb-1">
+                        <div className="text-xs font-medium text-success-500 mb-1">
                           Correct answer
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300">
+                        <p className="text-surface-700 dark:text-surface-300">
                           {mistake.correctAnswer}
                         </p>
                       </div>
                     </div>
 
-                    <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3">
-                      <div className="text-xs font-medium text-gray-400 mb-1">
+                    <div className="rounded-xl bg-surface-50 dark:bg-surface-800 p-3">
+                      <div className="text-xs font-medium text-surface-400 mb-1">
                         Why you got it wrong
                       </div>
-                      <p className="text-gray-700 dark:text-gray-300">
+                      <p className="text-surface-700 dark:text-surface-300">
                         {mistake.diagnosis.explanation}
                       </p>
                     </div>
 
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-surface-500">
                       {reviewDays === 0
                         ? "Due for review now"
                         : `Next review in ${reviewDays} day${reviewDays !== 1 ? "s" : ""}`}

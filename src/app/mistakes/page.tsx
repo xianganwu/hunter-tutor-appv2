@@ -8,13 +8,13 @@ export default function MistakesPage() {
   const [mode, setMode] = useState<"journal" | "review">("journal");
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <main className="min-h-screen bg-surface-50 dark:bg-surface-950">
       <div className="max-w-2xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
           <a
             href="/dashboard"
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 transition-colors"
             aria-label="Back to dashboard"
           >
             <svg
