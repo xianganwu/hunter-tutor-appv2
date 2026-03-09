@@ -3,6 +3,7 @@ import { DomainCard } from "@/components/dashboard/DomainCard";
 import { WeeklySummary } from "@/components/dashboard/WeeklySummary";
 import { StreakDisplay } from "@/components/dashboard/StreakDisplay";
 import { ContinueLearningButton } from "@/components/dashboard/ContinueLearningButton";
+import { UserMenu } from "@/components/dashboard/UserMenu";
 import {
   getMockStudentStates,
   getMockDomainProgress,
@@ -18,6 +19,11 @@ export default function DashboardPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+      {/* User Menu */}
+      <section className="flex justify-end">
+        <UserMenu />
+      </section>
+
       {/* Header: Greeting + Streak + Continue Learning */}
       <section className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>

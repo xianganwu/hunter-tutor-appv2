@@ -36,6 +36,8 @@ export interface MistakePattern {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
+import { getStorageKey } from "./user-profile";
+
 const STORAGE_KEY = "hunter-tutor-mistakes";
 
 /** Spaced repetition intervals in days: 1, 3, 7, 14, 30 */
@@ -51,7 +53,7 @@ const CATEGORY_LABELS: Record<MistakeCategory, string> = {
 
 export function loadMistakes(): MistakeEntry[] {
   if (typeof window === "undefined") return [];
-  const data = localStorage.getItem(STORAGE_KEY);
+  const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
   if (!data) return [];
   try {
     return JSON.parse(data) as MistakeEntry[];
@@ -61,7 +63,7 @@ export function loadMistakes(): MistakeEntry[] {
 }
 
 export function saveMistakes(mistakes: readonly MistakeEntry[]): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(mistakes));
+  localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(mistakes));
 }
 
 export function addMistake(entry: MistakeEntry): void {

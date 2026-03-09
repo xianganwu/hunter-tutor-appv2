@@ -15,12 +15,14 @@ import { CountdownTimer } from "./CountdownTimer";
 import { StagedFeedback } from "./StagedFeedback";
 import { EssayHistory } from "./EssayHistory";
 
+import { getStorageKey } from "@/lib/user-profile";
+
 const STORAGE_KEY = "hunter-tutor-essays";
 const ESSAY_DURATION_MINUTES = 40;
 
 function loadEssays(): StoredEssay[] {
   if (typeof window === "undefined") return [];
-  const data = localStorage.getItem(STORAGE_KEY);
+  const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
   if (!data) return [];
   try {
     return JSON.parse(data) as StoredEssay[];
@@ -32,7 +34,7 @@ function loadEssays(): StoredEssay[] {
 function saveEssay(essay: StoredEssay): void {
   const essays = loadEssays();
   essays.push(essay);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(essays));
+  localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(essays));
 }
 
 export function WritingWorkshop() {

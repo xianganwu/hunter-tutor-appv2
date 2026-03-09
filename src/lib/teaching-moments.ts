@@ -16,6 +16,8 @@ export interface StoredTeachingMoment {
   readonly createdAt: string; // ISO
 }
 
+import { getStorageKey } from "./user-profile";
+
 // ─── Constants ────────────────────────────────────────────────────────
 
 const STORAGE_KEY = "hunter-tutor-teaching-moments";
@@ -30,7 +32,7 @@ export const TEACH_BACK_MIN_QUESTIONS = 4;
 
 export function loadTeachingMoments(): StoredTeachingMoment[] {
   if (typeof window === "undefined") return [];
-  const data = localStorage.getItem(STORAGE_KEY);
+  const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
   if (!data) return [];
   try {
     return JSON.parse(data) as StoredTeachingMoment[];
@@ -42,7 +44,7 @@ export function loadTeachingMoments(): StoredTeachingMoment[] {
 export function saveTeachingMoment(moment: StoredTeachingMoment): void {
   const moments = loadTeachingMoments();
   moments.push(moment);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(moments));
+  localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(moments));
 }
 
 export function getTeachingMomentsForSkill(

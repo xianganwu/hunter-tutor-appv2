@@ -96,6 +96,8 @@ export interface StoredSimulation {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
+import { getStorageKey } from "./user-profile";
+
 const STORAGE_KEY = "hunter-tutor-simulations";
 
 export const COOLDOWN_DAYS = 14;
@@ -373,7 +375,7 @@ export function generateLocalRecommendations(
 export function loadSimulationHistory(): StoredSimulation[] {
   if (typeof window === "undefined") return [];
   try {
-    const data = localStorage.getItem(STORAGE_KEY);
+    const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
     if (!data) return [];
     return JSON.parse(data) as StoredSimulation[];
   } catch {
@@ -385,7 +387,7 @@ export function saveSimulation(sim: StoredSimulation): void {
   if (typeof window === "undefined") return;
   const history = loadSimulationHistory();
   history.push(sim);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(history));
 }
 
 export function checkCooldown(): {

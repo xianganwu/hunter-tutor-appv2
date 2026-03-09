@@ -1,4 +1,5 @@
 import type { ConfidenceTrend } from "./adaptive";
+import { getStorageKey } from "./user-profile";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -18,7 +19,7 @@ const STORAGE_KEY = "hunter-tutor-skill-mastery";
 function loadAll(): StoredSkillMastery[] {
   try {
     if (typeof window === "undefined") return [];
-    const data = localStorage.getItem(STORAGE_KEY);
+    const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
     if (!data) return [];
     return JSON.parse(data) as StoredSkillMastery[];
   } catch {
@@ -29,7 +30,7 @@ function loadAll(): StoredSkillMastery[] {
 function saveAll(entries: readonly StoredSkillMastery[]): void {
   try {
     if (typeof window === "undefined") return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+    localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(entries));
   } catch {
     // localStorage unavailable
   }

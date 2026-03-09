@@ -29,6 +29,8 @@ export interface StaminaProgress {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
+import { getStorageKey } from "./user-profile";
+
 const STORAGE_KEY = "hunter-tutor-reading-stamina";
 
 export const STAMINA_LEVELS: readonly StaminaLevel[] = [
@@ -157,7 +159,7 @@ export function loadStaminaProgress(): StaminaProgress {
   if (typeof window === "undefined") {
     return { currentLevel: 1, records: [], completedPassageIds: [] };
   }
-  const data = localStorage.getItem(STORAGE_KEY);
+  const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
   if (!data) {
     return { currentLevel: 1, records: [], completedPassageIds: [] };
   }
@@ -170,7 +172,7 @@ export function loadStaminaProgress(): StaminaProgress {
 
 export function saveStaminaProgress(progress: StaminaProgress): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(progress));
 }
 
 /**
