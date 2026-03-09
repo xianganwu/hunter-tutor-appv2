@@ -8,12 +8,12 @@ export function ProgressIndicator({ current, estimated }: ProgressIndicatorProps
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs text-gray-500 dark:text-gray-400">
+      <span className="text-xs text-surface-500 dark:text-surface-400">
         Question {current} of ~{estimated}
       </span>
-      <div className="w-20 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+      <div className="w-20 h-2 bg-surface-200 dark:bg-surface-700 rounded-full overflow-hidden">
         <div
-          className="h-full bg-blue-500 rounded-full transition-all duration-300"
+          className="h-full bg-brand-500 rounded-full transition-all duration-300"
           style={{ width: `${pct}%` }}
           role="progressbar"
           aria-valuenow={current}

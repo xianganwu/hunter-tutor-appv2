@@ -136,7 +136,7 @@ export function WritingWorkshop() {
   // History view
   if (showHistory) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-2xl mx-auto px-4 py-8 bg-surface-50 dark:bg-surface-950 min-h-screen">
         <EssayHistory
           essays={savedEssays}
           onClose={() => setShowHistory(false)}
@@ -146,13 +146,13 @@ export function WritingWorkshop() {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto">
+    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto bg-surface-50 dark:bg-surface-950">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-800">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-surface-200 dark:border-surface-800">
         <div className="flex items-center gap-3">
           <a
             href="/dashboard"
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 transition-colors"
             aria-label="Back to dashboard"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -161,7 +161,7 @@ export function WritingWorkshop() {
           </a>
           <div>
             <h1 className="text-sm font-semibold">Writing Workshop</h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <p className="text-xs text-surface-500 dark:text-surface-400">
               {phase === "prompt" && "Choose your prompt"}
               {phase === "brainstorm" && "Brainstorming"}
               {phase === "writing" && "Write your essay"}
@@ -182,7 +182,7 @@ export function WritingWorkshop() {
           )}
           <button
             onClick={() => setShowHistory(true)}
-            className="text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            className="text-xs text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
           >
             History ({savedEssays.length})
           </button>
@@ -191,24 +191,24 @@ export function WritingWorkshop() {
 
       {/* Prompt phase */}
       {phase === "prompt" && (
-        <div className="flex-1 flex items-center justify-center px-4">
+        <div className="flex-1 flex items-center justify-center px-4 animate-fade-in">
           <div className="max-w-md text-center space-y-6">
-            <div className="rounded-xl border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 p-6">
-              <div className="text-xs font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-3">
+            <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 border border-surface-200 dark:border-surface-800">
+              <div className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide mb-3">
                 Essay Prompt
               </div>
-              <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+              <p className="text-surface-800 dark:text-surface-200 leading-relaxed">
                 {prompt.text}
               </p>
             </div>
-            <div className="text-xs text-gray-500 space-y-1">
+            <div className="text-xs text-surface-500 space-y-1">
               <p>You&apos;ll have {ESSAY_DURATION_MINUTES} minutes to write.</p>
               <p>First, let&apos;s brainstorm to plan your essay.</p>
             </div>
             <div className="flex flex-col gap-2">
               <button
                 onClick={startBrainstorm}
-                className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+                className="rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
               >
                 Start Brainstorming
               </button>
@@ -216,7 +216,7 @@ export function WritingWorkshop() {
                 onClick={() => {
                   setPrompt(getRandomPrompt());
                 }}
-                className="text-xs text-gray-500 hover:text-gray-700 transition-colors"
+                className="text-xs text-surface-500 hover:text-surface-700 transition-colors"
               >
                 Get a different prompt
               </button>
@@ -235,14 +235,14 @@ export function WritingWorkshop() {
 
       {/* Writing phase */}
       {phase === "writing" && (
-        <div className="flex-1 flex flex-col">
-          <div className="px-4 py-2 bg-blue-50 dark:bg-blue-900/20 border-b border-blue-100 dark:border-blue-800">
-            <p className="text-xs text-blue-700 dark:text-blue-300">
+        <div className="flex-1 flex flex-col animate-fade-in">
+          <div className="px-4 py-2 bg-brand-50 dark:bg-brand-600/10 border-b border-brand-100 dark:border-brand-800">
+            <p className="text-xs text-brand-700 dark:text-brand-300">
               <strong>Prompt:</strong> {prompt.text}
             </p>
           </div>
           <div className="flex-1 px-4 py-3">
-            <div className="h-full rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col">
+            <div className="h-full rounded-2xl border border-surface-200 dark:border-surface-700 overflow-hidden flex flex-col shadow-card">
               <EssayEditor
                 value={essayText}
                 onChange={setEssayText}
@@ -250,11 +250,11 @@ export function WritingWorkshop() {
               />
             </div>
           </div>
-          <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-800">
+          <div className="px-4 py-3 border-t border-surface-200 dark:border-surface-800">
             <button
               onClick={() => void submitEssay()}
               disabled={countWords(essayText) < 50}
-              className="w-full rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white hover:bg-green-700 disabled:opacity-50 disabled:hover:bg-green-600 transition-colors"
+              className="w-full rounded-xl bg-success-500 px-4 py-3 text-sm font-semibold text-white hover:bg-success-600 disabled:opacity-50 disabled:hover:bg-success-500 transition-colors"
             >
               {countWords(essayText) < 50
                 ? `Write at least 50 words to submit (${countWords(essayText)} so far)`
@@ -267,11 +267,11 @@ export function WritingWorkshop() {
       {/* Submitting phase */}
       {phase === "submitting" && (
         <div className="flex-1 flex items-center justify-center">
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 animate-fade-in">
             <div className="flex justify-center">
-              <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+              <div className="w-8 h-8 border-2 border-brand-600 border-t-transparent rounded-full animate-spin" />
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-surface-600 dark:text-surface-400">
               Your tutor is reading your essay...
             </p>
           </div>
@@ -291,28 +291,28 @@ export function WritingWorkshop() {
 
       {/* Complete phase */}
       {phase === "complete" && (
-        <div className="flex-1 flex items-center justify-center px-4">
+        <div className="flex-1 flex items-center justify-center px-4 animate-fade-in">
           <div className="max-w-md text-center space-y-6">
             <h3 className="text-xl font-semibold">Great work!</h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-surface-600 dark:text-surface-400">
               You&apos;ve completed a writing session. Every essay you write builds your skills for the Hunter exam.
             </p>
             <div className="flex flex-col gap-2">
               <button
                 onClick={startNewSession}
-                className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+                className="rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
               >
                 Write Another Essay
               </button>
               <button
                 onClick={() => setShowHistory(true)}
-                className="rounded-xl bg-gray-100 dark:bg-gray-800 px-6 py-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="rounded-xl bg-surface-100 dark:bg-surface-800 px-6 py-3 text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
               >
                 View Essay History
               </button>
               <a
                 href="/dashboard"
-                className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+                className="text-sm text-surface-500 hover:text-surface-700 transition-colors"
               >
                 Back to Dashboard
               </a>

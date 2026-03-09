@@ -135,11 +135,11 @@ export function BrainstormChat({ promptText, onComplete }: BrainstormChatProps) 
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-        <span className="text-xs font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wide">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-surface-200 dark:border-surface-700">
+        <span className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide">
           Brainstorming
         </span>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-surface-400">
           Step {STEP_ORDER.indexOf(currentStep) + 1} of 3
         </span>
       </div>
@@ -159,7 +159,7 @@ export function BrainstormChat({ promptText, onComplete }: BrainstormChatProps) 
       </div>
 
       {currentStep !== "done" ? (
-        <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-800">
+        <div className="px-4 py-3 border-t border-surface-200 dark:border-surface-800">
           <ChatInput
             onSend={handleSend}
             disabled={isLoading}
@@ -167,10 +167,10 @@ export function BrainstormChat({ promptText, onComplete }: BrainstormChatProps) 
           />
         </div>
       ) : (
-        <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-800">
+        <div className="px-4 py-3 border-t border-surface-200 dark:border-surface-800">
           <button
             onClick={onComplete}
-            className="w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+            className="w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
           >
             Start Writing
           </button>

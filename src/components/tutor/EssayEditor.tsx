@@ -47,15 +47,15 @@ export function EssayEditor({ value, onChange, disabled }: EssayEditorProps) {
 
   const wordCountColor =
     words >= 200
-      ? "text-green-600"
+      ? "text-success-500"
       : words >= 100
-        ? "text-amber-600"
-        : "text-gray-500";
+        ? "text-streak-500"
+        : "text-surface-500";
 
   return (
     <div className="flex flex-col h-full">
       {/* Toolbar */}
-      <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 rounded-t-xl text-xs text-gray-500 dark:text-gray-400">
+      <div className="flex items-center justify-between px-3 py-2 border-b border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 rounded-t-xl text-xs text-surface-500 dark:text-surface-400">
         <div className="flex items-center gap-4">
           <span className={wordCountColor}>
             <strong>{words}</strong> words
@@ -64,29 +64,34 @@ export function EssayEditor({ value, onChange, disabled }: EssayEditorProps) {
         </div>
         <div>
           {words < 200 && (
-            <span className="text-gray-400">Aim for 200+ words</span>
+            <span className="text-surface-400">Aim for 200+ words</span>
           )}
           {words >= 200 && words < 400 && (
-            <span className="text-green-600">Good length!</span>
+            <span className="text-success-500">Good length!</span>
           )}
           {words >= 400 && (
-            <span className="text-green-600">Strong essay!</span>
+            <span className="text-success-500">Strong essay!</span>
           )}
         </div>
       </div>
 
       {/* Editor */}
-      <textarea
-        ref={textareaRef}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={handleKeyDown}
-        disabled={disabled}
-        placeholder="Start writing your essay here..."
-        className="flex-1 w-full resize-none rounded-b-xl border-0 bg-white dark:bg-gray-900 px-4 py-3 text-base leading-relaxed text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-0 disabled:opacity-50 font-serif"
-        style={{ minHeight: "320px" }}
-        aria-label="Essay editor"
-      />
+      <div className="relative flex-1">
+        <textarea
+          ref={textareaRef}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={disabled}
+          placeholder="Start writing your essay here..."
+          className="w-full h-full resize-none rounded-b-2xl border-0 bg-surface-0 dark:bg-surface-900 px-4 py-3 pb-8 text-base leading-loose text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-0 disabled:opacity-50 font-serif"
+          style={{ minHeight: "320px" }}
+          aria-label="Essay editor"
+        />
+        <div className="absolute bottom-2 right-3 text-xs text-surface-400">
+          {words} words
+        </div>
+      </div>
     </div>
   );
 }

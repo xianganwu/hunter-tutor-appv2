@@ -3,11 +3,11 @@
 export function TypingIndicator() {
   return (
     <div className="flex justify-start mb-3" aria-label="Tutor is typing" role="status">
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl px-4 py-3">
-        <div className="flex gap-1">
-          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:0ms]" />
-          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]" />
-          <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:300ms]" />
+      <div className="bg-surface-100 dark:bg-surface-800 rounded-2xl rounded-tl-md px-4 py-3 shadow-soft">
+        <div className="flex gap-1.5">
+          <span className="w-2 h-2 bg-surface-400 dark:bg-surface-500 rounded-full animate-bounce-dot [animation-delay:0s]" />
+          <span className="w-2 h-2 bg-surface-400 dark:bg-surface-500 rounded-full animate-bounce-dot [animation-delay:0.16s]" />
+          <span className="w-2 h-2 bg-surface-400 dark:bg-surface-500 rounded-full animate-bounce-dot [animation-delay:0.32s]" />
         </div>
       </div>
     </div>

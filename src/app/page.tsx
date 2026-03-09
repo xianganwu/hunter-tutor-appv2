@@ -66,12 +66,19 @@ export default function ProfilePicker() {
   if (!ready) return null;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4">
-      <div className="w-full max-w-md text-center">
-        <h1 className="mb-2 text-3xl font-bold text-gray-900">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-brand-50 to-surface-50 px-4 dark:from-surface-950 dark:to-surface-900">
+      <div className="w-full max-w-md text-center animate-fade-in">
+        {/* Logo */}
+        <div className="mb-6 flex justify-center">
+          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-600 text-2xl font-bold text-white shadow-glow">
+            H
+          </span>
+        </div>
+
+        <h1 className="mb-2 text-3xl font-bold text-surface-900 dark:text-surface-100">
           Hunter Tutor
         </h1>
-        <p className="mb-8 text-lg text-gray-600">
+        <p className="mb-8 text-lg text-surface-500 dark:text-surface-400">
           {hasLegacy && users.length === 0
             ? "Welcome back! Enter your name to keep your progress."
             : "Who\u2019s practicing today?"}
@@ -83,12 +90,12 @@ export default function ProfilePicker() {
               <button
                 key={name}
                 onClick={() => selectUser(name)}
-                className="flex w-full items-center gap-4 rounded-xl border border-gray-200 bg-white px-5 py-4 text-left shadow-sm transition hover:border-blue-300 hover:shadow-md"
+                className="flex w-full items-center gap-4 rounded-2xl border border-surface-200 bg-surface-0 px-5 py-4 text-left shadow-soft transition-all hover:border-brand-300 hover:shadow-card dark:border-surface-700 dark:bg-surface-900 dark:hover:border-brand-500/40"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 text-lg font-bold text-blue-700">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-lg font-bold text-brand-700 dark:bg-brand-600/20 dark:text-brand-400">
                   {name[0].toUpperCase()}
                 </span>
-                <span className="text-lg font-medium text-gray-900">
+                <span className="text-lg font-medium text-surface-900 dark:text-surface-100">
                   {name}
                 </span>
               </button>
@@ -97,7 +104,7 @@ export default function ProfilePicker() {
         )}
 
         {showAdd ? (
-          <div className="space-y-4">
+          <div className="space-y-4 animate-slide-up">
             <input
               type="text"
               value={newName}
@@ -109,14 +116,14 @@ export default function ProfilePicker() {
               placeholder="Enter your name"
               maxLength={20}
               autoFocus
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 text-lg focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="w-full rounded-2xl border border-surface-300 bg-surface-0 px-5 py-3.5 text-lg text-surface-900 placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-100 dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
             />
             {error && (
-              <p className="text-sm text-red-600">{error}</p>
+              <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
             )}
             <button
               onClick={handleAdd}
-              className="w-full rounded-xl bg-blue-600 py-3 text-lg font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="w-full rounded-2xl bg-brand-600 py-3.5 text-lg font-semibold text-white shadow-glow transition-all hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-surface-900"
             >
               Start Practicing
             </button>
@@ -127,7 +134,7 @@ export default function ProfilePicker() {
                   setNewName("");
                   setError("");
                 }}
-                className="text-sm text-gray-500 hover:text-gray-700"
+                className="text-sm text-surface-500 hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-300"
               >
                 Back to profiles
               </button>
@@ -136,7 +143,7 @@ export default function ProfilePicker() {
         ) : (
           <button
             onClick={() => setShowAdd(true)}
-            className="w-full rounded-xl border-2 border-dashed border-gray-300 py-4 text-gray-500 transition hover:border-blue-400 hover:text-blue-600"
+            className="w-full rounded-2xl border-2 border-dashed border-surface-300 py-4 text-surface-500 transition-all hover:border-brand-400 hover:text-brand-600 dark:border-surface-600 dark:text-surface-400 dark:hover:border-brand-500 dark:hover:text-brand-400"
           >
             + Add new profile
           </button>

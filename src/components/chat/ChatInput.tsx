@@ -31,13 +31,13 @@ export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
         onChange={(e) => setText(e.target.value)}
         disabled={disabled}
         placeholder={placeholder ?? "Type your answer..."}
-        className="flex-1 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2.5 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        className="flex-1 rounded-2xl border border-surface-300 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 px-4 py-2.5 text-body text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50 transition-colors"
         aria-label="Type your message"
       />
       <button
         type="submit"
         disabled={disabled || !text.trim()}
-        className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50 disabled:hover:bg-blue-600 transition-colors"
+        className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-40 disabled:hover:bg-brand-600 transition-colors"
         aria-label="Send message"
       >
         Send

@@ -90,9 +90,9 @@ export function TeachItBack({
 
   const completenessColors = {
     complete:
-      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+      "bg-success-100 text-success-600 dark:bg-success-500/20 dark:text-success-400",
     partial:
-      "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+      "bg-streak-100 text-streak-600 dark:bg-streak-500/20 dark:text-streak-400",
     missing_key_concepts:
       "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
   };
@@ -105,9 +105,9 @@ export function TeachItBack({
 
   const accuracyColors = {
     accurate:
-      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+      "bg-success-100 text-success-600 dark:bg-success-500/20 dark:text-success-400",
     minor_errors:
-      "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
+      "bg-streak-100 text-streak-600 dark:bg-streak-500/20 dark:text-streak-400",
     misconception:
       "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
   };
@@ -119,13 +119,13 @@ export function TeachItBack({
   };
 
   return (
-    <div className="rounded-xl border-2 border-purple-200 dark:border-purple-800 bg-purple-50 dark:bg-purple-900/10 p-4 space-y-4 my-3">
+    <div className="rounded-2xl border-2 border-brand-200 dark:border-brand-800 shadow-card bg-brand-50 dark:bg-brand-600/10 p-4 space-y-4 my-3">
       {/* Prompt */}
       <div>
-        <div className="text-xs font-medium text-purple-600 dark:text-purple-400 uppercase tracking-wide mb-2">
+        <div className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide mb-2">
           Teach It Back
         </div>
-        <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+        <p className="text-sm text-surface-800 dark:text-surface-200 leading-relaxed">
           You&apos;re really good at <strong>{skillName}</strong> now! Can you
           explain it in your own words, as if you were teaching a friend?
         </p>
@@ -140,20 +140,20 @@ export function TeachItBack({
                 value={explanation}
                 onChange={(e) => setExplanation(e.target.value)}
                 placeholder={`Explain "${skillName}" as if teaching a friend...`}
-                className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 min-h-[120px] resize-y"
+                className="w-full rounded-xl border border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-800 px-4 py-3 text-sm text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 min-h-[120px] resize-y"
                 aria-label="Your explanation"
               />
               <div className="flex gap-2">
                 <button
                   onClick={handleTextareaSubmit}
                   disabled={!explanation.trim()}
-                  className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700 disabled:opacity-50 transition-colors"
+                  className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-50 transition-colors"
                 >
                   Submit Explanation
                 </button>
                 <button
                   onClick={() => setUseTextarea(false)}
-                  className="text-xs text-gray-500 hover:text-gray-700 transition-colors px-2"
+                  className="text-xs text-surface-500 hover:text-surface-700 transition-colors px-2"
                 >
                   Use quick input
                 </button>
@@ -169,13 +169,13 @@ export function TeachItBack({
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => setUseTextarea(true)}
-                  className="text-xs text-purple-600 hover:text-purple-700 transition-colors"
+                  className="text-xs text-brand-600 hover:text-brand-700 transition-colors"
                 >
                   Need more space? Use full editor
                 </button>
                 <button
                   onClick={onSkip}
-                  className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                  className="text-xs text-surface-400 hover:text-surface-600 transition-colors"
                 >
                   Skip for now
                 </button>
@@ -205,20 +205,20 @@ export function TeachItBack({
           </div>
 
           {/* Feedback */}
-          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p className="text-sm text-surface-700 dark:text-surface-300 leading-relaxed">
             {evaluation.feedback}
           </p>
 
           {/* Missing concepts */}
           {evaluation.missingConcepts.length > 0 && (
-            <div className="rounded-lg bg-white dark:bg-gray-900 p-3 border border-gray-200 dark:border-gray-700">
-              <div className="text-xs font-medium text-gray-400 mb-1">
+            <div className="rounded-xl bg-surface-0 dark:bg-surface-900 p-3 border border-surface-200 dark:border-surface-700">
+              <div className="text-xs font-medium text-surface-400 mb-1">
                 To make your explanation even stronger, try adding:
               </div>
-              <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-0.5">
+              <ul className="text-sm text-surface-600 dark:text-surface-400 space-y-0.5">
                 {evaluation.missingConcepts.map((c, i) => (
                   <li key={i} className="flex items-start gap-1.5">
-                    <span className="text-purple-500 mt-0.5">+</span>
+                    <span className="text-brand-500 mt-0.5">+</span>
                     {c}
                   </li>
                 ))}
@@ -228,7 +228,7 @@ export function TeachItBack({
 
           <button
             onClick={() => onComplete(explanation, evaluation)}
-            className="w-full rounded-xl bg-purple-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-purple-700 transition-colors"
+            className="w-full rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
           >
             {evaluation.completeness === "complete" && evaluation.accuracy === "accurate"
               ? "Awesome! Continue"

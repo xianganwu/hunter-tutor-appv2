@@ -45,35 +45,35 @@ export function PassageReader({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 animate-fade-in">
       {/* Pre-reading context */}
-      <div className="rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 px-4 py-3">
-        <p className="text-sm text-blue-800 dark:text-blue-300 italic">
+      <div className="rounded-xl bg-brand-50 dark:bg-brand-600/10 border border-brand-200 dark:border-brand-800 px-4 py-3">
+        <p className="text-sm text-brand-700 dark:text-brand-300 italic">
           {preReadingContext}
         </p>
       </div>
 
       {/* Passage */}
-      <article className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 sm:p-6">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
+      <article className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 sm:p-6 border border-surface-200 dark:border-surface-800">
+        <h2 className="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-3">
           {title}
         </h2>
-        <div className="text-sm leading-relaxed text-gray-800 dark:text-gray-200 whitespace-pre-wrap">
+        <div className="text-sm leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap">
           {passageText}
         </div>
-        <div className="mt-3 text-xs text-gray-400">
+        <div className="mt-3 text-xs text-surface-400">
           {wordCount} words
         </div>
       </article>
 
       {/* Reading timer + done button */}
       <div className="flex items-center justify-between">
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-surface-400">
           Reading time: {formatTime(elapsedSeconds)}
         </span>
         <button
           onClick={handleDone}
-          className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+          className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
         >
           I&apos;m ready to answer questions
         </button>

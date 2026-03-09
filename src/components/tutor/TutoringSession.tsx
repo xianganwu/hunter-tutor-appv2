@@ -47,20 +47,20 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
 
   if (summary) {
     return (
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-2xl mx-auto px-4 py-8 bg-surface-50 dark:bg-surface-950 min-h-screen">
         <SessionSummary data={summary} onClose={restart} />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto">
+    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto bg-surface-50 dark:bg-surface-950">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-800">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900">
         <div className="flex items-center gap-3">
           <a
             href="/dashboard"
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 transition-colors"
             aria-label="Back to dashboard"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -68,8 +68,10 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
             </svg>
           </a>
           <div>
-            <h1 className="text-sm font-semibold capitalize">{subject} Tutor</h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
+            <h1 className="text-sm font-semibold capitalize text-surface-900 dark:text-surface-100">
+              {subject} Tutor
+            </h1>
+            <p className="text-xs text-brand-600 dark:text-brand-400 font-medium">
               {skill?.name ?? skillId}
             </p>
           </div>
@@ -85,7 +87,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           />
           <button
             onClick={endSession}
-            className="text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            className="text-xs text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors font-medium"
           >
             End Session
           </button>
@@ -95,7 +97,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
       {/* Chat area */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto px-4 py-4 space-y-1"
+        className="flex-1 overflow-y-auto px-4 py-6 space-y-2"
       >
         {state.messages.map((msg) => (
           <ChatBubble key={msg.id} message={msg} />
@@ -124,7 +126,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
       </div>
 
       {/* Bottom controls */}
-      <div className="px-4 py-3 border-t border-gray-200 dark:border-gray-800 space-y-2">
+      <div className="px-4 py-3 border-t border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900 space-y-2">
         <QuickActions
           onHint={requestHint}
           onExplainMore={requestExplanation}

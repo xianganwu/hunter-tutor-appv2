@@ -23,7 +23,7 @@ export function QuickActions({
         <button
           onClick={onHint}
           disabled={disabled}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-amber-300 dark:border-amber-600 bg-amber-50 dark:bg-amber-900/30 px-3 py-1.5 text-xs font-medium text-amber-700 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/50 disabled:opacity-50 transition-colors"
+          className="inline-flex items-center gap-1.5 rounded-xl border-2 border-streak-300 dark:border-streak-600 bg-streak-50 dark:bg-streak-500/10 px-3.5 py-2 text-xs font-medium text-streak-700 dark:text-streak-400 hover:bg-streak-100 dark:hover:bg-streak-500/20 disabled:opacity-50 transition-colors"
         >
           <span aria-hidden="true">?</span>
           I&apos;m stuck
@@ -33,7 +33,7 @@ export function QuickActions({
         <button
           onClick={onExplainMore}
           disabled={disabled}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-blue-300 dark:border-blue-600 bg-blue-50 dark:bg-blue-900/30 px-3 py-1.5 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 disabled:opacity-50 transition-colors"
+          className="inline-flex items-center gap-1.5 rounded-xl border-2 border-brand-300 dark:border-brand-600 bg-brand-50 dark:bg-brand-600/10 px-3.5 py-2 text-xs font-medium text-brand-700 dark:text-brand-400 hover:bg-brand-100 dark:hover:bg-brand-600/20 disabled:opacity-50 transition-colors"
         >
           <span aria-hidden="true">+</span>
           Explain more

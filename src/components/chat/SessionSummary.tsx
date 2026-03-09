@@ -14,31 +14,33 @@ export function SessionSummary({ data, onClose }: SessionSummaryProps) {
   );
 
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 space-y-4">
-      <h3 className="text-lg font-semibold">Session Complete</h3>
+    <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 space-y-5 animate-scale-in">
+      <h3 className="text-xl font-bold text-surface-900 dark:text-surface-100">
+        Great job! Session Complete
+      </h3>
 
       <div className="grid grid-cols-3 gap-4 text-center">
-        <div className="rounded-lg bg-blue-50 dark:bg-blue-900/30 p-3">
-          <div className="text-2xl font-bold text-blue-600">{data.questionsAnswered}</div>
-          <div className="text-xs text-gray-500 mt-1">Questions</div>
+        <div className="rounded-xl bg-brand-50 dark:bg-brand-600/10 p-3">
+          <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">{data.questionsAnswered}</div>
+          <div className="text-xs text-surface-500 dark:text-surface-400 mt-1">Questions</div>
         </div>
-        <div className="rounded-lg bg-green-50 dark:bg-green-900/30 p-3">
-          <div className="text-2xl font-bold text-green-600">{data.accuracy}%</div>
-          <div className="text-xs text-gray-500 mt-1">Accuracy</div>
+        <div className="rounded-xl bg-success-50 dark:bg-success-500/10 p-3">
+          <div className="text-2xl font-bold text-success-600 dark:text-success-400">{data.accuracy}%</div>
+          <div className="text-xs text-surface-500 dark:text-surface-400 mt-1">Accuracy</div>
         </div>
-        <div className="rounded-lg bg-purple-50 dark:bg-purple-900/30 p-3">
-          <div className="text-2xl font-bold text-purple-600">{data.elapsedMinutes}m</div>
-          <div className="text-xs text-gray-500 mt-1">Duration</div>
+        <div className="rounded-xl bg-streak-50 dark:bg-streak-500/10 p-3">
+          <div className="text-2xl font-bold text-streak-600 dark:text-streak-400">{data.elapsedMinutes}m</div>
+          <div className="text-xs text-surface-500 dark:text-surface-400 mt-1">Duration</div>
         </div>
       </div>
 
       <div>
-        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Skills Covered</h4>
+        <h4 className="text-sm font-medium text-surface-700 dark:text-surface-300 mb-2">Skills Covered</h4>
         <div className="flex flex-wrap gap-2">
           {skillNames.map((name) => (
             <span
               key={name}
-              className="inline-block rounded-full bg-gray-100 dark:bg-gray-800 px-3 py-1 text-xs text-gray-700 dark:text-gray-300"
+              className="inline-block rounded-full bg-surface-100 dark:bg-surface-800 px-3 py-1 text-xs font-medium text-surface-700 dark:text-surface-300"
             >
               {name}
             </span>
@@ -46,18 +48,18 @@ export function SessionSummary({ data, onClose }: SessionSummaryProps) {
         </div>
       </div>
 
-      <p className="text-sm text-gray-600 dark:text-gray-400">{data.tutorMessage}</p>
+      <p className="text-sm text-surface-600 dark:text-surface-400 leading-relaxed">{data.tutorMessage}</p>
 
       <div className="flex gap-3">
         <a
           href="/dashboard"
-          className="flex-1 rounded-xl bg-gray-100 dark:bg-gray-800 px-4 py-2.5 text-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          className="flex-1 rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-center text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
         >
           Back to Dashboard
         </a>
         <button
           onClick={onClose}
-          className="flex-1 rounded-xl bg-blue-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+          className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-700 transition-colors"
         >
           Practice More
         </button>

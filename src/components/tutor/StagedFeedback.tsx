@@ -68,7 +68,7 @@ export function StagedFeedback({
   );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 animate-fade-in">
       {/* Scores overview */}
       <div className="grid grid-cols-4 gap-2">
         {(
@@ -81,28 +81,28 @@ export function StagedFeedback({
         ).map(([label, score]) => (
           <div
             key={label}
-            className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center"
+            className="rounded-2xl bg-surface-50 dark:bg-surface-800 p-3 text-center shadow-soft"
           >
-            <div className="text-lg font-bold text-gray-900 dark:text-gray-100">
+            <div className="text-lg font-bold text-surface-900 dark:text-surface-100">
               {score}/10
             </div>
-            <div className="text-xs text-gray-500">{label}</div>
+            <div className="text-xs text-surface-500">{label}</div>
           </div>
         ))}
       </div>
 
       {/* Stage 1: Praise */}
-      <div className="rounded-xl border-2 border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 p-4">
-        <h4 className="text-sm font-semibold text-green-700 dark:text-green-400 mb-2">
+      <div className="rounded-2xl border-2 border-success-200 dark:border-success-600/30 bg-success-50 dark:bg-success-500/10 p-4">
+        <h4 className="text-sm font-semibold text-success-600 dark:text-success-400 mb-2">
           What you did really well
         </h4>
         <ul className="space-y-1.5">
           {feedback.strengths.map((s, i) => (
             <li
               key={i}
-              className="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2"
+              className="text-sm text-surface-700 dark:text-surface-300 flex items-start gap-2"
             >
-              <span className="text-green-500 mt-0.5 flex-shrink-0">+</span>
+              <span className="text-success-500 mt-0.5 flex-shrink-0">+</span>
               {s}
             </li>
           ))}
@@ -111,23 +111,23 @@ export function StagedFeedback({
 
       {/* Stage 2: Improvement (revealed after clicking Continue) */}
       {stage >= 2 && (
-        <div className="rounded-xl border-2 border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-4">
-          <h4 className="text-sm font-semibold text-amber-700 dark:text-amber-400 mb-2">
+        <div className="rounded-2xl border-2 border-streak-200 dark:border-streak-600/30 bg-streak-50 dark:bg-streak-500/10 p-4 animate-slide-up">
+          <h4 className="text-sm font-semibold text-streak-600 dark:text-streak-400 mb-2">
             One thing to strengthen
           </h4>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-surface-700 dark:text-surface-300">
             {improvement}
           </p>
           {feedback.improvements.length > 1 && (
             <details className="mt-3">
-              <summary className="text-xs text-amber-600 cursor-pointer">
+              <summary className="text-xs text-streak-600 cursor-pointer">
                 More suggestions
               </summary>
               <ul className="mt-2 space-y-1.5">
                 {feedback.improvements.slice(1).map((s, i) => (
                   <li
                     key={i}
-                    className="text-sm text-gray-600 dark:text-gray-400"
+                    className="text-sm text-surface-600 dark:text-surface-400"
                   >
                     {s}
                   </li>
@@ -140,17 +140,17 @@ export function StagedFeedback({
 
       {/* Stage 3: Rewrite exercise */}
       {stage >= 3 && (
-        <div className="rounded-xl border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 p-4 space-y-3">
-          <h4 className="text-sm font-semibold text-blue-700 dark:text-blue-400">
+        <div className="rounded-2xl border-2 border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-600/10 p-4 space-y-3 animate-slide-up">
+          <h4 className="text-sm font-semibold text-brand-700 dark:text-brand-400">
             Rewrite challenge
           </h4>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className="text-sm text-surface-700 dark:text-surface-300">
             Try rewriting just your introduction with the suggestion above in
             mind.
           </p>
 
-          <div className="rounded-lg bg-white dark:bg-gray-900 p-3 text-sm text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
-            <div className="text-xs font-medium text-gray-400 mb-1">
+          <div className="rounded-xl bg-surface-0 dark:bg-surface-900 p-3 text-sm text-surface-600 dark:text-surface-400 border border-surface-200 dark:border-surface-700">
+            <div className="text-xs font-medium text-surface-400 mb-1">
               Your original introduction:
             </div>
             {originalIntro}
@@ -172,13 +172,13 @@ export function StagedFeedback({
 
           {rewriteFeedback && (
             <div className="space-y-3">
-              <div className="rounded-lg bg-white dark:bg-gray-900 p-3 text-sm text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700">
-                <div className="text-xs font-medium text-blue-500 mb-1">
+              <div className="rounded-xl bg-surface-0 dark:bg-surface-900 p-3 text-sm text-surface-600 dark:text-surface-400 border border-surface-200 dark:border-surface-700">
+                <div className="text-xs font-medium text-brand-500 mb-1">
                   Your rewrite:
                 </div>
                 {rewrittenIntro}
               </div>
-              <div className="rounded-lg bg-blue-100 dark:bg-blue-900/40 p-3 text-sm text-gray-700 dark:text-gray-300">
+              <div className="rounded-xl bg-brand-100 dark:bg-brand-600/20 p-3 text-sm text-surface-700 dark:text-surface-300">
                 {rewriteFeedback}
               </div>
             </div>
@@ -191,7 +191,7 @@ export function StagedFeedback({
         {stage < 3 && (
           <button
             onClick={() => setStage((s) => (s + 1) as FeedbackStage)}
-            className="flex-1 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+            className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
           >
             {stage === 1 ? "See what to improve" : "Try the rewrite challenge"}
           </button>
@@ -199,7 +199,7 @@ export function StagedFeedback({
         {(stage === 3 && rewriteFeedback) && (
           <button
             onClick={onComplete}
-            className="flex-1 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+            className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
           >
             Finish
           </button>
@@ -207,7 +207,7 @@ export function StagedFeedback({
         {stage === 3 && !rewriteFeedback && (
           <button
             onClick={onComplete}
-            className="rounded-xl bg-gray-100 dark:bg-gray-800 px-4 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className="rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
           >
             Skip
           </button>

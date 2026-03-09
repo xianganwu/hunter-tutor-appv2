@@ -50,35 +50,31 @@ export function UserMenu() {
 
   return (
     <>
-      <div className="flex items-center gap-3">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-700">
-          {userName[0].toUpperCase()}
-        </span>
-        <span className="font-medium text-gray-900">{userName}</span>
+      <div className="flex items-center gap-2">
         <button
           onClick={handleSwitchUser}
-          className="rounded-lg border border-gray-200 px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
+          className="rounded-xl border border-surface-200 bg-surface-0 px-3 py-1.5 text-xs font-medium text-surface-600 transition-colors hover:bg-surface-100 dark:border-surface-700 dark:bg-surface-900 dark:text-surface-400 dark:hover:bg-surface-800"
         >
           Switch User
         </button>
         <button
           onClick={() => setShowReset(true)}
-          className="rounded-lg border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50"
+          className="rounded-xl border border-red-200 bg-surface-0 px-3 py-1.5 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 dark:border-red-800 dark:bg-surface-900 dark:text-red-400 dark:hover:bg-red-900/20"
         >
-          Reset Progress
+          Reset
         </button>
       </div>
 
       {showReset && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
-          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
-            <h3 className="mb-2 text-lg font-bold text-gray-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-surface-900/50 px-4 backdrop-blur-sm dark:bg-black/60">
+          <div className="w-full max-w-sm rounded-2xl bg-surface-0 p-6 shadow-xl animate-scale-in dark:bg-surface-900">
+            <h3 className="mb-2 text-lg font-bold text-surface-900 dark:text-surface-100">
               Reset Progress
             </h3>
-            <p className="mb-1 text-sm text-gray-600">
+            <p className="mb-1 text-sm text-surface-600 dark:text-surface-400">
               This will erase all of {userName}&apos;s practice data:
             </p>
-            <ul className="mb-4 list-inside list-disc text-sm text-gray-500">
+            <ul className="mb-4 list-inside list-disc text-sm text-surface-500 dark:text-surface-400">
               <li>Skill mastery levels</li>
               <li>Mistake journal</li>
               <li>Practice exam history</li>
@@ -86,7 +82,7 @@ export function UserMenu() {
               <li>Writing essays</li>
               <li>Teaching moments</li>
             </ul>
-            <p className="mb-3 text-sm text-gray-700">
+            <p className="mb-3 text-sm text-surface-700 dark:text-surface-300">
               Type <strong>{userName}</strong> to confirm:
             </p>
             <input
@@ -95,7 +91,7 @@ export function UserMenu() {
               onChange={(e) => setConfirmText(e.target.value)}
               placeholder={userName}
               autoFocus
-              className="mb-4 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200"
+              className="mb-4 w-full rounded-xl border border-surface-300 bg-surface-0 px-3 py-2 text-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-200 dark:border-surface-600 dark:bg-surface-800 dark:text-surface-100 dark:focus:ring-red-800"
             />
             <div className="flex gap-2">
               <button
@@ -103,7 +99,7 @@ export function UserMenu() {
                   setShowReset(false);
                   setConfirmText("");
                 }}
-                className="flex-1 rounded-lg border border-gray-200 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                className="flex-1 rounded-xl border border-surface-200 py-2 text-sm font-medium text-surface-700 transition-colors hover:bg-surface-50 dark:border-surface-700 dark:text-surface-300 dark:hover:bg-surface-800"
               >
                 Cancel
               </button>
@@ -112,7 +108,7 @@ export function UserMenu() {
                 disabled={
                   confirmText.toLowerCase() !== userName.toLowerCase()
                 }
-                className="flex-1 rounded-lg bg-red-600 py-2 text-sm text-white hover:bg-red-700 disabled:opacity-40"
+                className="flex-1 rounded-xl bg-red-600 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-40"
               >
                 Reset
               </button>
@@ -121,10 +117,10 @@ export function UserMenu() {
                 disabled={
                   confirmText.toLowerCase() !== userName.toLowerCase()
                 }
-                className="rounded-lg border border-red-300 py-2 px-3 text-sm text-red-600 hover:bg-red-50 disabled:opacity-40"
+                className="rounded-xl border border-red-300 px-3 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 disabled:opacity-40 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-900/20"
                 title="Delete profile entirely"
               >
-                Delete Profile
+                Delete
               </button>
             </div>
           </div>
