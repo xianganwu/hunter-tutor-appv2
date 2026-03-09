@@ -1,0 +1,115 @@
+{
+  "skill_id": "ma_data_interpretation",
+  "skill_name": "Data Interpretation from Charts and Graphs",
+  "concept_explanation": "Charts and graphs are visual ways to organize and display information so we can spot patterns and compare data quickly. There are several types you'll need to know: bar graphs use bars of different heights to compare categories (like favorite ice cream flavors in a class), line graphs show how something changes over time (like temperature throughout a day), pie charts (circle graphs) show parts of a whole (like how you spend your time in a day), and tables organize data in rows and columns. The key to interpreting any graph is to read the title, check the labels on the axes, pay attention to the scale, and understand what each part represents before trying to answer questions. Don't just glance at the picture — read it carefully like you would read a sentence!",
+  "worked_examples": [
+    {
+      "problem": "A bar graph shows the number of books read by four students: Alex read 8, Brianna read 12, Carlos read 6, and Dana read 10. How many more books did Brianna read than Carlos, and what is the average number of books read across all four students?",
+      "thinking_out_loud": [
+        "First, I need to find how many more books Brianna read than Carlos: 12 − 6 = 6 more books.",
+        "Next, I need to find the average (mean) number of books for all four students.",
+        "I add all the values: 8 + 12 + 6 + 10 = 36.",
+        "Then I divide by the number of students: 36 ÷ 4 = 9.",
+        "So Brianna read 6 more books than Carlos, and the average is 9 books."
+      ],
+      "solution": "Brianna read 6 more books than Carlos. The average is 9 books."
+    },
+    {
+      "problem": "A pie chart shows how a student spends 24 hours: Sleep 33%, School 25%, Homework 13%, Sports 8%, Other 21%. How many hours does the student spend on homework, and how many more hours are spent sleeping than on sports?",
+      "thinking_out_loud": [
+        "The pie chart represents a full day = 24 hours. Each percentage tells me what fraction of 24 hours goes to each activity.",
+        "Homework is 13% of 24 hours: 0.13 × 24 = 3.12 hours. That's about 3 hours and 7 minutes.",
+        "Sleep is 33% of 24 hours: 0.33 × 24 = 7.92 hours.",
+        "Sports is 8% of 24 hours: 0.08 × 24 = 1.92 hours.",
+        "Difference: 7.92 − 1.92 = 6 hours more sleeping than doing sports.",
+        "Let me double-check by noting 33% − 8% = 25%, and 25% of 24 = 6. That confirms it."
+      ],
+      "solution": "Homework = 3.12 hours (about 3 hours 7 minutes). The student sleeps 6 hours more than they spend on sports."
+    },
+    {
+      "problem": "A line graph shows the temperature at different times: 8 AM = 55°F, 10 AM = 62°F, 12 PM = 70°F, 2 PM = 74°F, 4 PM = 68°F, 6 PM = 60°F. During which 2-hour period did the temperature increase the most?",
+      "thinking_out_loud": [
+        "I need to calculate the temperature change for each 2-hour interval to find which one had the largest increase.",
+        "Let me find each change: 8 AM to 10 AM: 62 − 55 = +7°F. 10 AM to 12 PM: 70 − 62 = +8°F. 12 PM to 2 PM: 74 − 70 = +4°F.",
+        "Continuing: 2 PM to 4 PM: 68 − 74 = −6°F (a decrease). 4 PM to 6 PM: 60 − 68 = −8°F (also a decrease).",
+        "The increases were +7, +8, and +4. The last two intervals were decreases. The biggest increase was 8°F, from 10 AM to 12 PM."
+      ],
+      "solution": "The temperature increased the most between 10 AM and 12 PM (an increase of 8°F)."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Misreading the scale on a graph — assuming each grid line represents 1 when it might represent 5, 10, or some other value.",
+      "why_it_happens": "Students jump into reading bar heights or data points without first checking what the axis labels and tick marks actually represent.",
+      "how_to_address": "Always check the scale FIRST. Look at two consecutive labels on the axis and figure out the increment. If the axis goes 0, 10, 20, 30, then each grid line is worth 10, not 1. Make reading the scale a mandatory first step."
+    },
+    {
+      "misconception": "Thinking a bigger slice in a pie chart always means a bigger number, even when comparing pie charts with different totals.",
+      "why_it_happens": "Students focus on the visual size of the slice without considering that two pie charts may represent different totals (e.g., 30% of 100 vs. 50% of 40).",
+      "how_to_address": "Always calculate the actual values before comparing. A 30% slice of a $200 budget ($60) is more than a 50% slice of a $100 budget ($50). The percentage alone doesn't tell the full story — you need the total too."
+    },
+    {
+      "misconception": "Assuming a line going up on a line graph means the values are large, rather than understanding it shows an increase.",
+      "why_it_happens": "Students interpret the visual appearance of the graph (going up = high) rather than reading the actual values. A steep line going up means rapid increase, not necessarily high values.",
+      "how_to_address": "Teach students to focus on the direction and steepness of the line between two points. Going up = increasing, going down = decreasing, flat = staying the same. A steeper line means faster change."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "A bar graph shows the number of pets owned by students in a class: Dogs = 14, Cats = 10, Fish = 6, Birds = 4, Other = 2. How many students were surveyed in total, and what fraction of students own cats?",
+      "hints": [
+        "To find the total number of students surveyed, add up all the bar values: 14 + 10 + 6 + 4 + 2.",
+        "The total is 36 students. The fraction who own cats is the number of cat owners divided by the total. Set up the fraction and simplify.",
+        "10/36 — can you simplify this? Both 10 and 36 are divisible by 2."
+      ],
+      "answer": "36 students total; 5/18 own cats",
+      "explanation": "Total: 14 + 10 + 6 + 4 + 2 = 36. Fraction with cats: 10/36 = 5/18."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "A line graph shows a store's monthly sales: January = $2,000, February = $2,500, March = $3,000, April = $2,800, May = $3,500. Between which two consecutive months did sales decrease?",
+      "hints": [
+        "Look at each pair of consecutive months and check whether the value went up or down.",
+        "Compare: Jan→Feb (up), Feb→Mar (up), Mar→Apr (?), Apr→May (up). Which one went down?"
+      ],
+      "answer": "Sales decreased between March and April",
+      "explanation": "March sales were $3,000 and April sales were $2,800. Since $2,800 < $3,000, sales decreased by $200 between March and April."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A pie chart shows how 240 students get to school: Bus = 40%, Walk = 25%, Car = 20%, Bike = 15%. How many students ride the bus, and how many more students walk than bike?",
+      "hints": [
+        "Multiply each percentage (as a decimal) by the total number of students (240) to find each category's count."
+      ],
+      "answer": "96 students ride the bus; 24 more students walk than bike",
+      "explanation": "Bus: 0.40 × 240 = 96. Walk: 0.25 × 240 = 60. Bike: 0.15 × 240 = 36. Difference between walk and bike: 60 − 36 = 24."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "A table shows test scores for five students: Amy = 88, Ben = 76, Cara = 92, Dan = 84, Eva = 95. What is the range of scores, and which student scored closest to the class average?",
+      "hints": [],
+      "answer": "Range = 19; Dan (84) scored closest to the average (87)",
+      "explanation": "Range: 95 − 76 = 19. Average: (88 + 76 + 92 + 84 + 95) ÷ 5 = 435 ÷ 5 = 87. Distances from 87: Amy = 1, Ben = 11, Cara = 5, Dan = 3, Eva = 8. Dan is closest at 3 away."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "A double bar graph compares boys' and girls' participation in school clubs. Drama: Boys = 8, Girls = 14. Sports: Boys = 20, Girls = 16. Art: Boys = 10, Girls = 12. Science: Boys = 14, Girls = 10. In which club is the difference between boys and girls the greatest, and what is the total number of students across all clubs?",
+      "hints": [],
+      "answer": "Drama has the greatest difference (6 students); total across all clubs = 104",
+      "explanation": "Differences: Drama = |8−14| = 6, Sports = |20−16| = 4, Art = |10−12| = 2, Science = |14−10| = 4. Drama has the biggest difference at 6. Total: (8+14) + (20+16) + (10+12) + (14+10) = 22 + 36 + 22 + 24 = 104."
+    }
+  ],
+  "real_world_connection": "Data interpretation is one of the most practical math skills you'll ever learn. Every time you check the weather forecast (line graphs of temperature), read a nutrition label (tables), look at a poll about an election (pie charts), or check sports standings (tables and bar graphs), you're interpreting data. In today's world, information is constantly presented in visual formats — being able to read and analyze graphs means you won't be fooled by misleading data, and you'll be able to make better decisions based on facts.",
+  "transition_cues": [
+    "When you look at a graph, what are the first three things you should check before answering any questions about it?",
+    "Can you think of a situation where a bar graph would be better than a pie chart, or vice versa?",
+    "How comfortable are you with converting between the percentage shown in a pie chart and an actual number?",
+    "Great job analyzing that data! Want to move on to some geometry problems, or would you like more practice with graphs?"
+  ]
+}

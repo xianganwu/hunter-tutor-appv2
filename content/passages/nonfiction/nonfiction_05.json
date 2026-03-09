@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_05",
+    "title": "The Paradox of Preservation: Who Decides What History to Save?",
+    "genre": "nonfiction",
+    "difficulty_level": 5,
+    "word_count": 480,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_author_purpose",
+      "rc_passage_structure",
+      "rc_comparing_viewpoints",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Cities across the United States are constantly changing, with old buildings being torn down and new ones going up. But deciding which buildings and neighborhoods deserve protection reveals deeper questions about whose history a society values.",
+  "passage_text": "In 2019, the residents of a historically Black neighborhood in Charleston, South Carolina, faced an unsettling irony. For generations, their community had been overlooked by city planners, denied basic services, and subjected to neglect. Now, suddenly, preservation organizations were declaring the neighborhood's old wooden shotgun houses — modest dwellings that had sheltered working-class families for over a century — architecturally significant and worthy of protection. The residents were not entirely grateful. Protection, they pointed out, often came with restrictions that prevented homeowners from renovating or modernizing their own properties, effectively freezing them in the past while wealthier neighborhoods evolved freely.\n\nThis tension lies at the heart of historic preservation in America. The movement, which gained momentum with the National Historic Preservation Act of 1966, was born from a genuine desire to protect the nation's architectural heritage from the wrecking ball of postwar development. In the decades following World War II, entire neighborhoods were demolished to make way for highways, parking lots, and office towers. Preservation laws gave communities a tool to resist this destruction. Yet critics argue that the movement has always reflected the priorities of the powerful — that the mansions of industrialists and the battlefields of generals receive protection far more readily than the homes of immigrants, the meeting halls of labor unions, or the churches where civil rights movements were organized.\n\nThe consequences of these choices are not merely symbolic. When a building is designated as historic, it can receive tax benefits and legal protections that increase property values. In neighborhoods where preservation has been applied selectively, this has accelerated gentrification — the process by which rising costs displace long-standing residents. A 2018 study by the National Trust for Historic Preservation found that in several major cities, historically designated neighborhoods experienced property value increases averaging thirty percent above non-designated areas. For homeowners, this can be a windfall. For renters, who disproportionately include people of color and lower-income families, it can mean eviction.\n\nProponents of preservation respond that the solution is not to abandon preservation but to democratize it. They advocate for expanding what counts as historically significant to include sites connected to marginalized communities — not just grand architecture but also the barbershops, corner stores, and apartment buildings that anchored everyday life. Some cities have experimented with community-led preservation programs that give residents a voice in deciding what gets protected and how restrictions are applied.\n\nYet even well-intentioned reforms face a fundamental paradox. Preserving a neighborhood's character can inadvertently make it more attractive to outsiders, driving up demand and prices. The very act of declaring a place valuable can set in motion the economic forces that transform it beyond recognition. As urbanist Jane Jacobs once observed, the forces that make a neighborhood vibrant — diversity, affordability, organic growth — are precisely the qualities most threatened when that vibrancy is officially recognized and protected.\n\nThe question, then, is not simply what to preserve, but for whom. A preservation movement that saves buildings while displacing the people who gave those buildings meaning has preserved the shell of history while discarding its substance.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "Which of the following best expresses the main argument of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Historic preservation laws should be repealed because they cause gentrification." },
+        { "letter": "B", "text": "All old buildings should be preserved regardless of their historical significance." },
+        { "letter": "C", "text": "Historic preservation, while well-intentioned, often reflects the priorities of the powerful and can harm the communities it claims to protect." },
+        { "letter": "D", "text": "Charleston, South Carolina, has the best-preserved historic neighborhoods in America." },
+        { "letter": "E", "text": "Gentrification is caused primarily by highway construction and urban development." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage examines how preservation reflects power dynamics, can accelerate gentrification, and sometimes harms the communities it aims to protect. It does not call for abolishing preservation but for rethinking who it serves.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not advocate repealing preservation laws. It argues for reforming them, and proponents in the passage suggest democratizing preservation." },
+        { "letter": "B", "explanation": "The passage actually questions which buildings are chosen for preservation and argues that these choices are selective and biased." },
+        { "letter": "D", "explanation": "Charleston is used as an opening example, not as a superlative. The passage makes no ranking claims." },
+        { "letter": "E", "explanation": "While postwar demolition is mentioned as historical context, the passage identifies preservation-driven property value increases as a cause of gentrification." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, why were the Charleston residents 'not entirely grateful' for the preservation designation?",
+      "answer_choices": [
+        { "letter": "A", "text": "They wanted their homes to be demolished and replaced with modern housing." },
+        { "letter": "B", "text": "They believed preservation restrictions would prevent them from improving their own properties while wealthier neighborhoods faced no such limits." },
+        { "letter": "C", "text": "They were angry that their neighborhood had been declared historically insignificant." },
+        { "letter": "D", "text": "They did not want tourists visiting their neighborhood." },
+        { "letter": "E", "text": "They preferred that the city invest in new schools rather than preserving buildings." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that preservation 'often came with restrictions that prevented homeowners from renovating or modernizing their own properties, effectively freezing them in the past while wealthier neighborhoods evolved freely.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not say residents wanted demolition. Their concern was about restrictions on renovation, not about tearing down homes." },
+        { "letter": "C", "explanation": "The opposite occurred — the neighborhood was declared significant. The residents' frustration was about the consequences of this designation." },
+        { "letter": "D", "explanation": "Tourism is not mentioned as a concern in the passage." },
+        { "letter": "E", "explanation": "Schools and other investments are not discussed. The residents' specific concern was about property restrictions." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 3,
+      "question_text": "As used in the passage, the word 'paradox' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "a situation in which an action produces the opposite of its intended result" },
+        { "letter": "B", "text": "a simple solution to a difficult problem" },
+        { "letter": "C", "text": "a historical event that has been forgotten" },
+        { "letter": "D", "text": "a law that is difficult to enforce" },
+        { "letter": "E", "text": "a disagreement between two political groups" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage describes a 'fundamental paradox' in which preserving a neighborhood (intended to protect it) makes it more attractive and expensive (potentially destroying what made it special). This is a situation where the action produces the opposite effect.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "A paradox is the opposite of a simple solution — it describes a contradiction or self-defeating situation." },
+        { "letter": "C", "explanation": "A paradox is not about forgotten history. It is about contradictory outcomes from the same action." },
+        { "letter": "D", "explanation": "While preservation laws may be difficult to enforce, 'paradox' refers to the self-contradictory nature of the outcome, not enforcement challenges." },
+        { "letter": "E", "explanation": "A paradox is not simply a disagreement. It is a situation where something contradicts itself." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "How does the passage use the Charleston example in relation to its overall argument?",
+      "answer_choices": [
+        { "letter": "A", "text": "As the main evidence for the entire argument" },
+        { "letter": "B", "text": "As a concrete opening illustration that introduces the broader tensions explored throughout the passage" },
+        { "letter": "C", "text": "As an exception to the general trend described in the passage" },
+        { "letter": "D", "text": "As a comparison to show that Charleston handles preservation better than other cities" },
+        { "letter": "E", "text": "As a conclusion that summarizes the passage's findings" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The Charleston example opens the passage and introduces the key tension — that preservation can restrict and harm the communities it claims to protect. The rest of the passage expands this tension into a broader analysis of preservation in America.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Charleston is one example among several. The passage also cites the 2018 study and Jane Jacobs. It is not the sole evidence." },
+        { "letter": "C", "explanation": "Charleston is presented as representative of a widespread problem, not as an exception." },
+        { "letter": "D", "explanation": "The passage does not compare Charleston favorably to other cities. It uses Charleston to illustrate problems." },
+        { "letter": "E", "explanation": "The Charleston example appears at the beginning of the passage, not at the end as a conclusion." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What does the 2018 study cited in the passage demonstrate?",
+      "answer_choices": [
+        { "letter": "A", "text": "That preservation designations have no effect on property values" },
+        { "letter": "B", "text": "That renters prefer to live in historically designated neighborhoods" },
+        { "letter": "C", "text": "That most cities have abandoned their historic preservation programs" },
+        { "letter": "D", "text": "That historically designated neighborhoods experienced significantly higher property value increases than non-designated areas" },
+        { "letter": "E", "text": "That homeowners in historic neighborhoods are more likely to sell their properties" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The study found that 'historically designated neighborhoods experienced property value increases averaging thirty percent above non-designated areas,' directly supporting the passage's argument about preservation accelerating gentrification.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The study shows the opposite — a significant thirty percent increase in property values in designated neighborhoods." },
+        { "letter": "B", "explanation": "The passage says rising costs can lead to eviction for renters, not that renters prefer these neighborhoods." },
+        { "letter": "C", "explanation": "The passage does not discuss cities abandoning preservation programs." },
+        { "letter": "E", "explanation": "The passage says increased value can be a 'windfall' for homeowners, but does not say they are more likely to sell." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What can the reader infer about why the passage mentions 'barbershops, corner stores, and apartment buildings'?",
+      "answer_choices": [
+        { "letter": "A", "text": "To argue that these businesses are more profitable than larger companies" },
+        { "letter": "B", "text": "To illustrate the kinds of everyday, community-centered places that traditional preservation has overlooked" },
+        { "letter": "C", "text": "To explain why small businesses fail in gentrifying neighborhoods" },
+        { "letter": "D", "text": "To compare urban architecture with rural architecture" },
+        { "letter": "E", "text": "To provide examples of buildings that should be demolished" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "These examples are mentioned in the context of 'expanding what counts as historically significant to include sites connected to marginalized communities.' They represent the everyday places that preservation has traditionally ignored in favor of grand architecture.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Profitability is not discussed. The point is about cultural and historical significance." },
+        { "letter": "C", "explanation": "While gentrification can threaten small businesses, the passage mentions these places to argue for their preservation, not to explain their failure." },
+        { "letter": "D", "explanation": "Rural architecture is not discussed in the passage." },
+        { "letter": "E", "explanation": "The passage argues these places should be protected, not demolished." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "How does the passage present the relationship between preservation advocates and their critics?",
+      "answer_choices": [
+        { "letter": "A", "text": "As a simple disagreement with one side clearly right and the other clearly wrong" },
+        { "letter": "B", "text": "As a complex tension where both sides raise valid points but face an inherent contradiction" },
+        { "letter": "C", "text": "As a conflict that has already been resolved through new legislation" },
+        { "letter": "D", "text": "As an argument primarily about money and property taxes" },
+        { "letter": "E", "text": "As a generational divide between younger and older Americans" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage acknowledges preservation's original purpose (protecting heritage), presents critics' concerns (bias, gentrification), includes reformers' proposals (democratization), and then identifies a fundamental paradox that even well-meaning reforms face. Both sides have merit, but the contradiction persists.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage presents nuance and complexity, not a clear right-wrong division. Even the reformers face a paradox." },
+        { "letter": "C", "explanation": "The passage explicitly presents the issue as unresolved, with the paradox described as 'fundamental.'" },
+        { "letter": "D", "explanation": "While property values are discussed, the debate is fundamentally about power, culture, identity, and whose history is valued." },
+        { "letter": "E", "explanation": "The passage does not frame the issue as a generational conflict." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Why does the author include the Jane Jacobs quotation in the fifth paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "To argue that Jane Jacobs was the most important urban planner in American history" },
+        { "letter": "B", "text": "To introduce a new topic unrelated to the rest of the passage" },
+        { "letter": "C", "text": "To contradict the points made in the previous paragraphs" },
+        { "letter": "D", "text": "To show that the preservation movement began in the 1960s" },
+        { "letter": "E", "text": "To provide an expert voice that articulates the fundamental paradox the passage has been building toward" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "Jacobs's observation — that recognizing vibrancy threatens vibrancy — crystallizes the central paradox the passage has been developing. Including an expert voice gives the argument additional authority and clarity.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage calls Jacobs an 'urbanist' but does not rank her importance. She is cited for her idea, not her status." },
+        { "letter": "B", "explanation": "The Jacobs quotation directly reinforces the passage's central paradox. It is deeply connected to the argument." },
+        { "letter": "C", "explanation": "Jacobs's observation supports and sharpens the passage's argument rather than contradicting it." },
+        { "letter": "D", "explanation": "The 1966 Act is mentioned earlier. The Jacobs quote is included for its intellectual content, not for historical timeline." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What conclusion can the reader draw from the final sentence of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "The author believes all preservation efforts are ultimately pointless." },
+        { "letter": "B", "text": "The author thinks buildings are more important than the people who live in them." },
+        { "letter": "C", "text": "The author argues that preservation is only meaningful if it also protects the communities and people connected to the preserved places." },
+        { "letter": "D", "text": "The author wants all historic buildings to be converted into museums." },
+        { "letter": "E", "text": "The author believes that gentrification is unavoidable in every neighborhood." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The final sentence states that saving buildings 'while displacing the people who gave those buildings meaning has preserved the shell of history while discarding its substance.' This argues that true preservation must include the people and communities, not just the physical structures.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The author does not say preservation is pointless — the argument is that it must be done differently, with people at the center." },
+        { "letter": "B", "explanation": "The final sentence argues the opposite: that people are more important than buildings, since people give buildings their meaning." },
+        { "letter": "D", "explanation": "Converting buildings to museums is not discussed. The author's point is about preserving living communities." },
+        { "letter": "E", "explanation": "The passage discusses gentrification as a consequence of certain preservation practices, not as universally unavoidable." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 10,
+      "question_text": "As used in the passage, the phrase 'wrecking ball' most nearly refers to",
+      "answer_choices": [
+        { "letter": "A", "text": "a specific tool used in construction work" },
+        { "letter": "B", "text": "a type of preservation technique" },
+        { "letter": "C", "text": "a political movement against historic buildings" },
+        { "letter": "D", "text": "the destructive force of rapid urban development that demolished old neighborhoods" },
+        { "letter": "E", "text": "a celebration held when new buildings are completed" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The phrase 'wrecking ball of postwar development' is used figuratively to describe how rapid development after World War II destroyed existing neighborhoods. It represents the destructive force of urban development, not a literal tool.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While a wrecking ball is literally a demolition tool, the passage uses the phrase figuratively to represent the broader destructive forces of development." },
+        { "letter": "B", "explanation": "A wrecking ball destroys buildings; it is the opposite of preservation." },
+        { "letter": "C", "explanation": "The passage attributes the destruction to development, not a political movement specifically opposed to historic buildings." },
+        { "letter": "E", "explanation": "A wrecking ball is associated with destruction, not celebration." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    }
+  ]
+}

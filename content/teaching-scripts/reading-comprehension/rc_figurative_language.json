@@ -1,0 +1,114 @@
+{
+  "skill_id": "rc_figurative_language",
+  "skill_name": "Figurative Language",
+  "concept_explanation": "Figurative language is when words are used in a creative, non-literal way to paint a picture, create an emotion, or make a comparison. When someone says 'I'm so hungry I could eat a horse,' they don't literally mean they'd eat a horse — they're using exaggeration (hyperbole) to show how hungry they are. The main types you'll see on the exam are: similes (comparisons using 'like' or 'as'), metaphors (saying something IS something else), personification (giving human qualities to non-human things), and hyperbole (extreme exaggeration). Recognizing figurative language helps you understand what the author really means and why they chose those particular words.",
+  "worked_examples": [
+    {
+      "problem": "Identify the figurative language in this passage and explain what it means:\n\n\"The news spread through the school like wildfire. By lunchtime, every student knew that the principal had approved a new gaming club. Hallways buzzed with excitement, and even the quietest students couldn't help but join the conversation.\"",
+      "thinking_out_loud": [
+        "Let me look for non-literal language. 'The news spread through the school like wildfire' — is that literal? No, the news isn't actually fire. It's a comparison using 'like,' so it's a simile.",
+        "What does it mean? Wildfire spreads rapidly and uncontrollably. The author is comparing the speed of the news to the speed of wildfire — it spread fast and reached everyone quickly.",
+        "I also see 'hallways buzzed with excitement.' Hallways can't literally buzz — that's a human action being applied to a place. Wait, actually 'buzzed' is more like the sound bees make, applied to excitement and conversation. This is a metaphor — the hallways were so full of excited chatter that they sounded like they were buzzing.",
+        "Understanding these figurative expressions helps me see that the author is emphasizing how fast the news traveled and how much energy it created."
+      ],
+      "solution": "The passage contains a simile: 'the news spread through the school like wildfire.' This compares the speed of the gossip to the rapid, uncontrollable spread of wildfire, emphasizing how quickly everyone found out. It also contains a metaphor: 'hallways buzzed with excitement,' comparing the sound of excited students to buzzing, suggesting the school was alive with energy. Both figures of speech help the reader feel the intensity and speed of the students' reaction."
+    },
+    {
+      "problem": "Identify the figurative language in this passage and explain what it means:\n\n\"The alarm clock screamed at 6 AM, dragging Jordan out of a deep sleep. His legs were made of lead as he shuffled to the bathroom. The mirror showed a zombie staring back at him — wild hair, drooping eyes, and a face that had clearly lost a battle with the pillow.\"",
+      "thinking_out_loud": [
+        "First figure: 'The alarm clock screamed.' Can alarm clocks literally scream? No — screaming is something humans and animals do. This is personification. It tells me the alarm was loud and jarring, like being yelled at.",
+        "Second figure: 'His legs were made of lead.' Are his legs actually lead? No — this is a metaphor. Lead is extremely heavy, so this comparison means his legs felt impossibly heavy, like he could barely move them. It shows how tired he is.",
+        "Third figure: 'a zombie staring back at him.' He's not actually a zombie — this is a metaphor comparing his tired appearance to a zombie, which we know looks exhausted and messy.",
+        "There might also be hyperbole in 'lost a battle with the pillow' — his face didn't literally fight a pillow, and calling it a 'battle' is an exaggeration that adds humor.",
+        "All of these work together to create a vivid, funny picture of someone who really does not want to wake up."
+      ],
+      "solution": "This passage is packed with figurative language. 'The alarm clock screamed' is personification — giving the alarm a human action to emphasize how loud and startling it was. 'His legs were made of lead' is a metaphor — comparing his legs to a heavy metal to show extreme tiredness. 'A zombie staring back at him' is a metaphor comparing his exhausted appearance to a zombie. 'Lost a battle with the pillow' is hyperbole — an exaggeration that humorously suggests the pillow won a fight, explaining his messy face. Together, these create a vivid, relatable, and funny picture of a very tired morning."
+    },
+    {
+      "problem": "Identify the figurative language in this passage and explain what it means:\n\n\"The old oak tree stood at the edge of the field like a wise elder watching over the land. Its branches reached toward the sky as if asking for rain. Through droughts and storms, the tree held its ground, its roots gripping the earth with quiet determination. It had seen a hundred seasons come and go, and it would see a hundred more.\"",
+      "thinking_out_loud": [
+        "'Like a wise elder watching over the land' — this uses 'like,' so it's a simile. It compares the tree to a wise, protective elder, giving it a sense of wisdom and guardianship.",
+        "'Its branches reached toward the sky as if asking for rain' — 'asking' is something humans do, so the branches are being personified. This makes the tree seem alive and purposeful.",
+        "'Its roots gripping the earth with quiet determination' — 'gripping with determination' is personification too. Roots don't have determination, but this makes the tree sound resilient and strong-willed.",
+        "'It had seen a hundred seasons' — trees don't literally 'see,' so this is also personification. It emphasizes the tree's age and endurance.",
+        "The overall effect is that the tree feels like a living character — patient, strong, and wise. The figurative language turns a simple description into something almost spiritual."
+      ],
+      "solution": "The passage uses several types of figurative language. 'Like a wise elder watching over the land' is a simile comparing the oak tree to a wise guardian, creating a sense of protection and wisdom. 'As if asking for rain' is personification — giving the branches the human action of asking. 'Gripping the earth with quiet determination' is personification that makes the roots seem strong-willed and resilient. 'It had seen a hundred seasons' is personification that emphasizes the tree's age. All of these work together to transform the oak tree into a character — patient, enduring, and wise — rather than just a plant."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Thinking all comparisons are similes",
+      "why_it_happens": "Students learn that similes use 'like' or 'as' and start marking every comparison as a simile. But metaphors also compare things — they just do it without 'like' or 'as,' by saying something IS something else.",
+      "how_to_address": "Ask: 'Does the comparison use like or as?' If yes, it's a simile ('fast like the wind'). If no, and it says something IS something else or directly substitutes one thing for another, it's a metaphor ('he is a rock'). The type of comparison signal word is the key difference."
+    },
+    {
+      "misconception": "Taking figurative language literally",
+      "why_it_happens": "On multiple-choice tests, students sometimes choose an answer that matches the literal meaning of a figurative phrase. For example, if a passage says 'her heart was on fire,' they might think the character has a medical problem instead of recognizing it as a metaphor for strong emotion.",
+      "how_to_address": "When something sounds strange, impossible, or exaggerated, pause and ask: 'Is the author being literal or figurative here?' If a person's heart can't literally be on fire, the author must mean something beyond the literal words. What emotion or idea are they really expressing?"
+    },
+    {
+      "misconception": "Identifying figurative language without explaining what it means",
+      "why_it_happens": "Students can spot similes and metaphors but struggle to explain the deeper meaning — what the comparison reveals about the subject. They might say 'this is a simile' and stop there.",
+      "how_to_address": "Always follow up identification with interpretation. After naming the type, ask: 'What is being compared to what, and what does that comparison tell us?' For example, don't just say 'her legs were like jelly is a simile.' Explain: 'This comparison tells us her legs felt weak and unsteady, suggesting she was nervous or exhausted.'"
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Identify the figurative language in this sentence and explain what it means:\n\n\"After winning the championship, the team's joy was a rocket, launching them into a celebration that lasted all night.\"",
+      "hints": [
+        "Is joy literally a rocket? Since it's not, the author is making a comparison. Does this comparison use 'like' or 'as,' or does it say joy IS a rocket?",
+        "Think about what rockets do: they launch upward with intense energy and speed. What does comparing joy to a rocket tell you about how the team felt?",
+        "Now put it together: name the type of figurative language and explain what the comparison reveals about the team's emotions."
+      ],
+      "answer": "This is a metaphor. The author says the team's joy 'was a rocket,' directly comparing their happiness to a rocket's explosive, upward energy. This tells us their joy was intense, powerful, and uncontainable — it propelled them into a celebration with incredible energy. The word 'launching' extends the rocket metaphor and emphasizes how their happiness burst out of them.",
+      "explanation": "This is a metaphor (not a simile) because it says joy IS a rocket rather than joy is LIKE a rocket. The key to a strong answer is not just naming the type but explaining the comparison: rockets are powerful, fast, and explosive — so comparing joy to a rocket tells us the emotion was overwhelming and energizing."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Identify the figurative language in this passage and explain what it means:\n\n\"I've told you a million times to clean your room! The pile of clothes on your floor is growing a life of its own, and pretty soon it's going to start charging rent.\"",
+      "hints": [
+        "Has the speaker really said this a million times? What type of figurative language involves extreme exaggeration?",
+        "Can a pile of clothes literally 'grow a life' or 'charge rent'? What human-like qualities are being given to the clothes pile?"
+      ],
+      "answer": "'A million times' is hyperbole — an extreme exaggeration used to emphasize frustration about having to repeat the instruction. 'Growing a life of its own' and 'start charging rent' are personification — giving the clothes pile human qualities (having a life, charging rent) to humorously exaggerate how large and out of control the mess has become. Together, these figurative expressions create a funny but clear message: the speaker is very frustrated about the messy room.",
+      "explanation": "This passage combines two types of figurative language for effect. The hyperbole ('a million times') expresses the speaker's exasperation, while the personification of the clothes pile adds humor. Notice that figurative language doesn't always sound poetic — it can also be funny and conversational."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Identify the figurative language in this passage and explain its effect:\n\n\"The dancer moved across the stage like water flowing over smooth stones. Every motion was effortless, every turn as graceful as a leaf caught in a gentle breeze. The audience held their breath, afraid that even the smallest sound might break the spell.\"",
+      "hints": [
+        "There are two similes in the first two sentences (look for 'like' and 'as'). Identify them, then explain what each comparison tells you about the dancer's movement."
+      ],
+      "answer": "The passage contains two similes. 'Like water flowing over smooth stones' compares the dancer's movement to flowing water, emphasizing how smooth, fluid, and effortless the performance is. 'As graceful as a leaf caught in a gentle breeze' compares her turns to a floating leaf, suggesting lightness and natural elegance. The phrase 'break the spell' is a metaphor comparing the performance to a magic spell, suggesting the audience was completely enchanted. Together, these figures of speech create a vivid picture of a mesmerizing, flawless performance.",
+      "explanation": "Both similes use nature imagery (water, leaf) to describe the dancer, which reinforces the idea that her movement is natural and effortless rather than forced. The metaphor 'break the spell' adds another layer — the performance is so beautiful it feels magical. Noticing how multiple figurative expressions work together shows advanced reading comprehension."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Identify all figurative language in this passage and explain what each example means:\n\n\"The thunder growled like an angry giant waking from sleep. Rain hammered the roof, each drop a tiny fist pounding on the shingles. The wind howled through the streets, tearing at signs and scattering leaves like confetti at a parade of chaos.\"",
+      "hints": [],
+      "answer": "The passage contains multiple examples of figurative language. 'Growled like an angry giant waking from sleep' is a simile (using 'like') and also personification — thunder doesn't literally growl, and comparing it to an angry giant emphasizes how deep, powerful, and threatening the sound is. 'Each drop a tiny fist pounding on the shingles' is a metaphor — raindrops are compared to fists, which is also personification, showing how forceful the rain is. 'The wind howled' is personification — howling is an animal or human action, making the wind sound alive and threatening. 'Scattering leaves like confetti at a parade of chaos' is a simile comparing the scattered leaves to confetti, but the added phrase 'parade of chaos' is an unexpected twist that turns a usually festive image (confetti, parade) into something wild and destructive.",
+      "explanation": "This passage uses figurative language intensively to transform a storm into something that feels alive and aggressive. The personification (growling, fisting, howling) makes the storm sound like a living creature, while the similes add vivid comparisons. Strong readers notice both the individual figures of speech and their combined effect — here, they make the storm feel powerful, violent, and almost intentional."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Read this passage and identify the figurative language. Explain how it contributes to the passage's meaning:\n\n\"Time is a thief that steals our moments when we're not looking. One day you're building sandcastles at the beach, and the next you're searching for those memories in the attic of your mind. We can't stop time's greedy hands from taking what it wants, but we can choose to fill our days so full that even time can't carry it all away.\"",
+      "hints": [],
+      "answer": "The passage is built on an extended metaphor comparing time to a thief. 'Time is a thief' is a metaphor — time isn't literally a thief, but comparing it to one suggests it takes things from us (youth, moments, memories) without our permission. 'Steals our moments' extends the thief metaphor with personification — time is given the human action of stealing. 'The attic of your mind' is a metaphor comparing the mind to a house with an attic, suggesting memories are stored away in a distant, hard-to-reach place. 'Time's greedy hands' is personification — time is given hands and the human trait of greediness. The extended metaphor of time as a thief unifies the whole passage, creating a message about how precious time is and encouraging the reader to live fully so that even time can't take everything away.",
+      "explanation": "This passage demonstrates how figurative language can carry an entire argument. The extended thief metaphor isn't just decorative — it's the backbone of the passage's message. By personifying time as greedy and giving it the ability to steal, the author makes the abstract concept of passing time feel concrete and urgent. The final sentence turns the metaphor into advice: fill your life so full that even the 'thief' can't carry it all away."
+    }
+  ],
+  "real_world_connection": "Figurative language isn't just in poems and literature class — it's everywhere. Song lyrics are full of metaphors and similes ('you are my sunshine'). Sports commentators use hyperbole all the time ('that was the greatest play in history!'). Advertisements use personification ('this car wants to be driven'). Even your everyday conversations are packed with figurative language — 'I'm dying of boredom,' 'that test was a nightmare,' 'she's a walking encyclopedia.' Understanding figurative language helps you appreciate great writing, interpret songs and art, create more vivid writing of your own, and even understand jokes and sarcasm better.",
+  "transition_cues": [
+    "Can you name the four types of figurative language we covered and give your own example of each?",
+    "What's the difference between a simile and a metaphor? How can you quickly tell them apart?",
+    "Why do you think authors use figurative language instead of just saying things plainly?",
+    "Before we move on, try creating your own metaphor or simile to describe how you're feeling right now."
+  ]
+}

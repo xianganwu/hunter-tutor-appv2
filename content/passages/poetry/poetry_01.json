@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "passage_id": "poetry_01",
+    "title": "The Backyard After Rain",
+    "genre": "poetry",
+    "difficulty_level": 1,
+    "word_count": 142,
+    "tagged_skills": ["rc_main_idea", "rc_vocab_context", "rc_figurative_language", "rc_tone_mood", "rc_inference", "rc_evidence_reasoning"],
+    "source_description": "original"
+  },
+  "pre_reading_context": "This poem describes a familiar scene that many people experience after a rainstorm. As you read, pay attention to how the poet uses the five senses to bring the scene to life.",
+  "passage_text": "The rain has stopped, and now the world\nis bright and dripping clean.\nEach leaf holds up a tiny globe\nof silver and of green.\n\nThe robins hop along the grass\nlike shoppers at a store,\npulling worms from softened ground\nand always wanting more.\n\nA puddle near the garden gate\nbecomes a looking glass—\nI see the clouds drift upside down\nand watch the blue sky pass.\n\nThe air smells fresh, like laundry dried\non lines beneath the sun.\nMy sneakers leave their muddy prints.\nI'm glad the storm is done.\n\nBut still, I liked the thunder's drum,\nthe lightning's flash of white.\nThe rain made everything feel new—\nit washed the world tonight.\n\nSo maybe storms aren't only bad.\nThey leave a gift behind:\na yard that shines, a deeper breath,\na calm and rested mind.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "Rainstorms are dangerous and should be avoided." },
+        { "letter": "B", "text": "The world looks and feels refreshed after a rainstorm." },
+        { "letter": "C", "text": "Robins are the most interesting birds to watch." },
+        { "letter": "D", "text": "Playing in puddles is the best part of rainy days." },
+        { "letter": "E", "text": "Storms always happen at nighttime." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem describes how everything looks clean, fresh, and new after the rain stops. The speaker notices the bright leaves, fresh air, and shining yard, all supporting the idea that the world feels refreshed after a storm.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the poem mentions thunder and lightning, but the speaker actually says storms leave 'a gift behind,' showing they are not purely negative." },
+        { "letter": "C", "explanation": "The robins are mentioned in one stanza, but they are just one detail in the larger scene, not the poem's main focus." },
+        { "letter": "D", "explanation": "The speaker mentions a puddle but uses it as a mirror to look at the sky, not for playing. This is a detail, not the main idea." },
+        { "letter": "E", "explanation": "The word 'tonight' appears once, but the poem does not claim storms only happen at night. This misreads a single detail." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "In the second stanza, when the poet compares the robins to 'shoppers at a store,' what does this suggest about the birds?",
+      "answer_choices": [
+        { "letter": "A", "text": "They are lost and confused." },
+        { "letter": "B", "text": "They are moving quickly and eagerly picking things out." },
+        { "letter": "C", "text": "They are spending money on worms." },
+        { "letter": "D", "text": "They are standing still and watching." },
+        { "letter": "E", "text": "They are afraid of the rain." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The simile compares the robins to shoppers, suggesting they are busy, purposeful, and eager as they hop around selecting worms from the ground, just as shoppers move through a store picking out items they want.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Shoppers in a store are typically purposeful, not lost. The robins are described as actively 'pulling worms,' which shows direction, not confusion." },
+        { "letter": "C", "explanation": "This takes the comparison too literally. The simile is about behavior (eagerly selecting), not about actual purchasing." },
+        { "letter": "D", "explanation": "The poem says the robins 'hop' and are 'pulling worms,' which shows movement, not stillness." },
+        { "letter": "E", "explanation": "The rain has already stopped when the robins appear. Nothing in the stanza suggests fear." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word 'globe' most likely mean in the first stanza?",
+      "answer_choices": [
+        { "letter": "A", "text": "A map of the world" },
+        { "letter": "B", "text": "A glass ornament" },
+        { "letter": "C", "text": "A bright lightbulb" },
+        { "letter": "D", "text": "A small, round drop" },
+        { "letter": "E", "text": "A green balloon" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "In context, 'globe' refers to a tiny, round raindrop sitting on a leaf. The poet describes it as 'silver and green,' reflecting the leaf and light, which fits the shape and appearance of a water droplet.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While 'globe' can mean a world map, the context of a leaf holding something 'tiny' after rain makes it clear this refers to a water droplet, not a map." },
+        { "letter": "B", "explanation": "A glass ornament is round like a globe, making this tempting, but the poem is describing nature after rain, not decorations." },
+        { "letter": "C", "explanation": "The 'silver' color might suggest light, but lightbulbs don't sit on leaves. The context points to raindrops." },
+        { "letter": "E", "explanation": "Balloons are round but don't appear on leaves and aren't described as 'silver.' This doesn't fit the natural setting." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What is the overall tone of this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "Frightened and anxious" },
+        { "letter": "B", "text": "Angry and frustrated" },
+        { "letter": "C", "text": "Peaceful and appreciative" },
+        { "letter": "D", "text": "Bored and uninterested" },
+        { "letter": "E", "text": "Sad and lonely" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker notices beauty in small details (raindrops on leaves, reflections in puddles, fresh air) and ends by calling the storm's aftermath 'a gift.' This language shows peace and appreciation throughout the poem.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The poem mentions thunder and lightning, which might suggest fear, but the speaker describes these fondly ('I liked the thunder's drum'), showing no anxiety." },
+        { "letter": "B", "explanation": "Nothing in the poem suggests frustration. The speaker is content and observant, not angry." },
+        { "letter": "D", "explanation": "The detailed, vivid descriptions show the speaker is very interested and engaged with the scene, the opposite of boredom." },
+        { "letter": "E", "explanation": "Although the speaker is alone, the poem's language ('bright,' 'glad,' 'gift') conveys happiness, not sadness or loneliness." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 5,
+      "question_text": "When the speaker says the puddle 'becomes a looking glass,' what literary device is being used?",
+      "answer_choices": [
+        { "letter": "A", "text": "Alliteration" },
+        { "letter": "B", "text": "Onomatopoeia" },
+        { "letter": "C", "text": "Metaphor" },
+        { "letter": "D", "text": "Hyperbole" },
+        { "letter": "E", "text": "Personification" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "A metaphor directly compares two unlike things without using 'like' or 'as.' Here, the puddle is called 'a looking glass' (mirror), comparing the reflective surface of the water to a mirror without using 'like' or 'as.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Alliteration is the repetition of beginning consonant sounds. While 'looking glass' shares no repeated initial sounds with 'puddle,' this answer might tempt students who confuse literary devices." },
+        { "letter": "B", "explanation": "Onomatopoeia is a word that imitates a sound (like 'buzz' or 'splash'). 'Looking glass' does not imitate any sound." },
+        { "letter": "D", "explanation": "Hyperbole is extreme exaggeration. Calling a puddle a looking glass is a comparison, not an exaggeration of size or quantity." },
+        { "letter": "E", "explanation": "Personification gives human qualities to non-human things. While 'becomes' might hint at transformation, the puddle is being compared to an object (mirror), not given human traits." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Based on the poem, what can you infer about the speaker?",
+      "answer_choices": [
+        { "letter": "A", "text": "The speaker is an adult remembering childhood." },
+        { "letter": "B", "text": "The speaker lives in a city apartment." },
+        { "letter": "C", "text": "The speaker does not enjoy being outside." },
+        { "letter": "D", "text": "The speaker is a young person who pays close attention to nature." },
+        { "letter": "E", "text": "The speaker is a professional gardener." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The speaker wears sneakers and notices many small details in the yard (raindrops, robins, puddle reflections, smells). The combination of youthful details and careful observation suggests a young person who is attentive to the natural world.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "There is no nostalgic language or past tense reflection that would indicate an adult looking back. The poem is written in present tense." },
+        { "letter": "B", "explanation": "The poem mentions a backyard, garden gate, and grass, which suggests a house with outdoor space, not a city apartment." },
+        { "letter": "C", "explanation": "The speaker is clearly outside exploring and enjoying the scene, describing it with positive language like 'bright,' 'fresh,' and 'glad.'" },
+        { "letter": "E", "explanation": "While the speaker mentions a garden gate, nothing suggests professional gardening. The speaker seems to be simply enjoying the yard." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Which line from the poem best supports the idea that the speaker sees beauty in the storm itself?",
+      "answer_choices": [
+        { "letter": "A", "text": "'The rain has stopped, and now the world / is bright and dripping clean.'" },
+        { "letter": "B", "text": "'My sneakers leave their muddy prints.'" },
+        { "letter": "C", "text": "'But still, I liked the thunder's drum, / the lightning's flash of white.'" },
+        { "letter": "D", "text": "'A puddle near the garden gate / becomes a looking glass.'" },
+        { "letter": "E", "text": "'The robins hop along the grass / like shoppers at a store.'" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "This line directly states the speaker 'liked' elements of the storm and describes thunder and lightning with appreciative, artistic language ('drum,' 'flash of white'), showing the speaker finds beauty in the storm itself, not just its aftermath.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This line describes beauty after the storm, not during it. The question asks about the storm itself." },
+        { "letter": "B", "explanation": "Muddy prints are a result of rain but don't express the speaker's feelings about the storm's beauty." },
+        { "letter": "D", "explanation": "The puddle is a result of the rain and is described beautifully, but this is about the aftermath, not the storm itself." },
+        { "letter": "E", "explanation": "The robins appear after the rain. This line is about the post-storm scene, not the storm." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 8,
+      "question_text": "In the line 'The air smells fresh, like laundry dried / on lines beneath the sun,' the speaker is comparing the smell of the air after rain to:",
+      "answer_choices": [
+        { "letter": "A", "text": "The smell of a washing machine" },
+        { "letter": "B", "text": "The smell of wet clothing" },
+        { "letter": "C", "text": "The smell of detergent in a store" },
+        { "letter": "D", "text": "The smell of a dryer sheet" },
+        { "letter": "E", "text": "The smell of clothes dried outdoors in sunshine" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The simile specifically says 'laundry dried on lines beneath the sun,' describing clothes that have been hung outside on a clothesline and dried in the sunshine, which has a distinctive clean, fresh smell.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The poem says 'dried on lines,' meaning a clothesline, not a machine. This confuses indoor laundry methods with outdoor drying." },
+        { "letter": "B", "explanation": "The poem says the laundry is 'dried,' not wet. Wet clothing would have a different, less pleasant smell." },
+        { "letter": "C", "explanation": "Detergent in a store is a chemical smell, not the natural freshness of sun-dried laundry that the poem describes." },
+        { "letter": "D", "explanation": "Dryer sheets are used in machines, but the poem specifies 'lines beneath the sun,' indicating outdoor air-drying, not machine drying." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What is the mood of the final stanza?",
+      "answer_choices": [
+        { "letter": "A", "text": "Thoughtful and contented" },
+        { "letter": "B", "text": "Excited and energetic" },
+        { "letter": "C", "text": "Worried and uncertain" },
+        { "letter": "D", "text": "Surprised and confused" },
+        { "letter": "E", "text": "Impatient and restless" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The final stanza reflects on storms philosophically ('maybe storms aren't only bad') and ends with calm, positive images ('a yard that shines, a deeper breath, a calm and rested mind'). This creates a thoughtful, contented mood.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "While the tone is positive, words like 'calm' and 'rested' suggest peacefulness rather than high energy or excitement." },
+        { "letter": "C", "explanation": "The word 'maybe' might suggest uncertainty, but the stanza's conclusion is clearly positive and resolved, not worried." },
+        { "letter": "D", "explanation": "The speaker is reflecting with understanding, not expressing surprise or confusion. The realization feels natural, not sudden." },
+        { "letter": "E", "explanation": "The final images ('calm and rested mind') are the opposite of impatience and restlessness." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 10,
+      "question_text": "The phrase 'the thunder's drum' is an example of which poetic device?",
+      "answer_choices": [
+        { "letter": "A", "text": "Simile" },
+        { "letter": "B", "text": "Personification" },
+        { "letter": "C", "text": "Metaphor" },
+        { "letter": "D", "text": "Repetition" },
+        { "letter": "E", "text": "Rhyme" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The thunder is directly called a 'drum' without using 'like' or 'as,' making this a metaphor. It compares the booming sound of thunder to the beating of a drum.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "A simile uses 'like' or 'as' to make a comparison. Since the line says 'the thunder's drum' directly, it is a metaphor, not a simile." },
+        { "letter": "B", "explanation": "Personification gives human qualities to non-human things. While thunder 'drumming' could be seen as an action, the focus here is on comparing thunder's sound to a drum (an object), making it a metaphor." },
+        { "letter": "D", "explanation": "Repetition involves repeating words or phrases. 'The thunder's drum' does not repeat anything from elsewhere in the poem." },
+        { "letter": "E", "explanation": "Rhyme involves matching end sounds of words. While 'drum' rhymes with other words in the poem, the device in this specific phrase is a comparison, not a rhyme." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    }
+  ]
+}

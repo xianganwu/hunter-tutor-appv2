@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_03",
+    "title": "An Address to the Women's Suffrage Convention",
+    "genre": "historical_document",
+    "difficulty_level": 3,
+    "word_count": 370,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_author_purpose",
+      "rc_evidence_reasoning",
+      "rc_inference",
+      "rc_tone_mood",
+      "rc_figurative_language"
+    ],
+    "source_description": "Original composition in the style of an 1870s speech delivered at a women's suffrage convention"
+  },
+  "pre_reading_context": "In the late 1800s, women in the United States did not have the right to vote. Activists organized conventions and delivered speeches to argue that women deserved equal participation in democracy. This passage is written in the style of a speech from that era.",
+  "passage_text": "My fellow citizens — and I use that word deliberately, for we are citizens, whether or not the law yet recognizes our full rights —\n\nI stand before you today not to beg for a privilege, but to claim what is already ours by the principles upon which this nation was founded. We have been told that the vote is a gift to be granted by those in power. I say it is no gift. It is a right, as natural as breathing, and it belongs to every American who lives under the authority of this government.\n\nConsider the farmer's wife, who rises before dawn to tend the household, manage the accounts, and labor alongside her husband in the fields. She pays taxes on the goods she produces. She obeys the laws that govern her community. Yet when the time comes to choose the leaders who write those laws and levy those taxes, she is turned away from the ballot box as though she were a child or a stranger in her own land.\n\nThis is not merely unjust — it is illogical. How can a republic claim to represent the will of the people when half the people are silenced? We are told to be patient, that change will come in its own time. But patience, my friends, is a luxury that justice cannot afford. Every year that passes without reform is another year in which women's voices are stolen from the public conversation.\n\nI have heard it said that women are too emotional for the serious business of governance. To this, I reply: is it not emotion that drives a mother to protect her children? Is it not feeling that compels a nurse to care for the wounded? If these are weaknesses, then they are weaknesses that hold our society together.\n\nLet us not wait for permission to claim our place at the table of democracy. Let us demand it — not with violence, but with the unyielding force of reason, of righteousness, and of a truth that can no longer be denied.\n\nThe question before us is simple: Shall the promise of liberty belong to all, or only to some? I trust that history will answer in our favor.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the speaker's main argument in this speech?",
+      "answer_choices": [
+        { "letter": "A", "text": "Voting is a natural right that belongs to women as much as men." },
+        { "letter": "B", "text": "Women should be allowed to own property." },
+        { "letter": "C", "text": "Women should be paid the same wages as men." },
+        { "letter": "D", "text": "The government should provide better schools for girls." },
+        { "letter": "E", "text": "Women are better leaders than men." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The speaker repeatedly frames voting as a right, not a privilege, saying it is 'as natural as breathing' and 'belongs to every American.' The entire speech argues that women are full citizens who deserve the right to vote.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "Property rights are not mentioned in the speech. The speaker's focus is entirely on the right to vote." },
+        { "letter": "C", "explanation": "Equal wages are not discussed. The speech is about political participation through voting." },
+        { "letter": "D", "explanation": "Education is not part of this speech. The speaker addresses the right to vote, not schooling." },
+        { "letter": "E", "explanation": "The speaker argues for equality, not superiority. She asks for women to have the same rights as men, not for women to replace men." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What does the word \"levy\" most likely mean in the phrase \"levy those taxes\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To reduce or lower" },
+        { "letter": "B", "text": "To ignore or overlook" },
+        { "letter": "C", "text": "To celebrate or honor" },
+        { "letter": "D", "text": "To collect or impose" },
+        { "letter": "E", "text": "To question or doubt" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The speaker pairs 'levy those taxes' with 'write those laws,' describing what elected leaders do. In this context, 'levy' means to impose or collect taxes — an action of government authority.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Reducing taxes is the opposite of levying them. The speaker is describing the government's power to impose taxes." },
+        { "letter": "B", "explanation": "The speaker is listing things that leaders do, not things they ignore. Taxes are actively imposed, not overlooked." },
+        { "letter": "C", "explanation": "Celebrating taxes does not make sense in this context. The speaker is describing a serious governmental action." },
+        { "letter": "E", "explanation": "Questioning taxes is not the role being described. The speaker is talking about leaders who create and enforce tax policies." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Why does the speaker describe the daily life of \"the farmer's wife\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To argue that farming is the most important job in America" },
+        { "letter": "B", "text": "To show that women are too busy to vote" },
+        { "letter": "C", "text": "To provide a concrete example of a hardworking woman who is denied the right to vote" },
+        { "letter": "D", "text": "To criticize farmers for not treating their wives well" },
+        { "letter": "E", "text": "To suggest that only farmers' wives should be allowed to vote" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker uses the farmer's wife as a specific, relatable example to show how a woman who works hard, pays taxes, and obeys the law is still denied the right to vote — making the injustice feel real and personal to the audience.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker is not arguing about the importance of farming. The farmer's wife is used as an example of a capable woman denied voting rights." },
+        { "letter": "B", "explanation": "The speaker is not arguing that women are too busy; she is arguing the opposite — that despite their contributions, women are unfairly excluded." },
+        { "letter": "D", "explanation": "The speaker says the wife works 'alongside her husband,' suggesting partnership, not mistreatment." },
+        { "letter": "E", "explanation": "The farmer's wife is one example. The speaker argues for voting rights for all women, not just farmers' wives." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the speaker mean by \"patience is a luxury that justice cannot afford\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "Patient people are always wealthy." },
+        { "letter": "B", "text": "Justice takes too long to achieve and should be abandoned." },
+        { "letter": "C", "text": "Waiting for change is unacceptable when people's rights are being denied right now." },
+        { "letter": "D", "text": "Luxury goods should be available to everyone equally." },
+        { "letter": "E", "text": "Women should not have to pay for the right to vote." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker uses this phrase to counter the argument that women should be 'patient' and wait for change. She argues that every year of delay means another year of injustice, making patience an unacceptable response to the denial of rights.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker is using 'luxury' figuratively to mean something unnecessary and indulgent, not literally referring to wealth." },
+        { "letter": "B", "explanation": "The speaker does not want to abandon justice — she wants to pursue it more urgently. She is arguing for faster action, not giving up." },
+        { "letter": "D", "explanation": "This takes the word 'luxury' too literally. The speaker is not discussing material goods but rather the urgency of achieving equal rights." },
+        { "letter": "E", "explanation": "The speaker is not discussing financial costs. The phrase is about the moral cost of waiting too long for justice." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the speaker respond to the claim that women are \"too emotional\" for governance?",
+      "answer_choices": [
+        { "letter": "A", "text": "She agrees that women should control their emotions better." },
+        { "letter": "B", "text": "She ignores the criticism and changes the subject." },
+        { "letter": "C", "text": "She argues that men are actually more emotional than women." },
+        { "letter": "D", "text": "She says that governance does not require any emotions at all." },
+        { "letter": "E", "text": "She turns the criticism into a strength by showing that emotion drives important work like caregiving and protection." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The speaker takes the accusation of emotionality and reframes it as a strength, asking if a mother's protective instinct and a nurse's compassion are weaknesses — then concluding that these traits 'hold our society together.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker does not agree with the criticism. She directly challenges it by redefining emotion as a strength." },
+        { "letter": "B", "explanation": "The speaker does not avoid the criticism. She addresses it head-on in an entire paragraph." },
+        { "letter": "C", "explanation": "The speaker does not compare men's and women's emotions. She argues that emotion itself is valuable, not a weakness." },
+        { "letter": "D", "explanation": "The speaker does not dismiss the role of emotion in governance. She argues that emotion is actually essential and beneficial." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What is the tone of the speech?",
+      "answer_choices": [
+        { "letter": "A", "text": "Timid and apologetic" },
+        { "letter": "B", "text": "Bitter and resentful" },
+        { "letter": "C", "text": "Confident and passionate" },
+        { "letter": "D", "text": "Humorous and lighthearted" },
+        { "letter": "E", "text": "Confused and uncertain" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker uses bold declarations ('I say it is no gift'), rhetorical questions, and powerful language ('unyielding force of reason'). She speaks with conviction and deep feeling about her cause, creating a confident and passionate tone.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker explicitly says she is not 'begging for a privilege' and uses commanding language. She is not timid or apologetic." },
+        { "letter": "B", "explanation": "While the speaker identifies injustice, she channels her feelings into persuasion and hope rather than bitterness." },
+        { "letter": "D", "explanation": "The speech addresses a serious issue of civil rights with earnest conviction, not humor." },
+        { "letter": "E", "explanation": "The speaker is clear and decisive in her arguments. She shows no confusion or uncertainty about her position." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What can you infer about the speaker's audience?",
+      "answer_choices": [
+        { "letter": "A", "text": "They are entirely opposed to women's suffrage." },
+        { "letter": "B", "text": "They are likely supporters of women's rights who the speaker wants to motivate to action." },
+        { "letter": "C", "text": "They are mostly children who do not understand politics." },
+        { "letter": "D", "text": "They are members of the government who have the power to change the law immediately." },
+        { "letter": "E", "text": "They are people from a foreign country visiting America." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The pre-reading context indicates this is a suffrage convention. The speaker addresses the audience as 'fellow citizens' and 'my friends,' using language that rallies supporters rather than trying to convert opponents. She calls them to 'demand' their rights.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "If the audience were entirely opposed, the speaker would likely spend more time on basic arguments for equality rather than calling for action." },
+        { "letter": "C", "explanation": "The sophisticated language and political content indicate an adult audience, not children." },
+        { "letter": "D", "explanation": "The speech is delivered at a convention, not a legislative body. The speaker calls for collective action, not an immediate law change." },
+        { "letter": "E", "explanation": "The speaker addresses 'fellow citizens' and discusses American governance, indicating an American audience." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does the word \"unyielding\" most likely mean in the phrase \"unyielding force of reason\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "Gentle and quiet" },
+        { "letter": "B", "text": "Firm and refusing to give way" },
+        { "letter": "C", "text": "Slow and careful" },
+        { "letter": "D", "text": "Angry and violent" },
+        { "letter": "E", "text": "Flexible and adaptable" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The speaker says they will demand rights 'not with violence, but with the unyielding force of reason.' In this context, 'unyielding' means firm, persistent, and refusing to back down — a force that cannot be stopped.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker describes a 'force,' which suggests strength and persistence, not gentleness." },
+        { "letter": "C", "explanation": "While the speaker values careful reasoning, 'unyielding' describes determination and strength, not slowness." },
+        { "letter": "D", "explanation": "The speaker explicitly contrasts her approach with violence. 'Unyielding' describes firm resolve, not anger." },
+        { "letter": "E", "explanation": "'Unyielding' means the opposite of flexible. It describes something that does not bend or give way." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Why does the speaker begin by saying \"I use that word deliberately\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To apologize for using language that might offend people" },
+        { "letter": "B", "text": "To emphasize that women are citizens and deserve to be recognized as such" },
+        { "letter": "C", "text": "To correct a grammatical mistake she made" },
+        { "letter": "D", "text": "To explain that she is not a very good public speaker" },
+        { "letter": "E", "text": "To introduce herself to an audience that does not know her" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By calling attention to the word 'citizens,' the speaker asserts that women are citizens even though 'the law' does not yet fully recognize their rights. This is a deliberate rhetorical move to establish the foundation of her argument from the very first sentence.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker is not apologizing. She is making a bold political point about women's citizenship." },
+        { "letter": "C", "explanation": "There is no grammatical mistake. The speaker is drawing attention to the word 'citizens' for political and rhetorical reasons." },
+        { "letter": "D", "explanation": "The speaker demonstrates strong rhetorical skills throughout the speech. This opening shows confidence, not self-doubt." },
+        { "letter": "E", "explanation": "The speaker is not introducing herself. She is making a statement about the citizenship status of women in the audience." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 10,
+      "question_text": "The speaker says women are \"turned away from the ballot box as though she were a child or a stranger in her own land.\" What is the purpose of this comparison?",
+      "answer_choices": [
+        { "letter": "A", "text": "To highlight how insulting and unfair it is to deny voting rights to capable adult women" },
+        { "letter": "B", "text": "To argue that children should also have the right to vote" },
+        { "letter": "C", "text": "To suggest that women should leave the country if they cannot vote" },
+        { "letter": "D", "text": "To explain the legal rules about who can and cannot vote" },
+        { "letter": "E", "text": "To describe how ballot boxes actually work" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "By comparing women to children and strangers, the speaker shows how degrading it is to deny the vote to women who are hardworking, tax-paying adults. The comparison emphasizes the gap between how women are treated and what they actually deserve.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The speaker is not arguing for children's voting rights. She is using the comparison to show that treating women like children is unjust." },
+        { "letter": "C", "explanation": "The speaker calls the land 'her own,' emphasizing that women belong here. She is not suggesting anyone should leave." },
+        { "letter": "D", "explanation": "The speaker is making a moral argument, not explaining legal technicalities about voting rules." },
+        { "letter": "E", "explanation": "The sentence is not about how ballot boxes function. It is about the injustice of excluding women from the voting process." }
+      ],
+      "skill_tested": "rc_inference"
+    }
+  ]
+}

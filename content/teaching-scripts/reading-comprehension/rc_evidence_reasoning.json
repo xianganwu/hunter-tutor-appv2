@@ -1,0 +1,114 @@
+{
+  "skill_id": "rc_evidence_reasoning",
+  "skill_name": "Evidence-Based Reasoning",
+  "concept_explanation": "Evidence-based reasoning means backing up your answers with proof from the text. Instead of just saying what you think, you point to specific words, sentences, or details in the passage that support your answer. Think of it like being a detective: you wouldn't just say 'I think the butler did it' — you'd show the clues that led you to that conclusion. On the Hunter exam, when a question asks you to 'support your answer with evidence from the passage,' it's asking you to be that detective and show your proof.",
+  "worked_examples": [
+    {
+      "problem": "Read the following passage and answer the question with evidence from the text:\n\n\"Maria had been practicing piano for three years, but she still got nervous before every recital. As she waited backstage, she could feel her heart pounding. She wiped her sweaty palms on her dress and took deep breaths. When her name was finally called, she walked to the piano with her chin up and her shoulders back. Her fingers found the keys, and the music poured out of her — confident, clear, and beautiful. The audience erupted in applause.\"\n\nQuestion: How can you tell that Maria is nervous before the recital? Support your answer with evidence from the passage.",
+      "thinking_out_loud": [
+        "The question asks me to prove Maria is nervous, so I need to find specific details in the text — not just say 'she seems nervous.'",
+        "Let me scan the passage for clues about her feelings. I see 'she could feel her heart pounding' — that's a physical sign of nervousness. That's strong evidence.",
+        "I also see 'she wiped her sweaty palms on her dress' — sweaty palms are another sign of being nervous. And 'took deep breaths' suggests she's trying to calm herself down.",
+        "Now I'll put my answer together by stating my claim and connecting it directly to these specific details from the text."
+      ],
+      "solution": "The passage shows that Maria is nervous before the recital through several physical details. Her 'heart pounding,' her 'sweaty palms,' and the fact that she 'took deep breaths' are all signs of nervousness. These specific details from the text prove that she was anxious before performing, even though she had been practicing for three years."
+    },
+    {
+      "problem": "Read the following passage and answer the question with evidence from the text:\n\n\"The city council voted to replace the old playground equipment at Lincoln Park with modern, safer structures. Council member Rivera argued that the rusted swings and cracked slides posed a safety risk, pointing to three injury reports filed in the past year. Some parents disagreed, saying the old playground had character and charm that a new one couldn't replicate. However, after the council showed photographs of the damaged equipment, even the skeptics agreed that children's safety had to come first.\"\n\nQuestion: What evidence did the city council use to convince people that the playground needed to be replaced?",
+      "thinking_out_loud": [
+        "I need to find the specific evidence the council used — not what I think, but what the text actually says they showed or argued.",
+        "Let me look for places where the council makes their case. I see that Council member Rivera 'pointed to three injury reports filed in the past year.' That's one piece of evidence they used.",
+        "I also see that 'the council showed photographs of the damaged equipment.' That's a second piece of evidence.",
+        "I should also mention what Rivera called the equipment — 'rusted swings and cracked slides posed a safety risk' — because that's the argument the evidence was supporting.",
+        "Now I can build my answer by quoting or closely paraphrasing these specific text details."
+      ],
+      "solution": "The city council used two key pieces of evidence to make their case. First, Council member Rivera pointed to 'three injury reports filed in the past year,' showing that children had actually been hurt. Second, the council 'showed photographs of the damaged equipment,' which visually proved that the 'rusted swings and cracked slides' were unsafe. This combination of data and images was convincing enough to change even the skeptics' minds."
+    },
+    {
+      "problem": "Read the following passage and answer the question with evidence from the text:\n\n\"The gray wolf was once found across most of North America, but by the 1930s, it had been hunted to near extinction in the lower 48 states. In 1995, scientists reintroduced 14 wolves to Yellowstone National Park. The results were astonishing. The wolves hunted elk, which had been overgrazing the riverbanks. With fewer elk eating young trees, willows and aspens began to grow back. The returning trees stabilized the riverbanks and even changed the course of some rivers. Birds and beavers returned to areas they had abandoned.\"\n\nQuestion: What evidence from the passage shows that reintroducing wolves had a positive effect on Yellowstone's ecosystem?",
+      "thinking_out_loud": [
+        "I need to find specific details that show positive changes after the wolves were brought back. Let me look at what happened after the reintroduction in 1995.",
+        "The passage says 'wolves hunted elk, which had been overgrazing the riverbanks.' So the wolves reduced elk overgrazing — that's the starting point of the positive chain.",
+        "Then it says 'willows and aspens began to grow back' and 'the returning trees stabilized the riverbanks and even changed the course of some rivers.' Those are concrete positive effects.",
+        "And finally, 'birds and beavers returned to areas they had abandoned.' More wildlife coming back is another positive effect.",
+        "I have multiple pieces of evidence, all from the text. I should cite each one to build a strong, well-supported answer."
+      ],
+      "solution": "The passage provides several pieces of evidence showing positive effects. After wolves were reintroduced, they hunted elk that 'had been overgrazing the riverbanks,' which allowed 'willows and aspens' to grow back. These returning trees 'stabilized the riverbanks and even changed the course of some rivers.' Additionally, 'birds and beavers returned to areas they had abandoned.' Each of these text details shows a specific way the ecosystem improved because of the wolves."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Using personal opinion instead of text evidence",
+      "why_it_happens": "Students sometimes answer based on their own knowledge or feelings rather than what the passage actually says. For example, they might write 'I think Maria is nervous because I get nervous before performances too' instead of pointing to details in the text.",
+      "how_to_address": "Train yourself to always ask: 'Where in the passage does it say this or show this?' Your answer needs to include words, phrases, or details directly from the text. It's fine to have an opinion, but the evidence must come from the passage, not from your own experience."
+    },
+    {
+      "misconception": "Pointing to the wrong part of the passage",
+      "why_it_happens": "Students sometimes grab a quote from the passage that's related to the topic but doesn't actually answer the specific question being asked. They know they need evidence but pick the first thing they see rather than the most relevant detail.",
+      "how_to_address": "After finding a piece of evidence, test it by asking: 'Does this detail directly answer the question, or is it just about the same topic?' Make sure your evidence connects to the specific claim you're making, not just the general subject of the passage."
+    },
+    {
+      "misconception": "Summarizing the passage instead of citing specific evidence",
+      "why_it_happens": "Students sometimes retell the whole passage in their own words rather than zeroing in on the particular details that answer the question. They understand the passage but don't isolate the key evidence.",
+      "how_to_address": "Think of evidence like a spotlight — you're shining a light on one or two specific details, not floodlighting the entire passage. Quote or closely paraphrase the exact words from the text that prove your point."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Read this passage:\n\n\"Coach Davis was proud of her team. They had started the season with five straight losses, but they never gave up. The players stayed after practice to work on their shooting. They studied game film on weekends. By the end of the season, they had won eight of their last ten games and made it to the district championship.\"\n\nWhat evidence from the passage shows that the team worked hard to improve?",
+      "hints": [
+        "Look for specific actions the team took. The question asks about evidence of hard work, so find the sentences that describe what the players actually did.",
+        "I see two sentences that describe specific efforts the team made beyond just showing up to regular practice. Can you find them?",
+        "Focus on 'stayed after practice to work on their shooting' and 'studied game film on weekends.' How do these details prove hard work?"
+      ],
+      "answer": "The passage provides clear evidence of the team's hard work: the players 'stayed after practice to work on their shooting' and 'studied game film on weekends.' These details show they put in extra effort beyond regular practices, which is supported by their results — winning 'eight of their last ten games' after starting with five losses.",
+      "explanation": "Strong evidence-based answers point to specific actions or details from the text. Here, the two activities (extra shooting practice and weekend film study) are direct evidence of hard work. The win-loss record is additional evidence showing the hard work paid off."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Read this passage:\n\n\"The new school garden has been a huge success. Since it was planted last spring, over 200 students have volunteered to help maintain it. The garden has produced enough vegetables to supply the cafeteria salad bar twice a week. Teachers have used it as an outdoor classroom for science lessons about plant biology and ecosystems. Principal Ortega says the garden has also helped reduce stress, noting that students who spend time there report feeling calmer and more focused.\"\n\nWhat evidence supports the claim that the school garden has been 'a huge success'?",
+      "hints": [
+        "The first sentence makes a claim: the garden has been a 'huge success.' The rest of the passage should contain evidence for that claim. What specific details back it up?",
+        "Try to find at least three different pieces of evidence. Think about participation numbers, food production, educational use, and student well-being."
+      ],
+      "answer": "The passage supports the claim with multiple pieces of evidence: (1) 'over 200 students have volunteered to help maintain it,' showing strong participation; (2) it 'produced enough vegetables to supply the cafeteria salad bar twice a week,' showing practical results; (3) 'teachers have used it as an outdoor classroom for science lessons,' showing educational value; and (4) 'students who spend time there report feeling calmer and more focused,' showing benefits for well-being.",
+      "explanation": "This answer is strong because it identifies four distinct pieces of evidence from the passage, each supporting the claim in a different way — participation, food production, education, and student well-being. When a passage makes a big claim, look for all the evidence that supports it, not just one detail."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Read this passage:\n\n\"When the small town of Millbrook lost its only bookstore, residents were worried. 'A town without a bookstore loses part of its soul,' said longtime resident Helen Park. Within a month, a group of volunteers organized a community book exchange in the town hall lobby. Shelves were donated by a local carpenter, and residents brought in hundreds of books. The exchange has now been running for two years and hosts weekly story hours for children. 'It's even better than the old store,' Park said with a smile.\"\n\nWhat evidence from the passage shows that the community cared about having access to books?",
+      "hints": [
+        "Look for actions the community took and quotes from residents. What did people do and say that shows books matter to them?"
+      ],
+      "answer": "Several details show the community cared about book access: Helen Park's quote that 'a town without a bookstore loses part of its soul' expresses how much books meant to residents. The fact that 'a group of volunteers organized a community book exchange' within just a month shows they took quick action. Additionally, a 'local carpenter' donated shelves and 'residents brought in hundreds of books,' showing widespread community involvement. The exchange has been 'running for two years' with 'weekly story hours,' proving sustained commitment.",
+      "explanation": "This answer uses both quotes and actions from the passage as evidence. Helen Park's words show emotional attachment to books, while the volunteers' actions and donations show that the community put in real effort. Using different types of evidence — words and actions — makes your answer more convincing."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Read this passage:\n\n\"The Arctic ice cap is shrinking at an alarming rate. Satellite data shows that summer sea ice has decreased by about 13 percent per decade since 1979. Polar bears, which depend on sea ice to hunt seals, are being forced to swim longer distances to find food, and some are starving. Indigenous communities in the Arctic have also been affected, as traditional hunting routes over the ice have become too dangerous to travel. Scientists warn that if current trends continue, the Arctic could be ice-free in summer within the next few decades.\"\n\nWhat evidence from the passage supports the claim that Arctic ice loss is having serious consequences?",
+      "hints": [],
+      "answer": "The passage provides multiple pieces of evidence showing serious consequences of Arctic ice loss. Polar bears 'are being forced to swim longer distances to find food, and some are starving,' showing a direct impact on wildlife. Indigenous communities have been affected because 'traditional hunting routes over the ice have become too dangerous to travel,' showing human impact. The satellite data showing 'summer sea ice has decreased by about 13 percent per decade since 1979' provides measurable proof of the decline, and scientists warn the Arctic 'could be ice-free in summer within the next few decades,' showing the situation may worsen.",
+      "explanation": "A complete evidence-based answer identifies multiple specific details from the text. This passage provides evidence in the form of statistics (13 percent per decade), real-world effects on animals (starving polar bears) and people (dangerous hunting routes), and expert warnings (ice-free summers). Citing different types of evidence makes your reasoning thorough and convincing."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Read this passage:\n\n\"Amelia Earhart was more than just a famous pilot — she was a trailblazer who challenged what people believed women could do. In 1928, she became the first woman to fly across the Atlantic Ocean, though she was quick to point out she had only been a passenger. Determined to prove herself as a pilot, she made the solo Atlantic crossing in 1932, battling mechanical problems and icy conditions. She set several other aviation records and used her fame to encourage other women to pursue careers in science and aviation. 'Women must try to do things as men have tried,' she once said. 'When they fail, their failure must be but a challenge to others.'\"\n\nWhat evidence from the passage shows that Earhart was determined to be recognized for her own skills, not just her fame?",
+      "hints": [],
+      "answer": "The passage shows Earhart's determination to be recognized for her skills through several pieces of evidence. After her 1928 flight, 'she was quick to point out she had only been a passenger,' showing she didn't want credit she hadn't fully earned. She then 'made the solo Atlantic crossing in 1932, battling mechanical problems and icy conditions,' proving she could do it on her own through real skill and perseverance. She also 'set several other aviation records,' continuing to demonstrate her abilities. Her own words — 'Women must try to do things as men have tried' — show she valued action and effort over fame.",
+      "explanation": "This answer connects specific text details to the claim about Earhart's determination. The key is noticing that her honesty about being a passenger, her solo flight, and her continued record-setting all tell the same story: she wanted to earn recognition through genuine accomplishment, not just being famous for being first."
+    }
+  ],
+  "real_world_connection": "Evidence-based reasoning is one of the most useful skills you can develop, far beyond the test. When you write a persuasive essay, you need evidence to make your argument convincing. When you see a claim on social media, asking 'what's the evidence for that?' protects you from misinformation. In science class, every experiment is about gathering evidence to support or reject a hypothesis. Even in everyday conversations, people are more convincing when they back up their opinions with facts. Learning to find and use evidence makes you a stronger reader, writer, and thinker.",
+  "transition_cues": [
+    "Can you explain in your own words what makes a piece of evidence strong versus weak?",
+    "If a friend said 'I think this passage is about bravery,' what would you tell them they need to do next to support that claim?",
+    "What's the difference between summarizing a passage and citing evidence from it?",
+    "Before we move on, give me an example of evidence you might use to support a claim about your favorite book."
+  ]
+}

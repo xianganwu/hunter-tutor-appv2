@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "passage_id": "poetry_02",
+    "title": "My Grandmother's Kitchen",
+    "genre": "poetry",
+    "difficulty_level": 2,
+    "word_count": 195,
+    "tagged_skills": ["rc_main_idea", "rc_vocab_context", "rc_figurative_language", "rc_tone_mood", "rc_inference", "rc_evidence_reasoning"],
+    "source_description": "original"
+  },
+  "pre_reading_context": "This poem is about a speaker remembering time spent in a grandparent's kitchen. As you read, notice how the poet uses sensory details to bring a memory to life.",
+  "passage_text": "Her kitchen was a kingdom\nwhere flour dusted the air\nlike snow that never melted,\nand warmth lived everywhere.\n\nShe didn't measure anything—\na handful here, a pinch,\na pour that somehow knew to stop\nat just the perfect inch.\n\nThe wooden spoon, worn smooth by years\nof batter, soup, and sauce,\nwas more than just a cooking tool—\nit was the kitchen's boss.\n\nShe'd hum old songs I didn't know,\nmelodies from far away,\nfrom countries I had never seen,\nfrom someone else's day.\n\nI'd sit upon the counter's edge,\nmy feet swinging below,\nand watch her hands do magic tricks\nwith plain old eggs and dough.\n\nThe oven breathed its golden heat.\nThe timer ticked like rain.\nAnd when the bread came out at last,\nwe'd tear it, piece by piece,\nand nothing that I've eaten since\nhas brought me quite that peace.\n\nI carry her kitchen with me now,\nnot in a box or bag,\nbut somewhere deeper, in a place\nwhere memories don't sag.\n\nAnd sometimes when I smell fresh bread,\nI'm six years old once more,\nback on that counter, swinging feet,\ninside her kitchen door.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "The speaker wants to become a professional baker." },
+        { "letter": "B", "text": "The speaker treasures warm memories of time spent with their grandmother." },
+        { "letter": "C", "text": "The grandmother was a terrible cook who never measured ingredients." },
+        { "letter": "D", "text": "The speaker feels angry about moving away from their grandmother." },
+        { "letter": "E", "text": "The poem is mainly about different types of bread." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The entire poem revolves around the speaker's loving, detailed memories of being in their grandmother's kitchen. The final stanzas show that these memories are precious and enduring, carried 'somewhere deeper' and triggered by the smell of fresh bread.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While the poem describes baking, the focus is on the emotional connection with the grandmother, not a career ambition. The speaker admires the grandmother, not the profession." },
+        { "letter": "C", "explanation": "The grandmother doesn't measure precisely, but the poem presents this as skilled intuition ('a pour that somehow knew to stop'), not incompetence." },
+        { "letter": "D", "explanation": "There is no anger in the poem. The tone is warm and nostalgic, suggesting fondness rather than resentment about any separation." },
+        { "letter": "E", "explanation": "Bread appears as one detail, but the poem is about the relationship and memories associated with the kitchen, not about bread itself." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "In the first stanza, the comparison of flour to 'snow that never melted' suggests that:",
+      "answer_choices": [
+        { "letter": "A", "text": "The kitchen was extremely cold." },
+        { "letter": "B", "text": "Flour was always present in the air, a constant part of the kitchen." },
+        { "letter": "C", "text": "The grandmother wasted a lot of flour." },
+        { "letter": "D", "text": "It was winter when the speaker visited." },
+        { "letter": "E", "text": "The flour was actually frozen." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The simile compares flour dust to snow that 'never melted,' suggesting the flour was a permanent, ever-present feature of the kitchen. It creates an image of a space always in use, always filled with the signs of cooking.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The stanza says 'warmth lived everywhere,' directly contradicting the idea that the kitchen was cold. The snow comparison is about appearance, not temperature." },
+        { "letter": "C", "explanation": "Flour in the air during baking is normal, not wasteful. The simile is about atmosphere, not carelessness." },
+        { "letter": "D", "explanation": "The 'snow' is a comparison to flour, not a description of the actual weather or season outside." },
+        { "letter": "E", "explanation": "This takes the simile literally. The flour is compared to snow in appearance (white, floating), not in temperature." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word 'kingdom' most likely suggest about the kitchen in the first line?",
+      "answer_choices": [
+        { "letter": "A", "text": "The kitchen was very large and had many rooms." },
+        { "letter": "B", "text": "The grandmother was a queen who wore a crown." },
+        { "letter": "C", "text": "The kitchen was decorated with royal furniture." },
+        { "letter": "D", "text": "The kitchen was the grandmother's special domain where she ruled with skill." },
+        { "letter": "E", "text": "Other people were not allowed to enter the kitchen." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "Calling the kitchen a 'kingdom' is a metaphor suggesting the grandmother was in complete, confident command of this space. It conveys her authority and mastery over cooking, much like a ruler governs their realm.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "A kingdom implies rule and authority, not physical size. The poem focuses on the grandmother's skill and presence, not the kitchen's dimensions." },
+        { "letter": "B", "explanation": "This takes the metaphor too literally. The grandmother is compared to a ruler figuratively, through her mastery of the kitchen, not through actual royal accessories." },
+        { "letter": "C", "explanation": "The 'kingdom' metaphor is about power and belonging, not about decor. The kitchen details (flour, wooden spoon) suggest a simple, well-used space." },
+        { "letter": "E", "explanation": "The speaker sits on the counter and watches, showing others were welcome. The metaphor is about the grandmother's command, not exclusion of others." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What is the overall tone of this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "Humorous and silly" },
+        { "letter": "B", "text": "Warm and nostalgic" },
+        { "letter": "C", "text": "Formal and distant" },
+        { "letter": "D", "text": "Fearful and tense" },
+        { "letter": "E", "text": "Jealous and resentful" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The speaker recalls the grandmother's kitchen with deep affection and longing. Words like 'warmth,' 'magic,' 'peace,' and the final image of being transported back to childhood all create a warm, nostalgic tone throughout.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While some images are playful (hands doing 'magic tricks'), the overall feeling is tender and reflective, not comedic or silly." },
+        { "letter": "C", "explanation": "The poem is deeply personal and emotional, using intimate details like swinging feet and tearing bread. This is the opposite of formal and distant." },
+        { "letter": "D", "explanation": "Nothing in the poem suggests fear or tension. Every image conveys comfort, safety, and love." },
+        { "letter": "E", "explanation": "The speaker expresses only love and gratitude toward the grandmother. There is no jealousy or resentment in any part of the poem." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 5,
+      "question_text": "When the speaker says the wooden spoon 'was the kitchen's boss,' this is an example of:",
+      "answer_choices": [
+        { "letter": "A", "text": "Simile" },
+        { "letter": "B", "text": "Alliteration" },
+        { "letter": "C", "text": "Onomatopoeia" },
+        { "letter": "D", "text": "Hyperbole" },
+        { "letter": "E", "text": "Personification" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "Personification gives human qualities to non-human things. A wooden spoon cannot actually be a 'boss,' but by giving it this human role, the poet emphasizes how central and important the spoon was in the kitchen.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "A simile compares two things using 'like' or 'as.' This line states the spoon 'was the boss' directly, without 'like' or 'as.'" },
+        { "letter": "B", "explanation": "Alliteration is the repetition of initial consonant sounds. While there is some repeated sound, the literary device here is about giving the spoon a human role." },
+        { "letter": "C", "explanation": "Onomatopoeia refers to words that imitate sounds. 'Boss' does not imitate any sound." },
+        { "letter": "D", "explanation": "Hyperbole is extreme exaggeration. While calling a spoon a 'boss' might seem exaggerated, the primary device is personification because it assigns a human role to an object." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Based on the poem, what can you infer about the grandmother's songs?",
+      "answer_choices": [
+        { "letter": "A", "text": "They likely came from her own cultural heritage and earlier life." },
+        { "letter": "B", "text": "They were popular American songs." },
+        { "letter": "C", "text": "She learned them from the radio." },
+        { "letter": "D", "text": "She made them up while she cooked." },
+        { "letter": "E", "text": "The speaker found them annoying." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The poem says the melodies were 'from far away, from countries I had never seen, from someone else's day.' This implies the songs came from the grandmother's cultural background and past life, possibly from another country where she grew up.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The phrase 'from countries I had never seen' implies the songs are from another culture or nation, not mainstream American music." },
+        { "letter": "C", "explanation": "The songs are described as being from 'far away' and 'countries I had never seen,' suggesting a personal and cultural origin, not commercial radio." },
+        { "letter": "D", "explanation": "The songs are described as 'old' and from specific places, suggesting they are traditional or learned, not improvised." },
+        { "letter": "E", "explanation": "The speaker describes the songs with curiosity and warmth, fitting the poem's loving tone. There is no suggestion of annoyance." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Which line from the poem best supports the idea that the grandmother cooked with natural skill rather than following recipes?",
+      "answer_choices": [
+        { "letter": "A", "text": "'Her kitchen was a kingdom'" },
+        { "letter": "B", "text": "'She didn't measure anything— / a handful here, a pinch'" },
+        { "letter": "C", "text": "'The timer ticked like rain'" },
+        { "letter": "D", "text": "'I carry her kitchen with me now'" },
+        { "letter": "E", "text": "'She'd hum old songs I didn't know'" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "This line directly shows that the grandmother cooked by intuition and feel rather than precise measurements or written recipes. Using 'a handful' and 'a pinch' demonstrates natural, experienced skill.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This metaphor establishes the kitchen as her domain but doesn't specifically address how she cooked or whether she used recipes." },
+        { "letter": "C", "explanation": "This line describes a sound in the kitchen but says nothing about the grandmother's cooking method or skill." },
+        { "letter": "D", "explanation": "This line is about the speaker's memory, not about how the grandmother cooked." },
+        { "letter": "E", "explanation": "Humming while cooking could suggest comfort in the kitchen, but it doesn't directly show cooking without recipes." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does the speaker mean by 'I carry her kitchen with me now, / not in a box or bag'?",
+      "answer_choices": [
+        { "letter": "A", "text": "The speaker took the grandmother's cooking equipment." },
+        { "letter": "B", "text": "The speaker packed up items from the kitchen to keep." },
+        { "letter": "C", "text": "The speaker keeps the memory of the kitchen alive in their heart and mind." },
+        { "letter": "D", "text": "The speaker has photographs of the kitchen." },
+        { "letter": "E", "text": "The speaker rebuilt the kitchen in a new house." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker clarifies that the kitchen is carried 'not in a box or bag, but somewhere deeper,' meaning the kitchen lives on as a cherished memory in the speaker's heart and mind, not as a physical object.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The poem specifically says 'not in a box or bag,' ruling out physical objects. The kitchen is carried as a memory." },
+        { "letter": "B", "explanation": "Again, the speaker states the kitchen is not carried in any physical container, making this interpretation incorrect." },
+        { "letter": "D", "explanation": "Photographs would be physical items. The poem emphasizes that this is carried 'somewhere deeper,' meaning emotionally, not as tangible objects." },
+        { "letter": "E", "explanation": "Rebuilding a kitchen would be a physical act. The poem makes clear the kitchen lives on in memory, 'where memories don't sag.'" }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 9,
+      "question_text": "The phrase 'The oven breathed its golden heat' uses which poetic device?",
+      "answer_choices": [
+        { "letter": "A", "text": "Metaphor" },
+        { "letter": "B", "text": "Personification" },
+        { "letter": "C", "text": "Simile" },
+        { "letter": "D", "text": "Rhyme" },
+        { "letter": "E", "text": "Repetition" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The oven is described as 'breathing,' which is a human action. Giving human qualities (breathing) to a non-human object (the oven) is personification. It makes the oven seem alive and gentle, adding warmth to the scene.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "A metaphor compares two unlike things directly. While 'golden heat' is descriptive, the key device here is the oven 'breathing,' which gives it a human quality, making it personification." },
+        { "letter": "C", "explanation": "A simile uses 'like' or 'as.' This line does not use either word and instead directly attributes breathing to the oven." },
+        { "letter": "D", "explanation": "Rhyme involves matching sounds at the ends of lines. This line is about the imagery and human quality given to the oven, not sound patterns." },
+        { "letter": "E", "explanation": "Repetition involves repeating words or phrases for emphasis. No words are repeated in this line." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 10,
+      "question_text": "In the final stanza, the smell of fresh bread causes the speaker to:",
+      "answer_choices": [
+        { "letter": "A", "text": "Feel hungry and want to eat dinner" },
+        { "letter": "B", "text": "Become sad and start crying" },
+        { "letter": "C", "text": "Feel instantly transported back to childhood in the grandmother's kitchen" },
+        { "letter": "D", "text": "Decide to call the grandmother on the phone" },
+        { "letter": "E", "text": "Want to open a bakery" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The final stanza says the smell of bread makes the speaker feel 'six years old once more, back on that counter, swinging feet, inside her kitchen door.' The sensory trigger of smell transports the speaker back to childhood memories.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While fresh bread might cause hunger, the poem focuses on emotional memory, not physical appetite. The speaker is transported to a memory, not a meal." },
+        { "letter": "B", "explanation": "The memory is described warmly and peacefully, not with sadness. The tone is nostalgic but not sorrowful." },
+        { "letter": "D", "explanation": "Nothing in the poem suggests the speaker contacts the grandmother. The phrasing 'I carry her kitchen with me now' and the past tense suggest the visits are in the past." },
+        { "letter": "E", "explanation": "The poem is about emotional connection and memory, not about career plans or business aspirations." }
+      ],
+      "skill_tested": "rc_inference"
+    }
+  ]
+}

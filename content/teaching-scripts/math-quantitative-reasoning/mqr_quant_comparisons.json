@@ -1,0 +1,113 @@
+{
+  "skill_id": "mqr_quant_comparisons",
+  "skill_name": "Quantitative Comparisons",
+  "concept_explanation": "In a quantitative comparison problem, you're given two quantities — Column A and Column B — and your job is to figure out which one is greater, or if they're equal, or if you just can't tell from the information given. Think of it like being a judge in a math competition: you look at both sides and decide which one wins. Sometimes you can calculate exact values, but often you can use clever shortcuts like simplifying, estimating, or plugging in numbers to compare without doing all the heavy lifting.",
+  "worked_examples": [
+    {
+      "problem": "Column A: 3/4 + 1/2\nColumn B: 1 1/5\n\nWhich is greater?",
+      "thinking_out_loud": [
+        "Okay, let me figure out what each column equals. Starting with Column A: I need to add 3/4 and 1/2. To add fractions, I need a common denominator. The least common denominator of 4 and 2 is 4.",
+        "So 1/2 becomes 2/4. Now I have 3/4 + 2/4 = 5/4, which is the same as 1 1/4 or 1.25.",
+        "Now Column B: 1 1/5. That's the same as 6/5 or 1.2.",
+        "Let me compare: Column A is 1.25 and Column B is 1.2. Since 1.25 > 1.2, Column A is greater."
+      ],
+      "solution": "Column A is greater. 3/4 + 1/2 = 5/4 = 1.25, which is greater than 1 1/5 = 1.2."
+    },
+    {
+      "problem": "x is a positive integer.\n\nColumn A: 2x\nColumn B: x + 5\n\nWhich is greater?",
+      "thinking_out_loud": [
+        "Hmm, there's a variable here, so I can't just calculate one answer. Let me try plugging in different values of x to see what happens.",
+        "If x = 1: Column A = 2(1) = 2, Column B = 1 + 5 = 6. Column B is bigger here.",
+        "If x = 10: Column A = 2(10) = 20, Column B = 10 + 5 = 15. Column A is bigger here!",
+        "Wait — in one case Column B wins, and in another case Column A wins. That means the answer depends on what x is.",
+        "The relationship cannot be determined from the information given."
+      ],
+      "solution": "The relationship cannot be determined. When x = 1, Column B is greater (6 > 2), but when x = 10, Column A is greater (20 > 15). Since different values of x give different answers, we cannot determine which is always greater."
+    },
+    {
+      "problem": "Column A: The number of minutes in 2 hours\nColumn B: The number of seconds in 2 minutes\n\nWhich is greater?",
+      "thinking_out_loud": [
+        "Let me convert each column into a plain number. Column A asks for the number of minutes in 2 hours. I know 1 hour = 60 minutes, so 2 hours = 120 minutes.",
+        "Column B asks for the number of seconds in 2 minutes. I know 1 minute = 60 seconds, so 2 minutes = 120 seconds.",
+        "Now I compare: Column A = 120 and Column B = 120. They're equal!",
+        "Even though one is measuring minutes and the other seconds, the question just asks about the numbers, and both equal 120."
+      ],
+      "solution": "The two quantities are equal. Both equal 120."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Thinking you must always calculate exact values to compare",
+      "why_it_happens": "Students are used to solving for exact answers in regular math class, so they try to fully compute both columns every time — even when a shortcut would work.",
+      "how_to_address": "Show that you can often compare by estimating, simplifying, or noticing relationships. For example, if Column A is 49 × 51 and Column B is 50 × 50, you can use the difference of squares pattern instead of multiplying everything out."
+    },
+    {
+      "misconception": "Forgetting that 'cannot be determined' is a valid answer",
+      "why_it_happens": "Students feel like every math problem should have a definite answer, so they pick one column as greater based on only one example value instead of considering multiple possibilities.",
+      "how_to_address": "Practice plugging in at least two or three different values (including small numbers, large numbers, and special cases like 0 or 1) when variables are involved. If different values give different results, the answer is 'cannot be determined.'"
+    },
+    {
+      "misconception": "Only trying one value when a variable is involved and assuming that settles it",
+      "why_it_happens": "Students try one number, see which column is bigger, and stop there — not realizing a different number could flip the result.",
+      "how_to_address": "Build a habit: whenever you see a variable, try at least two very different values (like a small number and a big number). Also try boundary cases like 0, 1, negatives, or fractions if the problem allows them."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Column A: 2/3 of 90\nColumn B: 3/4 of 80\n\nWhich is greater?",
+      "hints": [
+        "To find a fraction of a number, multiply the fraction by the number. Try Column A first: what is 2/3 × 90?",
+        "For Column A: 90 ÷ 3 = 30, then 30 × 2 = 60. Now do the same for Column B: what is 3/4 × 80?",
+        "For Column B: 80 ÷ 4 = 20, then 20 × 3 = 60. Now compare the two results."
+      ],
+      "answer": "The two quantities are equal. Both equal 60.",
+      "explanation": "Column A: 2/3 × 90 = 60. Column B: 3/4 × 80 = 60. Since both quantities equal 60, they are equal."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "y is a whole number greater than 1.\n\nColumn A: y × y\nColumn B: y + y\n\nWhich is greater?",
+      "hints": [
+        "Since there's a variable, try plugging in a couple of values. Start with y = 2. What do you get for each column?",
+        "When y = 2: Column A = 2 × 2 = 4, Column B = 2 + 2 = 4. They're equal! But don't stop — try y = 3 to see if it stays equal."
+      ],
+      "answer": "The relationship cannot be determined (or Column A is greater for y > 2, equal when y = 2). Since y = 2 gives equal values and y = 3 gives Column A greater, the relationship cannot be determined.",
+      "explanation": "When y = 2: y × y = 4 and y + y = 4 (equal). When y = 3: y × y = 9 and y + y = 6 (Column A is greater). Since y must be a whole number greater than 1, and y = 2 gives equality while y = 3 gives Column A greater, the relationship cannot be determined from the information given."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Column A: The perimeter of a square with side length 6\nColumn B: The perimeter of an equilateral triangle with side length 8\n\nWhich is greater?",
+      "hints": [
+        "Remember: a square has 4 equal sides, so its perimeter is 4 × side length. An equilateral triangle has 3 equal sides, so its perimeter is 3 × side length."
+      ],
+      "answer": "The two quantities are equal.",
+      "explanation": "Column A: Perimeter of the square = 4 × 6 = 24. Column B: Perimeter of the equilateral triangle = 3 × 8 = 24. Both equal 24, so the two quantities are equal."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Column A: 0.75 × 120\nColumn B: 0.8 × 100\n\nWhich is greater?",
+      "hints": [],
+      "answer": "Column A is greater.",
+      "explanation": "Column A: 0.75 × 120 = 90. Column B: 0.8 × 100 = 80. Since 90 > 80, Column A is greater."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "n is a positive integer less than 10.\n\nColumn A: The remainder when n is divided by 3\nColumn B: The remainder when n is divided by 4\n\nWhich is greater?",
+      "hints": [],
+      "answer": "The relationship cannot be determined.",
+      "explanation": "Try different values. If n = 5: remainder when 5 ÷ 3 = 2, remainder when 5 ÷ 4 = 1 — Column A is greater. If n = 7: remainder when 7 ÷ 3 = 1, remainder when 7 ÷ 4 = 3 — Column B is greater. Since different values of n give different results, the relationship cannot be determined."
+    }
+  ],
+  "real_world_connection": "Comparing quantities is something you do all the time in real life — like figuring out which store has the better deal, whether one recipe makes more servings than another, or which route to school is shorter. Quantitative comparison skills help you make smart decisions quickly by analyzing two options side by side, which is a skill you'll use in everything from shopping to science experiments.",
+  "transition_cues": [
+    "Before we move on, can you explain in your own words what the four possible answers are in a quantitative comparison problem?",
+    "When you see a variable in a comparison problem, what's your game plan?",
+    "Can you think of a time when you'd choose 'cannot be determined' instead of picking a column?",
+    "What's one shortcut you could use to compare two quantities without fully calculating both?"
+  ]
+}

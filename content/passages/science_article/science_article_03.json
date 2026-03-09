@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "passage_id": "science_article_03",
+    "title": "The Hidden World of Coral Reefs",
+    "genre": "science_article",
+    "difficulty_level": 3,
+    "word_count": 380,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_evidence_reasoning",
+      "rc_inference",
+      "rc_drawing_conclusions",
+      "rc_author_purpose"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Beneath the ocean's surface lies an ecosystem so rich and complex that scientists compare it to tropical rainforests. This article explores the surprising biology of coral reefs and the threats they face.",
+  "passage_text": "From a distance, a coral reef might look like a colorful underwater garden made of rock. But coral is not a rock, and it is not a plant. Coral is actually made up of thousands of tiny animals called polyps. Each polyp is smaller than a pencil eraser, with a soft, tube-shaped body and a ring of tentacles around its mouth. These polyps build hard skeletons of calcium carbonate around themselves for protection, and over hundreds of years, layer upon layer of these skeletons accumulate to form the massive reef structures that divers explore today.\n\nCoral polyps have a remarkable partnership with microscopic algae called zooxanthellae that live inside their tissues. This relationship is an example of mutualism — a type of symbiosis in which both organisms benefit. The algae use sunlight to perform photosynthesis, producing sugars that feed the coral. In return, the coral provides the algae with shelter and access to sunlight. The zooxanthellae are also responsible for the brilliant colors that make coral reefs so visually stunning. Without them, coral turns white, a condition scientists call \"bleaching.\"\n\nCoral reefs cover less than one percent of the ocean floor, yet they support roughly twenty-five percent of all marine species. Scientists often call them the \"rainforests of the sea\" because of this extraordinary biodiversity. Reefs provide shelter and hunting grounds for fish, sea turtles, octopuses, and countless invertebrates. Many species depend on reefs at some point in their life cycle, using them as nurseries where young fish can grow in relative safety.\n\nDespite their importance, coral reefs around the world are under serious threat. Rising ocean temperatures, driven by climate change, cause widespread bleaching events. When water stays too warm for too long, the stressed coral expels its zooxanthellae. Without the algae, the coral loses its color and, more critically, its primary food source. If temperatures do not return to normal quickly, the coral starves and dies. Ocean acidification — caused by seawater absorbing excess carbon dioxide from the atmosphere — presents an additional danger, as it weakens the calcium carbonate skeletons that form the reef's foundation.\n\nConservation efforts are underway worldwide. Marine biologists are experimenting with coral farming, growing fragments of resilient coral species in underwater nurseries and transplanting them onto damaged reefs. While these efforts offer hope, scientists emphasize that reducing carbon emissions remains the most important step in protecting these vital ecosystems.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Coral reefs are made of tiny animals called polyps that build skeletons." },
+        { "letter": "B", "text": "Coral reefs are remarkably complex ecosystems built by living organisms, but they face serious environmental threats." },
+        { "letter": "C", "text": "Climate change is the biggest problem facing the world's oceans." },
+        { "letter": "D", "text": "Scientists are growing coral in underwater nurseries to save the ocean." },
+        { "letter": "E", "text": "Zooxanthellae algae are the most important organisms in the ocean." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage covers what coral reefs are (living organisms), their ecological importance, and the threats they face. This answer captures the full scope of the article.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is an important detail from the first paragraph but only covers one aspect of the passage." },
+        { "letter": "C", "explanation": "Climate change is discussed as a threat to reefs, but the passage is specifically about coral reefs, not climate change broadly." },
+        { "letter": "D", "explanation": "Coral farming is mentioned in the final paragraph as one conservation effort, not the main idea." },
+        { "letter": "E", "explanation": "Zooxanthellae are discussed as partners of coral, but the passage does not claim they are the most important ocean organisms." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "As used in the passage, the word 'mutualism' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "a relationship where one organism harms another" },
+        { "letter": "B", "text": "a competition between two species for food" },
+        { "letter": "C", "text": "a process by which one organism absorbs another" },
+        { "letter": "D", "text": "a relationship where both organisms benefit" },
+        { "letter": "E", "text": "a partnership that only benefits the larger organism" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage defines mutualism as 'a type of symbiosis in which both organisms benefit,' and then gives specific examples of how both the coral and algae gain from the relationship.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "A harmful relationship would be parasitism, not mutualism. The passage emphasizes mutual benefit." },
+        { "letter": "B", "explanation": "Competition implies conflict, which is the opposite of the cooperative relationship described." },
+        { "letter": "C", "explanation": "Absorption is not what is described. The algae live inside the coral but are not absorbed — they remain distinct organisms." },
+        { "letter": "E", "explanation": "The passage explicitly states both organisms benefit, not just the larger one." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 3,
+      "question_text": "According to the passage, what happens when coral becomes bleached?",
+      "answer_choices": [
+        { "letter": "A", "text": "The coral skeleton dissolves in the water." },
+        { "letter": "B", "text": "The coral expels its zooxanthellae, loses color, and may starve without its food source." },
+        { "letter": "C", "text": "Predators attack the weakened coral and eat the polyps." },
+        { "letter": "D", "text": "The coral moves to a cooler part of the ocean." },
+        { "letter": "E", "text": "New algae replace the old algae and change the coral's color." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that stressed coral 'expels its zooxanthellae,' loses its color, and loses 'its primary food source,' which can lead to starvation and death.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Ocean acidification weakens skeletons, but bleaching is specifically about losing algae, not skeleton dissolution." },
+        { "letter": "C", "explanation": "Predators are not mentioned in connection with bleaching in the passage." },
+        { "letter": "D", "explanation": "Coral cannot move — it is attached to its skeleton. This contradicts basic coral biology as described in the passage." },
+        { "letter": "E", "explanation": "The passage does not describe new algae replacing old ones during bleaching." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Why does the author call coral reefs 'the rainforests of the sea'?",
+      "answer_choices": [
+        { "letter": "A", "text": "Because coral reefs receive a lot of rainfall" },
+        { "letter": "B", "text": "Because coral reefs and rainforests have the same types of animals" },
+        { "letter": "C", "text": "Because coral reefs support an extremely high diversity of species relative to their size" },
+        { "letter": "D", "text": "Because coral reefs are as large as tropical rainforests" },
+        { "letter": "E", "text": "Because coral reefs and rainforests both need sunlight to survive" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that reefs cover less than one percent of the ocean floor yet support about twenty-five percent of marine species, and the nickname highlights this 'extraordinary biodiversity,' just as rainforests are known for high biodiversity on land.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Rainfall is not relevant to underwater ecosystems. The comparison is about biodiversity, not weather." },
+        { "letter": "B", "explanation": "Reefs and rainforests have entirely different animal species. The comparison is about diversity levels, not identical species." },
+        { "letter": "D", "explanation": "The passage emphasizes that reefs are small (less than one percent of the ocean floor), making size the wrong basis for comparison." },
+        { "letter": "E", "explanation": "While both do depend on sunlight, this is not why the comparison is made. The passage connects the nickname to biodiversity." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 5,
+      "question_text": "As used in the passage, the word 'resilient' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "colorful and attractive" },
+        { "letter": "B", "text": "growing very quickly" },
+        { "letter": "C", "text": "found in deep water" },
+        { "letter": "D", "text": "recently discovered by scientists" },
+        { "letter": "E", "text": "able to survive difficult conditions" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The passage mentions 'resilient coral species' being grown and transplanted onto damaged reefs. In this context, resilient means able to withstand or recover from difficult conditions like warming water.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Color is discussed elsewhere in the passage, but resilience refers to toughness, not appearance." },
+        { "letter": "B", "explanation": "Fast growth might help restoration, but 'resilient' specifically means able to endure hardship." },
+        { "letter": "C", "explanation": "Depth is not related to the meaning of resilient." },
+        { "letter": "D", "explanation": "Being recently discovered has nothing to do with being resilient." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Which detail from the passage best supports the claim that coral reefs are important ecosystems?",
+      "answer_choices": [
+        { "letter": "A", "text": "Each polyp is smaller than a pencil eraser." },
+        { "letter": "B", "text": "The zooxanthellae are responsible for the brilliant colors of coral." },
+        { "letter": "C", "text": "Coral reefs cover less than one percent of the ocean floor yet support roughly twenty-five percent of all marine species." },
+        { "letter": "D", "text": "Polyps build hard skeletons of calcium carbonate around themselves." },
+        { "letter": "E", "text": "Marine biologists are experimenting with coral farming." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "This statistic directly demonstrates the ecological importance of reefs — a tiny fraction of the ocean supports a huge proportion of marine life.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Polyp size is a physical description that does not indicate ecological importance." },
+        { "letter": "B", "explanation": "Color is visually interesting but does not demonstrate why reefs are ecologically important." },
+        { "letter": "D", "explanation": "Skeleton composition explains reef structure but does not show ecological significance." },
+        { "letter": "E", "explanation": "Coral farming shows conservation effort, which implies importance, but is not direct evidence of ecological importance like the statistic." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What is the author's primary purpose in writing this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "To persuade readers to donate money to coral reef conservation" },
+        { "letter": "B", "text": "To entertain readers with stories about colorful ocean life" },
+        { "letter": "C", "text": "To inform readers about the biology of coral reefs and the challenges they face" },
+        { "letter": "D", "text": "To argue that coral reef research is more important than other scientific research" },
+        { "letter": "E", "text": "To compare coral reefs in different parts of the world" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage systematically explains what coral is, how it works, why reefs matter, and what threatens them. The tone is informative throughout, aiming to educate the reader.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage mentions conservation but does not ask readers to take specific action like donating money." },
+        { "letter": "B", "explanation": "While the passage is interesting, the tone is educational and scientific, not primarily entertaining." },
+        { "letter": "D", "explanation": "The passage does not compare coral research to other types of research." },
+        { "letter": "E", "explanation": "The passage discusses coral reefs generally and does not compare reefs in different locations." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, what conclusion can the reader draw about the relationship between carbon dioxide and coral reefs?",
+      "answer_choices": [
+        { "letter": "A", "text": "Carbon dioxide helps coral grow faster by providing nutrients." },
+        { "letter": "B", "text": "Excess carbon dioxide threatens reefs in two ways: by warming oceans and by acidifying seawater." },
+        { "letter": "C", "text": "Coral polyps breathe carbon dioxide the same way land animals breathe oxygen." },
+        { "letter": "D", "text": "Carbon dioxide only affects reefs that are already bleached." },
+        { "letter": "E", "text": "Zooxanthellae produce carbon dioxide through photosynthesis." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes rising ocean temperatures (driven by climate change, which involves carbon dioxide) causing bleaching, and ocean acidification caused by seawater absorbing excess CO2 weakening coral skeletons — two distinct threats.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage describes carbon dioxide as a threat, not a nutrient that helps coral grow." },
+        { "letter": "C", "explanation": "The passage does not describe coral breathing CO2. Coral polyps are animals but their respiration is not discussed." },
+        { "letter": "D", "explanation": "The passage describes acidification and warming as separate threats, not as something that only affects already-bleached reefs." },
+        { "letter": "E", "explanation": "Photosynthesis uses CO2 to produce sugars and oxygen, not the other way around." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 9,
+      "question_text": "As used in the passage, the word 'accumulate' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "break apart over time" },
+        { "letter": "B", "text": "dissolve in water" },
+        { "letter": "C", "text": "change color" },
+        { "letter": "D", "text": "build up gradually" },
+        { "letter": "E", "text": "float to the surface" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage says 'layer upon layer of these skeletons accumulate to form the massive reef structures,' indicating a gradual building up over hundreds of years.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Breaking apart is the opposite of accumulating. The passage describes layers adding up, not falling apart." },
+        { "letter": "B", "explanation": "Dissolving would destroy the skeletons, while accumulating means they are building up." },
+        { "letter": "C", "explanation": "Color change is discussed in relation to bleaching, not accumulation of skeletons." },
+        { "letter": "E", "explanation": "The skeletons form the reef structure on the ocean floor; they do not float upward." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What can the reader infer about why scientists emphasize reducing carbon emissions over coral farming?",
+      "answer_choices": [
+        { "letter": "A", "text": "Coral farming is too expensive to continue." },
+        { "letter": "B", "text": "Reducing emissions addresses the root cause of reef damage, while coral farming only treats the symptoms." },
+        { "letter": "C", "text": "Scientists believe coral reefs will recover naturally without any help." },
+        { "letter": "D", "text": "Carbon emissions do not actually affect coral reefs." },
+        { "letter": "E", "text": "Coral farming has been proven to fail in every attempt." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes rising temperatures and acidification — both caused by carbon emissions — as the primary threats. Coral farming repairs damage but does not stop the cause, so reducing emissions is presented as more fundamental.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Cost is not discussed in the passage. The emphasis is on addressing causes rather than costs." },
+        { "letter": "C", "explanation": "The passage describes active conservation efforts, suggesting scientists do not believe reefs will recover on their own." },
+        { "letter": "D", "explanation": "The passage clearly describes carbon emissions driving both warming and acidification, which damage reefs." },
+        { "letter": "E", "explanation": "The passage says coral farming 'offers hope,' indicating it has some success, not that it has failed." }
+      ],
+      "skill_tested": "rc_inference"
+    }
+  ]
+}

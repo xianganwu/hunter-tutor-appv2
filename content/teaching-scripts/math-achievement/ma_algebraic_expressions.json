@@ -1,0 +1,113 @@
+{
+  "skill_id": "ma_algebraic_expressions",
+  "skill_name": "Algebraic Expressions and Equations",
+  "concept_explanation": "Algebra is like a detective game — you're figuring out the value of an unknown number, usually represented by a letter like x. An expression is a mathematical phrase like 3x + 5 (no equals sign). An equation is a mathematical sentence like 3x + 5 = 20 (with an equals sign), and solving it means finding the value of x that makes it true. To evaluate an expression, you substitute a number in for the variable and simplify. To solve an equation, you use inverse operations to 'undo' what's been done to x — if something was added, you subtract; if something was multiplied, you divide. The goal is to get the variable all by itself on one side. You also need to follow the order of operations (PEMDAS: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction) and know how to combine like terms — that means adding terms that have the same variable, like 3x + 5x = 8x.",
+  "worked_examples": [
+    {
+      "problem": "Evaluate the expression 4x − 7 when x = 5.",
+      "thinking_out_loud": [
+        "I need to substitute 5 for x in the expression 4x − 7.",
+        "4x means 4 times x, so 4 × 5 = 20.",
+        "Now subtract 7: 20 − 7 = 13.",
+        "So when x = 5, the expression 4x − 7 equals 13."
+      ],
+      "solution": "13"
+    },
+    {
+      "problem": "Simplify the expression: 6x + 3 − 2x + 8.",
+      "thinking_out_loud": [
+        "I need to combine like terms. Like terms have the same variable (or are both constants).",
+        "The x-terms are 6x and −2x. Combining: 6x − 2x = 4x.",
+        "The constant terms are 3 and 8. Combining: 3 + 8 = 11.",
+        "The simplified expression is 4x + 11."
+      ],
+      "solution": "4x + 11"
+    },
+    {
+      "problem": "Solve the equation: 3x + 7 = 22.",
+      "thinking_out_loud": [
+        "I need to isolate x — get it by itself on one side of the equals sign.",
+        "First, I'll undo the '+ 7' by subtracting 7 from both sides: 3x + 7 − 7 = 22 − 7, which gives 3x = 15.",
+        "Now I'll undo the '× 3' by dividing both sides by 3: 3x ÷ 3 = 15 ÷ 3, which gives x = 5.",
+        "Let me check by plugging x = 5 back into the original equation: 3(5) + 7 = 15 + 7 = 22. That matches!",
+        "So x = 5."
+      ],
+      "solution": "x = 5"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Combining unlike terms, like adding 3x + 4 to get 7x.",
+      "why_it_happens": "Students see two numbers and want to add them together, not realizing that 3x and 4 are different types of terms — one has a variable and the other doesn't.",
+      "how_to_address": "Think of it like combining real objects: 3 apples + 4 oranges cannot become 7 apples. Similarly, 3x + 4 cannot become 7x because x-terms and number-terms are different 'types.' You can only combine terms that match."
+    },
+    {
+      "misconception": "Performing an operation on one side of the equation but not the other.",
+      "why_it_happens": "Students focus on simplifying one side and forget that an equation is a balance — what you do to one side, you must do to the other to keep it equal.",
+      "how_to_address": "Imagine a balance scale. If the equation is balanced, and you remove 5 from the left side but not the right, it tips over. Always perform the same operation on BOTH sides. Write it out explicitly each time."
+    },
+    {
+      "misconception": "Ignoring order of operations when evaluating expressions (e.g., computing 2 + 3 × 4 as 20 instead of 14).",
+      "why_it_happens": "Students work left to right without considering that multiplication and division come before addition and subtraction.",
+      "how_to_address": "Use PEMDAS as a checklist: handle Parentheses first, then Exponents, then Multiplication/Division (left to right), then Addition/Subtraction (left to right). Practice with expressions that specifically test this order."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Evaluate the expression 2(x + 3) − 4 when x = 7.",
+      "hints": [
+        "First, substitute 7 for x: 2(7 + 3) − 4. Now follow order of operations — what do you do first?",
+        "Parentheses first: 7 + 3 = 10. Now you have 2(10) − 4. Multiply next.",
+        "2 × 10 = 20. Then 20 − 4 = 16."
+      ],
+      "answer": "16",
+      "explanation": "Substitute x = 7: 2(7 + 3) − 4 = 2(10) − 4 = 20 − 4 = 16."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Solve for x: x/4 + 3 = 10.",
+      "hints": [
+        "Start by undoing the '+ 3'. Subtract 3 from both sides to get x/4 by itself.",
+        "After subtracting: x/4 = 7. Now undo the 'divide by 4' by multiplying both sides by 4."
+      ],
+      "answer": "x = 28",
+      "explanation": "Subtract 3 from both sides: x/4 = 7. Multiply both sides by 4: x = 28. Check: 28/4 + 3 = 7 + 3 = 10."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Simplify: 5x + 2y − 3x + 4y − 6.",
+      "hints": [
+        "Group like terms: x-terms together, y-terms together, and constants together. Then combine each group."
+      ],
+      "answer": "2x + 6y − 6",
+      "explanation": "x-terms: 5x − 3x = 2x. y-terms: 2y + 4y = 6y. Constants: −6. Combined: 2x + 6y − 6."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Solve for x: 5x − 12 = 3x + 8.",
+      "hints": [],
+      "answer": "x = 10",
+      "explanation": "Subtract 3x from both sides: 2x − 12 = 8. Add 12 to both sides: 2x = 20. Divide by 2: x = 10. Check: 5(10) − 12 = 38 and 3(10) + 8 = 38."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "A movie ticket costs $x. Jasmine bought 3 tickets and a popcorn that cost $6.50. Her total was $35.50. Write and solve an equation to find the cost of each ticket.",
+      "hints": [],
+      "answer": "x = $9.67 (approximately); each ticket costs about $9.67",
+      "explanation": "Equation: 3x + 6.50 = 35.50. Subtract 6.50: 3x = 29.00. Divide by 3: x = 29/3 ≈ $9.67. Each ticket costs approximately $9.67."
+    }
+  ],
+  "real_world_connection": "Algebra helps you solve problems where you don't know one of the numbers — and that happens all the time! If you're saving money and want to know how many weeks until you can afford something, that's an equation. If a phone plan charges a base fee plus a per-minute rate and you want to figure out how many minutes you used, that's algebra. Scientists use equations to describe how things work in nature, and programmers use variables and expressions in every line of code they write. Getting comfortable with algebra now sets you up for success in every math class to come.",
+  "transition_cues": [
+    "Can you explain the difference between an expression and an equation in your own words?",
+    "Quick check: what are 'like terms'? Can you give me an example of two terms that are like terms and two that aren't?",
+    "How confident are you about solving two-step equations? Those are really common on the exam.",
+    "Excellent work with algebra! Ready to tackle some multi-step word problems that tie everything together?"
+  ]
+}

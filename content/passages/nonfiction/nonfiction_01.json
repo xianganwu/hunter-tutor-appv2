@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_01",
+    "title": "The Secret History of the Yo-Yo",
+    "genre": "nonfiction",
+    "difficulty_level": 1,
+    "word_count": 260,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_drawing_conclusions",
+      "rc_passage_structure"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Many everyday toys have histories that stretch back hundreds or even thousands of years. This article explores the surprising origins of one of the world's most popular toys.",
+  "passage_text": "When you pick up a yo-yo, you are holding one of the oldest toys in history. Most people think of the yo-yo as a simple children's toy, but its story stretches back over two thousand years.\n\nThe earliest known yo-yos appeared in ancient Greece around 500 B.C. Greek children played with discs made of wood, metal, or painted clay, spinning them up and down on strings. Archaeologists have found decorated yo-yos in Greek ruins, some painted with images of gods and animals. These ancient toys were not just for fun. When Greek children turned a certain age, they would offer their childhood toys, including yo-yos, to the gods as a sign of growing up.\n\nCenturies later, the yo-yo appeared in the Philippines, where it became enormously popular. Filipino craftsmen carved yo-yos from wood and bone, and the toy became a part of daily life. Some historians once claimed that Filipino hunters used large yo-yo-like weapons, but modern researchers have found no solid evidence for this story. What is clear is that Filipino immigrants brought the toy to the United States in the early 1900s.\n\nIn 1928, a Filipino American named Pedro Flores opened a yo-yo factory in California. His yo-yos used a special looped string that allowed the disc to spin freely at the bottom, a design that made new tricks possible. A businessman named Donald Duncan later bought Flores's company and turned the yo-yo into a nationwide craze through clever advertising. By the 1960s, yo-yo competitions drew crowds across the country, and the toy had earned its place as an American classic.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "The yo-yo was invented in the Philippines and brought to America." },
+        { "letter": "B", "text": "The yo-yo has a long and surprising history that spans many cultures and centuries." },
+        { "letter": "C", "text": "Pedro Flores was the most important person in yo-yo history." },
+        { "letter": "D", "text": "Ancient Greek children played with many different kinds of toys." },
+        { "letter": "E", "text": "Yo-yo competitions became popular in the United States during the 1960s." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage traces the yo-yo's history from ancient Greece through the Philippines to the United States, showing how the toy has a long, multicultural history. This is the overarching point of the entire passage.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the passage discusses the Philippines and America, but it ignores the ancient Greek origins, which are a major part of the passage." },
+        { "letter": "C", "explanation": "While Pedro Flores is mentioned, he is only one part of the story. The passage covers much more than just his contribution." },
+        { "letter": "D", "explanation": "Greek toys are mentioned, but the passage is specifically about the yo-yo, not Greek toys in general." },
+        { "letter": "E", "explanation": "This is a detail from the last paragraph, not the main idea of the whole passage." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, what did Greek children do with their yo-yos when they reached a certain age?",
+      "answer_choices": [
+        { "letter": "A", "text": "They gave them to younger children in the village." },
+        { "letter": "B", "text": "They painted them with images of gods and animals." },
+        { "letter": "C", "text": "They offered them to the gods as a sign of growing up." },
+        { "letter": "D", "text": "They sold them to traders from other countries." },
+        { "letter": "E", "text": "They buried them in special ceremonies." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that Greek children 'would offer their childhood toys, including yo-yos, to the gods as a sign of growing up.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This sounds reasonable as something children might do with old toys, but the passage does not mention this." },
+        { "letter": "B", "explanation": "The passage does mention painted yo-yos, but painting was how they were decorated, not what children did when they grew up." },
+        { "letter": "D", "explanation": "Trade is not discussed in the passage. This is an unsupported detail." },
+        { "letter": "E", "explanation": "Burial is never mentioned. This confuses archaeological finds with a ritual practice." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 3,
+      "question_text": "As used in the passage, the word 'enormously' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "slightly" },
+        { "letter": "B", "text": "surprisingly" },
+        { "letter": "C", "text": "suddenly" },
+        { "letter": "D", "text": "extremely" },
+        { "letter": "E", "text": "briefly" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "'Enormously popular' means popular to a very great degree. 'Extremely' captures this meaning of being popular to a high extent.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "'Slightly' means the opposite of enormously and contradicts the context that the toy became a part of daily life." },
+        { "letter": "B", "explanation": "'Surprisingly' suggests unexpectedness, but 'enormously' describes the degree of popularity, not whether it was expected." },
+        { "letter": "C", "explanation": "'Suddenly' describes speed, not degree. The passage does not say the yo-yo became popular quickly in the Philippines." },
+        { "letter": "E", "explanation": "'Briefly' suggests a short time, which contradicts the idea that the yo-yo became part of daily life." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What can the reader infer about why Donald Duncan was successful in selling yo-yos?",
+      "answer_choices": [
+        { "letter": "A", "text": "He invented a new type of yo-yo string." },
+        { "letter": "B", "text": "He was already famous before he started selling yo-yos." },
+        { "letter": "C", "text": "He sold yo-yos at lower prices than his competitors." },
+        { "letter": "D", "text": "He organized yo-yo competitions across the country." },
+        { "letter": "E", "text": "He understood how to use advertising to create demand for a product." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The passage says Duncan 'turned the yo-yo into a nationwide craze through clever advertising,' which implies he understood how to market a product effectively to create widespread demand.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The special looped string was Pedro Flores's innovation, not Duncan's. The passage clearly attributes this to Flores." },
+        { "letter": "B", "explanation": "The passage does not mention Duncan being famous beforehand. This is unsupported." },
+        { "letter": "C", "explanation": "Pricing is never mentioned in the passage. There is no evidence about his pricing strategy." },
+        { "letter": "D", "explanation": "The passage mentions competitions in the 1960s but does not say Duncan organized them." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Which detail from the passage best supports the idea that yo-yos were important in ancient Greek culture?",
+      "answer_choices": [
+        { "letter": "A", "text": "Greek children played with discs made of wood, metal, or painted clay." },
+        { "letter": "B", "text": "The yo-yo appeared in the Philippines centuries later." },
+        { "letter": "C", "text": "Pedro Flores opened a yo-yo factory in California." },
+        { "letter": "D", "text": "Greek children offered their yo-yos to the gods as part of a coming-of-age tradition." },
+        { "letter": "E", "text": "Yo-yo competitions drew crowds across the country by the 1960s." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "Offering yo-yos to the gods as part of a coming-of-age ritual shows that the toys held cultural and possibly religious significance in ancient Greece, not just entertainment value.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This shows that yo-yos existed in Greece and were made of various materials, but it does not demonstrate cultural importance." },
+        { "letter": "B", "explanation": "This is about the Philippines, not ancient Greece, so it cannot support a claim about Greek culture." },
+        { "letter": "C", "explanation": "This is about American history, not Greek culture." },
+        { "letter": "E", "explanation": "This detail is about the United States in the 1960s and has nothing to do with ancient Greece." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Why does the author mention that 'modern researchers have found no solid evidence' for the yo-yo weapon story?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that Filipino culture was not as advanced as Greek culture" },
+        { "letter": "B", "text": "To correct a popular myth and show that the passage is based on facts" },
+        { "letter": "C", "text": "To argue that yo-yos were never used in the Philippines" },
+        { "letter": "D", "text": "To criticize historians who study toys" },
+        { "letter": "E", "text": "To explain why yo-yos were not popular in the Philippines" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The author separates fact from fiction by noting the weapon story lacks evidence. This shows the author values accuracy and wants readers to understand the real history.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not compare Greek and Filipino cultures in terms of advancement. This introduces a judgment the author does not make." },
+        { "letter": "C", "explanation": "The passage says the opposite — that yo-yos were enormously popular in the Philippines." },
+        { "letter": "D", "explanation": "The author does not criticize historians. The tone is informative, not critical." },
+        { "letter": "E", "explanation": "This contradicts the passage, which says the yo-yo became enormously popular and part of daily life in the Philippines." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "As used in the passage, the word 'craze' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "a widespread enthusiasm or trend" },
+        { "letter": "B", "text": "an angry protest" },
+        { "letter": "C", "text": "a period of confusion" },
+        { "letter": "D", "text": "a type of competition" },
+        { "letter": "E", "text": "a business partnership" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "In context, Duncan turned the yo-yo into a 'nationwide craze,' meaning it became a widespread trend that many people were enthusiastic about across the country.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "'Craze' has no connection to protest in this context. The passage describes positive enthusiasm, not anger." },
+        { "letter": "C", "explanation": "'Craze' can sometimes relate to 'crazy,' but in this context it does not mean confusion. The context of advertising success points to popularity." },
+        { "letter": "D", "explanation": "Competitions are mentioned separately. A 'craze' is broader than just competitions." },
+        { "letter": "E", "explanation": "A business partnership is mentioned (Duncan buying Flores's company), but 'craze' refers to public enthusiasm, not a business deal." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 8,
+      "question_text": "How is this passage organized?",
+      "answer_choices": [
+        { "letter": "A", "text": "It compares and contrasts two different types of yo-yos." },
+        { "letter": "B", "text": "It presents a problem and then offers a solution." },
+        { "letter": "C", "text": "It lists arguments for and against the yo-yo's popularity." },
+        { "letter": "D", "text": "It describes the yo-yo and then classifies it into categories." },
+        { "letter": "E", "text": "It traces the history of the yo-yo in chronological order." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The passage moves from ancient Greece (500 B.C.) to the Philippines (centuries later) to the United States (1928, 1960s), following a clear chronological order.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While different yo-yo materials are mentioned, the passage is not structured as a comparison of yo-yo types." },
+        { "letter": "B", "explanation": "No problem is presented in the passage. It is purely informational and historical." },
+        { "letter": "C", "explanation": "The passage does not present arguments for or against anything. It is a historical narrative." },
+        { "letter": "D", "explanation": "The passage does not classify yo-yos into categories. It tells a historical story." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Based on the passage, what conclusion can the reader draw about Pedro Flores?",
+      "answer_choices": [
+        { "letter": "A", "text": "He was the first person to ever make a yo-yo." },
+        { "letter": "B", "text": "He brought an important innovation to yo-yo design that changed how the toy was used." },
+        { "letter": "C", "text": "He became wealthier than Donald Duncan." },
+        { "letter": "D", "text": "He learned to make yo-yos from ancient Greek designs." },
+        { "letter": "E", "text": "He preferred traditional yo-yos to modern ones." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says Flores used a 'special looped string that allowed the disc to spin freely at the bottom, a design that made new tricks possible.' This was an innovation that changed what people could do with yo-yos.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage shows that yo-yos existed for over two thousand years before Flores. He was not the first to make them." },
+        { "letter": "C", "explanation": "The passage does not compare the wealth of Flores and Duncan. There is no information about their finances." },
+        { "letter": "D", "explanation": "There is no connection made between Flores and ancient Greek designs in the passage." },
+        { "letter": "E", "explanation": "The passage does not discuss Flores's personal preferences about yo-yo styles." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 10,
+      "question_text": "Which of the following best describes the author's main purpose in writing this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "To persuade readers to buy yo-yos" },
+        { "letter": "B", "text": "To explain why yo-yos are better than other toys" },
+        { "letter": "C", "text": "To entertain readers with funny stories about yo-yo tricks" },
+        { "letter": "D", "text": "To inform readers about the long and interesting history of the yo-yo" },
+        { "letter": "E", "text": "To argue that ancient Greek toys were the most important inventions in history" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage is informational throughout, presenting historical facts about the yo-yo from ancient Greece to modern America. The author's goal is to teach readers about this history.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not try to sell anything. There is no persuasive language encouraging purchase." },
+        { "letter": "B", "explanation": "The passage does not compare the yo-yo to other toys or argue it is superior." },
+        { "letter": "C", "explanation": "While the passage is interesting, it does not include funny stories or focus on tricks for entertainment." },
+        { "letter": "E", "explanation": "The passage does not argue about the importance of Greek inventions in general. It focuses specifically on the yo-yo." }
+      ],
+      "skill_tested": "rc_main_idea"
+    }
+  ]
+}

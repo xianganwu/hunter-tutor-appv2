@@ -1,0 +1,114 @@
+{
+  "skill_id": "rc_passage_structure",
+  "skill_name": "Passage Structure Analysis",
+  "concept_explanation": "Every passage is organized in a specific way, and recognizing that structure helps you understand it better and answer questions more quickly. The main organizational patterns are: cause and effect (one thing leads to another), compare and contrast (showing similarities and differences), chronological order (events told in time order), problem and solution (a problem is presented and then solved), and sequence or process (step-by-step instructions or stages). Authors choose a structure that fits their purpose — and once you recognize the pattern, you know where to look for key information. Think of structure as the skeleton of a passage: it holds everything together and gives it shape.",
+  "worked_examples": [
+    {
+      "problem": "Identify the organizational structure of this passage:\n\n\"By the early 2000s, many cities faced a growing problem: too many plastic bags were ending up in landfills and oceans, harming wildlife and polluting waterways. In response, several cities began charging a small fee for plastic bags at stores. Others banned single-use plastic bags altogether and encouraged reusable bags. The results were dramatic. In cities with bag bans, plastic bag litter decreased by up to 70 percent. The solution wasn't perfect — some shoppers complained about the inconvenience — but it significantly reduced plastic waste.\"",
+      "thinking_out_loud": [
+        "Let me look at how this passage is organized. It starts by describing a problem: plastic bags ending up in landfills and oceans, harming wildlife.",
+        "Then it shifts to describing what was done about it: fees, bans, reusable bags. These are solutions to the problem.",
+        "Finally, it talks about the results: 70 percent decrease in litter. It also acknowledges that the solution wasn't perfect, but it helped.",
+        "This follows a clear Problem-Solution structure: the author presents a problem, describes the solution, and evaluates how well it worked.",
+        "I can confirm by looking for signal words. 'Problem' is used directly, and 'in response' signals that a solution is coming."
+      ],
+      "solution": "This passage uses a problem-solution structure. The problem (plastic bags polluting landfills and oceans) is presented first, followed by the solutions (fees, bans, reusable bags), and then the results (70 percent reduction in litter). Signal words like 'problem,' 'in response,' and 'results' confirm this structure. The author also acknowledges limitations of the solution, which is common in problem-solution passages."
+    },
+    {
+      "problem": "Identify the organizational structure of this passage:\n\n\"Public libraries and bookstores both provide access to books, but they serve different purposes and operate in different ways. Libraries lend books for free and are funded by taxes, while bookstores sell books and are run as businesses. Libraries focus on serving the whole community, including people who can't afford to buy books, whereas bookstores can specialize in particular genres and offer curated recommendations. Both, however, serve as community gathering places and promote a love of reading.\"",
+      "thinking_out_loud": [
+        "This passage is talking about two things: libraries and bookstores. Let me see how it discusses them.",
+        "It points out differences: libraries lend for free vs. bookstores sell; libraries are tax-funded vs. bookstores are businesses; libraries serve everyone vs. bookstores can specialize.",
+        "It also points out a similarity at the end: both are community gathering places that promote reading.",
+        "The passage goes back and forth between the two subjects, highlighting how they're different and how they're alike.",
+        "This is a compare-and-contrast structure. Signal words include 'both,' 'but,' 'while,' 'whereas,' and 'however.'"
+      ],
+      "solution": "This passage uses a compare-and-contrast structure. It examines libraries and bookstores side by side, highlighting their differences (lending vs. selling, tax-funded vs. business, serving all vs. specializing) and their similarities (community gathering places, promoting reading). Signal words like 'both,' 'but,' 'while,' and 'whereas' are strong indicators of this structure."
+    },
+    {
+      "problem": "Identify the organizational structure of this passage:\n\n\"The eruption of Mount Vesuvius in 79 AD caused one of the most devastating natural disasters in ancient history. When the volcano erupted, it sent a massive cloud of ash and rock high into the sky. The ash rained down on the nearby city of Pompeii, burying buildings and streets. As a result, thousands of residents were trapped and killed. The thick layer of ash preserved the city almost perfectly, and because of this, archaeologists centuries later were able to uncover the ruins and learn about daily life in ancient Rome.\"",
+      "thinking_out_loud": [
+        "Let me trace the flow of this passage. The eruption happened (cause), which sent ash into the sky (effect). The ash rained down (cause), which buried buildings (effect). People were trapped (effect of being buried). The ash preserved the city (cause), which allowed archaeologists to study it later (effect).",
+        "There's a chain of causes and effects running through the whole passage. Each event leads to the next.",
+        "I can see signal words: 'caused,' 'as a result,' 'because of this.' These are classic cause-and-effect signals.",
+        "This is a cause-and-effect structure, where the eruption triggers a chain of consequences."
+      ],
+      "solution": "This passage uses a cause-and-effect structure. The eruption of Mount Vesuvius (the initial cause) triggers a chain of effects: ash cloud, city burial, deaths, and ultimately the preservation that allowed modern archaeologists to study Pompeii. Signal words like 'caused,' 'as a result,' and 'because of this' clearly indicate the cause-and-effect relationships connecting each event."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Thinking every passage that mentions time is chronological",
+      "why_it_happens": "When students see dates or time references in a passage, they automatically label it as chronological. But a passage can mention time while being organized by cause-and-effect (events causing other events) or problem-solution (a problem that developed over time and was eventually solved).",
+      "how_to_address": "Ask: 'Is the main point of this passage to show events in time order, or is it using time to show something else — like causes and effects or a problem being solved?' The presence of dates alone doesn't make it chronological. Look at the author's main purpose for organizing the information."
+    },
+    {
+      "misconception": "Confusing cause-and-effect with chronological order",
+      "why_it_happens": "Causes come before effects in time, so students think any passage showing events in order is chronological. But cause-and-effect specifically shows why things happen, while chronological order simply shows when they happen.",
+      "how_to_address": "Look for the word 'why.' In cause-and-effect, the author is explaining why something happened. In chronological order, the author is telling you when things happened, one after another. If you see signal words like 'because,' 'as a result,' 'therefore,' or 'caused,' it's likely cause-and-effect, not just chronological."
+    },
+    {
+      "misconception": "Not recognizing that a passage can use more than one structure",
+      "why_it_happens": "Students look for one clean structure and get confused when a passage seems to fit multiple patterns. For example, a passage might use compare-contrast within a larger problem-solution structure.",
+      "how_to_address": "Identify the dominant or overall structure — the one that best describes how the whole passage is organized. It's fine to note secondary structures, but focus on the primary one. Ask: 'If I had to pick one pattern that best describes how this passage is built, which would it be?'"
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Identify the organizational structure of this passage:\n\n\"Making a peanut butter and jelly sandwich is simple if you follow these steps. First, lay two slices of bread on a clean surface. Next, spread peanut butter evenly on one slice using a butter knife. Then, spread jelly on the other slice. After that, press the two slices together with the peanut butter and jelly sides facing each other. Finally, cut the sandwich in half diagonally or straight across — whichever you prefer.\"",
+      "hints": [
+        "Look at the signal words in this passage: 'first,' 'next,' 'then,' 'after that,' 'finally.' What kind of structure uses these words?",
+        "Is this passage showing causes and effects? Comparing two things? Or is it walking you through a series of ordered steps?",
+        "Think about the purpose: the author wants you to follow these instructions in a specific order. What structure matches step-by-step instructions?"
+      ],
+      "answer": "This passage uses a sequence (or process) structure. It walks the reader through the steps of making a sandwich in a specific order, from laying out the bread to cutting the finished sandwich. Signal words like 'first,' 'next,' 'then,' 'after that,' and 'finally' clearly mark each step in the sequence. The structure matches the purpose: teaching the reader how to do something in a specific order.",
+      "explanation": "Sequence structure is used when the order of steps matters — you can't cut the sandwich before you put peanut butter on it. Signal words like 'first,' 'next,' 'then,' and 'finally' are the most reliable indicators of this structure. This is different from chronological order (which tells a story over time) because it's instructional rather than narrative."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Identify the organizational structure of this passage:\n\n\"The invention of the printing press in the 1440s transformed European society in profound ways. Before the press, books had to be copied by hand, making them rare and expensive. Because the printing press could produce many copies quickly, books became more affordable. As a result, more people learned to read. This rise in literacy led to the spread of new ideas during the Renaissance and Reformation. Consequently, the printing press is often considered one of the most important inventions in human history.\"",
+      "hints": [
+        "Look for signal words that show relationships between events. Words like 'because,' 'as a result,' 'led to,' and 'consequently' indicate what type of structure?",
+        "Follow the chain: invention leads to affordable books, which leads to more reading, which leads to new ideas spreading. What connects each event to the next?"
+      ],
+      "answer": "This passage uses a cause-and-effect structure. The invention of the printing press (the cause) triggers a chain of effects: books became more affordable, more people learned to read, and new ideas spread during the Renaissance and Reformation. Signal words like 'because,' 'as a result,' 'led to,' and 'consequently' clearly mark the cause-and-effect relationships throughout the passage.",
+      "explanation": "Although this passage moves through time (1440s to the Reformation), it's not primarily chronological — the author's main purpose isn't to list events in time order but to show how one invention caused a chain of major societal changes. The cause-and-effect signal words confirm this: the author is explaining why these changes happened, not just when."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Identify the organizational structure of this passage:\n\n\"Cats and dogs are both popular pets, but they have very different temperaments. Dogs are generally social animals that crave attention and interaction with their owners. Cats, on the other hand, tend to be more independent and are content spending time alone. While dogs usually need to be walked daily and enjoy playing fetch, cats get their exercise through indoor play and are perfectly happy with a sunny windowsill. However, both animals form strong bonds with their owners and provide companionship and comfort.\"",
+      "hints": [
+        "The passage discusses two subjects side by side — cats and dogs. Look for signal words like 'both,' 'but,' 'on the other hand,' 'while,' and 'however.' What structure do these words point to?"
+      ],
+      "answer": "This passage uses a compare-and-contrast structure. It examines cats and dogs side by side, pointing out differences in temperament (social vs. independent), exercise needs (walking vs. indoor play), and then identifying a similarity (both form strong bonds with owners). Signal words like 'both,' 'but,' 'on the other hand,' 'while,' and 'however' clearly indicate compare-and-contrast organization.",
+      "explanation": "The compare-and-contrast structure works well here because the author's purpose is to show how two popular pets are similar and different. The signal words alternate between contrasting (but, on the other hand, while) and comparing (both, however). A common feature of this structure is ending with a shared similarity after discussing differences."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Identify the organizational structure of this passage:\n\n\"In the late 1800s, many American cities had a serious sanitation problem. Garbage piled up in streets, sewage flowed openly in gutters, and diseases like cholera and typhoid spread rapidly. City officials realized they needed to act. They built underground sewer systems to carry waste away from populated areas. They organized regular garbage collection and established public health departments to monitor disease outbreaks. Over time, these measures dramatically improved public health, and death rates from waterborne diseases dropped sharply.\"",
+      "hints": [],
+      "answer": "This passage uses a problem-solution structure. The problem is clearly established first: garbage, open sewage, and disease outbreaks in American cities. Then the solutions are presented: underground sewers, organized garbage collection, and public health departments. Finally, the results of the solutions are described: improved public health and dropping death rates. The passage follows the classic problem-solution pattern of presenting an issue, describing what was done about it, and evaluating the outcome.",
+      "explanation": "The passage moves from the problem (unsanitary conditions causing disease) to the solution (infrastructure and organization changes) to the results (improved health outcomes). While it includes time references (late 1800s, over time), the primary structure isn't chronological — it's organized around a problem being identified and addressed. The time references simply provide historical context."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Identify the organizational structure of this passage:\n\n\"The history of space exploration has unfolded in dramatic stages. In 1957, the Soviet Union launched Sputnik, the first artificial satellite, marking the beginning of the Space Age. Four years later, in 1961, Yuri Gagarin became the first human in space. The United States responded by putting a man on the moon in 1969, a feat watched by millions around the world. In the decades that followed, space stations were built, rovers explored Mars, and telescopes like Hubble revealed the deep universe. Most recently, private companies have begun launching their own rockets, opening a new chapter in humanity's journey beyond Earth.\"",
+      "hints": [],
+      "answer": "This passage uses a chronological structure. It presents the history of space exploration in time order, moving from 1957 (Sputnik) to 1961 (Gagarin) to 1969 (moon landing) through the decades that followed and up to the present day (private companies). Signal words and phrases include specific dates ('1957,' '1961,' '1969'), time markers ('four years later,' 'in the decades that followed'), and sequence language ('most recently'). The passage traces the progression of events through time rather than showing causes and effects or comparing subjects.",
+      "explanation": "While some events in this passage have cause-and-effect relationships (the Soviet launch prompted the US response), the overall structure is chronological — the author's main purpose is to walk the reader through the timeline of space exploration from its beginning to the present. The dates, time markers, and forward-moving narrative confirm the chronological organization."
+    }
+  ],
+  "real_world_connection": "Recognizing how information is organized helps you in every subject. In science class, experiments follow a process structure. In history, events are often told chronologically or through cause and effect. In debate class, arguments use problem-solution structure. Even outside school, you use these structures constantly: when you explain to a friend why something happened (cause-effect), when you compare two options before making a decision (compare-contrast), or when you describe a problem and propose a fix (problem-solution). Understanding structure also makes your own writing stronger — once you know these patterns, you can choose the best one to organize your ideas clearly.",
+  "transition_cues": [
+    "Can you name the five main organizational structures we discussed? What signal words go with each one?",
+    "If a passage mentions dates but is mainly explaining why events happened, what structure is it — chronological or cause-and-effect? How can you tell the difference?",
+    "Why does recognizing structure help you answer reading comprehension questions faster?",
+    "Think of something you've read recently — a chapter, an article, or even instructions. What structure did it use?"
+  ]
+}

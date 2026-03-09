@@ -1,0 +1,111 @@
+{
+  "skill_id": "mqr_pattern_recognition",
+  "skill_name": "Pattern Recognition",
+  "concept_explanation": "Pattern recognition is all about being a math detective — spotting the hidden rule that connects a series of numbers, shapes, or objects. When you see a sequence like 2, 6, 18, 54, your brain should start asking: 'What's happening from one number to the next?' Maybe each number is multiplied by 3. Or if you see 1, 4, 9, 16, you might notice those are the perfect squares: 1×1, 2×2, 3×3, 4×4. The key strategies are: look at the differences between terms, look at the ratios between terms, and look at the position of each term to see if there's a formula. Once you find the pattern, you can predict what comes next or find any term in the sequence.",
+  "worked_examples": [
+    {
+      "problem": "What is the next number in the sequence: 3, 7, 15, 31, 63, ___?",
+      "thinking_out_loud": [
+        "Let me look at the differences between consecutive terms: 7 - 3 = 4, 15 - 7 = 8, 31 - 15 = 16, 63 - 31 = 32.",
+        "The differences are 4, 8, 16, 32 — those are doubling each time! So the next difference should be 32 × 2 = 64.",
+        "That means the next term is 63 + 64 = 127.",
+        "Let me also check: each term seems to be one less than a power of 2. 3 = 4 - 1, 7 = 8 - 1, 15 = 16 - 1, 31 = 32 - 1, 63 = 64 - 1. The next power of 2 is 128, so the next term is 128 - 1 = 127. Both methods agree!"
+      ],
+      "solution": "The next number is 127. The pattern is that each term equals a power of 2 minus 1 (2^2 - 1, 2^3 - 1, 2^4 - 1, ...), or equivalently, the differences between terms double each time."
+    },
+    {
+      "problem": "In the pattern below, how many dots will be in Figure 5?\nFigure 1: 1 dot\nFigure 2: 3 dots (triangle)\nFigure 3: 6 dots (larger triangle)\nFigure 4: 10 dots (even larger triangle)",
+      "thinking_out_loud": [
+        "Let me list the number of dots: 1, 3, 6, 10. Let me find the differences: 3 - 1 = 2, 6 - 3 = 3, 10 - 6 = 4.",
+        "The differences are 2, 3, 4 — they increase by 1 each time! So the next difference should be 5.",
+        "Figure 5 would have 10 + 5 = 15 dots.",
+        "I also notice these are called triangular numbers: Figure n has 1 + 2 + 3 + ... + n dots. For Figure 5: 1 + 2 + 3 + 4 + 5 = 15. That confirms my answer."
+      ],
+      "solution": "Figure 5 has 15 dots. Each figure adds one more row than the last (the differences increase by 1), giving us 10 + 5 = 15. These are the triangular numbers."
+    },
+    {
+      "problem": "The first four terms of a sequence are: 2, 5, 11, 23. If the pattern continues, what is the 5th term?",
+      "thinking_out_loud": [
+        "Let me try differences first: 5 - 2 = 3, 11 - 5 = 6, 23 - 11 = 12. The differences are 3, 6, 12 — they're doubling!",
+        "So the next difference would be 12 × 2 = 24, making the 5th term 23 + 24 = 47.",
+        "Let me also check if there's a multiply-and-adjust pattern. 2 × 2 = 4, but the next term is 5, so it's 2 × 2 + 1 = 5. Then 5 × 2 + 1 = 11. Then 11 × 2 + 1 = 23. Yes! The rule is: multiply by 2, then add 1.",
+        "Using this rule: 23 × 2 + 1 = 47. Both methods give 47. I'm confident!"
+      ],
+      "solution": "The 5th term is 47. The pattern follows the rule 'multiply by 2, then add 1': 2 → 5 → 11 → 23 → 47."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Only looking at one method to find the pattern (like only checking differences)",
+      "why_it_happens": "Students learn one technique and apply it to everything. If the differences don't form an obvious pattern, they get stuck instead of trying ratios, position formulas, or other approaches.",
+      "how_to_address": "Build a toolkit: (1) Check differences between terms. (2) Check ratios between terms. (3) Check if terms relate to their position number (like squares or cubes). (4) Check if there's a 'multiply and add/subtract' rule. Try multiple approaches."
+    },
+    {
+      "misconception": "Assuming the pattern must be simple addition by a constant",
+      "why_it_happens": "The most common sequences students see in early grades are arithmetic sequences (add the same number each time), so they try to force every pattern into that mold.",
+      "how_to_address": "Expose students to varied patterns: geometric (multiply by a constant), quadratic (differences of differences are constant), and rule-based (like 'double and add 1'). If the differences between terms aren't constant, that's a clue to try something else."
+    },
+    {
+      "misconception": "Finding a pattern that works for the first few terms but not checking all given terms",
+      "why_it_happens": "Students get excited when they spot a rule that fits two or three terms and stop verifying. A rule that works for 2 terms might not work for the rest.",
+      "how_to_address": "Always verify your proposed rule against every given term before using it to predict the next one. If it doesn't work for all terms, keep looking."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "What is the next number in the sequence: 1, 4, 9, 16, 25, ___?",
+      "hints": [
+        "Try looking at each term's position. The 1st term is 1, the 2nd term is 4, the 3rd term is 9. What operation on the position number gives each term?",
+        "1 = 1×1, 4 = 2×2, 9 = 3×3, 16 = 4×4, 25 = 5×5. These are perfect squares! What is 6×6?"
+      ],
+      "answer": "The next number is 36.",
+      "explanation": "These are perfect squares: 1^2 = 1, 2^2 = 4, 3^2 = 9, 4^2 = 16, 5^2 = 25. The 6th term is 6^2 = 36. You can also see this from the differences: 3, 5, 7, 9 (odd numbers), so the next difference is 11, giving 25 + 11 = 36."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Find the next two terms: 1, 1, 2, 3, 5, 8, ___, ___",
+      "hints": [
+        "Look at how each term relates to the two terms before it. How do you get 2 from 1 and 1? How do you get 3 from 1 and 2?",
+        "Each term is the sum of the two terms before it: 1+1=2, 1+2=3, 2+3=5, 3+5=8. Now continue: 5+8=? and then use that to find the next one."
+      ],
+      "answer": "The next two terms are 13 and 21.",
+      "explanation": "This is the Fibonacci sequence, where each term is the sum of the two previous terms. 5 + 8 = 13, and 8 + 13 = 21."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "In the sequence 3, 6, 12, 24, 48, ___, what is the 7th term?",
+      "hints": [
+        "Check the ratio between consecutive terms: 6 ÷ 3 = ?, 12 ÷ 6 = ?, 24 ÷ 12 = ? What do you notice?"
+      ],
+      "answer": "The 7th term is 192.",
+      "explanation": "Each term is multiplied by 2 to get the next term (geometric sequence with ratio 2). The 6th term is 48 × 2 = 96, and the 7th term is 96 × 2 = 192."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "What is the next number in the sequence: 2, 6, 14, 30, 62, ___?",
+      "hints": [],
+      "answer": "The next number is 126.",
+      "explanation": "Check the differences: 4, 8, 16, 32 — they double each time. The next difference is 64, so the next term is 62 + 64 = 126. You can also see each term is 2 less than a power of 2 times 2: each term follows the rule 'multiply by 2, then add 2' — or equivalently, each term equals 2^(n+1) - 2."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "The pattern below shows numbers arranged in rows:\nRow 1: 1\nRow 2: 3, 5\nRow 3: 7, 9, 11\nRow 4: 13, 15, 17, 19\nWhat is the first number in Row 7?",
+      "hints": [],
+      "answer": "The first number in Row 7 is 43.",
+      "explanation": "The first number in each row: Row 1 = 1, Row 2 = 3, Row 3 = 7, Row 4 = 13. The differences between first numbers: 2, 4, 6 — increasing by 2 each time. Continuing: Row 5 starts at 13 + 8 = 21, Row 6 starts at 21 + 10 = 31, Row 7 starts at 31 + 12 = 43. Alternatively, notice that each row has the same number of terms as its row number, and all terms are consecutive odd numbers. Row n starts at n^2 - n + 1: for Row 7, that's 49 - 7 + 1 = 43."
+    }
+  ],
+  "real_world_connection": "Pattern recognition is how scientists discover the laws of nature, how musicians create melodies that sound pleasing, and how app developers predict what you might want to watch next. When weather forecasters predict tomorrow's temperature, they're looking for patterns in data. When you notice that your school bus always arrives 5 minutes late on rainy days, you're recognizing a pattern. This skill trains your brain to see order in what might first look like chaos — and that's one of the most powerful things math can teach you.",
+  "transition_cues": [
+    "When you see a sequence, what are the first two things you should check?",
+    "What's the difference between an arithmetic pattern and a geometric pattern?",
+    "If the differences between terms are changing, what should you try next?",
+    "How do you make sure the pattern you found is actually correct before using it?"
+  ]
+}

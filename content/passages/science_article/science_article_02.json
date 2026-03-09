@@ -1,0 +1,221 @@
+{
+  "metadata": {
+    "passage_id": "science_article_02",
+    "title": "The Journey of a Raindrop",
+    "genre": "science_article",
+    "difficulty_level": 2,
+    "word_count": 310,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_evidence_reasoning",
+      "rc_inference",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Water is constantly moving around our planet, but a single raindrop may travel an incredible distance before it lands on your head. This article follows water through its remarkable cycle.",
+  "passage_text": "A raindrop that lands on your nose during a spring shower has been on an extraordinary journey. That same water may have once been part of a dinosaur's drinking pond, a glacier in Antarctica, or a cloud floating over the Pacific Ocean. Water on Earth is constantly recycled through a process scientists call the water cycle, and it has been moving through this cycle for billions of years.\n\nThe water cycle begins with evaporation. When the sun heats bodies of water — oceans, lakes, rivers, and even puddles — some of the liquid water transforms into water vapor, an invisible gas that rises into the atmosphere. Plants also release water vapor through their leaves in a process called transpiration. Together, evaporation and transpiration send enormous quantities of water into the air every day.\n\nAs water vapor rises higher into the atmosphere, it encounters cooler temperatures. The cold air causes the vapor to condense, meaning it changes back from a gas into tiny liquid droplets. These droplets gather around microscopic particles of dust, pollen, or sea salt floating in the air. Billions of these tiny droplets clump together to form clouds. A single cloud can hold millions of gallons of water, though each individual droplet is incredibly small.\n\nWhen enough droplets combine and grow heavy, gravity pulls them down as precipitation — rain, snow, sleet, or hail, depending on the temperature. Some precipitation soaks into the ground, where it may be absorbed by plant roots or filter down into underground reservoirs called aquifers. Other water flows across the surface into streams and rivers, eventually making its way back to the ocean. Once there, the cycle begins again.\n\nScientists estimate that the total amount of water on Earth has remained roughly the same for billions of years. No new water is being created, and none is being destroyed. Every glass of water you drink contains molecules that have been cycling through the planet's systems since long before humans existed.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Clouds are made of billions of tiny water droplets." },
+        { "letter": "B", "text": "Water continuously moves through a natural cycle of evaporation, condensation, and precipitation." },
+        { "letter": "C", "text": "The sun is responsible for heating the Earth's oceans." },
+        { "letter": "D", "text": "Rain, snow, sleet, and hail are all forms of precipitation." },
+        { "letter": "E", "text": "Scientists have studied water for billions of years." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage traces water through evaporation, condensation, cloud formation, and precipitation, showing that water moves through a continuous cycle. This is the central topic of the entire article.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is a detail from the third paragraph about cloud formation, not the main idea of the whole passage." },
+        { "letter": "C", "explanation": "The sun's role in evaporation is mentioned, but the passage is about the entire water cycle, not just heating." },
+        { "letter": "D", "explanation": "This is a specific fact mentioned in one sentence. The main idea is broader than listing types of precipitation." },
+        { "letter": "E", "explanation": "The passage says water has been cycling for billions of years, not that scientists have studied it that long. This misreads the text." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "As used in the passage, the word 'transpiration' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "the process of plants absorbing water from the soil" },
+        { "letter": "B", "text": "the release of water vapor by plants through their leaves" },
+        { "letter": "C", "text": "the movement of water through underground reservoirs" },
+        { "letter": "D", "text": "the formation of clouds from dust particles" },
+        { "letter": "E", "text": "the freezing of water into ice crystals" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that 'plants also release water vapor through their leaves in a process called transpiration,' directly defining the term.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Absorbing water from soil is related to plants but is the opposite direction — transpiration is water leaving the plant, not entering it." },
+        { "letter": "C", "explanation": "Underground water movement is mentioned later in the passage but is not related to transpiration." },
+        { "letter": "D", "explanation": "Cloud formation involves condensation around particles, which is a different part of the water cycle from transpiration." },
+        { "letter": "E", "explanation": "Freezing is not mentioned in connection with transpiration. Transpiration involves water vapor, not ice." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 3,
+      "question_text": "According to the passage, what causes water vapor to condense into liquid droplets?",
+      "answer_choices": [
+        { "letter": "A", "text": "The sun heats the vapor until it becomes liquid." },
+        { "letter": "B", "text": "Wind pushes the vapor together into clumps." },
+        { "letter": "C", "text": "Cooler temperatures at higher altitudes cause the vapor to change back to liquid." },
+        { "letter": "D", "text": "Gravity pulls the vapor downward toward the ground." },
+        { "letter": "E", "text": "Dust particles absorb the vapor and turn it into rain." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that 'as water vapor rises higher into the atmosphere, it encounters cooler temperatures. The cold air causes the vapor to condense.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The sun causes evaporation, not condensation. Heating would keep water as vapor, not turn it into liquid." },
+        { "letter": "B", "explanation": "Wind is not mentioned as a cause of condensation in the passage." },
+        { "letter": "D", "explanation": "Gravity pulls precipitation down, but condensation happens because of cold temperatures, not gravity." },
+        { "letter": "E", "explanation": "Dust particles serve as surfaces for droplets to form around, but they do not turn vapor directly into rain." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What can the reader infer about why the author mentions dinosaurs in the first paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that dinosaurs needed more water than modern animals" },
+        { "letter": "B", "text": "To prove that dinosaurs caused the water cycle to begin" },
+        { "letter": "C", "text": "To explain why there are no dinosaurs alive today" },
+        { "letter": "D", "text": "To illustrate how incredibly old and recycled Earth's water is" },
+        { "letter": "E", "text": "To compare the size of ancient oceans to modern oceans" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "By mentioning that a raindrop might have once been in a dinosaur's drinking pond, the author emphasizes that Earth's water has been recycled for an extremely long time, making the cycle feel concrete and vivid.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not compare water needs of dinosaurs and modern animals." },
+        { "letter": "B", "explanation": "The passage does not suggest dinosaurs started the water cycle. It says the cycle has existed for billions of years." },
+        { "letter": "C", "explanation": "Dinosaur extinction is not discussed in the passage." },
+        { "letter": "E", "explanation": "The passage does not compare the size of ancient and modern oceans." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 5,
+      "question_text": "As used in the passage, the word 'microscopic' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "extremely small" },
+        { "letter": "B", "text": "dangerous" },
+        { "letter": "C", "text": "lightweight" },
+        { "letter": "D", "text": "invisible to scientists" },
+        { "letter": "E", "text": "perfectly round" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage refers to 'microscopic particles of dust, pollen, or sea salt,' meaning particles so tiny they would need a microscope to see. 'Extremely small' captures this meaning.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "Dust and pollen particles are not described as dangerous in this context." },
+        { "letter": "C", "explanation": "While microscopic things are often light, 'microscopic' refers to size, not weight." },
+        { "letter": "D", "explanation": "Microscopic means too small to see with the naked eye, but scientists can see them with microscopes." },
+        { "letter": "E", "explanation": "Shape is not related to the meaning of 'microscopic,' which describes size." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 6,
+      "question_text": "According to the passage, what happens to precipitation after it reaches the ground?",
+      "answer_choices": [
+        { "letter": "A", "text": "It immediately evaporates back into the atmosphere." },
+        { "letter": "B", "text": "It is collected by scientists for research purposes." },
+        { "letter": "C", "text": "It stays in one place until the sun heats it again." },
+        { "letter": "D", "text": "It freezes underground and forms glaciers." },
+        { "letter": "E", "text": "It either soaks into the ground or flows across the surface into streams and rivers." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The passage states that 'some precipitation soaks into the ground' and 'other water flows across the surface into streams and rivers,' describing two paths water takes after landing.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While water does eventually evaporate again, the passage describes it soaking in or flowing first, not immediately evaporating." },
+        { "letter": "B", "explanation": "Scientific collection of water is not discussed anywhere in the passage." },
+        { "letter": "C", "explanation": "The passage describes water moving — soaking in or flowing — not staying in place." },
+        { "letter": "D", "explanation": "Glaciers are mentioned in the opening as an example of where water has been, but the passage does not say precipitation freezes underground into glaciers." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 7,
+      "question_text": "As used in the passage, the word 'reservoirs' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "underground caves filled with air" },
+        { "letter": "B", "text": "natural storage places where water collects" },
+        { "letter": "C", "text": "rivers that flow beneath the surface" },
+        { "letter": "D", "text": "machines used to pump water" },
+        { "letter": "E", "text": "layers of rock that block water" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage mentions 'underground reservoirs called aquifers' where water filters down and collects. A reservoir is a place where something, in this case water, is stored or accumulates.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage describes these as water-filled, not air-filled. Reservoirs hold water." },
+        { "letter": "C", "explanation": "Rivers are separate from reservoirs. An aquifer stores water rather than flowing like a river." },
+        { "letter": "D", "explanation": "Machines and pumps are not mentioned in the passage. Reservoirs are natural formations." },
+        { "letter": "E", "explanation": "Rock layers that block water would prevent storage, which is the opposite of what a reservoir does." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What can the reader infer about why no new water is being created on Earth?",
+      "answer_choices": [
+        { "letter": "A", "text": "Scientists have passed laws preventing water from being wasted." },
+        { "letter": "B", "text": "All of Earth's water originally came from outer space." },
+        { "letter": "C", "text": "The water cycle recycles existing water, so new water is not needed." },
+        { "letter": "D", "text": "Humans have used up most of the water that once existed." },
+        { "letter": "E", "text": "The sun prevents new water from forming." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage describes water continuously cycling through evaporation, condensation, and precipitation. Since water is constantly recycled rather than used up, the same water keeps moving through the system without needing replacement.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Laws about water use are not mentioned, and laws do not control natural processes like the water cycle." },
+        { "letter": "B", "explanation": "The origin of Earth's water is not discussed in the passage." },
+        { "letter": "D", "explanation": "The passage says the total amount has stayed roughly the same, directly contradicting the idea that water has been used up." },
+        { "letter": "E", "explanation": "The sun drives evaporation but is not described as preventing new water from forming." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Based on the passage, what conclusion can the reader draw about clouds?",
+      "answer_choices": [
+        { "letter": "A", "text": "Clouds are solid objects that float because they are lighter than air." },
+        { "letter": "B", "text": "Clouds form only over oceans because that is where evaporation occurs." },
+        { "letter": "C", "text": "Clouds are collections of water droplets that formed around tiny airborne particles." },
+        { "letter": "D", "text": "Clouds are made entirely of dust and pollen." },
+        { "letter": "E", "text": "Every cloud eventually produces rain." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage explains that water vapor condenses into droplets around microscopic particles and that billions of these droplets clump together to form clouds.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage describes clouds as collections of liquid droplets, not solid objects." },
+        { "letter": "B", "explanation": "The passage mentions evaporation from lakes, rivers, puddles, and transpiration from plants, not just oceans." },
+        { "letter": "D", "explanation": "Dust and pollen are the tiny particles droplets form around, but the clouds themselves are mostly water droplets." },
+        { "letter": "E", "explanation": "The passage says precipitation falls 'when enough droplets combine and grow heavy,' implying not every cloud reaches that point." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 10,
+      "question_text": "Which sentence from the passage best supports the idea that the water cycle has been happening for a very long time?",
+      "answer_choices": [
+        { "letter": "A", "text": "When the sun heats bodies of water, some of the liquid water transforms into water vapor." },
+        { "letter": "B", "text": "Billions of these tiny droplets clump together to form clouds." },
+        { "letter": "C", "text": "Every glass of water you drink contains molecules that have been cycling through the planet's systems since long before humans existed." },
+        { "letter": "D", "text": "Some precipitation soaks into the ground, where it may be absorbed by plant roots." },
+        { "letter": "E", "text": "A single cloud can hold millions of gallons of water." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "This sentence directly states that water molecules have been cycling 'since long before humans existed,' which clearly supports the idea that the water cycle has been happening for an extremely long time.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This describes how evaporation works but does not indicate how long the process has been occurring." },
+        { "letter": "B", "explanation": "This describes cloud formation but says nothing about how long the water cycle has operated." },
+        { "letter": "D", "explanation": "This describes what happens to precipitation but does not address the age of the water cycle." },
+        { "letter": "E", "explanation": "This is a fact about cloud capacity, not about the duration of the water cycle." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    }
+  ]
+}

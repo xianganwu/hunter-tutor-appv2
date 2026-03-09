@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_02",
+    "title": "How the Navajo Code Talkers Helped Win World War II",
+    "genre": "nonfiction",
+    "difficulty_level": 2,
+    "word_count": 340,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_drawing_conclusions",
+      "rc_tone_mood"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "During World War II, the United States military needed a way to send secret messages that the enemy could not decode. The solution came from an unexpected source.",
+  "passage_text": "In 1942, the United States was fighting World War II on two fronts — in Europe and across the Pacific Ocean. Military leaders faced a serious problem: the Japanese military had cracked almost every secret code the Americans used. Vital battle plans were being intercepted and decoded, putting American soldiers in danger. The military needed an unbreakable code, and they found it in one of the most unlikely places — the Navajo language.\n\nPhilip Johnston, a civil engineer who had grown up on the Navajo reservation and was one of the few non-Navajo people who spoke the language fluently, proposed the idea to military leaders. The Navajo language was extraordinarily complex, with tonal qualities and a grammar structure completely different from European and Asian languages. It had no written alphabet at the time, meaning the only way to learn it was to grow up speaking it. Johnston argued that these qualities made it the perfect foundation for an unbreakable military code.\n\nThe Marine Corps recruited twenty-nine Navajo men to create the code. These original Code Talkers did not simply translate English messages into Navajo. They invented an entirely new code within the language, assigning Navajo words to military terms. For example, the Navajo word for \"turtle\" represented a tank, and \"iron fish\" meant a submarine. The Code Talkers memorized the entire system — over two hundred terms — without writing anything down.\n\nThe results were remarkable. During the Battle of Iwo Jima, one of the war's fiercest conflicts, Code Talkers transmitted more than eight hundred messages without a single error. The Japanese never broke the code. Major Howard Connor, who commanded the Code Talkers at Iwo Jima, later declared that the Marines could not have taken the island without them.\n\nDespite their extraordinary contribution, the Code Talkers' work remained classified for over twenty years after the war ended. Many returned home to face poverty and discrimination, their heroism unknown to the public. It was not until 2001 that the original twenty-nine Code Talkers received the Congressional Gold Medal, the nation's highest civilian honor.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "The Navajo language is one of the most complex languages in the world." },
+        { "letter": "B", "text": "Navajo Code Talkers created an unbreakable code that played a vital role in winning World War II, though their contributions went unrecognized for decades." },
+        { "letter": "C", "text": "Philip Johnston was responsible for winning the war in the Pacific." },
+        { "letter": "D", "text": "The Battle of Iwo Jima was the most important battle of World War II." },
+        { "letter": "E", "text": "The United States military had poor code-breaking technology during World War II." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage covers the creation of the Navajo code, its critical role in the war, and the delayed recognition the Code Talkers received. This answer captures all the major threads of the passage.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The complexity of the Navajo language is discussed as a supporting detail, but the passage is about the Code Talkers and their wartime contribution, not linguistics." },
+        { "letter": "C", "explanation": "Johnston proposed the idea, but the passage makes clear that the twenty-nine Code Talkers created the code. Johnston is one part of a larger story." },
+        { "letter": "D", "explanation": "Iwo Jima is mentioned as one example of the Code Talkers' success, not as the main focus of the passage." },
+        { "letter": "E", "explanation": "The passage mentions that Japanese forces cracked American codes, but this is background information, not the main idea." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, why was the Navajo language considered ideal for creating a military code?",
+      "answer_choices": [
+        { "letter": "A", "text": "It was spoken by millions of people around the world." },
+        { "letter": "B", "text": "It had already been used as a code in World War I." },
+        { "letter": "C", "text": "It was extremely complex, had no written alphabet, and was completely different from European and Asian languages." },
+        { "letter": "D", "text": "It was easy for American soldiers to learn quickly." },
+        { "letter": "E", "text": "It was similar to Japanese, which would confuse enemy code breakers." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that the Navajo language had 'tonal qualities and a grammar structure completely different from European and Asian languages' and 'had no written alphabet,' making it nearly impossible for outsiders to learn or decode.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage implies the opposite — very few non-Navajo people spoke the language, which is part of what made it suitable for a code." },
+        { "letter": "B", "explanation": "The passage does not mention World War I or any prior use of Navajo as a code." },
+        { "letter": "D", "explanation": "The passage suggests the language was extremely difficult to learn, not easy. Only people who grew up speaking it could learn it." },
+        { "letter": "E", "explanation": "The passage says Navajo was completely different from Asian languages, not similar to Japanese." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 3,
+      "question_text": "As used in the passage, the word 'intercepted' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "ignored" },
+        { "letter": "B", "text": "created" },
+        { "letter": "C", "text": "translated into another language" },
+        { "letter": "D", "text": "caught or captured during transmission" },
+        { "letter": "E", "text": "accidentally lost" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage says battle plans 'were being intercepted and decoded,' meaning the enemy was catching the messages while they were being sent and then figuring out what they said.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "If messages were ignored, they would not have been decoded. The context shows the messages were actively captured." },
+        { "letter": "B", "explanation": "'Created' does not fit the context. The messages were being captured by the enemy, not made by them." },
+        { "letter": "C", "explanation": "Translation is related to 'decoded,' which is a separate action mentioned after 'intercepted' in the sentence." },
+        { "letter": "E", "explanation": "The messages were deliberately captured by the enemy, not accidentally lost." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What can the reader infer about why the Code Talkers' work was kept classified after the war?",
+      "answer_choices": [
+        { "letter": "A", "text": "The military was embarrassed that it had needed help from Navajo speakers." },
+        { "letter": "B", "text": "The Code Talkers asked for their work to remain secret." },
+        { "letter": "C", "text": "The military wanted to keep the code available for use in future conflicts." },
+        { "letter": "D", "text": "The government forgot about the Code Talkers after the war ended." },
+        { "letter": "E", "text": "The Navajo Nation requested that the code not be made public." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The most logical reason to keep an unbreakable code classified is to preserve its usefulness for future military operations. If enemies learned how the code worked, it could no longer be used.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage presents the Code Talkers' contribution positively, with military leaders praising them. There is no suggestion of embarrassment." },
+        { "letter": "B", "explanation": "The passage does not indicate the Code Talkers wanted secrecy. In fact, the delayed recognition suggests they might have preferred acknowledgment." },
+        { "letter": "D", "explanation": "Keeping something 'classified' is a deliberate decision, not forgetfulness. The military actively maintained the secrecy." },
+        { "letter": "E", "explanation": "The passage does not mention any request from the Navajo Nation about classification." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Which detail from the passage best supports the claim that the Navajo code was effective in battle?",
+      "answer_choices": [
+        { "letter": "A", "text": "Philip Johnston grew up on the Navajo reservation." },
+        { "letter": "B", "text": "The Code Talkers memorized over two hundred terms." },
+        { "letter": "C", "text": "The original twenty-nine Code Talkers received the Congressional Gold Medal." },
+        { "letter": "D", "text": "The Navajo language had no written alphabet at the time." },
+        { "letter": "E", "text": "At Iwo Jima, Code Talkers transmitted more than eight hundred messages without a single error, and the Japanese never broke the code." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "This detail provides direct evidence of battlefield success: hundreds of perfect transmissions in a major battle, and the enemy's complete failure to crack the code.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is background about Johnston, not evidence of the code's battlefield effectiveness." },
+        { "letter": "B", "explanation": "Memorizing terms shows the code was complex, but does not directly demonstrate its effectiveness in combat." },
+        { "letter": "C", "explanation": "Receiving a medal shows recognition of their contribution but is not direct evidence of the code's effectiveness in battle." },
+        { "letter": "D", "explanation": "This explains why the language was hard to learn but does not directly show battlefield effectiveness." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What is the tone of the last paragraph of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Bittersweet, mixing pride in eventual recognition with sadness about the long delay" },
+        { "letter": "B", "text": "Angry and accusatory" },
+        { "letter": "C", "text": "Humorous and lighthearted" },
+        { "letter": "D", "text": "Cheerful and celebratory" },
+        { "letter": "E", "text": "Fearful and uncertain" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The final paragraph notes both the injustice the Code Talkers faced (poverty, discrimination, secrecy) and their eventual honor (Congressional Gold Medal). This creates a bittersweet tone — recognition came, but very late.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "While the paragraph reveals injustice, the author presents the facts without overt anger or accusation. The tone is measured." },
+        { "letter": "C", "explanation": "There is nothing humorous about the paragraph. It discusses discrimination and delayed recognition." },
+        { "letter": "D", "explanation": "The medal is positive, but the paragraph also discusses poverty and discrimination, making the tone more complex than purely cheerful." },
+        { "letter": "E", "explanation": "There is no fear or uncertainty in the paragraph. It describes past events with a reflective tone." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 7,
+      "question_text": "As used in the passage, the word 'classified' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "organized into categories" },
+        { "letter": "B", "text": "kept officially secret by the government" },
+        { "letter": "C", "text": "praised by military leaders" },
+        { "letter": "D", "text": "recorded in history books" },
+        { "letter": "E", "text": "forgotten by the public" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "In a military context, 'classified' means officially designated as secret. The passage says the work 'remained classified for over twenty years,' meaning the government kept it secret.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "'Classified' can mean organized into categories in everyday usage, but in a military context it means kept secret." },
+        { "letter": "C", "explanation": "Being praised is different from being classified. The passage distinguishes between the secrecy and the eventual recognition." },
+        { "letter": "D", "explanation": "Being classified means the opposite of being recorded in history — the information was hidden from public knowledge." },
+        { "letter": "E", "explanation": "The information was deliberately kept secret, not accidentally forgotten. Classification is an active decision." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What conclusion can the reader draw about how the Code Talkers were treated after the war?",
+      "answer_choices": [
+        { "letter": "A", "text": "They were immediately celebrated as war heroes." },
+        { "letter": "B", "text": "They received generous financial rewards from the military." },
+        { "letter": "C", "text": "They chose to live quietly and avoid public attention." },
+        { "letter": "D", "text": "Their sacrifices were not properly acknowledged for many years, reflecting broader patterns of discrimination." },
+        { "letter": "E", "text": "They were invited to train new code breakers for the military." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage states that Code Talkers returned home to 'poverty and discrimination' with their heroism unknown, and they did not receive the Congressional Gold Medal until 2001 — nearly sixty years after the war. This shows a clear pattern of neglect.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is contradicted by the passage, which says their work was classified and their heroism was unknown to the public." },
+        { "letter": "B", "explanation": "The passage mentions poverty, which suggests they did not receive generous financial rewards." },
+        { "letter": "C", "explanation": "The passage does not say they chose quiet lives. Their secrecy was imposed by classification, not personal choice." },
+        { "letter": "E", "explanation": "There is no mention of the Code Talkers training new code breakers after the war." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Why does the author include Major Howard Connor's statement about Iwo Jima?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that Connor was the real hero of the battle" },
+        { "letter": "B", "text": "To provide a firsthand military perspective that confirms the Code Talkers' critical importance" },
+        { "letter": "C", "text": "To explain the military strategy used at Iwo Jima" },
+        { "letter": "D", "text": "To compare Connor's leadership with other military commanders" },
+        { "letter": "E", "text": "To argue that Iwo Jima was the hardest battle of the war" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Including a direct statement from a commanding officer who worked with the Code Talkers adds authority and credibility to the claim that their work was essential to military success.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Connor's quote praises the Code Talkers, not himself. The author uses his words to highlight their importance." },
+        { "letter": "C", "explanation": "The quote does not explain strategy. It simply states that the island could not have been taken without the Code Talkers." },
+        { "letter": "D", "explanation": "No other commanders are mentioned or compared to Connor in the passage." },
+        { "letter": "E", "explanation": "While Iwo Jima is called one of the 'fiercest conflicts,' the author's purpose in including the quote is to validate the Code Talkers' importance." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 10,
+      "question_text": "Based on the passage, which of the following statements is true about the Navajo code?",
+      "answer_choices": [
+        { "letter": "A", "text": "It was a direct translation of English into the Navajo language." },
+        { "letter": "B", "text": "It used written Navajo symbols to disguise English words." },
+        { "letter": "C", "text": "It was a newly invented code within the Navajo language, using Navajo words to represent military terms." },
+        { "letter": "D", "text": "It was based on an ancient Navajo communication system." },
+        { "letter": "E", "text": "It could only be used for short messages of a few words." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage clearly states that the Code Talkers 'did not simply translate English messages into Navajo. They invented an entirely new code within the language, assigning Navajo words to military terms.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage explicitly says the code was NOT a simple translation. It was a code within the language." },
+        { "letter": "B", "explanation": "The passage states Navajo had no written alphabet, so written symbols could not have been used." },
+        { "letter": "D", "explanation": "There is no mention of an ancient communication system. The code was newly created by the twenty-nine original Code Talkers." },
+        { "letter": "E", "explanation": "The passage says they transmitted over eight hundred messages at Iwo Jima, suggesting the code could handle substantial communication." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    }
+  ]
+}

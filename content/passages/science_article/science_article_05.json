@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "passage_id": "science_article_05",
+    "title": "The Microbiome: An Unseen Ecosystem Within",
+    "genre": "science_article",
+    "difficulty_level": 5,
+    "word_count": 470,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_evidence_reasoning",
+      "rc_drawing_conclusions",
+      "rc_author_purpose",
+      "rc_passage_structure",
+      "rc_tone_mood",
+      "rc_comparing_viewpoints"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Scientists have long studied the organs and systems that make up the human body, but recent research has revealed a hidden world of trillions of microorganisms living inside us. This article examines what scientists are learning about the human microbiome and why it is changing the way we think about health.",
+  "passage_text": "For most of medical history, bacteria were viewed primarily as enemies — invisible invaders responsible for infections, disease, and death. The discovery of antibiotics in the twentieth century reinforced this adversarial perspective, giving doctors powerful weapons to destroy bacterial threats. Yet in recent decades, a revolution in biological research has fundamentally altered this view. Scientists now understand that the human body hosts an enormous community of microorganisms — bacteria, fungi, viruses, and other microscopic life forms — collectively known as the microbiome. Far from being uniformly harmful, the vast majority of these organisms are either benign or actively beneficial to human health.\n\nThe numbers are staggering. Researchers estimate that the human body contains roughly 38 trillion bacterial cells, a figure that slightly exceeds the approximately 30 trillion human cells that make up our tissues and organs. The greatest concentration of microbes resides in the gut, where hundreds of distinct species form a complex ecosystem. These intestinal bacteria perform functions that human cells cannot accomplish on their own: they break down certain dietary fibers into nutrients the body can absorb, synthesize essential vitamins including vitamin K and several B vitamins, and help train the immune system to distinguish between harmful pathogens and harmless substances.\n\nWhat has particularly intrigued researchers is the growing evidence linking the microbiome to conditions far beyond digestive health. Studies published in peer-reviewed journals have found correlations between gut microbial composition and conditions as diverse as obesity, depression, autoimmune disorders, and even the effectiveness of cancer treatments. In one widely cited study, researchers transferred gut bacteria from obese mice into germ-free mice that had been raised without any microbiome. The recipient mice gained significantly more weight than control mice who received bacteria from lean donors, even though both groups consumed identical diets. Such experiments suggest that the microbiome may influence metabolism in ways scientists are only beginning to comprehend.\n\nHowever, the field remains young, and not all scientists interpret the data with equal enthusiasm. Some researchers caution that correlation does not prove causation — the fact that obese individuals tend to have different gut bacteria does not necessarily mean the bacteria caused the obesity. The relationship could be reversed, with obesity altering the microbiome, or both conditions could stem from a third factor such as diet. These skeptics argue that while the microbiome undoubtedly plays important roles, popular media coverage has sometimes overstated the evidence, portraying the microbiome as a master regulator of health when the science remains provisional.\n\nDespite these debates, the practical implications are already emerging. Fecal microbiota transplantation — the transfer of gut bacteria from a healthy donor to a sick patient — has proven remarkably effective against Clostridioides difficile infections, a dangerous gut condition that resists conventional antibiotic treatment. Pharmaceutical companies are investing heavily in developing targeted probiotics and microbiome-based therapies. Whether the microbiome ultimately proves to be as transformative as its most enthusiastic proponents suggest or whether its influence is more modest than current headlines imply, one conclusion seems certain: the era of viewing all bacteria as enemies is definitively over.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Antibiotics were one of the most important medical discoveries of the twentieth century." },
+        { "letter": "B", "text": "The human microbiome is a vast community of microorganisms that plays significant roles in health, though scientists still debate the full extent of its influence." },
+        { "letter": "C", "text": "Bacteria in the gut are responsible for causing obesity and depression." },
+        { "letter": "D", "text": "Fecal transplants are the future of medicine." },
+        { "letter": "E", "text": "Popular media has exaggerated the importance of scientific research." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage introduces the microbiome, describes its known functions, discusses emerging research linking it to various conditions, presents scientific debate about the evidence, and mentions practical applications — all unified by the theme of this community's significance and the ongoing questions about it.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Antibiotics are mentioned briefly as historical context in the first paragraph, not as the main topic." },
+        { "letter": "C", "explanation": "The passage discusses correlations between gut bacteria and these conditions but explicitly warns against assuming causation." },
+        { "letter": "D", "explanation": "Fecal transplants are mentioned as one practical application in the final paragraph, not the main idea." },
+        { "letter": "E", "explanation": "Media coverage is briefly criticized by some scientists, but this is a minor point, not the passage's central message." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "As used in the passage, the word 'adversarial' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "cooperative and friendly" },
+        { "letter": "B", "text": "based on opposition and conflict" },
+        { "letter": "C", "text": "scientifically accurate" },
+        { "letter": "D", "text": "outdated and irrelevant" },
+        { "letter": "E", "text": "cautious and uncertain" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes bacteria being viewed as 'enemies' and antibiotics as 'weapons to destroy' them. The word 'adversarial' reflects this conflict-based perspective of bacteria as opponents to be fought.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Cooperative is the opposite of adversarial. The passage uses the word to describe a hostile, not friendly, view." },
+        { "letter": "C", "explanation": "The passage later shows this perspective was incomplete, not necessarily accurate." },
+        { "letter": "D", "explanation": "While the view has changed, 'adversarial' describes the nature of the perspective (conflict-based), not its age." },
+        { "letter": "E", "explanation": "Adversarial implies active opposition, not caution or uncertainty." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 3,
+      "question_text": "According to the passage, which of the following is a function that gut bacteria perform?",
+      "answer_choices": [
+        { "letter": "A", "text": "They produce antibiotics that fight infections." },
+        { "letter": "B", "text": "They replace damaged human cells with bacterial cells." },
+        { "letter": "C", "text": "They break down dietary fibers and synthesize essential vitamins." },
+        { "letter": "D", "text": "They destroy harmful viruses in the bloodstream." },
+        { "letter": "E", "text": "They regulate body temperature during illness." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that intestinal bacteria 'break down certain dietary fibers into nutrients the body can absorb' and 'synthesize essential vitamins including vitamin K and several B vitamins.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Antibiotics are mentioned as human-made medicines, not as something gut bacteria produce." },
+        { "letter": "B", "explanation": "The passage says bacterial cells outnumber human cells but does not say they replace damaged ones." },
+        { "letter": "D", "explanation": "Destroying viruses in the bloodstream is not mentioned as a function of gut bacteria." },
+        { "letter": "E", "explanation": "Temperature regulation is not discussed anywhere in the passage." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 4,
+      "question_text": "How do the two groups of scientists described in the passage differ in their views?",
+      "answer_choices": [
+        { "letter": "A", "text": "One group believes bacteria exist; the other denies their existence." },
+        { "letter": "B", "text": "One group focuses on gut bacteria; the other studies bacteria in the lungs." },
+        { "letter": "C", "text": "One group sees strong evidence that the microbiome broadly influences health; the other urges caution about overstating what the evidence proves." },
+        { "letter": "D", "text": "One group supports the use of antibiotics; the other wants to ban them entirely." },
+        { "letter": "E", "text": "One group works in universities; the other works for pharmaceutical companies." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage describes researchers who find correlations between the microbiome and various health conditions, and skeptics who 'caution that correlation does not prove causation' and argue that evidence has been overstated.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "No scientist in the passage denies that bacteria exist. The debate is about how much influence they have." },
+        { "letter": "B", "explanation": "The passage does not describe different scientists studying different body parts." },
+        { "letter": "D", "explanation": "The debate is not about antibiotics. It is about interpreting microbiome research data." },
+        { "letter": "E", "explanation": "The passage does not distinguish between scientists based on their employers." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 5,
+      "question_text": "As used in the passage, the word 'provisional' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "well-established and proven" },
+        { "letter": "B", "text": "completely false" },
+        { "letter": "C", "text": "approved by government agencies" },
+        { "letter": "D", "text": "temporary and subject to change as more evidence emerges" },
+        { "letter": "E", "text": "controversial and widely debated" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The skeptics say 'the science remains provisional,' meaning current conclusions are preliminary and could change as more research is conducted. This contrasts with definitive, settled science.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is the opposite of provisional. The whole point is that the science is not yet well-established." },
+        { "letter": "B", "explanation": "Provisional does not mean false — it means not yet fully confirmed, which is different from being wrong." },
+        { "letter": "C", "explanation": "Government approval is not related to the meaning of 'provisional' in this scientific context." },
+        { "letter": "E", "explanation": "While the topic is debated, 'provisional' specifically means preliminary or tentative, not controversial." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What is the author's purpose in describing the mouse experiment?",
+      "answer_choices": [
+        { "letter": "A", "text": "To prove conclusively that gut bacteria cause obesity in humans" },
+        { "letter": "B", "text": "To provide concrete evidence that the microbiome may influence metabolism" },
+        { "letter": "C", "text": "To show that mice and humans have identical microbiomes" },
+        { "letter": "D", "text": "To argue that all obesity research should use animal models" },
+        { "letter": "E", "text": "To demonstrate that germ-free environments are healthier" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The experiment is introduced as evidence that 'the microbiome may influence metabolism in ways scientists are only beginning to comprehend.' The author uses it to illustrate the type of research generating excitement, while the careful word 'may' shows this is suggestive, not conclusive.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage later warns against assuming causation. The author presents the experiment as suggestive, not conclusive proof for humans." },
+        { "letter": "C", "explanation": "The passage does not claim mouse and human microbiomes are identical." },
+        { "letter": "D", "explanation": "The passage does not argue about research methodology preferences." },
+        { "letter": "E", "explanation": "Germ-free mice were used as a research tool, not promoted as a healthier way to live." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Which of the following best describes the overall structure of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "It presents a historical perspective, explains current scientific understanding, introduces debate, and discusses practical applications." },
+        { "letter": "B", "text": "It tells a personal story about a patient who benefited from microbiome research." },
+        { "letter": "C", "text": "It compares the microbiome in humans to the microbiome in other animals." },
+        { "letter": "D", "text": "It lists all known species of bacteria and explains each one's function." },
+        { "letter": "E", "text": "It argues against the use of antibiotics and proposes alternatives." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage begins with historical context (bacteria as enemies), explains what the microbiome is and does, presents research findings and scientific debate about interpretation, and ends with practical applications like fecal transplants.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The passage does not include any personal patient stories." },
+        { "letter": "C", "explanation": "The passage focuses only on the human microbiome and does not compare it to other animals' microbiomes." },
+        { "letter": "D", "explanation": "The passage discusses bacteria generally and mentions some species but does not attempt to list all known species." },
+        { "letter": "E", "explanation": "The passage is not anti-antibiotic. It presents a nuanced view of bacteria, not an argument against specific treatments." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Which of the following best describes the tone of the final paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "Pessimistic and discouraging" },
+        { "letter": "B", "text": "Angry and accusatory" },
+        { "letter": "C", "text": "Balanced and cautiously optimistic" },
+        { "letter": "D", "text": "Humorous and casual" },
+        { "letter": "E", "text": "Detached and uninterested" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The final paragraph acknowledges debates and uncertainties but highlights successful applications and concludes with the definitive statement that the era of viewing all bacteria as enemies is over. It balances optimism about progress with honest acknowledgment of remaining questions.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The paragraph mentions practical successes and ongoing investment, which are positive rather than pessimistic." },
+        { "letter": "B", "explanation": "The paragraph does not blame or accuse anyone. It maintains a measured, analytical voice." },
+        { "letter": "D", "explanation": "The passage is serious and scientific throughout, with no humor in the final paragraph." },
+        { "letter": "E", "explanation": "The author clearly cares about the topic, ending with a strong concluding statement, showing engagement rather than detachment." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What conclusion can the reader draw from the phrase 'correlation does not prove causation' as used in the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Scientists have proven that gut bacteria have no effect on health." },
+        { "letter": "B", "text": "All scientific correlations are meaningless." },
+        { "letter": "C", "text": "Obesity research is unreliable and should be abandoned." },
+        { "letter": "D", "text": "The mouse experiments were conducted improperly." },
+        { "letter": "E", "text": "Just because two things are observed together does not mean one caused the other." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The passage uses this phrase to explain that finding obese people have different gut bacteria does not automatically mean the bacteria caused the obesity. The relationship could work the other way, or a third factor could be responsible.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not claim bacteria have no effect. Skeptics simply urge caution about how far the evidence goes." },
+        { "letter": "B", "explanation": "The passage does not dismiss all correlations. It says correlations are worth studying but should not be treated as proof of causation." },
+        { "letter": "C", "explanation": "No one in the passage suggests abandoning obesity research." },
+        { "letter": "D", "explanation": "The passage does not criticize the methodology of the mouse experiments." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 10,
+      "question_text": "As used in the passage, the word 'benign' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "extremely dangerous" },
+        { "letter": "B", "text": "harmless" },
+        { "letter": "C", "text": "invisible" },
+        { "letter": "D", "text": "ancient" },
+        { "letter": "E", "text": "rapidly multiplying" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says 'the vast majority of these organisms are either benign or actively beneficial.' The contrast with 'harmful' earlier in the passage and the pairing with 'beneficial' makes clear that benign means harmless or not causing harm.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Dangerous is the opposite of benign. The passage contrasts benign organisms with harmful ones." },
+        { "letter": "C", "explanation": "While microorganisms are microscopic, 'benign' describes their effect on health, not their visibility." },
+        { "letter": "D", "explanation": "Age is not relevant to the meaning of benign in this context." },
+        { "letter": "E", "explanation": "Growth rate is not what benign describes. It refers to the organisms' harmless nature." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    }
+  ]
+}

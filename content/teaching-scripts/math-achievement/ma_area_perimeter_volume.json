@@ -1,0 +1,115 @@
+{
+  "skill_id": "ma_area_perimeter_volume",
+  "skill_name": "Area, Perimeter, and Volume",
+  "concept_explanation": "Perimeter, area, and volume measure three different things about shapes. Perimeter is the distance around a flat shape — imagine walking along the edges and measuring how far you walked. Area is the amount of space a flat shape covers — think of how many square tiles would fit inside it. Volume is the amount of space a 3D shape takes up — think of how many little cubes could fit inside a box. For rectangles, perimeter = 2 × (length + width) and area = length × width. For triangles, area = 1/2 × base × height. For circles, circumference (the perimeter of a circle) = 2 × pi × radius and area = pi × radius^2, where pi is approximately 3.14. For rectangular prisms (boxes), volume = length × width × height. The key is knowing which formula to use and making sure your units are right — perimeter is in regular units (feet, cm), area is in square units (ft^2, cm^2), and volume is in cubic units (ft^3, cm^3).",
+  "worked_examples": [
+    {
+      "problem": "A rectangular garden is 12 feet long and 8 feet wide. Find the perimeter and area of the garden.",
+      "thinking_out_loud": [
+        "For the perimeter, I need to add up all the sides. A rectangle has two lengths and two widths.",
+        "Perimeter = 2 × (length + width) = 2 × (12 + 8) = 2 × 20 = 40 feet.",
+        "For the area, I multiply length times width.",
+        "Area = 12 × 8 = 96 square feet.",
+        "Let me double-check: perimeter is measured in feet (a distance), and area is in square feet (a surface). That makes sense."
+      ],
+      "solution": "Perimeter = 40 feet; Area = 96 square feet"
+    },
+    {
+      "problem": "A triangle has a base of 10 cm and a height of 7 cm. What is its area?",
+      "thinking_out_loud": [
+        "The formula for the area of a triangle is A = 1/2 × base × height.",
+        "I plug in the values: A = 1/2 × 10 × 7.",
+        "First, 10 × 7 = 70.",
+        "Then, 1/2 × 70 = 35.",
+        "The area of the triangle is 35 cm^2 (square centimeters)."
+      ],
+      "solution": "35 cm^2"
+    },
+    {
+      "problem": "A shipping box is 15 inches long, 10 inches wide, and 8 inches tall. What is the volume of the box?",
+      "thinking_out_loud": [
+        "This is a rectangular prism, so I use the formula: Volume = length × width × height.",
+        "V = 15 × 10 × 8.",
+        "Let me do this step by step: 15 × 10 = 150.",
+        "Then 150 × 8 = 1,200.",
+        "The volume is 1,200 cubic inches (in^3). That means 1,200 one-inch cubes could fit inside this box."
+      ],
+      "solution": "1,200 in^3"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Confusing area and perimeter — using the area formula when asked for perimeter, or vice versa.",
+      "why_it_happens": "Both involve the length and width of a shape, so students mix up which operation to use (adding vs. multiplying).",
+      "how_to_address": "Remember: Perimeter = 'walking around the edge' (addition of all sides). Area = 'covering the inside' (multiplication). If you're asked how much fence for a yard, that's perimeter. If you're asked how much grass seed to cover the yard, that's area."
+    },
+    {
+      "misconception": "Forgetting the 1/2 in the triangle area formula and just multiplying base × height.",
+      "why_it_happens": "Students remember the rectangle formula and apply it to triangles. Since a triangle is half of a rectangle, the 1/2 is easy to forget.",
+      "how_to_address": "Visualize it: draw a rectangle around the triangle. The triangle takes up exactly half the rectangle. That's why we multiply by 1/2. Practice drawing this until the 1/2 feels natural."
+    },
+    {
+      "misconception": "Using the diameter instead of the radius (or vice versa) in circle formulas.",
+      "why_it_happens": "Students confuse the two measurements. The diameter is the full distance across the circle; the radius is half that — from the center to the edge.",
+      "how_to_address": "Always identify whether you're given the radius or diameter first. If given the diameter, divide by 2 to get the radius before plugging into the formula. Write 'r = d/2' at the top of circle problems as a reminder."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "A square has a side length of 9 meters. What are its perimeter and area?",
+      "hints": [
+        "A square has 4 equal sides. For perimeter, add all four sides (or multiply one side by 4).",
+        "For area, remember that a square is a special rectangle where length = width. Area = side × side.",
+        "Perimeter = 4 × 9 = ? and Area = 9 × 9 = ?"
+      ],
+      "answer": "Perimeter = 36 m; Area = 81 m^2",
+      "explanation": "Perimeter = 4 × 9 = 36 meters. Area = 9 × 9 = 81 square meters."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "A circle has a radius of 5 inches. What is its area? (Use pi ≈ 3.14.)",
+      "hints": [
+        "The formula for circle area is A = pi × r^2. What is r^2 when r = 5?",
+        "r^2 = 5 × 5 = 25. Now multiply: 3.14 × 25."
+      ],
+      "answer": "78.5 in^2",
+      "explanation": "A = pi × r^2 = 3.14 × 25 = 78.5 square inches."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A triangle has a base of 14 cm and a height of 9 cm. A rectangle has a length of 7 cm and a width of 9 cm. Which shape has the greater area, and by how much?",
+      "hints": [
+        "Calculate each area separately: triangle area = 1/2 × base × height, and rectangle area = length × width. Then compare."
+      ],
+      "answer": "The rectangle has the greater area by 0 cm^2 — they are equal at 63 cm^2",
+      "explanation": "Triangle: 1/2 × 14 × 9 = 63 cm^2. Rectangle: 7 × 9 = 63 cm^2. They have the same area! This makes sense because the triangle's base (14) is double the rectangle's length (7), and the 1/2 factor accounts for that."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "A fish tank is shaped like a rectangular prism. It is 24 inches long, 12 inches wide, and 16 inches tall. What is the volume of the tank in cubic inches?",
+      "hints": [],
+      "answer": "4,608 in^3",
+      "explanation": "Volume = length × width × height = 24 × 12 × 16. First, 24 × 12 = 288. Then 288 × 16 = 4,608 cubic inches."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "A circular pond has a diameter of 20 feet. What is the circumference of the pond? What is its area? (Use pi ≈ 3.14.)",
+      "hints": [],
+      "answer": "Circumference = 62.8 feet; Area = 314 ft^2",
+      "explanation": "The radius is 20 ÷ 2 = 10 feet. Circumference = 2 × pi × r = 2 × 3.14 × 10 = 62.8 feet. Area = pi × r^2 = 3.14 × 100 = 314 square feet."
+    }
+  ],
+  "real_world_connection": "These formulas are used constantly in the real world. When you want to put a fence around your backyard, you need the perimeter. When you want to buy carpet for a room, you need the area. When you're packing a suitcase or filling a pool, you're thinking about volume. Architects use area and perimeter to design buildings, farmers use area to plan their fields, and shipping companies use volume to figure out how many boxes fit in a truck. These are some of the most practical formulas in all of math!",
+  "transition_cues": [
+    "Can you explain the difference between area and perimeter in your own words? Maybe give an example of when you'd need each one.",
+    "Quick challenge: if I double the length of a rectangle but keep the width the same, does the area double too? What about the perimeter?",
+    "How are you feeling about circle problems? Those formulas with pi can take some getting used to.",
+    "You're making excellent progress! Want to explore coordinate geometry next?"
+  ]
+}

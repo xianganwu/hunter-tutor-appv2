@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "passage_id": "fiction_04",
+    "title": "The Cartographer's Daughter",
+    "genre": "fiction",
+    "difficulty_level": 4,
+    "word_count": 420,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_inference",
+      "rc_vocab_context",
+      "rc_figurative_language",
+      "rc_author_purpose",
+      "rc_tone_mood",
+      "rc_passage_structure",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Nadia's father is a cartographer — someone who makes maps for a living. In this passage, Nadia begins to see her father's work differently after an unexpected conversation.",
+  "passage_text": "Nadia had always considered her father's job embarrassing. While other kids' parents were software engineers or doctors or at least something she could explain in a single sentence, her father made maps. Not digital maps — paper maps, drawn by hand with ink pens and colored pencils on sheets of vellum so large they covered the dining room table like tablecloths.\n\n\"Nobody uses paper maps anymore, Dad,\" she had told him once, and he had simply smiled and said, \"The people who need them do.\"\n\nShe didn't understand what he meant until the October afternoon when a woman arrived at their front door carrying a battered leather satchel. She introduced herself as Dr. Alonso, a marine biologist studying coral reef decline in the Pacific. She needed a map that no satellite image could provide — one that layered ocean temperature data over reef locations over migration patterns, all on a single readable surface.\n\n\"Your father,\" Dr. Alonso told Nadia while they waited for him to finish a phone call, \"is one of maybe a dozen people in the world who can synthesize that much spatial information by hand. Computers can plot data points, but they can't make judgments about what to emphasize, what to subordinate, what story the geography is trying to tell. Your father can.\"\n\nNadia watched from the hallway as her father and Dr. Alonso spread existing charts across the table, layering transparent sheets over one another, arguing gently about scale and projection. Her father's hands moved with a precision she had never paid attention to before — the way a surgeon's might, or a pianist's. He wasn't just drawing lines. He was translating the ocean into a language that a scientist could use to save something.\n\nThat evening, after Dr. Alonso left, Nadia found her father cleaning his pens at the kitchen sink. The ink stained his fingertips blue-black, like bruises earned from meaningful work.\n\n\"Dad,\" she said carefully. \"Could you teach me how to read a map? Like, really read one — not just streets and highways, but the way you do?\"\n\nHe turned off the faucet and dried his hands slowly, as though the question deserved the same deliberateness he gave his work. \"I've been waiting for you to ask,\" he said quietly.\n\nOutside, the October wind scattered leaves across the yard in patterns that, for the first time, Nadia thought she might like to learn to chart.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "Which statement best expresses the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Paper maps are more useful than digital maps in every situation." },
+        { "letter": "B", "text": "Nadia gains a new appreciation for her father's craft after seeing its real-world significance through someone else's eyes." },
+        { "letter": "C", "text": "Marine biology is an important field that relies heavily on handmade maps." },
+        { "letter": "D", "text": "Parents should explain their jobs to their children more clearly." },
+        { "letter": "E", "text": "Nadia wants to become a cartographer like her father when she grows up." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage traces Nadia's shift from finding her father's work embarrassing to recognizing its significance. Dr. Alonso's visit provides an outside perspective that helps Nadia see her father's skill and purpose, leading her to ask him to teach her.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the passage highlights advantages of hand-drawn maps, but it does not claim paper maps are always better — it shows they serve a specific, important purpose." },
+        { "letter": "C", "explanation": "This is tempting because Dr. Alonso is a marine biologist who needs a map, but the passage centers on Nadia's changing perception of her father, not on the field of marine biology." },
+        { "letter": "D", "explanation": "This is tempting because Nadia's misunderstanding of her father's job drives the plot, but the passage does not argue that parents should communicate differently — it shows how understanding can come through experience." },
+        { "letter": "E", "explanation": "This is tempting because Nadia asks to learn map-reading, but the passage shows her wanting to understand her father's world, not necessarily choosing his career." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The passage compares Nadia's father's hands to those of \"a surgeon\" and \"a pianist.\" What is the author's purpose in making these comparisons?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that her father also trained as a surgeon and pianist" },
+        { "letter": "B", "text": "To suggest that her father's work requires the same level of precision and skill as those respected professions" },
+        { "letter": "C", "text": "To imply that making maps is more difficult than performing surgery or playing piano" },
+        { "letter": "D", "text": "To explain why Nadia finds her father's work boring to watch" },
+        { "letter": "E", "text": "To show that Nadia's father has many hobbies outside of cartography" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By comparing her father's hand movements to a surgeon's and a pianist's, the author elevates cartography to the same level of skill and precision as professions that are widely respected. This supports Nadia's growing recognition of her father's talent.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting if taken literally, but the comparisons are figurative — the author is drawing a parallel about skill and precision, not claiming he trained in other fields." },
+        { "letter": "C", "explanation": "This is tempting because the comparison places cartography alongside these professions, but the author is showing equivalence of skill, not ranking one above the others." },
+        { "letter": "D", "explanation": "This is tempting because Nadia previously dismissed his work, but this moment is when she starts paying attention — the comparisons highlight what she is now noticing, not boredom." },
+        { "letter": "E", "explanation": "This is tempting because surgery and piano are mentioned, but they are used as comparisons for his cartography skills, not as descriptions of his personal hobbies." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What is the most likely reason the author describes the ink stains on Nadia's father's hands as \"bruises earned from meaningful work\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that making maps is physically painful and dangerous" },
+        { "letter": "B", "text": "To suggest that Nadia now views signs of her father's labor with respect rather than embarrassment" },
+        { "letter": "C", "text": "To indicate that her father uses cheap ink that stains permanently" },
+        { "letter": "D", "text": "To foreshadow that her father will injure his hands and be unable to work" },
+        { "letter": "E", "text": "To explain why Nadia does not want to become a cartographer" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Earlier in the passage, Nadia found her father's work embarrassing. Now she sees his ink-stained hands not as messy or strange but as evidence of important, purposeful labor — 'bruises earned from meaningful work.' This metaphor signals her shift in perspective.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because 'bruises' suggests injury, but the word is used metaphorically — ink stains are compared to bruises to convey honor, not actual physical harm." },
+        { "letter": "C", "explanation": "This is tempting because ink staining is a practical detail, but the author's purpose is to show Nadia's changed attitude, not to comment on the quality of supplies." },
+        { "letter": "D", "explanation": "This is tempting because 'bruises' could suggest future injury, but the metaphor celebrates his work rather than foreshadowing harm." },
+        { "letter": "E", "explanation": "This is tempting because the stains could seem unappealing, but the passage frames them positively — and Nadia immediately asks to learn from her father afterward." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"subordinate\" most likely mean as used by Dr. Alonso?",
+      "answer_choices": [
+        { "letter": "A", "text": "To remove completely" },
+        { "letter": "B", "text": "To make less prominent or give lower priority to" },
+        { "letter": "C", "text": "To enlarge and highlight" },
+        { "letter": "D", "text": "To translate into a different language" },
+        { "letter": "E", "text": "To copy exactly from another source" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Dr. Alonso says Nadia's father can judge 'what to emphasize, what to subordinate.' Since 'subordinate' is contrasted with 'emphasize,' it must mean the opposite — to give something less importance or make it less prominent on the map.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because making something less prominent might seem like removing it, but subordinating means keeping it present while de-emphasizing it, not eliminating it entirely." },
+        { "letter": "C", "explanation": "This is tempting if a student confuses 'subordinate' with 'emphasize,' but the sentence contrasts the two words, showing they have opposite meanings." },
+        { "letter": "D", "explanation": "This is tempting because the passage later mentions translating the ocean into a language, but 'subordinate' refers to adjusting the visual priority of information, not translating." },
+        { "letter": "E", "explanation": "This is tempting because mapmaking involves source material, but 'subordinate' describes a judgment about importance, not the act of copying." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the structure of the passage support its central theme?",
+      "answer_choices": [
+        { "letter": "A", "text": "It uses flashbacks to show Nadia's earliest memories of her father's maps." },
+        { "letter": "B", "text": "It alternates between Nadia's perspective and Dr. Alonso's perspective in equal measure." },
+        { "letter": "C", "text": "It moves from Nadia's dismissal of her father's work, through a pivotal encounter, to her newfound respect and curiosity." },
+        { "letter": "D", "text": "It presents a series of arguments for and against paper maps in a balanced debate format." },
+        { "letter": "E", "text": "It begins with a dramatic climax and then explains how events led up to that moment." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage follows a clear arc: it begins with Nadia's embarrassment about her father's job, introduces Dr. Alonso's visit as the turning point, and ends with Nadia asking to learn from her father. This structure mirrors the theme of gaining appreciation through understanding.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the passage mentions a past conversation with her father, but there are no extended flashbacks — the story moves forward chronologically from one key afternoon." },
+        { "letter": "B", "explanation": "This is tempting because Dr. Alonso does speak, but the passage is told entirely from Nadia's perspective — we see Dr. Alonso through Nadia's eyes, not independently." },
+        { "letter": "D", "explanation": "This is tempting because the passage touches on paper vs. digital maps, but it is a narrative about a girl's changing view of her father, not a structured debate." },
+        { "letter": "E", "explanation": "This is tempting because some stories use this structure, but this passage builds chronologically toward its emotional peak at the end, not the beginning." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What can the reader infer from the father's response, \"I've been waiting for you to ask\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "He has been annoyed that Nadia never showed interest in his work before." },
+        { "letter": "B", "text": "He had planned Dr. Alonso's visit specifically to impress Nadia." },
+        { "letter": "C", "text": "He wants Nadia to take over his business when she is older." },
+        { "letter": "D", "text": "He does not actually know how to teach someone to read maps." },
+        { "letter": "E", "text": "He knew Nadia would eventually come to appreciate his work and was patient enough to let her arrive there on her own." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The father's quiet statement suggests he was aware of Nadia's disinterest but chose not to pressure her. He patiently waited for her to come to this appreciation on her own, showing wisdom and confidence that she would eventually understand.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because a parent might feel hurt by a child's disinterest, but the father's tone is quiet and warm, not annoyed — he has been patiently waiting, not resentfully." },
+        { "letter": "B", "explanation": "This is tempting because Dr. Alonso's visit is what changes Nadia's mind, but the passage presents Dr. Alonso as a professional client, not someone recruited to impress Nadia." },
+        { "letter": "C", "explanation": "This is tempting because he is glad she wants to learn, but wanting to share his craft is different from expecting her to take over his business — the passage does not suggest this." },
+        { "letter": "D", "explanation": "This is tempting as a surprising twist, but it contradicts everything in the passage — Dr. Alonso describes him as one of a dozen people in the world with his skill." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What is the tone of the final paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "Melancholy and nostalgic" },
+        { "letter": "B", "text": "Tense and uncertain" },
+        { "letter": "C", "text": "Hopeful and quietly awakened" },
+        { "letter": "D", "text": "Humorous and playful" },
+        { "letter": "E", "text": "Urgent and impatient" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The final paragraph shows Nadia looking at scattered leaves and thinking she might like to learn to chart their patterns. This signals a new way of seeing the world — she is awakening to possibilities she never considered before. The tone is hopeful and gently transformative.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because October and scattered leaves can evoke nostalgia, but Nadia is looking forward with curiosity, not backward with sadness." },
+        { "letter": "B", "explanation": "This is tempting because Nadia is entering unfamiliar territory, but the paragraph conveys openness and possibility, not tension or doubt." },
+        { "letter": "D", "explanation": "This is tempting because the idea of charting leaf patterns has a whimsical quality, but the tone is more contemplative and sincere than humorous." },
+        { "letter": "E", "explanation": "This is tempting because Nadia has just made a decision, but the paragraph's pace is slow and reflective — she is savoring the moment, not rushing." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Why does the author include the detail that the father \"dried his hands slowly, as though the question deserved the same deliberateness he gave his work\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that the father is physically tired from a long day of work" },
+        { "letter": "B", "text": "To suggest that the father did not hear Nadia's question clearly" },
+        { "letter": "C", "text": "To reveal that the father treats his daughter's request with the same care and intentionality he brings to his craft" },
+        { "letter": "D", "text": "To indicate that the father is stalling because he does not want to teach Nadia" },
+        { "letter": "E", "text": "To demonstrate the father's habit of washing his hands very thoroughly" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The author draws a direct parallel between the father's careful approach to his work and his careful response to Nadia's question. This shows that he values her request deeply and treats the moment of connection with the same deliberateness and respect he gives to his craft.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because he has been working all day, but the passage explicitly compares his slowness to the deliberateness of his work, not to physical fatigue." },
+        { "letter": "B", "explanation": "This is tempting because pausing before responding could suggest confusion, but the text directly states he is being deliberate, not uncertain." },
+        { "letter": "D", "explanation": "This is tempting because moving slowly might suggest reluctance, but his subsequent statement — 'I've been waiting for you to ask' — proves he has wanted this moment." },
+        { "letter": "E", "explanation": "This is tempting because he is literally drying his hands, but the author is using this physical action to convey emotional meaning, not describe a hygiene habit." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What does the phrase \"translating the ocean into a language that a scientist could use\" suggest about the father's work?",
+      "answer_choices": [
+        { "letter": "A", "text": "He speaks multiple languages and helps scientists communicate across cultures." },
+        { "letter": "B", "text": "He writes scientific papers about the ocean for academic journals." },
+        { "letter": "C", "text": "He records the sounds of the ocean and converts them into written notes." },
+        { "letter": "D", "text": "He transforms complex natural information into clear, usable visual representations." },
+        { "letter": "E", "text": "He teaches scientists how to read basic road maps." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The phrase uses 'translating' metaphorically — the father takes complex, layered information about the ocean (temperature, reef locations, migration patterns) and renders it as a readable, hand-drawn map. He transforms raw data into a visual tool scientists can interpret and act on.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because 'translating' and 'language' literally suggest linguistic work, but the passage uses these words figuratively to describe visual mapmaking." },
+        { "letter": "B", "explanation": "This is tempting because his work supports science, but he is a cartographer who makes visual maps, not a writer who produces papers." },
+        { "letter": "C", "explanation": "This is tempting because it involves converting one form of information to another, but the passage describes visual map-drawing, not audio recording." },
+        { "letter": "E", "explanation": "This is tempting because maps are involved, but the passage describes sophisticated, specialized cartography involving ocean data, not basic road maps." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What conclusion can the reader draw about Nadia's feelings toward her father by the end of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "She still finds his work strange but tolerates it to be polite." },
+        { "letter": "B", "text": "She feels guilty about previously dismissing his work and now wants to make it up to him." },
+        { "letter": "C", "text": "She has developed genuine admiration for his skill and wants to share in his world." },
+        { "letter": "D", "text": "She respects Dr. Alonso more than she respects her father." },
+        { "letter": "E", "text": "She is interested in marine biology, not cartography." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "By the end, Nadia sees her father's ink-stained hands as marks of meaningful work, asks to learn map-reading 'the way you do,' and looks at fallen leaves as something she might want to chart. She genuinely admires his skill and wants to understand his perspective.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because she was dismissive before, but her request to learn and her changed perspective show authentic interest, not mere politeness." },
+        { "letter": "B", "explanation": "This is tempting because she may feel some regret, but her motivation at the end is curiosity and admiration, not guilt — she is drawn forward, not looking backward." },
+        { "letter": "D", "explanation": "This is tempting because Dr. Alonso impressed Nadia, but the passage ends with Nadia focused entirely on her father — asking him to teach her and watching him with new eyes." },
+        { "letter": "E", "explanation": "This is tempting because Dr. Alonso is a marine biologist, but Nadia's interest is sparked by her father's mapmaking, not by the science of coral reefs." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    }
+  ]
+}

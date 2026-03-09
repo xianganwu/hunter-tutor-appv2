@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "passage_id": "poetry_03",
+    "title": "November Walk",
+    "genre": "poetry",
+    "difficulty_level": 3,
+    "word_count": 253,
+    "tagged_skills": ["rc_main_idea", "rc_figurative_language", "rc_tone_mood", "rc_inference", "rc_author_purpose", "rc_vocab_context", "rc_evidence_reasoning"],
+    "source_description": "original"
+  },
+  "pre_reading_context": "This poem follows a speaker on a walk through a park in late autumn. As you read, think about how the season reflects the speaker's inner feelings and what the poet might be saying about change.",
+  "passage_text": "The park has shed its colors now.\nThe oaks stand stripped and thin,\nlike dancers who have dropped their scarves\nand let the cold come in.\n\nBeneath my boots the pathway crunches—\ndead leaves, acorn shells,\nthe leftover confetti\nfrom autumn's grand farewells.\n\nA squirrel sprints across the trail,\ncheeks stuffed, eyes black and round.\nHe knows what I keep forgetting:\nwinter's almost found.\n\nThe pond has lost its summer face.\nNo ducks, no lily pads.\nIt sits there gray and serious,\nlike old photographs of dads.\n\nI zip my jacket higher\nand watch my breath become\na ghost that floats and vanishes\nbefore I count to one.\n\nThe swings in the playground hang still and empty,\nwaiting like patient hands.\nA crow calls from the tallest oak,\nannouncing its demands.\n\nThe last chrysanthemums lean sideways\nnear the garden wall,\nholding their fading purple close,\nrefusing yet to fall.\n\nThe trees are not embarrassed\nby their bare and bony arms.\nThey've done this dance a hundred times—\nthey know their winter charms.\n\nAnd maybe there's a lesson here\nbetween the frost and sky:\nthat letting go of beautiful things\nis not the same as goodbye.\n\nThe branches hold the shape of spring\nbeneath their empty sleeves.\nI walk a little lighter now,\nstepping over leaves.\n\nNovember isn't ending—\nit's just the world's deep breath\nbefore the snow arrives to prove\nthere's beauty beyond death.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the central theme of this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "Winter is the worst season because everything dies." },
+        { "letter": "B", "text": "Loss and change are natural and can hold their own kind of beauty." },
+        { "letter": "C", "text": "Walking in parks is the best exercise during autumn." },
+        { "letter": "D", "text": "Squirrels are smarter than humans at preparing for winter." },
+        { "letter": "E", "text": "People should stay indoors during November." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem repeatedly shows that the loss of autumn beauty is not truly an ending. The speaker realizes that 'letting go of beautiful things is not the same as goodbye' and that 'there's beauty beyond death.' The poem frames seasonal change as natural, meaningful, and even beautiful.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The poem explicitly counters this idea by finding beauty in November's bare landscape and suggesting that loss is not truly death but transformation." },
+        { "letter": "C", "explanation": "While the speaker is walking, the poem is about inner reflection on change and loss, not about exercise or outdoor recreation." },
+        { "letter": "D", "explanation": "The squirrel is mentioned briefly to show nature's preparation for winter, but comparing animal and human intelligence is not the poem's theme." },
+        { "letter": "E", "explanation": "The speaker is outside and finds meaning in the walk. Nothing suggests people should avoid the outdoors; the poem celebrates being in nature." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "In the second stanza, the poet calls the fallen leaves 'the leftover confetti from autumn's grand farewells.' What is the effect of this metaphor?",
+      "answer_choices": [
+        { "letter": "A", "text": "It makes autumn seem like a messy, wasteful season." },
+        { "letter": "B", "text": "It suggests that autumn's end was a celebration worth remembering." },
+        { "letter": "C", "text": "It shows that someone threw a party in the park." },
+        { "letter": "D", "text": "It implies the speaker is upset about the litter on the ground." },
+        { "letter": "E", "text": "It indicates that the leaves are made of paper." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By comparing dead leaves to confetti from a 'grand farewell,' the poet transforms something that could seem sad (fallen leaves) into the aftermath of a celebration. This reframes autumn's end as something festive and memorable rather than depressing.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Confetti from a celebration has positive connotations. 'Grand farewells' suggests something dignified and celebratory, not messy or wasteful." },
+        { "letter": "C", "explanation": "This takes the metaphor literally. No actual party occurred; the poet is using figurative language to describe the natural scene." },
+        { "letter": "D", "explanation": "The tone is appreciative, not annoyed. The speaker is finding beauty in the scene, not complaining about litter." },
+        { "letter": "E", "explanation": "This is an overly literal reading. The leaves are real leaves being compared to confetti for poetic effect." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Why does the poet include the detail about the squirrel in the third stanza?",
+      "answer_choices": [
+        { "letter": "A", "text": "To provide comic relief in an otherwise serious poem" },
+        { "letter": "B", "text": "To contrast the squirrel's purposeful preparation with the speaker's reluctance to accept winter's approach" },
+        { "letter": "C", "text": "To teach readers about squirrel behavior" },
+        { "letter": "D", "text": "To show that the park is a dangerous place for animals" },
+        { "letter": "E", "text": "To suggest the speaker wants a pet" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The speaker says the squirrel 'knows what I keep forgetting: winter's almost found.' This contrasts the animal's instinctive readiness with the speaker's tendency to avoid thinking about the coming cold season, highlighting the speaker's emotional resistance to change.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While the squirrel image is vivid, the stanza carries thematic weight about awareness and preparation. It is not simply inserted for humor." },
+        { "letter": "C", "explanation": "The squirrel is used symbolically to reflect on the speaker's mindset, not to provide factual information about wildlife." },
+        { "letter": "D", "explanation": "Nothing in the poem suggests danger. The squirrel is busy and capable, not threatened." },
+        { "letter": "E", "explanation": "The speaker observes the squirrel briefly and draws a personal lesson. There is no desire for a pet expressed." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word 'shed' mean in the first line, 'The park has shed its colors now'?",
+      "answer_choices": [
+        { "letter": "A", "text": "Stored away for later use" },
+        { "letter": "B", "text": "Painted over with a new color" },
+        { "letter": "C", "text": "Let fall or dropped naturally" },
+        { "letter": "D", "text": "Hidden beneath the ground" },
+        { "letter": "E", "text": "Shared with other parks nearby" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "In this context, 'shed' means to let fall or cast off naturally, the way trees drop their leaves in autumn. The park has released its colorful foliage, leaving the landscape bare.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "'Shed' does not mean to store. While trees may regrow leaves in spring, the word here describes the act of dropping or losing them." },
+        { "letter": "B", "explanation": "The park hasn't been painted. 'Shed' describes a natural process of losing color as leaves fall, not applying new color." },
+        { "letter": "D", "explanation": "While fallen leaves may decompose into the ground eventually, 'shed' specifically means to let fall or release, not to hide or bury." },
+        { "letter": "E", "explanation": "This confuses 'shed' with 'shared.' The word means to cast off or drop, and the poem is about the park losing its autumn colors." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the tone shift between the beginning and end of the poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "From joyful to deeply angry" },
+        { "letter": "B", "text": "From bored indifference to wild excitement" },
+        { "letter": "C", "text": "From confident to completely defeated" },
+        { "letter": "D", "text": "From melancholy observation to hopeful acceptance" },
+        { "letter": "E", "text": "The tone stays exactly the same throughout" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The poem begins with images of loss and bareness ('stripped and thin,' 'dead leaves,' 'gray and serious'). By the end, the speaker has found meaning and hope ('there's beauty beyond death,' 'walk a little lighter'). The tone shifts from reflective sadness to peaceful acceptance.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The early tone is reflective, not purely joyful, and the poem never becomes angry. It moves toward acceptance, not hostility." },
+        { "letter": "B", "explanation": "The speaker is engaged and observant from the start, not bored. The ending is hopeful and calm, not wildly excited." },
+        { "letter": "C", "explanation": "The poem moves toward greater understanding and peace, not defeat. The final lines are affirming." },
+        { "letter": "E", "explanation": "The tone clearly changes. Early stanzas focus on loss and bareness, while later stanzas find beauty and meaning in that same landscape." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 6,
+      "question_text": "In the line 'The trees are not embarrassed by their bare and bony arms,' the poet uses personification to suggest that:",
+      "answer_choices": [
+        { "letter": "A", "text": "Trees have feelings and can experience shame." },
+        { "letter": "B", "text": "The bare trees stand with quiet dignity despite having lost their leaves." },
+        { "letter": "C", "text": "The trees wish they still had their leaves." },
+        { "letter": "D", "text": "Bare trees look ugly and should be covered up." },
+        { "letter": "E", "text": "The poet feels sorry for the trees." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By saying the trees are 'not embarrassed,' the poet gives them a composed, dignified attitude about their bare state. The next line reinforces this: 'They've done this dance a hundred times—they know their winter charms.' The trees model grace in the face of loss.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This takes the personification too literally. The poet is using the device to make a point about acceptance and dignity, not to claim trees have emotions." },
+        { "letter": "C", "explanation": "The poem explicitly says the trees are 'not embarrassed' and 'know their winter charms,' suggesting contentment, not longing for their leaves." },
+        { "letter": "D", "explanation": "The poem presents the bare trees positively, saying they have 'winter charms.' The poet finds beauty in bareness, not ugliness." },
+        { "letter": "E", "explanation": "The poet admires the trees' composure. The tone is respectful and even inspired, not pitying." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What can you infer about how the speaker's feelings change during the walk?",
+      "answer_choices": [
+        { "letter": "A", "text": "The speaker starts out feeling the heaviness of loss but gradually finds comfort and meaning." },
+        { "letter": "B", "text": "The speaker becomes increasingly cold and wants to go home." },
+        { "letter": "C", "text": "The speaker is cheerful throughout the entire walk." },
+        { "letter": "D", "text": "The speaker grows more anxious about winter with each stanza." },
+        { "letter": "E", "text": "The speaker's feelings do not change at all." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "Early in the poem, the speaker notices loss: stripped trees, dead leaves, a gray pond. But by the end, the speaker realizes that 'letting go is not the same as goodbye' and walks 'a little lighter.' The walk becomes a journey from heaviness to understanding.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "While the speaker zips their jacket against the cold, the poem is about an emotional journey, and the speaker shows no desire to leave. They walk 'lighter,' suggesting contentment." },
+        { "letter": "C", "explanation": "The early stanzas carry a sense of loss and seriousness ('gray and serious,' 'dead leaves'). The speaker is not cheerful until they reach their realization later." },
+        { "letter": "D", "explanation": "The poem moves toward acceptance and hope, not growing anxiety. The final stanzas are affirming about winter and change." },
+        { "letter": "E", "explanation": "The shift from observing bareness to finding 'beauty beyond death' clearly shows the speaker's feelings evolving during the walk." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Which lines best support the idea that the speaker finds hope even in November's bareness?",
+      "answer_choices": [
+        { "letter": "A", "text": "'The pond has lost its summer face. / No ducks, no lily pads.'" },
+        { "letter": "B", "text": "'I zip my jacket higher / and watch my breath become / a ghost'" },
+        { "letter": "C", "text": "'The branches hold the shape of spring / beneath their empty sleeves.'" },
+        { "letter": "D", "text": "'Beneath my boots the pathway crunches— / dead leaves, acorn shells'" },
+        { "letter": "E", "text": "'A squirrel sprints across the trail, / cheeks stuffed, eyes black and round.'" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "These lines say that even though the branches are bare ('empty sleeves'), they still contain the blueprint for spring. This directly expresses hope by showing that new life is already present within what appears to be loss.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "These lines catalog what's missing, emphasizing loss rather than hope. They show the bleakness the speaker sees early in the walk." },
+        { "letter": "B", "explanation": "This describes the cold and the speaker's ephemeral breath, creating an atmospheric image but not directly expressing hope." },
+        { "letter": "D", "explanation": "These lines describe the debris of autumn underfoot, focusing on what has died and fallen, not on hope or renewal." },
+        { "letter": "E", "explanation": "The squirrel shows nature's preparation but doesn't directly express the speaker's hope. It's more about the contrast between the squirrel's readiness and the speaker's reluctance." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Why does the poet describe November as 'the world's deep breath' in the final stanza?",
+      "answer_choices": [
+        { "letter": "A", "text": "To suggest that the wind blows hard in November" },
+        { "letter": "B", "text": "To show that breathing is difficult in cold weather" },
+        { "letter": "C", "text": "To explain why the air quality is better in autumn" },
+        { "letter": "D", "text": "To describe the sound of wind through bare branches" },
+        { "letter": "E", "text": "To portray November as a pause or moment of rest before winter begins" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "A 'deep breath' is something you take before a big moment—a pause to prepare. By calling November 'the world's deep breath,' the poet suggests this month is a natural, necessary pause between autumn's end and winter's arrival, a moment of stillness before transformation.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The metaphor is about pause and preparation, not about wind. A 'deep breath' implies stillness and gathering, not blowing." },
+        { "letter": "B", "explanation": "While cold air appears earlier in the poem (the speaker's visible breath), this metaphor is about the world pausing, not about respiratory difficulty." },
+        { "letter": "C", "explanation": "The poem is not making a scientific claim about air quality. The 'deep breath' is a figurative description of November as a transitional pause." },
+        { "letter": "D", "explanation": "The metaphor does not describe sound. It characterizes November as a moment of calm anticipation before winter." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What is the poet's purpose in writing this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "To persuade readers to go for walks in November" },
+        { "letter": "B", "text": "To provide scientific information about autumn and tree biology" },
+        { "letter": "C", "text": "To express how observing seasonal change can teach us about accepting loss and finding beauty in transitions" },
+        { "letter": "D", "text": "To compare November unfavorably to other months" },
+        { "letter": "E", "text": "To entertain readers with funny descriptions of animals" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The poet uses the November walk as a framework for exploring deeper ideas about loss, change, and renewal. The poem's message—that letting go is not the same as goodbye and that beauty exists even in bareness—reveals the purpose of reflecting on how nature's transitions mirror human experience.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While the poem is set during a walk, it is reflective and philosophical, not persuasive. The poet is sharing insight, not giving exercise advice." },
+        { "letter": "B", "explanation": "The poem uses trees and seasons as metaphors for human experience, not as subjects for scientific explanation." },
+        { "letter": "D", "explanation": "The poem ultimately celebrates November's beauty and meaning. It does not rank months or cast November negatively." },
+        { "letter": "E", "explanation": "While the squirrel image is vivid, the poem is contemplative and meaningful, not primarily humorous or entertainment-focused." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_04",
+    "title": "The Hidden Cost of Fast Fashion",
+    "genre": "nonfiction",
+    "difficulty_level": 4,
+    "word_count": 420,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_author_purpose",
+      "rc_passage_structure",
+      "rc_comparing_viewpoints",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "The clothing industry has changed dramatically over the past two decades. Where people once bought a few durable outfits each season, many now purchase dozens of inexpensive items designed to be worn only a handful of times.",
+  "passage_text": "A generation ago, the average American bought fewer than twenty-five garments per year. Today, that number has more than doubled, while the average price per garment has dropped significantly. This shift has a name: fast fashion — the rapid production of cheap, trendy clothing designed to move quickly from runway to retail shelf. Brands like Zara, H&M, and Shein have built global empires by offering the latest styles at rock-bottom prices, releasing new collections not seasonally but weekly, or even daily in Shein's case. For consumers, particularly young people, the appeal is obvious: looking stylish without spending much money. But beneath the attractive price tags lies a chain of consequences that most shoppers never see.\n\nThe environmental toll is staggering. The fashion industry produces roughly ten percent of global carbon emissions — more than international flights and maritime shipping combined. Manufacturing a single cotton T-shirt requires approximately 2,700 liters of water, enough for one person to drink for two and a half years. Synthetic fabrics like polyester, which dominate fast fashion, are derived from petroleum and shed microscopic plastic fibers with every wash, contaminating rivers and oceans. Perhaps most alarming, an estimated ninety-two million tons of textile waste ends up in landfills each year, where synthetic materials can take up to two hundred years to decompose.\n\nThe human cost is equally disturbing. The low prices consumers enjoy are made possible by extremely low wages paid to garment workers, primarily women, in countries like Bangladesh, Cambodia, and Vietnam. Many of these workers earn less than three dollars per day while laboring in conditions that Western nations outlawed decades ago. The 2013 collapse of the Rana Plaza garment factory in Bangladesh, which killed over eleven hundred workers, exposed the dangerous conditions in which much of the world's clothing is produced. Despite international outrage, labor rights organizations report that meaningful reforms have been limited.\n\nDefenders of fast fashion argue that the industry provides essential employment in developing economies and that affordable clothing is a matter of social equity — not everyone can afford ethically produced garments that cost three or four times as much. There is some validity to this point. However, critics counter that the true cost is simply externalized: instead of being reflected in the price tag, it is paid by exploited workers, polluted communities, and a warming planet.\n\nSome consumers are pushing back. The secondhand clothing market has grown twenty-five times faster than the broader retail sector, and \"slow fashion\" advocates encourage buying fewer, higher-quality items designed to last. Whether these movements can meaningfully counteract an industry generating $1.7 trillion in annual revenue remains an open question — but awareness is the necessary first step.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "Which of the following best states the main idea of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Fast fashion provides affordable clothing but causes serious environmental and human harm that most consumers are unaware of." },
+        { "letter": "B", "text": "The fashion industry should be shut down because it pollutes the environment." },
+        { "letter": "C", "text": "Fast fashion is popular because young people care more about trends than the environment." },
+        { "letter": "D", "text": "Garment workers in developing countries earn very low wages." },
+        { "letter": "E", "text": "Buying secondhand clothing is the best way to reduce pollution." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage systematically examines the appeal of fast fashion alongside its environmental and human costs, presenting these hidden consequences as its central argument. This answer captures the full scope.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The passage does not call for shutting down the industry. It presents problems and notes growing awareness, but does not advocate elimination." },
+        { "letter": "C", "explanation": "While young consumers are mentioned, the passage does not characterize them as caring only about trends. It acknowledges the appeal of affordability." },
+        { "letter": "D", "explanation": "Low wages are an important detail, but this is only one part of the passage's broader argument about both environmental and human costs." },
+        { "letter": "E", "explanation": "Secondhand clothing is mentioned in the final paragraph as one response, but the passage does not argue it is the 'best' solution." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The author includes the statistic about a cotton T-shirt requiring 2,700 liters of water primarily to",
+      "answer_choices": [
+        { "letter": "A", "text": "encourage readers to stop wearing cotton" },
+        { "letter": "B", "text": "compare cotton farming to other types of agriculture" },
+        { "letter": "C", "text": "make the environmental cost of clothing production concrete and relatable" },
+        { "letter": "D", "text": "argue that polyester is better for the environment than cotton" },
+        { "letter": "E", "text": "explain why water shortages occur in developing countries" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "By comparing the water needed for one T-shirt to two and a half years of drinking water, the author transforms an abstract environmental cost into something a reader can visualize and understand personally.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not single out cotton as a fabric to avoid. It also criticizes synthetic fabrics like polyester." },
+        { "letter": "B", "explanation": "Agriculture is not discussed in the passage. The comparison is to personal drinking water, not farming." },
+        { "letter": "D", "explanation": "The passage criticizes polyester as well, noting it is derived from petroleum and sheds plastic fibers. Neither fabric is presented as better." },
+        { "letter": "E", "explanation": "Water shortages in developing countries are not discussed. The statistic is about the environmental cost of production." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 3,
+      "question_text": "As used in the passage, the word 'externalized' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "eliminated entirely" },
+        { "letter": "B", "text": "shifted onto others who do not benefit from the transaction" },
+        { "letter": "C", "text": "made visible to the public" },
+        { "letter": "D", "text": "exported to foreign countries" },
+        { "letter": "E", "text": "exaggerated beyond its true scale" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says the 'true cost is simply externalized' and then explains it is 'paid by exploited workers, polluted communities, and a warming planet' rather than being reflected in the price. This means the cost is shifted onto others.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The cost is not eliminated — the passage makes clear it still exists. It is simply borne by others instead of being included in the price." },
+        { "letter": "C", "explanation": "The passage argues the opposite: the costs are hidden from consumers, not made visible." },
+        { "letter": "D", "explanation": "While production occurs in other countries, 'externalized' here refers to who bears the cost, not geographic location." },
+        { "letter": "E", "explanation": "The author presents these costs as real and significant, not exaggerated." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "How is the passage primarily organized?",
+      "answer_choices": [
+        { "letter": "A", "text": "It tells the story of the fashion industry from its beginnings to the present day." },
+        { "letter": "B", "text": "It compares fast fashion companies to slow fashion companies." },
+        { "letter": "C", "text": "It argues for a specific solution to the fast fashion problem." },
+        { "letter": "D", "text": "It presents a phenomenon, examines its negative consequences across two categories, acknowledges a counterargument, and introduces a potential response." },
+        { "letter": "E", "text": "It describes the daily life of a garment worker in Bangladesh." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage introduces fast fashion (paragraph 1), examines environmental costs (paragraph 2), examines human costs (paragraph 3), presents a counterargument (paragraph 4), and introduces consumer responses (paragraph 5).",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage is not a chronological history. It analyzes a current phenomenon and its consequences." },
+        { "letter": "B", "explanation": "Slow fashion is briefly mentioned in the final paragraph, but the passage is not structured as a comparison between fast and slow fashion." },
+        { "letter": "C", "explanation": "The passage does not advocate for a specific solution. It raises awareness and presents emerging responses without prescribing one." },
+        { "letter": "E", "explanation": "Individual workers' daily lives are not described. Working conditions are discussed in broader terms." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What can the reader infer about why the author mentions the Rana Plaza collapse?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that factory collapses are common in Bangladesh" },
+        { "letter": "B", "text": "To blame consumers for the deaths of garment workers" },
+        { "letter": "C", "text": "To argue that all garment factories should be closed immediately" },
+        { "letter": "D", "text": "To compare Bangladeshi factories with American factories" },
+        { "letter": "E", "text": "To provide a dramatic, real-world example that illustrates the human cost of fast fashion" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The Rana Plaza disaster serves as a concrete, devastating example of the dangerous working conditions described in the paragraph, making the abstract concept of 'human cost' vivid and specific.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage presents Rana Plaza as a notable event that 'exposed' dangerous conditions, not as evidence that collapses are routine." },
+        { "letter": "B", "explanation": "The passage does not blame individual consumers. It examines systemic issues in the industry." },
+        { "letter": "C", "explanation": "The passage does not advocate closing all factories. It notes that the industry provides employment in developing economies." },
+        { "letter": "D", "explanation": "American factories are not discussed. The passage mentions conditions 'Western nations outlawed decades ago' but does not compare specific factories." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 6,
+      "question_text": "How does the passage present the defenders' argument about fast fashion providing employment?",
+      "answer_choices": [
+        { "letter": "A", "text": "It dismisses it as completely false." },
+        { "letter": "B", "text": "It fully agrees with the argument." },
+        { "letter": "C", "text": "It acknowledges some validity but argues the costs outweigh the benefits." },
+        { "letter": "D", "text": "It ignores the argument entirely." },
+        { "letter": "E", "text": "It presents the argument without any response." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage says 'there is some validity to this point' but then counters that 'the true cost is simply externalized' onto workers and the environment. This acknowledges the argument while ultimately challenging it.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage explicitly says there is 'some validity' to the argument, so it does not dismiss it entirely." },
+        { "letter": "B", "explanation": "While acknowledging some validity, the passage immediately presents a counterargument about externalized costs." },
+        { "letter": "D", "explanation": "The passage devotes a full paragraph to the defenders' argument, so it does not ignore it." },
+        { "letter": "E", "explanation": "The passage does respond with the 'externalized costs' counterargument immediately following the defenders' position." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Which detail from the passage best supports the claim that fast fashion causes environmental harm?",
+      "answer_choices": [
+        { "letter": "A", "text": "The average American buys more than fifty garments per year." },
+        { "letter": "B", "text": "An estimated ninety-two million tons of textile waste ends up in landfills each year, where synthetic materials take up to two hundred years to decompose." },
+        { "letter": "C", "text": "Fast fashion brands release new collections weekly or even daily." },
+        { "letter": "D", "text": "The secondhand clothing market has grown twenty-five times faster than retail." },
+        { "letter": "E", "text": "Garment workers in Bangladesh earn less than three dollars per day." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "This statistic directly demonstrates environmental harm by showing the massive scale of waste and the long decomposition time of synthetic materials in landfills.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This shows increased consumption but does not directly demonstrate environmental harm." },
+        { "letter": "C", "explanation": "Frequent releases contribute to the problem, but this detail describes business practices, not environmental impact directly." },
+        { "letter": "D", "explanation": "The growth of secondhand clothing is a response to the problem, not evidence of the harm itself." },
+        { "letter": "E", "explanation": "This supports the claim about human cost, not environmental harm." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 8,
+      "question_text": "As used in the passage, the word 'toll' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "a fee paid for crossing a bridge" },
+        { "letter": "B", "text": "a count of people affected" },
+        { "letter": "C", "text": "the damage or negative consequences caused by something" },
+        { "letter": "D", "text": "the sound of a bell ringing" },
+        { "letter": "E", "text": "a tax collected by the government" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "'The environmental toll is staggering' means the environmental damage or negative impact is overwhelming. In this context, 'toll' refers to the harmful consequences of fast fashion on the environment.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While 'toll' can mean a bridge fee, this meaning does not fit the context of environmental consequences." },
+        { "letter": "B", "explanation": "'Toll' can refer to a count of casualties, but here it refers more broadly to the overall negative impact on the environment." },
+        { "letter": "D", "explanation": "The sound of a bell is another meaning of 'toll,' but it has no connection to the environmental context." },
+        { "letter": "E", "explanation": "A government tax is not the meaning here. The passage uses 'toll' to describe damage, not a financial charge." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What conclusion can the reader draw about the effectiveness of international outrage following the Rana Plaza collapse?",
+      "answer_choices": [
+        { "letter": "A", "text": "It led to immediate and lasting improvements in worker safety." },
+        { "letter": "B", "text": "It resulted in all fast fashion brands leaving Bangladesh." },
+        { "letter": "C", "text": "It produced some attention but did not lead to significant, lasting reforms." },
+        { "letter": "D", "text": "It caused consumers to stop buying fast fashion entirely." },
+        { "letter": "E", "text": "It had no impact whatsoever on the fashion industry." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that 'despite international outrage, labor rights organizations report that meaningful reforms have been limited,' indicating that while people reacted, the actual changes were insufficient.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage says reforms have been 'limited,' directly contradicting the idea of immediate and lasting improvements." },
+        { "letter": "B", "explanation": "The passage does not say brands left Bangladesh. Limited reforms suggest the industry continued operating similarly." },
+        { "letter": "D", "explanation": "The passage's description of fast fashion's continued $1.7 trillion revenue shows consumers did not stop buying." },
+        { "letter": "E", "explanation": "The passage says reforms have been limited, not nonexistent. 'Limited' implies some impact, just not enough." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What can the reader infer about the author's attitude toward the growth of the secondhand clothing market?",
+      "answer_choices": [
+        { "letter": "A", "text": "The author believes it will definitely solve the fast fashion problem." },
+        { "letter": "B", "text": "The author sees it as a promising sign but is uncertain whether it can counteract the scale of the fast fashion industry." },
+        { "letter": "C", "text": "The author thinks secondhand clothing is just as harmful as fast fashion." },
+        { "letter": "D", "text": "The author believes it is only a trend among wealthy consumers." },
+        { "letter": "E", "text": "The author dismisses it as irrelevant to the larger problem." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The author mentions the secondhand market's rapid growth positively but then states that 'whether these movements can meaningfully counteract' an industry of $1.7 trillion 'remains an open question,' showing cautious optimism mixed with realism.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The author explicitly says it 'remains an open question,' which shows uncertainty, not confidence in a solution." },
+        { "letter": "C", "explanation": "The secondhand market is presented as a positive response to fast fashion, not as equally harmful." },
+        { "letter": "D", "explanation": "The passage does not characterize secondhand shoppers by income level." },
+        { "letter": "E", "explanation": "The author includes the secondhand market as a meaningful development and calls awareness 'the necessary first step,' indicating relevance." }
+      ],
+      "skill_tested": "rc_inference"
+    }
+  ]
+}

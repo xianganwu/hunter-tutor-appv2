@@ -1,0 +1,225 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_05",
+    "title": "A Declaration of the Rights of the Laboring Classes",
+    "genre": "historical_document",
+    "difficulty_level": 5,
+    "word_count": 470,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_author_purpose",
+      "rc_inference",
+      "rc_tone_mood",
+      "rc_figurative_language",
+      "rc_passage_structure",
+      "rc_comparing_viewpoints",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "Original composition in the style of an 1890s labor movement declaration addressing the rights of industrial workers"
+  },
+  "pre_reading_context": "During the late 1800s, rapid industrialization in the United States created enormous wealth for factory owners but harsh conditions for workers, including long hours, low pay, and dangerous workplaces. Labor organizations began issuing declarations demanding better treatment. This passage is written in the style of such a document.",
+  "passage_text": "To the Citizens of This Republic and to All Who Value Justice,\n\nWe, the working men and women of the industrial cities of this nation, address you not as agitators or malcontents, but as the very sinew and bone upon which the prosperity of this republic rests. It is by our hands that the rails are laid, the cloth is woven, and the steel is forged. It is by our labor that the wealth of this nation multiplies — wealth which, we are compelled to observe, flows upward to the coffers of the few while the many subsist upon wages scarcely sufficient to sustain life.\n\nWe do not seek to overthrow the order of society. We seek rather to perfect it, to bring its practices into alignment with its professed ideals. This nation was founded upon the principle that all persons are created equal and endowed with certain unalienable rights. Yet what meaning have such rights for the mill worker who toils fourteen hours a day in conditions that imperil both body and spirit? What liberty exists for the child of ten years who is sent into the mine before dawn and emerges after dark, never knowing the warmth of the sun upon her face?\n\nThe defenders of the present system argue that the natural laws of commerce must not be disturbed — that wages find their proper level as water finds its own. To this elegant doctrine we offer a simple reply: water, left to its own course, flows ever downward. If the laws of commerce are permitted to operate without restraint, they too shall drive the condition of the worker ever lower, until the foundation upon which all prosperity is built crumbles beneath the weight of its own inequality.\n\nWe therefore declare the following principles to be self-evident and just:\n\nFirst, that no person shall be compelled to labor more than ten hours in a single day, for the preservation of health and the cultivation of the mind require leisure as surely as the body requires bread.\n\nSecond, that children below the age of fourteen shall be protected from industrial labor and afforded the opportunity of education, which alone can elevate their station and secure the future of the republic.\n\nThird, that the conditions of every workshop, mill, and factory shall be subject to inspection, so that the pursuit of profit shall not be purchased at the cost of human life.\n\nThese are not radical demands. They are the minimum requirements of a civilized society — a society that measures its greatness not by the height of its fortunes but by the dignity it affords to its humblest members.\n\nLet those who would deny these rights consider upon whose shoulders they stand, and let them ask whether any edifice can long endure when its foundation is made to suffer.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main purpose of this declaration?",
+      "answer_choices": [
+        { "letter": "A", "text": "To encourage workers to destroy factories" },
+        { "letter": "B", "text": "To praise factory owners for creating jobs" },
+        { "letter": "C", "text": "To explain how factories and mills operate" },
+        { "letter": "D", "text": "To demand basic rights and protections for industrial workers" },
+        { "letter": "E", "text": "To convince workers to accept their current conditions" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The declaration explicitly lists three demands — a ten-hour workday, protection of children from labor, and workplace inspections — and argues that workers deserve basic rights and dignity. The entire document builds toward these demands.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The writers explicitly state they 'do not seek to overthrow the order of society.' They want reform, not destruction." },
+        { "letter": "B", "explanation": "The declaration criticizes the current system, noting that wealth 'flows upward to the coffers of the few.' It does not praise factory owners." },
+        { "letter": "C", "explanation": "The declaration is a political argument, not a technical explanation of industrial processes." },
+        { "letter": "E", "explanation": "The declaration demands change. It explicitly rejects the idea that current conditions are acceptable." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What does the phrase \"the very sinew and bone\" most likely mean as used in the declaration?",
+      "answer_choices": [
+        { "letter": "A", "text": "Workers are physically injured from their labor." },
+        { "letter": "B", "text": "Workers form the essential structural foundation of the nation's prosperity." },
+        { "letter": "C", "text": "Workers need better food to remain healthy." },
+        { "letter": "D", "text": "The nation is literally built from human bones." },
+        { "letter": "E", "text": "Workers are as thin as bones because they are underfed." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The writers compare themselves to 'sinew and bone' — the strong tissues that hold a body together and give it structure. This metaphor argues that workers are the essential foundation upon which the nation's economic prosperity depends.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While workers may be injured, the metaphor is about their importance to the nation, not about physical harm." },
+        { "letter": "C", "explanation": "The metaphor describes the workers' role in the economy, not their nutritional needs." },
+        { "letter": "D", "explanation": "This takes the metaphor literally. The writers are using a figure of speech to describe the workers' essential role, not making a literal statement." },
+        { "letter": "E", "explanation": "While poverty is discussed, the metaphor of 'sinew and bone' refers to structural importance, not thinness or hunger." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "The defenders of the current system argue that \"wages find their proper level as water finds its own.\" How do the declaration writers respond to this argument?",
+      "answer_choices": [
+        { "letter": "A", "text": "They agree that wages should be left to find their natural level." },
+        { "letter": "B", "text": "They ignore the argument and change the subject." },
+        { "letter": "C", "text": "They extend the water metaphor, arguing that unregulated wages, like water, will only flow downward, harming workers." },
+        { "letter": "D", "text": "They argue that water actually flows upward, not downward." },
+        { "letter": "E", "text": "They say that wages have nothing to do with water." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The writers cleverly take the opponents' own metaphor and turn it against them: if wages act like water, they will 'flow ever downward,' making conditions worse and worse. They use the opponents' language to prove the opposite point — that intervention is necessary.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The writers strongly disagree with this position. They argue that leaving wages unregulated will harm workers." },
+        { "letter": "B", "explanation": "The writers directly address and counter the argument rather than ignoring it." },
+        { "letter": "D", "explanation": "The writers accept that water flows downward — that is exactly their point. They argue wages will also go down without regulation." },
+        { "letter": "E", "explanation": "The writers engage with the water metaphor rather than dismissing it. They use it to strengthen their own argument." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"subsist\" most likely mean in the phrase \"the many subsist upon wages scarcely sufficient to sustain life\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To barely survive on the minimum" },
+        { "letter": "B", "text": "To thrive and prosper" },
+        { "letter": "C", "text": "To save money for the future" },
+        { "letter": "D", "text": "To complain loudly" },
+        { "letter": "E", "text": "To enjoy a comfortable life" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The phrase 'scarcely sufficient to sustain life' provides direct context: the wages are barely enough to keep workers alive. 'Subsist' means to survive at the most basic level, without comfort or security.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "Thriving is the opposite of subsisting. The context makes clear that workers are struggling, not prospering." },
+        { "letter": "C", "explanation": "If wages are 'scarcely sufficient to sustain life,' there is nothing left to save. Subsisting means barely getting by." },
+        { "letter": "D", "explanation": "While the workers are voicing grievances in this declaration, 'subsist' describes their economic condition, not their communication." },
+        { "letter": "E", "explanation": "The phrase 'scarcely sufficient to sustain life' directly contradicts any notion of comfort or enjoyment." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Why do the writers mention the child who works in the mine?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that mining is an exciting career for young people" },
+        { "letter": "B", "text": "To describe the typical school day for children in the 1890s" },
+        { "letter": "C", "text": "To create an emotionally powerful example that demonstrates the injustice of the current system" },
+        { "letter": "D", "text": "To argue that children are better miners than adults" },
+        { "letter": "E", "text": "To explain the technical process of mining" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The image of a ten-year-old entering a mine before dawn and leaving after dark, 'never knowing the warmth of the sun,' is designed to evoke sympathy and outrage. The writers use this vivid example to make the abstract concept of injustice feel personal and urgent.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The description of a child in a mine is presented as a tragedy, not an opportunity. The child is denied sunlight and education." },
+        { "letter": "B", "explanation": "The child is working in a mine, not attending school. The point is that child labor prevents education." },
+        { "letter": "D", "explanation": "The writers are not comparing children's and adults' mining abilities. They are arguing that children should not work in mines at all." },
+        { "letter": "E", "explanation": "The passage does not describe mining techniques. The child is used as an example of human suffering." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 6,
+      "question_text": "How is the declaration structured?",
+      "answer_choices": [
+        { "letter": "A", "text": "It tells a chronological story of one worker's life from childhood to old age." },
+        { "letter": "B", "text": "It compares working conditions in America to those in Europe." },
+        { "letter": "C", "text": "It asks a series of questions without providing any answers." },
+        { "letter": "D", "text": "It presents demands first and then explains the reasoning behind them." },
+        { "letter": "E", "text": "It presents the workers' identity and grievances, counters an opposing argument, then lists specific demands, and ends with a warning." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The declaration follows a deliberate structure: it establishes who the workers are and the injustices they face, addresses and rebuts the opposing argument about natural market forces, then lists three specific demands, and concludes with a warning about the consequences of ignoring these rights.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The declaration is not a narrative about one person. It is a collective political statement addressing systemic issues." },
+        { "letter": "B", "explanation": "No comparison to European conditions is made. The declaration focuses entirely on American workers." },
+        { "letter": "C", "explanation": "While the declaration includes rhetorical questions, it also provides clear answers in the form of demands and arguments." },
+        { "letter": "D", "explanation": "The demands appear in the second half of the declaration, after the writers have built their case with evidence and argument." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the final sentence suggest about the consequences of ignoring workers' rights?",
+      "answer_choices": [
+        { "letter": "A", "text": "Workers will move to a different country." },
+        { "letter": "B", "text": "Factory owners will become wealthier than ever." },
+        { "letter": "C", "text": "The entire economic and social system will collapse if its foundation — the workers — continues to be mistreated." },
+        { "letter": "D", "text": "New buildings will be constructed with stronger foundations." },
+        { "letter": "E", "text": "Workers will simply accept their conditions and stop protesting." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The final sentence uses the metaphor of a building: workers are the 'foundation,' and if the foundation is made to 'suffer,' the 'edifice' (the entire system) 'cannot long endure.' This warns that mistreating workers will ultimately undermine the entire society.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Emigration is not mentioned. The metaphor warns about societal collapse, not workers leaving." },
+        { "letter": "B", "explanation": "The warning is that the system will fail, not that owners will prosper. Continued mistreatment threatens everyone." },
+        { "letter": "D", "explanation": "The 'edifice' and 'foundation' are metaphorical, referring to society and workers, not literal buildings." },
+        { "letter": "E", "explanation": "The entire declaration demonstrates workers' determination to fight for their rights. The warning implies continued and escalating pressure, not acceptance." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What is the tone of this declaration?",
+      "answer_choices": [
+        { "letter": "A", "text": "Lighthearted and playful" },
+        { "letter": "B", "text": "Resigned and defeated" },
+        { "letter": "C", "text": "Confused and uncertain" },
+        { "letter": "D", "text": "Dignified and resolute" },
+        { "letter": "E", "text": "Apologetic and timid" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The writers maintain dignity by presenting themselves as essential to the nation, not as beggars. They are resolute in their demands, calling them 'self-evident and just' and 'the minimum requirements of a civilized society.' The tone balances seriousness with unwavering determination.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The declaration addresses severe injustices — child labor, poverty, dangerous conditions. The tone is grave and purposeful, not playful." },
+        { "letter": "B", "explanation": "The writers are demanding change, not accepting defeat. Their language is assertive and forward-looking." },
+        { "letter": "C", "explanation": "The declaration is highly organized with clear arguments and specific demands. The writers know exactly what they want." },
+        { "letter": "E", "explanation": "The writers explicitly reject the label of 'agitators or malcontents' and present their demands as rights, not requests. They are not apologetic." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Why do the writers reference the nation's founding principles?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that denying workers' rights contradicts the nation's own stated ideals of equality and liberty" },
+        { "letter": "B", "text": "To suggest that the Founding Fathers were factory workers" },
+        { "letter": "C", "text": "To argue that the nation should return to an agricultural economy" },
+        { "letter": "D", "text": "To claim that the Constitution specifically mentions workers' rights" },
+        { "letter": "E", "text": "To prove that the founding principles are outdated and should be replaced" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The writers invoke the principle that 'all persons are created equal and endowed with certain unalienable rights,' then ask what those rights mean for suffering workers. This rhetorical strategy holds the nation accountable to its own ideals, showing that current conditions are a betrayal of founding principles.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The declaration does not claim the Founding Fathers were workers. It appeals to the principles they established." },
+        { "letter": "C", "explanation": "The declaration does not advocate for an agricultural economy. It seeks to improve conditions within the industrial system." },
+        { "letter": "D", "explanation": "The writers reference the principle of equality, not a specific constitutional provision about workers." },
+        { "letter": "E", "explanation": "The writers want the founding principles to be upheld, not replaced. They argue that current practices violate those principles." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What can you infer about why the writers begin by saying they are \"not agitators or malcontents\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "They are afraid of being arrested and want legal protection." },
+        { "letter": "B", "text": "They are apologizing for writing the declaration." },
+        { "letter": "C", "text": "They want to establish credibility and counter the accusation that labor activists are simply troublemakers." },
+        { "letter": "D", "text": "They want to prove they are wealthier than people think." },
+        { "letter": "E", "text": "They are admitting that some of their demands are unreasonable." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "By preemptively rejecting the labels 'agitators' and 'malcontents,' the writers acknowledge that labor activists were often dismissed as troublemakers. They counter this perception by presenting themselves as the essential backbone of the nation, establishing credibility before making their arguments.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While labor activists did face legal consequences, this opening is a rhetorical strategy to build credibility, not a legal defense." },
+        { "letter": "B", "explanation": "The writers are not apologizing. They are asserting their legitimacy and right to speak." },
+        { "letter": "D", "explanation": "The writers acknowledge their poverty and low wages. They are establishing their moral authority, not claiming wealth." },
+        { "letter": "E", "explanation": "The writers call their demands 'the minimum requirements of a civilized society.' They consider them entirely reasonable." }
+      ],
+      "skill_tested": "rc_inference"
+    }
+  ]
+}

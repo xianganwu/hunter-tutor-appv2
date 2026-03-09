@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_04",
+    "title": "A Dispatch from the Constitutional Convention",
+    "genre": "historical_document",
+    "difficulty_level": 4,
+    "word_count": 420,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_author_purpose",
+      "rc_evidence_reasoning",
+      "rc_inference",
+      "rc_tone_mood",
+      "rc_passage_structure",
+      "rc_comparing_viewpoints"
+    ],
+    "source_description": "Original composition in the style of a diary entry by a delegate at a late-18th-century constitutional convention"
+  },
+  "pre_reading_context": "In the summer of 1787, delegates from across the American states gathered in Philadelphia to create a new framework of government. The debates were intense and secretive. This passage is written in the style of a delegate's private diary entry from that era.",
+  "passage_text": "June the Twenty-Third, 1787\n\nThe heat in the Assembly Room is scarcely to be endured. The windows remain shut, per our agreement of secrecy, and the air grows thick with argument and perspiration alike. Yet I would suffer far greater discomfort for the work we undertake, for I am persuaded that no enterprise in the history of these states is of greater consequence.\n\nToday's debate concerned the matter of representation — how the people of each state shall have their voices heard in the new legislature. The delegates from the larger states, Virginia and Pennsylvania chief among them, argue for representation proportional to population. Their reasoning is plain: a state of great numbers ought to wield greater influence, for it speaks on behalf of more citizens. Mr. Madison pressed this point with characteristic precision, noting that the principle of majority rule demands nothing less.\n\nThe smaller states, however, view this arrangement with profound alarm. Mr. Paterson of New Jersey spoke with considerable passion, warning that proportional representation would render the smaller states mere subjects of their larger neighbors. \"We did not cast off the tyranny of a distant king,\" he declared, \"only to submit to the tyranny of a neighboring giant.\" His words stirred murmurs of agreement from the delegates of Delaware and Connecticut.\n\nI confess that I find merit in both positions, which places me in an uncomfortable situation. It is true that a citizen of Virginia should not count for less than a citizen of New Jersey in the counsels of the nation. Yet it is equally true that the smaller states must retain sufficient voice to protect their particular interests, lest they be perpetually overruled.\n\nSome whisper of a possible compromise — a legislature of two chambers, one apportioned by population and the other granting equal standing to each state. Whether such an arrangement can satisfy both factions, I cannot yet say. But I take heart from the observation that the very existence of this debate — fierce, principled, and conducted among men of good faith — is itself a testament to the strength of our young republic.\n\nI must rest now, for tomorrow promises another day of deliberation, and I shall need whatever patience and wisdom I can summon.\n\nYour faithful servant to the Republic",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main subject of the diary entry?",
+      "answer_choices": [
+        { "letter": "A", "text": "The extreme heat in the Assembly Room and its effect on the delegates" },
+        { "letter": "B", "text": "A personal disagreement between the writer and Mr. Madison" },
+        { "letter": "C", "text": "The decision to keep the convention's proceedings secret" },
+        { "letter": "D", "text": "The writer's plans to leave the convention early" },
+        { "letter": "E", "text": "The debate over how states should be represented in the new legislature" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The majority of the diary entry describes the debate between large and small states over representation — proportional versus equal. The heat and secrecy are mentioned briefly as context, but the central topic is the representation debate.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The heat is mentioned in the opening paragraph as a detail, but the diary quickly moves to the main topic of the representation debate." },
+        { "letter": "B", "explanation": "The writer actually agrees with some of Mr. Madison's points. There is no personal disagreement described." },
+        { "letter": "C", "explanation": "Secrecy is mentioned briefly (windows shut), but it is not the subject of the entry." },
+        { "letter": "D", "explanation": "The writer says he will return 'tomorrow' for more deliberation. He shows no intention of leaving." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What does the word \"consequence\" most likely mean in the phrase \"no enterprise in the history of these states is of greater consequence\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "Punishment" },
+        { "letter": "B", "text": "Difficulty" },
+        { "letter": "C", "text": "Importance" },
+        { "letter": "D", "text": "Expense" },
+        { "letter": "E", "text": "Length" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The writer says he would endure any discomfort for this work because no undertaking has been of 'greater consequence.' In this context, 'consequence' means importance or significance — the writer believes this convention is the most important event in American history.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While 'consequence' can mean punishment in some contexts (as in 'face the consequences'), here it refers to significance, not penalty." },
+        { "letter": "B", "explanation": "The writer acknowledges difficulty (the heat) but uses 'consequence' to describe the magnitude and importance of the work, not how hard it is." },
+        { "letter": "D", "explanation": "Financial cost is not discussed. The writer is expressing the historical significance of the convention." },
+        { "letter": "E", "explanation": "The duration of the convention is not the point. 'Consequence' here refers to how much the work matters, not how long it takes." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What is the main difference between the positions of the large states and the small states?",
+      "answer_choices": [
+        { "letter": "A", "text": "Large states want a monarchy, while small states want a democracy." },
+        { "letter": "B", "text": "Large states want representation based on population, while small states want equal representation for each state." },
+        { "letter": "C", "text": "Large states want to end the convention, while small states want to continue." },
+        { "letter": "D", "text": "Large states want each state to have its own army, while small states want a national army." },
+        { "letter": "E", "text": "Large states want to pay higher taxes, while small states want no taxes." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The entry clearly explains that large states argue for 'representation proportional to population' while small states fear being overpowered and want a structure that protects their voice — which the proposed compromise of equal standing in one chamber would address.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Neither side advocates for monarchy. Both sides are debating within the framework of a republic." },
+        { "letter": "C", "explanation": "Both sides are actively engaged in debate. Neither side is described as wanting to end the convention." },
+        { "letter": "D", "explanation": "Military organization is not discussed in the diary entry. The debate is about legislative representation." },
+        { "letter": "E", "explanation": "Taxes are not part of this debate. The disagreement is about how many representatives each state should have." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Why does Mr. Paterson compare large states to a \"neighboring giant\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To compliment the large states on their strength" },
+        { "letter": "B", "text": "To suggest that small states should try to grow larger" },
+        { "letter": "C", "text": "To warn that proportional representation would allow large states to dominate and oppress smaller ones" },
+        { "letter": "D", "text": "To argue that all states should be the same size" },
+        { "letter": "E", "text": "To express admiration for Virginia and Pennsylvania" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Mr. Paterson uses the image of a 'giant' to suggest that large states would overpower small ones, just as a giant could overpower ordinary people. He pairs this with the word 'tyranny,' making clear that he sees proportional representation as a threat to small states' freedom.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Calling something a 'giant' in the context of 'tyranny' is a warning, not a compliment. Paterson fears the power of large states." },
+        { "letter": "B", "explanation": "Paterson is not suggesting states change their size. He is arguing for a system that protects small states as they are." },
+        { "letter": "D", "explanation": "Paterson does not propose making all states the same size. He wants equal representation regardless of size." },
+        { "letter": "E", "explanation": "Paterson is expressing concern, not admiration. He worries that large states will dominate the smaller ones." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the diary entry organize its presentation of the debate?",
+      "answer_choices": [
+        { "letter": "A", "text": "It presents the large states' position first, then the small states' response, then the writer's own reflection." },
+        { "letter": "B", "text": "It lists the arguments in order from weakest to strongest." },
+        { "letter": "C", "text": "It compares the convention to events in other countries." },
+        { "letter": "D", "text": "It starts with the compromise and then explains why it was needed." },
+        { "letter": "E", "text": "It presents only one side of the argument and ignores the other." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The entry follows a clear structure: first it presents the large states' argument (Virginia, Madison), then the small states' counter-argument (Paterson, New Jersey), and finally the writer's personal reflection on both sides, including the possible compromise.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The writer finds merit in both positions and does not rank the arguments by strength." },
+        { "letter": "C", "explanation": "The entry does not mention events in other countries. It focuses entirely on the debate in Philadelphia." },
+        { "letter": "D", "explanation": "The compromise is mentioned near the end as a possibility, not at the beginning. The entry builds up to it through the debate." },
+        { "letter": "E", "explanation": "The entry clearly presents both sides — the large states' and small states' viewpoints — before offering the writer's balanced reflection." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What does the writer mean by \"I find merit in both positions\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "He thinks both sides are completely wrong." },
+        { "letter": "B", "text": "He wants to earn praise from both sides." },
+        { "letter": "C", "text": "He is trying to avoid making anyone angry." },
+        { "letter": "D", "text": "He believes both sides make valid arguments worth considering." },
+        { "letter": "E", "text": "He does not understand either argument well enough to choose." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The writer explains why each side has a valid point: a citizen of a large state should not count for less, but small states need protection too. 'Merit' means value or worth, so finding merit in both positions means seeing that both arguments have valid reasoning.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is the opposite of what the writer says. He sees value in both sides, not flaws." },
+        { "letter": "B", "explanation": "The writer describes his position as 'uncomfortable,' suggesting genuine intellectual conflict, not political maneuvering." },
+        { "letter": "C", "explanation": "The writer's struggle is intellectual, not social. He genuinely sees the logic of both arguments, not just trying to keep peace." },
+        { "letter": "E", "explanation": "The writer clearly explains both arguments and why each has value, showing deep understanding, not confusion." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What evidence does Mr. Madison use to support proportional representation?",
+      "answer_choices": [
+        { "letter": "A", "text": "Larger states pay more taxes than smaller states." },
+        { "letter": "B", "text": "The principle of majority rule requires that more people have more influence." },
+        { "letter": "C", "text": "Larger states have more experienced politicians." },
+        { "letter": "D", "text": "The Constitution of England uses proportional representation." },
+        { "letter": "E", "text": "George Washington supports proportional representation." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The entry states that Madison argued with 'characteristic precision, noting that the principle of majority rule demands nothing less.' His reasoning is that since democracy is based on majority rule, representation should reflect the number of citizens each state has.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Taxes are not mentioned in Madison's argument. His reasoning is based on the principle of majority rule." },
+        { "letter": "C", "explanation": "The experience of politicians is not discussed. Madison's argument is about the number of citizens represented." },
+        { "letter": "D", "explanation": "England's constitution is not referenced. The argument is based on democratic principles, not foreign examples." },
+        { "letter": "E", "explanation": "George Washington is not mentioned in this diary entry. Madison argues from principle, not from authority." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What is the tone of the diary entry?",
+      "answer_choices": [
+        { "letter": "A", "text": "Reflective and cautiously optimistic" },
+        { "letter": "B", "text": "Anxious and fearful" },
+        { "letter": "C", "text": "Angry and confrontational" },
+        { "letter": "D", "text": "Bored and disinterested" },
+        { "letter": "E", "text": "Arrogant and dismissive" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The writer thoughtfully considers both sides of the debate (reflective) and ends by 'taking heart' from the quality of the deliberation, calling it a 'testament to the strength of our young republic' (cautiously optimistic). He acknowledges uncertainty but maintains hope.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "While the writer is in an 'uncomfortable situation,' his overall feeling is one of hope and purpose, not fear." },
+        { "letter": "C", "explanation": "The writer is measured and thoughtful, considering both sides fairly. He does not express anger toward either faction." },
+        { "letter": "D", "explanation": "The writer calls the convention the most important enterprise in American history. He is deeply engaged, not bored." },
+        { "letter": "E", "explanation": "The writer is humble, acknowledging the strength of both arguments and his need for 'patience and wisdom.' He is not arrogant." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Based on the diary entry, what can you infer about why the convention windows were kept shut?",
+      "answer_choices": [
+        { "letter": "A", "text": "To keep insects out of the Assembly Room" },
+        { "letter": "B", "text": "Because the weather outside was too cold" },
+        { "letter": "C", "text": "To prevent outsiders from hearing the secret debates" },
+        { "letter": "D", "text": "To make the delegates work faster so they could leave sooner" },
+        { "letter": "E", "text": "Because the windows were broken and could not be opened" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The writer states the windows 'remain shut, per our agreement of secrecy.' This tells us that the closed windows are part of their pledge to keep the debates private, preventing anyone outside from overhearing the discussions.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Insects are not mentioned. The writer directly connects the closed windows to the 'agreement of secrecy.'" },
+        { "letter": "B", "explanation": "The writer describes the room as extremely hot, which rules out cold weather as the reason for closed windows." },
+        { "letter": "D", "explanation": "Nothing suggests the delegates wanted to work faster. The closed windows are specifically linked to secrecy." },
+        { "letter": "E", "explanation": "The writer says the windows are shut 'per our agreement,' meaning it was a deliberate choice, not a broken window problem." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 10,
+      "question_text": "Why does the writer describe the debate as a \"testament to the strength of our young republic\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "Because the delegates are physically strong enough to endure the heat" },
+        { "letter": "B", "text": "Because one side won the argument decisively" },
+        { "letter": "C", "text": "Because the ability to have fierce but principled debate shows the health and promise of the new nation" },
+        { "letter": "D", "text": "Because the republic has a powerful military" },
+        { "letter": "E", "text": "Because the older delegates have more experience than the younger ones" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The writer values the debate itself — 'fierce, principled, and conducted among men of good faith' — as evidence that the republic can handle disagreement through reason and discussion rather than force. This ability to debate respectfully is what he sees as a sign of strength.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The writer is using 'strength' figuratively to describe the republic's democratic character, not physical endurance." },
+        { "letter": "B", "explanation": "No side has won yet. The writer values the process of debate itself, not a particular outcome." },
+        { "letter": "D", "explanation": "Military strength is not discussed. The 'strength' the writer admires is the capacity for civil debate and reasoned disagreement." },
+        { "letter": "E", "explanation": "The ages of the delegates are not compared. The writer's comment is about the quality of the democratic process, not individual delegates." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    }
+  ]
+}

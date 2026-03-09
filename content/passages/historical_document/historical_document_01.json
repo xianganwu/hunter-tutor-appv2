@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_01",
+    "title": "A Letter from a Young Soldier",
+    "genre": "historical_document",
+    "difficulty_level": 1,
+    "word_count": 260,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_author_purpose",
+      "rc_evidence_reasoning",
+      "rc_inference",
+      "rc_tone_mood"
+    ],
+    "source_description": "Original composition in the style of a Civil War-era letter from a young Union soldier to his family"
+  },
+  "pre_reading_context": "During the Civil War (1861-1865), soldiers often wrote letters home to their families. This letter is written in the style of one such message from a young soldier at a camp in Virginia.",
+  "passage_text": "Dear Mother and Father,\n\nI hope this letter finds you well. I am writing from our camp near the river, where we have been staying for nearly two weeks. The days are long, and the nights are cold, but I remain in good spirits.\n\nWhen I first arrived at camp, I was nervous. The other soldiers seemed so much older and braver than me. But over these past days, I have come to know them as friends. We share meals together and tell stories around the fire at night. Private Thomas, who sleeps in the tent beside mine, taught me how to mend my own socks, which I thought was very kind of him.\n\nThe food here is simple. We eat hardtack and beans most days, and sometimes salted pork when supplies arrive. I confess I miss your cooking terribly, Mother, especially your apple pie. But we do not complain, for we know that many have less than we do.\n\nI want you to know that I believe in the cause we are fighting for. Every person deserves to be free, and I am proud to do my small part. Though I sometimes feel afraid, I remind myself why I am here, and that gives me courage.\n\nPlease give my love to Sarah and little James. Tell James I will bring him a souvenir when I come home. I think of you all every day and carry your love with me like a warm coat against the cold.\n\nYour loving son,\nWilliam",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of William's letter?",
+      "answer_choices": [
+        { "letter": "A", "text": "He wants his family to send him better food." },
+        { "letter": "B", "text": "He is sharing his experiences at camp and reassuring his family that he is doing well." },
+        { "letter": "C", "text": "He is asking his parents for permission to come home." },
+        { "letter": "D", "text": "He is complaining about the difficult conditions of army life." },
+        { "letter": "E", "text": "He is describing a battle he recently fought in." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Throughout the letter, William describes his daily life at camp — his friendships, the food, and his feelings — while also reassuring his family that he is in 'good spirits' and believes in his cause. The letter's purpose is to share experiences and comfort his family.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While William mentions missing his mother's cooking, he specifically says the soldiers 'do not complain,' so asking for better food is not his main purpose." },
+        { "letter": "C", "explanation": "William never asks to come home. In fact, he expresses pride in his cause and mentions bringing a souvenir 'when I come home,' suggesting he plans to stay." },
+        { "letter": "D", "explanation": "Although William mentions cold nights and simple food, his tone is positive and accepting, not complaining. He explicitly says they 'do not complain.'" },
+        { "letter": "E", "explanation": "William does not describe any battle. He describes camp life, friendships, and daily routines, not combat." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What does the word \"confess\" most likely mean as used in the letter?",
+      "answer_choices": [
+        { "letter": "A", "text": "To deny something strongly" },
+        { "letter": "B", "text": "To whisper something secretly" },
+        { "letter": "C", "text": "To forget about something" },
+        { "letter": "D", "text": "To admit something honestly" },
+        { "letter": "E", "text": "To argue about something" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "When William says 'I confess I miss your cooking terribly,' he is openly admitting a personal feeling. 'Confess' here means to acknowledge or admit something honestly.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is the opposite of confess. William is not denying his feelings but rather sharing them openly." },
+        { "letter": "B", "explanation": "While confessing can sometimes feel private, in this context William is openly telling his family, not whispering a secret." },
+        { "letter": "C", "explanation": "William is actively remembering and sharing his feelings about his mother's cooking, not forgetting about it." },
+        { "letter": "E", "explanation": "There is no argument or disagreement in this part of the letter. William is simply sharing his honest feelings." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Why does William most likely write about Private Thomas mending socks?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that the soldiers are bored and have nothing to do" },
+        { "letter": "B", "text": "To complain that his socks are in poor condition" },
+        { "letter": "C", "text": "To show that he has made kind friends at camp" },
+        { "letter": "D", "text": "To prove that he is learning to become a tailor" },
+        { "letter": "E", "text": "To ask his mother to send him new socks" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "William describes Private Thomas's help as 'very kind' and uses this story as an example of the friendships he has formed. This detail supports his earlier point that the soldiers have 'come to know them as friends.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "William does not suggest boredom. He presents the sock-mending as a positive moment of friendship, not a sign of having nothing to do." },
+        { "letter": "B", "explanation": "While his socks needed mending, William's focus is on Private Thomas's kindness, not on complaining about his clothing." },
+        { "letter": "D", "explanation": "Learning to mend socks is a small practical skill, and William does not suggest any interest in becoming a tailor." },
+        { "letter": "E", "explanation": "William never asks for socks or any supplies. He tells the story to illustrate the friendships he has made." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Which detail from the letter best supports the idea that William is trying to comfort his family?",
+      "answer_choices": [
+        { "letter": "A", "text": "\"The days are long, and the nights are cold\"" },
+        { "letter": "B", "text": "\"I remain in good spirits\"" },
+        { "letter": "C", "text": "\"We eat hardtack and beans most days\"" },
+        { "letter": "D", "text": "\"I sometimes feel afraid\"" },
+        { "letter": "E", "text": "\"Tell James I will bring him a souvenir\"" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By telling his parents he is in 'good spirits,' William directly reassures them that he is doing well emotionally, despite the challenges of camp life. This is the strongest evidence of his effort to comfort them.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This detail describes hardship, which might actually worry his family rather than comfort them." },
+        { "letter": "C", "explanation": "Describing the plain food gives information about his life but does not directly reassure his family about his well-being." },
+        { "letter": "D", "explanation": "Admitting fear is honest, but it is more likely to worry his family than to comfort them." },
+        { "letter": "E", "explanation": "While this is a warm gesture toward his brother, it does not directly address his parents' likely concerns about his safety and well-being." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What cause is William most likely fighting for?",
+      "answer_choices": [
+        { "letter": "A", "text": "The freedom and equality of all people" },
+        { "letter": "B", "text": "The right to own land in Virginia" },
+        { "letter": "C", "text": "The right to leave the army when he wants" },
+        { "letter": "D", "text": "Better food and supplies for the soldiers" },
+        { "letter": "E", "text": "The right to write letters to his family" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "William states, 'Every person deserves to be free, and I am proud to do my small part.' This directly tells the reader that he is fighting for freedom and equality, consistent with the Union cause during the Civil War.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "William never mentions land ownership. His stated cause is about human freedom, not property." },
+        { "letter": "C", "explanation": "William shows no desire to leave. He expresses pride in his service and commitment to his cause." },
+        { "letter": "D", "explanation": "While William mentions simple food, he explicitly says the soldiers do not complain and that his cause is about freedom." },
+        { "letter": "E", "explanation": "Writing letters is something William does, but it is not the cause he is fighting for. He clearly states his cause is freedom for all people." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What is the overall tone of William's letter?",
+      "answer_choices": [
+        { "letter": "A", "text": "Angry and frustrated" },
+        { "letter": "B", "text": "Sad and hopeless" },
+        { "letter": "C", "text": "Warm and hopeful" },
+        { "letter": "D", "text": "Silly and humorous" },
+        { "letter": "E", "text": "Cold and distant" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "William writes with warmth about his friendships and family, and with hope about his cause and his return home. Phrases like 'good spirits,' 'proud to do my small part,' and 'carry your love with me like a warm coat' create a warm and hopeful tone.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "William does not express anger or frustration. He accepts the difficulties of camp life and focuses on the positive aspects." },
+        { "letter": "B", "explanation": "Although William misses his family, he is not hopeless. He looks forward to returning home and expresses pride in his purpose." },
+        { "letter": "D", "explanation": "While William is friendly, his letter is sincere and earnest, not silly or humorous." },
+        { "letter": "E", "explanation": "The opposite is true. William's letter is full of affection for his family and warmth toward his fellow soldiers." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the phrase \"carry your love with me like a warm coat against the cold\" suggest?",
+      "answer_choices": [
+        { "letter": "A", "text": "William needs his family to send him a warmer coat." },
+        { "letter": "B", "text": "William wears his coat every day because it reminds him of home." },
+        { "letter": "C", "text": "William's coat was a gift from his mother before he left." },
+        { "letter": "D", "text": "The weather is so cold that only love can keep him warm." },
+        { "letter": "E", "text": "Thinking about his family's love helps William feel comforted during hard times." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "William uses a comparison to explain that his family's love provides emotional comfort, just as a warm coat provides physical comfort against the cold. The 'cold' represents the difficulties he faces.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "William is not literally asking for a coat. He is using the image of a warm coat as a comparison to describe how his family's love makes him feel." },
+        { "letter": "B", "explanation": "William is not talking about an actual coat. He is comparing the feeling of his family's love to the warmth of a coat." },
+        { "letter": "C", "explanation": "There is no mention of who gave William his coat. The phrase is a comparison, not a description of a real object." },
+        { "letter": "D", "explanation": "This takes the comparison too literally. William means that love comforts him emotionally, not that love physically warms him." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Why does William most likely tell his parents that the soldiers \"do not complain\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "Because complaining is against army rules" },
+        { "letter": "B", "text": "Because the soldiers actually enjoy the simple food" },
+        { "letter": "C", "text": "To show that he and the others are brave and grateful despite hardships" },
+        { "letter": "D", "text": "Because the soldiers are too tired to talk" },
+        { "letter": "E", "text": "Because William does not want his parents to send food" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "By noting that the soldiers do not complain, William shows his parents that he and his companions face difficulties with courage and gratitude. He follows this by saying 'many have less than we do,' showing perspective and maturity.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "William does not mention any rules about complaining. His point is about the soldiers' attitudes, not army regulations." },
+        { "letter": "B", "explanation": "William admits he misses his mother's cooking, so he does not truly enjoy the simple food. The soldiers accept it rather than enjoy it." },
+        { "letter": "D", "explanation": "Nothing in the letter suggests the soldiers are too tired to talk. In fact, William describes them telling stories around the fire." },
+        { "letter": "E", "explanation": "William does not mention wanting or not wanting food from home. His point is about the soldiers' grateful attitudes." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Based on the letter, which word best describes William?",
+      "answer_choices": [
+        { "letter": "A", "text": "Selfish" },
+        { "letter": "B", "text": "Careless" },
+        { "letter": "C", "text": "Boastful" },
+        { "letter": "D", "text": "Thoughtful" },
+        { "letter": "E", "text": "Impatient" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "William thinks of others throughout the letter — he appreciates Private Thomas's kindness, he acknowledges that others have less, he fights for others' freedom, and he sends love to each family member by name. These details show he is a thoughtful person.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "William is the opposite of selfish. He fights for others' freedom, appreciates kindness, and thinks of each family member individually." },
+        { "letter": "B", "explanation": "William is careful and deliberate in his letter, remembering to mention each family member and expressing his feelings clearly." },
+        { "letter": "C", "explanation": "William describes himself as nervous and sometimes afraid, showing humility rather than boastfulness." },
+        { "letter": "E", "explanation": "William shows patience in accepting camp conditions and waiting to return home. He does not express impatience." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What does the word \"souvenir\" most likely mean in the letter?",
+      "answer_choices": [
+        { "letter": "A", "text": "A type of weapon" },
+        { "letter": "B", "text": "A letter or message" },
+        { "letter": "C", "text": "A type of food" },
+        { "letter": "D", "text": "A military uniform" },
+        { "letter": "E", "text": "An object kept as a reminder of a place or event" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "William promises to 'bring him a souvenir when I come home,' meaning a small object to remember his time away. A souvenir is something kept as a memento of an experience or journey.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "William would not promise to bring a weapon to his little brother James. The context suggests something friendly and appropriate for a child." },
+        { "letter": "B", "explanation": "William is already writing a letter, and he says he will 'bring' the souvenir, suggesting a physical object, not another message." },
+        { "letter": "C", "explanation": "While William mentions food in the letter, a souvenir is something you keep, not something you eat." },
+        { "letter": "D", "explanation": "A military uniform is too large and specific to be a typical gift for a little brother. A souvenir is a smaller, more personal keepsake." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    }
+  ]
+}

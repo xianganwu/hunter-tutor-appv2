@@ -1,0 +1,115 @@
+{
+  "skill_id": "ma_probability_statistics",
+  "skill_name": "Basic Probability and Statistics",
+  "concept_explanation": "Probability tells us how likely something is to happen, and statistics help us summarize and understand a set of data. Probability is always a number between 0 and 1 (or 0% and 100%) — 0 means impossible, 1 means certain. To find the probability of something happening, you divide the number of favorable outcomes by the total number of possible outcomes. For statistics, we have four key measures: the mean (average — add all numbers and divide by how many there are), the median (the middle number when values are sorted), the mode (the number that shows up most often), and the range (the biggest number minus the smallest). Each of these tells us something different about a set of data, and they're all useful in their own way.",
+  "worked_examples": [
+    {
+      "problem": "A bag contains 4 red marbles, 3 blue marbles, and 5 green marbles. If you pick one marble at random, what is the probability of picking a blue marble?",
+      "thinking_out_loud": [
+        "First, I need to count the total number of marbles: 4 + 3 + 5 = 12 marbles.",
+        "The favorable outcome is picking a blue marble, and there are 3 blue marbles.",
+        "Probability = favorable outcomes ÷ total outcomes = 3/12.",
+        "I can simplify: 3/12 = 1/4.",
+        "So the probability of picking a blue marble is 1/4, or 25%."
+      ],
+      "solution": "1/4 or 25%"
+    },
+    {
+      "problem": "Find the mean, median, mode, and range of this data set: 7, 12, 5, 12, 9, 15, 5, 12, 8.",
+      "thinking_out_loud": [
+        "First, let me sort the data from smallest to largest: 5, 5, 7, 8, 9, 12, 12, 12, 15.",
+        "Mean: Add all values: 5 + 5 + 7 + 8 + 9 + 12 + 12 + 12 + 15 = 85. Divide by the count (9 numbers): 85 ÷ 9 = 9.44 (rounded to the nearest hundredth).",
+        "Median: There are 9 values, so the middle one is the 5th value. Counting in my sorted list: 5, 5, 7, 8, [9], 12, 12, 12, 15. The median is 9.",
+        "Mode: The number that appears most often is 12 (it appears 3 times). So the mode is 12.",
+        "Range: Largest minus smallest: 15 − 5 = 10."
+      ],
+      "solution": "Mean ≈ 9.44, Median = 9, Mode = 12, Range = 10"
+    },
+    {
+      "problem": "A spinner has 8 equal sections numbered 1 through 8. What is the probability of spinning a number greater than 5?",
+      "thinking_out_loud": [
+        "I need to find numbers greater than 5 from 1 through 8. Those would be: 6, 7, and 8.",
+        "That gives me 3 favorable outcomes.",
+        "The total number of possible outcomes is 8 (since there are 8 equal sections).",
+        "Probability = 3/8.",
+        "As a decimal, that's 0.375, or 37.5%."
+      ],
+      "solution": "3/8 or 37.5%"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Confusing the median with the mean, or thinking the median is always the average of the first and last numbers.",
+      "why_it_happens": "Both words sound similar and both describe a kind of 'middle.' Students sometimes take the average of the smallest and largest values and call it the median.",
+      "how_to_address": "Always sort the data first! The median is the actual middle value in the sorted list. If there's an even number of values, the median is the average of the two middle values. The mean is the 'equal sharing' average. Practice both with the same data set to see how they can differ."
+    },
+    {
+      "misconception": "Thinking that probability can be greater than 1 (or greater than 100%).",
+      "why_it_happens": "Students sometimes count favorable outcomes but forget to form the fraction with total outcomes, or they add probabilities incorrectly.",
+      "how_to_address": "Reinforce that probability is always between 0 and 1 (inclusive). If you get a probability greater than 1, something went wrong — either you overcounted favorable outcomes or undercounted total outcomes. Use the reasonableness check: can something happen more than 'definitely'?"
+    },
+    {
+      "misconception": "Forgetting to sort the data before finding the median.",
+      "why_it_happens": "Students try to find the middle number from the data in the order it was given, which only works if the data happens to already be sorted.",
+      "how_to_address": "Make sorting the FIRST step every time. Write it as a rule: Step 1 — sort from least to greatest. Step 2 — find the middle position. Step 3 — identify the median value."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "A standard die has faces numbered 1 through 6. What is the probability of rolling an even number?",
+      "hints": [
+        "First, list all the even numbers on a die: which numbers from 1 to 6 are even?",
+        "The even numbers are 2, 4, and 6 — that's 3 favorable outcomes. The total number of possible outcomes is 6. Set up the fraction.",
+        "Probability = 3/6. Can you simplify this fraction?"
+      ],
+      "answer": "1/2 or 50%",
+      "explanation": "Even numbers on a die: 2, 4, 6 (3 outcomes). Total outcomes: 6. Probability = 3/6 = 1/2 = 50%."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Find the mean and median of this data set: 14, 8, 22, 8, 18.",
+      "hints": [
+        "For the mean, add all the values and divide by how many there are (5 numbers).",
+        "For the median, sort the data first: 8, 8, 14, 18, 22. Which number is in the middle?"
+      ],
+      "answer": "Mean = 14, Median = 14",
+      "explanation": "Mean: (14 + 8 + 22 + 8 + 18) ÷ 5 = 70 ÷ 5 = 14. Sorted data: 8, 8, 14, 18, 22. The middle (3rd) value is 14, so the median is also 14."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A jar has 6 red, 4 yellow, and 2 purple gumballs. If you pick one without looking, what is the probability of NOT picking a red one?",
+      "hints": [
+        "Find the total number of gumballs, then count how many are NOT red. Alternatively, you can find P(red) and subtract from 1."
+      ],
+      "answer": "1/2 or 50%",
+      "explanation": "Total gumballs: 6 + 4 + 2 = 12. Non-red gumballs: 4 + 2 = 6. Probability of not red = 6/12 = 1/2 = 50%."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "The ages of 6 students are: 11, 12, 11, 13, 12, 11. Find the mean, median, mode, and range.",
+      "hints": [],
+      "answer": "Mean ≈ 11.67, Median = 11.5, Mode = 11, Range = 2",
+      "explanation": "Sorted: 11, 11, 11, 12, 12, 13. Mean: (11+11+11+12+12+13) ÷ 6 = 70 ÷ 6 ≈ 11.67. Median: average of 3rd and 4th values = (11+12) ÷ 2 = 11.5. Mode: 11 (appears 3 times). Range: 13 − 11 = 2."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Two coins are flipped at the same time. What is the probability that both land on heads?",
+      "hints": [],
+      "answer": "1/4 or 25%",
+      "explanation": "List all possible outcomes: HH, HT, TH, TT — that's 4 total outcomes. Only 1 outcome is both heads (HH). Probability = 1/4 = 25%."
+    }
+  ],
+  "real_world_connection": "Probability and statistics are everywhere! Weather forecasts use probability — when they say '70% chance of rain,' that's probability in action. Sports stats like batting averages, points per game, and shooting percentages are all means. When you hear that the median household income is a certain amount, that's the middle value that gives a better picture than the average when some values are extremely high or low. Understanding these concepts helps you think critically about information you see in the news, in sports, and in everyday decisions.",
+  "transition_cues": [
+    "Can you explain the difference between mean and median in your own words? When might one be more useful than the other?",
+    "Quick check: if I flip a coin, what is the probability of getting tails? What about the probability of NOT getting tails?",
+    "How confident are you about finding the median when there's an even number of data points?",
+    "You're doing really well! Ready to try some problems where you need to interpret data from charts and graphs?"
+  ]
+}

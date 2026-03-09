@@ -1,0 +1,114 @@
+{
+  "skill_id": "rc_inference",
+  "skill_name": "Inference",
+  "concept_explanation": "An inference is a logical conclusion you draw from clues in the text combined with what you already know — even though the author doesn't say it directly. Think of it like reading between the lines. If a story says 'Jake grabbed his umbrella and raincoat before heading out the door,' the author never says it's raining, but you can infer that it is (or that Jake thinks it will). Making inferences is like being a detective who pieces together clues to figure out things the author left for you to discover on your own. The key rule is that your inference must be supported by evidence in the text — it's not just a random guess.",
+  "worked_examples": [
+    {
+      "problem": "Read the following passage and answer the inference question:\n\n\"Lena stared at the clock on the wall. 2:55 PM. She tapped her pencil against the desk and shifted in her seat. Her backpack was already zipped and sitting on the floor by her feet. When the minute hand finally moved to the twelve, she was the first one out the door.\"\n\nWhat can you infer about how Lena feels?",
+      "thinking_out_loud": [
+        "The passage doesn't directly say how Lena feels, so I need to look at the clues the author gives me.",
+        "She's 'staring at the clock' and it's 2:55 — that sounds like she's watching the time closely, waiting for something.",
+        "She's tapping her pencil and shifting in her seat — those are signs of restlessness or impatience.",
+        "Her backpack is 'already zipped and sitting on the floor' — she's packed up early, ready to go.",
+        "And she's 'the first one out the door' when the clock hits 3:00 — she's been counting down to the end of something, probably school.",
+        "Putting these clues together, I can infer that Lena is eager and impatient for the school day to end."
+      ],
+      "solution": "Based on the clues in the passage — watching the clock, tapping her pencil, shifting in her seat, having her backpack already packed, and being the first out the door — we can infer that Lena is restless and eager for the school day to end. The author never directly states her feelings, but every detail points to someone who is counting down the minutes."
+    },
+    {
+      "problem": "Read the following passage and answer the inference question:\n\n\"The shelves in Mr. Kim's shop were nearly empty. Only a few cans of soup and a bag of rice remained where there had once been rows of neatly stacked groceries. The windows were boarded up on one side, and a hand-painted sign on the door read 'Everything Must Go — Final Week.' Mr. Kim carefully swept the floor, pausing to straighten a faded photograph on the wall behind the register.\"\n\nWhat can you infer is happening to Mr. Kim's shop?",
+      "thinking_out_loud": [
+        "Let me gather the clues: the shelves are 'nearly empty,' the sign says 'Everything Must Go — Final Week,' and the windows are boarded up on one side.",
+        "The 'Final Week' sign is a big clue — that tells me the shop is closing for good. It's not just running low on inventory temporarily.",
+        "The fact that Mr. Kim is 'carefully sweeping the floor' and 'straightening a faded photograph' suggests he cares about this place. He's not rushing out — he's taking his time with it.",
+        "I can infer that Mr. Kim's shop is closing permanently, and he has an emotional attachment to it. The careful sweeping and the photograph suggest this place means a lot to him."
+      ],
+      "solution": "We can infer that Mr. Kim's shop is closing permanently. The nearly empty shelves, the 'Everything Must Go — Final Week' sign, and the boarded-up windows all point to a business shutting down. We can also infer that this is emotional for Mr. Kim — the way he 'carefully swept the floor' and paused to straighten 'a faded photograph' suggests he has a deep personal connection to the shop and is saying goodbye to something meaningful."
+    },
+    {
+      "problem": "Read the following passage and answer the inference question:\n\n\"The hikers had been walking since dawn, and the trail had grown steeper with every mile. Sweat dripped down their faces as the midday sun beat down through the thinning canopy. Their water bottles were nearly empty. 'How much farther?' gasped Tomás. 'We're almost there,' said the guide, though her eyes scanned the trail ahead with uncertainty.\"\n\nWhat can you infer about the guide's confidence?",
+      "thinking_out_loud": [
+        "The guide says 'We're almost there,' which sounds reassuring on the surface. But the passage adds that 'her eyes scanned the trail ahead with uncertainty.'",
+        "There's a contrast between her words and her actions. She's telling the group they're almost there, but she doesn't look sure about it.",
+        "Why would the author include that detail about her eyes scanning with uncertainty? It's a clue that the guide may not be as confident about the route as she's trying to appear.",
+        "I can also factor in that the water is running low and it's gotten very hot — so there's pressure on the guide to keep the group's spirits up, even if she's unsure."
+      ],
+      "solution": "We can infer that the guide is not as confident as she appears. Although she tells Tomás 'We're almost there,' the fact that 'her eyes scanned the trail ahead with uncertainty' suggests she may not know exactly how far they have to go. The contrast between her reassuring words and her uncertain body language is the key clue — she may be saying what the hikers need to hear rather than what she actually believes."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Confusing inference with information stated directly in the text",
+      "why_it_happens": "Students sometimes choose an answer that is explicitly stated in the passage and call it an inference. If the text says 'Lena was nervous,' that's a stated fact, not an inference. An inference requires you to figure out something the author implies but doesn't say outright.",
+      "how_to_address": "Before selecting your answer, ask: 'Does the passage say this word for word, or did I figure it out from clues?' If you can point to an exact sentence that states it, it's not an inference — it's a stated detail. Inferences require reading between the lines."
+    },
+    {
+      "misconception": "Making wild guesses that aren't supported by the text",
+      "why_it_happens": "Some students think 'inference' means 'guess anything you want.' They make up creative interpretations that go way beyond what the text supports — for example, inferring that Lena hates school and wants to drop out, when the passage only shows she's eager to leave on that particular day.",
+      "how_to_address": "A good inference is supported by specific clues in the text. After making an inference, test it: 'Can I point to at least two details in the passage that support this conclusion?' If you can't, your inference may be a stretch. Stay close to the evidence."
+    },
+    {
+      "misconception": "Only looking at one clue instead of combining multiple clues",
+      "why_it_happens": "Students sometimes latch onto a single detail and build their inference from that alone, missing other clues that could refine or change their conclusion.",
+      "how_to_address": "Strong inferences come from gathering multiple clues and combining them. Read the whole passage, collect all the relevant hints, and then ask yourself what conclusion these clues point to together. One clue might mislead you, but several clues together paint a reliable picture."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Read this passage:\n\n\"Every morning, Grandpa sat in the same chair by the window, holding a cup of coffee that had long gone cold. He would stare out at the garden — at the rose bushes that Grandma had planted years ago. Sometimes he'd reach over and touch the empty chair beside him.\"\n\nWhat can you infer about Grandpa's emotional state?",
+      "hints": [
+        "Look at the details: the cold coffee, staring at Grandma's rose bushes, touching the empty chair. What might each of these clues suggest about how Grandpa is feeling?",
+        "The roses were planted by Grandma, and the chair beside him is empty. What does the word 'empty' suggest when you combine it with the Grandma detail?",
+        "Think about what it means when someone repeatedly visits the same spot and looks at things connected to another person who isn't there. What emotion fits all of these clues together?"
+      ],
+      "answer": "We can infer that Grandpa is grieving and misses his wife (Grandma). The cold coffee suggests he's lost in thought, not paying attention to daily routines. Staring at the rose bushes 'Grandma had planted' connects his focus to her memory. Touching 'the empty chair beside him' is the strongest clue — the chair is empty because she's no longer there to sit in it.",
+      "explanation": "This inference requires combining multiple clues: the cold coffee (distraction/sadness), Grandma's roses (connection to someone absent), and the empty chair (loss). No single clue tells the whole story, but together they paint a clear picture of grief and longing."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Read this passage:\n\n\"Sophie crossed her arms and looked away when her mother asked about the math test. 'It was fine,' she muttered, shoving the paper deep into her backpack. Later that evening, her mother found Sophie at the kitchen table with her textbook open, working through practice problems she usually skipped.\"\n\nWhat can you infer about how Sophie did on her math test?",
+      "hints": [
+        "Pay attention to Sophie's body language and tone. What do 'crossed arms,' 'looked away,' and 'muttered' usually suggest about how someone is feeling?",
+        "Why would Sophie shove the paper 'deep into her backpack' instead of showing it to her mom? What might she be trying to hide?"
+      ],
+      "answer": "We can infer that Sophie did poorly on her math test. She crosses her arms, looks away, and mutters 'it was fine' — all signs that she's not being fully honest and is uncomfortable discussing it. She shoves the paper deep into her backpack as if hiding it. The strongest clue is that she later works on 'practice problems she usually skipped,' suggesting she realizes she needs to improve.",
+      "explanation": "The author never says Sophie failed or did badly, but every clue — the defensive body language, the vague answer, the hidden paper, and the extra studying — points to a disappointing result. Strong inferences connect multiple behavioral clues to draw a conclusion the author left unstated."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Read this passage:\n\n\"The line stretched around the block. People had brought folding chairs, blankets, and even small tents. Some had thermoses of hot chocolate, and others were reading books to pass the time. A man near the front of the line had been there since 4 AM. Inside the store, employees were stacking boxes and hanging a banner that read 'Grand Opening.'\"\n\nWhat can you infer about the store that is opening?",
+      "hints": [
+        "Think about what would make people willing to wait in line for hours, some arriving at 4 AM with camping supplies. What does this level of dedication suggest about the store?"
+      ],
+      "answer": "We can infer that the store is very popular or highly anticipated. The long line stretching 'around the block,' the fact that people brought camping supplies and folding chairs, and someone arriving at 4 AM all suggest that this store is something people are extremely excited about. This level of effort to be among the first customers indicates the store likely sells something people value highly.",
+      "explanation": "The extreme lengths people go to — camping overnight, bringing supplies for a long wait — are the clues that tell us this isn't an ordinary store opening. You combine the evidence of the line's length, the wait times, and the preparation to infer that the store is generating a lot of excitement."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Read this passage:\n\n\"Dr. Patel closed the thick folder and removed her glasses, rubbing her tired eyes. The clock on the wall read 11:47 PM. Empty coffee cups lined the edge of her desk, and sticky notes covered nearly every inch of her computer monitor. She picked up the phone and dialed her colleague. 'I think I found something,' she said, her voice quiet but shaking with excitement.\"\n\nWhat can you infer about what Dr. Patel has been doing and how she feels about what she found?",
+      "hints": [],
+      "answer": "We can infer that Dr. Patel has been working late into the night on intensive research, as shown by the late hour (11:47 PM), the multiple empty coffee cups, the thick folder, and the sticky notes covering her monitor. We can also infer that she has made an important or exciting discovery — her voice is 'quiet but shaking with excitement' and she immediately calls a colleague to share it, suggesting it's significant enough to warrant a late-night phone call.",
+      "explanation": "The physical details (late hour, coffee cups, thick folder, sticky notes) establish that she's been working intensely for a long time. The combination of calling a colleague at nearly midnight and speaking with a voice 'shaking with excitement' tells us her discovery is important. These inferences stay grounded in text evidence while reading between the lines."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Read this passage:\n\n\"Marcus set his tray down across from the new student, who was sitting alone. 'I'm Marcus,' he said, pulling out a chair. The new student looked up, surprised, then slowly smiled. 'I'm Aiden,' he said. Within minutes they discovered they both played soccer and loved graphic novels. By the end of lunch, Marcus was drawing Aiden a map of the school on a napkin, marking the best water fountain and the shortcut to the gym.\"\n\nWhat can you infer about Marcus's character?",
+      "hints": [],
+      "answer": "We can infer that Marcus is kind, welcoming, and socially confident. He approaches a new student who is 'sitting alone,' which shows empathy and friendliness — many students would avoid someone they don't know. The fact that Aiden looks 'surprised' suggests that Marcus's gesture was unexpected, reinforcing that not everyone would have done this. Marcus also takes the time to draw a map of the school, showing he genuinely wants to help Aiden feel comfortable, not just make brief small talk.",
+      "explanation": "The inference about Marcus's character comes from his actions: choosing to sit with someone alone, introducing himself, finding common interests, and going the extra mile with the hand-drawn map. Aiden's surprise also tells us something — it confirms that Marcus's behavior stands out as especially kind."
+    }
+  ],
+  "real_world_connection": "You actually make inferences all the time without realizing it. If you see a friend with red eyes who's been quiet all day, you infer something is wrong — even though they haven't told you. When you watch a movie and pick up on clues about what's going to happen next, that's inference. When you read a text message and figure out someone's mood from their word choice, that's inference too. This skill helps you understand people, stories, news articles, and even conversations more deeply. It's not just for reading comprehension tests — it's for understanding the world around you.",
+  "transition_cues": [
+    "In your own words, what's the difference between something the author states directly and something you have to infer?",
+    "Can you think of a time you made an inference in real life — where you figured something out without being told directly?",
+    "What's the difference between a strong inference and a wild guess? How do you know you're staying close to the text?",
+    "Before we move forward, tell me: when you make an inference, how many clues from the text should you look for?"
+  ]
+}

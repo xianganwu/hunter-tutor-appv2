@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "passage_id": "poetry_04",
+    "title": "The Map Maker's Daughter",
+    "genre": "poetry",
+    "difficulty_level": 4,
+    "word_count": 310,
+    "tagged_skills": ["rc_main_idea", "rc_figurative_language", "rc_tone_mood", "rc_inference", "rc_author_purpose", "rc_vocab_context", "rc_passage_structure", "rc_drawing_conclusions"],
+    "source_description": "original"
+  },
+  "pre_reading_context": "This narrative poem tells the story of a girl whose father makes maps for a living. As you read, consider how the poem uses the idea of maps as a metaphor for something larger about growing up and understanding the world.",
+  "passage_text": "My father draws the world for work—\nthe rivers, roads, and ridges,\nthe tiny squares for cities\nand the arching lines for bridges.\n\nHe bends above his drafting desk\nwith rulers, pens, and light,\nand shrinks the whole enormous earth\nto something flat and right.\n\nI used to think his maps were true,\nthat borders really ran\nin thick black ink across the hills\nexactly as he'd plan.\n\nI thought the oceans ended\nwhere the blue gave way to white,\nthat countries were the colors\nhe assigned them: red, green, bright.\n\nBut then I flew for the first time—\na window seat, wings wide—\nand saw the earth refuse to match\nthe maps he drew inside.\n\nThe rivers didn't stay in lines.\nThey wandered, split, and braided.\nThe forests bled into the fields.\nNo border stood. All faded.\n\nThe cities weren't neat squares at all\nbut sprawling, messy stars\nthat pulsed with light as evening fell\nlike slow-healing scars.\n\nI looked at my father differently\nwhen I came home that night.\nHis maps weren't lies, I understood—\nthey were a certain kind of sight.\n\nA way to hold what can't be held,\nto frame the infinite,\nto say: here is the world, my child,\nthe parts that I see fit.\n\nBut now I know the world spills out\nbeyond the edges drawn.\nThe real map is the walking kind—\nyou write it moving on.\n\nAnd every step I take is ink.\nAnd every choice, a line.\nMy father maps the world for work.\nI'll map it, step by step, with mine.\n\nHe'll keep his rulers, pens, and light.\nI'll carry questions, shoes, and doubt—\nand all the unnamed places\nthat his maps have left out.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the central theme of this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "Maps are inaccurate and should not be trusted." },
+        { "letter": "B", "text": "Flying on airplanes is the best way to learn geography." },
+        { "letter": "C", "text": "Growing up means developing your own understanding of the world beyond what others teach you." },
+        { "letter": "D", "text": "Fathers and daughters always disagree about important things." },
+        { "letter": "E", "text": "Cartography is a dying profession." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The poem traces the speaker's journey from accepting her father's maps as complete truth to realizing the world is more complex than any map can capture. She decides to create her own understanding through experience. This represents the universal process of growing up and forming independent perspectives.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker explicitly says the maps 'weren't lies' but 'a certain kind of sight.' The poem respects maps while acknowledging their limitations, not dismissing them entirely." },
+        { "letter": "B", "explanation": "The airplane experience is a catalyst for the speaker's realization, but the poem's theme is about intellectual and emotional growth, not travel methods." },
+        { "letter": "D", "explanation": "The poem shows no conflict or disagreement between father and daughter. The speaker grows beyond her father's perspective with understanding, not opposition." },
+        { "letter": "E", "explanation": "The poem uses mapmaking as a metaphor for how we understand the world. It makes no claims about the cartography profession's future." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "In the line 'cities weren't neat squares at all / but sprawling, messy stars / that pulsed with light as evening fell / like slow-healing scars,' the simile comparing cities to 'slow-healing scars' suggests that:",
+      "answer_choices": [
+        { "letter": "A", "text": "Cities are ugly and harmful to the environment." },
+        { "letter": "B", "text": "The speaker was injured during the flight." },
+        { "letter": "C", "text": "Cities should be torn down and rebuilt." },
+        { "letter": "D", "text": "Cities have a raw, complicated beauty that shows marks of growth and change over time." },
+        { "letter": "E", "text": "The lights of cities hurt the speaker's eyes." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "Scars are marks left by experience and healing—they tell a story. Comparing city lights to 'slow-healing scars' suggests cities are complex, imperfect, and shaped by time. They pulse with life but also carry the evidence of their own history, giving them a complicated beauty.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While scars might suggest damage, the cities are described as 'pulsing with light,' which conveys life and energy. The comparison is about complexity and layered history, not condemnation." },
+        { "letter": "B", "explanation": "This takes the simile literally. 'Scars' is used figuratively to describe how cities look from above, not to describe a physical injury." },
+        { "letter": "C", "explanation": "The poem does not advocate for destroying cities. The simile is about how cities appear from the air—complex and marked by time—not about urban planning." },
+        { "letter": "E", "explanation": "The comparison to scars is about appearance and metaphorical meaning, not about physical discomfort from brightness." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "How is this poem structured, and how does the structure support the meaning?",
+      "answer_choices": [
+        { "letter": "A", "text": "It is arranged randomly with no particular order." },
+        { "letter": "B", "text": "It follows a chronological journey from childhood belief through a turning point to mature understanding." },
+        { "letter": "C", "text": "It repeats the same idea in every stanza with no progression." },
+        { "letter": "D", "text": "It alternates between the father's perspective and the daughter's perspective in every other stanza." },
+        { "letter": "E", "text": "It starts with the present and moves backward in time to the past." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem moves chronologically: stanzas 1-4 show childhood trust in the father's maps, stanzas 5-7 describe the turning point (the airplane revelation), and stanzas 8-12 show the speaker's mature, independent understanding. This structure mirrors the process of growing up.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The poem has a clear progression from innocence to experience. Each stanza builds on the previous one, showing deliberate structural planning." },
+        { "letter": "C", "explanation": "The poem's ideas evolve significantly. Early stanzas show trust in maps; later stanzas question and transcend them. There is clear development." },
+        { "letter": "D", "explanation": "The poem is entirely from the daughter's perspective. While the father is discussed, we never hear his thoughts or voice directly." },
+        { "letter": "E", "explanation": "The poem moves forward in time, from childhood memories to a present-day realization, not backward." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the speaker mean by 'His maps weren't lies, I understood— / they were a certain kind of sight'?",
+      "answer_choices": [
+        { "letter": "A", "text": "The father had excellent eyesight for detailed work." },
+        { "letter": "B", "text": "Maps represent one valid but limited way of understanding the world." },
+        { "letter": "C", "text": "The father deliberately deceived people with his maps." },
+        { "letter": "D", "text": "Maps are only useful for people who can see well." },
+        { "letter": "E", "text": "The father's maps were photographically accurate." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The speaker realizes that maps are not false, but they are one perspective—'a certain kind of sight.' They organize and simplify the world in a useful way, but they cannot capture the world's full complexity. This shows the speaker's mature, nuanced understanding.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "'Sight' here is used metaphorically to mean perspective or way of seeing, not literal eyesight or vision quality." },
+        { "letter": "C", "explanation": "The speaker explicitly says the maps 'weren't lies.' The father was offering his honest interpretation of the world, not deceiving anyone." },
+        { "letter": "D", "explanation": "This misreads 'sight' as literal vision. The poem is discussing ways of understanding, not visual ability." },
+        { "letter": "E", "explanation": "The poem's central realization is that maps simplify reality. The speaker discovered from the plane that the world doesn't match the maps exactly, so they cannot be photographically accurate." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What is the tone of the final two stanzas?",
+      "answer_choices": [
+        { "letter": "A", "text": "Bitter and resentful toward the father" },
+        { "letter": "B", "text": "Confused and uncertain about the future" },
+        { "letter": "C", "text": "Determined and self-assured, while still respectful of the father" },
+        { "letter": "D", "text": "Frightened about leaving home" },
+        { "letter": "E", "text": "Indifferent and emotionally detached" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker declares she will 'map it, step by step, with mine,' showing determination. She carries 'questions, shoes, and doubt,' showing self-awareness. She also respects her father ('He'll keep his rulers, pens, and light'), indicating no resentment—just confident independence.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker shows no bitterness. She acknowledges her father's tools with respect and simply chooses different ones for her own journey." },
+        { "letter": "B", "explanation": "While 'doubt' is mentioned, it is listed alongside 'questions' and 'shoes' as tools for exploration, not as paralyzing uncertainty. The speaker is purposeful." },
+        { "letter": "D", "explanation": "The speaker embraces the unknown with curiosity ('all the unnamed places'), not with fear. The tone is forward-looking and brave." },
+        { "letter": "E", "explanation": "The speaker cares deeply about both her father's work and her own path. The emotional engagement throughout the poem contradicts indifference." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What can you infer about the relationship between the speaker and her father?",
+      "answer_choices": [
+        { "letter": "A", "text": "She loves and respects him but has outgrown accepting his perspective as the only truth." },
+        { "letter": "B", "text": "They are estranged and rarely speak to each other." },
+        { "letter": "C", "text": "She wants to follow in his footsteps and become a cartographer." },
+        { "letter": "D", "text": "He pressures her to take over his mapmaking business." },
+        { "letter": "E", "text": "She thinks he is dishonest in his work." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The speaker describes her father's work with admiration and detail, showing love and respect. But she has also developed her own worldview that goes beyond his maps. She doesn't reject him—she grows beyond a single perspective, which is a natural and healthy part of maturing.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The speaker observes her father closely, describes his work with care, and reflects on their relationship. This shows closeness, not estrangement." },
+        { "letter": "C", "explanation": "The speaker explicitly chooses a different path: 'I'll carry questions, shoes, and doubt.' She is charting her own course, not following his." },
+        { "letter": "D", "explanation": "There is no mention of business pressure or expectations. The father is simply described doing his work; no conflict about the speaker's future career is present." },
+        { "letter": "E", "explanation": "The speaker says 'His maps weren't lies,' directly clearing him of dishonesty. She understands maps as one valid perspective." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "In the line 'And every step I take is ink. / And every choice, a line,' what is the extended metaphor the speaker creates?",
+      "answer_choices": [
+        { "letter": "A", "text": "Writing a book about her travels" },
+        { "letter": "B", "text": "Learning to use her father's drawing tools" },
+        { "letter": "C", "text": "Walking along a line painted on the ground" },
+        { "letter": "D", "text": "Leaving footprints in ink on the floor" },
+        { "letter": "E", "text": "Drawing her own map of life through her actions and decisions" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The speaker extends the map metaphor: just as her father uses ink and lines to draw maps, she uses her steps (experiences) and choices (decisions) to create her own personal map of life. Her lived experience becomes her form of cartography.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While 'ink' and 'line' could relate to writing, the established metaphor in the poem is about maps, not books. The speaker is mapping her life, not authoring a travel memoir." },
+        { "letter": "B", "explanation": "The speaker distinguishes her tools from her father's. She carries 'questions, shoes, and doubt,' not 'rulers, pens, and light.' She's creating her own method." },
+        { "letter": "C", "explanation": "This reads the metaphor too literally. The 'line' refers to the marks on a map that represent paths and boundaries, not a physical line on the ground." },
+        { "letter": "D", "explanation": "This is an overly literal interpretation. 'Ink' is used figuratively to compare the speaker's actions to the ink her father uses in mapmaking." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What is the poet's purpose in using the airplane scene as a turning point?",
+      "answer_choices": [
+        { "letter": "A", "text": "To promote air travel as a means of education" },
+        { "letter": "B", "text": "To show how a literal shift in perspective can trigger a deeper shift in understanding" },
+        { "letter": "C", "text": "To demonstrate that maps are useless for navigation" },
+        { "letter": "D", "text": "To describe the speaker's fear of flying" },
+        { "letter": "E", "text": "To explain the science of how airplanes work" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The airplane provides a literal new perspective—seeing the earth from above. This physical change in viewpoint triggers an intellectual change: the speaker realizes that the neat, ordered world of maps doesn't match the complex, messy reality below. The poet uses a concrete experience to embody an abstract truth about growing up.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The airplane is a narrative device for the speaker's realization, not an endorsement of commercial aviation as educational." },
+        { "letter": "C", "explanation": "The speaker concludes that maps are 'a certain kind of sight,' valuable but limited. They are not dismissed as useless." },
+        { "letter": "D", "explanation": "There is no fear in the airplane scene. The speaker is observant and curious, looking out the window and processing what she sees." },
+        { "letter": "E", "explanation": "The poem is not interested in the mechanics of flight. The airplane is purely a vehicle for the speaker's moment of realization." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What conclusion can be drawn about the speaker's attitude toward uncertainty?",
+      "answer_choices": [
+        { "letter": "A", "text": "She avoids it completely and prefers clear answers." },
+        { "letter": "B", "text": "She is paralyzed by doubt and cannot make decisions." },
+        { "letter": "C", "text": "She embraces uncertainty as a necessary part of finding her own path." },
+        { "letter": "D", "text": "She pretends uncertainty does not exist." },
+        { "letter": "E", "text": "She believes only her father can resolve her doubts." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker deliberately chooses to carry 'questions, shoes, and doubt' as her tools, and seeks out 'all the unnamed places that his maps have left out.' This shows she views uncertainty not as a problem but as an essential companion for genuine exploration and growth.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The speaker moves away from the certainty of neat maps toward the messy, undefined world. She is drawn to complexity, not clear answers." },
+        { "letter": "B", "explanation": "The speaker actively chooses her path ('I'll map it, step by step, with mine'). She carries doubt but is not paralyzed by it—she walks forward." },
+        { "letter": "D", "explanation": "The speaker names 'doubt' explicitly as something she carries. She acknowledges it openly rather than pretending it doesn't exist." },
+        { "letter": "E", "explanation": "The entire poem is about the speaker developing her own way of seeing, independent of her father. She does not look to him to resolve her questions." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 10,
+      "question_text": "The line 'The rivers didn't stay in lines. / They wandered, split, and braided' serves which purpose in the poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "It provides factual information about river geography." },
+        { "letter": "B", "text": "It introduces the father's frustration with drawing rivers accurately." },
+        { "letter": "C", "text": "It illustrates the gap between the simplified map and the complex reality, reinforcing the poem's central contrast." },
+        { "letter": "D", "text": "It shows that the speaker finds rivers frightening." },
+        { "letter": "E", "text": "It describes what happens to rivers during a flood." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "This line is part of the airplane revelation where the speaker sees that reality is far more complex than her father's orderly maps. Rivers 'wandering, splitting, and braiding' embodies the poem's central idea: the real world resists being reduced to neat lines and categories.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While the description is geographically accurate, its purpose in the poem is symbolic—to show the gap between representation and reality, not to teach geography." },
+        { "letter": "B", "explanation": "The poem does not describe the father's feelings at this point. This is the speaker's observation from the airplane, and the father is not present." },
+        { "letter": "D", "explanation": "The speaker is fascinated, not frightened. The tone is one of discovery and awe, not fear." },
+        { "letter": "E", "explanation": "The rivers' behavior is their natural state, not a flood event. The point is that rivers are inherently complex and resist straight lines." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    }
+  ]
+}

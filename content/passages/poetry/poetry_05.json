@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "passage_id": "poetry_05",
+    "title": "Two Windows on the Same Street",
+    "genre": "poetry",
+    "difficulty_level": 5,
+    "word_count": 365,
+    "tagged_skills": ["rc_main_idea", "rc_figurative_language", "rc_tone_mood", "rc_inference", "rc_author_purpose", "rc_vocab_context", "rc_passage_structure", "rc_comparing_viewpoints", "rc_drawing_conclusions"],
+    "source_description": "original"
+  },
+  "pre_reading_context": "This poem presents two different speakers looking out at the same street from their apartment windows. As you read, pay attention to how each speaker sees the same scene differently and what this reveals about perspective, attitude, and the stories we tell ourselves about the world.",
+  "passage_text": "I.\n\nFrom my window, the street is a river\nthat carries the day along.\nThe woman who sells mangoes on the corner\nis singing her prices like a song.\n\nThe boy on the stoop folds paper cranes\nfrom yesterday's broken news.\nHis hands make beauty out of ruin—\nan art he didn't choose.\n\nThe fire hydrant leaks its silver thread\nacross the August heat.\nThe children run through it like commas\nin a sentence called the street.\n\nI watch the pigeons strut and bow\nlike diplomats at court,\nnegotiating bread crumbs\nwith the seriousness of sport.\n\nEverything here is alive and speaking\nif you learn to read the signs.\nThe city writes its poetry\nin crosswalks, cracks, and lines.\n\nII.\n\nFrom my window, the street is a wound\nthat never fully heals.\nThe woman on the corner shouts all day—\nI've forgotten how silence feels.\n\nThat boy just sits there, folding paper,\ngoing nowhere fast.\nEvery crane he makes will end up\nin the same trash as the last.\n\nThe hydrant's broken. No one fixes it.\nThe water runs to waste.\nThe children shriek and soak the sidewalk.\nEverything's displaced.\n\nThe pigeons fight and scratch for crumbs,\na mess of wings and greed.\nThey leave their droppings everywhere—\nan infestation, not a breed.\n\nNothing here is ever quiet,\nnothing clean or still.\nThe city doesn't write—it shouts,\nand shouts against my will.\n\nIII.\n\nTwo windows on the same brick wall.\nTwo frames around one view.\nThe street between us hasn't changed.\nWhat changed is what we drew.\n\nOne sees a river, one a wound.\nOne hears a song, one hears a shout.\nThe world is not what's out the window—\nit's what we bring, looking out.\n\nAnd maybe both of us are right.\nAnd maybe both are wrong.\nThe street keeps being just a street,\nindifferent to our song.\n\nBut I would rather live inside\nthe version where the boy\nis building something beautiful—\nwhere ruin still holds joy.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the central theme of this poem?",
+      "answer_choices": [
+        { "letter": "A", "text": "City streets are dangerous and should be avoided." },
+        { "letter": "B", "text": "Living in an apartment building is better than living in a house." },
+        { "letter": "C", "text": "The way we perceive the world says more about us than about the world itself." },
+        { "letter": "D", "text": "One speaker is correct about the street and the other is wrong." },
+        { "letter": "E", "text": "Children should not play near fire hydrants." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The poem's third section states explicitly: 'The world is not what's out the window— / it's what we bring, looking out.' Both speakers see the same street but interpret it entirely differently, demonstrating that perception is shaped by the observer's mindset, not just by external reality.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Only the second speaker sees the street negatively. The first speaker and the poem's conclusion do not support the idea that streets are dangerous." },
+        { "letter": "B", "explanation": "The poem is about perspective and perception, not about comparing types of housing. Both speakers live in apartments, and the setting serves the theme." },
+        { "letter": "D", "explanation": "The third section says 'maybe both of us are right. And maybe both are wrong.' The poem deliberately avoids declaring one view correct." },
+        { "letter": "E", "explanation": "The children playing at the hydrant is a detail both speakers interpret differently. The poem makes no safety argument about hydrants." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "How does the first speaker's description of children running through the hydrant water differ from the second speaker's description?",
+      "answer_choices": [
+        { "letter": "A", "text": "The first speaker ignores the children while the second speaker describes them in detail." },
+        { "letter": "B", "text": "The first speaker sees them as punctuation in the street's living sentence, while the second speaker sees them as disruptive and messy." },
+        { "letter": "C", "text": "Both speakers describe the children in exactly the same way." },
+        { "letter": "D", "text": "The first speaker is afraid of the children while the second speaker finds them amusing." },
+        { "letter": "E", "text": "The first speaker thinks the children are too old to play in water, while the second speaker thinks they are too young." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The first speaker uses a literary metaphor, comparing the children to 'commas in a sentence called the street,' integrating them beautifully into the scene's larger meaning. The second speaker says 'The children shriek and soak the sidewalk. Everything's displaced,' casting them as sources of chaos and disorder.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Both speakers describe the children. The first speaker compares them to commas, and the second describes them shrieking and soaking the sidewalk." },
+        { "letter": "C", "explanation": "The descriptions are strikingly different—one is artful and positive, the other is annoyed and negative. This contrast is central to the poem." },
+        { "letter": "D", "explanation": "Neither speaker expresses fear or amusement about the children. The first sees beauty; the second sees nuisance." },
+        { "letter": "E", "explanation": "Neither speaker comments on the children's age. Their different reactions are about attitude and perspective, not about the children's ages." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 3,
+      "question_text": "In the first speaker's section, the simile 'The children run through it like commas / in a sentence called the street' achieves which effect?",
+      "answer_choices": [
+        { "letter": "A", "text": "It suggests the children are unimportant and easily overlooked." },
+        { "letter": "B", "text": "It shows the speaker is an English teacher." },
+        { "letter": "C", "text": "It implies the children should stop running." },
+        { "letter": "D", "text": "It frames the entire street as a living, readable text where every element plays a meaningful role." },
+        { "letter": "E", "text": "It compares the street to a library." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "By calling the children 'commas' in a 'sentence,' the speaker extends the metaphor of the street as a text that can be read. Commas create rhythm and pauses—they give the sentence its flow. This frames every element of the street scene as contributing to a meaningful, readable whole.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Commas are small but essential to a sentence's meaning and rhythm. Far from being unimportant, they shape how the sentence is read. The comparison emphasizes integration, not insignificance." },
+        { "letter": "B", "explanation": "Using literary language does not reveal the speaker's occupation. The speaker is using figurative language to describe the scene, which any observer could do." },
+        { "letter": "C", "explanation": "The simile celebrates the children's movement as part of the street's vitality. There is no suggestion they should stop." },
+        { "letter": "E", "explanation": "A sentence and a library are different things. The street is compared to a sentence—a living, dynamic unit of meaning—not a static collection of books." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word 'indifferent' mean in the line 'The street keeps being just a street, / indifferent to our song'?",
+      "answer_choices": [
+        { "letter": "A", "text": "Hostile and aggressive toward" },
+        { "letter": "B", "text": "Unconcerned with and unaffected by" },
+        { "letter": "C", "text": "Enthusiastic and supportive of" },
+        { "letter": "D", "text": "Identical and similar to" },
+        { "letter": "E", "text": "Carefully listening to" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "'Indifferent' means having no interest or concern. The street does not care about either speaker's interpretation—it simply exists. This underscores the poem's point that the meaning we find in the world comes from us, not from the world itself.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "'Indifferent' means lacking interest, not showing hostility. The street is neutral, not antagonistic." },
+        { "letter": "C", "explanation": "This is the opposite of 'indifferent.' The street neither supports nor opposes the speakers' views; it simply continues to exist." },
+        { "letter": "D", "explanation": "This confuses 'indifferent' with 'identical.' They are different words with different meanings. 'Indifferent' means unconcerned." },
+        { "letter": "E", "explanation": "'Indifferent' means specifically not paying attention or caring. The street does not listen to or respond to the speakers' perspectives." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the structure of the poem (three numbered sections) support its meaning?",
+      "answer_choices": [
+        { "letter": "A", "text": "It presents two opposing perspectives and then a reflective synthesis that examines what the contrast reveals." },
+        { "letter": "B", "text": "It tells three completely unrelated stories." },
+        { "letter": "C", "text": "It describes morning, afternoon, and evening on the same street." },
+        { "letter": "D", "text": "Each section is written by a different poet." },
+        { "letter": "E", "text": "The three sections represent past, present, and future." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "Section I presents an optimistic view of the street. Section II presents a pessimistic view of the exact same scene. Section III steps back to reflect on both perspectives, exploring what the difference reveals about human perception. This thesis-antithesis-synthesis structure is deliberate and mirrors the poem's theme.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The three sections are deeply connected—they describe the same street, the same details, and build toward a unified reflection. They are not unrelated." },
+        { "letter": "C", "explanation": "Both speakers describe the same moment in time, not different times of day. The hydrant, the boy, the children appear in both sections simultaneously." },
+        { "letter": "D", "explanation": "The poem is a single work with a unified third section that reflects on both viewpoints. The structure is an intentional literary device, not multiple authors." },
+        { "letter": "E", "explanation": "Both Sections I and II are in present tense, describing the same current moment. Section III reflects on the present reality of having two views, not a future event." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "In the second speaker's section, what does the metaphor 'the street is a wound that never fully heals' reveal about this speaker?",
+      "answer_choices": [
+        { "letter": "A", "text": "The speaker has been physically injured on the street." },
+        { "letter": "B", "text": "The speaker sees the street as a source of ongoing pain and discomfort that cannot be resolved." },
+        { "letter": "C", "text": "The speaker is a doctor who understands wounds." },
+        { "letter": "D", "text": "The street has potholes that need repair." },
+        { "letter": "E", "text": "The speaker recently moved to this neighborhood." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Comparing the street to an unhealing wound reveals that the second speaker experiences the street as a persistent source of distress. Unlike the first speaker's 'river' (which flows and brings life), a wound suggests pain, damage, and an inability to recover—reflecting a deeply negative worldview.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The 'wound' is a metaphor for how the speaker perceives the street emotionally, not a reference to a physical injury." },
+        { "letter": "C", "explanation": "Using a wound metaphor does not indicate medical knowledge. It reveals emotional state, not professional background." },
+        { "letter": "D", "explanation": "The metaphor is about the speaker's emotional relationship to the street, not about literal infrastructure problems." },
+        { "letter": "E", "explanation": "Nothing in the poem indicates when either speaker moved to the neighborhood. The metaphor reveals attitude, not duration of residence." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What can you infer about why the poet chose to have both speakers describe the exact same details (the woman, the boy, the hydrant, the pigeons)?",
+      "answer_choices": [
+        { "letter": "A", "text": "The poet ran out of ideas for different details." },
+        { "letter": "B", "text": "The poet wanted to show that the street only has four interesting things." },
+        { "letter": "C", "text": "The poet forgot that the same details were already used." },
+        { "letter": "D", "text": "The poet wanted to make the poem longer by repeating content." },
+        { "letter": "E", "text": "The parallel descriptions make it impossible to blame external reality for the difference, proving the contrast comes from within the observers." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "By holding the external reality constant—same woman, boy, hydrant, pigeons—the poet isolates the variable: the observer's mindset. This structural choice proves the poem's argument that differences in perception come from within the viewer, since the external scene is identical for both.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The repetition is a deliberate, sophisticated literary technique. It would be easy to describe different details; the choice to repeat them is purposeful." },
+        { "letter": "B", "explanation": "A street has countless details. The poet selected these four because they represent different aspects of urban life (commerce, youth, infrastructure, nature) that can be interpreted in contrasting ways." },
+        { "letter": "C", "explanation": "The numbered sections and mirror structure make clear this is intentional. The poem is carefully constructed around the parallel descriptions." },
+        { "letter": "D", "explanation": "The descriptions are not repeated—they are reimagined. Each detail is described with entirely different language and interpretation, which is the poem's key technique." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 8,
+      "question_text": "How does the tone of the poem's third section differ from the first two?",
+      "answer_choices": [
+        { "letter": "A", "text": "It is angrier than both previous sections." },
+        { "letter": "B", "text": "It is more reflective, philosophical, and balanced than either of the individual perspectives." },
+        { "letter": "C", "text": "It is humorous and lighthearted." },
+        { "letter": "D", "text": "It is identical in tone to the first section." },
+        { "letter": "E", "text": "It is more pessimistic than the second section." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The third section steps back from both individual viewpoints and reflects on what the contrast means. It acknowledges that 'maybe both are right' and 'maybe both are wrong,' showing philosophical balance. It then makes a gentle, thoughtful choice rather than a forceful argument, creating a reflective and measured tone.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The third section is calm and contemplative. It shows no anger, instead offering gentle wisdom about perspective." },
+        { "letter": "C", "explanation": "The third section is serious and thoughtful, engaging with deep questions about perception and choice. It is not lighthearted." },
+        { "letter": "D", "explanation": "The first section is enthusiastic and image-rich. The third section is more measured and philosophical, stepping outside the scene to reflect on it." },
+        { "letter": "E", "explanation": "The third section rejects pure pessimism by choosing the 'version where the boy is building something beautiful.' It is more hopeful and nuanced than the second section." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Based on the final stanza, what conclusion can be drawn about the poem's message regarding optimism and pessimism?",
+      "answer_choices": [
+        { "letter": "A", "text": "Optimism is always correct and pessimism is always wrong." },
+        { "letter": "B", "text": "Neither perspective is objectively truer, but choosing to see beauty is a more meaningful way to live." },
+        { "letter": "C", "text": "Pessimism is more realistic and should be preferred." },
+        { "letter": "D", "text": "We should ignore negative things and pretend they don't exist." },
+        { "letter": "E", "text": "It doesn't matter how you see the world because nothing can be changed." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The final stanza says 'I would rather live inside / the version where the boy / is building something beautiful—where ruin still holds joy.' The speaker acknowledges ruin exists but chooses to find joy within it. This is not denial—it is a deliberate, eyes-open choice to emphasize beauty, even while knowing the harder view also has validity.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The poem says 'maybe both of us are right. And maybe both are wrong,' refusing to declare either perspective absolutely correct." },
+        { "letter": "C", "explanation": "The poem gives equal weight to both views and then chooses the optimistic one, not because it is more realistic but because it is more life-affirming." },
+        { "letter": "D", "explanation": "The speaker acknowledges 'ruin' directly in the final stanza. The choice is not to ignore negativity but to find joy alongside it. This is nuanced, not naive." },
+        { "letter": "E", "explanation": "The poem's entire argument is that how you see matters deeply. The speaker makes a conscious choice about perspective, showing it is consequential, not meaningless." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What does the first speaker infer about the boy who folds paper cranes?",
+      "answer_choices": [
+        { "letter": "A", "text": "He is bored and has nothing else to do." },
+        { "letter": "B", "text": "He is studying to become an artist." },
+        { "letter": "C", "text": "He is transforming discarded material into something meaningful, demonstrating creativity born from limited resources." },
+        { "letter": "D", "text": "He is littering the street with paper." },
+        { "letter": "E", "text": "He is waiting for someone to pick him up." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The first speaker says the boy 'folds paper cranes from yesterday's broken news' and 'His hands make beauty out of ruin—an art he didn't choose.' This frames the boy as someone who creates beauty from discarded materials (old newspapers), suggesting creativity and resilience born from circumstances rather than privilege.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The second speaker says the boy is 'going nowhere fast,' but the first speaker sees him as actively creating beauty. This answer reflects the second speaker's view, not the first's." },
+        { "letter": "B", "explanation": "The first speaker says the art is one 'he didn't choose,' implying it comes from necessity or instinct, not formal study or career ambition." },
+        { "letter": "D", "explanation": "This aligns more with the second speaker's negative view ('end up in the same trash'). The first speaker sees the crane-folding as an act of creation, not waste." },
+        { "letter": "E", "explanation": "Nothing in the first speaker's description mentions waiting. The focus is entirely on what the boy creates with his hands." }
+      ],
+      "skill_tested": "rc_inference"
+    }
+  ]
+}

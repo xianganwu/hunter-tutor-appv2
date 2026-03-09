@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "passage_id": "fiction_05",
+    "title": "The Museum of Small Wonders",
+    "genre": "fiction",
+    "difficulty_level": 5,
+    "word_count": 470,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_inference",
+      "rc_vocab_context",
+      "rc_figurative_language",
+      "rc_author_purpose",
+      "rc_tone_mood",
+      "rc_passage_structure",
+      "rc_comparing_viewpoints"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Two cousins with very different personalities spend a rainy afternoon together. Their contrasting ways of seeing the world lead to an unexpected discovery about what it means to pay attention.",
+  "passage_text": "Julian was the kind of person who moved through the world like a current — always in motion, always looking ahead to the next thing. His cousin Meera was the opposite: she could spend twenty minutes examining a single leaf, turning it over in her fingers as though it were a manuscript written in a language only she could decipher.\n\nOn the rainy Saturday they were stuck together at their grandmother's house, Julian had cycled through every possible entertainment within the first hour. He'd checked the kitchen cabinets, flipped through the television channels, and declared the day \"officially pointless\" by eleven o'clock.\n\nMeera, meanwhile, had stationed herself at the dining room window with a magnifying glass she'd found in a drawer. She was studying the raindrops on the glass.\n\n\"You know they're just water, right?\" Julian said, draping himself across the sofa with theatrical boredom.\n\n\"Come look,\" Meera said, without turning around.\n\nJulian sighed loudly — a performance meant for an audience — but eventually wandered over. Through the magnifying glass, the raindrops became something else entirely. Each one was a tiny lens, and through it, the world outside appeared inverted and miniaturized: the oak tree in the yard became a bonsai, the mailbox shrank to the size of a thimble, and the gray sky folded itself into a perfect silver dome no bigger than a marble.\n\n\"It's like a museum,\" Meera said quietly. \"Each drop is its own exhibit.\"\n\nJulian stared. He had seen rain a thousand times, but he had never seen this. Something shifted behind his ribs — not discomfort, exactly, but the unfamiliar sensation of realizing that the world contained layers he had been speeding past his entire life.\n\nFor the next hour, they catalogued their discoveries. Meera produced a notebook and sketched what she saw through each droplet while Julian, who turned out to have a surprisingly precise vocabulary when he slowed down, dictated descriptions: \"This one makes the fence post look like a lighthouse.\" \"This one turns Mrs. Henderson's car into a submarine.\"\n\nThey argued over which droplet offered the best miniature world. Julian favored a large, trembling drop near the corner of the pane that captured the entire street in warped panorama. Meera preferred a small, still drop that held only the oak tree, perfectly clear and perfectly inverted.\n\n\"Yours is showing off,\" Meera said. \"Mine is honest.\"\n\n\"Yours is boring,\" Julian countered. \"Mine has range.\"\n\nNeither of them was wrong, and somehow, knowing that made the afternoon feel larger than either of their perspectives alone. When their grandmother called them for lunch, Julian realized with a start that two hours had passed without him once thinking about what came next.\n\nThe rain continued into the evening, but the day had stopped being pointless a long time ago.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "Which statement best captures the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Rainy days are more interesting than sunny days because they force people to use their imaginations." },
+        { "letter": "B", "text": "When people with different ways of seeing the world collaborate, they can discover things neither would have found alone." },
+        { "letter": "C", "text": "Julian learns that Meera's hobbies are better than his own." },
+        { "letter": "D", "text": "Children should spend less time watching television and more time studying nature." },
+        { "letter": "E", "text": "Magnifying glasses are useful scientific tools that should be kept in every household." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage shows two cousins with contrasting temperaments — Julian who moves quickly and Meera who observes deeply — coming together to discover the miniature worlds inside raindrops. Their different strengths (Meera's patient observation and Julian's vivid vocabulary) combine to create an experience richer than either could have had alone.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the discovery happens on a rainy day, but the passage is about how two different perspectives enrich each other, not about rain being inherently more interesting." },
+        { "letter": "C", "explanation": "This is tempting because Julian does come to appreciate Meera's approach, but the passage shows mutual benefit — Meera also gains from Julian's descriptive skills and enthusiasm. Neither is presented as superior." },
+        { "letter": "D", "explanation": "This is tempting because Julian does stop watching television, but the passage is not making a prescriptive argument about screen time — it is telling a story about paying attention and collaboration." },
+        { "letter": "E", "explanation": "This is tempting because the magnifying glass enables the discovery, but it is a tool in the story, not the story's message." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The opening paragraph compares Julian to \"a current.\" What does this figurative language reveal about his character?",
+      "answer_choices": [
+        { "letter": "A", "text": "He is interested in science, particularly electricity and physics." },
+        { "letter": "B", "text": "He is unpredictable and often changes his mind about what he wants to do." },
+        { "letter": "C", "text": "He is a strong swimmer who spends most of his time in the water." },
+        { "letter": "D", "text": "He is always in motion and focused on moving forward, rarely pausing to examine things closely." },
+        { "letter": "E", "text": "He tends to follow whatever other people are doing instead of thinking for himself." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "A current — whether of water or electricity — moves continuously in one direction. The passage uses this metaphor to establish Julian as someone who is 'always in motion, always looking ahead to the next thing,' unable to slow down and pay close attention to his surroundings.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because 'current' is a scientific term, but the passage uses it as a metaphor for movement and restlessness, not as a reference to Julian's academic interests." },
+        { "letter": "B", "explanation": "This is tempting because a current can shift direction, but the passage emphasizes Julian's forward momentum — he moves fast through activities rather than randomly changing course." },
+        { "letter": "C", "explanation": "This is tempting because currents are associated with water, but the comparison is figurative, describing his personality and pace of living, not his physical activities." },
+        { "letter": "E", "explanation": "This is tempting because currents flow along paths, but the passage shows Julian as independently restless, not as someone who follows others." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "How do Julian and Meera differ in their preferred raindrops, and what does this reveal about their characters?",
+      "answer_choices": [
+        { "letter": "A", "text": "Julian prefers the larger, more dramatic view while Meera prefers a smaller, more focused one — reflecting their contrasting approaches to experiencing the world." },
+        { "letter": "B", "text": "Julian prefers the clearer drop while Meera prefers the blurry one, showing that Julian has better eyesight." },
+        { "letter": "C", "text": "They prefer the same drop but describe it differently, showing they actually agree on everything." },
+        { "letter": "D", "text": "Julian picks the drop closest to him while Meera picks the farthest away, showing Julian is lazier." },
+        { "letter": "E", "text": "Meera prefers the drop that shows people while Julian prefers the one that shows nature, revealing Meera is more social." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "Julian favors the large, trembling drop that captures the entire street in 'warped panorama,' reflecting his preference for breadth and scope. Meera prefers the small, still drop that shows the oak tree 'perfectly clear,' reflecting her love of focused, detailed observation. Their choices mirror their fundamental personality differences.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "This is tempting because clarity is mentioned, but Meera's drop is the clearer one, not Julian's — and the difference is about perspective and temperament, not vision quality." },
+        { "letter": "C", "explanation": "This is tempting because they are both looking at the same window, but the passage specifically describes them arguing over different drops with different qualities." },
+        { "letter": "D", "explanation": "This is tempting because Julian was previously described as lazy about the day, but the passage specifies the drops by their visual qualities, not their physical location relative to each cousin." },
+        { "letter": "E", "explanation": "This is tempting because it offers a character interpretation, but Julian's drop shows the street scene and Meera's shows the oak tree — the content does not align with this characterization." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"decipher\" most likely mean as used in the first paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "To destroy or take apart" },
+        { "letter": "B", "text": "To figure out the meaning of something that is not immediately clear" },
+        { "letter": "C", "text": "To memorize and recite from memory" },
+        { "letter": "D", "text": "To photograph and preserve" },
+        { "letter": "E", "text": "To discard as unimportant" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says Meera examines a leaf 'as though it were a manuscript written in a language only she could decipher.' A manuscript in an unknown language would need to be decoded or interpreted, so 'decipher' means to figure out the meaning of something that requires careful study.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because 'decipher' contains the prefix 'de-' which can mean 'undo,' but Meera is studying the leaf to understand it, not to destroy it." },
+        { "letter": "C", "explanation": "This is tempting because deciphering involves close attention to text, but it means interpreting meaning, not memorizing and reciting." },
+        { "letter": "D", "explanation": "This is tempting because Meera is studying the leaf carefully, but 'decipher' refers to understanding meaning, not preserving a physical object." },
+        { "letter": "E", "explanation": "This is tempting as an opposite-meaning trap, but the passage shows Meera treating the leaf as deeply important, not discarding it." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What is the author's purpose in describing Julian's sigh as \"a performance meant for an audience\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that Julian is training to become an actor" },
+        { "letter": "B", "text": "To indicate that other people are watching Julian from another room" },
+        { "letter": "C", "text": "To explain that Julian is trying to make Meera laugh" },
+        { "letter": "D", "text": "To foreshadow that Julian will become interested in theater later in the story" },
+        { "letter": "E", "text": "To suggest that Julian's boredom is somewhat exaggerated and self-conscious rather than genuine suffering" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "By describing the sigh as 'a performance meant for an audience,' the author reveals that Julian's boredom is partly theatrical — he is making a show of being bored rather than genuinely suffering. This adds humor and characterizes Julian as dramatic and self-aware.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because 'performance' and 'audience' are theatrical terms, but they are used figuratively to describe Julian's exaggerated behavior, not his career aspirations." },
+        { "letter": "B", "explanation": "This is tempting because 'audience' could imply other people, but the passage makes clear that only Meera and Julian are in the scene — the 'audience' is metaphorical." },
+        { "letter": "C", "explanation": "This is tempting because his dramatic behavior could be seen as playful, but the passage suggests he is performing boredom to express displeasure, not to entertain." },
+        { "letter": "D", "explanation": "This is tempting because the theatrical language might seem like foreshadowing, but the story never returns to theater — the language characterizes Julian in this moment." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What does the sentence \"Something shifted behind his ribs\" most likely mean?",
+      "answer_choices": [
+        { "letter": "A", "text": "Julian is experiencing a physical pain from leaning over." },
+        { "letter": "B", "text": "Julian's breathing pattern changed because of the magnifying glass fumes." },
+        { "letter": "C", "text": "Julian is undergoing an internal emotional change — a moment of realization that affects him deeply." },
+        { "letter": "D", "text": "Julian is hungry because he skipped breakfast that morning." },
+        { "letter": "E", "text": "Julian felt his phone vibrate in his shirt pocket." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage describes this shift as 'the unfamiliar sensation of realizing that the world contained layers he had been speeding past his entire life.' The physical language — something shifting behind his ribs — is a figurative way of describing an emotional and intellectual awakening.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the phrase locates the sensation in his body, but the passage immediately explains it as a realization about the world, not a physical injury." },
+        { "letter": "B", "explanation": "This is tempting because he is near the magnifying glass, but magnifying glasses do not produce fumes — and the passage frames this as an emotional moment." },
+        { "letter": "D", "explanation": "This is tempting because a sensation behind the ribs could be hunger, but the passage directly connects this feeling to a new awareness about how he moves through the world." },
+        { "letter": "E", "explanation": "This is tempting because it is a literal interpretation of something shifting in his chest area, but the passage is at grandmother's house in a contemplative scene — the language is clearly figurative." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 7,
+      "question_text": "How does the passage's structure reinforce its meaning?",
+      "answer_choices": [
+        { "letter": "A", "text": "It begins with separate descriptions of each cousin, brings them together over a shared discovery, and ends with Julian transformed by the experience — mirroring the theme of different perspectives enriching one another." },
+        { "letter": "B", "text": "It uses a chronological structure to document every event of the entire day from morning to night." },
+        { "letter": "C", "text": "It alternates between past and present tense to show the difference between memory and reality." },
+        { "letter": "D", "text": "It presents Julian's perspective in the first half and Meera's perspective in the second half." },
+        { "letter": "E", "text": "It follows a problem-solution structure where the problem is the rain and the solution is the magnifying glass." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage opens by establishing the cousins as opposites, then shows them converging on a shared activity where each contributes unique strengths. It ends with Julian changed — he no longer needs to rush to the next thing. This arc mirrors the theme of complementary perspectives creating something richer than either alone.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "This is tempting because the passage does move chronologically through the day, but it skips large portions and focuses on key moments — it is not a comprehensive account of every event." },
+        { "letter": "C", "explanation": "This is tempting because the opening describes habitual behavior while the rest is specific, but the passage does not alternate tenses — it moves naturally from general characterization to a specific afternoon." },
+        { "letter": "D", "explanation": "This is tempting because both perspectives appear, but they are woven throughout the passage rather than divided into two separate halves." },
+        { "letter": "E", "explanation": "This is tempting because the rain could be seen as a problem, but the passage treats the rain as an opportunity, not a problem to solve — and its deeper structure is about character transformation." }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does the word \"catalogued\" most likely mean as used in the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Ignored and dismissed" },
+        { "letter": "B", "text": "Systematically recorded and organized" },
+        { "letter": "C", "text": "Argued about heatedly" },
+        { "letter": "D", "text": "Accidentally discovered" },
+        { "letter": "E", "text": "Quickly glanced at" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says they 'catalogued their discoveries,' and then describes Meera sketching in a notebook while Julian dictates descriptions. A catalogue is an organized record, so 'catalogued' means they systematically recorded and organized what they found.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting as an opposite-meaning trap, but the cousins are deeply engaged with their discoveries — they are documenting them, not dismissing them." },
+        { "letter": "C", "explanation": "This is tempting because they do argue later about which droplet is best, but 'catalogued' describes the recording process, not the debating." },
+        { "letter": "D", "explanation": "This is tempting because the discoveries are unexpected, but 'catalogued' describes what they did with the discoveries after finding them — organized recording, not the act of discovering." },
+        { "letter": "E", "explanation": "This is tempting because Julian tends to move quickly, but the passage shows them spending an hour on this activity with sketches and detailed descriptions — the opposite of a quick glance." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What does the line \"Neither of them was wrong, and somehow, knowing that made the afternoon feel larger than either of their perspectives alone\" suggest about the passage's theme?",
+      "answer_choices": [
+        { "letter": "A", "text": "Arguments between cousins always end in a tie." },
+        { "letter": "B", "text": "Different ways of seeing the world are not competing truths but complementary ones, and accepting this creates something greater." },
+        { "letter": "C", "text": "Julian and Meera need to learn to compromise more often." },
+        { "letter": "D", "text": "The raindrops are magical and have the power to change people's personalities." },
+        { "letter": "E", "text": "Their grandmother's house is larger than they initially thought." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "This line articulates the passage's central theme: Julian's expansive, wide-angle view and Meera's focused, detailed view are both valid. The afternoon becomes richer precisely because both perspectives coexist rather than competing, suggesting that embracing different viewpoints creates a fuller experience.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because neither cousin 'wins' the argument, but the passage is making a deeper point about complementary perspectives, not about how family arguments resolve." },
+        { "letter": "C", "explanation": "This is tempting because the line involves two people with different views, but the passage celebrates their differences rather than suggesting they need to meet in the middle." },
+        { "letter": "D", "explanation": "This is tempting because the raindrops transform Julian's afternoon, but the change comes from paying attention and collaborating, not from any magical property of rain." },
+        { "letter": "E", "explanation": "This is tempting because 'larger' could be taken literally, but the word describes the afternoon's emotional and experiential richness, not the physical size of the house." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What is the overall tone of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Critical and judgmental toward Julian's restless behavior" },
+        { "letter": "B", "text": "Sentimental and excessively emotional" },
+        { "letter": "C", "text": "Observant and gently revelatory, with understated warmth" },
+        { "letter": "D", "text": "Suspenseful, building toward a dramatic confrontation" },
+        { "letter": "E", "text": "Detached and clinical, like a scientific report" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage observes both cousins with affection and gentle humor rather than judging either. It builds quietly toward the revelation of the raindrop worlds and Julian's transformation, using understated language that lets the emotional significance emerge naturally. The tone is warm but never heavy-handed.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because Julian's boredom is described in somewhat humorous terms, but the passage treats him with affection and shows his growth — it is observant, not critical." },
+        { "letter": "B", "explanation": "This is tempting because the passage has emotional moments, but the writing is restrained and precise — the author uses images and actions rather than overt emotional language." },
+        { "letter": "D", "explanation": "This is tempting because there is a buildup to the raindrop discovery, but the passage is contemplative, not suspenseful — there is no threat or dramatic conflict." },
+        { "letter": "E", "explanation": "This is tempting because the passage involves observation and cataloguing, but the language is literary and warm, filled with figurative language — far from clinical." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    }
+  ]
+}

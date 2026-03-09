@@ -1,0 +1,117 @@
+{
+  "skill_id": "mqr_logical_reasoning",
+  "skill_name": "Logical Reasoning",
+  "concept_explanation": "Logical reasoning is about thinking like a detective — using clues, rules, and careful step-by-step thinking to figure out answers that aren't obvious at first. There are two main types: deductive reasoning (where you start with known facts and rules to reach a guaranteed conclusion, like 'All squares are rectangles, and this shape is a square, so it must be a rectangle') and inductive reasoning (where you observe specific examples and make a general prediction, like 'Every time I've added two even numbers, I got an even number, so I think even + even always equals even'). On the exam, you'll use logical reasoning to work through problems with conditions and constraints, eliminate impossible answers, and figure out what must be true.",
+  "worked_examples": [
+    {
+      "problem": "Five students — Amy, Ben, Carlos, Dee, and Eli — finished a race. Use these clues to determine who finished first:\n1. Amy finished before Ben but after Carlos.\n2. Dee finished after Ben.\n3. Eli finished right before Amy.",
+      "thinking_out_loud": [
+        "Let me work through the clues one at a time. Clue 1 says Amy finished before Ben but after Carlos. So the order so far is: Carlos → Amy → Ben (Carlos before Amy, Amy before Ben).",
+        "Clue 3 says Eli finished right before Amy. So Eli is immediately before Amy: Carlos → ... Eli → Amy → Ben. But where does Eli go relative to Carlos?",
+        "Since Eli is right before Amy, and Carlos is before Amy, Carlos could be before Eli. Let me try: Carlos → Eli → Amy → Ben.",
+        "Clue 2 says Dee finished after Ben. So Dee goes after Ben: Carlos → Eli → Amy → Ben → Dee.",
+        "Let me verify all clues: (1) Amy before Ben? Yes (3rd vs 4th). Amy after Carlos? Yes (3rd vs 1st). (2) Dee after Ben? Yes (5th vs 4th). (3) Eli right before Amy? Yes (2nd and 3rd). All clues check out!",
+        "Carlos finished first."
+      ],
+      "solution": "Carlos finished first. The complete order is: 1st Carlos, 2nd Eli, 3rd Amy, 4th Ben, 5th Dee."
+    },
+    {
+      "problem": "A number is a 'special number' if it is a multiple of 3 and has exactly one even digit. Which of these is a special number?\n(A) 42  (B) 51  (C) 63  (D) 135",
+      "thinking_out_loud": [
+        "I need to check two conditions for each number: (1) Is it a multiple of 3? (2) Does it have exactly one even digit?",
+        "Let me remember: even digits are 0, 2, 4, 6, 8. Odd digits are 1, 3, 5, 7, 9.",
+        "Choice (A) 42: Is 42 a multiple of 3? 4 + 2 = 6, and 6 is divisible by 3, so yes. Even digits: 4 and 2 — that's two even digits. Doesn't have exactly one. Eliminated.",
+        "Choice (B) 51: Is 51 a multiple of 3? 5 + 1 = 6, divisible by 3, so yes. Even digits: none — 5 and 1 are both odd. Doesn't have exactly one. Eliminated.",
+        "Choice (C) 63: Is 63 a multiple of 3? 6 + 3 = 9, divisible by 3, so yes. Even digits: 6 is even, 3 is odd — exactly one even digit. This is a special number!",
+        "Choice (D) 135: Is 135 a multiple of 3? 1 + 3 + 5 = 9, divisible by 3, so yes. Even digits: 1, 3, 5 are all odd — zero even digits. Eliminated."
+      ],
+      "solution": "(C) 63. It's a multiple of 3 (since 6 + 3 = 9 is divisible by 3) and has exactly one even digit (6)."
+    },
+    {
+      "problem": "If all Zings are Zangs, and some Zangs are Zongs, which statement must be true?\n(A) All Zings are Zongs.\n(B) Some Zings might be Zongs.\n(C) No Zings are Zongs.\n(D) All Zongs are Zings.",
+      "thinking_out_loud": [
+        "Let me think about this carefully using groups. 'All Zings are Zangs' means the Zings group is completely inside the Zangs group — every Zing is also a Zang.",
+        "'Some Zangs are Zongs' means the Zangs group and the Zongs group overlap, but we don't know exactly where that overlap is.",
+        "Could the overlap between Zangs and Zongs include some Zings? Maybe — since Zings are inside Zangs, and some Zangs are Zongs, the Zongs might overlap with the part of Zangs that includes Zings... or they might not.",
+        "Let me check each answer: (A) 'All Zings are Zongs' — we can't be sure all Zings are in the overlap. Not necessarily true. (B) 'Some Zings might be Zongs' — yes, it's possible that the Zang-Zong overlap includes some Zings. This must be true because we can't rule it out. (C) 'No Zings are Zongs' — we can't be sure of this either, since some might be. Not necessarily true. (D) 'All Zongs are Zings' — definitely not guaranteed since Zongs could exist outside the Zings group.",
+        "The answer is (B)."
+      ],
+      "solution": "(B) Some Zings might be Zongs. Since all Zings are Zangs and some Zangs are Zongs, it's possible (but not guaranteed) that some Zings are among the Zangs that are also Zongs."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Confusing 'must be true' with 'could be true'",
+      "why_it_happens": "Students find one scenario where a statement works and assume it must always be true. They don't consider other valid scenarios where the statement might be false.",
+      "how_to_address": "Practice the difference: 'must be true' means it's true in EVERY possible case. 'Could be true' means it's true in at least one case. To prove something must be true, check multiple scenarios. To disprove it, find just one counterexample."
+    },
+    {
+      "misconception": "Reversing conditional statements — thinking 'if A then B' means 'if B then A'",
+      "why_it_happens": "It feels natural to flip a statement. If all dogs are animals, students assume all animals are dogs. The reverse of a true statement isn't necessarily true.",
+      "how_to_address": "Use everyday examples: 'All puppies are dogs' is true, but 'All dogs are puppies' is false. Draw circle diagrams (Venn diagrams) to visualize how one group fits inside another but not vice versa."
+    },
+    {
+      "misconception": "Giving up on logic puzzles because they seem to have too many possibilities",
+      "why_it_happens": "Students try to consider every possibility at once instead of using clues one at a time to narrow things down. This makes the problem feel overwhelming.",
+      "how_to_address": "Teach a systematic approach: start with the most restrictive clue first (the one that pins down the most information), then use each additional clue to narrow the possibilities. Use process of elimination and organize information in a chart or list."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "There are three boxes: one contains only apples, one contains only oranges, and one contains both. All three boxes are labeled incorrectly. You pick one fruit from the box labeled 'Both.' It's an apple. What does each box actually contain?",
+      "hints": [
+        "Start with what you know: you picked an apple from the box labeled 'Both.' Since ALL labels are wrong, the 'Both' box can't actually contain both fruits. If you got an apple from it, what must it actually contain?",
+        "Since every label is wrong, the 'Both' box must be the 'Apples Only' box (you pulled an apple, and it can't be 'Both'). Now think: the box labeled 'Oranges' can't contain oranges (wrong label) and can't contain only apples (that's the box we just figured out). So what must it contain?",
+        "The box labeled 'Oranges' must contain Both. That leaves the box labeled 'Apples' — it must contain Oranges."
+      ],
+      "answer": "Box labeled 'Both' = Apples only. Box labeled 'Oranges' = Both. Box labeled 'Apples' = Oranges only.",
+      "explanation": "Since all labels are wrong: the 'Both' box (where we found an apple) must be 'Apples only.' The 'Oranges' box can't have oranges and can't have only apples, so it's 'Both.' The 'Apples' box must be 'Oranges only' — the only option left."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "If the statement 'All even numbers greater than 2 are composite' is true, which of the following must also be true?\n(A) All composite numbers are even.\n(B) The number 8 is composite.\n(C) All odd numbers are prime.\n(D) The number 2 is composite.",
+      "hints": [
+        "The statement says all even numbers greater than 2 are composite. Is 8 an even number greater than 2?",
+        "Yes, 8 is even and greater than 2, so by the given statement, 8 must be composite. Now check the other choices — can you find counterexamples that disprove them?"
+      ],
+      "answer": "(B) The number 8 is composite.",
+      "explanation": "8 is even and greater than 2, so by the given statement it must be composite. (A) is wrong — 9 is composite but not even. (C) is wrong — 9 is odd but not prime. (D) is wrong — the statement only applies to even numbers greater than 2, and 2 is not greater than 2."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Four friends — Sara, Maya, Jake, and Tom — each have a different favorite color: red, blue, green, or yellow. Use these clues:\n1. Maya doesn't like red or blue.\n2. Jake doesn't like yellow.\n3. Sara likes blue.\n4. Tom likes yellow.\nWhat is each person's favorite color?",
+      "hints": [
+        "Start with the most definite clues. Clues 3 and 4 tell you exactly what Sara and Tom like. Fill those in first, then use elimination for Maya and Jake."
+      ],
+      "answer": "Sara = blue, Tom = yellow, Maya = green, Jake = red.",
+      "explanation": "From clue 3: Sara = blue. From clue 4: Tom = yellow. That leaves red and green for Maya and Jake. From clue 1: Maya doesn't like red, so Maya = green. That means Jake = red. Check clue 2: Jake doesn't like yellow — correct, he likes red. All clues satisfied!"
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "In a group of 30 students, 18 play soccer, 15 play basketball, and 5 play neither sport. How many students play both soccer and basketball?",
+      "hints": [],
+      "answer": "8 students play both.",
+      "explanation": "If 5 play neither, then 30 - 5 = 25 students play at least one sport. Using the inclusion-exclusion principle: Soccer + Basketball - Both = At least one sport. So 18 + 15 - Both = 25. That gives 33 - Both = 25, so Both = 8."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "A code uses the digits 1-5, each exactly once, to form a 5-digit number. Use these clues to find the number:\n1. The digit 3 is somewhere to the left of the digit 1.\n2. The digit 5 is in the first or last position.\n3. The digit 2 is next to the digit 4.\n4. The digit 4 is not in the first or last position.\n5. The digit 5 is next to the digit 3.",
+      "hints": [],
+      "answer": "The number is 53241.",
+      "explanation": "From clue 2: 5 is in position 1 or 5. From clue 5: 5 is next to 3. If 5 is in position 1, then 3 is in position 2. From clue 1: 3 is left of 1, which is satisfied since 3 is in position 2. From clue 4: 4 is not in position 1 or 5, so 4 is in position 3 or 4. From clue 3: 2 is next to 4. If 4 is in position 4, then 2 must be in position 3 or 5. Position 3 works: 2 in position 3, 4 in position 4, leaving 1 in position 5. The number is 5, 3, 2, 4, 1 = 53241. Verify all clues: (1) 3 left of 1? Yes. (2) 5 in first position? Yes. (3) 2 next to 4? Yes (positions 3 and 4). (4) 4 not first or last? Yes (position 4). (5) 5 next to 3? Yes (positions 1 and 2). All clues satisfied."
+    }
+  ],
+  "real_world_connection": "Logical reasoning is the skill behind everything from solving mysteries to writing computer code. Doctors use it to diagnose illnesses by ruling out conditions one by one. Lawyers use it to build arguments. Game designers use it to create puzzles. Even in everyday life, when you figure out who ate the last cookie by process of elimination ('It wasn't me, Mom was at work, so it must have been my brother!'), you're using logical reasoning. It trains your brain to think clearly and make good decisions based on evidence.",
+  "transition_cues": [
+    "Can you explain the difference between 'must be true' and 'could be true' in your own words?",
+    "When you have a logic puzzle with multiple clues, which clue should you start with and why?",
+    "If someone tells you 'All cats are pets,' does that mean all pets are cats? How do you know?",
+    "What strategy do you use to keep track of information when solving a logic puzzle?"
+  ]
+}

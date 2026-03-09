@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Student {
+  id               String   @id @default(cuid())
+  name             String
+  createdAt        DateTime @default(now())
+  currentSessionId String?
+
+  skillMasteries   SkillMastery[]
+  tutoringSessions TutoringSession[]
+}
+
+model SkillMastery {
+  id              String   @id @default(cuid())
+  studentId       String
+  skillId         String
+  masteryLevel    Float    @default(0.0) // 0.0 - 1.0
+  attemptsCount   Int      @default(0)
+  correctCount    Int      @default(0)
+  lastPracticed   DateTime?
+  confidenceTrend String   @default("stable") // "improving" | "stable" | "declining"
+  updatedAt       DateTime @updatedAt
+
+  student Student @relation(fields: [studentId], references: [id])
+
+  @@unique([studentId, skillId])
+  @@index([studentId])
+}
+
+model TutoringSession {
+  id             String   @id @default(cuid())
+  studentId      String
+  domain         String // "reading_comprehension" | "math_quantitative_reasoning" | "math_achievement"
+  startedAt      DateTime @default(now())
+  endedAt        DateTime?
+  skillsCovered  String   @default("[]") // JSON array of skill_ids
+  sessionSummary String?
+
+  student            Student             @relation(fields: [studentId], references: [id])
+  questionAttempts   QuestionAttempt[]
+  writingSubmissions WritingSubmission[]
+
+  @@index([studentId])
+}
+
+model QuestionAttempt {
+  id                   String   @id @default(cuid())
+  sessionId            String
+  skillId              String
+  questionText         String
+  studentAnswer        String
+  correctAnswer        String
+  isCorrect            Boolean
+  timeSpentSeconds     Int?
+  hintUsed             Boolean  @default(false)
+  explanationRequested Boolean  @default(false)
+  createdAt            DateTime @default(now())
+
+  session TutoringSession @relation(fields: [sessionId], references: [id])
+
+  @@index([sessionId])
+  @@index([skillId])
+}
+
+model WritingSubmission {
+  id         String   @id @default(cuid())
+  sessionId  String
+  prompt     String
+  essayText  String
+  aiFeedback String?
+  scoresJson String?  // JSON: { organization: number, clarity: number, evidence: number, grammar: number }
+  createdAt  DateTime @default(now())
+
+  session TutoringSession @relation(fields: [sessionId], references: [id])
+
+  @@index([sessionId])
+}

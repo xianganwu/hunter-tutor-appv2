@@ -1,0 +1,115 @@
+{
+  "skill_id": "rc_tone_mood",
+  "skill_name": "Tone and Mood",
+  "concept_explanation": "Tone is the author's attitude toward the subject — how the author feels about what they're writing. Mood is the feeling that the passage creates in you, the reader. They're related but different. Think of it this way: if someone tells you a story in an angry voice, their tone is angry, and the mood they create might be tense or uncomfortable. Authors create tone and mood through their word choices, sentence length, imagery, and details. A passage about a rainy day could feel peaceful if the author describes 'gentle drops pattering on the windowsill' or gloomy if the author describes 'cold rain hammering against the glass.' The facts are the same — it's raining — but the word choice changes everything.",
+  "worked_examples": [
+    {
+      "problem": "Identify the tone and mood of this passage:\n\n\"The old house at the end of Maple Street had been empty for decades. Its windows were dark and cracked, like hollow eyes staring out at the street. Weeds choked the front path, and the porch sagged under its own weight. On windy nights, the shutters creaked and groaned as if the house itself were moaning. No one in town could remember who had lived there last, and no one wanted to find out.\"",
+      "thinking_out_loud": [
+        "First, let me identify the word choices. 'Dark and cracked,' 'hollow eyes,' 'choked,' 'sagged,' 'creaked and groaned,' 'moaning' — these are all negative, unsettling words.",
+        "The simile 'like hollow eyes staring out' is creepy — it makes the house sound alive and watching. 'Moaning' personifies the house, making it seem ghostly.",
+        "How do I feel reading this? Uneasy, a little scared, curious but wary. That's the mood — eerie and mysterious.",
+        "What's the author's attitude? The author is deliberately choosing spooky language. The tone feels ominous — like something dark lurks in this place.",
+        "The last line — 'no one wanted to find out' — reinforces both the eerie mood and the ominous tone. It suggests something unknown and possibly dangerous."
+      ],
+      "solution": "The tone is ominous and foreboding — the author uses dark, unsettling language to create a sense of something threatening or unknown. The mood is eerie and mysterious — the reader feels uneasy and curious about the abandoned house. Key word choices that create this effect include 'hollow eyes,' 'choked,' 'moaning,' and the final detail that 'no one wanted to find out.' The author uses personification and dark imagery to transform a simple description of an empty house into something that feels haunted."
+    },
+    {
+      "problem": "Identify the tone and mood of this passage:\n\n\"Grandma's kitchen was the warmest place in the world — and not just because of the oven. Every Saturday morning, the smell of cinnamon and brown sugar filled the house. She'd hum old songs while she rolled out dough, flour dusting her apron and sometimes her nose. I'd sit on the counter, sneaking bits of cookie dough when she pretended not to notice. Those mornings were golden, and I carry them with me like a lucky charm.\"",
+      "thinking_out_loud": [
+        "Let me look at the word choices: 'warmest place in the world,' 'cinnamon and brown sugar,' 'hum old songs,' 'flour dusting her nose,' 'sneaking cookie dough,' 'golden,' 'lucky charm.'",
+        "These are all warm, positive, affectionate words and images. Nothing is dark or scary here — everything feels cozy and loving.",
+        "The narrator clearly loves these memories. The phrase 'I carry them with me like a lucky charm' tells me these memories are precious.",
+        "The author's tone is warm, affectionate, and nostalgic — they're looking back at happy memories with love.",
+        "The mood is cozy and heartwarming — as a reader, I feel comfort and warmth, like being wrapped in a blanket."
+      ],
+      "solution": "The tone is warm, affectionate, and nostalgic — the author looks back on these memories with deep love and fondness. The mood is cozy and heartwarming — the reader feels the comfort of the kitchen, the sweetness of the relationship, and the preciousness of the memory. Key details that create this effect include the sensory descriptions (cinnamon, brown sugar, humming), the playful moment (sneaking cookie dough), and the metaphor of carrying memories 'like a lucky charm.'"
+    },
+    {
+      "problem": "Identify the tone and mood of this passage:\n\n\"The committee announced that the city park would be paved over to build a new parking garage. Never mind that the park was the only green space in the neighborhood. Never mind that children played there every afternoon and elderly residents sat on its benches each morning. Apparently, concrete is more valuable than community. The decision was made behind closed doors, without a single public hearing.\"",
+      "thinking_out_loud": [
+        "The repetition of 'never mind' stands out immediately. That's sarcastic — the author doesn't actually mean 'never mind.' They're pointing out things that should matter but were apparently ignored.",
+        "'Apparently, concrete is more valuable than community' — this is sharp and critical. The author is using contrast to show how wrong they think this decision is.",
+        "'Behind closed doors, without a single public hearing' — this suggests secrecy and lack of fairness, and the author's tone makes it clear they disapprove.",
+        "The author's tone is critical, sarcastic, and indignant — they're clearly angry about the decision and how it was made.",
+        "The mood is frustrating and provocative — it makes the reader feel upset about the injustice."
+      ],
+      "solution": "The tone is critical, sarcastic, and indignant. The author is clearly angry about the decision to pave over the park and uses sarcasm ('never mind,' 'apparently concrete is more valuable than community') to express disapproval. The mood is one of frustration and injustice — the reader feels the unfairness of the situation. Key techniques include the sarcastic repetition of 'never mind,' the biting contrast between concrete and community, and the emphasis on the decision being made 'behind closed doors.'"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Confusing tone with mood",
+      "why_it_happens": "Tone and mood are closely related and often overlap, so students frequently mix them up. They might say the 'tone is scary' when they mean the passage creates a scary mood in the reader.",
+      "how_to_address": "Use this trick: Tone = the author's attitude (how the author feels). Mood = the reader's feeling (how you feel while reading). Ask two separate questions: (1) 'What is the author's attitude toward this subject?' = tone. (2) 'How does this passage make me feel?' = mood. They might be similar, but they're not always the same."
+    },
+    {
+      "misconception": "Using vague words like 'good' or 'bad' to describe tone",
+      "why_it_happens": "Students know a passage feels positive or negative but struggle to find precise tone words. They default to generic descriptions instead of specific ones.",
+      "how_to_address": "Build a vocabulary of tone words. Instead of 'good,' try: cheerful, optimistic, proud, admiring, enthusiastic, playful. Instead of 'bad,' try: critical, somber, anxious, sarcastic, bitter, mournful. The more specific your word, the stronger your answer. Keep a list of tone words to practice with."
+    },
+    {
+      "misconception": "Ignoring word choice and focusing only on what happens in the passage",
+      "why_it_happens": "Students focus on the events or facts of a passage rather than how the author describes them. They think about the content (what's being said) without noticing the language (how it's being said).",
+      "how_to_address": "Train yourself to notice how the author says things, not just what they say. Two authors can describe the same event in totally different ways. Focus on adjectives, verbs, comparisons, and imagery — those are where tone and mood live."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Identify the tone and mood of this passage:\n\n\"The morning of the field trip, Emma could barely sit still on the bus. She pressed her face against the window, bouncing in her seat every time they passed a new landmark. 'Are we there yet? Are we there yet?' she kept asking. Her teacher laughed and said, 'Almost!' When the bus finally pulled into the museum parking lot, Emma was the first one standing, backpack on, ready to explore.\"",
+      "hints": [
+        "Look at Emma's actions: bouncing, pressing her face to the window, asking if they're there yet, being the first one standing. What emotion do all of these actions show?",
+        "How does the author seem to feel about Emma's behavior? Are they describing it as annoying, or as something charming and fun?",
+        "Think about how this passage makes you feel as a reader. Does it make you feel tense? Sad? Or does it make you smile and feel energized?"
+      ],
+      "answer": "The tone is lighthearted and affectionate — the author describes Emma's excitement in a charming, endearing way, with the teacher laughing rather than being frustrated. The mood is joyful and energetic — the reader feels Emma's infectious excitement and anticipation. Key details include Emma bouncing in her seat, pressing her face to the window, and being the first one standing with her backpack ready.",
+      "explanation": "Notice how the author chose to portray Emma's behavior as endearing rather than annoying. The teacher 'laughed' instead of scolding, which sets a warm, positive tone. The energetic action words (bouncing, pressing, standing first) create a mood of excitement that the reader can feel."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Identify the tone and mood of this passage:\n\n\"The soldier returned home to a town he barely recognized. The oak tree in the square, where he had carved his initials as a boy, had been cut down. The bakery where he bought rolls every morning was boarded up. He walked the familiar streets slowly, hands in his pockets, searching for something that felt like the home he remembered. He found it in the way Mrs. Callahan waved from her porch — the same wave, after all these years.\"",
+      "hints": [
+        "What words and images create a feeling of loss or change? What detail at the end shifts the feeling slightly?",
+        "Think about the author's attitude: are they writing about these changes with anger, sadness, acceptance, or something else?"
+      ],
+      "answer": "The tone is melancholic and bittersweet — the author describes the soldier's return with sadness over what has changed, but the ending offers a small moment of comfort. The mood is wistful and poignant — the reader feels the loss of the familiar town alongside the quiet hope of Mrs. Callahan's unchanged wave. Key details include the cut-down oak tree, the boarded bakery, 'searching for something that felt like home,' and the unchanged wave that provides a sliver of recognition.",
+      "explanation": "This passage blends sadness (things are gone) with a small comfort (Mrs. Callahan's wave), creating a bittersweet effect. The slow pacing ('walked slowly, hands in his pockets') mirrors the soldier's reflective mood. Recognizing this blend of emotions — not just 'sad' but 'bittersweet' — shows strong understanding of tone and mood."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Identify the tone and mood of this passage:\n\n\"The science fair was a disaster of epic proportions. My volcano erupted sideways, covering the judge's clipboard in baking soda lava. My partner tripped over the extension cord, unplugging every project in our row. And to top it all off, my poster fell off the table and landed in a puddle of spilled orange juice. But somehow, we still won third place. The judge said she appreciated our 'enthusiasm and resilience.' I think she just felt sorry for us.\"",
+      "hints": [
+        "The narrator describes a series of mishaps but uses a particular attitude to tell the story. Is the narrator upset, or are they finding humor in the situation? Pay attention to phrases like 'disaster of epic proportions' and 'I think she just felt sorry for us.'"
+      ],
+      "answer": "The tone is humorous and self-deprecating — the narrator describes their own misfortunes in an exaggerated, funny way rather than being genuinely upset. Phrases like 'disaster of epic proportions' and 'I think she just felt sorry for us' show the narrator can laugh at themselves. The mood is lighthearted and amusing — the reader is entertained by the chain of disasters and charmed by the narrator's ability to find humor in failure.",
+      "explanation": "The key to identifying this tone is noticing that the narrator isn't angry or sad — they're telling the story as a comedy. Words like 'epic proportions' exaggerate for humor, and the punchline about the judge feeling sorry is self-aware and funny. When an author uses exaggeration and self-awareness to describe bad events, the tone is usually humorous rather than tragic."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Identify the tone and mood of this passage:\n\n\"The forest was silent in a way that felt sacred. Sunlight filtered through the canopy in golden shafts, illuminating the mossy floor below. A stream whispered over smooth stones, and the air smelled of pine and damp earth. Here, among the ancient trees, the noise of the outside world seemed to fade until it was just a distant memory. Even my own breathing seemed to slow, as if the forest had gently asked me to be still.\"",
+      "hints": [],
+      "answer": "The tone is reverent and contemplative — the author describes the forest with deep respect and awe, using words like 'sacred' and 'ancient' that suggest something worthy of admiration. The mood is peaceful and serene — the reader feels calm, quiet, and connected to nature. Key word choices include 'sacred,' 'golden shafts,' 'whispered,' 'gently asked me to be still.' The personification of the stream whispering and the forest asking for stillness creates an atmosphere of natural tranquility.",
+      "explanation": "The author's reverent tone comes through in word choices like 'sacred,' 'illuminating,' and 'ancient.' The peaceful mood is built through sensory details — sight (golden light), sound (whispering stream), smell (pine and earth) — and the personification of the forest 'gently asking' for stillness. Together, these choices make the reader feel the serenity of the place."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Identify the tone and mood of this passage:\n\n\"It is simply unacceptable that students at our school must eat lunch in 20 minutes while the teachers' lounge allows a full hour. The rushed lunch period forces students to choose between eating and socializing — two things that are essential for their well-being. Meanwhile, half-eaten meals fill the trash cans because there isn't time to finish. How much longer will students be treated as if their time and health matter less than everyone else's? It is time for this unfair practice to end.\"",
+      "hints": [],
+      "answer": "The tone is indignant and assertive — the author is clearly frustrated by the unequal lunch periods and expresses strong disapproval through forceful language. Words like 'simply unacceptable,' 'forces,' and 'unfair practice' convey anger and a demand for change. The rhetorical question ('How much longer...?') adds urgency. The mood is charged and provocative — the reader feels the injustice of the situation and may feel motivated to agree with the author's position. The contrast between students' 20 minutes and teachers' full hour intensifies the sense of unfairness.",
+      "explanation": "The author's tone goes beyond simply 'angry' — it's indignant (angry because of perceived unfairness) and assertive (confidently demanding change). The mood makes the reader feel the injustice. Identifying these nuanced emotions instead of just 'mad' shows sophisticated understanding of tone and mood. Notice how the rhetorical question and the direct comparison between student and teacher lunch times are deliberate techniques to create this effect."
+    }
+  ],
+  "real_world_connection": "Tone and mood are everywhere — not just in books. When you watch a movie, the music, lighting, and dialogue all create mood. When you read a text message from a friend, you're reading tone (are they joking? frustrated? excited?). Understanding tone helps you interpret what people really mean — sometimes the words say one thing but the tone says another. And when you write your own essays or stories, knowing how to control tone and mood through word choice gives you the power to make your reader feel exactly what you want them to feel.",
+  "transition_cues": [
+    "In your own words, what's the difference between tone and mood? Can you give an example where they're different from each other?",
+    "If I asked you to find the tone of a passage, what's the first thing you'd look at?",
+    "Can you think of two different words to describe a sad tone? What makes one more precise than the other?",
+    "Before we move on, try this: describe the tone and mood of your favorite book or movie in one sentence each."
+  ]
+}

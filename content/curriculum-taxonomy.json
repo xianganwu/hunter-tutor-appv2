@@ -1,0 +1,382 @@
+{
+  "version": "1.0.0",
+  "exam": "Hunter College High School Entrance Exam",
+  "target_grade": 6,
+  "domains": [
+    {
+      "domain_id": "reading_comprehension",
+      "name": "Reading Comprehension",
+      "description": "Analyzes written passages for meaning, inference, structure, and rhetorical purpose.",
+      "skill_categories": [
+        {
+          "category_id": "rc_literal",
+          "name": "Literal Comprehension",
+          "skills": [
+            {
+              "skill_id": "rc_main_idea",
+              "name": "Main Idea Identification",
+              "description": "Determine the central idea or thesis of a passage and distinguish it from supporting details.",
+              "prerequisite_skills": [],
+              "difficulty_tier": 1,
+              "example_teaching_prompts": [
+                "Read this short paragraph. If you had to tell a friend what it was about in one sentence, what would you say?",
+                "Let's look at each sentence. Which one could be removed without changing the main point? That helps us find what's central versus what's supporting.",
+                "Try covering up the first and last sentences. Now read the middle. Does the main idea match what those framing sentences say? Authors often put their big idea at the beginning or end."
+              ]
+            },
+            {
+              "skill_id": "rc_evidence_reasoning",
+              "name": "Evidence-Based Reasoning",
+              "description": "Locate specific textual evidence to support an answer or claim about the passage.",
+              "prerequisite_skills": ["rc_main_idea"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "You said the character feels nervous. Can you point to the exact words in the passage that made you think that?",
+                "Imagine you're a detective. The passage is your evidence file. For every answer you give, you need to show me the 'proof' — the exact line or phrase that supports it.",
+                "Let's practice the 'because' test: finish this sentence — 'I think the answer is ___ because the passage says ___.' If you can't fill in the second blank, we need to look more carefully."
+              ]
+            }
+          ]
+        },
+        {
+          "category_id": "rc_interpretive",
+          "name": "Interpretive Comprehension",
+          "skills": [
+            {
+              "skill_id": "rc_inference",
+              "name": "Inference",
+              "description": "Draw logical conclusions from information that is implied but not directly stated in the passage.",
+              "prerequisite_skills": ["rc_main_idea", "rc_evidence_reasoning"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "The passage doesn't say directly how the character feels. But look at what she does — she slams the door and doesn't answer. What can we figure out from those actions?",
+                "Making an inference is like being a detective: you combine clues from the text with what you already know about the world. What clues do you see here?",
+                "Let's try this: I'll read you a sentence, and you tell me something that must be true even though the author didn't say it outright. For example, 'She grabbed her umbrella before leaving.' What can we infer about the weather?"
+              ]
+            },
+            {
+              "skill_id": "rc_vocab_context",
+              "name": "Vocabulary in Context",
+              "description": "Determine the meaning of unfamiliar words or phrases using surrounding context clues.",
+              "prerequisite_skills": ["rc_main_idea"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "You might not know the word 'arduous,' but look at the rest of the sentence: 'The arduous climb left them exhausted and gasping for air.' What kind of climb would make someone exhausted?",
+                "Here's a strategy: cover the unknown word and read the sentence. What word could you put in that blank that would make sense? Now check — does that match any of the answer choices?",
+                "Sometimes the author gives you the definition right in the next sentence. Let's read the sentences around the tricky word to see if there's a built-in explanation."
+              ]
+            },
+            {
+              "skill_id": "rc_drawing_conclusions",
+              "name": "Drawing Conclusions",
+              "description": "Synthesize multiple pieces of information from a passage to form an overall judgment or conclusion.",
+              "prerequisite_skills": ["rc_inference", "rc_evidence_reasoning"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "We've found three important details in this passage. If we put them all together, what bigger picture do they paint? What conclusion can we draw?",
+                "Think of it like a jigsaw puzzle. Each detail is a piece. When you step back and look at all the pieces together, what do you see?",
+                "Let's list the key facts the author gives us. Now, based on all of these — not just one — what would be a reasonable conclusion? Make sure every fact supports it, not just some."
+              ]
+            }
+          ]
+        },
+        {
+          "category_id": "rc_analytical",
+          "name": "Analytical Comprehension",
+          "skills": [
+            {
+              "skill_id": "rc_author_purpose",
+              "name": "Author's Purpose",
+              "description": "Identify why the author wrote the passage — to inform, persuade, entertain, or explain — and how that purpose shapes the content.",
+              "prerequisite_skills": ["rc_main_idea", "rc_inference"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Ask yourself: is the author trying to teach me something, convince me of something, or tell me a story? Look at the language — persuasive words like 'should' and 'must' point to one purpose, while storytelling language points to another.",
+                "Let's look at this passage together. Does the author include a lot of facts and data, or a lot of opinions and emotional language? That's a big clue about their purpose.",
+                "If you had to label this passage as a newspaper article, an advertisement, a short story, or a textbook entry — which would it be? Why? That label tells us the author's purpose."
+              ]
+            },
+            {
+              "skill_id": "rc_tone_mood",
+              "name": "Tone and Mood",
+              "description": "Identify the author's attitude (tone) and the emotional atmosphere (mood) conveyed through word choice and style.",
+              "prerequisite_skills": ["rc_vocab_context", "rc_inference"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Let's look at the words the author chose. 'The sun crept behind heavy clouds' versus 'The sun ducked behind fluffy clouds.' Same event, totally different feeling. What feeling does each version give you?",
+                "Tone is the author's attitude — are they serious, playful, angry, hopeful? Read this paragraph aloud. What voice would you use? That's often the tone.",
+                "Circle five describing words (adjectives and adverbs) in this passage. Are they mostly positive, negative, or neutral? Those words are the author's toolkit for setting the mood."
+              ]
+            },
+            {
+              "skill_id": "rc_figurative_language",
+              "name": "Figurative Language",
+              "description": "Recognize and interpret similes, metaphors, personification, hyperbole, and other non-literal language in context.",
+              "prerequisite_skills": ["rc_vocab_context"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "The passage says 'time crawled by.' Can time literally crawl? No — so what is the author really saying about how time felt?",
+                "Let's play a game: I'll give you a figurative phrase from the passage, and you translate it into plain, literal language. 'Her words were daggers' becomes what?",
+                "When you spot a comparison using 'like' or 'as,' that's a simile. When the comparison is direct without those words, it's a metaphor. Can you find one of each in this paragraph?"
+              ]
+            },
+            {
+              "skill_id": "rc_passage_structure",
+              "name": "Passage Structure Analysis",
+              "description": "Analyze how a passage is organized (cause-effect, compare-contrast, chronological, problem-solution) and how structure supports meaning.",
+              "prerequisite_skills": ["rc_main_idea", "rc_author_purpose"],
+              "difficulty_tier": 4,
+              "example_teaching_prompts": [
+                "Let's outline this passage paragraph by paragraph. Write one sentence for what each paragraph does. Do you see a pattern — is it telling a story in order, comparing two things, or describing a problem and then a solution?",
+                "Look for signal words: 'First, then, finally' suggests chronological order. 'However, on the other hand' suggests comparison. 'As a result, therefore' suggests cause and effect. What signal words do you find?",
+                "Why did the author put this paragraph here instead of at the beginning? Think about what the reader needs to know first before this part makes sense."
+              ]
+            },
+            {
+              "skill_id": "rc_comparing_viewpoints",
+              "name": "Comparing Viewpoints",
+              "description": "Identify and compare different perspectives or arguments presented within or across passages.",
+              "prerequisite_skills": ["rc_author_purpose", "rc_evidence_reasoning", "rc_inference"],
+              "difficulty_tier": 5,
+              "example_teaching_prompts": [
+                "This passage presents two sides of an argument. Let's make a T-chart: on one side, list the reasons for, and on the other side, the reasons against. Which side does the author seem to favor? How can you tell?",
+                "Imagine Person A and Person B are having a debate about the topic in this passage. What would each person say? Where do they agree, and where do they disagree?",
+                "Both authors are writing about the same topic but reach different conclusions. Let's find the exact point where their reasoning splits apart. What different assumptions are they starting from?"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "math_quantitative_reasoning",
+      "name": "Math: Quantitative Reasoning",
+      "description": "ISEE-style quantitative reasoning skills that test number sense, logical thinking, and the ability to compare and estimate quantities.",
+      "skill_categories": [
+        {
+          "category_id": "mqr_comparison",
+          "name": "Quantitative Comparison",
+          "skills": [
+            {
+              "skill_id": "mqr_quant_comparisons",
+              "name": "Quantitative Comparisons",
+              "description": "Compare two mathematical quantities (Column A vs Column B) and determine which is greater, or if the relationship cannot be determined.",
+              "prerequisite_skills": [],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "In these problems you see Column A and Column B. Your job isn't to solve for an exact answer — it's just to figure out which side is bigger. Sometimes you can tell without doing all the math. Let's look at this one together.",
+                "Before diving into calculation, ask yourself: can I simplify both sides? For example, if both sides have '+ 5,' you can ignore it and just compare what's left.",
+                "Remember the four answer choices: A is greater, B is greater, they're equal, or it cannot be determined. That last option is important — if the answer changes depending on what number you pick, then the relationship can't be determined."
+              ]
+            },
+            {
+              "skill_id": "mqr_estimation",
+              "name": "Estimation Strategies",
+              "description": "Use rounding, benchmarks, and approximation to quickly determine approximate values and compare quantities.",
+              "prerequisite_skills": ["mqr_quant_comparisons"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "You don't always need the exact answer. If one side is 'a little more than 100' and the other is 'a little less than 50,' you already know which is bigger. Let's practice rounding to make comparisons faster.",
+                "Here's a trick: round each number to something friendly. Is 49 × 21 closer to 50 × 20 = 1,000 or 50 × 21 = 1,050? Either way, you've got a ballpark fast.",
+                "Estimation is your superpower on timed tests. Let's race: I'll solve it exactly, you estimate. We'll see who gets the answer first — and whether your estimate was close enough to pick the right choice."
+              ]
+            },
+            {
+              "skill_id": "mqr_number_sense",
+              "name": "Number Sense",
+              "description": "Intuitively understand number magnitude, relationships between operations, and properties like odd/even, factors, and divisibility.",
+              "prerequisite_skills": [],
+              "difficulty_tier": 1,
+              "example_teaching_prompts": [
+                "Without calculating, which is bigger: 1/3 of 90, or 1/4 of 100? Think about what each fraction means — you're taking a bigger slice of a slightly smaller pie versus a smaller slice of a slightly bigger pie.",
+                "Let's build your number intuition. I'll give you two numbers and you tell me: is their product positive or negative? Is it bigger or smaller than 100? You don't need to multiply — just think about what the numbers tell you.",
+                "Divisibility rules are shortcuts. If a number ends in 0 or 5, it's divisible by 5. If the digits add up to a multiple of 3, it's divisible by 3. Let's practice using these to quickly spot factors."
+              ]
+            }
+          ]
+        },
+        {
+          "category_id": "mqr_reasoning",
+          "name": "Logical and Abstract Reasoning",
+          "skills": [
+            {
+              "skill_id": "mqr_word_problem_translation",
+              "name": "Word Problem Translation",
+              "description": "Convert written word problems into mathematical expressions or equations by identifying key quantities and operations.",
+              "prerequisite_skills": ["mqr_number_sense"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Let's decode the math hiding in the words. 'More than' usually means addition. 'Of' usually means multiplication. 'Left' or 'remaining' usually means subtraction. Can you find the math words in this problem?",
+                "Before writing any numbers, let's label what we know and what we're looking for. I like to write: 'Given: ___. Find: ___.' That keeps us organized.",
+                "Here's a strategy: after you read the problem, try to retell it in your own simpler words. If the problem says 'Maria has 3 times as many stickers as Jorge, and Jorge has 12,' you might say 'Jorge: 12, Maria: 3 groups of 12.' Now the math is clearer."
+              ]
+            },
+            {
+              "skill_id": "mqr_pattern_recognition",
+              "name": "Pattern Recognition",
+              "description": "Identify numerical, geometric, or logical patterns in sequences and predict subsequent terms or rules.",
+              "prerequisite_skills": ["mqr_number_sense"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Look at this sequence: 2, 6, 18, 54, ... What's happening between each pair of numbers? Find the rule by checking: am I adding, multiplying, or doing something else each time?",
+                "When you see a pattern problem, write the differences between consecutive terms. If those differences are the same, the rule is addition. If the differences are growing, try looking at ratios instead.",
+                "Patterns aren't always about numbers. Look at this sequence of shapes. What's changing each step — the size, the number of sides, the shading? Once you spot what changes, you can predict what comes next."
+              ]
+            },
+            {
+              "skill_id": "mqr_logical_reasoning",
+              "name": "Logical Reasoning",
+              "description": "Apply deductive and inductive reasoning to solve problems involving conditions, constraints, and logical relationships.",
+              "prerequisite_skills": ["mqr_word_problem_translation", "mqr_pattern_recognition"],
+              "difficulty_tier": 4,
+              "example_teaching_prompts": [
+                "This problem gives us rules: 'All squares are rectangles' and 'This shape is a square.' What can we definitely conclude? What can we NOT conclude? Let's think about what must be true versus what might be true.",
+                "Try working backwards. If the answer has to satisfy all three conditions, start with the most restrictive condition — the one that eliminates the most options. Then check the remaining ones.",
+                "Let's use process of elimination. We have four answer choices. Can you find a reason to rule out each wrong answer? Sometimes it's easier to prove three things wrong than to prove one thing right."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "domain_id": "math_achievement",
+      "name": "Math: Achievement",
+      "description": "ISEE-style math achievement skills testing computational fluency, applied mathematics, and grade-level content mastery.",
+      "skill_categories": [
+        {
+          "category_id": "ma_numbers_operations",
+          "name": "Numbers and Operations",
+          "skills": [
+            {
+              "skill_id": "ma_fraction_decimal_ops",
+              "name": "Fraction and Decimal Operations",
+              "description": "Perform addition, subtraction, multiplication, and division with fractions, mixed numbers, and decimals fluently.",
+              "prerequisite_skills": [],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "Before we add fractions, we need a common denominator. Think of it like this: you can't add thirds and fourths directly, just like you can't add apples and oranges. We need to convert them to the same 'fruit' first. What's the smallest number both 3 and 4 divide into?",
+                "Dividing by a fraction is the same as multiplying by its flip. So 2/3 ÷ 1/4 becomes 2/3 × 4/1. Why does this work? Think about it: 'How many quarter-pizzas fit into two-thirds of a pizza?'",
+                "For decimals, line up the decimal points vertically before adding or subtracting. For multiplication, ignore the decimals at first, multiply the whole numbers, then count the total decimal places and put the point back."
+              ]
+            },
+            {
+              "skill_id": "ma_percent_problems",
+              "name": "Percent Problems",
+              "description": "Solve problems involving percentages including finding a percent of a number, percent change, and converting between fractions, decimals, and percents.",
+              "prerequisite_skills": ["ma_fraction_decimal_ops"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "'Percent' literally means 'per hundred.' So 25% is 25 out of 100, which is 1/4. Knowing these common conversions by heart — 50% = 1/2, 25% = 1/4, 10% = 1/10 — makes percent problems much faster.",
+                "For percent change, remember: change divided by original, then multiply by 100. If a price goes from $80 to $100, the change is $20, and $20 ÷ $80 = 0.25 = 25% increase.",
+                "Here's a shortcut for 'what is 15% of 60?' Break it up: 10% of 60 is 6, and 5% is half of that which is 3. So 15% of 60 = 6 + 3 = 9. Breaking percents into 10% and 5% chunks makes mental math easier."
+              ]
+            },
+            {
+              "skill_id": "ma_ratios_proportions",
+              "name": "Ratios and Proportions",
+              "description": "Understand ratios as comparisons, set up and solve proportions, and apply proportional reasoning to real-world problems.",
+              "prerequisite_skills": ["ma_fraction_decimal_ops"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "A ratio is just a comparison. If there are 3 cats and 5 dogs, the ratio of cats to dogs is 3:5. But be careful — the order matters! Dogs to cats would be 5:3. Always check what's being compared to what.",
+                "To solve a proportion like 3/4 = x/20, think: what did I multiply the bottom by to get from 4 to 20? That's 5. So multiply the top by 5 too: 3 × 5 = 15. Cross-multiplying works too, but scaling is often faster.",
+                "Proportions show up everywhere: recipes, maps, scale models. If a map says 1 inch = 50 miles, and two cities are 3.5 inches apart, how far apart are they really? Set up the proportion and solve."
+              ]
+            }
+          ]
+        },
+        {
+          "category_id": "ma_probability_stats",
+          "name": "Probability and Data",
+          "skills": [
+            {
+              "skill_id": "ma_probability_statistics",
+              "name": "Basic Probability and Statistics",
+              "description": "Calculate simple probability, mean, median, mode, and range, and interpret their meaning in context.",
+              "prerequisite_skills": ["ma_fraction_decimal_ops"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "Probability is just favorable outcomes divided by total outcomes. If a bag has 3 red marbles and 7 blue ones, the probability of picking red is 3 out of 10, or 3/10. Always count the total carefully.",
+                "Mean, median, and mode are three ways to describe what's 'typical.' Mean is the average (add everything, divide by how many). Median is the middle value when you line them up in order. Mode is the most common. They can give different answers — and that's okay!",
+                "Here's a problem: five test scores are 85, 90, 78, 92, 90. Let's find all three: mean (add and divide by 5), median (put in order, pick the middle), and mode (which appears most). Which one best represents this student's performance?"
+              ]
+            },
+            {
+              "skill_id": "ma_data_interpretation",
+              "name": "Data Interpretation from Charts and Graphs",
+              "description": "Read, analyze, and draw conclusions from bar graphs, line graphs, pie charts, tables, and other data displays.",
+              "prerequisite_skills": ["ma_probability_statistics"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Before answering any question about a graph, read the title, the axis labels, and the key or legend. These tell you what the data represents. Skipping this step is the #1 reason students misread graphs.",
+                "Look at this bar graph. Which month had the highest sales? Now here's the harder question: between which two months was the biggest jump? You're not just reading single bars — you're comparing the gaps between them.",
+                "Pie charts show parts of a whole. If the 'Sports' slice looks like about a quarter of the circle, that's roughly 25%. But if the chart gives exact percentages, use those instead of eyeballing it."
+              ]
+            }
+          ]
+        },
+        {
+          "category_id": "ma_geometry",
+          "name": "Geometry and Measurement",
+          "skills": [
+            {
+              "skill_id": "ma_area_perimeter_volume",
+              "name": "Area, Perimeter, and Volume",
+              "description": "Calculate area, perimeter, and volume of common shapes (rectangles, triangles, circles, rectangular prisms) and apply these in context.",
+              "prerequisite_skills": ["ma_fraction_decimal_ops"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "Perimeter is the distance around — imagine walking along the fence around a yard. Area is the space inside — imagine painting the yard. These are different measurements. Perimeter is in units (feet), area is in square units (square feet).",
+                "For triangles, area = 1/2 × base × height. But where's the height? It's always the straight-up-and-down distance from the base to the top, even if the triangle is tilted. Let me show you how to find it.",
+                "Volume is how much space a 3D shape takes up — think of filling a box with water. For a rectangular prism (a box), it's length × width × height. If a box is 5 cm × 3 cm × 2 cm, imagine stacking layers of cubes inside it."
+              ]
+            },
+            {
+              "skill_id": "ma_coordinate_geometry",
+              "name": "Coordinate Geometry Basics",
+              "description": "Plot and identify points on the coordinate plane, understand ordered pairs, and calculate distances between points on a grid.",
+              "prerequisite_skills": ["ma_area_perimeter_volume"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "An ordered pair (x, y) is like an address. The x-coordinate tells you how far to go left or right, and the y-coordinate tells you how far to go up or down. Always go sideways first, then up or down — think 'walk before you climb.'",
+                "The coordinate plane has four quadrants. In Quadrant I, both x and y are positive. Can you figure out the signs for the other three quadrants? Draw it out and label them.",
+                "To find the distance between two points that share an x or y coordinate, just subtract. Point (2, 3) to point (2, 7)? They have the same x, so the distance is |7 - 3| = 4 units straight up."
+              ]
+            }
+          ]
+        },
+        {
+          "category_id": "ma_algebra",
+          "name": "Algebra and Problem Solving",
+          "skills": [
+            {
+              "skill_id": "ma_algebraic_expressions",
+              "name": "Algebraic Expressions and Equations",
+              "description": "Evaluate expressions, combine like terms, apply order of operations, and solve one- and two-step equations.",
+              "prerequisite_skills": ["ma_fraction_decimal_ops"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "A variable like 'x' is just a placeholder for a number we don't know yet. When the problem says 'evaluate 3x + 2 when x = 4,' just replace every x with 4: 3(4) + 2 = 12 + 2 = 14.",
+                "Solving an equation is like a balance scale. Whatever you do to one side, you must do to the other to keep it balanced. If 2x + 3 = 11, subtract 3 from both sides first, then divide both sides by 2.",
+                "Like terms have the same variable part: 3x and 5x are like terms, but 3x and 3y are not. You can combine 3x + 5x = 8x, just like 3 apples + 5 apples = 8 apples."
+              ]
+            },
+            {
+              "skill_id": "ma_multistep_word_problems",
+              "name": "Multi-Step Word Problems",
+              "description": "Break complex word problems into sequential steps, identify the operations needed, and solve systematically.",
+              "prerequisite_skills": ["ma_algebraic_expressions", "ma_percent_problems", "ma_ratios_proportions"],
+              "difficulty_tier": 4,
+              "example_teaching_prompts": [
+                "Big problems are just small problems stacked together. Let's read the whole problem first without solving anything. Then let's list the steps: what do we need to find first before we can find the final answer?",
+                "After you solve, check if your answer makes sense. If the problem asks 'how many students' and you get 3.7, something went wrong — you can't have 0.7 of a student! Always sanity-check your final answer.",
+                "Let's use a strategy I call 'label everything.' After each calculation, write what that number represents: '120 miles' not just '120.' This prevents mixing up values in multi-step problems."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

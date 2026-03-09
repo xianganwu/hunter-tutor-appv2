@@ -1,0 +1,113 @@
+{
+  "skill_id": "ma_ratios_proportions",
+  "skill_name": "Ratios and Proportions",
+  "concept_explanation": "A ratio is a way to compare two quantities — like saying 'for every 2 red marbles, there are 3 blue marbles.' We can write this as 2:3 or 2/3. A proportion is an equation that says two ratios are equal, like 2/3 = 4/6. Proportional reasoning means understanding that when two things are related by a constant ratio, if one changes, the other changes by the same factor. For example, if a recipe for 4 people uses 2 cups of rice, then a recipe for 8 people (double) needs 4 cups (also double). You can solve proportions by cross-multiplying — if a/b = c/d, then a × d = b × c. This is one of the most useful skills in math because proportional thinking shows up in cooking, maps, scale models, unit conversions, and tons of real-world situations.",
+  "worked_examples": [
+    {
+      "problem": "In a class of 30 students, the ratio of boys to girls is 3:2. How many boys and how many girls are in the class?",
+      "thinking_out_loud": [
+        "The ratio 3:2 means for every 3 boys, there are 2 girls. So in each 'group,' there are 3 + 2 = 5 students total.",
+        "I need to figure out how many of these groups fit into 30 students: 30 ÷ 5 = 6 groups.",
+        "Boys: 3 × 6 = 18 boys. Girls: 2 × 6 = 12 girls.",
+        "Let me check: 18 + 12 = 30 students total, and 18/12 = 3/2. That confirms my answer."
+      ],
+      "solution": "18 boys and 12 girls"
+    },
+    {
+      "problem": "If 5 notebooks cost $8.75, how much would 12 notebooks cost at the same rate?",
+      "thinking_out_loud": [
+        "I need to find the cost of 12 notebooks if 5 notebooks cost $8.75. I'll set up a proportion: 5/8.75 = 12/x.",
+        "I could also find the unit rate first — the cost of 1 notebook. $8.75 ÷ 5 = $1.75 per notebook.",
+        "Now I multiply the unit rate by 12: $1.75 × 12 = $21.00.",
+        "Let me verify with cross-multiplication: 5/8.75 = 12/x → 5x = 8.75 × 12 = 105 → x = 105 ÷ 5 = 21. Same answer!"
+      ],
+      "solution": "$21.00"
+    },
+    {
+      "problem": "On a map, 2 inches represents 15 miles. Two cities are 7 inches apart on the map. What is the actual distance between them?",
+      "thinking_out_loud": [
+        "I'll set up a proportion: 2 inches / 15 miles = 7 inches / x miles.",
+        "Cross-multiply: 2 × x = 15 × 7.",
+        "That gives me 2x = 105.",
+        "Divide both sides by 2: x = 105 ÷ 2 = 52.5.",
+        "The actual distance between the two cities is 52.5 miles."
+      ],
+      "solution": "52.5 miles"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Confusing part-to-part ratios with part-to-whole ratios.",
+      "why_it_happens": "When told the ratio of boys to girls is 3:2, students might think 3/5 of the students are boys AND the ratio is 3:2 of the total, mixing up the two different ways ratios can be expressed.",
+      "how_to_address": "Clearly distinguish: 3:2 is part-to-part (boys compared to girls). To find the part-to-whole ratio, add the parts: boys are 3 out of (3+2) = 3/5 of the total. Always identify what is being compared."
+    },
+    {
+      "misconception": "Setting up proportions with mismatched units (putting miles in the numerator of one ratio and inches in the numerator of the other).",
+      "why_it_happens": "Students rush through the setup without making sure the same units are in the same positions on both sides of the equation.",
+      "how_to_address": "Label each part of the proportion with units. Always write them as: inches/miles = inches/miles or miles/inches = miles/inches. If the units don't match across the equals sign, the proportion is set up wrong."
+    },
+    {
+      "misconception": "Adding the same amount to both parts of a ratio instead of multiplying by the same factor.",
+      "why_it_happens": "Students think that to make an equivalent ratio from 2:3, they can add 2 to get 4:5, instead of multiplying to get 4:6.",
+      "how_to_address": "Show with examples: 2:3 means 2 for every 3. If we double both parts, we get 4:6 — that's the same relationship. But 4:5 is a completely different relationship. Ratios stay equivalent only when you multiply or divide both parts by the same number."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "A fruit bowl has apples and oranges in the ratio 4:3. If there are 28 pieces of fruit in total, how many are apples?",
+      "hints": [
+        "First, find the total number of parts: 4 + 3 = 7 parts. How many pieces of fruit does each part represent?",
+        "28 ÷ 7 = 4, so each part equals 4 pieces of fruit. Since apples have 4 parts of the ratio, multiply 4 × 4.",
+        "Apples = 4 × 4 = 16. Check: Oranges = 3 × 4 = 12. Total = 16 + 12 = 28."
+      ],
+      "answer": "16 apples",
+      "explanation": "The total parts are 4 + 3 = 7. Each part = 28 ÷ 7 = 4 pieces. Apples = 4 × 4 = 16."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "If 3 gallons of paint cover 1,050 square feet, how many gallons are needed to cover 1,750 square feet?",
+      "hints": [
+        "Set up a proportion: 3 gallons / 1,050 sq ft = x gallons / 1,750 sq ft.",
+        "Cross-multiply: 3 × 1,750 = 1,050 × x. Solve for x."
+      ],
+      "answer": "5 gallons",
+      "explanation": "Cross-multiplying: 3 × 1,750 = 5,250 and 1,050 × x = 1,050x. So 1,050x = 5,250, and x = 5,250 ÷ 1,050 = 5 gallons."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A car travels 180 miles on 6 gallons of gas. At the same rate, how far can it travel on 10 gallons?",
+      "hints": [
+        "Find the unit rate first: how many miles does the car get per gallon? Then multiply by 10."
+      ],
+      "answer": "300 miles",
+      "explanation": "Unit rate: 180 ÷ 6 = 30 miles per gallon. On 10 gallons: 30 × 10 = 300 miles."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "The scale on a model airplane is 1:72. If the real airplane's wingspan is 36 feet, what is the wingspan of the model in inches? (Hint: 1 foot = 12 inches.)",
+      "hints": [],
+      "answer": "6 inches",
+      "explanation": "The model is 1/72 the size of the real airplane. Real wingspan: 36 feet. Model wingspan: 36 ÷ 72 = 0.5 feet = 0.5 × 12 = 6 inches."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "A recipe that serves 6 people calls for 2 1/2 cups of sugar. How much sugar is needed to serve 15 people?",
+      "hints": [],
+      "answer": "6 1/4 cups",
+      "explanation": "Set up the proportion: 2.5 cups / 6 people = x cups / 15 people. Cross-multiply: 2.5 × 15 = 6x → 37.5 = 6x → x = 37.5 ÷ 6 = 6.25 = 6 1/4 cups."
+    }
+  ],
+  "real_world_connection": "Ratios and proportions are the math behind so many things you already do! When you follow a recipe and need to double it, you're using proportions. When you look at a map and figure out how far two places really are, that's proportional reasoning. Even when you figure out which product at the store is a better deal by comparing unit prices, you're using ratios. Architects, engineers, artists, and scientists use proportions every single day.",
+  "transition_cues": [
+    "Can you explain in your own words what makes two ratios form a proportion?",
+    "Quick check: if the ratio of cats to dogs is 5:3, and there are 40 animals total, how many cats are there? Walk me through your thinking.",
+    "How do you feel about setting up proportions from word problems? That's often the trickiest part.",
+    "Great progress! Would you like to try a problem that combines ratios with another concept, like percents?"
+  ]
+}

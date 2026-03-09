@@ -1,0 +1,115 @@
+{
+  "skill_id": "rc_vocab_context",
+  "skill_name": "Vocabulary in Context",
+  "concept_explanation": "When you come across a word you don't know in a passage, you don't need to panic or grab a dictionary. The words and sentences around the unfamiliar word — the context — usually give you clues about what it means. Authors almost always surround tricky words with hints. There are several types of context clues to watch for: definition clues (where the author actually explains the word), example clues (where the author gives examples of what the word means), contrast clues (where the author tells you the opposite), and mood or tone clues (where the feeling of the passage points you toward the meaning). Learning to spot these clues is like having a superpower for vocabulary.",
+  "worked_examples": [
+    {
+      "problem": "Read the following sentence and determine the meaning of the word 'reluctant':\n\n\"Even though all her friends were jumping into the lake, Maya was reluctant to join them. She stood on the dock, shifting from foot to foot, glancing at the dark water below.\"",
+      "thinking_out_loud": [
+        "I'm not totally sure what 'reluctant' means, so let me look at the clues around it.",
+        "It says Maya was reluctant to 'join them' even though her friends were already jumping in. So she's not doing what everyone else is doing — that tells me she's holding back.",
+        "Then it says she 'stood on the dock, shifting from foot to foot' — that sounds like she's hesitating, nervous, not ready to jump.",
+        "She's also 'glancing at the dark water below' — looking at it nervously, not confidently.",
+        "Putting it together: reluctant seems to mean unwilling or hesitant — she doesn't really want to do it, or she's nervous about doing it."
+      ],
+      "solution": "'Reluctant' means hesitant or unwilling. The context clues — standing on the dock instead of jumping, shifting from foot to foot, and nervously glancing at the water — all paint a picture of someone who doesn't want to do something or is holding back. The contrast between her friends (eagerly jumping) and Maya (staying put) helps confirm this meaning."
+    },
+    {
+      "problem": "Read the following sentence and determine the meaning of the word 'meticulous':\n\n\"The architect was meticulous in her work. Every measurement was checked three times, every line was drawn with precision, and every detail of the blueprint was perfect before she showed it to the client.\"",
+      "thinking_out_loud": [
+        "I need to figure out what 'meticulous' means using the context.",
+        "Right after the word, the author gives me specific examples: 'every measurement was checked three times,' 'every line was drawn with precision,' and 'every detail was perfect.'",
+        "These examples all show someone being extremely careful and thorough. Nothing is left to chance.",
+        "The word 'precision' and 'perfect' are strong clues — they point toward extreme carefulness.",
+        "So 'meticulous' must mean very careful, thorough, and paying close attention to details."
+      ],
+      "solution": "'Meticulous' means extremely careful and thorough, with great attention to detail. The author provides example clues right after the word — checking measurements three times, drawing with precision, and making every detail perfect. These examples define what it looks like to be meticulous."
+    },
+    {
+      "problem": "Read the following sentences and determine the meaning of the word 'elated':\n\n\"When Jamal opened the letter and read that he had been accepted into the summer science program, he was elated. He jumped up, shouted 'Yes!' and ran to tell his parents the good news. This was the opposite of how he had felt last week, when he was gloomy and convinced he wouldn't get in.\"",
+      "thinking_out_loud": [
+        "Let me look for clues about what 'elated' means. What's happening when Jamal feels this way?",
+        "He just got accepted into a program he wanted — that's good news. So the feeling is probably positive.",
+        "His actions confirm it: he 'jumped up, shouted Yes! and ran to tell his parents.' Those are all reactions of someone who is really, really happy.",
+        "There's also a contrast clue: the passage says this was 'the opposite of how he had felt last week, when he was gloomy.' If gloomy is the opposite, then elated must mean the opposite of gloomy.",
+        "So elated means extremely happy, thrilled, overjoyed."
+      ],
+      "solution": "'Elated' means extremely happy or thrilled. The passage gives us multiple types of clues: Jamal's joyful actions (jumping, shouting, running to share news) show the meaning, and the contrast clue — 'the opposite of gloomy' — confirms it. When you see contrast words like 'opposite,' 'unlike,' 'however,' or 'but,' they're often signaling that the word means the reverse of what's being compared."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Only looking at the sentence with the word and ignoring surrounding sentences",
+      "why_it_happens": "Students focus narrowly on the one sentence that contains the unknown word, missing helpful clues in the sentences before or after it.",
+      "how_to_address": "Always read at least one sentence before and one sentence after the unknown word. Context clues often appear in neighboring sentences, not just the same sentence. Think of it as a wider window — zoom out a little to see more clues."
+    },
+    {
+      "misconception": "Choosing a definition that works in general but not in this specific passage",
+      "why_it_happens": "Many words have multiple meanings. Students sometimes pick a definition they already know rather than the definition that fits the specific context. For example, 'light' can mean not heavy, not dark, or to start a fire — context determines which one.",
+      "how_to_address": "After choosing a definition, substitute it back into the sentence. Read the sentence with your definition in place of the original word. If it makes sense and fits the meaning of the passage, you've probably got it right. If it sounds wrong, try a different meaning."
+    },
+    {
+      "misconception": "Guessing randomly without actually looking at context clues",
+      "why_it_happens": "When pressed for time or feeling unsure, students sometimes just pick an answer without systematically examining the words and sentences around the unknown word.",
+      "how_to_address": "Slow down and follow a simple process: (1) Reread the sentence with the word. (2) Look at sentences before and after. (3) Identify any clue types — definitions, examples, contrasts, or mood. (4) Make your best guess based on those clues. (5) Test it by substituting your guess into the sentence."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "What does the word 'abundant' mean in this sentence?\n\n\"The market was filled with abundant fruits and vegetables — baskets overflowing with apples, crates stacked high with corn, and tables covered in every kind of berry you could imagine.\"",
+      "hints": [
+        "Look at the examples the author gives after the word 'abundant.' What do 'overflowing baskets,' 'crates stacked high,' and 'tables covered' tell you about the amount of food?",
+        "Think about whether 'abundant' describes a small amount or a large amount based on these examples.",
+        "Try replacing 'abundant' with 'plentiful' or 'a lot of' — does the sentence still make sense?"
+      ],
+      "answer": "'Abundant' means plentiful, existing in large quantities. The context clues — baskets 'overflowing,' crates 'stacked high,' and tables 'covered' in berries — all describe large amounts of produce, which tells us that 'abundant' means there is plenty of something.",
+      "explanation": "The author uses example clues here — the overflowing, stacking, and covering are concrete images that show what 'abundant' looks like in action. When a sentence gives you vivid examples right after an unfamiliar word, those examples usually define the word for you."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "What does the word 'somber' mean in this passage?\n\n\"The ceremony was somber and quiet. People stood with their heads bowed, some wiping tears from their eyes. No one spoke above a whisper. It was a far cry from the cheerful celebration they had held at the same spot just a year ago.\"",
+      "hints": [
+        "Look at the details that describe the ceremony: heads bowed, tears, whispering. What kind of mood do these details create?",
+        "Now look at the contrast clue in the last sentence. 'A far cry from the cheerful celebration' tells you that this ceremony is the opposite of cheerful. What's the opposite of cheerful?"
+      ],
+      "answer": "'Somber' means serious, sad, or gloomy. The context gives us mood clues — bowed heads, tears, whispering — all suggest a sad atmosphere. The contrast with 'cheerful celebration' confirms it: if the previous event was cheerful and this one is 'a far cry' from that, then 'somber' must mean something like sad or serious.",
+      "explanation": "This passage gives you two types of clues: mood clues (the sad details) and a contrast clue (comparing this event to a cheerful one). Using both together gives you a strong understanding of the word's meaning."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "What does the word 'resilient' mean in this passage?\n\n\"After the storm destroyed most of the crops, many farmers gave up and moved away. But the Hernandez family was resilient. They cleared the debris, replanted their fields, and within two seasons, their farm was thriving again.\"",
+      "hints": [
+        "Compare what the other farmers did (gave up and moved away) with what the Hernandez family did. The word 'but' signals a contrast — what is the opposite of giving up?"
+      ],
+      "answer": "'Resilient' means able to recover from difficulties or setbacks, tough and persistent. The contrast clue is key: while other farmers 'gave up and moved away,' the Hernandez family did the opposite — they 'cleared the debris, replanted their fields,' and their farm was 'thriving again.' Being resilient means bouncing back instead of giving up.",
+      "explanation": "The word 'but' is a powerful contrast signal. It tells you that the Hernandez family did something different from the farmers who quit. Their actions — clearing, replanting, thriving — show what 'resilient' looks like in practice: recovering and keeping going despite hardship."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "What does the word 'tedious' mean in this passage?\n\n\"Cataloging every book in the old library was a tedious process. The volunteers had to check each book's condition, record its title and author by hand, and place it on the correct shelf. After eight hours, they had only finished two bookcases out of forty. Several volunteers yawned and stretched, and one muttered, 'This is going to take forever.'\"",
+      "hints": [],
+      "answer": "'Tedious' means boring, slow, and tiresome. The context clues include the slow pace (only two out of forty bookcases done in eight hours), the detailed and repetitive nature of the work (checking, recording by hand, shelving), and the volunteers' reactions (yawning, stretching, and complaining it will 'take forever'). All of these details describe work that is dull and time-consuming.",
+      "explanation": "The author doesn't define 'tedious' directly but surrounds it with clues showing what tedious work looks like: repetitive tasks, painfully slow progress, and people showing signs of boredom. By reading the full passage — not just the sentence with the word — you gather enough clues to determine the meaning."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "What does the word 'pragmatic' mean in this passage?\n\n\"While the other team members debated whether to paint the float gold or silver, Rosa took a pragmatic approach. 'We have a twenty-dollar budget,' she said. 'Let's use the paint we already have in the supply closet and spend the money on materials we actually need.' Everyone agreed that her practical thinking saved the day.\"",
+      "hints": [],
+      "answer": "'Pragmatic' means practical and focused on realistic solutions rather than idealistic ones. The biggest clue is in the last sentence, where Rosa's approach is directly described as 'practical thinking.' Her actions also demonstrate the meaning: instead of debating an ideal choice (gold or silver), she focuses on what's realistic given their limited budget. Being pragmatic means making sensible, real-world decisions.",
+      "explanation": "This passage contains a near-definition clue: the author calls Rosa's approach 'practical thinking' in the last sentence. Combined with her actions — choosing available supplies over ideal but unaffordable options — the meaning of 'pragmatic' becomes clear. Always check the sentences around an unfamiliar word, especially the ones that come after it."
+    }
+  ],
+  "real_world_connection": "You encounter unfamiliar words all the time — in books, articles, conversations, even video games and song lyrics. You won't always have a dictionary handy, but you'll almost always have context. Learning to use context clues means you can figure out new words on the fly, which helps you read harder books, understand complex instructions, and even follow conversations on topics you're just learning about. Every time you figure out a word from context, you're growing your vocabulary naturally — the way most adults actually learn new words.",
+  "transition_cues": [
+    "Can you name the four types of context clues we talked about? Which one do you find easiest to spot?",
+    "Let's check your process: if you see an unfamiliar word on the exam, what steps would you take before choosing an answer?",
+    "What does it mean to 'substitute and test' when figuring out a word's meaning? Why is that step important?",
+    "Can you think of a word you recently learned from context — maybe in a book or a conversation — without looking it up?"
+  ]
+}

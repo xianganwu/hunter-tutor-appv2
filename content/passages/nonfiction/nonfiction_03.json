@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_03",
+    "title": "The Great Debate: Should Museums Return Stolen Artifacts?",
+    "genre": "nonfiction",
+    "difficulty_level": 3,
+    "word_count": 370,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_comparing_viewpoints",
+      "rc_author_purpose",
+      "rc_tone_mood"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Many of the world's greatest museums display ancient objects that were taken from other countries, sometimes during wars or colonial rule. A growing movement is demanding that these artifacts be returned.",
+  "passage_text": "Walk through the halls of the British Museum in London, and you will find treasures from nearly every civilization in human history. The Rosetta Stone, which unlocked the mystery of Egyptian hieroglyphics, sits behind glass alongside marble sculptures taken from the Parthenon in Athens. The museum calls these objects part of a \"shared human heritage\" that belongs to everyone. But a growing chorus of voices around the world disagrees, arguing that these artifacts were taken without permission and should be returned to the countries they came from.\n\nThose who support returning artifacts make a straightforward moral argument: taking something that belongs to someone else is wrong, regardless of how long ago it happened. Many of these objects were removed during periods of colonial rule, when European powers controlled large parts of Africa, Asia, and the Americas. Local people often had no say in what was taken. Nigeria, for example, has spent decades requesting the return of the Benin Bronzes, magnificent metal sculptures that British soldiers looted from the Kingdom of Benin in 1897. For Nigerians, these bronzes are not just art — they are records of their history, their religion, and their identity.\n\nMuseums counter with several practical arguments. They claim that their climate-controlled facilities and expert conservation teams can better protect fragile artifacts than institutions in some developing countries. They also argue that displaying objects from many cultures in one place helps visitors understand the connections between civilizations. Some museum directors worry that returning artifacts would set a precedent, eventually emptying their collections entirely.\n\nHowever, critics point out that the \"protection\" argument is patronizing — it assumes that countries cannot care for their own heritage. Ethiopia, for instance, has built a modern museum specifically to house artifacts currently held in British collections. Meanwhile, the \"universal museum\" argument conveniently benefits the institutions making it, since they get to keep the objects that draw millions of paying visitors each year.\n\nThe debate shows no signs of resolution. France returned twenty-six artifacts to Benin in 2021, and Germany has begun similar transfers. But the British Museum has resisted returning the Parthenon sculptures despite decades of requests from Greece. As more nations demand the return of their cultural property, museums face an uncomfortable question: can an institution built partly on colonial plunder truly represent shared human heritage?",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the central question the passage explores?",
+      "answer_choices": [
+        { "letter": "A", "text": "Why are museums important for preserving history?" },
+        { "letter": "B", "text": "Should museums return artifacts that were taken from other countries without permission?" },
+        { "letter": "C", "text": "Which museum has the best collection of ancient artifacts?" },
+        { "letter": "D", "text": "How did European countries build their colonial empires?" },
+        { "letter": "E", "text": "Why is the Rosetta Stone so important to historians?" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The entire passage is structured around the debate over whether museums should return artifacts taken from other nations. Both sides of this argument are presented throughout.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While museums' role in preservation is mentioned as one argument, this is not the central question. The passage is about whether artifacts should be returned." },
+        { "letter": "C", "explanation": "The passage does not compare or rank museums. It uses the British Museum as an example in a larger debate." },
+        { "letter": "D", "explanation": "Colonial history is mentioned as context for how artifacts were taken, but the passage is not primarily about colonialism." },
+        { "letter": "E", "explanation": "The Rosetta Stone is mentioned briefly as an example of a displayed artifact, but is not the focus of the passage." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, why are the Benin Bronzes important to Nigeria?",
+      "answer_choices": [
+        { "letter": "A", "text": "They are made of rare metals worth millions of dollars." },
+        { "letter": "B", "text": "They are the oldest known African sculptures." },
+        { "letter": "C", "text": "They were created by European artists during colonial rule." },
+        { "letter": "D", "text": "They are records of Nigeria's history, religion, and identity." },
+        { "letter": "E", "text": "They prove that Nigeria was the most powerful kingdom in Africa." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage states that for Nigerians, the bronzes 'are not just art — they are records of their history, their religion, and their identity.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not mention the monetary value of the bronzes. Their importance is cultural, not financial." },
+        { "letter": "B", "explanation": "The passage does not claim they are the oldest African sculptures. This detail is not mentioned." },
+        { "letter": "C", "explanation": "The bronzes were created by the Kingdom of Benin, not by European artists. British soldiers looted them." },
+        { "letter": "E", "explanation": "The passage does not make any claims about Nigeria being the most powerful kingdom in Africa." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 3,
+      "question_text": "As used in the passage, the word 'patronizing' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "generous and helpful" },
+        { "letter": "B", "text": "treating others as though they are less capable or inferior" },
+        { "letter": "C", "text": "respectful and diplomatic" },
+        { "letter": "D", "text": "financially supportive" },
+        { "letter": "E", "text": "scientifically accurate" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Critics call the 'protection' argument patronizing because it assumes other countries cannot care for their own heritage — in other words, it treats those countries as less capable.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While 'patron' can relate to support, 'patronizing' in this context is negative, implying condescension rather than generosity." },
+        { "letter": "C", "explanation": "The critics use 'patronizing' as a criticism, not a compliment. It implies disrespect, not diplomacy." },
+        { "letter": "D", "explanation": "'Patron' can mean financial supporter, but 'patronizing' as used here describes a condescending attitude, not financial support." },
+        { "letter": "E", "explanation": "The passage is not discussing scientific accuracy. The word describes an attitude toward other countries' capabilities." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "How does the passage present the two sides of the artifact debate?",
+      "answer_choices": [
+        { "letter": "A", "text": "It presents both sides but suggests through word choice and evidence that the case for returning artifacts is stronger." },
+        { "letter": "B", "text": "It presents only the museums' side fairly and dismisses the critics." },
+        { "letter": "C", "text": "It presents both sides equally without any indication of the author's opinion." },
+        { "letter": "D", "text": "It presents only the critics' arguments and ignores the museums' perspective." },
+        { "letter": "E", "text": "It refuses to take a position and ends without any conclusion." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "While the passage presents both perspectives, the author uses words like 'looted,' 'patronizing,' and 'colonial plunder' and includes counterarguments to the museums' positions, suggesting the author finds the case for returning artifacts more compelling.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The passage actually challenges the museums' arguments more than it challenges the critics' arguments." },
+        { "letter": "C", "explanation": "The passage is not perfectly balanced. The language and structure suggest the author leans toward the repatriation side." },
+        { "letter": "D", "explanation": "The passage does present the museums' arguments (protection, universal museum concept), though it then challenges them." },
+        { "letter": "E", "explanation": "The passage does end with a pointed rhetorical question that suggests the author's position, which is a form of conclusion." }
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Why does the author mention Ethiopia's modern museum?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that Ethiopia has more artifacts than the British Museum" },
+        { "letter": "B", "text": "To prove that all countries should build new museums" },
+        { "letter": "C", "text": "To explain why Ethiopia is requesting artifacts from France" },
+        { "letter": "D", "text": "To compare Ethiopian architecture with British architecture" },
+        { "letter": "E", "text": "To counter the argument that developing countries cannot properly care for artifacts" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The Ethiopia example directly follows the statement that the 'protection' argument is patronizing. Ethiopia's modern museum serves as concrete evidence that countries can and do build proper facilities for their artifacts.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not compare the size of collections. The point is about capability, not quantity." },
+        { "letter": "B", "explanation": "The author is not making a universal recommendation about museum construction. Ethiopia is a specific counterexample." },
+        { "letter": "C", "explanation": "The passage mentions France returning artifacts to Benin, not Ethiopia. These are different situations." },
+        { "letter": "D", "explanation": "Architecture is not being compared. The focus is on the capability to preserve artifacts." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What can the reader infer about the author's view of the 'universal museum' argument?",
+      "answer_choices": [
+        { "letter": "A", "text": "The author fully supports it as the best approach to cultural preservation." },
+        { "letter": "B", "text": "The author believes it is a self-serving justification that primarily benefits the museums themselves." },
+        { "letter": "C", "text": "The author thinks it is a new idea that has not been fully explored." },
+        { "letter": "D", "text": "The author believes it should be applied to all museums worldwide." },
+        { "letter": "E", "text": "The author has no opinion on the argument." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The author writes that the 'universal museum' argument 'conveniently benefits the institutions making it, since they get to keep the objects that draw millions of paying visitors each year.' The word 'conveniently' signals skepticism.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The author's language ('conveniently benefits') suggests skepticism, not support." },
+        { "letter": "C", "explanation": "The universal museum concept is presented as an established argument, not a new or unexplored idea." },
+        { "letter": "D", "explanation": "The author does not advocate expanding the universal museum concept. The author questions its validity." },
+        { "letter": "E", "explanation": "The author's word choices clearly indicate an opinion, particularly the use of 'conveniently' and the final rhetorical question." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What is the tone of the final sentence of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Neutral and purely factual" },
+        { "letter": "B", "text": "Optimistic and hopeful" },
+        { "letter": "C", "text": "Challenging and provocative" },
+        { "letter": "D", "text": "Confused and uncertain" },
+        { "letter": "E", "text": "Humorous and playful" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The final sentence asks whether an institution 'built partly on colonial plunder' can 'truly represent shared human heritage.' The phrase 'colonial plunder' and the rhetorical question challenge the reader to think critically about museums' claims.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The language is not neutral. Words like 'colonial plunder' carry strong connotations that go beyond simple reporting." },
+        { "letter": "B", "explanation": "The question raises a difficult challenge rather than expressing hope or optimism." },
+        { "letter": "D", "explanation": "The author seems clear in the direction of the argument, not confused. The question is rhetorical, not genuinely uncertain." },
+        { "letter": "E", "explanation": "The topic of colonial plunder and cultural heritage is treated seriously, not humorously." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Which of the following best describes the museums' main argument for keeping artifacts?",
+      "answer_choices": [
+        { "letter": "A", "text": "The artifacts were purchased legally and belong to the museums." },
+        { "letter": "B", "text": "The countries requesting artifacts do not have any museums of their own." },
+        { "letter": "C", "text": "Museums can better protect artifacts and displaying diverse collections helps people understand world cultures." },
+        { "letter": "D", "text": "Returning artifacts would be too expensive and logistically difficult." },
+        { "letter": "E", "text": "The artifacts are too fragile to be moved safely." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that museums argue their facilities can 'better protect fragile artifacts' and that 'displaying objects from many cultures in one place helps visitors understand the connections between civilizations.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage says the artifacts were 'looted' and 'taken without permission,' not legally purchased. Museums do not make a legality argument here." },
+        { "letter": "B", "explanation": "The passage actually counters this by mentioning Ethiopia's modern museum. The claim that countries lack museums is not the museums' stated argument." },
+        { "letter": "D", "explanation": "Cost and logistics are not mentioned as arguments in the passage." },
+        { "letter": "E", "explanation": "While 'fragile artifacts' is mentioned, the concern is about protection capabilities, not the danger of moving them." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 9,
+      "question_text": "As used in the passage, the word 'precedent' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "a museum policy about visitor behavior" },
+        { "letter": "B", "text": "a historical event that is well documented" },
+        { "letter": "C", "text": "an action or decision that serves as an example for future similar situations" },
+        { "letter": "D", "text": "a law passed by the government" },
+        { "letter": "E", "text": "a competition between countries" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Museum directors worry that returning artifacts would 'set a precedent,' meaning it would establish an example that other countries would follow, leading to more return requests and eventually emptying their collections.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "A precedent is not a visitor policy. It is about establishing a pattern for future decisions." },
+        { "letter": "B", "explanation": "While 'precedent' involves past actions, it specifically refers to those actions serving as guides for future decisions, not just being documented." },
+        { "letter": "D", "explanation": "A precedent is not a law, though legal decisions can set precedents. In this context, it refers to an action that would invite similar future demands." },
+        { "letter": "E", "explanation": "A precedent has nothing to do with competition. It is about one action leading to similar future actions." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What is the author's most likely purpose in writing this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "To convince readers to stop visiting museums" },
+        { "letter": "B", "text": "To explain a complex cultural debate and encourage readers to think critically about museums and cultural ownership" },
+        { "letter": "C", "text": "To provide a complete history of the British Museum" },
+        { "letter": "D", "text": "To praise European museums for preserving world heritage" },
+        { "letter": "E", "text": "To explain how artifacts are restored and conserved" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage presents multiple viewpoints on the artifact debate and ends with a provocative question, inviting readers to think critically about museums, cultural ownership, and colonial history.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not discourage visiting museums. It raises questions about how museums acquired certain objects." },
+        { "letter": "C", "explanation": "The British Museum is used as an example, but the passage is not a history of that institution." },
+        { "letter": "D", "explanation": "The passage challenges rather than praises the museums' position, particularly through words like 'plunder' and 'patronizing.'" },
+        { "letter": "E", "explanation": "Conservation is briefly mentioned as a museum argument, but the passage is not about restoration techniques." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    }
+  ]
+}

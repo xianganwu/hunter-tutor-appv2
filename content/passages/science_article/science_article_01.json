@@ -1,0 +1,221 @@
+{
+  "metadata": {
+    "passage_id": "science_article_01",
+    "title": "Why Do Fireflies Glow?",
+    "genre": "science_article",
+    "difficulty_level": 1,
+    "word_count": 270,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_evidence_reasoning",
+      "rc_inference",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "On warm summer nights, tiny flashing lights appear across lawns and fields. This article explains the science behind one of nature's most beautiful displays.",
+  "passage_text": "On a warm summer evening, you might see small lights blinking on and off across a backyard or open field. These lights come from fireflies, also called lightning bugs. But fireflies are not actually flies at all. They are a type of beetle, and their ability to produce light is one of nature's most fascinating tricks.\n\nFireflies create light through a chemical reaction inside their bodies. Special cells in the firefly's abdomen contain two important chemicals: luciferin and luciferase. When these chemicals mix together with oxygen, they produce a glow. Scientists call this process bioluminescence, which means \"living light.\" Unlike a light bulb, which gets very hot, the light a firefly makes gives off almost no heat. Scientists sometimes call it \"cold light\" for this reason.\n\nSo why do fireflies glow? The main reason is communication. Male fireflies fly through the air flashing a specific pattern of light. Each species of firefly has its own unique pattern, almost like a secret code. A female firefly sitting in the grass watches for the right pattern. When she sees a flash from a male of her same species, she flashes back. This back-and-forth signaling helps the two find each other so they can mate.\n\nFirefly light also serves as a warning. The chemicals in a firefly's body taste terrible to predators like birds and spiders. The glow tells these predators, \"Don't eat me — I taste awful!\" Some other insects have even evolved to mimic the firefly's glow so that predators will leave them alone, too.\n\nScientists continue to study bioluminescence because it has practical uses. Researchers have used firefly chemicals to help detect diseases and to make medical tests more accurate.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Fireflies are beetles, not flies." },
+        { "letter": "B", "text": "Fireflies produce light through a chemical reaction and use it for communication and defense." },
+        { "letter": "C", "text": "Scientists use firefly chemicals in medical research." },
+        { "letter": "D", "text": "Male fireflies fly through the air at night looking for mates." },
+        { "letter": "E", "text": "Firefly light does not produce heat like a light bulb." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains how fireflies produce light (chemical reaction) and the two main purposes of their glow (communication and defense). This covers the central topic of the entire passage.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is a detail from the first paragraph, not the main idea of the whole passage." },
+        { "letter": "C", "explanation": "Medical research is briefly mentioned at the end but is not the focus of the passage." },
+        { "letter": "D", "explanation": "This is one detail about how fireflies use their light, not the overall main idea." },
+        { "letter": "E", "explanation": "This is a specific fact about firefly light, not the passage's central message." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, what two chemicals combine to produce a firefly's light?",
+      "answer_choices": [
+        { "letter": "A", "text": "Oxygen and carbon dioxide" },
+        { "letter": "B", "text": "Luciferase and oxygen" },
+        { "letter": "C", "text": "Luciferin and luciferase" },
+        { "letter": "D", "text": "Bioluminescence and luciferin" },
+        { "letter": "E", "text": "Luciferin and carbon dioxide" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that 'special cells in the firefly's abdomen contain two important chemicals: luciferin and luciferase.' These mix with oxygen to produce light.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Oxygen is involved in the reaction but is not one of the two chemicals named. Carbon dioxide is never mentioned." },
+        { "letter": "B", "explanation": "Luciferase is one correct chemical, but the other is luciferin, not oxygen. Oxygen is a third ingredient." },
+        { "letter": "D", "explanation": "Bioluminescence is the name of the process, not one of the chemicals that produce the light." },
+        { "letter": "E", "explanation": "Luciferin is correct, but carbon dioxide is not mentioned in the passage." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 3,
+      "question_text": "As used in the passage, the word 'bioluminescence' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "a chemical found inside insects" },
+        { "letter": "B", "text": "light produced by a living organism" },
+        { "letter": "C", "text": "heat created by a chemical reaction" },
+        { "letter": "D", "text": "a type of electricity found in nature" },
+        { "letter": "E", "text": "a glow that attracts predators" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage directly defines bioluminescence as meaning 'living light.' This matches 'light produced by a living organism.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Luciferin and luciferase are chemicals, but bioluminescence is the process of making light, not a chemical itself." },
+        { "letter": "C", "explanation": "The passage specifically says firefly light gives off almost no heat, so this contradicts the text." },
+        { "letter": "D", "explanation": "Electricity is not mentioned in the passage. Bioluminescence is a chemical reaction, not an electrical one." },
+        { "letter": "E", "explanation": "The glow actually warns predators away, not attracts them. This reverses the information in the passage." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Why do scientists call the firefly's light 'cold light'?",
+      "answer_choices": [
+        { "letter": "A", "text": "Fireflies only glow in cold weather." },
+        { "letter": "B", "text": "The light appears blue, which is a cold color." },
+        { "letter": "C", "text": "The light produces almost no heat." },
+        { "letter": "D", "text": "Fireflies live in cold parts of the world." },
+        { "letter": "E", "text": "The chemicals inside a firefly feel cold to the touch." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that 'unlike a light bulb, which gets very hot, the light a firefly makes gives off almost no heat,' and scientists call it 'cold light' for this reason.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage says fireflies appear on warm summer evenings, so this contradicts the text." },
+        { "letter": "B", "explanation": "The passage does not describe the color of the light or call it blue." },
+        { "letter": "D", "explanation": "The passage does not discuss where fireflies live geographically." },
+        { "letter": "E", "explanation": "The passage does not say anything about touching the chemicals inside a firefly." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What can the reader infer about why each firefly species has its own flash pattern?",
+      "answer_choices": [
+        { "letter": "A", "text": "Different species have different chemicals in their bodies." },
+        { "letter": "B", "text": "Some species are smarter than others." },
+        { "letter": "C", "text": "Brighter patterns scare away more predators." },
+        { "letter": "D", "text": "It helps fireflies find mates of the same species and avoid confusion." },
+        { "letter": "E", "text": "Scientists taught fireflies different patterns in experiments." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage explains that females watch for the right pattern from males of their same species. Having unique patterns prevents confusion between species and helps each firefly find a proper mate.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage does not suggest that different species have different chemicals. The chemicals luciferin and luciferase are described for fireflies generally." },
+        { "letter": "B", "explanation": "The passage does not compare intelligence between species. Flash patterns are described as instinct, not intelligence." },
+        { "letter": "C", "explanation": "The passage connects the glow to predator defense generally, but does not say different patterns have different effects on predators." },
+        { "letter": "E", "explanation": "The passage does not say anything about scientists teaching fireflies patterns. The patterns are natural." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 6,
+      "question_text": "As used in the passage, the word 'mimic' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "to run away from" },
+        { "letter": "B", "text": "to fight against" },
+        { "letter": "C", "text": "to hide inside" },
+        { "letter": "D", "text": "to improve upon" },
+        { "letter": "E", "text": "to copy or imitate" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The passage says some insects 'have evolved to mimic the firefly's glow so that predators will leave them alone.' In this context, 'mimic' means to copy or imitate the glow to gain the same protection.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Running away is a defense strategy, but mimicking means copying, not fleeing." },
+        { "letter": "B", "explanation": "Fighting is not related to the idea of copying another creature's appearance or behavior." },
+        { "letter": "C", "explanation": "Hiding inside something is not what mimicry means. The insects are copying the glow, not hiding." },
+        { "letter": "D", "explanation": "Improving upon suggests making something better, but mimicry is about copying, not improving." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Which detail from the passage best supports the idea that firefly light serves as protection?",
+      "answer_choices": [
+        { "letter": "A", "text": "Male fireflies fly through the air flashing a specific pattern." },
+        { "letter": "B", "text": "Each species of firefly has its own unique pattern." },
+        { "letter": "C", "text": "The chemicals in a firefly's body taste terrible to predators like birds and spiders." },
+        { "letter": "D", "text": "Luciferin and luciferase mix together with oxygen." },
+        { "letter": "E", "text": "Researchers have used firefly chemicals to detect diseases." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage explains that the glow warns predators the firefly tastes bad. The connection between bad taste and the glowing signal is what makes the light protective.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This detail is about communication for mating, not about protection from predators." },
+        { "letter": "B", "explanation": "Unique patterns help with finding mates of the same species, not with defense." },
+        { "letter": "D", "explanation": "This describes how light is produced chemically, not why the light provides protection." },
+        { "letter": "E", "explanation": "This is about human use of firefly chemicals, not about how fireflies protect themselves." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, what conclusion can the reader draw about firefly communication?",
+      "answer_choices": [
+        { "letter": "A", "text": "Fireflies communicate using sounds that humans cannot hear." },
+        { "letter": "B", "text": "Only female fireflies can produce light." },
+        { "letter": "C", "text": "Firefly communication only works when hundreds of fireflies are present." },
+        { "letter": "D", "text": "Fireflies have developed a visual signaling system that works effectively in the dark." },
+        { "letter": "E", "text": "Fireflies communicate more effectively than most other insects." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage describes males flashing patterns and females flashing back on summer evenings, showing that fireflies use a visual system of light signals that works in darkness.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The passage describes light-based communication, not sound. No sounds are mentioned." },
+        { "letter": "B", "explanation": "The passage says both males and females flash — males flash while flying and females flash back from the grass." },
+        { "letter": "C", "explanation": "The passage describes individual males and females signaling each other. Large numbers are not described as necessary." },
+        { "letter": "E", "explanation": "The passage does not compare firefly communication to that of other insects." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What can the reader infer is the reason the author mentions medical research at the end of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that studying nature can lead to benefits for humans" },
+        { "letter": "B", "text": "To argue that fireflies should be protected by law" },
+        { "letter": "C", "text": "To explain how doctors treat diseases using insects" },
+        { "letter": "D", "text": "To prove that firefly chemicals are dangerous" },
+        { "letter": "E", "text": "To compare fireflies to other glowing animals" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "By ending with the fact that firefly chemicals help detect diseases and improve medical tests, the author shows that studying natural phenomena like bioluminescence has real-world benefits for people.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The passage does not discuss protecting fireflies or any conservation efforts." },
+        { "letter": "C", "explanation": "The passage says the chemicals help detect diseases and improve tests, not that doctors treat diseases with insects directly." },
+        { "letter": "D", "explanation": "The passage presents the chemicals as useful, not dangerous. Nothing suggests they are harmful." },
+        { "letter": "E", "explanation": "No other glowing animals are mentioned in the passage." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 10,
+      "question_text": "As used in the passage, the word 'unique' most nearly means",
+      "answer_choices": [
+        { "letter": "A", "text": "beautiful" },
+        { "letter": "B", "text": "one of a kind" },
+        { "letter": "C", "text": "very old" },
+        { "letter": "D", "text": "difficult to see" },
+        { "letter": "E", "text": "extremely bright" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says each species has its own 'unique pattern, almost like a secret code.' This means each pattern is one of a kind and belongs to only that species.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While firefly light might be beautiful, 'unique' describes distinctness, not beauty." },
+        { "letter": "C", "explanation": "Age is not related to the meaning of 'unique' in this context." },
+        { "letter": "D", "explanation": "The passage does not suggest the patterns are hard to see. Female fireflies can clearly identify them." },
+        { "letter": "E", "explanation": "Brightness is not what 'unique' refers to here. The word describes how each pattern is different." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    }
+  ]
+}

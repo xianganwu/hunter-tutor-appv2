@@ -1,0 +1,115 @@
+{
+  "skill_id": "ma_coordinate_geometry",
+  "skill_name": "Coordinate Geometry Basics",
+  "concept_explanation": "The coordinate plane is like a map for math — it uses two number lines that cross at a point called the origin (0, 0). The horizontal number line is the x-axis and the vertical one is the y-axis. Every point on the plane has an address called an ordered pair, written as (x, y). The x-value tells you how far to go left or right from the origin, and the y-value tells you how far to go up or down. The plane is split into four sections called quadrants: Quadrant I is the top-right (both positive), Quadrant II is top-left (x negative, y positive), Quadrant III is bottom-left (both negative), and Quadrant IV is bottom-right (x positive, y negative). You can also find distances between points — if two points share the same x or y value, you just find the difference between the other coordinates.",
+  "worked_examples": [
+    {
+      "problem": "Plot the point (−3, 4) on a coordinate plane. Which quadrant is it in?",
+      "thinking_out_loud": [
+        "The ordered pair is (−3, 4). The first number, −3, is the x-coordinate. The second number, 4, is the y-coordinate.",
+        "Starting at the origin (0, 0), I move 3 units to the LEFT because x is negative.",
+        "Then I move 4 units UP because y is positive.",
+        "I mark the point where I end up.",
+        "Since x is negative and y is positive, this point is in Quadrant II (top-left area)."
+      ],
+      "solution": "The point (−3, 4) is in Quadrant II."
+    },
+    {
+      "problem": "Find the distance between points A(2, 5) and B(2, −3).",
+      "thinking_out_loud": [
+        "I notice both points have the same x-coordinate: x = 2. That means they're on the same vertical line.",
+        "Since they're on the same vertical line, the distance between them is just the difference in their y-coordinates.",
+        "Point A has y = 5 and Point B has y = −3.",
+        "Distance = |5 − (−3)| = |5 + 3| = |8| = 8.",
+        "The distance between A and B is 8 units."
+      ],
+      "solution": "8 units"
+    },
+    {
+      "problem": "A rectangle has vertices at A(1, 1), B(7, 1), C(7, 4), and D(1, 4). What is the perimeter of the rectangle?",
+      "thinking_out_loud": [
+        "Let me find the lengths of the sides by looking at the coordinates.",
+        "Side AB goes from (1, 1) to (7, 1). Same y-coordinate, so the length is |7 − 1| = 6 units.",
+        "Side BC goes from (7, 1) to (7, 4). Same x-coordinate, so the length is |4 − 1| = 3 units.",
+        "This is a rectangle, so opposite sides are equal: AB = CD = 6 and BC = AD = 3.",
+        "Perimeter = 2 × (6 + 3) = 2 × 9 = 18 units."
+      ],
+      "solution": "18 units"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Reversing the x and y coordinates — going up/down first and then left/right.",
+      "why_it_happens": "Students sometimes read the ordered pair (x, y) but move vertically first because the y-axis is more visually prominent. The order of operations (x first, then y) gets mixed up.",
+      "how_to_address": "Use the memory trick: 'You have to walk before you can fly' — walk along the x-axis (horizontal) first, then fly up or down along the y-axis. Or think of it as crossing a street (x) before climbing stairs (y). The x always comes first in (x, y)."
+    },
+    {
+      "misconception": "Forgetting that negative coordinates indicate direction — thinking (−3, 2) means 3 right instead of 3 left.",
+      "why_it_happens": "Students may ignore or forget the negative sign, treating all coordinates as positive and always moving right and up.",
+      "how_to_address": "Reinforce the sign rules: positive x = right, negative x = left, positive y = up, negative y = down. Practice with points in all four quadrants to build the habit of checking the sign."
+    },
+    {
+      "misconception": "Subtracting coordinates incorrectly when finding distances, especially with negative numbers.",
+      "why_it_happens": "Subtracting a negative number (like 5 − (−3)) is confusing because it becomes addition. Students might compute 5 − 3 = 2 instead of 5 − (−3) = 8.",
+      "how_to_address": "Use a number line visual: the distance from −3 to 5 on a number line is 8 units. You can count: from −3 to 0 is 3, and from 0 to 5 is 5, so the total is 3 + 5 = 8. Or use the rule: subtracting a negative is the same as adding."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "What are the coordinates of a point that is 4 units to the right of the origin and 2 units below the origin? Which quadrant is this point in?",
+      "hints": [
+        "Starting at (0, 0), moving RIGHT means the x-coordinate is positive. Moving DOWN means the y-coordinate is negative.",
+        "So the x-coordinate is 4 and the y-coordinate is −2. Write it as an ordered pair.",
+        "The point is (4, −2). In which quadrant is x positive and y negative?"
+      ],
+      "answer": "(4, −2), Quadrant IV",
+      "explanation": "4 units right means x = 4. 2 units down means y = −2. The point (4, −2) is in Quadrant IV where x is positive and y is negative."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Find the distance between points P(−4, 3) and Q(6, 3).",
+      "hints": [
+        "Both points have the same y-coordinate (y = 3), so they are on the same horizontal line. The distance is the difference in x-coordinates.",
+        "Distance = |6 − (−4)| — remember, subtracting a negative means adding!"
+      ],
+      "answer": "10 units",
+      "explanation": "Both points are on the line y = 3. Distance = |6 − (−4)| = |6 + 4| = 10 units."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Name the quadrant where each of the following points is located: (5, −1), (−2, −6), (−7, 3).",
+      "hints": [
+        "Check the signs of x and y for each point: QI (+, +), QII (−, +), QIII (−, −), QIV (+, −)."
+      ],
+      "answer": "(5, −1) is in QIV; (−2, −6) is in QIII; (−7, 3) is in QII",
+      "explanation": "(5, −1): x positive, y negative → Quadrant IV. (−2, −6): both negative → Quadrant III. (−7, 3): x negative, y positive → Quadrant II."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "A triangle has vertices at A(0, 0), B(8, 0), and C(4, 6). What is the length of the base AB and the height from C to the base?",
+      "hints": [],
+      "answer": "Base AB = 8 units; Height = 6 units",
+      "explanation": "Base AB lies along the x-axis from (0,0) to (8,0), so its length = |8 − 0| = 8. The height is the perpendicular distance from C to the x-axis, which is the y-coordinate of C = 6."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Point M is at (−2, 5) and Point N is at (−2, −4). What is the distance between them? If you put a point exactly halfway between M and N, what would its coordinates be?",
+      "hints": [],
+      "answer": "Distance = 9 units; Midpoint = (−2, 0.5)",
+      "explanation": "Same x-coordinate, so distance = |5 − (−4)| = |9| = 9. The midpoint has the same x-coordinate (−2) and the y-coordinate is the average: (5 + (−4)) ÷ 2 = 1/2 = 0.5. Midpoint: (−2, 0.5)."
+    }
+  ],
+  "real_world_connection": "The coordinate plane is the foundation for GPS and maps! Every location on Earth has coordinates (latitude and longitude) — that's a real-world coordinate system. Video game designers use coordinate planes to position characters and objects on screen. Architects and engineers use coordinates to draw precise blueprints. Even your phone screen uses coordinates to know where you tapped. Understanding the coordinate plane opens the door to graphing equations, which is a huge part of algebra and beyond.",
+  "transition_cues": [
+    "Can you explain in your own words how to plot a point like (−5, −2)? Walk me through it step by step.",
+    "Quick check: if a point has a positive x and a negative y, which quadrant is it in?",
+    "How are you feeling about finding distances between two points? Want to try more, or are you ready to move on?",
+    "Awesome work with coordinates! Would you like to practice some algebra problems next?"
+  ]
+}

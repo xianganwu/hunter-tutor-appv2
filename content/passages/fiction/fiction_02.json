@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "passage_id": "fiction_02",
+    "title": "The Jar on the Top Shelf",
+    "genre": "fiction",
+    "difficulty_level": 2,
+    "word_count": 310,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_inference",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_drawing_conclusions",
+      "rc_tone_mood"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Amara and her grandmother have a special tradition that involves a glass jar. In this passage, Amara discovers something surprising about the jar she has seen her whole life.",
+  "passage_text": "Every Sunday morning, Amara watched her grandmother reach up to the highest shelf in the kitchen and bring down a glass jar filled with folded slips of paper. Grandma Bea would close her eyes, reach inside, and pull one out. Whatever the slip said, that was what they would do together that day.\n\nSome Sundays it was \"bake something with cinnamon.\" Other times it was \"walk to the pond and count the ducks\" or \"learn a new card game.\" Amara loved the surprise of it. She loved how Grandma Bea treated every slip like a tiny treasure, reading it aloud with the same excitement whether it said \"organize the closet\" or \"have a dance party in the living room.\"\n\nOne Sunday, Amara arrived to find the jar sitting on the kitchen table instead of the top shelf. Grandma Bea was at the stove making pancakes, humming to herself.\n\n\"Can I pick today?\" Amara asked.\n\n\"Go ahead, sweetheart.\"\n\nAmara reached into the jar and unfolded a slip. In faded pencil, it read: \"Tell Amara the story of how her mother caught fireflies.\" Amara stared at it. She turned over another slip: \"Show Amara the good hiding spots in the backyard.\" Another: \"Teach Amara to whistle with two fingers.\"\n\nEvery single slip in the jar had her name on it.\n\nAmara looked up at her grandmother, who was flipping pancakes as though nothing remarkable had happened. But Amara could see the faint smile at the corners of her mouth.\n\n\"Grandma,\" Amara whispered. \"How long have these been about me?\"\n\nGrandma Bea set down the spatula and looked at Amara with warm, steady eyes. \"Since the day you were born, baby. I started writing them the week your mother told me you were on the way. I wanted to make sure we'd never run out of things to do together.\"\n\nAmara folded the slip carefully and put it back in the jar. She didn't need to read any more. She already knew what every single one of them meant.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Grandma Bea enjoys cooking pancakes on Sunday mornings." },
+        { "letter": "B", "text": "Amara discovers that her grandmother has been planning their time together around her since before she was born." },
+        { "letter": "C", "text": "Glass jars can be used to store memories and important papers." },
+        { "letter": "D", "text": "It is important for grandchildren to spend every Sunday with their grandparents." },
+        { "letter": "E", "text": "Amara wants to learn how to catch fireflies like her mother did." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage builds to the revelation that every slip in the jar has Amara's name on it, and Grandma Bea has been writing them since before Amara was born. The main idea is the depth of her grandmother's love and intentional devotion to their relationship.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because Grandma Bea does make pancakes in the passage, but cooking is a background detail, not the central idea of the story." },
+        { "letter": "C", "explanation": "This is tempting because the jar is a key object in the story, but the passage is about what the jar represents — her grandmother's love — not about jars as storage." },
+        { "letter": "D", "explanation": "This is tempting because Amara does visit every Sunday, but the passage does not argue that all grandchildren should do this — it tells the story of one special relationship." },
+        { "letter": "E", "explanation": "This is tempting because one slip mentions catching fireflies, but this is just one detail — Amara's focus is on the realization that all the slips are about her." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What can the reader infer about why the jar was on the table instead of the top shelf?",
+      "answer_choices": [
+        { "letter": "A", "text": "Grandma Bea wanted Amara to reach into the jar herself and discover the truth." },
+        { "letter": "B", "text": "Grandma Bea was cleaning the kitchen and moved it temporarily." },
+        { "letter": "C", "text": "The top shelf broke and could no longer hold the jar." },
+        { "letter": "D", "text": "Amara had grown tall enough to reach the top shelf on her own." },
+        { "letter": "E", "text": "Grandma Bea forgot to put the jar back after writing new slips." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The jar being on the table, combined with Grandma Bea's calm reaction and 'faint smile' when Amara discovers the truth, suggests she placed it there intentionally so Amara would look through the slips and learn the secret.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "This is tempting because people do move things while cleaning, but there is no mention of cleaning, and the deliberate placement on the table combined with Grandma Bea's knowing smile suggests intentionality." },
+        { "letter": "C", "explanation": "This is tempting as a practical explanation, but the passage gives no indication of anything breaking — the change in the jar's location is meaningful, not accidental." },
+        { "letter": "D", "explanation": "This is tempting because it would explain a change in routine, but the passage does not mention Amara's height or suggest she has grown — the focus is on Grandma Bea's choice." },
+        { "letter": "E", "explanation": "This is tempting because it is a simple explanation, but Grandma Bea's calm demeanor and smile suggest she knew exactly what she was doing." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Which detail from the passage best shows that Grandma Bea expected Amara to discover the secret?",
+      "answer_choices": [
+        { "letter": "A", "text": "She was humming to herself while making pancakes." },
+        { "letter": "B", "text": "She told Amara the story of how she started writing the slips." },
+        { "letter": "C", "text": "She placed the jar on the highest shelf in the kitchen." },
+        { "letter": "D", "text": "She had a faint smile at the corners of her mouth." },
+        { "letter": "E", "text": "She read each slip aloud with excitement." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The 'faint smile at the corners of her mouth' while she acted as though nothing remarkable had happened shows that Grandma Bea knew what Amara was discovering and was quietly pleased about it.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because humming could suggest she was in a good mood about the plan, but humming alone does not specifically indicate she expected Amara to find the secret." },
+        { "letter": "B", "explanation": "This is tempting because she does explain the slips, but this happens after Amara already discovers the truth — the question asks what shows she expected it beforehand." },
+        { "letter": "C", "explanation": "This is tempting because the shelf is mentioned, but placing the jar on the high shelf is what she normally does — the change to the table is what signals her intention." },
+        { "letter": "E", "explanation": "This is tempting because it shows Grandma Bea's enthusiasm, but reading slips aloud is part of the normal Sunday routine, not evidence of expecting Amara to discover the secret." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"remarkable\" mean as used in the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Ordinary and expected" },
+        { "letter": "B", "text": "Confusing and complicated" },
+        { "letter": "C", "text": "Unusual and worth noticing" },
+        { "letter": "D", "text": "Dangerous and risky" },
+        { "letter": "E", "text": "Funny and entertaining" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage says Grandma Bea acted 'as though nothing remarkable had happened,' meaning she behaved as if nothing unusual or noteworthy had occurred, even though Amara had just made a significant discovery.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the sentence structure might confuse a reader — Grandma Bea acts as though it is ordinary, but 'remarkable' itself means the opposite of ordinary." },
+        { "letter": "B", "explanation": "This is tempting because the situation could be confusing to Amara, but 'remarkable' means noteworthy or worth attention, not confusing." },
+        { "letter": "D", "explanation": "This is tempting because some noteworthy events are dangerous, but the context here is a loving surprise, not anything risky." },
+        { "letter": "E", "explanation": "This is tempting because the Sunday activities can be fun, but 'remarkable' describes something worthy of notice, not specifically something humorous." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What is the overall tone of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Suspenseful and frightening" },
+        { "letter": "B", "text": "Humorous and lighthearted" },
+        { "letter": "C", "text": "Sad and regretful" },
+        { "letter": "D", "text": "Formal and informational" },
+        { "letter": "E", "text": "Warm and deeply loving" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The passage describes a loving bond between grandmother and granddaughter. Details like Grandma Bea's 'warm, steady eyes,' her years of writing slips for Amara, and the gentle revelation all create a tone that is warm and deeply loving.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because there is a moment of surprise when Amara discovers the slips, but the discovery is heartwarming, not frightening." },
+        { "letter": "B", "explanation": "This is tempting because some activities on the slips are fun (like 'dance party in the living room'), but the overall tone is more tender and emotional than simply humorous." },
+        { "letter": "C", "explanation": "This is tempting because the passage touches on deep emotion and the passage of time, but the emotions are positive — love and connection, not sadness or regret." },
+        { "letter": "D", "explanation": "This is tempting if a student focuses on the information revealed about the jar, but the passage tells a personal story with emotional depth, not a formal report." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Why does Amara fold the slip carefully and put it back in the jar at the end of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "She does not want to read that particular activity." },
+        { "letter": "B", "text": "She wants to pick a different slip for their Sunday activity." },
+        { "letter": "C", "text": "She understands that every slip represents her grandmother's love, and she wants to preserve them." },
+        { "letter": "D", "text": "She is upset by what the slip says and does not want to talk about it." },
+        { "letter": "E", "text": "Grandma Bea tells her to put it back." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The last line says Amara 'already knew what every single one of them meant.' She handles the slip carefully because she now understands the jar is filled with her grandmother's love and intentional care, and each slip is precious.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because she does stop reading, but she stops not because she dislikes the activity — she stops because she already understands the deeper meaning." },
+        { "letter": "B", "explanation": "This is tempting because normally they pick a slip for an activity, but the passage suggests this moment is about something bigger than choosing a Sunday plan." },
+        { "letter": "D", "explanation": "This is tempting because Amara whispers, which could suggest strong emotion, but her emotion is love and awe, not anger or sadness." },
+        { "letter": "E", "explanation": "This is tempting as a straightforward explanation, but Grandma Bea does not tell her to put it back — Amara does so on her own because she values the jar and its contents." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does Amara mean when she says she already knew \"what every single one of them meant\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "She had secretly read all the slips before this Sunday." },
+        { "letter": "B", "text": "She understood all the activities listed on the slips." },
+        { "letter": "C", "text": "She could guess the activities because they had done them all before." },
+        { "letter": "D", "text": "She realized that each slip was written as an expression of her grandmother's love for her." },
+        { "letter": "E", "text": "She memorized the slips when Grandma Bea read them aloud each week." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "After learning that Grandma Bea started writing the slips before Amara was even born, Amara understands that the jar is not just a list of activities — it is a collection of her grandmother's love and dedication to their relationship.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because it literally explains how she might know, but the passage clearly shows this is the first time Amara sees the slips up close — she is surprised by what she finds." },
+        { "letter": "B", "explanation": "This is tempting because she can read the activities, but 'what they meant' refers to their deeper meaning — love and devotion — not just the literal words." },
+        { "letter": "C", "explanation": "This is tempting because they have done many activities together, but the emphasis is on the emotional meaning behind the slips, not the specific activities listed." },
+        { "letter": "E", "explanation": "This is tempting because Grandma Bea does read slips aloud each week, but Amara is not talking about remembering old slips — she is talking about understanding what the jar represents." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, which word best describes Grandma Bea?",
+      "answer_choices": [
+        { "letter": "A", "text": "Strict" },
+        { "letter": "B", "text": "Forgetful" },
+        { "letter": "C", "text": "Devoted" },
+        { "letter": "D", "text": "Anxious" },
+        { "letter": "E", "text": "Mysterious" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Grandma Bea started writing slips for the jar before Amara was even born and has maintained the tradition every Sunday. She wanted to 'make sure we'd never run out of things to do together.' This shows deep devotion to her granddaughter.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because she has a structured weekly routine, but her activities are playful and loving, not strict or demanding." },
+        { "letter": "B", "explanation": "This is tempting because she is elderly, but the passage shows her as organized and intentional — she has planned for years and remembers everything." },
+        { "letter": "D", "explanation": "This is tempting because she plans extensively, which could suggest worry, but her demeanor throughout the passage is calm, warm, and steady." },
+        { "letter": "E", "explanation": "This is tempting because the jar holds a secret, but once Amara discovers the truth, Grandma Bea openly explains everything — she is not trying to be mysterious." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What does the phrase \"faded pencil\" suggest about the slips of paper?",
+      "answer_choices": [
+        { "letter": "A", "text": "Grandma Bea could not afford to buy pens." },
+        { "letter": "B", "text": "The slips were written a long time ago." },
+        { "letter": "C", "text": "Grandma Bea has poor handwriting." },
+        { "letter": "D", "text": "The jar was kept in a place that was too warm." },
+        { "letter": "E", "text": "Amara had trouble reading the slip because it was dark." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Pencil marks fade over time. The fact that the writing is in 'faded pencil' tells the reader these slips were written long ago, which supports Grandma Bea's later statement that she began writing them before Amara was born.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting as a literal explanation for using pencil, but the important detail is that the pencil has faded, indicating the passage of time, not financial difficulty." },
+        { "letter": "C", "explanation": "This is tempting because faded writing could be harder to read, but 'faded' describes how old the writing is, not the quality of the handwriting." },
+        { "letter": "D", "explanation": "This is tempting because heat can damage paper, but the fading is caused by the passage of time, not temperature — this is a common natural process for pencil marks." },
+        { "letter": "E", "explanation": "This is tempting because faded writing might be hard to read, but the passage takes place during the daytime while they are making pancakes — lighting is not the issue." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What does the word \"steady\" most likely mean as used to describe Grandma Bea's eyes?",
+      "answer_choices": [
+        { "letter": "A", "text": "Unblinking and staring" },
+        { "letter": "B", "text": "Calm, sure, and full of quiet confidence" },
+        { "letter": "C", "text": "Tired and unfocused" },
+        { "letter": "D", "text": "Bright and sparkling with excitement" },
+        { "letter": "E", "text": "Wet with tears" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "In the context of Grandma Bea looking at Amara with 'warm, steady eyes' as she shares something meaningful, 'steady' means calm, sure, and quietly confident — she is not nervous or uncertain about what she is telling Amara.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because 'steady' can mean unmoving, but describing a stare as unblinking suggests intensity or coldness, which does not match the warm tone of the scene." },
+        { "letter": "C", "explanation": "This is tempting because Grandma Bea is elderly, but the passage describes her as active and present — 'steady' here conveys strength, not fatigue." },
+        { "letter": "D", "explanation": "This is tempting because the moment is emotional, but the passage pairs 'steady' with 'warm,' suggesting calm love rather than sparkling excitement." },
+        { "letter": "E", "explanation": "This is tempting because the moment is tender enough to cause tears, but the passage describes Grandma Bea as composed and steady, not crying." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    }
+  ]
+}

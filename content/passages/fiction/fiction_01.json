@@ -1,0 +1,221 @@
+{
+  "metadata": {
+    "passage_id": "fiction_01",
+    "title": "The New Kid's Lunch Table",
+    "genre": "fiction",
+    "difficulty_level": 1,
+    "word_count": 270,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_inference",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "In this story, a boy named Marcus faces his first day at a new school and must figure out where he fits in.",
+  "passage_text": "Marcus gripped his lunch tray so tightly that his knuckles turned white. The cafeteria at Westbrook Middle School was enormous compared to his old school, and every table seemed to belong to someone already. Groups of kids laughed and talked as though they had known each other forever — which, Marcus reminded himself, they probably had.\n\nHe spotted an empty seat at the end of a long table where a girl with red hair was reading a thick book. She didn't look up when he sat down. For a moment, they ate in silence.\n\n\"That's a lot of pages,\" Marcus finally said, nodding at her book.\n\nThe girl glanced up, surprised. \"It's about a girl who sails around the world by herself. I'm on my third time reading it.\"\n\n\"Three times? It must be really good.\"\n\n\"It is.\" She paused. \"I'm Lily.\"\n\n\"Marcus. I just moved here from Detroit.\"\n\nLily closed her book and set it on the table. \"Detroit? That's far. Do you miss it?\"\n\nMarcus thought about his old neighborhood, his best friend Jerome, the corner store where he used to buy grape popsicles after school. \"Yeah,\" he said honestly. \"A lot.\"\n\n\"I moved here in third grade,\" Lily said. \"It gets easier. The first week is the worst part.\"\n\nMarcus looked around the cafeteria again. It still felt huge, but the seat he was sitting in felt a little more solid now. \"Thanks,\" he said. \"That actually helps.\"\n\nLily smiled and opened her book again, but this time she angled it slightly toward Marcus so he could see the illustrations. It was a small gesture, but it meant everything.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Moving to a new city is always a terrible experience for kids." },
+        { "letter": "B", "text": "Reading books is the best way to make friends at a new school." },
+        { "letter": "C", "text": "A small act of kindness can help someone feel welcome in an unfamiliar place." },
+        { "letter": "D", "text": "Cafeterias at big schools are difficult to navigate." },
+        { "letter": "E", "text": "Kids who move a lot become more independent than other students." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage shows Marcus feeling lost and alone in a new school cafeteria, and then Lily's friendly conversation and small gesture of sharing her book help him feel more comfortable. The main idea is about how a simple act of kindness can make someone feel welcome.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because Marcus does miss Detroit, but the passage does not say moving is always terrible — in fact, Lily says it gets easier, and the ending is hopeful." },
+        { "letter": "B", "explanation": "This is tempting because Lily's book starts the conversation, but the passage is not about reading as a friendship strategy — it is about kindness and connection." },
+        { "letter": "D", "explanation": "This is tempting because Marcus does feel overwhelmed by the large cafeteria, but this is a detail that sets the scene, not the main idea of the entire passage." },
+        { "letter": "E", "explanation": "This is tempting because both Marcus and Lily have moved, but the passage never discusses independence or compares them to other students." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What does the phrase \"his knuckles turned white\" tell the reader about Marcus?",
+      "answer_choices": [
+        { "letter": "A", "text": "He is cold from the air conditioning in the cafeteria." },
+        { "letter": "B", "text": "He is nervous and tense about being in a new place." },
+        { "letter": "C", "text": "He is angry at his parents for making him move." },
+        { "letter": "D", "text": "He is carrying a tray that is too heavy for him." },
+        { "letter": "E", "text": "He has a habit of gripping things tightly when he eats." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "When someone grips something so tightly that their knuckles turn white, it is a sign of tension and anxiety. Marcus is nervous about being in a huge, unfamiliar cafeteria where he does not know anyone.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because white knuckles could suggest cold hands, but the passage gives no mention of temperature — it focuses on Marcus feeling out of place." },
+        { "letter": "C", "explanation": "This is tempting because moving often involves frustration, but nothing in the passage suggests Marcus is angry at his parents specifically." },
+        { "letter": "D", "explanation": "This is tempting because he is holding a tray, but a standard lunch tray is not heavy — the tight grip signals emotion, not physical strain." },
+        { "letter": "E", "explanation": "This is tempting as a literal reading, but there is no evidence this is a habit — it is clearly connected to the stressful situation of being new." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Which detail from the passage best supports the idea that Marcus is homesick?",
+      "answer_choices": [
+        { "letter": "A", "text": "He grips his lunch tray tightly." },
+        { "letter": "B", "text": "He sits at the end of a long table." },
+        { "letter": "C", "text": "He thinks about his old neighborhood, his best friend, and the corner store." },
+        { "letter": "D", "text": "He says \"That actually helps\" to Lily." },
+        { "letter": "E", "text": "He notices that every table seems to belong to someone." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "When Lily asks if he misses Detroit, Marcus specifically thinks about his old neighborhood, his best friend Jerome, and the corner store where he bought popsicles. These personal memories directly show he is homesick.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because it shows Marcus is uncomfortable, but gripping a tray shows nervousness about the cafeteria, not specifically homesickness." },
+        { "letter": "B", "explanation": "This is tempting because sitting at the end of a table suggests he feels like an outsider, but it does not directly show he misses his old home." },
+        { "letter": "D", "explanation": "This is tempting because it shows he appreciates Lily's words, but it is about feeling better in the moment, not about missing home." },
+        { "letter": "E", "explanation": "This is tempting because it shows he feels like he does not belong, but noticing social groups is about the current situation, not memories of home." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"angled\" most likely mean as used in the last paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "Threw" },
+        { "letter": "B", "text": "Hid" },
+        { "letter": "C", "text": "Dropped" },
+        { "letter": "D", "text": "Tilted" },
+        { "letter": "E", "text": "Decorated" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "In the sentence, Lily 'angled' her book so Marcus could see the illustrations. This means she tilted or turned the book in his direction so he could get a view of the pages.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting if a student does not know the word, but throwing the book would not be a kind, small gesture — it would be aggressive." },
+        { "letter": "B", "explanation": "This is tempting because it is an action one can do with a book, but hiding it is the opposite of what Lily does — she wants Marcus to see it." },
+        { "letter": "C", "explanation": "This is tempting because it is a physical action involving a book, but dropping suggests an accident, and Lily acts intentionally." },
+        { "letter": "E", "explanation": "This is tempting because it is an unusual word, but decorating a book does not fit the context of sharing it with someone." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Why does Lily most likely tell Marcus about her own experience of moving?",
+      "answer_choices": [
+        { "letter": "A", "text": "She wants to show that she has been through harder things than Marcus." },
+        { "letter": "B", "text": "She is trying to impress him with her knowledge of the school." },
+        { "letter": "C", "text": "She wants to make him feel less alone by showing she understands what he is going through." },
+        { "letter": "D", "text": "She is bored and looking for someone to talk to." },
+        { "letter": "E", "text": "She wants Marcus to feel sorry for her." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Lily shares that she also moved to this school and that 'it gets easier,' which shows she is trying to comfort Marcus by letting him know he is not the only one who has felt this way.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because she does mention her own move, but her tone is reassuring, not competitive — she is not trying to one-up Marcus." },
+        { "letter": "B", "explanation": "This is tempting because she does know the school better, but she shares her personal experience of moving, not facts about the school." },
+        { "letter": "D", "explanation": "This is tempting because she was sitting alone reading, but she was happily reading her book and did not seem to need company — she responded to Marcus's situation." },
+        { "letter": "E", "explanation": "This is tempting because she mentions her own difficult experience, but her tone is positive and forward-looking, not seeking sympathy." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Based on the passage, what can the reader most likely conclude about what will happen next?",
+      "answer_choices": [
+        { "letter": "A", "text": "Marcus will ask to transfer back to his old school." },
+        { "letter": "B", "text": "Marcus and Lily will probably become friends." },
+        { "letter": "C", "text": "Lily will stop reading her book completely." },
+        { "letter": "D", "text": "Marcus will move to a different table." },
+        { "letter": "E", "text": "The other students will invite Marcus to join their groups." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage ends with Lily sharing her book with Marcus and making a kind gesture. Their conversation was warm and friendly, and Marcus felt more comfortable. This strongly suggests they will continue to build a friendship.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because Marcus misses Detroit, but the passage ends on a hopeful note — Lily's kindness is helping him adjust, not making him want to leave." },
+        { "letter": "C", "explanation": "This is tempting because Lily puts her book down during the conversation, but she opens it again at the end — she clearly loves reading and will continue." },
+        { "letter": "D", "explanation": "This is tempting if the reader thinks Marcus is still uncomfortable, but the passage shows him feeling better and more settled at this table." },
+        { "letter": "E", "explanation": "This is tempting because it would be a nice outcome, but the passage focuses only on Marcus and Lily — there is no evidence the other students have noticed him." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the author mean by the sentence \"the seat he was sitting in felt a little more solid now\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "The chair was sturdier than Marcus first thought." },
+        { "letter": "B", "text": "Marcus shifted his weight and became more physically comfortable." },
+        { "letter": "C", "text": "Marcus was starting to feel like he could belong in this new place." },
+        { "letter": "D", "text": "The cafeteria was becoming less crowded as students left." },
+        { "letter": "E", "text": "Marcus decided he liked the food at this school better than at his old school." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The seat feeling 'more solid' is not about the physical chair — it is a way of saying Marcus feels more grounded and secure. After talking to Lily, he is starting to feel like he might be able to fit in.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because it takes the sentence literally, but the passage is not discussing the quality of the furniture — it is describing Marcus's emotional state." },
+        { "letter": "B", "explanation": "This is tempting because it connects 'solid' to physical comfort, but the sentence comes right after Lily's encouraging words, showing it is about emotional comfort." },
+        { "letter": "D", "explanation": "This is tempting because fewer people might make the cafeteria less intimidating, but the passage does not mention students leaving." },
+        { "letter": "E", "explanation": "This is tempting because Marcus is eating lunch, but the passage never discusses or compares the food at the two schools." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "According to the passage, why did Marcus sit next to Lily?",
+      "answer_choices": [
+        { "letter": "A", "text": "A teacher told him to sit there." },
+        { "letter": "B", "text": "He recognized her from one of his classes." },
+        { "letter": "C", "text": "He wanted to ask about her book." },
+        { "letter": "D", "text": "There was an empty seat available at her table." },
+        { "letter": "E", "text": "His friend Jerome had told him about Lily before he moved." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage says Marcus 'spotted an empty seat at the end of a long table' where Lily was reading. He sat there because there was space, not because he knew her or had any other reason.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because teachers sometimes assign seats, but the passage does not mention any teacher — Marcus chose the seat himself." },
+        { "letter": "B", "explanation": "This is tempting because they are at the same school, but the passage makes clear this is their first meeting — Marcus does not recognize Lily." },
+        { "letter": "C", "explanation": "This is tempting because Marcus does comment on her book, but he notices the book after sitting down — it was not his reason for choosing that seat." },
+        { "letter": "E", "explanation": "This is tempting because Jerome is mentioned as Marcus's old friend, but Jerome is only part of Marcus's memories of Detroit — there is no connection to Lily." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What does the word \"enormous\" mean as used in the first paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "Very noisy" },
+        { "letter": "B", "text": "Very expensive" },
+        { "letter": "C", "text": "Very old" },
+        { "letter": "D", "text": "Very clean" },
+        { "letter": "E", "text": "Very large" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The word 'enormous' means very large or huge. The passage says the cafeteria was 'enormous compared to his old school,' meaning it was much bigger than what Marcus was used to.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because a large cafeteria full of students would be noisy, but 'enormous' specifically describes size, not sound." },
+        { "letter": "B", "explanation": "This is tempting because a big school might cost more, but the passage is describing the physical size of the cafeteria, not its cost." },
+        { "letter": "C", "explanation": "This is tempting because a student might associate a large building with an old one, but 'enormous' describes size, not age." },
+        { "letter": "D", "explanation": "This is tempting because it is a positive description of a cafeteria, but 'enormous' refers to how big the space is, not how clean it is." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 10,
+      "question_text": "What can the reader conclude about Lily based on her actions in the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "She is empathetic and willing to reach out to someone who needs it." },
+        { "letter": "B", "text": "She is shy and does not enjoy talking to other people." },
+        { "letter": "C", "text": "She prefers reading to having any friends at all." },
+        { "letter": "D", "text": "She is the most popular student in the school." },
+        { "letter": "E", "text": "She feels sorry for Marcus but does not really want to be his friend." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "Lily shares her own experience of moving, reassures Marcus that things get easier, and makes the kind gesture of angling her book toward him. These actions show she is empathetic — she can relate to how Marcus feels and chooses to help.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "This is tempting because Lily is reading alone, which could suggest shyness, but she engages warmly in conversation once Marcus speaks to her." },
+        { "letter": "C", "explanation": "This is tempting because she is reading when Marcus arrives, but she willingly puts her book down to talk and shares it with him — she values connection too." },
+        { "letter": "D", "explanation": "This is tempting because she is confident and kind, but the passage gives no information about her social status or popularity." },
+        { "letter": "E", "explanation": "This is tempting because pity could explain her behavior, but her warmth, personal sharing, and book gesture go beyond mere pity — they show genuine friendliness." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    }
+  ]
+}

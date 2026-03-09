@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_02",
+    "title": "A Petition for a Public School",
+    "genre": "historical_document",
+    "difficulty_level": 2,
+    "word_count": 310,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_vocab_context",
+      "rc_author_purpose",
+      "rc_evidence_reasoning",
+      "rc_inference",
+      "rc_tone_mood"
+    ],
+    "source_description": "Original composition in the style of an 1840s petition from citizens of a small American town requesting a public school"
+  },
+  "pre_reading_context": "In the early 1800s, public schools were not available in every town. Citizens sometimes had to write formal requests, called petitions, to their local government asking for schools to be built. This passage is written in the style of such a petition from the 1840s.",
+  "passage_text": "To the Honorable Members of the Town Council of Millbrook,\n\nWe, the undersigned citizens of Millbrook, respectfully submit this petition on behalf of our children and the future prosperity of our town. We write to request the establishment of a public school, open to all children regardless of their families' circumstances.\n\nAt present, the nearest school is located in Hartfield, a journey of seven miles over rough roads. In the winter months, this journey becomes perilous, and many families cannot send their children at all. As a result, the young people of Millbrook are growing up without the benefit of proper instruction in reading, arithmetic, and the other subjects necessary for informed citizenship.\n\nWe do not make this request lightly. We understand that building a school requires funds, and we are prepared to contribute our labor and materials to the effort. Mr. Josiah Carter has offered a parcel of land near the center of town, and several families have pledged timber and stone. What we ask of the Council is modest: assistance in securing a qualified teacher and a small sum toward furnishing the schoolhouse.\n\nSome may argue that education is a private matter and not the concern of the town government. We respectfully disagree. An educated citizenry benefits everyone. Children who learn to read and calculate will become better farmers, tradespeople, and neighbors. They will be equipped to participate in the governance of our democracy, which depends upon the wisdom of its people.\n\nWe believe that no child in Millbrook should be denied knowledge simply because of the distance to the nearest schoolhouse or the poverty of their parents. Education is the foundation upon which a just and thriving community is built.\n\nWith great respect and hope,\nThe Citizens of Millbrook",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main purpose of this petition?",
+      "answer_choices": [
+        { "letter": "A", "text": "To complain about the roads between Millbrook and Hartfield" },
+        { "letter": "B", "text": "To ask Mr. Josiah Carter for a donation of land" },
+        { "letter": "C", "text": "To demand that the Hartfield school be closed down" },
+        { "letter": "D", "text": "To request that the town council help establish a public school in Millbrook" },
+        { "letter": "E", "text": "To report that children in Millbrook are misbehaving" }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The petition directly asks the Town Council for help establishing a public school, including securing a teacher and funds for furnishings. This is the central request of the entire document.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "While the petition mentions rough roads as a problem, the roads are not the main issue — they are mentioned to explain why a local school is needed." },
+        { "letter": "B", "explanation": "Mr. Carter has already offered his land. The petition is addressed to the Town Council, not to Mr. Carter." },
+        { "letter": "C", "explanation": "The petition never suggests closing the Hartfield school. The citizens simply want a school closer to home." },
+        { "letter": "E", "explanation": "The petition does not mention children misbehaving. It focuses on the lack of educational opportunities." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What does the word \"perilous\" most likely mean as used in the petition?",
+      "answer_choices": [
+        { "letter": "A", "text": "Enjoyable" },
+        { "letter": "B", "text": "Expensive" },
+        { "letter": "C", "text": "Dangerous" },
+        { "letter": "D", "text": "Boring" },
+        { "letter": "E", "text": "Quick" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The petition states that in winter, the seven-mile journey over rough roads 'becomes perilous, and many families cannot send their children at all.' The context of rough winter roads and families keeping children home suggests that 'perilous' means dangerous.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "If the journey were enjoyable, families would not keep their children home. The context shows the journey is something negative." },
+        { "letter": "B", "explanation": "While cost may be a concern, the sentence focuses on the physical difficulty of traveling in winter, not on money." },
+        { "letter": "D", "explanation": "A boring journey would not prevent families from sending their children to school. The word describes something more serious." },
+        { "letter": "E", "explanation": "The journey is described as seven miles over rough roads, which suggests it is long and difficult, not quick." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Why do the petition writers mention that they are \"prepared to contribute labor and materials\"?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that they want to build the school entirely by themselves" },
+        { "letter": "B", "text": "To prove that they are skilled builders" },
+        { "letter": "C", "text": "To demonstrate that their request is reasonable and that they are willing to share the burden" },
+        { "letter": "D", "text": "To suggest that the Town Council does not need to help at all" },
+        { "letter": "E", "text": "To brag about how wealthy the citizens of Millbrook are" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "By offering their own labor and materials, the citizens show the Council that they are not asking for everything — they are willing to do their part. This makes their request seem more reasonable and fair, strengthening their argument.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "If they wanted to build it alone, they would not need to petition the Council. They clearly need help with a teacher and furnishings." },
+        { "letter": "B", "explanation": "The petition does not mention building skills. The point is about willingness to help, not about expertise." },
+        { "letter": "D", "explanation": "The petition specifically asks the Council for a teacher and funds, so they clearly believe the Council's help is needed." },
+        { "letter": "E", "explanation": "The citizens mention poverty as a barrier to education, suggesting they are not wealthy. Their offer of labor shows commitment, not wealth." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Which sentence from the petition best supports the argument that education benefits the whole community?",
+      "answer_choices": [
+        { "letter": "A", "text": "\"We do not make this request lightly.\"" },
+        { "letter": "B", "text": "\"The nearest school is located in Hartfield, a journey of seven miles.\"" },
+        { "letter": "C", "text": "\"Children who learn to read and calculate will become better farmers, tradespeople, and neighbors.\"" },
+        { "letter": "D", "text": "\"Mr. Josiah Carter has offered a parcel of land near the center of town.\"" },
+        { "letter": "E", "text": "\"We, the undersigned citizens of Millbrook, respectfully submit this petition.\"" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "This sentence directly explains how education will produce community members who contribute more effectively as farmers, tradespeople, and neighbors — showing that the benefits extend beyond individual students to the entire community.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This sentence shows the seriousness of the request but does not explain how education benefits the community." },
+        { "letter": "B", "explanation": "This sentence describes a practical problem — distance — but does not address the community-wide benefits of education." },
+        { "letter": "D", "explanation": "This sentence describes a generous offer of land but does not explain the broader benefits of education." },
+        { "letter": "E", "explanation": "This is the formal opening of the petition and does not contain any argument about the benefits of education." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What does the word \"circumstances\" most likely mean as used in the petition?",
+      "answer_choices": [
+        { "letter": "A", "text": "Hobbies and interests" },
+        { "letter": "B", "text": "Physical appearance" },
+        { "letter": "C", "text": "Religious beliefs" },
+        { "letter": "D", "text": "Age and grade level" },
+        { "letter": "E", "text": "Financial and social conditions" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The petition says the school should be 'open to all children regardless of their families' circumstances.' Later, the petition mentions 'the poverty of their parents,' which clarifies that 'circumstances' refers to a family's financial and social conditions.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Hobbies would not typically prevent a child from attending school. The petition is concerned with barriers to access, not personal interests." },
+        { "letter": "B", "explanation": "Physical appearance is not relevant to the petition's argument about equal access to education based on economic standing." },
+        { "letter": "C", "explanation": "While religious differences existed, the petition specifically connects 'circumstances' to poverty later in the text, pointing to financial conditions." },
+        { "letter": "D", "explanation": "The petition is about access for all children, not about different ages. The concern is about economic barriers, not age-related ones." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What is the tone of this petition?",
+      "answer_choices": [
+        { "letter": "A", "text": "Demanding and angry" },
+        { "letter": "B", "text": "Respectful and persuasive" },
+        { "letter": "C", "text": "Humorous and casual" },
+        { "letter": "D", "text": "Fearful and uncertain" },
+        { "letter": "E", "text": "Bored and indifferent" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The petition uses polite language ('respectfully submit,' 'we respectfully disagree,' 'with great respect and hope') while making logical arguments for its case. This combination of politeness and persuasion defines the tone.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The citizens are careful to be polite and cooperative, offering their own labor. They make requests rather than demands." },
+        { "letter": "C", "explanation": "The petition addresses a serious community need with formal language, not humor or casualness." },
+        { "letter": "D", "explanation": "The citizens express 'hope' and present confident arguments. They do not seem fearful or unsure of their position." },
+        { "letter": "E", "explanation": "The citizens clearly care deeply about this issue, offering their own resources and writing a detailed argument." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 7,
+      "question_text": "The petition writers address the argument that \"education is a private matter.\" Why do they include this?",
+      "answer_choices": [
+        { "letter": "A", "text": "Because they agree that education should not be public" },
+        { "letter": "B", "text": "To acknowledge an opposing viewpoint and argue against it, making their own case stronger" },
+        { "letter": "C", "text": "To insult people who disagree with them" },
+        { "letter": "D", "text": "Because the Town Council has already rejected their request" },
+        { "letter": "E", "text": "To change the subject away from the cost of the school" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By bringing up a likely objection ('Some may argue...') and then respectfully countering it, the writers show they have thought about both sides. This technique strengthens their persuasive argument.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The writers clearly disagree with this view, saying 'We respectfully disagree' and then explaining why public education benefits everyone." },
+        { "letter": "C", "explanation": "The writers are respectful even when disagreeing. They use the phrase 'we respectfully disagree,' not insults." },
+        { "letter": "D", "explanation": "Nothing in the petition suggests a previous rejection. This appears to be an initial request." },
+        { "letter": "E", "explanation": "The writers do not avoid the cost issue — they address it directly by offering labor and materials. This paragraph is about strengthening their argument." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the petition, what can you infer about the citizens of Millbrook?",
+      "answer_choices": [
+        { "letter": "A", "text": "They are a working community that values education and is willing to sacrifice for it." },
+        { "letter": "B", "text": "They are mostly wealthy landowners who want a school for appearances." },
+        { "letter": "C", "text": "They do not trust the Town Council to make good decisions." },
+        { "letter": "D", "text": "They are unhappy with all aspects of life in their town." },
+        { "letter": "E", "text": "They have many schools but want a newer, better one." }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The citizens refer to farmers and tradespeople, mention poverty, and offer their own labor and materials — all suggesting a working community. Their passionate arguments for education and willingness to contribute show they value learning and are ready to sacrifice for it.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "The petition mentions poverty and the citizens offer labor rather than money, suggesting they are not wealthy. Their motives are sincere, not about appearances." },
+        { "letter": "C", "explanation": "The citizens address the Council with 'great respect and hope,' showing trust that the Council will consider their request fairly." },
+        { "letter": "D", "explanation": "The petition focuses only on the lack of a school. The citizens do not complain about other aspects of life in Millbrook." },
+        { "letter": "E", "explanation": "The petition clearly states there is no school in Millbrook and the nearest one is seven miles away in Hartfield." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 9,
+      "question_text": "What specific help do the citizens ask from the Town Council?",
+      "answer_choices": [
+        { "letter": "A", "text": "Land for the school and workers to build it" },
+        { "letter": "B", "text": "New roads between Millbrook and Hartfield" },
+        { "letter": "C", "text": "A qualified teacher and money for furnishing the schoolhouse" },
+        { "letter": "D", "text": "Books and supplies for every family in town" },
+        { "letter": "E", "text": "Permission to close the Hartfield school" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The petition states: 'What we ask of the Council is modest: assistance in securing a qualified teacher and a small sum toward furnishing the schoolhouse.' The citizens have already arranged for land, timber, and stone on their own.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "Mr. Carter has already donated land, and the citizens themselves have pledged labor and materials. They do not ask the Council for these things." },
+        { "letter": "B", "explanation": "While bad roads are mentioned as a problem, the petition requests a school, not road improvements." },
+        { "letter": "D", "explanation": "The petition does not mention books and supplies for families. The specific request is for a teacher and furnishing funds." },
+        { "letter": "E", "explanation": "The petition never suggests closing the Hartfield school. The citizens simply want their own local school." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 10,
+      "question_text": "Why do the petition writers connect education to democracy?",
+      "answer_choices": [
+        { "letter": "A", "text": "To suggest that only educated people should be allowed to vote" },
+        { "letter": "B", "text": "To criticize the current government of Millbrook" },
+        { "letter": "C", "text": "To suggest that schools should teach only government and politics" },
+        { "letter": "D", "text": "To compare Millbrook's government to other towns" },
+        { "letter": "E", "text": "To argue that democracy works best when its citizens are informed and wise" }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "The petition states that educated children will be 'equipped to participate in the governance of our democracy, which depends upon the wisdom of its people.' This connects education to a functioning democracy by arguing that wise citizens are essential.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "The petition argues for expanding education to all children, not for restricting who can vote. Their goal is inclusion, not exclusion." },
+        { "letter": "B", "explanation": "The petition treats the Town Council with respect and does not criticize the current government." },
+        { "letter": "C", "explanation": "The petition mentions reading and arithmetic alongside citizenship. It does not suggest limiting education to government topics." },
+        { "letter": "D", "explanation": "The petition does not compare Millbrook's government to other towns. It makes a general argument about education and democracy." }
+      ],
+      "skill_tested": "rc_author_purpose"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "skill_id": "rc_author_purpose",
+  "skill_name": "Author's Purpose",
+  "concept_explanation": "Every time an author writes something, they have a reason — a purpose — for writing it. The four main purposes are: to inform (teach you facts or explain something), to persuade (convince you to think or do something), to entertain (tell an enjoyable story or make you laugh), and to explain (walk you through how something works). Sometimes a passage has more than one purpose, but there's usually one main one. To figure out the author's purpose, ask yourself: 'After reading this, what did the author want me to think, feel, or do?' The answer to that question is the purpose.",
+  "worked_examples": [
+    {
+      "problem": "Read the following passage and identify the author's purpose:\n\n\"You should consider joining the school recycling club this year. Not only will you help reduce waste in our school, but you'll also learn about environmental science and earn community service hours. Last year, the club diverted over 2,000 pounds of recyclable materials from the landfill. Plus, members get to go on a field trip to the local recycling center. Don't miss out — sign up in Room 204 by Friday!\"",
+      "thinking_out_loud": [
+        "Let me think about what the author wants me to do after reading this. Am I supposed to learn facts? Be entertained? Or do something?",
+        "The passage says 'you should consider joining' and 'don't miss out — sign up.' Those are calls to action. The author wants me to do something specific: join the recycling club.",
+        "The author also gives reasons to join: helping the environment, learning, community service hours, a field trip. These are all persuasive points — they're trying to convince me.",
+        "There are some informational facts (2,000 pounds diverted), but those facts are being used to support the persuasive argument, not just to inform me.",
+        "The main purpose is to persuade. The author wants to convince the reader to join the recycling club."
+      ],
+      "solution": "The author's purpose is to persuade. The passage tries to convince readers to join the school recycling club by listing benefits (learning, service hours, field trip) and impressive results (2,000 pounds diverted). The call to action — 'sign up in Room 204 by Friday' — confirms that the author wants the reader to take a specific action. While there are informational elements, they serve the persuasive goal."
+    },
+    {
+      "problem": "Read the following passage and identify the author's purpose:\n\n\"The water cycle is the continuous movement of water through Earth's systems. It begins when the sun heats water in oceans, lakes, and rivers, causing it to evaporate into the atmosphere as water vapor. As the vapor rises and cools, it condenses into tiny droplets that form clouds. When the droplets combine and become heavy enough, they fall back to Earth as precipitation — rain, snow, sleet, or hail. The water then flows into rivers, seeps into the ground, or collects in bodies of water, and the cycle begins again.\"",
+      "thinking_out_loud": [
+        "What does the author want me to walk away with after reading this? Let me check: Am I being asked to do something? No. Is there a funny or dramatic story? No. Am I learning about how something works? Yes.",
+        "The passage walks me through a process step by step: evaporation, condensation, precipitation, collection. It's teaching me how the water cycle works.",
+        "The language is neutral and factual — there are no opinion words or emotional language. This sounds like a textbook or science article.",
+        "The purpose is to inform or explain — specifically, to explain how the water cycle works."
+      ],
+      "solution": "The author's purpose is to inform (or explain). The passage presents factual, step-by-step information about how the water cycle works — evaporation, condensation, precipitation, and collection. The language is neutral and educational, with no persuasive arguments or entertaining storytelling. The author wants the reader to understand a scientific process."
+    },
+    {
+      "problem": "Read the following passage and identify the author's purpose:\n\n\"Captain Whiskers was not your average cat. While other cats napped in sunbeams, Captain Whiskers had adventures. One Tuesday, he discovered a portal behind the washing machine that led to a world made entirely of yarn. He spent the afternoon batting around yarn mountains and chasing yarn butterflies until he accidentally unraveled the entire kingdom. 'Oops,' he meowed, looking at the tangled mess around him. He tiptoed back through the portal just in time for dinner, acting like nothing had happened.\"",
+      "thinking_out_loud": [
+        "This is clearly a fictional story — a cat finding a yarn portal isn't real. So it's not trying to teach me facts or convince me of something.",
+        "The tone is playful and humorous. 'Oops,' he meowed' and 'acting like nothing had happened' are meant to be funny.",
+        "The author created a fun, imaginative scenario. There's no lesson being taught and no argument being made.",
+        "The purpose is to entertain. The author wants to amuse the reader with a funny, creative story about a cat's adventure."
+      ],
+      "solution": "The author's purpose is to entertain. The passage tells a humorous, imaginative story about a cat discovering a portal to a yarn world. The playful language, absurd scenario, and comedic elements ('Oops,' he meowed) are all designed to amuse the reader. There's no factual information, persuasive argument, or educational explanation — the goal is pure enjoyment."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Thinking a passage can only have one purpose",
+      "why_it_happens": "Students learn the four purposes (inform, persuade, entertain, explain) and think they have to pick exactly one. In reality, many passages blend purposes — a persuasive article might include informational facts, or an entertaining story might also teach a lesson.",
+      "how_to_address": "Look for the primary purpose — the main reason the author wrote the piece. Ask: 'If I had to pick one purpose that best describes this passage, what would it be?' Other purposes might be present, but one usually dominates."
+    },
+    {
+      "misconception": "Confusing the topic of the passage with the author's purpose",
+      "why_it_happens": "Students sometimes describe what the passage is about (the topic) rather than why the author wrote it (the purpose). For example, they might say 'The purpose is about recycling' instead of 'The purpose is to persuade readers to recycle.'",
+      "how_to_address": "Remember: the topic is what the passage is about; the purpose is why the author wrote it. Use this formula: 'The author wrote this passage to [inform/persuade/entertain/explain] the reader about [topic] by [how they do it].'"
+    },
+    {
+      "misconception": "Assuming any passage with facts is automatically 'to inform'",
+      "why_it_happens": "When students see facts and data, they default to 'inform' as the purpose. But persuasive passages often include facts to support their argument — the facts serve the persuasive purpose, not the other way around.",
+      "how_to_address": "Ask: 'Are these facts presented neutrally to teach me, or are they being used to convince me of something?' If the facts are combined with opinion words, calls to action, or emotional appeals, the purpose is likely to persuade, even though facts are present."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Read this passage and identify the author's purpose:\n\n\"Our school needs a longer recess period. Studies show that physical activity helps students concentrate better in class. Currently, our 15-minute recess is barely enough time to get outside and start playing before the bell rings. Schools in other districts that extended recess to 30 minutes saw improvements in test scores and fewer behavior problems. We urge the school board to consider this change for the benefit of all students.\"",
+      "hints": [
+        "Look at the first and last sentences. What do phrases like 'our school needs' and 'we urge the school board' tell you about what the author wants?",
+        "Is the author just presenting facts neutrally, or are they using facts to argue for a specific change?",
+        "Complete this sentence: 'The author wrote this passage because they want the reader to _____.'"
+      ],
+      "answer": "The author's purpose is to persuade. The passage argues that the school should extend recess from 15 to 30 minutes. The author uses research ('studies show'), comparisons ('schools in other districts'), and a direct call to action ('we urge the school board') to convince the reader that longer recess is beneficial and should be implemented.",
+      "explanation": "Even though the passage includes factual information (studies, test scores), those facts are used as persuasive evidence to support the argument for longer recess. The persuasive purpose is revealed by the opinion language ('needs'), the argument structure, and the call to action at the end."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Read this passage and identify the author's purpose:\n\n\"The octopus is one of the ocean's most fascinating creatures. It has three hearts: two pump blood to the gills, and one pumps blood to the rest of the body. Its blood is blue because it contains copper instead of iron. Octopuses can change color and texture in milliseconds to camouflage themselves, and they are known for squeezing through incredibly tight spaces — an octopus the size of a basketball can fit through an opening the size of a quarter.\"",
+      "hints": [
+        "What is the author trying to get you to do — learn something, do something, or just enjoy a story?",
+        "Look at the language: is it neutral and factual, or emotional and persuasive?"
+      ],
+      "answer": "The author's purpose is to inform. The passage presents factual information about octopuses — their hearts, blood, camouflage ability, and flexibility — in a neutral, educational tone. The author isn't arguing for or against anything, telling a fictional story, or trying to convince the reader to take any action. The goal is to teach the reader interesting facts about octopuses.",
+      "explanation": "This passage is straightforward informational writing. Every sentence presents a fact, and the tone is neutral and educational. While the word 'fascinating' adds slight enthusiasm, the overall purpose is clearly to inform the reader about octopus biology."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Read this passage and identify the author's purpose:\n\n\"If you've ever wondered how a microwave oven heats your food so quickly, here's how it works. The oven produces invisible waves of energy called microwaves. These waves cause the water molecules inside your food to vibrate rapidly. As the molecules vibrate, they produce heat through friction — similar to how rubbing your hands together makes them warm. That's why foods with more water content, like soup, heat up faster than drier foods, like bread. It's also why the plate sometimes stays cool while the food is hot — the plate doesn't contain water molecules for the microwaves to vibrate.\"",
+      "hints": [
+        "Pay attention to the structure: the passage starts with a question ('how does a microwave work?') and then walks you through the answer step by step. What type of purpose matches that structure?"
+      ],
+      "answer": "The author's purpose is to explain. The passage answers the question 'how does a microwave oven heat food?' by walking the reader through the process step by step — microwaves cause water molecules to vibrate, vibration creates friction, friction produces heat. The author uses relatable analogies (rubbing your hands together) and practical examples (soup vs. bread, plate vs. food) to make the explanation clear and accessible.",
+      "explanation": "While 'inform' and 'explain' are closely related, 'explain' is more specific — the author is walking through a process, answering a 'how' question. The step-by-step structure, the opening question, and the analogies all serve the purpose of helping the reader understand how something works."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Read this passage and identify the author's purpose:\n\n\"The robot stared at the test paper on the desk. Question one: 'What is the meaning of life?' The robot's circuits whirred and hummed. After processing 47 billion web pages in 0.003 seconds, it carefully wrote: 'Pizza.' The teacher sighed. 'That's the third robot this week,' she said, shaking her head. The robot looked up hopefully. 'Extra cheese?'\"",
+      "hints": [],
+      "answer": "The author's purpose is to entertain. The passage tells a humorous, fictional story about a robot taking a test and giving absurd answers. The comedy comes from the contrast between the robot's incredible processing power (47 billion web pages) and its ridiculous answer ('Pizza'), as well as the teacher's exasperated reaction and the robot's hopeful follow-up ('Extra cheese?'). There's no factual information to learn or argument to consider — the goal is to make the reader laugh.",
+      "explanation": "The absurd scenario, humorous dialogue, and playful tone are all signals that the author's purpose is to entertain. Even though robots and AI are real topics, this passage isn't trying to inform readers about them — it's using them as a setup for a joke."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Read this passage and identify the author's primary purpose:\n\n\"The city's plan to cut the public library budget by 40 percent would be a serious mistake. Libraries serve over 50,000 residents each month, providing free access to books, computers, and educational programs. For many families, the library is the only place their children can access the internet for homework. Reducing the budget would mean shorter hours, fewer programs, and potential branch closures. A recent survey showed that 78 percent of residents oppose the cuts. The city council should listen to the community and find savings elsewhere.\"",
+      "hints": [],
+      "answer": "The author's primary purpose is to persuade. The passage argues against cutting the library budget and urges the city council to 'find savings elsewhere.' The author uses multiple persuasive strategies: stating the consequences of the cuts (shorter hours, fewer programs, closures), citing the library's importance (50,000 monthly users, only internet access for some families), and invoking public opinion (78 percent of residents oppose the cuts). While facts are included, they serve the persuasive argument rather than existing for purely informational purposes.",
+      "explanation": "The persuasive purpose is clear from the opening ('would be a serious mistake') and closing ('should listen to the community and find savings elsewhere') — both are opinion statements calling for action. The statistics and facts in between are persuasive tools. On the Hunter exam, look for opinion language and calls to action as strong signals of persuasive purpose."
+    }
+  ],
+  "real_world_connection": "Understanding why something was written protects you from being manipulated and helps you think critically about everything you read. When you see an ad, you know its purpose is to persuade you to buy something — so you can evaluate its claims more carefully. When you read a news article versus an opinion column, knowing the difference helps you separate facts from someone's argument. When a friend sends you a text, understanding their purpose (are they venting, asking for advice, or just sharing something funny?) helps you respond in the right way. Recognizing purpose makes you a smarter, more aware reader of everything — from books to social media posts.",
+  "transition_cues": [
+    "Can you name the four main purposes an author might have, and give a quick example of each?",
+    "If a passage includes facts but also has a strong opinion and a call to action, what's the primary purpose? How can you tell?",
+    "How would you explain the difference between 'to inform' and 'to explain' to a classmate?",
+    "Think about something you've read recently — a text, a post, an article. What was the author's purpose?"
+  ]
+}

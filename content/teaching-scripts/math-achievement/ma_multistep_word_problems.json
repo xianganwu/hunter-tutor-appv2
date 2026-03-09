@@ -1,0 +1,117 @@
+{
+  "skill_id": "ma_multistep_word_problems",
+  "skill_name": "Multi-Step Word Problems",
+  "concept_explanation": "Multi-step word problems are like puzzles — they can seem overwhelming at first, but they become manageable when you break them into smaller pieces. The trick is to read carefully, figure out what the problem is actually asking, identify the information you're given, and then plan your steps before you start calculating. Usually, you need the answer from one calculation to do the next one — that's what makes them 'multi-step.' A great strategy is to underline the key numbers and the question, cross out information you don't need, and write out each step clearly. Don't try to do everything in your head! These problems test your ability to combine different math skills — you might need fractions AND percents, or area AND subtraction, all in one problem. Take it step by step, and always check that your final answer makes sense.",
+  "worked_examples": [
+    {
+      "problem": "Emma earns $12 per hour babysitting. She worked 5 hours on Saturday and 3 hours on Sunday. She spent $28 on a book and saved the rest. How much did she save?",
+      "thinking_out_loud": [
+        "Step 1: Find the total hours Emma worked. Saturday: 5 hours + Sunday: 3 hours = 8 hours total.",
+        "Step 2: Find her total earnings. 8 hours × $12/hour = $96.",
+        "Step 3: Subtract what she spent. $96 − $28 = $68.",
+        "Step 4: Check — does this make sense? She earned $96, spent $28, and saved $68. $28 + $68 = $96. Yes, it checks out.",
+        "Emma saved $68."
+      ],
+      "solution": "$68"
+    },
+    {
+      "problem": "A school is buying supplies. They need 24 boxes of markers at $3.50 each and 15 packs of paper at $5.20 each. They have a budget of $200. Do they have enough money, and if so, how much is left over?",
+      "thinking_out_loud": [
+        "Step 1: Find the cost of markers. 24 × $3.50 = $84.00.",
+        "Step 2: Find the cost of paper. 15 × $5.20 = $78.00.",
+        "Step 3: Find the total cost. $84.00 + $78.00 = $162.00.",
+        "Step 4: Compare to the budget. $162 < $200, so yes, they have enough!",
+        "Step 5: Find the leftover. $200 − $162 = $38.00.",
+        "They have enough money and will have $38 left over."
+      ],
+      "solution": "Yes, they have enough. $38.00 left over."
+    },
+    {
+      "problem": "A rectangular room is 15 feet long and 12 feet wide. The owner wants to tile the floor with square tiles that are 1 foot on each side, and the tiles cost $2.75 each. There is a 4-foot by 3-foot area that does not need tiles (where a closet is). What is the total cost of the tiles needed?",
+      "thinking_out_loud": [
+        "Step 1: Find the total area of the room. 15 × 12 = 180 square feet.",
+        "Step 2: Find the area of the closet (no tiles needed). 4 × 3 = 12 square feet.",
+        "Step 3: Find the area that needs tiles. 180 − 12 = 168 square feet.",
+        "Step 4: Since each tile covers 1 square foot, I need 168 tiles.",
+        "Step 5: Find the total cost. 168 × $2.75 = $462.00.",
+        "The total cost of the tiles is $462.00."
+      ],
+      "solution": "$462.00"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Stopping after the first calculation, thinking the problem is solved when there are still more steps.",
+      "why_it_happens": "Students see a number result and assume that's the answer, not realizing the problem requires using that result in another calculation.",
+      "how_to_address": "Before starting any math, read the entire problem and identify the FINAL question — underline it. After each calculation, ask yourself: 'Does this answer the question I underlined?' If not, there are more steps to do."
+    },
+    {
+      "misconception": "Using the wrong operation because of 'keyword' misinterpretation (e.g., thinking 'how many more' always means addition).",
+      "why_it_happens": "Students memorize keyword lists (like 'total = add') without understanding context. But 'how many more does A have than B' requires subtraction, not addition.",
+      "how_to_address": "Instead of relying on keywords, visualize or act out the problem. Ask yourself: 'What is physically happening here?' If items are being combined, that's addition. If you're finding a difference or what's left, that's subtraction. Context matters more than keywords."
+    },
+    {
+      "misconception": "Not checking whether the answer is reasonable.",
+      "why_it_happens": "Students focus on getting through the calculations and don't step back to see if their answer makes sense in the context of the problem.",
+      "how_to_address": "Always do a 'sense check' at the end. If you calculated that someone saved $680 from an $80 paycheck, something went wrong. Estimate first — round the numbers and do a quick mental calculation to get a ballpark answer, then compare your exact answer to that estimate."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "A class of 28 students is going on a field trip. Each van holds 6 students. How many vans are needed? If each van costs $45 to rent, what is the total rental cost?",
+      "hints": [
+        "Divide 28 by 6 to find how many vans. But be careful — you can't have part of a van, so round UP since every student needs a seat.",
+        "28 ÷ 6 = 4 remainder 4. So you need 4 full vans + 1 more for the remaining 4 students = 5 vans. Now find the cost.",
+        "Total cost = 5 vans × $45 per van."
+      ],
+      "answer": "5 vans; total cost = $225",
+      "explanation": "28 ÷ 6 = 4 R4, so 5 vans are needed (you can't leave 4 students behind!). Cost: 5 × $45 = $225."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Liam bought 3 shirts for $14.99 each and 2 pairs of socks for $4.50 each. If the sales tax is 8%, what is his total bill including tax?",
+      "hints": [
+        "First find the subtotal: cost of shirts + cost of socks. Shirts: 3 × $14.99. Socks: 2 × $4.50.",
+        "Subtotal = $44.97 + $9.00 = $53.97. Now calculate 8% tax on $53.97 and add it to the subtotal."
+      ],
+      "answer": "$58.29 (rounded to nearest cent)",
+      "explanation": "Shirts: 3 × $14.99 = $44.97. Socks: 2 × $4.50 = $9.00. Subtotal: $53.97. Tax: 0.08 × $53.97 = $4.3176 ≈ $4.32. Total: $53.97 + $4.32 = $58.29."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A pool is shaped like a rectangle that is 25 meters long and 10 meters wide. A swimmer swims the length of the pool 6 times and the width 4 times during practice. How many total meters does she swim?",
+      "hints": [
+        "Calculate the distance for length swims and width swims separately, then add them together."
+      ],
+      "answer": "190 meters",
+      "explanation": "Length swims: 6 × 25 = 150 meters. Width swims: 4 × 10 = 40 meters. Total: 150 + 40 = 190 meters."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Sarah's test scores are 85, 92, 78, and 88. She has one more test left. What score does she need on the fifth test to have an average of exactly 86 across all five tests?",
+      "hints": [],
+      "answer": "87",
+      "explanation": "To average 86 across 5 tests, the total must be 86 × 5 = 430. Current total: 85 + 92 + 78 + 88 = 343. She needs 430 − 343 = 87 on her fifth test."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "A farmer has a rectangular field that is 120 yards long and 80 yards wide. He wants to fence the entire perimeter and also put a fence across the middle dividing it into two equal sections along the length. Fencing costs $4.50 per yard. What is the total cost of fencing?",
+      "hints": [],
+      "answer": "$2,160",
+      "explanation": "Perimeter of the rectangle: 2 × (120 + 80) = 400 yards. The fence across the middle runs along the width: 80 yards. Total fencing: 400 + 80 = 480 yards. Cost: 480 × $4.50 = $2,160."
+    }
+  ],
+  "real_world_connection": "Multi-step problem solving is literally the most useful math skill you can develop. In real life, problems rarely require just one calculation! Planning a party means figuring out how much food to buy, how much it costs, and whether it fits in your budget — that's a multi-step problem. Deciding whether you can afford to buy something with your savings means calculating what you've earned, what you've spent, and what's left. Adults use multi-step reasoning every day for budgets, travel planning, cooking, home projects, and work. Mastering this skill means you can handle any problem life throws at you.",
+  "transition_cues": [
+    "Before you started calculating, what was your plan? Can you walk me through the steps you identified?",
+    "Did you check your answer? Does the number you got make sense in the real-world situation described?",
+    "What was the trickiest part of that problem? Was it figuring out what to do, or doing the calculations?",
+    "You're really developing your problem-solving muscles! Want to try a challenge problem that combines several different skills?"
+  ]
+}

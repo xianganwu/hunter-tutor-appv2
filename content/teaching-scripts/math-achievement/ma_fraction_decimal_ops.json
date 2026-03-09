@@ -1,0 +1,114 @@
+{
+  "skill_id": "ma_fraction_decimal_ops",
+  "skill_name": "Fraction and Decimal Operations",
+  "concept_explanation": "Fractions and decimals are two ways of writing the same thing — parts of a whole. A fraction like 3/4 means you split something into 4 equal pieces and took 3 of them. The decimal 0.75 means the exact same amount! When we add, subtract, multiply, or divide fractions, we follow specific rules to keep our answers accurate. For adding and subtracting fractions, we need a common denominator — that means the bottom numbers have to match. For multiplying, we just go straight across: tops times tops, bottoms times bottoms. For dividing, we flip the second fraction and multiply. With decimals, we line up the decimal points for adding and subtracting, and we count decimal places for multiplying. Once you get comfortable switching between fractions and decimals, you'll have a powerful toolkit for solving all kinds of problems.",
+  "worked_examples": [
+    {
+      "problem": "Calculate 2/3 + 3/4.",
+      "thinking_out_loud": [
+        "I need to add these two fractions, but they have different denominators — 3 and 4. I can't add them until the denominators match.",
+        "Let me find the least common denominator (LCD). The smallest number that both 3 and 4 divide into evenly is 12.",
+        "Now I convert each fraction: 2/3 = 8/12 (I multiplied top and bottom by 4) and 3/4 = 9/12 (I multiplied top and bottom by 3).",
+        "Now I can add the numerators: 8/12 + 9/12 = 17/12.",
+        "Since 17/12 is an improper fraction, I convert it to a mixed number: 17 ÷ 12 = 1 remainder 5, so the answer is 1 5/12."
+      ],
+      "solution": "1 5/12"
+    },
+    {
+      "problem": "A recipe calls for 2 1/2 cups of flour. If you want to make 1/3 of the recipe, how much flour do you need?",
+      "thinking_out_loud": [
+        "I need to find 1/3 of 2 1/2 cups. The word 'of' in math means multiply, so I need to calculate 1/3 × 2 1/2.",
+        "First, I'll convert the mixed number 2 1/2 into an improper fraction: 2 × 2 + 1 = 5, so 2 1/2 = 5/2.",
+        "Now I multiply: 1/3 × 5/2. I multiply the numerators: 1 × 5 = 5. I multiply the denominators: 3 × 2 = 6.",
+        "The result is 5/6. That's already in simplest form since 5 and 6 share no common factors.",
+        "So I need 5/6 of a cup of flour."
+      ],
+      "solution": "5/6 cup"
+    },
+    {
+      "problem": "Compute 4.35 − 1.782.",
+      "thinking_out_loud": [
+        "I'm subtracting two decimals, so I need to line up the decimal points vertically.",
+        "4.35 has two decimal places and 1.782 has three, so I'll write 4.35 as 4.350 by adding a zero — this doesn't change the value, it just helps me line things up.",
+        "Now I subtract column by column from right to left: 0 − 2... I can't do that, so I need to borrow. Working through the borrowing: 10 − 2 = 8, then 4 − 8... borrow again, 14 − 8 = 6, then 2 − 7... borrow again, 12 − 7 = 5, and finally 3 − 1 = 2.",
+        "Putting it together with the decimal point in the right spot, I get 2.568."
+      ],
+      "solution": "2.568"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Adding fractions by adding the numerators AND the denominators (e.g., 1/2 + 1/3 = 2/5).",
+      "why_it_happens": "It seems logical to just add everything across, like we do with multiplication. But addition requires the pieces to be the same size — that's why we need common denominators.",
+      "how_to_address": "Use a visual: draw a pie cut in halves and another cut in thirds. Show that 1/2 + 1/3 can't be 2/5 because 2/5 is less than 1/2 alone. Finding a common denominator is like cutting both pies into the same number of slices so you can combine them."
+    },
+    {
+      "misconception": "Forgetting to convert mixed numbers to improper fractions before multiplying or dividing.",
+      "why_it_happens": "Students try to multiply the whole number part and fraction part separately, which gives wrong results (e.g., 2 1/2 × 3 done as 2 × 3 = 6 and 1/2 × 3 = 3/2 then combined incorrectly).",
+      "how_to_address": "Always convert to improper fractions first, then operate. Remind students that 2 1/2 means 2 + 1/2 = 5/2. Practice the conversion step on its own until it becomes automatic."
+    },
+    {
+      "misconception": "Misaligning decimal points when adding or subtracting decimals.",
+      "why_it_happens": "Students line up the last digits instead of the decimal points, especially when the numbers have different numbers of decimal places.",
+      "how_to_address": "Write the decimal point first, then fill in the digits around it. Use placeholder zeros (e.g., write 4.3 as 4.30) so both numbers have the same number of decimal places."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "What is 1/4 + 2/3?",
+      "hints": [
+        "The denominators are 4 and 3. What is the least common denominator? (Think: what's the smallest number both 4 and 3 go into evenly?)",
+        "The LCD is 12. Convert each fraction: 1/4 = ?/12 and 2/3 = ?/12. What do you multiply top and bottom by in each case?",
+        "1/4 = 3/12 and 2/3 = 8/12. Now add the numerators and keep the denominator."
+      ],
+      "answer": "11/12",
+      "explanation": "The LCD of 4 and 3 is 12. Converting: 1/4 = 3/12 and 2/3 = 8/12. Adding: 3/12 + 8/12 = 11/12."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Calculate 3 1/3 × 1/2.",
+      "hints": [
+        "First, convert the mixed number 3 1/3 into an improper fraction. Multiply the whole number by the denominator, then add the numerator.",
+        "3 × 3 + 1 = 10, so 3 1/3 = 10/3. Now multiply 10/3 × 1/2 by going straight across — numerator × numerator and denominator × denominator."
+      ],
+      "answer": "5/3 or 1 2/3",
+      "explanation": "Convert 3 1/3 to 10/3. Multiply: 10/3 × 1/2 = 10/6. Simplify by dividing top and bottom by 2: 5/3 = 1 2/3."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "What is 5.6 × 0.3?",
+      "hints": [
+        "Ignore the decimals and multiply 56 × 3 first. Then count the total number of decimal places in both original numbers to place the decimal point in your answer."
+      ],
+      "answer": "1.68",
+      "explanation": "56 × 3 = 168. There are two total decimal places (one in 5.6 and one in 0.3), so place the decimal two spots from the right: 1.68."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "A board is 5 3/4 feet long. If you cut off 2 1/2 feet, how long is the remaining piece?",
+      "hints": [],
+      "answer": "3 1/4 feet",
+      "explanation": "Convert to common denominator: 5 3/4 − 2 2/4 = 3 1/4 feet. (Since 1/2 = 2/4, we can subtract directly: 5 3/4 − 2 2/4 = 3 1/4.)"
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Divide 3/4 by 2/5. Express your answer as a mixed number in simplest form.",
+      "hints": [],
+      "answer": "1 7/8",
+      "explanation": "To divide fractions, flip the second fraction and multiply: 3/4 ÷ 2/5 = 3/4 × 5/2 = 15/8. Convert to a mixed number: 15 ÷ 8 = 1 remainder 7, so the answer is 1 7/8."
+    }
+  ],
+  "real_world_connection": "Fractions and decimals show up everywhere — from splitting a pizza fairly among friends, to doubling or halving a recipe, to calculating how much of your allowance you've saved. Whenever you see a sale at a store (like '1/3 off'), you're using fraction operations. And every time you deal with money — like figuring out if you have enough to buy two items — you're working with decimals.",
+  "transition_cues": [
+    "Before we move on, can you explain in your own words why we need a common denominator for adding fractions but not for multiplying them?",
+    "On a scale of 1 to 5, how confident do you feel about converting between mixed numbers and improper fractions?",
+    "Let's do a quick check — if I said 0.75 as a fraction, what would it be? And what about 2/5 as a decimal?",
+    "You're doing great with these! Ready to try some problems that mix fractions and decimals together?"
+  ]
+}

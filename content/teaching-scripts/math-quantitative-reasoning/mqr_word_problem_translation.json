@@ -1,0 +1,116 @@
+{
+  "skill_id": "mqr_word_problem_translation",
+  "skill_name": "Word Problem Translation",
+  "concept_explanation": "Word problem translation is the art of turning a story written in English into a math expression or equation. Think of yourself as a translator — the problem is speaking English, and you need to convert it into the language of math. The key is learning which math words map to which operations: 'more than' usually means addition, 'less than' means subtraction, 'of' often means multiplication (especially with fractions and percents), and 'per' or 'each' often signal division. The hardest part isn't the math — it's reading carefully and figuring out exactly what the problem is asking you to find.",
+  "worked_examples": [
+    {
+      "problem": "Maria has 3 times as many stickers as Jake. Together they have 48 stickers. How many stickers does Maria have?",
+      "thinking_out_loud": [
+        "Let me figure out what I know and what I need to find. I need to find how many stickers Maria has. I know Maria has 3 times Jake's amount, and together they have 48.",
+        "Let me pick a variable. I'll let j = the number of stickers Jake has. Then Maria has 3j (three times as many).",
+        "Together they have 48, so: j + 3j = 48.",
+        "Combining like terms: 4j = 48. Dividing both sides by 4: j = 12.",
+        "So Jake has 12 stickers, and Maria has 3 × 12 = 36 stickers. Let me check: 12 + 36 = 48. That works!"
+      ],
+      "solution": "Maria has 36 stickers. Setting up the equation j + 3j = 48 gives j = 12, so Maria has 3 × 12 = 36."
+    },
+    {
+      "problem": "A bookstore is having a sale where every book is $4 less than the original price. If Priya buys 5 books that originally cost $12 each, how much does she spend in total?",
+      "thinking_out_loud": [
+        "Let me break this down step by step. First, I need to find the sale price of each book, then find the total for 5 books.",
+        "'$4 less than the original price' means I subtract: sale price = original price - 4 = 12 - 4 = $8 per book.",
+        "She buys 5 books at $8 each. 'Buys 5 books at a price each' means multiplication: 5 × $8.",
+        "5 × 8 = $40. Priya spends $40 total.",
+        "Let me double-check: the original cost would have been 5 × 12 = $60, and she saves 5 × 4 = $20, so $60 - $20 = $40. Same answer!"
+      ],
+      "solution": "Priya spends $40. Each book costs $12 - $4 = $8 on sale, and 5 × $8 = $40."
+    },
+    {
+      "problem": "A train travels at 60 miles per hour. A car leaves from the same station 2 hours later traveling at 80 miles per hour in the same direction. How many hours after the car leaves will it catch up to the train?",
+      "thinking_out_loud": [
+        "This is a classic catch-up problem. The train has a head start, and the car is faster. I need to find when the car catches up.",
+        "Let me figure out the train's head start. In 2 hours at 60 mph, the train travels 2 × 60 = 120 miles before the car even starts.",
+        "Let t = the number of hours after the car leaves. In t hours, the car travels 80t miles and the train travels an additional 60t miles (it keeps going!).",
+        "The car catches the train when the car's total distance equals the train's total distance: 80t = 120 + 60t.",
+        "Solving: 80t - 60t = 120, so 20t = 120, which gives t = 6.",
+        "The car catches the train 6 hours after it leaves. Check: car goes 80 × 6 = 480 miles. Train goes 120 + 60 × 6 = 120 + 360 = 480 miles. They match!"
+      ],
+      "solution": "The car catches the train 6 hours after the car leaves. Setting car distance equal to train distance: 80t = 120 + 60t gives t = 6 hours."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Translating 'less than' in the wrong order",
+      "why_it_happens": "When students see '5 less than x,' they write 5 - x instead of x - 5. The phrase 'A less than B' feels like it should be A - B because A comes first in the sentence, but it actually means B - A.",
+      "how_to_address": "Use a concrete example: '3 less than 10' should be 10 - 3 = 7, not 3 - 10 = -7. The number after 'less than' is what you start with. Practice: '$4 less than $20' = $20 - $4."
+    },
+    {
+      "misconception": "Starting to calculate before understanding what the problem is asking",
+      "why_it_happens": "Students feel pressure to start working immediately, so they grab the numbers and start doing operations without first identifying what they need to find and how the quantities relate.",
+      "how_to_address": "Build a habit: before any math, answer three questions: (1) What am I trying to find? (2) What information am I given? (3) How are these quantities connected? Write these down before writing any equations."
+    },
+    {
+      "misconception": "Using the wrong operation because of a keyword trap",
+      "why_it_happens": "Students memorize that 'total' always means add or 'left' always means subtract, but these keywords can be misleading. 'What is the total cost of 6 items at $5 each?' requires multiplication, not addition.",
+      "how_to_address": "Teach students to understand the situation rather than hunt for keywords. Ask 'What is actually happening in this story?' Drawing a picture or acting out the problem helps more than keyword matching."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Sam is 4 years older than his sister Lily. If the sum of their ages is 22, how old is Sam?",
+      "hints": [
+        "Start by picking a variable. Let's say Lily's age = L. If Sam is 4 years older than Lily, how would you write Sam's age using L?",
+        "Sam's age = L + 4. Now, 'the sum of their ages is 22' means Lily's age plus Sam's age equals 22. Can you write that equation?",
+        "The equation is L + (L + 4) = 22. Simplify the left side and solve for L."
+      ],
+      "answer": "Sam is 13 years old.",
+      "explanation": "Let L = Lily's age. Sam = L + 4. Their sum: L + (L + 4) = 22, so 2L + 4 = 22, 2L = 18, L = 9. Sam = 9 + 4 = 13. Check: 9 + 13 = 22."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "A rectangle's length is twice its width. If the perimeter is 36 inches, what is the area of the rectangle?",
+      "hints": [
+        "Let w = the width. If the length is twice the width, then length = 2w. The perimeter of a rectangle is 2 × length + 2 × width.",
+        "Set up the equation: 2(2w) + 2(w) = 36. Simplify and solve for w, then find the length and area."
+      ],
+      "answer": "The area is 72 square inches.",
+      "explanation": "Let w = width, so length = 2w. Perimeter: 2(2w) + 2(w) = 36, which gives 4w + 2w = 36, so 6w = 36 and w = 6. Length = 2 × 6 = 12. Area = 6 × 12 = 72 square inches."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A movie ticket costs $9. Popcorn costs $5 less than twice the price of a ticket. What is the total cost of one ticket and one popcorn?",
+      "hints": [
+        "Translate 'less than twice' carefully: 'twice the price of a ticket' is 2 × $9, and '$5 less than' that means you subtract $5 from that result."
+      ],
+      "answer": "The total cost is $22.",
+      "explanation": "Ticket = $9. Popcorn = (2 × $9) - $5 = $18 - $5 = $13. Total = $9 + $13 = $22. The key phrase '$5 less than twice' means you calculate 'twice' first, then subtract 5."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Three friends share a pizza equally. Then each person gives away 1/4 of their share to a fourth friend. What fraction of the whole pizza does each of the original three friends end up with?",
+      "hints": [],
+      "answer": "Each of the original three friends ends up with 1/4 of the pizza.",
+      "explanation": "Each friend starts with 1/3 of the pizza. They give away 1/4 of their share: 1/4 × 1/3 = 1/12. So each keeps 1/3 - 1/12. Finding a common denominator: 1/3 = 4/12, so 4/12 - 1/12 = 3/12 = 1/4."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "A store sells notebooks for $3 each and pens for $1 each. Maya bought twice as many pens as notebooks and spent exactly $15. How many notebooks did Maya buy?",
+      "hints": [],
+      "answer": "Maya bought 3 notebooks (and 6 pens).",
+      "explanation": "Let n = the number of notebooks. She bought twice as many pens, so pens = 2n. The total cost is 3n + 1(2n) = 3n + 2n = 5n. Setting 5n = 15 gives n = 3. So Maya bought 3 notebooks and 6 pens. Check: 3 × $3 + 6 × $1 = $9 + $6 = $15."
+    }
+  ],
+  "real_world_connection": "Translating words into math is something you do whenever you figure out how much money you need for something, plan a schedule, or solve any real-world problem. When a recipe says 'use twice as much flour as sugar,' you're translating words into math. When you compare phone plans that charge different monthly rates, you're setting up equations without even realizing it. Being able to read a situation and turn it into math is one of the most practical skills you'll ever develop.",
+  "transition_cues": [
+    "What's your first step when you read a word problem — before you do any math?",
+    "Can you explain the difference between '5 less than x' and '5 is less than x'?",
+    "How do you decide which quantity to assign the variable to in a problem?",
+    "What's a good way to check if your equation actually matches the story in the problem?"
+  ]
+}

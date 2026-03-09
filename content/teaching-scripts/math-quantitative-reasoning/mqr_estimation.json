@@ -1,0 +1,113 @@
+{
+  "skill_id": "mqr_estimation",
+  "skill_name": "Estimation Strategies",
+  "concept_explanation": "Estimation is all about getting close to the right answer without doing exact calculations. It's like having a superpower that lets you quickly check if an answer makes sense or compare quantities when exact math would take too long. The key strategies are rounding (changing numbers to nearby 'friendly' numbers like tens or hundreds), using benchmarks (comparing to numbers you know well, like 1/2, 1, 100), and front-end estimation (focusing on the biggest place values first). On the exam, estimation saves you time and helps you eliminate wrong answer choices fast.",
+  "worked_examples": [
+    {
+      "problem": "Without calculating exactly, which is closest to the value of 398 × 21?\n(A) 4,000  (B) 6,000  (C) 8,000  (D) 12,000",
+      "thinking_out_loud": [
+        "I need to estimate 398 × 21. Let me round each number to something friendly. 398 is really close to 400, and 21 is close to 20.",
+        "So my estimate is 400 × 20. I know 4 × 2 = 8, and then I need to count the zeros: 400 has two zeros and 20 has one zero, so that's three zeros total.",
+        "400 × 20 = 8,000. Let me check — the real answer should be slightly less than 8,000 because I rounded 398 up and 21 down, but those adjustments roughly cancel out.",
+        "The answer closest to 8,000 is (C)."
+      ],
+      "solution": "(C) 8,000. By rounding 398 to 400 and 21 to 20, we get 400 × 20 = 8,000. The exact answer is 8,358, confirming that 8,000 is the closest estimate."
+    },
+    {
+      "problem": "Is 7/13 + 5/11 closer to 1/2, 1, or 1 1/2?",
+      "thinking_out_loud": [
+        "Let me use benchmarks here. I'll estimate each fraction by comparing it to 1/2.",
+        "Is 7/13 more or less than 1/2? Well, half of 13 is 6.5, and 7 is a little more than 6.5. So 7/13 is just a tiny bit more than 1/2.",
+        "Is 5/11 more or less than 1/2? Half of 11 is 5.5, and 5 is a little less than 5.5. So 5/11 is just a tiny bit less than 1/2.",
+        "So I have something slightly more than 1/2 plus something slightly less than 1/2. Together that's very close to 1/2 + 1/2 = 1.",
+        "The answer is closest to 1."
+      ],
+      "solution": "Closest to 1. Since 7/13 is slightly more than 1/2 and 5/11 is slightly less than 1/2, their sum is approximately 1/2 + 1/2 = 1."
+    },
+    {
+      "problem": "A school has 612 students. If 23% of the students are in the band, approximately how many students are in the band?\n(A) 90  (B) 120  (C) 140  (D) 180",
+      "thinking_out_loud": [
+        "I need to estimate 23% of 612. Let me round to friendlier numbers: 23% is close to 25%, and 612 is close to 600.",
+        "25% is the same as 1/4. So I need 1/4 of 600.",
+        "600 ÷ 4 = 150. So approximately 150 students are in the band.",
+        "But wait — I rounded 23% up to 25%, so the real answer should be a little less than 150. Looking at the choices, 140 is closest to my estimate."
+      ],
+      "solution": "(C) 140. Rounding 23% to 25% and 612 to 600 gives 1/4 × 600 = 150. Since we rounded up, the actual value (about 141) is slightly less, making 140 the best estimate."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Rounding all numbers in the same direction, which pushes the estimate too high or too low",
+      "why_it_happens": "Students learn to round each number independently and don't think about how rounding affects the overall answer. If you round both numbers up in a multiplication, your estimate will be too big.",
+      "how_to_address": "Teach 'compensating' — if you round one number up, try to round the other down to keep the estimate balanced. For example, for 48 × 52, rounding to 50 × 50 is better than 50 × 55."
+    },
+    {
+      "misconception": "Thinking estimation means guessing randomly",
+      "why_it_happens": "Students confuse estimation with guessing because both give approximate answers. They don't realize estimation uses deliberate mathematical strategies.",
+      "how_to_address": "Emphasize that estimation is strategic rounding and mental math — it should get you close to the exact answer every time. Practice by estimating first, then calculating exactly to see how close the estimate was."
+    },
+    {
+      "misconception": "Not knowing when estimation is good enough versus when exact calculation is needed",
+      "why_it_happens": "Students aren't sure when it's okay to estimate because in most of their math classes, they need exact answers.",
+      "how_to_address": "On the exam, estimation is great for multiple choice when the answer choices are spread apart, for checking if your calculated answer is reasonable, and for quantitative comparison problems where you just need to know which is bigger."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Estimate the value of 489 + 307 + 198. Is it closest to 800, 1,000, or 1,200?",
+      "hints": [
+        "Try rounding each number to the nearest hundred first. 489 rounds to what? 307 rounds to what? 198 rounds to what?",
+        "489 ≈ 500, 307 ≈ 300, 198 ≈ 200. Now add those rounded numbers together.",
+        "500 + 300 + 200 = 1,000. How does that compare to the choices?"
+      ],
+      "answer": "Closest to 1,000.",
+      "explanation": "Rounding to the nearest hundred: 489 ≈ 500, 307 ≈ 300, 198 ≈ 200. The sum 500 + 300 + 200 = 1,000. The exact answer is 994, confirming our estimate."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Without calculating, determine which is greater: 6/11 or 4/9?",
+      "hints": [
+        "Use 1/2 as a benchmark. Is 6/11 more or less than 1/2? (Hint: what's half of 11?)",
+        "Half of 11 is 5.5, and 6 > 5.5, so 6/11 > 1/2. Now check 4/9: half of 9 is 4.5, and 4 < 4.5, so 4/9 < 1/2. What can you conclude?"
+      ],
+      "answer": "6/11 is greater than 4/9.",
+      "explanation": "6/11 is slightly greater than 1/2 (since 6 > 5.5), while 4/9 is slightly less than 1/2 (since 4 < 4.5). Since 6/11 > 1/2 > 4/9, we know 6/11 is greater — no cross-multiplication needed!"
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A movie theater sold 1,847 tickets last weekend. If adult tickets cost $12 each, and about 3/4 of the tickets were adult tickets, approximately how much money came from adult ticket sales?\n(A) $8,000  (B) $12,000  (C) $16,000  (D) $20,000",
+      "hints": [
+        "Try rounding 1,847 to a friendly number first, then find 3/4 of that. After that, multiply by $12."
+      ],
+      "answer": "(C) $16,000",
+      "explanation": "Round 1,847 to about 1,800. Then 3/4 of 1,800 = 1,350 adult tickets. 1,350 × $12: think of it as 1,350 × 12 ≈ 1,400 × 12 = 16,800. The closest answer is $16,000."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Estimate: 24% of 812 is closest to which value?\n(A) 150  (B) 200  (C) 250  (D) 300",
+      "hints": [],
+      "answer": "(B) 200",
+      "explanation": "Round 24% to 25% (which is 1/4) and 812 to 800. Then 1/4 × 800 = 200. The exact value is about 195, so 200 is the best estimate."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Without calculating exactly, determine which expression has the greatest value:\n(A) 99 × 3  (B) 48 × 6  (C) 34 × 9  (D) 19 × 15",
+      "hints": [],
+      "answer": "(C) 34 × 9",
+      "explanation": "Estimate each: (A) 99 × 3 ≈ 100 × 3 = 300. (B) 48 × 6 ≈ 50 × 6 = 300. (C) 34 × 9 ≈ 35 × 9 = 315. (D) 19 × 15 ≈ 20 × 15 = 300. Choice (C) is greatest at approximately 315. Exact values: (A) 297, (B) 288, (C) 306, (D) 285."
+    }
+  ],
+  "real_world_connection": "Estimation is one of the most useful math skills you'll ever learn. When you're shopping and want to know if you have enough money, you round prices and add them up in your head. When you're cooking and need to adjust a recipe, you estimate proportions. Engineers, scientists, and even video game designers use estimation every day to make quick decisions. Being good at estimation also gives you a built-in 'math radar' that tells you when a calculated answer just doesn't look right.",
+  "transition_cues": [
+    "Can you explain the difference between rounding and estimating?",
+    "When would you choose to estimate instead of calculating the exact answer on a test?",
+    "What benchmark fractions do you find most useful when comparing?",
+    "If you rounded both numbers up in a multiplication, would your estimate be too high, too low, or just right?"
+  ]
+}

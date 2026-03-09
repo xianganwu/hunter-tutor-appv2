@@ -1,0 +1,223 @@
+{
+  "metadata": {
+    "passage_id": "fiction_03",
+    "title": "What the River Taught",
+    "genre": "fiction",
+    "difficulty_level": 3,
+    "word_count": 365,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_inference",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_drawing_conclusions",
+      "rc_figurative_language",
+      "rc_tone_mood"
+    ],
+    "source_description": "original"
+  },
+  "pre_reading_context": "Twelve-year-old Sofia has been training for a regional swim meet for months. On the day before the race, her coach takes the team to practice in an unexpected location.",
+  "passage_text": "Sofia had trained in the community pool every day since September. She knew its dimensions by heart — twenty-five meters long, six lanes wide, water heated to exactly seventy-eight degrees. The pool was predictable, and Sofia liked predictable. She could close her eyes and know exactly when her fingertips would brush the wall at the end of each lap.\n\nSo when Coach Reyes pulled the team van into a gravel lot beside the Millbrook River on the day before the regional meet, Sofia felt something tighten in her chest.\n\n\"We're swimming here?\" asked Dev, her teammate, pressing his face to the window.\n\n\"Not swimming,\" said Coach Reyes. \"Watching.\"\n\nThe team gathered at the riverbank. The water was nothing like the pool. It churned over rocks, swirled into eddies, and split around fallen branches before rejoining itself downstream. It was murky where the pool was clear, wild where the pool was calm.\n\n\"Look at how the water moves around that boulder,\" Coach Reyes said, pointing to a large rock in the middle of the current. The river didn't stop when it hit the stone. It didn't reverse. It simply found another way — sliding left, slipping right, pouring over the top in a thin, gleaming sheet.\n\n\"Tomorrow, some of you will hit a wall during your race,\" Coach Reyes continued. \"Not a literal wall — a moment where your arms feel like cement and your lungs are screaming at you to stop. When that happens, I want you to remember this river. It doesn't fight the obstacle. It doesn't give up, either. It adjusts.\"\n\nSofia watched the water curl around the boulder, patient and relentless at the same time. She had always thought of swimming as something you conquered — you against the clock, you against the water. But the river suggested something different: that strength wasn't always about force. Sometimes it was about flexibility.\n\nOn the drive back, Sofia didn't put her earbuds in like she usually did. Instead, she stared out the window and let Coach Reyes's words tumble through her mind like water over stones, reshaping something she couldn't quite name.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Swimming in rivers is more challenging than swimming in pools." },
+        { "letter": "B", "text": "Coaches should take their teams on field trips before competitions." },
+        { "letter": "C", "text": "True strength sometimes comes from being flexible and adaptable rather than just using force." },
+        { "letter": "D", "text": "Sofia is not prepared enough for the regional swim meet." },
+        { "letter": "E", "text": "Rivers are dangerous places for swim teams to practice." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage uses the river flowing around the boulder as a lesson about resilience and adaptability. Coach Reyes teaches the team that when they hit a difficult moment, they should adjust rather than just push harder, and Sofia realizes that 'strength wasn't always about force.'",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the passage contrasts the pool and river, but the comparison serves as a metaphor for approaching challenges — it is not about which is harder to swim in." },
+        { "letter": "B", "explanation": "This is tempting because Coach Reyes does take the team to the river, but the passage is about the lesson learned, not a recommendation about coaching methods." },
+        { "letter": "D", "explanation": "This is tempting because Sofia is nervous, but the passage actually shows her gaining a new perspective that will help her — nothing suggests she is unprepared." },
+        { "letter": "E", "explanation": "This is tempting because the river is described as wild and unpredictable, but the team only watches the river — the coach never suggests swimming in it." }
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "When the author writes that Sofia \"felt something tighten in her chest,\" what does this suggest?",
+      "answer_choices": [
+        { "letter": "A", "text": "Sofia has a medical condition that makes it hard for her to breathe." },
+        { "letter": "B", "text": "Sofia is feeling anxious or uneasy about the unexpected change in routine." },
+        { "letter": "C", "text": "Sofia is excited about the chance to swim in a river." },
+        { "letter": "D", "text": "The van ride was bumpy and made Sofia carsick." },
+        { "letter": "E", "text": "Sofia is angry at Coach Reyes for wasting practice time." }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage establishes that Sofia likes things to be predictable. When Coach Reyes brings them somewhere unexpected the day before a big race, the tightness in her chest signals anxiety about the break from routine.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because chest tightness can be a medical symptom, but in fiction, physical descriptions like this commonly represent emotions — and the context makes clear Sofia is reacting to surprise." },
+        { "letter": "C", "explanation": "This is tempting because excitement can cause physical reactions, but the passage emphasizes that Sofia likes predictability and the river is the opposite — her reaction is discomfort, not enthusiasm." },
+        { "letter": "D", "explanation": "This is tempting because they are in a van, but the tightness happens when the van pulls into the gravel lot and she sees where they are — it is connected to the location, not the ride." },
+        { "letter": "E", "explanation": "This is tempting because an athlete might be frustrated by an unconventional practice, but the passage shows unease and surprise, not anger." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Coach Reyes compares hitting a wall during a race to which part of the river?",
+      "answer_choices": [
+        { "letter": "A", "text": "The murky water that makes it hard to see" },
+        { "letter": "B", "text": "The gravel lot beside the river" },
+        { "letter": "C", "text": "The boulder that the water flows around" },
+        { "letter": "D", "text": "The fallen branches in the river" },
+        { "letter": "E", "text": "The eddies where the water swirls in circles" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Coach Reyes specifically points to the boulder and shows how the river flows around it without stopping or reversing. She then compares this to the moment in a race when a swimmer feels exhausted and wants to quit, encouraging them to adjust like the river.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because murky water is mentioned in the description of the river, but Coach Reyes does not use murkiness in her lesson — she focuses on the boulder." },
+        { "letter": "B", "explanation": "This is tempting because the gravel lot is part of the setting, but it is just where they parked — it is not part of the river or the lesson." },
+        { "letter": "D", "explanation": "This is tempting because fallen branches are obstacles in the river, but Coach Reyes specifically points to and talks about the boulder, not the branches." },
+        { "letter": "E", "explanation": "This is tempting because eddies are mentioned in the river description, but the lesson centers on the boulder and how water moves around it, not on the swirling eddies." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the simile \"your arms feel like cement\" mean in the context of Coach Reyes's speech?",
+      "answer_choices": [
+        { "letter": "A", "text": "The swimmer's arms become stiff and impossible to move because of cold water." },
+        { "letter": "B", "text": "The swimmer's arms are strong and powerful like a solid material." },
+        { "letter": "C", "text": "The swimmer has been in the water so long that a gray residue has formed on their skin." },
+        { "letter": "D", "text": "The swimmer's arms feel extremely heavy and exhausted from effort." },
+        { "letter": "E", "text": "The swimmer needs to use a harder stroke to push through the water." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "Cement is extremely heavy and hard to move. When Coach Reyes says arms feel 'like cement,' she means the swimmer's arms are so exhausted that they feel impossibly heavy, making it difficult to keep swimming.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because stiffness relates to cement, but Coach Reyes is describing a moment of exhaustion during a race, not a reaction to cold water." },
+        { "letter": "B", "explanation": "This is tempting because cement is a strong material, but in context the comparison is negative — arms feeling like cement means they are too heavy, not powerful." },
+        { "letter": "C", "explanation": "This is tempting because cement is gray and could coat something, but this is a figurative comparison about how the arms feel, not a literal description of appearance." },
+        { "letter": "E", "explanation": "This is tempting because it connects to swimming technique, but the simile is about the feeling of exhaustion, not a recommendation about stroke style." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What does the word \"relentless\" most likely mean as used in the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "Never stopping or giving up" },
+        { "letter": "B", "text": "Moving slowly and carefully" },
+        { "letter": "C", "text": "Loud and overwhelming" },
+        { "letter": "D", "text": "Gentle and easy to control" },
+        { "letter": "E", "text": "Unclear and difficult to understand" }
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage describes the water as 'patient and relentless at the same time,' meaning it continuously flows around the boulder without ever stopping. 'Relentless' means persistent and unstoppable.",
+      "distractor_explanations": [
+        { "letter": "B", "explanation": "This is tempting because the water is described as 'patient,' which might suggest slowness, but 'relentless' paired with 'patient' means the water is persistent, not slow." },
+        { "letter": "C", "explanation": "This is tempting because a river can be loud, but 'relentless' describes the water's persistence in moving forward, not its volume." },
+        { "letter": "D", "explanation": "This is tempting because the river is described as patient, which might seem gentle, but 'relentless' emphasizes that the river never stops — it is the opposite of easy to control." },
+        { "letter": "E", "explanation": "This is tempting because the lesson from the river is abstract, but 'relentless' describes the water's behavior, not its clarity." }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What can the reader conclude about how this experience changed Sofia's thinking?",
+      "answer_choices": [
+        { "letter": "A", "text": "She decided to quit the swim team and take up a different sport." },
+        { "letter": "B", "text": "She realized that she needed to train harder in the pool before the race." },
+        { "letter": "C", "text": "She began to see that approaching challenges with flexibility could be more effective than using pure force." },
+        { "letter": "D", "text": "She no longer felt nervous about the regional meet." },
+        { "letter": "E", "text": "She decided that Coach Reyes's methods were unusual but unhelpful." }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Sofia previously thought of swimming as something you 'conquered' through force. After watching the river, she realizes 'strength wasn't always about force. Sometimes it was about flexibility.' This represents a shift in her understanding of how to face challenges.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the experience made her rethink her approach, but nothing in the passage suggests she wants to quit — she is gaining a new perspective on swimming, not abandoning it." },
+        { "letter": "B", "explanation": "This is tempting because training harder is a logical response before a race, but the passage suggests Sofia learned something more nuanced — about flexibility and adaptation, not just more effort." },
+        { "letter": "D", "explanation": "This is tempting because the experience seems positive, but the passage does not say her nervousness disappeared — instead, it shows her thinking deeply about a new idea." },
+        { "letter": "E", "explanation": "This is tempting because the river visit was unconventional, but the passage clearly shows Sofia absorbing and valuing the lesson — she stares out the window reflecting on the coach's words." }
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What is the mood of the final paragraph?",
+      "answer_choices": [
+        { "letter": "A", "text": "Frantic and worried" },
+        { "letter": "B", "text": "Bored and restless" },
+        { "letter": "C", "text": "Reflective and quietly transformed" },
+        { "letter": "D", "text": "Celebratory and triumphant" },
+        { "letter": "E", "text": "Confused and frustrated" }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "In the final paragraph, Sofia breaks her usual habit of putting in earbuds and instead stares out the window, letting the coach's words move through her mind. The mood is quiet, thoughtful, and shows an internal shift — she is being transformed by the experience.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the race is tomorrow, but the final paragraph shows Sofia in a calm, contemplative state, not a panicked one." },
+        { "letter": "B", "explanation": "This is tempting because she is sitting in a van, but skipping her earbuds to think shows engagement, not boredom." },
+        { "letter": "D", "explanation": "This is tempting because she gained something positive, but the race has not happened yet — the mood is thoughtful and quiet, not celebratory." },
+        { "letter": "E", "explanation": "This is tempting because the passage says she 'couldn't quite name' what was changing, but the overall feeling is one of meaningful growth, not frustration." }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 8,
+      "question_text": "In the final paragraph, the author writes that Coach Reyes's words \"tumble through her mind like water over stones.\" What is the effect of this comparison?",
+      "answer_choices": [
+        { "letter": "A", "text": "It shows that Sofia has already forgotten what Coach Reyes said." },
+        { "letter": "B", "text": "It suggests that Coach Reyes talks too much and her words are overwhelming." },
+        { "letter": "C", "text": "It shows that Sofia wishes she were back at the river instead of in the van." },
+        { "letter": "D", "text": "It emphasizes that the van ride is long and bumpy." },
+        { "letter": "E", "text": "It connects the river lesson back to Sofia's own internal experience, showing the idea is actively shaping her thinking." }
+      ],
+      "correct_answer": "E",
+      "correct_answer_explanation": "By comparing the coach's words to water tumbling over stones, the author connects the river imagery to Sofia's thought process. Just as the river reshapes stones over time, the coach's words are 'reshaping something' inside Sofia — the comparison reinforces the theme of gradual, persistent transformation.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because 'tumble' might suggest scattering, but the passage says the words are 'reshaping something,' which means they are actively working in her mind, not being forgotten." },
+        { "letter": "B", "explanation": "This is tempting because tumbling water can seem overwhelming, but the passage presents the words as productive and transformative, not excessive." },
+        { "letter": "C", "explanation": "This is tempting because the river is on her mind, but the comparison is about how the words affect her thinking, not about wanting to return to a physical location." },
+        { "letter": "D", "explanation": "This is tempting because they are in a van and 'tumble' could suggest movement, but the simile describes Sofia's mental experience, not the physical journey." }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 9,
+      "question_text": "Why does the author describe the pool in such specific detail at the beginning of the passage?",
+      "answer_choices": [
+        { "letter": "A", "text": "To show that Sofia's community pool is better than most pools" },
+        { "letter": "B", "text": "To establish that Sofia is comfortable with routine and predictability, making the river a meaningful contrast" },
+        { "letter": "C", "text": "To prove that Sofia has been swimming for many years" },
+        { "letter": "D", "text": "To explain the proper dimensions and temperature for a competition pool" },
+        { "letter": "E", "text": "To suggest that Sofia is bored with swimming and ready for something new" }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The specific details about the pool — exact length, number of lanes, precise water temperature — show that Sofia values predictability and control. This setup makes the wild, unpredictable river a powerful contrast and makes the lesson about adaptability more meaningful.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because the details are specific, but the author is not comparing the pool to other pools — the details reveal Sofia's personality and mindset." },
+        { "letter": "C", "explanation": "This is tempting because knowing the pool well implies experience, but the details serve to show her attachment to predictability, not her years of experience." },
+        { "letter": "D", "explanation": "This is tempting because the details are factual, but the passage is fiction and the pool details characterize Sofia, not inform the reader about pool standards." },
+        { "letter": "E", "explanation": "This is tempting because familiarity could lead to boredom, but Sofia explicitly says she likes predictable — she is not seeking change." }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 10,
+      "question_text": "Which detail from the passage best supports the conclusion that Coach Reyes is a thoughtful mentor?",
+      "answer_choices": [
+        { "letter": "A", "text": "She drives the team van to the river." },
+        { "letter": "B", "text": "She tells the team they will not be swimming in the river." },
+        { "letter": "C", "text": "She points to a specific boulder in the water." },
+        { "letter": "D", "text": "She uses the natural movement of the river to teach a life lesson about perseverance and adaptation." },
+        { "letter": "E", "text": "She brings the team the day before the meet instead of the day of the meet." }
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "Rather than just giving a motivational speech, Coach Reyes takes the team to see the river and uses a concrete, visual example to teach an abstract lesson about handling adversity. This shows she is a creative and thoughtful mentor.",
+      "distractor_explanations": [
+        { "letter": "A", "explanation": "This is tempting because driving them to the river is part of the plan, but the act of driving is logistical, not evidence of thoughtful mentorship." },
+        { "letter": "B", "explanation": "This is tempting because it shows she is safety-conscious, but saying they will watch rather than swim is a minor detail, not the core evidence of thoughtful mentoring." },
+        { "letter": "C", "explanation": "This is tempting because pointing at the boulder is part of the lesson, but it is one action within the larger act of teaching — the lesson itself is the best evidence." },
+        { "letter": "E", "explanation": "This is tempting because timing matters in coaching, but the passage does not explain why she chose that specific day — the lesson's content is what demonstrates her thoughtfulness." }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "skill_id": "rc_main_idea",
+  "skill_name": "Main Idea Identification",
+  "concept_explanation": "The main idea is the most important point the author wants you to take away from a passage. Think of it like this: if you had to tell a friend what the passage was about in just one sentence, that sentence would be the main idea. It's different from the details, which are the smaller pieces of information the author uses to support or explain the main idea. A good trick is to ask yourself, 'What is the one big thing all the details have in common?' That common thread is your main idea.",
+  "worked_examples": [
+    {
+      "problem": "Read the following passage and identify the main idea:\n\n\"Honeybees are essential to agriculture. They pollinate roughly one-third of the food crops we eat, including apples, almonds, and blueberries. Without honeybees, farmers would have to find other ways to pollinate their crops, which would be extremely expensive. Scientists are working hard to understand why honeybee populations have been declining in recent years, because protecting these tiny insects is crucial for our food supply.\"",
+      "thinking_out_loud": [
+        "Okay, let me read through this carefully. I see a lot of facts about honeybees — they pollinate crops, farmers need them, scientists are studying them.",
+        "Now I need to figure out what ALL of these details have in common. They all seem to point to one big idea: honeybees are really important for our food.",
+        "Let me check: Does the detail about pollinating one-third of crops support that idea? Yes. Does the detail about it being expensive without them support it? Yes. Does the detail about scientists studying their decline support it? Yes — because they're trying to protect something important.",
+        "So the main idea is: Honeybees are essential to agriculture and our food supply, and protecting them matters."
+      ],
+      "solution": "The main idea is that honeybees play a vital role in agriculture by pollinating food crops, and their decline is a serious concern. All the details in the passage — the statistics about pollination, the cost to farmers, and the scientific research — support this central point."
+    },
+    {
+      "problem": "Read the following passage and identify the main idea:\n\n\"Many people think that the Great Wall of China is a single continuous wall, but it is actually made up of many different sections built over thousands of years. Different dynasties constructed their own walls for protection against invaders. Some sections have crumbled away, while others have been restored for tourists. The wall stretches across mountains, deserts, and plains, and its total length — including all branches — is more than 13,000 miles.\"",
+      "thinking_out_loud": [
+        "Let me look at what this passage covers. It talks about how the wall isn't just one wall, it was built over thousands of years, different dynasties built parts, some sections are crumbled, and it's really long.",
+        "I need to find the one idea that ties all these details together. Is it about the wall's length? That's just one detail. Is it about dynasties? That's also just one detail.",
+        "Wait — all the details are showing me that the Great Wall is way more complex than most people realize. The passage even starts by saying people have the wrong idea about it.",
+        "So the main idea is: The Great Wall of China is much more complex than most people think — it's not one single wall but many sections built across a huge span of time and geography."
+      ],
+      "solution": "The main idea is that the Great Wall of China is far more complex than the common image of a single wall — it consists of many sections built by different dynasties over thousands of years, spanning a vast distance across varied terrain."
+    },
+    {
+      "problem": "Read the following passage and identify the main idea:\n\n\"Sleep is one of the most important things a student can do to perform well in school. During sleep, the brain organizes and stores information learned during the day, a process scientists call memory consolidation. Students who get at least nine hours of sleep tend to score higher on tests and pay better attention in class. On the other hand, students who are sleep-deprived often struggle with focus, mood, and problem-solving. Despite knowing this, many middle schoolers stay up late on their phones or doing homework, getting far less sleep than they need.\"",
+      "thinking_out_loud": [
+        "This passage mentions a lot of things: memory consolidation, test scores, attention, sleep deprivation effects, and students staying up late.",
+        "Let me ask myself: what is the one big umbrella that all of these details fit under?",
+        "Every single detail connects back to the idea that sleep is super important for how well students do in school.",
+        "The passage isn't mainly about phones or homework — those are just examples of why students don't get enough sleep. The core message is about why sleep matters for school performance."
+      ],
+      "solution": "The main idea is that getting enough sleep is essential for students' academic performance. Every detail in the passage — from memory consolidation to test scores to the effects of sleep deprivation — supports the central point that sleep directly impacts how well students learn and perform in school."
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Confusing the topic with the main idea",
+      "why_it_happens": "Students often identify what the passage is about (the topic, like 'honeybees') but stop there instead of figuring out what the author is saying about that topic. The topic is just a word or phrase; the main idea is a complete thought.",
+      "how_to_address": "Ask yourself two questions: (1) What is this passage about? That gives you the topic. (2) What is the most important thing the author is saying about that topic? That gives you the main idea. Practice turning topics into full sentences."
+    },
+    {
+      "misconception": "Picking an interesting detail instead of the main idea",
+      "why_it_happens": "Sometimes a detail in the passage is surprising or memorable, and students latch onto it because it stood out. But standing out doesn't make it the main idea — it might just be one piece of supporting evidence.",
+      "how_to_address": "Test your choice by asking: 'Does this cover everything in the passage, or just one part?' If your answer only covers one paragraph or one example, it's probably a detail, not the main idea."
+    },
+    {
+      "misconception": "Thinking the main idea is always stated in the first sentence",
+      "why_it_happens": "Students are sometimes taught that the first sentence is always the topic sentence. While the main idea is often near the beginning, it can appear anywhere — or it might not be stated directly at all.",
+      "how_to_address": "Read the entire passage before deciding on the main idea. After reading, mentally summarize the passage in one sentence. Then check whether your summary matches the first sentence — sometimes it will, sometimes it won't."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "Read this passage:\n\n\"Dolphins are among the most intelligent animals on Earth. They can recognize themselves in mirrors, which shows self-awareness. Dolphins also use a system of clicks and whistles to communicate with each other, and researchers have found that each dolphin has its own unique 'name' whistle. They work together in groups to hunt fish and have even been observed teaching their young how to use tools, like sponges to protect their noses while foraging on the ocean floor.\"\n\nWhat is the main idea of this passage?",
+      "hints": [
+        "Start by identifying the topic — what is this passage about? Now ask yourself: what is the most important thing the author is telling us about that topic?",
+        "Look at all the details: mirror recognition, communication, teamwork, teaching young. What do ALL of these details have in common? They all show how _____ dolphins are.",
+        "Try completing this sentence: 'The author wants me to understand that dolphins are _____.'"
+      ],
+      "answer": "The main idea is that dolphins are remarkably intelligent animals, as shown by their self-awareness, communication abilities, teamwork, and ability to teach and use tools.",
+      "explanation": "The topic is dolphins, but the main idea goes further — it's about their intelligence. Every detail in the passage (mirror test, unique whistles, group hunting, tool use) serves as evidence of how smart dolphins are. That's the thread connecting everything together."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "Read this passage:\n\n\"In the early 1900s, kids as young as five worked long hours in factories, mines, and farms. They earned very little money and often faced dangerous conditions. Reformers like Lewis Hine took photographs of child workers to show the public how bad conditions really were. His powerful images helped change people's minds, and eventually laws were passed to protect children from unsafe labor. Today, thanks to those reformers, children in the United States are required to attend school instead of working in factories.\"\n\nWhat is the main idea of this passage?",
+      "hints": [
+        "This passage covers a lot of ground — child labor, a photographer, laws being passed. Ask yourself: what story are all these details telling together?",
+        "Think about the passage as having a beginning, middle, and end. It starts with a problem (child labor), shows an action (reformers fighting it), and ends with a result (laws protecting children). What's the big takeaway?"
+      ],
+      "answer": "The main idea is that reformers fought against child labor in the early 1900s, and their efforts led to laws that protect children from dangerous working conditions today.",
+      "explanation": "While the passage includes many interesting details — the ages of workers, Lewis Hine's photographs, specific conditions — all of these details support the bigger story: the fight against child labor and how it succeeded in changing laws to protect kids."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "Read this passage:\n\n\"The Amazon rainforest produces about 20 percent of the world's oxygen, which is why it is sometimes called 'the lungs of the Earth.' It is home to more species of plants and animals than any other place on the planet — scientists estimate that one in ten known species lives there. The Amazon also plays a major role in regulating the global climate by absorbing huge amounts of carbon dioxide. However, deforestation threatens all of these benefits, as large areas of the forest are cleared every year for farming and development.\"\n\nWhat is the main idea of this passage?",
+      "hints": [
+        "The passage lists several things the Amazon does (oxygen, biodiversity, climate regulation) and then introduces a threat. Ask yourself: what one sentence captures both the importance and the danger?"
+      ],
+      "answer": "The main idea is that the Amazon rainforest is critically important to the planet — for oxygen, biodiversity, and climate regulation — but deforestation is putting all of these benefits at risk.",
+      "explanation": "Each detail about the Amazon (oxygen production, species diversity, carbon absorption) shows why it matters, while the final detail about deforestation shows why it's in danger. The main idea captures both sides: the Amazon is vital, and it's threatened."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "Read this passage:\n\n\"Archaeologists recently discovered a 2,000-year-old shipwreck off the coast of Greece containing jars of olive oil, wine, and grain. The ship appeared to be a merchant vessel that traded goods across the Mediterranean Sea. Analysis of the wood showed it was built with timber from several different regions, suggesting that even in ancient times, people sourced materials from far-away places. The discovery gives historians new evidence about how trade networks connected distant civilizations long before modern transportation existed.\"\n\nWhat is the main idea of this passage?",
+      "hints": [],
+      "answer": "The main idea is that a recently discovered ancient shipwreck provides new evidence about how extensive trade networks were in the ancient Mediterranean world.",
+      "explanation": "The passage isn't mainly about the ship itself or the specific cargo — those are supporting details. The main idea is what the discovery reveals: that ancient civilizations had far-reaching trade connections. The cargo, the wood analysis, and the historians' conclusions all support this central point."
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Read this passage:\n\n\"Many people assume that deserts are lifeless wastelands, but they are actually home to a surprising variety of plants and animals. Cacti store water in their thick stems to survive months without rain. Desert foxes have oversized ears that help them release body heat and stay cool. Some desert beetles collect water from morning fog by tilting their bodies so droplets roll into their mouths. Even tiny organisms like bacteria thrive in desert soil, breaking down minerals and helping other plants grow. Deserts may look empty, but they are full of life that has found clever ways to adapt.\"\n\nWhat is the main idea of this passage?",
+      "hints": [],
+      "answer": "The main idea is that deserts, despite appearing empty, are home to a diverse range of organisms that have developed remarkable adaptations to survive harsh conditions.",
+      "explanation": "The author's central message challenges the assumption that deserts are lifeless. Every detail — cacti storing water, foxes releasing heat, beetles collecting fog, bacteria in soil — is an example of life thriving in the desert through adaptation. The main idea ties all these examples together into one big point: deserts are full of well-adapted life."
+    }
+  ],
+  "real_world_connection": "Identifying the main idea isn't just a test skill — it's something you use every single day. When you read a news article, you figure out the main point so you can decide if it matters to you. When a friend tells you a long story, you naturally pick out the main thing they're trying to say. When you study for any subject, finding the main idea of each section helps you remember what's important. Being great at this skill makes you a stronger reader, a better listener, and a clearer thinker.",
+  "transition_cues": [
+    "Before we move on, can you explain in your own words the difference between a main idea and a supporting detail?",
+    "Let's check: if someone asked you how to find the main idea of any passage, what steps would you tell them to follow?",
+    "Can you think of a time when you needed to figure out the main point of something you read or heard? How did you do it?",
+    "I want to make sure we're solid on this — what's one mistake people make when looking for the main idea, and how can you avoid it?"
+  ]
+}

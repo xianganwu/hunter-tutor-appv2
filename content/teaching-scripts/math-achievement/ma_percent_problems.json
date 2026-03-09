@@ -1,0 +1,116 @@
+{
+  "skill_id": "ma_percent_problems",
+  "skill_name": "Percent Problems",
+  "concept_explanation": "Percent means 'per hundred' — so 25% literally means 25 out of 100. Percents are just another way to express fractions and decimals: 25% = 25/100 = 1/4 = 0.25. There are three main types of percent problems you'll see: finding a percent of a number (like 'what is 30% of 80?'), finding what percent one number is of another (like '12 is what percent of 48?'), and percent change (like 'a price went from $40 to $50 — what's the percent increase?'). The key to all of them is knowing how to convert between percents, fractions, and decimals, and then setting up the right calculation. Once you master these conversions, percent problems become much more manageable!",
+  "worked_examples": [
+    {
+      "problem": "A jacket originally costs $80. It is on sale for 35% off. What is the sale price?",
+      "thinking_out_loud": [
+        "I need to find 35% of $80 first, because that's the discount amount.",
+        "To find 35% of 80, I convert 35% to a decimal: 35% = 0.35.",
+        "Now I multiply: 0.35 × 80 = 28. So the discount is $28.",
+        "The sale price is the original price minus the discount: $80 − $28 = $52.",
+        "Quick check: 35% is about 1/3, and 1/3 of 80 is about 27 — that's close to 28, so my answer makes sense."
+      ],
+      "solution": "$52"
+    },
+    {
+      "problem": "Marcus scored 18 out of 24 on his quiz. What percent did he get correct?",
+      "thinking_out_loud": [
+        "I need to find what percent 18 is of 24. I'll set this up as a fraction first: 18/24.",
+        "I can simplify this fraction: both 18 and 24 are divisible by 6. So 18/24 = 3/4.",
+        "Now I convert 3/4 to a percent. I can divide: 3 ÷ 4 = 0.75.",
+        "To go from a decimal to a percent, I multiply by 100: 0.75 × 100 = 75%.",
+        "Marcus scored 75% on his quiz."
+      ],
+      "solution": "75%"
+    },
+    {
+      "problem": "The population of a town grew from 1,200 to 1,500. What was the percent increase?",
+      "thinking_out_loud": [
+        "For percent change, I use the formula: percent change = (amount of change ÷ original amount) × 100.",
+        "The amount of change is 1,500 − 1,200 = 300.",
+        "The original amount is 1,200 (the starting value).",
+        "Now I divide: 300 ÷ 1,200 = 0.25.",
+        "Convert to a percent: 0.25 × 100 = 25%.",
+        "The population increased by 25%."
+      ],
+      "solution": "25% increase"
+    }
+  ],
+  "common_misconceptions": [
+    {
+      "misconception": "Calculating percent change using the new value instead of the original value as the denominator.",
+      "why_it_happens": "Students sometimes divide the change by the new number instead of the starting number. For example, for a change from 40 to 50, they might compute 10/50 instead of 10/40.",
+      "how_to_address": "Emphasize that percent change is always relative to where you started — the original value. Use a memory cue: 'Change Over Original' (C.O.O.). If a price goes from $40 to $50, the change is $10 and the original is $40, so it's 10/40 = 25%."
+    },
+    {
+      "misconception": "Thinking that a 50% increase followed by a 50% decrease returns to the original value.",
+      "why_it_happens": "It seems intuitive that adding 50% and then subtracting 50% would cancel out, but the 50% decrease is applied to the larger number, not the original.",
+      "how_to_address": "Use a concrete example: Start with $100. Increase by 50% → $150. Now decrease by 50% → $75. You end up with less than you started! The base changes between the two calculations."
+    },
+    {
+      "misconception": "Moving the decimal point the wrong direction when converting between percents and decimals.",
+      "why_it_happens": "Students get confused about whether to multiply or divide by 100. They might write 35% as 3.5 instead of 0.35.",
+      "how_to_address": "Teach the rule: percent to decimal, move the decimal point 2 places LEFT (percent → smaller number). Decimal to percent, move it 2 places RIGHT (decimal → bigger number). Use benchmarks they know: 50% = 0.50, 10% = 0.10."
+    }
+  ],
+  "scaffolded_practice": [
+    {
+      "question_number": 1,
+      "type": "guided",
+      "question": "What is 40% of 250?",
+      "hints": [
+        "First, convert 40% to a decimal by dividing by 100 (or moving the decimal point 2 places to the left).",
+        "40% = 0.40. Now multiply 0.40 × 250.",
+        "You can break this down: 0.4 × 250 = 4 × 25 = 100."
+      ],
+      "answer": "100",
+      "explanation": "Convert 40% to 0.40, then multiply: 0.40 × 250 = 100. A quick check: 40% is a bit less than half, and half of 250 is 125, so 100 makes sense."
+    },
+    {
+      "question_number": 2,
+      "type": "guided",
+      "question": "A shirt costs $45 and the sales tax is 8%. What is the total cost including tax?",
+      "hints": [
+        "First find the tax amount: what is 8% of $45? Convert 8% to a decimal first.",
+        "8% = 0.08. Multiply: 0.08 × 45 = $3.60. Now add the tax to the original price."
+      ],
+      "answer": "$48.60",
+      "explanation": "The tax is 8% of $45 = 0.08 × 45 = $3.60. Total cost = $45 + $3.60 = $48.60."
+    },
+    {
+      "question_number": 3,
+      "type": "supported",
+      "question": "A class has 32 students. If 12 of them walk to school, what percent of the class walks to school?",
+      "hints": [
+        "Set up the fraction 12/32, simplify it, then convert to a percent by dividing the numerator by the denominator and multiplying by 100."
+      ],
+      "answer": "37.5%",
+      "explanation": "12/32 simplifies to 3/8. Dividing: 3 ÷ 8 = 0.375. Converting: 0.375 × 100 = 37.5%."
+    },
+    {
+      "question_number": 4,
+      "type": "independent",
+      "question": "A bicycle was originally priced at $120. It was first discounted by 25%, and then the sale price was discounted by an additional 10%. What is the final price?",
+      "hints": [],
+      "answer": "$81",
+      "explanation": "First discount: 25% of $120 = $30, so the price becomes $120 − $30 = $90. Second discount: 10% of $90 = $9, so the final price is $90 − $9 = $81. Note: this is NOT the same as a single 35% discount!"
+    },
+    {
+      "question_number": 5,
+      "type": "independent",
+      "question": "Last month, a store sold 160 books. This month, they sold 200 books. What is the percent increase in books sold?",
+      "hints": [],
+      "answer": "25%",
+      "explanation": "Change = 200 − 160 = 40. Percent change = (40 ÷ 160) × 100 = 0.25 × 100 = 25% increase."
+    }
+  ],
+  "real_world_connection": "Percents are everywhere in daily life! When you see a sign saying '30% off,' you use percents to figure out how much you'll save. When you leave a tip at a restaurant, you calculate a percent of the bill. Your grades are often expressed as percentages. Even things like phone battery levels (78% charged) and weather forecasts (60% chance of rain) use percents. Understanding percents helps you make smart decisions about money, understand statistics in the news, and more.",
+  "transition_cues": [
+    "Can you walk me through how you'd convert 3/8 to a percent? Take it step by step.",
+    "Here's a quick challenge: if something increases by 100%, what happens to it? What if it decreases by 100%?",
+    "How are you feeling about percent change problems? Those can be tricky — would you like to try another one?",
+    "Nice work! Before we continue, can you explain the difference between finding '20% of a number' and finding 'what percent one number is of another'?"
+  ]
+}
