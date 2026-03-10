@@ -14,6 +14,7 @@ import { authLogout, syncProgressToServer } from "@/lib/auth-client";
 export function UserMenu() {
   const router = useRouter();
   const [userName, setUserName] = useState<string | null>(null);
+  const [signingOut, setSigningOut] = useState(false);
   const [showReset, setShowReset] = useState(false);
   const [confirmText, setConfirmText] = useState("");
 
@@ -27,13 +28,18 @@ export function UserMenu() {
   }, [router]);
 
   async function handleSwitchUser() {
-    if (userName) {
-      await syncProgressToServer(userName);
+    setSigningOut(true);
+    try {
+      if (userName) {
+        await syncProgressToServer(userName);
+      }
+      await authLogout();
+      clearStoredAuthUser();
+      clearActiveUser();
+      router.push("/");
+    } catch {
+      setSigningOut(false);
     }
-    await authLogout();
-    clearStoredAuthUser();
-    clearActiveUser();
-    router.push("/");
   }
 
   function handleReset() {
@@ -62,9 +68,17 @@ export function UserMenu() {
       <div className="flex items-center gap-2">
         <button
           onClick={handleSwitchUser}
-          className="rounded-xl border border-surface-200 bg-surface-0 px-3 py-1.5 text-xs font-medium text-surface-600 transition-colors hover:bg-surface-100 dark:border-surface-700 dark:bg-surface-900 dark:text-surface-400 dark:hover:bg-surface-800"
+          disabled={signingOut}
+          className="rounded-xl border border-surface-200 bg-surface-0 px-3 py-1.5 text-xs font-medium text-surface-600 transition-colors hover:bg-surface-100 disabled:opacity-60 dark:border-surface-700 dark:bg-surface-900 dark:text-surface-400 dark:hover:bg-surface-800"
         >
-          Sign Out
+          {signingOut ? (
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 animate-spin rounded-full border-2 border-surface-300 border-t-surface-600" />
+              Signing out...
+            </span>
+          ) : (
+            "Sign Out"
+          )}
         </button>
         <button
           onClick={() => setShowReset(true)}
