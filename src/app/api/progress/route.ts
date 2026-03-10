@@ -44,10 +44,7 @@ export async function GET() {
 // ─── POST /api/progress — upload progress for current user ────────────
 
 const syncSchema = z.object({
-  progress: z.record(
-    z.enum(VALID_KEYS),
-    z.unknown()
-  ),
+  progress: z.record(z.string(), z.unknown()),
 });
 
 export async function POST(request: Request) {
@@ -66,26 +63,28 @@ export async function POST(request: Request) {
       );
     }
 
-    const entries = Object.entries(parsed.data.progress);
-
-    // Upsert each key-value pair
-    await Promise.all(
-      entries.map(([key, value]) =>
-        prisma.userData.upsert({
-          where: {
-            studentId_key: { studentId: session.sub, key },
-          },
-          create: {
-            studentId: session.sub,
-            key,
-            value: JSON.stringify(value),
-          },
-          update: {
-            value: JSON.stringify(value),
-          },
-        })
-      )
+    const validKeys = new Set<string>(VALID_KEYS);
+    const entries = Object.entries(parsed.data.progress).filter(
+      ([key, value]) => validKeys.has(key) && value !== undefined && value !== null
     );
+
+    // Save each key-value pair sequentially (LibSQL doesn't support concurrent upserts well)
+    for (const [key, value] of entries) {
+      const jsonValue = JSON.stringify(value);
+      const existing = await prisma.userData.findFirst({
+        where: { studentId: session.sub, key },
+      });
+      if (existing) {
+        await prisma.userData.update({
+          where: { id: existing.id },
+          data: { value: jsonValue },
+        });
+      } else {
+        await prisma.userData.create({
+          data: { studentId: session.sub, key, value: jsonValue },
+        });
+      }
+    }
 
     return NextResponse.json({ success: true, keysUpdated: entries.length });
   } catch (err) {
