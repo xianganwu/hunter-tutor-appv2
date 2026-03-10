@@ -94,9 +94,13 @@ export async function POST(request: Request) {
       return await handleLogout();
     }
   } catch (err) {
-    console.error("[auth] POST error:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[auth] POST error:", message, err);
     return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
+      {
+        error: "Something went wrong. Please try again.",
+        ...(process.env.NODE_ENV !== "production" ? { debug: message } : {}),
+      },
       { status: 500 }
     );
   }

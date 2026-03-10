@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "db:push": "prisma db push",
+    "db:push:prod": "echo 'Pushing schema to production Turso DB...' && TURSO_DATABASE_URL=$TURSO_PROD_URL TURSO_AUTH_TOKEN=$TURSO_PROD_TOKEN prisma db push",
     "db:studio": "prisma studio"
   },
   "dependencies": {
