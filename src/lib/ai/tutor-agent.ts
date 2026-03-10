@@ -145,24 +145,15 @@ export class TutorAgent {
     this.systemPrompt = buildSystemPrompt();
   }
 
-  /**
-   * Generate a lesson explanation calibrated to the student's mastery level.
-   */
-  async teachConcept(
-    skill: Skill,
-    studentMastery: number
-  ): Promise<TeachConceptResult> {
+  /** Build messages for teachConcept (shared by streaming and non-streaming). */
+  buildTeachMessages(skill: Skill, studentMastery: number): Anthropic.MessageParam[] {
     const masteryLabel = describeMastery(studentMastery);
     const prereqNames = skill.prerequisite_skills.join(", ") || "none";
 
-    const response = await this.client.messages.create({
-      model: MODEL,
-      max_tokens: MAX_TOKENS_LESSON,
-      system: this.systemPrompt,
-      messages: [
-        {
-          role: "user",
-          content: `Teach me the concept: "${skill.name}"
+    return [
+      {
+        role: "user" as const,
+        content: `Teach me the concept: "${skill.name}"
 
 Skill description: ${skill.description}
 Difficulty tier: ${skill.difficulty_tier}/5
@@ -178,8 +169,22 @@ ${
 }
 
 Give me a clear explanation with one worked example. End by asking me a question to check my understanding.`,
-        },
-      ],
+      },
+    ];
+  }
+
+  /**
+   * Generate a lesson explanation calibrated to the student's mastery level.
+   */
+  async teachConcept(
+    skill: Skill,
+    studentMastery: number
+  ): Promise<TeachConceptResult> {
+    const response = await this.client.messages.create({
+      model: MODEL,
+      max_tokens: MAX_TOKENS_LESSON,
+      system: this.systemPrompt,
+      messages: this.buildTeachMessages(skill, studentMastery),
     });
 
     return {
@@ -225,15 +230,13 @@ Make the question test exactly the skill described. Make distractors plausible b
     return parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier);
   }
 
-  /**
-   * Evaluate a student's answer. If wrong, ask about their reasoning before explaining.
-   */
-  async evaluateAnswer(
+  /** Build messages for evaluateAnswer (shared by streaming and non-streaming). */
+  buildEvaluateMessages(
     questionText: string,
     studentAnswer: string,
     correctAnswer: string,
     conversationHistory: readonly ConversationMessage[] = []
-  ): Promise<AnswerFeedback> {
+  ): { messages: Anthropic.MessageParam[]; isCorrect: boolean } {
     const isCorrect =
       studentAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
 
@@ -262,14 +265,30 @@ IMPORTANT: Do NOT reveal the correct answer yet. Instead:
 
 Keep it encouraging. We want them to try again.`;
 
+    return {
+      messages: [...historyMessages, { role: "user" as const, content: prompt }],
+      isCorrect,
+    };
+  }
+
+  /**
+   * Evaluate a student's answer. If wrong, ask about their reasoning before explaining.
+   */
+  async evaluateAnswer(
+    questionText: string,
+    studentAnswer: string,
+    correctAnswer: string,
+    conversationHistory: readonly ConversationMessage[] = []
+  ): Promise<AnswerFeedback> {
+    const { messages, isCorrect } = this.buildEvaluateMessages(
+      questionText, studentAnswer, correctAnswer, conversationHistory
+    );
+
     const response = await this.client.messages.create({
       model: MODEL,
       max_tokens: MAX_TOKENS_FEEDBACK,
       system: this.systemPrompt,
-      messages: [
-        ...historyMessages,
-        { role: "user", content: prompt },
-      ],
+      messages,
     });
 
     return {
@@ -329,6 +348,25 @@ Remember: this student may be a 9-10 year old building foundations or an 11-12 y
     return parseEssayFeedback(extractText(response));
   }
 
+  /** Build messages for respondToEmotionalCue. */
+  buildEmotionalMessages(
+    message: string,
+    conversationHistory: readonly ConversationMessage[] = []
+  ): Anthropic.MessageParam[] {
+    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
+      (m) => ({ role: m.role, content: m.content })
+    );
+    return [
+      ...historyMessages,
+      {
+        role: "user" as const,
+        content: `The student just said: "${message}"
+
+This seems like they might be feeling frustrated, anxious, or discouraged. Respond with empathy and support. Do NOT jump back into academic content — acknowledge their feelings first, then gently offer options for how to proceed (try an easier question, take a break, or switch topics).`,
+      },
+    ];
+  }
+
   /**
    * Respond empathetically to a student showing frustration, anxiety, or discouragement.
    */
@@ -336,26 +374,35 @@ Remember: this student may be a 9-10 year old building foundations or an 11-12 y
     message: string,
     conversationHistory: readonly ConversationMessage[] = []
   ): Promise<string> {
-    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
-      (m) => ({ role: m.role, content: m.content })
-    );
-
     const response = await this.client.messages.create({
       model: MODEL,
       max_tokens: MAX_TOKENS_FEEDBACK,
       system: this.systemPrompt,
-      messages: [
-        ...historyMessages,
-        {
-          role: "user",
-          content: `The student just said: "${message}"
-
-This seems like they might be feeling frustrated, anxious, or discouraged. Respond with empathy and support. Do NOT jump back into academic content — acknowledge their feelings first, then gently offer options for how to proceed (try an easier question, take a break, or switch topics).`,
-        },
-      ],
+      messages: this.buildEmotionalMessages(message, conversationHistory),
     });
 
     return extractText(response);
+  }
+
+  /** Build messages for socraticFollowUp. */
+  buildHintMessages(
+    context: string,
+    conversationHistory: readonly ConversationMessage[] = []
+  ): Anthropic.MessageParam[] {
+    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
+      (m) => ({ role: m.role, content: m.content })
+    );
+    return [
+      ...historyMessages,
+      {
+        role: "user" as const,
+        content: `Based on this context, ask me ONE thoughtful Socratic follow-up question to deepen my understanding. The question should push me to think more deeply, connect to related concepts, or apply what I just learned in a new way.
+
+Context: ${context}
+
+Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
+      },
+    ];
   }
 
   /**
@@ -365,30 +412,21 @@ This seems like they might be feeling frustrated, anxious, or discouraged. Respo
     context: string,
     conversationHistory: readonly ConversationMessage[] = []
   ): Promise<SocraticFollowUp> {
-    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
-      (m) => ({ role: m.role, content: m.content })
-    );
-
     const response = await this.client.messages.create({
       model: MODEL,
       max_tokens: MAX_TOKENS_FOLLOWUP,
       system: this.systemPrompt,
-      messages: [
-        ...historyMessages,
-        {
-          role: "user",
-          content: `Based on this context, ask me ONE thoughtful Socratic follow-up question to deepen my understanding. The question should push me to think more deeply, connect to related concepts, or apply what I just learned in a new way.
-
-Context: ${context}
-
-Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
-        },
-      ],
+      messages: this.buildHintMessages(context, conversationHistory),
     });
 
     return {
       question: extractText(response),
     };
+  }
+
+  /** Get the system prompt (for use by streaming route handler). */
+  getSystemPrompt(): string {
+    return this.systemPrompt;
   }
 }
 

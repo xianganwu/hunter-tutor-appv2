@@ -151,6 +151,59 @@ async function callApi(action: ChatAction): Promise<ChatApiResponse> {
   return res.json() as Promise<ChatApiResponse>;
 }
 
+/**
+ * Stream an API call. Returns text progressively via onDelta, and final metadata on completion.
+ */
+async function callApiStream(
+  action: ChatAction,
+  onDelta: (text: string) => void
+): Promise<Record<string, unknown>> {
+  const res = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...action, stream: true }),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: "Request failed" }));
+    throw new Error((err as { error: string }).error);
+  }
+
+  const reader = res.body?.getReader();
+  if (!reader) throw new Error("No response body");
+
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let meta: Record<string, unknown> = {};
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      try {
+        const data = JSON.parse(line.slice(6));
+        if (data.error) throw new Error(data.error);
+        if (data.delta) onDelta(data.delta);
+        if (data.done) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { done: _done, ...rest } = data;
+          meta = rest;
+        }
+      } catch (e) {
+        if (e instanceof Error && e.message !== "Stream error") throw e;
+      }
+    }
+  }
+
+  return meta;
+}
+
 // ─── Hook ─────────────────────────────────────────────────────────────
 
 export function useTutoringSession(skillId: string) {
@@ -198,6 +251,36 @@ export function useTutoringSession(skillId: string) {
   const addMessages = useCallback(
     (...msgs: ChatMessageDisplay[]) => {
       setState((s) => ({ ...s, messages: [...s.messages, ...msgs] }));
+    },
+    []
+  );
+
+  /**
+   * Add a streaming tutor message that updates progressively.
+   * Returns the message ID so the caller can finalize it.
+   */
+  const addStreamingMessage = useCallback(
+    (type: ChatMessageDisplay["type"]): { id: string; appendDelta: (delta: string) => void } => {
+      const id = makeId();
+      const msg: ChatMessageDisplay = {
+        id,
+        role: "tutor",
+        content: "",
+        type,
+        timestamp: Date.now(),
+      };
+      setState((s) => ({ ...s, messages: [...s.messages, msg] }));
+
+      const appendDelta = (delta: string) => {
+        setState((s) => ({
+          ...s,
+          messages: s.messages.map((m) =>
+            m.id === id ? { ...m, content: m.content + delta } : m
+          ),
+        }));
+      };
+
+      return { id, appendDelta };
     },
     []
   );
@@ -282,19 +365,20 @@ export function useTutoringSession(skillId: string) {
     [setLoading, persistMastery]
   );
 
-  // Start session: teach concept, then generate first question
+  // Start session: teach concept (streamed), then generate first question
   const startSession = useCallback(async () => {
     const s = stateRef.current;
     try {
       setLoading(true);
 
-      const teachRes = await callApi({
-        type: "teach",
-        skillId,
-        mastery: s.mastery,
-      });
-      addMessages(makeTutorMsg(teachRes.text, "teaching"));
+      // Stream the teaching explanation
+      const streaming = addStreamingMessage("teaching");
+      await callApiStream(
+        { type: "teach", skillId, mastery: s.mastery },
+        streaming.appendDelta
+      );
 
+      // Generate first question (non-streamed — needs structured data)
       const qRes = await callApi({
         type: "generate_question",
         skillId,
@@ -317,7 +401,7 @@ export function useTutoringSession(skillId: string) {
       addMessages(makeTutorMsg(`Sorry, I had trouble starting. ${errMsg}`, "text"));
       setLoading(false);
     }
-  }, [skillId, setLoading, addMessages]);
+  }, [skillId, setLoading, addMessages, addStreamingMessage]);
 
   // Initialize on mount
   useEffect(() => {
@@ -337,13 +421,20 @@ export function useTutoringSession(skillId: string) {
       setLoading(true);
 
       try {
-        const evalRes = await callApi({
-          type: "evaluate_answer",
-          questionText: s.activeQuestion.questionText,
-          studentAnswer: answer,
-          correctAnswer: s.activeQuestion.correctAnswer,
-          history: getHistory(),
-        });
+        // Stream the evaluation feedback
+        const streaming = addStreamingMessage("feedback");
+        const evalMeta = await callApiStream(
+          {
+            type: "evaluate_answer",
+            questionText: s.activeQuestion.questionText,
+            studentAnswer: answer,
+            correctAnswer: s.activeQuestion.correctAnswer,
+            history: getHistory(),
+          },
+          streaming.appendDelta
+        );
+
+        const isCorrect = (evalMeta.isCorrect as boolean) ?? false;
 
         // Fix #2: Record actual time spent on question
         const now = Date.now();
@@ -354,7 +445,7 @@ export function useTutoringSession(skillId: string) {
 
         // Fix #6: Record hint usage
         const attempt: AttemptRecord = {
-          isCorrect: evalRes.isCorrect ?? false,
+          isCorrect,
           timeSpentSeconds: timeSpent,
           hintUsed: hintUsedForCurrent.current,
         };
@@ -362,14 +453,12 @@ export function useTutoringSession(skillId: string) {
         hintUsedForCurrent.current = false;
 
         // Log wrong answers to mistake journal (non-blocking)
-        if (!evalRes.isCorrect && s.activeQuestion) {
+        if (!isCorrect && s.activeQuestion) {
           logMistakeInBackground(s.activeQuestion, answer);
         }
 
-        addMessages(makeTutorMsg(evalRes.text, "feedback"));
-
         const newQuestionCount = s.questionCount + 1;
-        const newCorrectCount = s.correctCount + (evalRes.isCorrect ? 1 : 0);
+        const newCorrectCount = s.correctCount + (isCorrect ? 1 : 0);
 
         const decision = adjustDifficulty(s.mastery, recentAttempts.current);
 
@@ -414,7 +503,7 @@ export function useTutoringSession(skillId: string) {
 
         // Check if teach-it-back should trigger (Feynman technique)
         if (
-          evalRes.isCorrect &&
+          isCorrect &&
           shouldTriggerTeachBack(
             newQuestionCount,
             newCorrectCount,
@@ -428,17 +517,20 @@ export function useTutoringSession(skillId: string) {
           return;
         }
 
-        // If in teach mode or pacing says insert teaching, teach first
+        // If in teach mode or pacing says insert teaching, teach first (streamed)
         if (
           decision.mode === "teach" ||
           pacingAction.action === "insert_teaching"
         ) {
-          const teachRes = await callApi({
-            type: "teach",
-            skillId: s.currentSkillId,
-            mastery: masteryUpdate.newMasteryLevel,
-          });
-          addMessages(makeTutorMsg(teachRes.text, "teaching"));
+          const teachStreaming = addStreamingMessage("teaching");
+          await callApiStream(
+            {
+              type: "teach",
+              skillId: s.currentSkillId,
+              mastery: masteryUpdate.newMasteryLevel,
+            },
+            teachStreaming.appendDelta
+          );
           pacingState.current = advancePacingAfterTeaching(pacingState.current);
         }
 
@@ -466,10 +558,10 @@ export function useTutoringSession(skillId: string) {
         setLoading(false);
       }
     },
-    [addMessages, setLoading, getHistory, doEndSession]
+    [addMessages, addStreamingMessage, setLoading, getHistory, doEndSession]
   );
 
-  // Request hint — Fix #6: Mark hint as used for current question
+  // Request hint (streamed) — Fix #6: Mark hint as used for current question
   const requestHint = useCallback(async () => {
     const s = stateRef.current;
     if (s.phase === "loading") return;
@@ -481,19 +573,18 @@ export function useTutoringSession(skillId: string) {
         ? `Student is stuck on: "${s.activeQuestion.questionText}". The correct answer is "${s.activeQuestion.correctAnswer}". Give a nudge without revealing the answer.`
         : "Student needs help with the current topic.";
 
-      const res = await callApi({
-        type: "get_hint",
-        context,
-        history: getHistory(),
-      });
-      addMessages(makeTutorMsg(res.text, "hint"));
+      const streaming = addStreamingMessage("hint");
+      await callApiStream(
+        { type: "get_hint", context, history: getHistory() },
+        streaming.appendDelta
+      );
     } catch {
       addMessages(makeTutorMsg("Let me think... Try breaking the problem into smaller parts!", "hint"));
     }
     setLoading(false);
-  }, [addMessages, setLoading, getHistory]);
+  }, [addMessages, addStreamingMessage, setLoading, getHistory]);
 
-  // Explain more
+  // Explain more (streamed)
   const requestExplanation = useCallback(async () => {
     const s = stateRef.current;
     if (s.phase === "loading") return;
@@ -503,18 +594,21 @@ export function useTutoringSession(skillId: string) {
       const lastTutorMsg = [...s.messages]
         .reverse()
         .find((m) => m.role === "tutor");
-      const res = await callApi({
-        type: "explain_more",
-        skillId: s.currentSkillId,
-        mastery: s.mastery,
-        context: lastTutorMsg?.content ?? "",
-      });
-      addMessages(makeTutorMsg(res.text, "teaching"));
+      const streaming = addStreamingMessage("teaching");
+      await callApiStream(
+        {
+          type: "explain_more",
+          skillId: s.currentSkillId,
+          mastery: s.mastery,
+          context: lastTutorMsg?.content ?? "",
+        },
+        streaming.appendDelta
+      );
     } catch {
       addMessages(makeTutorMsg("Let me explain that differently...", "teaching"));
     }
     setLoading(false);
-  }, [addMessages, setLoading]);
+  }, [addMessages, addStreamingMessage, setLoading]);
 
   // Continue session after teach-it-back (generate next question)
   const continueAfterTeachBack = useCallback(async () => {
@@ -590,12 +684,11 @@ export function useTutoringSession(skillId: string) {
       if (detectFrustration(text)) {
         setLoading(true);
         try {
-          const res = await callApi({
-            type: "emotional_response",
-            message: text,
-            history: getHistory(),
-          });
-          addMessages(makeTutorMsg(res.text, "text"));
+          const streaming = addStreamingMessage("text");
+          await callApiStream(
+            { type: "emotional_response", message: text, history: getHistory() },
+            streaming.appendDelta
+          );
         } catch {
           addMessages(
             makeTutorMsg(
@@ -607,7 +700,7 @@ export function useTutoringSession(skillId: string) {
         setLoading(false);
       }
     },
-    [submitAnswer, addMessages, setLoading, getHistory]
+    [submitAnswer, addMessages, addStreamingMessage, setLoading, getHistory]
   );
 
   // Restart with same skill — Fix #1: Load from store

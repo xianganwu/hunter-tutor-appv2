@@ -1,15 +1,90 @@
 import { NextResponse } from "next/server";
+import type Anthropic from "@anthropic-ai/sdk";
 import { TutorAgent } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { getSkillById } from "@/lib/exam/curriculum";
-import type { ChatAction, ChatApiResponse } from "@/components/tutor/types";
+import type { ChatAction } from "@/components/tutor/types";
 import type { DifficultyLevel } from "@/lib/types";
 
 const agent = new TutorAgent();
 
-export async function POST(request: Request): Promise<NextResponse<ChatApiResponse | { error: string }>> {
+// ─── Streaming helpers ─────────────────────────────────────────────────
+
+type StreamMeta = Record<string, unknown>;
+
+interface StreamParams {
+  model: string;
+  max_tokens: number;
+  system: string;
+  messages: Anthropic.MessageParam[];
+}
+
+/**
+ * Create an SSE ReadableStream from an Anthropic streaming call.
+ * Events:
+ *   data: {"delta":"..."} — text chunk
+ *   data: {"done":true, ...meta} — final event with optional metadata
+ */
+function createSSEStream(params: StreamParams, meta?: StreamMeta): Response {
+  const client = getAnthropicClient();
+  const encoder = new TextEncoder();
+
+  const readable = new ReadableStream({
+    async start(controller) {
+      try {
+        const stream = client.messages.stream({
+          model: params.model,
+          max_tokens: params.max_tokens,
+          system: params.system,
+          messages: params.messages,
+        });
+
+        for await (const event of stream) {
+          if (
+            event.type === "content_block_delta" &&
+            event.delta.type === "text_delta"
+          ) {
+            controller.enqueue(
+              encoder.encode(`data: ${JSON.stringify({ delta: event.delta.text })}\n\n`)
+            );
+          }
+        }
+
+        controller.enqueue(
+          encoder.encode(
+            `data: ${JSON.stringify({ done: true, ...(meta ?? {}) })}\n\n`
+          )
+        );
+        controller.close();
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : "Stream error";
+        controller.enqueue(
+          encoder.encode(`data: ${JSON.stringify({ error: msg })}\n\n`)
+        );
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(readable, {
+    headers: {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive",
+    },
+  });
+}
+
+// ─── POST handler ─────────────────────────────────────────────────────
+
+interface StreamableAction extends Record<string, unknown> {
+  stream?: boolean;
+}
+
+export async function POST(request: Request): Promise<Response> {
   try {
-    const body = (await request.json()) as ChatAction;
+    const body = (await request.json()) as ChatAction & StreamableAction;
+    const wantStream = body.stream === true;
 
     switch (body.type) {
       case "teach": {
@@ -17,6 +92,16 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
+
+        if (wantStream) {
+          return createSSEStream({
+            model: "claude-sonnet-4-20250514",
+            max_tokens: 1024,
+            system: agent.getSystemPrompt(),
+            messages: agent.buildTeachMessages(skill, body.mastery),
+          });
+        }
+
         const result = await agent.teachConcept(skill, body.mastery);
         return NextResponse.json({ text: result.explanation });
       }
@@ -31,6 +116,25 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
       }
 
       case "evaluate_answer": {
+        const { messages, isCorrect } = agent.buildEvaluateMessages(
+          body.questionText,
+          body.studentAnswer,
+          body.correctAnswer,
+          body.history ?? []
+        );
+
+        if (wantStream) {
+          return createSSEStream(
+            {
+              model: "claude-sonnet-4-20250514",
+              max_tokens: 768,
+              system: agent.getSystemPrompt(),
+              messages,
+            },
+            { isCorrect }
+          );
+        }
+
         const feedback = await agent.evaluateAnswer(
           body.questionText,
           body.studentAnswer,
@@ -44,6 +148,15 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
       }
 
       case "get_hint": {
+        if (wantStream) {
+          return createSSEStream({
+            model: "claude-sonnet-4-20250514",
+            max_tokens: 256,
+            system: agent.getSystemPrompt(),
+            messages: agent.buildHintMessages(body.context, body.history ?? []),
+          });
+        }
+
         const followUp = await agent.socraticFollowUp(body.context, body.history ?? []);
         return NextResponse.json({ text: followUp.question });
       }
@@ -53,6 +166,16 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
+
+        if (wantStream) {
+          return createSSEStream({
+            model: "claude-sonnet-4-20250514",
+            max_tokens: 1024,
+            system: agent.getSystemPrompt(),
+            messages: agent.buildTeachMessages(skill, body.mastery),
+          });
+        }
+
         const result = await agent.teachConcept(skill, body.mastery);
         return NextResponse.json({ text: result.explanation });
       }
@@ -125,6 +248,15 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
       }
 
       case "emotional_response": {
+        if (wantStream) {
+          return createSSEStream({
+            model: "claude-sonnet-4-20250514",
+            max_tokens: 768,
+            system: agent.getSystemPrompt(),
+            messages: agent.buildEmotionalMessages(body.message, body.history ?? []),
+          });
+        }
+
         const response = await agent.respondToEmotionalCue(
           body.message,
           body.history ?? []

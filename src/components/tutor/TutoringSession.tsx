@@ -37,6 +37,8 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const skill = getSkillById(skillId);
   const isLoading = state.phase === "loading" || state.phase === "initializing";
+  const lastMsg = state.messages[state.messages.length - 1];
+  const isStreaming = isLoading && lastMsg?.role === "tutor" && lastMsg.content.length > 0;
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -122,7 +124,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           />
         )}
 
-        {isLoading && <TypingIndicator />}
+        {isLoading && !isStreaming && <TypingIndicator />}
       </div>
 
       {/* Bottom controls */}
