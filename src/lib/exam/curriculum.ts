@@ -3,19 +3,30 @@ import taxonomyData from "../../../content/curriculum-taxonomy.json";
 
 export const curriculum = taxonomyData as unknown as CurriculumTaxonomy;
 
-/** Flat map of all skills keyed by skill_id */
-export function getAllSkills(): Map<string, Skill> {
+// Module-level caches — built once on first access, never rebuilt
+let _skillsCache: Map<string, Skill> | null = null;
+let _domainBySkillCache: Map<string, string> | null = null;
+
+function buildCaches(): void {
   const skills = new Map<string, Skill>();
+  const domainBySkill = new Map<string, string>();
   for (const domain of curriculum.domains) {
     for (const category of domain.skill_categories) {
       for (const skill of category.skills) {
-        // Default to "foundations" for any skill missing the level field
         const enrichedSkill = skill.level ? skill : { ...skill, level: "foundations" as SkillLevel };
         skills.set(skill.skill_id, enrichedSkill);
+        domainBySkill.set(skill.skill_id, domain.domain_id);
       }
     }
   }
-  return skills;
+  _skillsCache = skills;
+  _domainBySkillCache = domainBySkill;
+}
+
+/** Flat map of all skills keyed by skill_id */
+export function getAllSkills(): Map<string, Skill> {
+  if (!_skillsCache) buildCaches();
+  return _skillsCache!;
 }
 
 /** Get a single skill by ID, or undefined if not found */
@@ -60,14 +71,8 @@ export function getSkillsByLevel(level: SkillLevel): Map<string, Skill> {
 
 /** Get the domain ID that contains a given skill */
 export function getDomainForSkill(skillId: string): string | null {
-  for (const domain of curriculum.domains) {
-    for (const category of domain.skill_categories) {
-      if (category.skills.some((s) => s.skill_id === skillId)) {
-        return domain.domain_id;
-      }
-    }
-  }
-  return null;
+  if (!_domainBySkillCache) buildCaches();
+  return _domainBySkillCache!.get(skillId) ?? null;
 }
 
 /** Validate that all prerequisite references point to real skill IDs */

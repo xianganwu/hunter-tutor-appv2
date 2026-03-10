@@ -385,17 +385,18 @@ export function useTutoringSession(skillId: string) {
     try {
       setLoading(true);
 
-      // Create a DB session so question attempts can be persisted
+      // Create a DB session in the background — don't block the teaching stream
       const domain = getDomainForSkill(skillId) ?? skillId;
-      const sessionRes = await fetch("/api/session", {
+      void fetch("/api/session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "create", domain }),
-      });
-      if (sessionRes.ok) {
-        const sessionData = await sessionRes.json() as { session?: { id: string } };
-        sessionDbId.current = sessionData.session?.id ?? null;
-      }
+      }).then(async (res) => {
+        if (res.ok) {
+          const data = await res.json() as { session?: { id: string } };
+          sessionDbId.current = data.session?.id ?? null;
+        }
+      }).catch((err: unknown) => console.error("[session] create error:", err));
 
       // Stream the teaching explanation
       const streaming = addStreamingMessage("teaching");

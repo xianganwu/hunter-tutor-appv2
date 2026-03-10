@@ -134,6 +134,11 @@ Use this taxonomy to:
 - Celebrate when a student is ready to progress from foundations to hunter_prep level skills`;
 }
 
+/** Extract the choice letter from "B) text" or bare "B" formats */
+function extractChoiceLetter(s: string): string {
+  return s.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ?? s.trim().charAt(0).toUpperCase();
+}
+
 // ─── TutorAgent Class ─────────────────────────────────────────────────
 
 export class TutorAgent {
@@ -237,11 +242,7 @@ Make the question test exactly the skill described. Make distractors plausible b
     correctAnswer: string,
     conversationHistory: readonly ConversationMessage[] = []
   ): { messages: Anthropic.MessageParam[]; isCorrect: boolean } {
-    // Extract the letter from either "B) text" or bare "B" formats
-    const choiceLetter = (s: string): string =>
-      s.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ??
-      s.trim().charAt(0).toUpperCase();
-    const isCorrect = choiceLetter(studentAnswer) === choiceLetter(correctAnswer);
+    const isCorrect = extractChoiceLetter(studentAnswer) === extractChoiceLetter(correctAnswer);
 
     const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
       (m) => ({ role: m.role, content: m.content })
