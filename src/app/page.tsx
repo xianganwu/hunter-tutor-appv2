@@ -77,6 +77,9 @@ export default function ProfilePicker() {
         <h1 className="mb-2 text-3xl font-bold text-surface-900 dark:text-surface-100">
           Hunter Tutor
         </h1>
+        <p className="mb-1 text-sm font-medium text-brand-600 dark:text-brand-400">
+          Build Your Path to Hunter High School
+        </p>
         <p className="mb-8 text-lg text-surface-500 dark:text-surface-400">
           {hasLegacy && users.length === 0
             ? "Welcome back! Enter your name to keep your progress."

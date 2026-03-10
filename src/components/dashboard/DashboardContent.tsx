@@ -65,8 +65,8 @@ export function DashboardContent() {
             </div>
             <p className="mt-2 text-surface-500 dark:text-surface-400">
               {hasActivity
-                ? "Keep up the great work. Every practice session gets you closer to the Hunter exam."
-                : "Ready to start your Hunter exam prep? Pick a subject below to begin!"}
+                ? "Keep up the great work. Every practice session builds your skills for the future!"
+                : "Ready to start building your skills? Pick a subject below to begin!"}
             </p>
             <p className="mt-2 text-sm font-medium text-brand-600 dark:text-brand-400">
               {TIER_MESSAGES[mascotTier]}

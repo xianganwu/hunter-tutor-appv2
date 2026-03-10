@@ -15,9 +15,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hunter Tutor — Exam Prep for Hunter College High School",
+  title: "Hunter Tutor — Build Your Path to Hunter College High School",
   description:
-    "An adaptive tutoring app that helps 6th graders prepare for the Hunter College High School entrance exam through Socratic learning, practice exams, and personalized coaching.",
+    "An adaptive tutoring app that helps rising 5th and 6th graders build foundational skills and prepare for the Hunter College High School entrance exam through Socratic learning, practice exams, and personalized coaching.",
 };
 
 export default function RootLayout({

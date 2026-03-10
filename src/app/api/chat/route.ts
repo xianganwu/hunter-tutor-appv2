@@ -67,7 +67,7 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
         const response = await client.messages.create({
           model: "claude-sonnet-4-20250514",
           max_tokens: 512,
-          system: `You are a warm tutor evaluating a 6th grader's explanation of a concept. They are trying to "teach it back" — explaining the concept as if teaching a friend. Evaluate their explanation for completeness and accuracy, then respond in a structured format.`,
+          system: `You are a warm tutor evaluating a student's explanation of a concept. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). They are trying to "teach it back" — explaining the concept as if teaching a friend. Evaluate their explanation for completeness and accuracy, then respond in a structured format. Match your language to the student's age level.`,
           messages: [
             {
               role: "user",

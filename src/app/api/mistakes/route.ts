@@ -28,7 +28,7 @@ const DIAGNOSIS_SYSTEM = `You are a tutoring analytics assistant. When given a s
 - careless_error: The student knows the concept but made a small computational or reading mistake
 - misread_question: The student misunderstood what the question was asking
 
-Be specific and brief. Write at a level a 6th grader's parent could understand.`;
+Be specific and brief. Write at a level a parent could understand.`;
 
 function parseDiagnosis(text: string, skillId: string): MistakeDiagnosis {
   const categoryMatch = text.match(
@@ -108,7 +108,7 @@ Then explain in 1-2 sentences why the student likely chose their answer.`,
         const response = await client.messages.create({
           model: "claude-sonnet-4-20250514",
           max_tokens: 512,
-          system: `You are a tutoring analytics assistant analyzing a 6th grader's mistake patterns. Be specific, encouraging, and actionable. Write 2-3 short observations.`,
+          system: `You are a tutoring analytics assistant analyzing a student's mistake patterns. The student may be a rising 5th grader or a 6th grader. Be specific, encouraging, and actionable. Write 2-3 short observations.`,
           messages: [
             {
               role: "user",

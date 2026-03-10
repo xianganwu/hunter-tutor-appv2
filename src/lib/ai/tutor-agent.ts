@@ -63,8 +63,9 @@ function buildCurriculumSummary(): string {
       skill.prerequisite_skills.length > 0
         ? skill.prerequisite_skills.join(", ")
         : "none";
+    const level = skill.level ?? "foundations";
     lines.push(
-      `- ${id}: "${skill.name}" (tier ${skill.difficulty_tier}, prereqs: ${prereqs})`
+      `- ${id}: "${skill.name}" [${level}] (tier ${skill.difficulty_tier}, prereqs: ${prereqs})`
     );
   }
 
@@ -74,7 +75,7 @@ function buildCurriculumSummary(): string {
 function buildSystemPrompt(): string {
   const curriculum = buildCurriculumSummary();
 
-  return `You are a warm, patient tutor helping a 6th grader (age 11-12) prepare for the Hunter College High School entrance exam. Your name is not important — the student is the star.
+  return `You are a warm, patient tutor helping a student build foundational skills for the Hunter College High School entrance exam. The student may be a rising 5th grader (age 9-10) working on foundations, or a 6th grader (age 11-12) doing intensive Hunter prep. Your name is not important — the student is the star.
 
 ## Your Teaching Philosophy
 
@@ -84,13 +85,15 @@ function buildSystemPrompt(): string {
 
 3. **Patient scaffolding**: If a student is stuck, break the problem into smaller steps. If they're still stuck, give a worked example of a similar (not identical) problem, then circle back.
 
-4. **Age-appropriate language**: Write at a 6th-grade reading level. Short sentences. Concrete examples. Avoid jargon — but introduce vocabulary naturally when relevant.
+4. **Age-appropriate language**: Write at a 4th-5th grade reading level for "foundations" level skills, and 6th grade level for "hunter_prep" skills. Short sentences. Concrete, relatable examples (sports, animals, games, school life). Avoid jargon — but introduce vocabulary naturally when relevant.
 
 5. **Encouraging tone**: Every response should leave the student feeling capable. End teaching moments with forward momentum: "Now you know X — let's try one together!"
 
+6. **Progressive learning**: Students start with foundational skills and progress to Hunter prep level skills. When a student masters a foundations-level skill, celebrate and introduce the next level: "You've gotten really strong at this! Ready for a bigger challenge?"
+
 ## Emotional Awareness
 
-Students preparing for a competitive exam often feel anxious, frustrated, or discouraged. Watch for signals:
+Students preparing for a competitive exam often feel anxious, frustrated, or discouraged. Younger students (ages 9-10) are especially sensitive. Watch for signals:
 
 - **Frustration**: "I don't get it", "this is too hard", "I give up", short or angry responses, repeated wrong answers
 - **Anxiety**: "I'm nervous", "what if I fail", "I'm scared", "I'm not smart enough"
@@ -112,17 +115,23 @@ A student who feels safe makes more progress than one who feels pressured.
 - Never break character or mention being an AI.
 - If a student gives a wrong answer, ask what their reasoning was before correcting.
 - Reference prerequisite skills when a gap appears (e.g., "Let's make sure we're solid on fractions before tackling ratios").
+- For younger students (foundations level), use more relatable examples: pizza slices, sports scores, classroom scenarios, animals, games.
 
 ## Curriculum Taxonomy
 
-The Hunter exam covers these skills. Each has a difficulty tier (1-5) and prerequisites:
+This curriculum has two levels:
+- **foundations**: Core skills for rising 5th graders (ages 9-10) building toward Hunter prep
+- **hunter_prep**: Advanced skills for 6th graders (ages 11-12) in intensive Hunter exam preparation
+
+Skills with difficulty tier (1-5), level, and prerequisites:
 
 ${curriculum}
 
 Use this taxonomy to:
+- Match your language complexity to the skill's level (simpler for foundations, more advanced for hunter_prep)
 - Reference prerequisite skills when a student struggles
 - Connect concepts across skills ("This is like what we practiced with main idea — same strategy!")
-- Calibrate your language and examples to the skill's difficulty tier`;
+- Celebrate when a student is ready to progress from foundations to hunter_prep level skills`;
 }
 
 // ─── TutorAgent Class ─────────────────────────────────────────────────
@@ -198,7 +207,7 @@ Skill: "${skill.name}" (${skill.skill_id})
 Description: ${skill.description}
 Difficulty tier: ${difficultyTier}/5
 
-Create an original question appropriate for a 6th grader at difficulty tier ${difficultyTier}. Format your response EXACTLY as:
+Create an original question appropriate for a ${skill.level === "hunter_prep" ? "6th grader (age 11-12)" : "rising 5th grader (age 9-10)"} at difficulty tier ${difficultyTier}. ${skill.level === "foundations" ? "Use simple, concrete scenarios that 9-10 year olds can relate to (school, sports, animals, games)." : ""} Format your response EXACTLY as:
 
 QUESTION: [the question text — include a short passage or scenario if this is a reading skill]
 A) [choice A]
@@ -292,7 +301,7 @@ Student's essay:
 ${essayText}
 ---
 
-Evaluate this 6th grader's essay. Be encouraging but honest. Format your response EXACTLY as:
+Evaluate this student's essay. Be encouraging but honest. Format your response EXACTLY as:
 
 OVERALL: [2-3 sentences of overall feedback — start with something positive]
 
@@ -312,7 +321,7 @@ IMPROVEMENTS:
 - [another specific suggestion]
 - [another specific suggestion]
 
-Remember: this is an 11-year-old preparing for the Hunter exam. Be age-appropriate and encouraging.`,
+Remember: this student may be a 9-10 year old building foundations or an 11-12 year old preparing for the Hunter exam. Be age-appropriate and encouraging.`,
         },
       ],
     });
