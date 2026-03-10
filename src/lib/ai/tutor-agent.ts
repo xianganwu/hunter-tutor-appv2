@@ -461,8 +461,7 @@ function parseGeneratedQuestion(
   const answerChoices = choiceMatches?.map((c) => c.trim()) ?? [];
   const correctLetter = correctMatch?.[1]?.toUpperCase() ?? "A";
   const correctIndex = correctLetter.charCodeAt(0) - "A".charCodeAt(0);
-  const correctAnswer =
-    answerChoices[correctIndex]?.replace(/^[A-E]\)\s*/, "") ?? correctLetter;
+  const correctAnswer = answerChoices[correctIndex] ?? correctLetter;
 
   return {
     questionText,
