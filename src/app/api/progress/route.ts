@@ -15,25 +15,30 @@ const VALID_KEYS = [
 // ─── GET /api/progress — download all progress for current user ───────
 
 export async function GET() {
-  const session = await getSessionFromCookie();
-  if (!session) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  }
-
-  const rows = await prisma.userData.findMany({
-    where: { studentId: session.sub },
-  });
-
-  const progress: Record<string, unknown> = {};
-  for (const row of rows) {
-    try {
-      progress[row.key] = JSON.parse(row.value);
-    } catch {
-      progress[row.key] = row.value;
+  try {
+    const session = await getSessionFromCookie();
+    if (!session) {
+      return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
-  }
 
-  return NextResponse.json({ progress });
+    const rows = await prisma.userData.findMany({
+      where: { studentId: session.sub },
+    });
+
+    const progress: Record<string, unknown> = {};
+    for (const row of rows) {
+      try {
+        progress[row.key] = JSON.parse(row.value);
+      } catch {
+        progress[row.key] = row.value;
+      }
+    }
+
+    return NextResponse.json({ progress });
+  } catch (err) {
+    console.error("[progress] GET error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
 }
 
 // ─── POST /api/progress — upload progress for current user ────────────
@@ -46,40 +51,45 @@ const syncSchema = z.object({
 });
 
 export async function POST(request: Request) {
-  const session = await getSessionFromCookie();
-  if (!session) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  }
+  try {
+    const session = await getSessionFromCookie();
+    if (!session) {
+      return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+    }
 
-  const body = await request.json();
-  const parsed = syncSchema.safeParse(body);
-  if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Invalid request", details: parsed.error.format() },
-      { status: 400 }
+    const body = await request.json();
+    const parsed = syncSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Invalid request", details: parsed.error.format() },
+        { status: 400 }
+      );
+    }
+
+    const entries = Object.entries(parsed.data.progress);
+
+    // Upsert each key-value pair
+    await Promise.all(
+      entries.map(([key, value]) =>
+        prisma.userData.upsert({
+          where: {
+            studentId_key: { studentId: session.sub, key },
+          },
+          create: {
+            studentId: session.sub,
+            key,
+            value: JSON.stringify(value),
+          },
+          update: {
+            value: JSON.stringify(value),
+          },
+        })
+      )
     );
+
+    return NextResponse.json({ success: true, keysUpdated: entries.length });
+  } catch (err) {
+    console.error("[progress] POST error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
-
-  const entries = Object.entries(parsed.data.progress);
-
-  // Upsert each key-value pair
-  await Promise.all(
-    entries.map(([key, value]) =>
-      prisma.userData.upsert({
-        where: {
-          studentId_key: { studentId: session.sub, key },
-        },
-        create: {
-          studentId: session.sub,
-          key,
-          value: JSON.stringify(value),
-        },
-        update: {
-          value: JSON.stringify(value),
-        },
-      })
-    )
-  );
-
-  return NextResponse.json({ success: true, keysUpdated: entries.length });
 }

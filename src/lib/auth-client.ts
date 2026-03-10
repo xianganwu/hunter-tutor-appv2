@@ -11,28 +11,36 @@ export async function authSignup(
   email: string,
   password: string
 ): Promise<{ user?: AuthUser; error?: string }> {
-  const res = await fetch("/api/auth", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "signup", name, email, password }),
-  });
-  const data = await res.json();
-  if (!res.ok) return { error: data.error || "Signup failed" };
-  return { user: data.user };
+  try {
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "signup", name, email, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) return { error: data.error || "Signup failed" };
+    return { user: data.user };
+  } catch {
+    return { error: "Unable to connect to the server. Please try again." };
+  }
 }
 
 export async function authLogin(
   email: string,
   password: string
 ): Promise<{ user?: AuthUser; error?: string }> {
-  const res = await fetch("/api/auth", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "login", email, password }),
-  });
-  const data = await res.json();
-  if (!res.ok) return { error: data.error || "Login failed" };
-  return { user: data.user };
+  try {
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "login", email, password }),
+    });
+    const data = await res.json();
+    if (!res.ok) return { error: data.error || "Login failed" };
+    return { user: data.user };
+  } catch {
+    return { error: "Unable to connect to the server. Please try again." };
+  }
 }
 
 export async function authLogout(): Promise<void> {

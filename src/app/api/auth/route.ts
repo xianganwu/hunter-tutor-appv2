@@ -38,35 +38,48 @@ const requestSchema = z.discriminatedUnion("action", [
 // ─── GET /api/auth — get current user ─────────────────────────────────
 
 export async function GET() {
-  const session = await getSessionFromCookie();
-  if (!session) {
+  try {
+    const session = await getSessionFromCookie();
+    if (!session) {
+      return NextResponse.json({ user: null });
+    }
+    return NextResponse.json({
+      user: { id: session.sub, name: session.name, email: session.email },
+    });
+  } catch (err) {
+    console.error("[auth] GET error:", err);
     return NextResponse.json({ user: null });
   }
-  return NextResponse.json({
-    user: { id: session.sub, name: session.name, email: session.email },
-  });
 }
 
 // ─── POST /api/auth — signup / login / logout ─────────────────────────
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  const parsed = requestSchema.safeParse(body);
-  if (!parsed.success) {
+  try {
+    const body = await request.json();
+    const parsed = requestSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Invalid request", details: parsed.error.format() },
+        { status: 400 }
+      );
+    }
+
+    const data = parsed.data;
+
+    if (data.action === "signup") {
+      return await handleSignup(data);
+    } else if (data.action === "login") {
+      return await handleLogin(data);
+    } else {
+      return await handleLogout();
+    }
+  } catch (err) {
+    console.error("[auth] POST error:", err);
     return NextResponse.json(
-      { error: "Invalid request", details: parsed.error.format() },
-      { status: 400 }
+      { error: "Something went wrong. Please try again." },
+      { status: 500 }
     );
-  }
-
-  const data = parsed.data;
-
-  if (data.action === "signup") {
-    return handleSignup(data);
-  } else if (data.action === "login") {
-    return handleLogin(data);
-  } else {
-    return handleLogout();
   }
 }
 

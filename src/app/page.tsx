@@ -63,24 +63,25 @@ export default function ProfilePicker() {
 
     setLoading(true);
     setError("");
-    const result = await authLogin(trimmedEmail, password);
-    if (result.error) {
-      setError(result.error);
+    try {
+      const result = await authLogin(trimmedEmail, password);
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+
+      const user = result.user!;
+      setStoredAuthUser(user);
+      addUser(user.name);
+      setActiveUser(user.name);
+
+      await syncProgressFromServer(user.name);
+      router.push("/dashboard");
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const user = result.user!;
-    // Set local state
-    setStoredAuthUser(user);
-    addUser(user.name);
-    setActiveUser(user.name);
-
-    // Download progress from server
-    await syncProgressFromServer(user.name);
-
-    setLoading(false);
-    router.push("/dashboard");
   }
 
   async function handleSignup() {
@@ -106,23 +107,25 @@ export default function ProfilePicker() {
 
     setLoading(true);
     setError("");
-    const result = await authSignup(trimmedName, trimmedEmail, password);
-    if (result.error) {
-      setError(result.error);
+    try {
+      const result = await authSignup(trimmedName, trimmedEmail, password);
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+
+      const user = result.user!;
+      setStoredAuthUser(user);
+      addUser(user.name);
+      setActiveUser(user.name);
+
+      await syncProgressToServer(user.name);
+      router.push("/dashboard");
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const user = result.user!;
-    setStoredAuthUser(user);
-    addUser(user.name);
-    setActiveUser(user.name);
-
-    // Upload any existing local progress to the new account
-    await syncProgressToServer(user.name);
-
-    setLoading(false);
-    router.push("/dashboard");
   }
 
   function handleSubmit() {
