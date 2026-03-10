@@ -1,5 +1,7 @@
 // Client-side auth helpers — runs in the browser
 
+import { enqueueSyncRetry, attachOnlineListener } from "./sync-queue";
+
 export interface AuthUser {
   id: string;
   name: string;
@@ -131,13 +133,31 @@ export async function syncProgressFromServer(
 /**
  * Debounced background sync — saves progress to server.
  * Safe to call frequently; only syncs at most once per 5 seconds.
+ * If offline or sync fails, queues for retry when connection returns.
  */
 let syncTimeout: ReturnType<typeof setTimeout> | null = null;
+let onlineListenerReady = false;
 
 export function scheduleSyncToServer(userName: string): void {
+  // Attach online listener once (retries queued syncs when back online)
+  if (!onlineListenerReady) {
+    onlineListenerReady = true;
+    attachOnlineListener(syncProgressToServer);
+  }
+
   if (syncTimeout) clearTimeout(syncTimeout);
-  syncTimeout = setTimeout(() => {
-    syncProgressToServer(userName);
+  syncTimeout = setTimeout(async () => {
     syncTimeout = null;
+
+    // If offline, queue immediately
+    if (typeof navigator !== "undefined" && !navigator.onLine) {
+      enqueueSyncRetry(userName);
+      return;
+    }
+
+    const ok = await syncProgressToServer(userName);
+    if (!ok) {
+      enqueueSyncRetry(userName);
+    }
   }, 5000);
 }
