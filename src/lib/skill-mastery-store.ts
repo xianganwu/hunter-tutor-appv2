@@ -1,5 +1,5 @@
 import type { ConfidenceTrend } from "./adaptive";
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -31,6 +31,7 @@ function saveAll(entries: readonly StoredSkillMastery[]): void {
   try {
     if (typeof window === "undefined") return;
     localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(entries));
+    notifyProgressChanged();
   } catch {
     // localStorage unavailable
   }

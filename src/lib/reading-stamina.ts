@@ -29,7 +29,7 @@ export interface StaminaProgress {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 
 const STORAGE_KEY = "hunter-tutor-reading-stamina";
 
@@ -173,6 +173,7 @@ export function loadStaminaProgress(): StaminaProgress {
 export function saveStaminaProgress(progress: StaminaProgress): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(progress));
+  notifyProgressChanged();
 }
 
 /**

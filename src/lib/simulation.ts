@@ -96,7 +96,7 @@ export interface StoredSimulation {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 
 const STORAGE_KEY = "hunter-tutor-simulations";
 
@@ -388,6 +388,7 @@ export function saveSimulation(sim: StoredSimulation): void {
   const history = loadSimulationHistory();
   history.push(sim);
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(history));
+  notifyProgressChanged();
 }
 
 export function checkCooldown(): {

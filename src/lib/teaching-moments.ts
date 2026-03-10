@@ -16,7 +16,7 @@ export interface StoredTeachingMoment {
   readonly createdAt: string; // ISO
 }
 
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 
 // ─── Constants ────────────────────────────────────────────────────────
 
@@ -45,6 +45,7 @@ export function saveTeachingMoment(moment: StoredTeachingMoment): void {
   const moments = loadTeachingMoments();
   moments.push(moment);
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(moments));
+  notifyProgressChanged();
 }
 
 export function getTeachingMomentsForSkill(

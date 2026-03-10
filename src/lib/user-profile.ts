@@ -1,5 +1,8 @@
+import { scheduleSyncToServer } from "./auth-client";
+
 const ACTIVE_USER_KEY = "hunter-tutor:active-user";
 const USERS_KEY = "hunter-tutor:users";
+const AUTH_USER_KEY = "hunter-tutor:auth-user";
 
 const DATA_SUFFIXES = [
   "skill-mastery",
@@ -123,5 +126,51 @@ export function migrateAnonymousData(targetUser: string): void {
     }
   } catch {
     // localStorage unavailable
+  }
+}
+
+// ─── Authenticated user helpers ──────────────────────────────────────
+
+export interface StoredAuthUser {
+  id: string;
+  name: string;
+  email: string;
+}
+
+export function getStoredAuthUser(): StoredAuthUser | null {
+  try {
+    const data = localStorage.getItem(AUTH_USER_KEY);
+    if (!data) return null;
+    return JSON.parse(data) as StoredAuthUser;
+  } catch {
+    return null;
+  }
+}
+
+export function setStoredAuthUser(user: StoredAuthUser): void {
+  try {
+    localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
+  } catch {
+    // localStorage unavailable
+  }
+}
+
+export function clearStoredAuthUser(): void {
+  try {
+    localStorage.removeItem(AUTH_USER_KEY);
+  } catch {
+    // localStorage unavailable
+  }
+}
+
+/**
+ * Call after any progress data is saved to localStorage.
+ * Schedules a debounced background sync to the server if user is authenticated.
+ */
+export function notifyProgressChanged(): void {
+  const user = getActiveUser();
+  const authUser = getStoredAuthUser();
+  if (user && authUser) {
+    scheduleSyncToServer(user);
   }
 }

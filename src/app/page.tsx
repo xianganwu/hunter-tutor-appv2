@@ -5,63 +5,132 @@ import { useRouter } from "next/navigation";
 import {
   getActiveUser,
   setActiveUser,
-  getUserList,
   addUser,
-  hasLegacyData,
-  migrateAnonymousData,
+  setStoredAuthUser,
+  getStoredAuthUser,
 } from "@/lib/user-profile";
+import {
+  authLogin,
+  authSignup,
+  authGetUser,
+  syncProgressFromServer,
+  syncProgressToServer,
+} from "@/lib/auth-client";
 import { Mascot } from "@/components/shared/Mascot";
+
+type Mode = "login" | "signup";
 
 export default function ProfilePicker() {
   const router = useRouter();
-  const [users, setUsers] = useState<string[]>([]);
-  const [showAdd, setShowAdd] = useState(false);
-  const [newName, setNewName] = useState("");
+  const [mode, setMode] = useState<Mode>("login");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [hasLegacy, setHasLegacy] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const active = getActiveUser();
-    if (active) {
-      router.replace("/dashboard");
-      return;
+    // Check if already logged in (cookie-based)
+    async function checkSession() {
+      const active = getActiveUser();
+      const authUser = getStoredAuthUser();
+
+      if (active && authUser) {
+        // Verify the server session is still valid
+        const serverUser = await authGetUser();
+        if (serverUser) {
+          router.replace("/dashboard");
+          return;
+        }
+        // Server session expired — stay on login page
+      }
+      setReady(true);
     }
-    const list = getUserList();
-    setUsers(list);
-    setHasLegacy(hasLegacyData());
-    if (list.length === 0) setShowAdd(true);
-    setReady(true);
+    checkSession();
   }, [router]);
 
-  function selectUser(name: string) {
-    setActiveUser(name);
+  function clearForm() {
+    setError("");
+  }
+
+  async function handleLogin() {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
+      setError("Please enter your email and password.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    const result = await authLogin(trimmedEmail, password);
+    if (result.error) {
+      setError(result.error);
+      setLoading(false);
+      return;
+    }
+
+    const user = result.user!;
+    // Set local state
+    setStoredAuthUser(user);
+    addUser(user.name);
+    setActiveUser(user.name);
+
+    // Download progress from server
+    await syncProgressFromServer(user.name);
+
+    setLoading(false);
     router.push("/dashboard");
   }
 
-  function handleAdd() {
-    const trimmed = newName.trim();
-    if (!trimmed) {
+  async function handleSignup() {
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+
+    if (!trimmedName) {
       setError("Please enter your name.");
       return;
     }
-    if (trimmed.length > 20) {
+    if (trimmedName.length > 20) {
       setError("Name must be 20 characters or less.");
       return;
     }
-    if (users.some((u) => u.toLowerCase() === trimmed.toLowerCase())) {
-      setError("That name is already taken.");
+    if (!trimmedEmail) {
+      setError("Please enter your email.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
       return;
     }
 
-    if (hasLegacy && users.length === 0) {
-      migrateAnonymousData(trimmed);
-      setHasLegacy(false);
+    setLoading(true);
+    setError("");
+    const result = await authSignup(trimmedName, trimmedEmail, password);
+    if (result.error) {
+      setError(result.error);
+      setLoading(false);
+      return;
     }
 
-    addUser(trimmed);
-    setActiveUser(trimmed);
+    const user = result.user!;
+    setStoredAuthUser(user);
+    addUser(user.name);
+    setActiveUser(user.name);
+
+    // Upload any existing local progress to the new account
+    await syncProgressToServer(user.name);
+
+    setLoading(false);
     router.push("/dashboard");
+  }
+
+  function handleSubmit() {
+    if (mode === "login") {
+      handleLogin();
+    } else {
+      handleSignup();
+    }
   }
 
   if (!ready) return null;
@@ -81,75 +150,104 @@ export default function ProfilePicker() {
           Build Your Path to Hunter High School
         </p>
         <p className="mb-8 text-lg text-surface-500 dark:text-surface-400">
-          {hasLegacy && users.length === 0
-            ? "Welcome back! Enter your name to keep your progress."
-            : "Who\u2019s practicing today?"}
+          {mode === "login"
+            ? "Welcome back! Sign in to continue."
+            : "Create an account to get started."}
         </p>
 
-        {users.length > 0 && !showAdd && (
-          <div className="mb-6 space-y-3">
-            {users.map((name) => (
-              <button
-                key={name}
-                onClick={() => selectUser(name)}
-                className="flex w-full items-center gap-4 rounded-2xl border border-surface-200 bg-surface-0 px-5 py-4 text-left shadow-soft transition-all hover:border-brand-300 hover:shadow-card dark:border-surface-700 dark:bg-surface-900 dark:hover:border-brand-500/40"
-              >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-lg font-bold text-brand-700 dark:bg-brand-600/20 dark:text-brand-400">
-                  {name[0].toUpperCase()}
-                </span>
-                <span className="text-lg font-medium text-surface-900 dark:text-surface-100">
-                  {name}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-
-        {showAdd ? (
-          <div className="space-y-4 animate-slide-up">
+        <div className="space-y-4 animate-slide-up">
+          {/* Name field — signup only */}
+          {mode === "signup" && (
             <input
               type="text"
-              value={newName}
+              value={name}
               onChange={(e) => {
-                setNewName(e.target.value);
-                setError("");
+                setName(e.target.value);
+                clearForm();
               }}
-              onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-              placeholder="Enter your name"
+              placeholder="Your name"
               maxLength={20}
               autoFocus
               className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
             />
-            {error && (
-              <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
-            )}
-            <button
-              onClick={handleAdd}
-              className="w-full rounded-2xl bg-brand-600 py-3.5 text-lg font-semibold text-white shadow-glow transition-all hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-surface-900"
-            >
-              Start Practicing
-            </button>
-            {users.length > 0 && (
-              <button
-                onClick={() => {
-                  setShowAdd(false);
-                  setNewName("");
-                  setError("");
-                }}
-                className="text-sm text-surface-500 hover:text-surface-700 dark:text-surface-400 dark:hover:text-surface-300"
-              >
-                Back to profiles
-              </button>
-            )}
-          </div>
-        ) : (
+          )}
+
+          {/* Email */}
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              clearForm();
+            }}
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+            placeholder="Email address"
+            autoFocus={mode === "login"}
+            className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
+          />
+
+          {/* Password */}
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              clearForm();
+            }}
+            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+            placeholder={
+              mode === "signup" ? "Create a password (6+ characters)" : "Password"
+            }
+            className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
+          />
+
+          {error && (
+            <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
+          )}
+
           <button
-            onClick={() => setShowAdd(true)}
-            className="w-full rounded-2xl border-2 border-dashed border-surface-300 py-4 text-surface-500 transition-all hover:border-brand-400 hover:text-brand-600 dark:border-surface-600 dark:text-surface-400 dark:hover:border-brand-500 dark:hover:text-brand-400"
+            onClick={handleSubmit}
+            disabled={loading}
+            className="w-full rounded-2xl bg-brand-600 py-3.5 text-lg font-semibold text-white shadow-glow transition-all hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:opacity-60 dark:focus:ring-offset-surface-900"
           >
-            + Add new profile
+            {loading
+              ? "Please wait..."
+              : mode === "login"
+                ? "Sign In"
+                : "Create Account"}
           </button>
-        )}
+
+          {/* Toggle login/signup */}
+          <p className="text-sm text-surface-500 dark:text-surface-400">
+            {mode === "login" ? (
+              <>
+                Don&apos;t have an account?{" "}
+                <button
+                  onClick={() => {
+                    setMode("signup");
+                    setError("");
+                  }}
+                  className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
+                >
+                  Sign up
+                </button>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <button
+                  onClick={() => {
+                    setMode("login");
+                    setError("");
+                  }}
+                  className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
+                >
+                  Sign in
+                </button>
+              </>
+            )}
+          </p>
+        </div>
       </div>
     </div>
   );

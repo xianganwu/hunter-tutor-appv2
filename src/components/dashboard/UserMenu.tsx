@@ -7,7 +7,9 @@ import {
   clearActiveUser,
   resetUserProgress,
   removeUser,
+  clearStoredAuthUser,
 } from "@/lib/user-profile";
+import { authLogout, syncProgressToServer } from "@/lib/auth-client";
 
 export function UserMenu() {
   const router = useRouter();
@@ -24,7 +26,12 @@ export function UserMenu() {
     setUserName(active);
   }, [router]);
 
-  function handleSwitchUser() {
+  async function handleSwitchUser() {
+    if (userName) {
+      await syncProgressToServer(userName);
+    }
+    await authLogout();
+    clearStoredAuthUser();
     clearActiveUser();
     router.push("/");
   }
@@ -38,10 +45,12 @@ export function UserMenu() {
     window.location.reload();
   }
 
-  function handleDeleteProfile() {
+  async function handleDeleteProfile() {
     if (!userName) return;
     if (confirmText.toLowerCase() !== userName.toLowerCase()) return;
     removeUser(userName);
+    await authLogout();
+    clearStoredAuthUser();
     clearActiveUser();
     router.push("/");
   }
@@ -55,7 +64,7 @@ export function UserMenu() {
           onClick={handleSwitchUser}
           className="rounded-xl border border-surface-200 bg-surface-0 px-3 py-1.5 text-xs font-medium text-surface-600 transition-colors hover:bg-surface-100 dark:border-surface-700 dark:bg-surface-900 dark:text-surface-400 dark:hover:bg-surface-800"
         >
-          Switch User
+          Sign Out
         </button>
         <button
           onClick={() => setShowReset(true)}

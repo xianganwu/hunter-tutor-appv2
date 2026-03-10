@@ -6,6 +6,7 @@ const envSchema = z.object({
   TURSO_AUTH_TOKEN: z.string().min(1).optional(),
   NEXT_PUBLIC_APP_URL: z.string().url().optional(),
   PARENT_PIN: z.string().length(4).optional(),
+  JWT_SECRET: z.string().min(32).optional(),
 });
 
 function validateEnv() {

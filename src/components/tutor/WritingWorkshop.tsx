@@ -15,7 +15,7 @@ import { CountdownTimer } from "./CountdownTimer";
 import { StagedFeedback } from "./StagedFeedback";
 import { EssayHistory } from "./EssayHistory";
 
-import { getStorageKey } from "@/lib/user-profile";
+import { getStorageKey, notifyProgressChanged } from "@/lib/user-profile";
 
 const STORAGE_KEY = "hunter-tutor-essays";
 const ESSAY_DURATION_MINUTES = 40;
@@ -35,6 +35,7 @@ function saveEssay(essay: StoredEssay): void {
   const essays = loadEssays();
   essays.push(essay);
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(essays));
+  notifyProgressChanged();
 }
 
 export function WritingWorkshop() {
