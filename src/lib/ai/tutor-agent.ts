@@ -237,8 +237,11 @@ Make the question test exactly the skill described. Make distractors plausible b
     correctAnswer: string,
     conversationHistory: readonly ConversationMessage[] = []
   ): { messages: Anthropic.MessageParam[]; isCorrect: boolean } {
-    const isCorrect =
-      studentAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
+    // Extract the letter from either "B) text" or bare "B" formats
+    const choiceLetter = (s: string): string =>
+      s.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ??
+      s.trim().charAt(0).toUpperCase();
+    const isCorrect = choiceLetter(studentAnswer) === choiceLetter(correctAnswer);
 
     const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
       (m) => ({ role: m.role, content: m.content })
