@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import "katex/dist/katex.min.css";
 import { ChatBubble } from "@/components/chat/ChatBubble";
 import { ChatInput } from "@/components/chat/ChatInput";
@@ -40,6 +40,28 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
   const lastMsg = state.messages[state.messages.length - 1];
   const isStreaming = isLoading && lastMsg?.role === "tutor" && lastMsg.content.length > 0;
 
+  // Celebration banner for correct streaks
+  const [celebration, setCelebration] = useState<string | null>(null);
+  const prevStreakRef = useRef(0);
+  useEffect(() => {
+    const streak = state.correctStreak;
+    if (streak > prevStreakRef.current && streak >= 3) {
+      const msg =
+        streak >= 5 && streak % 5 === 0
+          ? `🌟 ${streak} in a row! Champion streak!`
+          : streak === 3
+            ? "🔥 3 in a row! You're on fire!"
+            : null;
+      if (msg) {
+        setCelebration(msg);
+        const t = setTimeout(() => setCelebration(null), 2000);
+        prevStreakRef.current = streak;
+        return () => clearTimeout(t);
+      }
+    }
+    prevStreakRef.current = streak;
+  }, [state.correctStreak]);
+
   // Auto-scroll to bottom on new messages
   useEffect(() => {
     if (scrollRef.current) {
@@ -56,7 +78,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto bg-surface-50 dark:bg-surface-950">
+    <div className="relative flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto bg-surface-50 dark:bg-surface-950">
       {/* Header */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900">
         <div className="flex items-center gap-3">
@@ -95,6 +117,17 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           </button>
         </div>
       </header>
+
+      {/* Celebration banner */}
+      {celebration && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="absolute left-1/2 top-20 z-50 -translate-x-1/2 animate-bounce rounded-2xl bg-brand-600 px-6 py-3 text-base font-bold text-white shadow-glow"
+        >
+          {celebration}
+        </div>
+      )}
 
       {/* Chat area */}
       <div

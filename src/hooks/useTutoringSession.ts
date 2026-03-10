@@ -224,6 +224,7 @@ export function useTutoringSession(skillId: string) {
     difficultyTier: masteryToTier(initialMastery),
     questionCount: 0,
     correctCount: 0,
+    correctStreak: 0,
     skillsCovered: [skillId],
     startTime: Date.now(),
     estimatedQuestions: ESTIMATED_QUESTIONS,
@@ -490,6 +491,7 @@ export function useTutoringSession(skillId: string) {
 
         const newQuestionCount = s.questionCount + 1;
         const newCorrectCount = s.correctCount + (isCorrect ? 1 : 0);
+        const newStreak = isCorrect ? s.correctStreak + 1 : 0;
 
         const decision = adjustDifficulty(s.mastery, recentAttempts.current);
 
@@ -504,6 +506,7 @@ export function useTutoringSession(skillId: string) {
           activeQuestion: null,
           questionCount: newQuestionCount,
           correctCount: newCorrectCount,
+          correctStreak: newStreak,
           difficultyTier: decision.tier,
           mastery: masteryUpdate.newMasteryLevel,
           phase: "ready",
@@ -775,6 +778,7 @@ export function useTutoringSession(skillId: string) {
       difficultyTier: masteryToTier(mastery),
       questionCount: 0,
       correctCount: 0,
+      correctStreak: 0,
       skillsCovered: [skillId],
       startTime: Date.now(),
       estimatedQuestions: ESTIMATED_QUESTIONS,

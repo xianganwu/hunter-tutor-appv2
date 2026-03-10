@@ -33,6 +33,7 @@ export interface SessionState {
   readonly difficultyTier: DifficultyLevel;
   readonly questionCount: number;
   readonly correctCount: number;
+  readonly correctStreak: number;
   readonly skillsCovered: readonly string[];
   readonly startTime: number; // epoch ms
   readonly estimatedQuestions: number;
