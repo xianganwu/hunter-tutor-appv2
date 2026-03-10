@@ -15,27 +15,17 @@ import { CountdownTimer } from "./CountdownTimer";
 import { StagedFeedback } from "./StagedFeedback";
 import { EssayHistory } from "./EssayHistory";
 
-import { getStorageKey, notifyProgressChanged } from "@/lib/user-profile";
-
-const STORAGE_KEY = "hunter-tutor-essays";
 const ESSAY_DURATION_MINUTES = 40;
 
-function loadEssays(): StoredEssay[] {
-  if (typeof window === "undefined") return [];
-  const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
-  if (!data) return [];
+async function fetchEssays(): Promise<StoredEssay[]> {
   try {
-    return JSON.parse(data) as StoredEssay[];
+    const res = await fetch("/api/writing");
+    if (!res.ok) return [];
+    const data = (await res.json()) as { essays?: StoredEssay[] };
+    return data.essays ?? [];
   } catch {
     return [];
   }
-}
-
-function saveEssay(essay: StoredEssay): void {
-  const essays = loadEssays();
-  essays.push(essay);
-  localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(essays));
-  notifyProgressChanged();
 }
 
 export function WritingWorkshop() {
@@ -50,7 +40,7 @@ export function WritingWorkshop() {
 
   // Load saved essays on mount
   useEffect(() => {
-    setSavedEssays(loadEssays());
+    void fetchEssays().then(setSavedEssays);
   }, []);
 
   const startBrainstorm = useCallback(() => {
@@ -88,18 +78,8 @@ export function WritingWorkshop() {
         const data = (await res.json()) as WritingApiResponse;
         if (data.feedback) {
           setFeedback(data.feedback);
-
-          // Save essay
-          const storedEssay: StoredEssay = {
-            id: Math.random().toString(36).slice(2, 10),
-            promptText: prompt.text,
-            essayText,
-            wordCount: countWords(essayText),
-            feedback: data.feedback,
-            createdAt: new Date().toISOString(),
-          };
-          saveEssay(storedEssay);
-          setSavedEssays(loadEssays());
+          // Reload essays from server (DB save happens in background on the server)
+          void fetchEssays().then(setSavedEssays);
         }
       } else {
         // Fallback feedback

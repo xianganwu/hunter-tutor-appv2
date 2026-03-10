@@ -1,9 +1,56 @@
 import { NextResponse } from "next/server";
 import { TutorAgent } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
-import type { WritingAction, WritingApiResponse } from "@/components/tutor/writing-types";
+import type { WritingAction, WritingApiResponse, StoredEssay } from "@/components/tutor/writing-types";
+import { prisma } from "@/lib/db";
+import { getSessionFromCookie } from "@/lib/auth";
+import type { EssayFeedback } from "@/lib/ai/tutor-agent";
 
 const agent = new TutorAgent();
+
+function countWords(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+// ─── GET /api/writing — list student's essays ─────────────────────────
+
+export async function GET(): Promise<NextResponse<{ essays: StoredEssay[] } | { error: string }>> {
+  try {
+    const session = await getSessionFromCookie();
+    if (!session) {
+      return NextResponse.json({ essays: [] });
+    }
+
+    const submissions = await prisma.writingSubmission.findMany({
+      where: { session: { studentId: session.sub } },
+      orderBy: { createdAt: "asc" },
+    });
+
+    const essays: StoredEssay[] = submissions.map((s) => {
+      const feedback = s.aiFeedback
+        ? (JSON.parse(s.aiFeedback) as EssayFeedback)
+        : {
+            overallFeedback: "",
+            scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5 },
+            strengths: [],
+            improvements: [],
+          };
+      return {
+        id: s.id,
+        promptText: s.prompt,
+        essayText: s.essayText,
+        wordCount: countWords(s.essayText),
+        feedback,
+        createdAt: s.createdAt.toISOString(),
+      };
+    });
+
+    return NextResponse.json({ essays });
+  } catch (err) {
+    console.error("[writing] GET error:", err);
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  }
+}
 
 const BRAINSTORM_SYSTEM = `You are a warm, encouraging writing tutor helping a student brainstorm for an essay. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). Keep responses to 2-3 sentences. Be enthusiastic but not over the top. Never write the essay for them — guide their thinking. Use simple, encouraging language appropriate for their age.`;
 
@@ -64,6 +111,29 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
           body.promptText,
           body.essayText
         );
+
+        // Persist to DB in the background if user is authenticated
+        void (async () => {
+          try {
+            const session = await getSessionFromCookie();
+            if (!session) return;
+            // Create a writing session to associate the submission with
+            const writingSession = await prisma.tutoringSession.create({
+              data: { studentId: session.sub, domain: "writing" },
+            });
+            await prisma.writingSubmission.create({
+              data: {
+                sessionId: writingSession.id,
+                prompt: body.promptText,
+                essayText: body.essayText,
+                aiFeedback: JSON.stringify(feedback),
+              },
+            });
+          } catch (err) {
+            console.error("[writing] DB save error:", err);
+          }
+        })();
+
         return NextResponse.json({
           text: feedback.overallFeedback,
           feedback,
