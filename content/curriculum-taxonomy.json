@@ -678,6 +678,168 @@
           ]
         }
       ]
+    },
+    {
+      "domain_id": "writing",
+      "name": "Writing",
+      "description": "Progressive writing skills from sentence and paragraph foundations through Hunter exam-level essay craft.",
+      "skill_categories": [
+        {
+          "category_id": "w_foundations",
+          "name": "Writing Foundations",
+          "skills": [
+            {
+              "skill_id": "w_sentence_structure",
+              "name": "Sentence Structure",
+              "description": "Write complete, varied sentences — simple, compound, and complex — with correct subject-verb agreement.",
+              "level": "foundations",
+              "prerequisite_skills": [],
+              "difficulty_tier": 1,
+              "example_teaching_prompts": [
+                "Read this sentence: 'The dog.' Is it complete? What is it missing? A complete sentence needs a subject AND a verb — something happening.",
+                "Let's make this sentence more interesting. Instead of 'The dog barked,' can you add a detail that tells us when, where, or why?",
+                "Here are two short sentences: 'It rained. We stayed inside.' Can you combine them into one sentence using 'so' or 'because'?"
+              ]
+            },
+            {
+              "skill_id": "w_grammar_mechanics",
+              "name": "Grammar & Mechanics",
+              "description": "Apply correct punctuation, capitalization, subject-verb agreement, and verb tense in writing.",
+              "level": "foundations",
+              "prerequisite_skills": [],
+              "difficulty_tier": 1,
+              "example_teaching_prompts": [
+                "Let's do a capital letter check. Which words in this sentence should be capitalized? Remember: first word, names, and places always get capitals.",
+                "This sentence has a tense mix-up: 'Yesterday she runs to school.' What's wrong, and how would you fix it?",
+                "Commas are like traffic signals for readers. Where would you put a comma in this sentence, and why?"
+              ]
+            },
+            {
+              "skill_id": "w_paragraph_writing",
+              "name": "Paragraph Writing",
+              "description": "Write a focused paragraph with a clear topic sentence, supporting details, and a concluding sentence.",
+              "level": "foundations",
+              "prerequisite_skills": ["w_sentence_structure"],
+              "difficulty_tier": 1,
+              "example_teaching_prompts": [
+                "A paragraph is like a hamburger. The top bun is your topic sentence, the fillings are your details, and the bottom bun is your conclusion. Let's build yours.",
+                "Your topic sentence should tell the reader exactly what the paragraph is about. If I read only your first sentence, would I know? Let's check.",
+                "You have three great details. Now write a concluding sentence that wraps up the idea — don't just repeat your topic sentence, add a final thought."
+              ]
+            },
+            {
+              "skill_id": "w_personal_narrative",
+              "name": "Personal Narrative",
+              "description": "Write a personal story with a clear beginning, middle, and end, using descriptive details and a consistent voice.",
+              "level": "foundations",
+              "prerequisite_skills": ["w_paragraph_writing"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "Show, don't tell. Instead of 'I was nervous,' what did you DO or FEEL that showed you were nervous? Sweaty palms? Heart racing?",
+                "Your story needs a moment that matters. What is the ONE thing you want your reader to remember or feel? Let that be your focus.",
+                "Let's zoom in on your best detail. You wrote 'it was a big game.' Can you stretch that moment — what did you see, hear, smell, or think right then?"
+              ]
+            },
+            {
+              "skill_id": "w_opinion_writing",
+              "name": "Opinion Writing",
+              "description": "State a clear opinion and support it with at least three reasons and relevant examples.",
+              "level": "foundations",
+              "prerequisite_skills": ["w_paragraph_writing"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "Your opinion is the 'what' — now let's work on the 'why.' List three reasons someone would agree with you. Which is your strongest?",
+                "Let's think about someone who disagrees. What would they say? Bringing up the other side and answering it makes your argument much stronger.",
+                "Try the 'because-and-therefore' test: 'I believe ___ because ___, and therefore ___.' Does your reason actually support your opinion?"
+              ]
+            },
+            {
+              "skill_id": "w_word_choice",
+              "name": "Word Choice & Vocabulary",
+              "description": "Choose precise, vivid words that create a clear image and match the tone of the writing.",
+              "level": "foundations",
+              "prerequisite_skills": ["w_sentence_structure"],
+              "difficulty_tier": 2,
+              "example_teaching_prompts": [
+                "You used the word 'said.' Let's upgrade it — did the character whisper, shout, mumble, insist, or announce? The right word tells us so much more.",
+                "Circle every 'very' and 'really' in your writing. Now delete them and replace the weak word they're propping up with a stronger one.",
+                "Read your sentence aloud. Does it paint a picture? Let's add one sensory detail — something you can see, hear, smell, taste, or touch."
+              ]
+            }
+          ]
+        },
+        {
+          "category_id": "w_essay_craft",
+          "name": "Essay Writing",
+          "skills": [
+            {
+              "skill_id": "w_essay_structure",
+              "name": "Essay Structure",
+              "description": "Organize a multi-paragraph essay with an introduction (hook + thesis), body paragraphs, and a conclusion.",
+              "level": "hunter_prep",
+              "prerequisite_skills": ["w_paragraph_writing", "w_opinion_writing"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Your thesis is the backbone of the essay. Every paragraph should connect back to it. Read your thesis — does each of your body paragraphs support it?",
+                "A strong hook grabs the reader. Try one of these: a surprising fact, a bold question, or a vivid scene. Which would work best for your topic?",
+                "Your conclusion shouldn't just repeat your intro. It should answer 'so what?' — why does your argument matter? What should the reader think or do?"
+              ]
+            },
+            {
+              "skill_id": "w_persuasive_writing",
+              "name": "Persuasive Writing",
+              "description": "Write a persuasive essay that states a position, supports it with evidence, addresses counterarguments, and calls the reader to action.",
+              "level": "hunter_prep",
+              "prerequisite_skills": ["w_essay_structure", "w_opinion_writing"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "The most persuasive writers know the other side better than anyone. What is the strongest argument against your position? How do you answer it?",
+                "Let's check your evidence. Is it a specific fact, statistic, or example? Vague claims like 'many people think' won't convince a skeptical reader.",
+                "End with a call to action. What do you want the reader to DO or THINK after reading? Make it specific and concrete."
+              ]
+            },
+            {
+              "skill_id": "w_expository_writing",
+              "name": "Expository Writing",
+              "description": "Write an informational essay that explains a topic clearly using facts, definitions, examples, and logical organization.",
+              "level": "hunter_prep",
+              "prerequisite_skills": ["w_essay_structure"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Expository writing is about being crystal clear. After each paragraph, ask: 'Would someone who knows nothing about this topic understand what I just explained?'",
+                "You've listed facts — now add an example that makes the fact concrete. Facts tell; examples show. Which example would a reader remember?",
+                "Let's check your organization. Are your paragraphs in the best order — most familiar to least, or cause before effect? Try rearranging and see if it reads more clearly."
+              ]
+            },
+            {
+              "skill_id": "w_evidence_integration",
+              "name": "Evidence Integration",
+              "description": "Introduce, quote, and analyze textual evidence smoothly to support a claim.",
+              "level": "hunter_prep",
+              "prerequisite_skills": ["w_essay_structure", "w_persuasive_writing"],
+              "difficulty_tier": 4,
+              "example_teaching_prompts": [
+                "Never drop a quote alone. Use the 'sandwich' method: introduce the quote, give it, then explain what it proves. Let's practice with your evidence.",
+                "After your quote, ask yourself: 'So what?' Your analysis should explain WHY this quote supports your argument — not just what it says.",
+                "Try varying how you introduce evidence: 'According to...', 'The author argues...', 'This is evident when...'. Which fits best here?"
+              ]
+            },
+            {
+              "skill_id": "w_revision_editing",
+              "name": "Revision & Editing",
+              "description": "Revise for clarity, coherence, and strength; edit for grammar, punctuation, and word choice.",
+              "level": "hunter_prep",
+              "prerequisite_skills": ["w_essay_structure", "w_grammar_mechanics"],
+              "difficulty_tier": 3,
+              "example_teaching_prompts": [
+                "Read your essay out loud. Wherever you stumble or run out of breath, that sentence probably needs to be revised. Mark those spots.",
+                "Revision first, editing second. Right now, focus only on big things: Is your argument clear? Does each paragraph connect to your thesis? Ignore commas for now.",
+                "Let's do a 'dead weight' pass. Find one sentence in each paragraph that doesn't add new information. Can you cut it or combine it with something stronger?"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

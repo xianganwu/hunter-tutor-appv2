@@ -58,6 +58,18 @@ export function getSkillsByLevel(level: SkillLevel): Map<string, Skill> {
   return filtered;
 }
 
+/** Get the domain ID that contains a given skill */
+export function getDomainForSkill(skillId: string): string | null {
+  for (const domain of curriculum.domains) {
+    for (const category of domain.skill_categories) {
+      if (category.skills.some((s) => s.skill_id === skillId)) {
+        return domain.domain_id;
+      }
+    }
+  }
+  return null;
+}
+
 /** Validate that all prerequisite references point to real skill IDs */
 export function validatePrerequisites(): { valid: boolean; errors: string[] } {
   const allSkills = getAllSkills();

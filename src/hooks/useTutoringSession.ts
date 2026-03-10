@@ -21,7 +21,7 @@ import {
 import type { AttemptRecord } from "@/lib/adaptive";
 import { addMistake, createMistakeEntry } from "@/lib/mistakes";
 import type { MistakeDiagnosis } from "@/lib/mistakes";
-import { getSkillById } from "@/lib/exam/curriculum";
+import { getSkillById, getDomainForSkill } from "@/lib/exam/curriculum";
 import {
   shouldTriggerTeachBack,
   saveTeachingMoment,
@@ -234,6 +234,7 @@ export function useTutoringSession(skillId: string) {
   const recentAttempts = useRef<AttemptRecord[]>([]);
   const initialized = useRef(false);
   const teachBackTriggeredSkills = useRef(new Set<string>());
+  const sessionDbId = useRef<string | null>(null);
 
   // Fix #2: Track when question was shown for time measurement
   const questionShownAt = useRef<number | null>(null);
@@ -332,6 +333,19 @@ export function useTutoringSession(skillId: string) {
       // Persist mastery before ending
       persistMastery();
 
+      // Close the DB session with final skills covered
+      if (sessionDbId.current) {
+        void fetch("/api/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "end",
+            sessionId: sessionDbId.current,
+            skillsCovered: s.skillsCovered,
+          }),
+        }).catch((err: unknown) => console.error("[session] end error:", err));
+      }
+
       try {
         const res = await callApi({
           type: "get_summary",
@@ -370,6 +384,18 @@ export function useTutoringSession(skillId: string) {
     const s = stateRef.current;
     try {
       setLoading(true);
+
+      // Create a DB session so question attempts can be persisted
+      const domain = getDomainForSkill(skillId) ?? skillId;
+      const sessionRes = await fetch("/api/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "create", domain }),
+      });
+      if (sessionRes.ok) {
+        const sessionData = await sessionRes.json() as { session?: { id: string } };
+        sessionDbId.current = sessionData.session?.id ?? null;
+      }
 
       // Stream the teaching explanation
       const streaming = addStreamingMessage("teaching");
@@ -421,6 +447,13 @@ export function useTutoringSession(skillId: string) {
       setLoading(true);
 
       try {
+        // Record time spent before starting evaluation stream
+        const now = Date.now();
+        const timeSpent = questionShownAt.current !== null
+          ? Math.round((now - questionShownAt.current) / 1000)
+          : null;
+        questionShownAt.current = null;
+
         // Stream the evaluation feedback
         const streaming = addStreamingMessage("feedback");
         const evalMeta = await callApiStream(
@@ -430,18 +463,15 @@ export function useTutoringSession(skillId: string) {
             studentAnswer: answer,
             correctAnswer: s.activeQuestion.correctAnswer,
             history: getHistory(),
+            sessionId: sessionDbId.current ?? undefined,
+            skillId: s.currentSkillId,
+            timeSpentSeconds: timeSpent ?? undefined,
+            hintUsed: hintUsedForCurrent.current,
           },
           streaming.appendDelta
         );
 
         const isCorrect = (evalMeta.isCorrect as boolean) ?? false;
-
-        // Fix #2: Record actual time spent on question
-        const now = Date.now();
-        const timeSpent = questionShownAt.current !== null
-          ? Math.round((now - questionShownAt.current) / 1000)
-          : null;
-        questionShownAt.current = null;
 
         // Fix #6: Record hint usage
         const attempt: AttemptRecord = {
@@ -671,17 +701,13 @@ export function useTutoringSession(skillId: string) {
     void continueAfterTeachBack();
   }, [continueAfterTeachBack]);
 
-  // Fix #3: Send free-text message with frustration detection
   const sendMessage = useCallback(
     async (text: string) => {
-      if (stateRef.current.activeQuestion) {
-        void submitAnswer(text);
-        return;
-      }
-
-      addMessages(makeUserMsg(text));
-
+      // Bug 1 fix: check frustration BEFORE routing to submitAnswer —
+      // a student typing "I give up" while a question is active must get
+      // an emotional response, not have their words graded as an answer.
       if (detectFrustration(text)) {
+        addMessages(makeUserMsg(text));
         setLoading(true);
         try {
           const streaming = addStreamingMessage("text");
@@ -698,7 +724,29 @@ export function useTutoringSession(skillId: string) {
           );
         }
         setLoading(false);
+        return;
       }
+
+      if (stateRef.current.activeQuestion) {
+        void submitAnswer(text);
+        return;
+      }
+
+      addMessages(makeUserMsg(text));
+
+      // Bug 2 fix: no active question and not frustrated — respond with a
+      // Socratic follow-up instead of going silent.
+      setLoading(true);
+      try {
+        const streaming = addStreamingMessage("text");
+        await callApiStream(
+          { type: "get_hint", context: text, history: getHistory() },
+          streaming.appendDelta
+        );
+      } catch {
+        addMessages(makeTutorMsg("That's a great thought! Let's keep exploring.", "text"));
+      }
+      setLoading(false);
     },
     [submitAnswer, addMessages, addStreamingMessage, setLoading, getHistory]
   );
@@ -709,6 +757,7 @@ export function useTutoringSession(skillId: string) {
     teachBackTriggeredSkills.current.clear();
     hintUsedForCurrent.current = false;
     questionShownAt.current = null;
+    sessionDbId.current = null;
     pacingState.current = createPacingState(new Date());
     setSummary(null);
     setTeachBackActive(false);

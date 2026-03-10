@@ -57,6 +57,10 @@ export type ChatAction =
       studentAnswer: string;
       correctAnswer: string;
       history?: ConversationMessage[];
+      sessionId?: string;
+      skillId?: string;
+      timeSpentSeconds?: number;
+      hintUsed?: boolean;
     }
   | {
       type: "get_hint";

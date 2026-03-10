@@ -3,6 +3,7 @@ import type Anthropic from "@anthropic-ai/sdk";
 import { TutorAgent } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { getSkillById } from "@/lib/exam/curriculum";
+import { prisma } from "@/lib/db";
 import type { ChatAction } from "@/components/tutor/types";
 import type { DifficultyLevel } from "@/lib/types";
 
@@ -122,6 +123,22 @@ export async function POST(request: Request): Promise<Response> {
           body.correctAnswer,
           body.history ?? []
         );
+
+        // Persist the attempt to DB if session context is provided (fire-and-forget)
+        if (body.sessionId && body.skillId) {
+          void prisma.questionAttempt.create({
+            data: {
+              sessionId: body.sessionId,
+              skillId: body.skillId,
+              questionText: body.questionText,
+              studentAnswer: body.studentAnswer,
+              correctAnswer: body.correctAnswer,
+              isCorrect,
+              timeSpentSeconds: body.timeSpentSeconds ?? null,
+              hintUsed: body.hintUsed ?? false,
+            },
+          }).catch((err: unknown) => console.error("[chat] QuestionAttempt persist error:", err));
+        }
 
         if (wantStream) {
           return createSSEStream(
