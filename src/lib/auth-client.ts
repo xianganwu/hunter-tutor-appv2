@@ -11,13 +11,14 @@ export interface AuthUser {
 export async function authSignup(
   name: string,
   email: string,
-  password: string
+  password: string,
+  parentPin?: string
 ): Promise<{ user?: AuthUser; error?: string }> {
   try {
     const res = await fetch("/api/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "signup", name, email, password }),
+      body: JSON.stringify({ action: "signup", name, email, password, parentPin }),
     });
     const data = await res.json();
     if (!res.ok) return { error: data.error || "Signup failed" };
@@ -51,6 +52,47 @@ export async function authLogout(): Promise<void> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ action: "logout" }),
   });
+}
+
+export async function authSetParentPin(pin: string): Promise<{ error?: string }> {
+  try {
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "set_pin", parentPin: pin }),
+    });
+    if (!res.ok) {
+      const data = await res.json();
+      return { error: data.error || "Failed to set PIN" };
+    }
+    return {};
+  } catch {
+    return { error: "Unable to connect to the server." };
+  }
+}
+
+export async function authResetPassword(
+  email: string,
+  parentPin: string,
+  newPassword: string
+): Promise<{ user?: AuthUser; error?: string }> {
+  try {
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "reset_password",
+        email,
+        parentPin,
+        newPassword,
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) return { error: data.error || "Password reset failed" };
+    return { user: data.user };
+  } catch {
+    return { error: "Unable to connect to the server." };
+  }
 }
 
 export async function authGetUser(): Promise<AuthUser | null> {

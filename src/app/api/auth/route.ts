@@ -17,6 +17,7 @@ const signupSchema = z.object({
   name: z.string().min(1).max(20),
   email: z.string().email(),
   password: z.string().min(6).max(100),
+  parentPin: z.string().regex(/^\d{4,6}$/).optional(),
 });
 
 const loginSchema = z.object({
@@ -29,10 +30,24 @@ const logoutSchema = z.object({
   action: z.literal("logout"),
 });
 
+const setPinSchema = z.object({
+  action: z.literal("set_pin"),
+  parentPin: z.string().regex(/^\d{4,6}$/),
+});
+
+const resetPasswordSchema = z.object({
+  action: z.literal("reset_password"),
+  email: z.string().email(),
+  parentPin: z.string().regex(/^\d{4,6}$/),
+  newPassword: z.string().min(6).max(100),
+});
+
 const requestSchema = z.discriminatedUnion("action", [
   signupSchema,
   loginSchema,
   logoutSchema,
+  setPinSchema,
+  resetPasswordSchema,
 ]);
 
 // ─── GET /api/auth — get current user ─────────────────────────────────
@@ -71,6 +86,10 @@ export async function POST(request: Request) {
       return await handleSignup(data);
     } else if (data.action === "login") {
       return await handleLogin(data);
+    } else if (data.action === "set_pin") {
+      return await handleSetPin(data);
+    } else if (data.action === "reset_password") {
+      return await handleResetPassword(data);
     } else {
       return await handleLogout();
     }
@@ -97,11 +116,15 @@ async function handleSignup(data: z.infer<typeof signupSchema>) {
   }
 
   const passwordHash = await hashPassword(data.password);
+  const parentPinHash = data.parentPin
+    ? await hashPassword(data.parentPin)
+    : null;
   const student = await prisma.student.create({
     data: {
       name: data.name,
       email: data.email,
       passwordHash,
+      parentPinHash,
     },
   });
 
@@ -136,6 +159,60 @@ async function handleLogin(data: z.infer<typeof loginSchema>) {
     );
   }
 
+  const token = await createSessionToken({
+    sub: student.id,
+    name: student.name,
+    email: student.email,
+  });
+  await setSessionCookie(token);
+
+  return NextResponse.json({
+    user: { id: student.id, name: student.name, email: student.email },
+  });
+}
+
+async function handleSetPin(data: z.infer<typeof setPinSchema>) {
+  const session = await getSessionFromCookie();
+  if (!session) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
+
+  const parentPinHash = await hashPassword(data.parentPin);
+  await prisma.student.update({
+    where: { id: session.sub },
+    data: { parentPinHash },
+  });
+
+  return NextResponse.json({ success: true });
+}
+
+async function handleResetPassword(data: z.infer<typeof resetPasswordSchema>) {
+  const student = await prisma.student.findUnique({
+    where: { email: data.email },
+  });
+  if (!student || !student.parentPinHash) {
+    // Generic error to avoid email enumeration
+    return NextResponse.json(
+      { error: "Invalid email or parent PIN." },
+      { status: 401 }
+    );
+  }
+
+  const pinValid = await verifyPassword(data.parentPin, student.parentPinHash);
+  if (!pinValid) {
+    return NextResponse.json(
+      { error: "Invalid email or parent PIN." },
+      { status: 401 }
+    );
+  }
+
+  const newPasswordHash = await hashPassword(data.newPassword);
+  await prisma.student.update({
+    where: { id: student.id },
+    data: { passwordHash: newPasswordHash },
+  });
+
+  // Log the user in after reset
   const token = await createSessionToken({
     sub: student.id,
     name: student.name,

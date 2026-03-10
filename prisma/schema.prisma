@@ -12,6 +12,7 @@ model Student {
   name             String
   email            String   @unique
   passwordHash     String
+  parentPinHash    String?  // hashed 4-6 digit PIN for password reset
   createdAt        DateTime @default(now())
   currentSessionId String?
 

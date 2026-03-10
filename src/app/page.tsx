@@ -13,12 +13,13 @@ import {
   authLogin,
   authSignup,
   authGetUser,
+  authResetPassword,
   syncProgressFromServer,
   syncProgressToServer,
 } from "@/lib/auth-client";
 import { Mascot } from "@/components/shared/Mascot";
 
-type Mode = "login" | "signup";
+type Mode = "login" | "signup" | "reset";
 
 export default function ProfilePicker() {
   const router = useRouter();
@@ -26,7 +27,9 @@ export default function ProfilePicker() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [parentPin, setParentPin] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [ready, setReady] = useState(false);
 
@@ -52,6 +55,7 @@ export default function ProfilePicker() {
 
   function clearForm() {
     setError("");
+    setSuccess("");
   }
 
   async function handleLogin() {
@@ -108,7 +112,8 @@ export default function ProfilePicker() {
     setLoading(true);
     setError("");
     try {
-      const result = await authSignup(trimmedName, trimmedEmail, password);
+      const trimmedPin = parentPin.trim();
+      const result = await authSignup(trimmedName, trimmedEmail, password, trimmedPin || undefined);
       if (result.error) {
         setError(result.error);
         return;
@@ -128,11 +133,55 @@ export default function ProfilePicker() {
     }
   }
 
+  async function handleReset() {
+    const trimmedEmail = email.trim();
+    const trimmedPin = parentPin.trim();
+
+    if (!trimmedEmail) {
+      setError("Please enter your email.");
+      return;
+    }
+    if (!trimmedPin || !/^\d{4,6}$/.test(trimmedPin)) {
+      setError("Please enter your 4-6 digit parent PIN.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("New password must be at least 6 characters.");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    setSuccess("");
+    try {
+      const result = await authResetPassword(trimmedEmail, trimmedPin, password);
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+
+      const user = result.user!;
+      setStoredAuthUser(user);
+      addUser(user.name);
+      setActiveUser(user.name);
+
+      setSuccess("Password reset successfully! Signing you in...");
+      await syncProgressFromServer(user.name);
+      router.push("/dashboard");
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   function handleSubmit() {
     if (mode === "login") {
       handleLogin();
-    } else {
+    } else if (mode === "signup") {
       handleSignup();
+    } else {
+      handleReset();
     }
   }
 
@@ -155,7 +204,9 @@ export default function ProfilePicker() {
         <p className="mb-8 text-lg text-surface-500 dark:text-surface-400">
           {mode === "login"
             ? "Welcome back! Sign in to continue."
-            : "Create an account to get started."}
+            : mode === "signup"
+              ? "Create an account to get started."
+              : "Reset your password using your parent PIN."}
         </p>
 
         <div className="space-y-4 animate-slide-up">
@@ -189,6 +240,22 @@ export default function ProfilePicker() {
             className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
           />
 
+          {/* Parent PIN — reset mode */}
+          {mode === "reset" && (
+            <input
+              type="text"
+              inputMode="numeric"
+              value={parentPin}
+              onChange={(e) => {
+                setParentPin(e.target.value.replace(/\D/g, "").slice(0, 6));
+                clearForm();
+              }}
+              placeholder="Parent PIN (4-6 digits)"
+              maxLength={6}
+              className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
+            />
+          )}
+
           {/* Password */}
           <input
             type="password"
@@ -199,13 +266,36 @@ export default function ProfilePicker() {
             }}
             onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             placeholder={
-              mode === "signup" ? "Create a password (6+ characters)" : "Password"
+              mode === "signup"
+                ? "Create a password (6+ characters)"
+                : mode === "reset"
+                  ? "New password (6+ characters)"
+                  : "Password"
             }
             className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
           />
 
+          {/* Parent PIN — signup only (optional) */}
+          {mode === "signup" && (
+            <input
+              type="text"
+              inputMode="numeric"
+              value={parentPin}
+              onChange={(e) => {
+                setParentPin(e.target.value.replace(/\D/g, "").slice(0, 6));
+                clearForm();
+              }}
+              placeholder="Parent PIN for password reset (optional, 4-6 digits)"
+              maxLength={6}
+              className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
+            />
+          )}
+
           {error && (
             <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
+          )}
+          {success && (
+            <p className="text-sm text-green-600 dark:text-green-400">{success}</p>
           )}
 
           <button
@@ -217,39 +307,56 @@ export default function ProfilePicker() {
               ? "Please wait..."
               : mode === "login"
                 ? "Sign In"
-                : "Create Account"}
+                : mode === "signup"
+                  ? "Create Account"
+                  : "Reset Password"}
           </button>
 
-          {/* Toggle login/signup */}
-          <p className="text-sm text-surface-500 dark:text-surface-400">
-            {mode === "login" ? (
+          {/* Toggle links */}
+          <div className="space-y-1 text-sm text-surface-500 dark:text-surface-400">
+            {mode === "login" && (
               <>
-                Don&apos;t have an account?{" "}
-                <button
-                  onClick={() => {
-                    setMode("signup");
-                    setError("");
-                  }}
-                  className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
-                >
-                  Sign up
-                </button>
+                <p>
+                  Don&apos;t have an account?{" "}
+                  <button
+                    onClick={() => { setMode("signup"); setError(""); setSuccess(""); }}
+                    className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
+                  >
+                    Sign up
+                  </button>
+                </p>
+                <p>
+                  <button
+                    onClick={() => { setMode("reset"); setError(""); setSuccess(""); }}
+                    className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
+                  >
+                    Forgot password?
+                  </button>
+                </p>
               </>
-            ) : (
-              <>
+            )}
+            {mode === "signup" && (
+              <p>
                 Already have an account?{" "}
                 <button
-                  onClick={() => {
-                    setMode("login");
-                    setError("");
-                  }}
+                  onClick={() => { setMode("login"); setError(""); setSuccess(""); }}
                   className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
                 >
                   Sign in
                 </button>
-              </>
+              </p>
             )}
-          </p>
+            {mode === "reset" && (
+              <p>
+                <button
+                  onClick={() => { setMode("login"); setError(""); setSuccess(""); }}
+                  className="font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
+                >
+                  Back to sign in
+                </button>
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>
