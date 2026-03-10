@@ -2,23 +2,27 @@
 
 import { enqueueSyncRetry, attachOnlineListener } from "./sync-queue";
 
+export type MascotType = "penguin" | "monkey";
+
 export interface AuthUser {
   id: string;
   name: string;
   email: string;
+  mascotType?: MascotType;
 }
 
 export async function authSignup(
   name: string,
   email: string,
   password: string,
-  parentPin?: string
+  parentPin?: string,
+  mascotType?: MascotType
 ): Promise<{ user?: AuthUser; error?: string }> {
   try {
     const res = await fetch("/api/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "signup", name, email, password, parentPin }),
+      body: JSON.stringify({ action: "signup", name, email, password, parentPin, mascotType: mascotType ?? "penguin" }),
     });
     const data = await res.json();
     if (!res.ok) return { error: data.error || "Signup failed" };

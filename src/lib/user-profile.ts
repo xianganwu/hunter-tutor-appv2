@@ -135,6 +135,7 @@ export interface StoredAuthUser {
   id: string;
   name: string;
   email: string;
+  mascotType?: "penguin" | "monkey";
 }
 
 export function getStoredAuthUser(): StoredAuthUser | null {
@@ -153,6 +154,11 @@ export function setStoredAuthUser(user: StoredAuthUser): void {
   } catch {
     // localStorage unavailable
   }
+}
+
+export function getStoredMascotType(): "penguin" | "monkey" {
+  const user = getStoredAuthUser();
+  return user?.mascotType === "monkey" ? "monkey" : "penguin";
 }
 
 export function clearStoredAuthUser(): void {

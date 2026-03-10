@@ -18,6 +18,7 @@ const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6).max(100),
   parentPin: z.string().regex(/^\d{4,6}$/).optional(),
+  mascotType: z.enum(["penguin", "monkey"]).default("penguin"),
 });
 
 const loginSchema = z.object({
@@ -58,8 +59,9 @@ export async function GET() {
     if (!session) {
       return NextResponse.json({ user: null });
     }
+    const student = await prisma.student.findUnique({ where: { id: session.sub } });
     return NextResponse.json({
-      user: { id: session.sub, name: session.name, email: session.email },
+      user: { id: session.sub, name: session.name, email: session.email, mascotType: student?.mascotType ?? "penguin" },
     });
   } catch (err) {
     console.error("[auth] GET error:", err);
@@ -129,6 +131,7 @@ async function handleSignup(data: z.infer<typeof signupSchema>) {
       email: data.email,
       passwordHash,
       parentPinHash,
+      mascotType: data.mascotType,
     },
   });
 
@@ -140,7 +143,7 @@ async function handleSignup(data: z.infer<typeof signupSchema>) {
   await setSessionCookie(token);
 
   return NextResponse.json({
-    user: { id: student.id, name: student.name, email: student.email },
+    user: { id: student.id, name: student.name, email: student.email, mascotType: student.mascotType },
   });
 }
 
@@ -171,7 +174,7 @@ async function handleLogin(data: z.infer<typeof loginSchema>) {
   await setSessionCookie(token);
 
   return NextResponse.json({
-    user: { id: student.id, name: student.name, email: student.email },
+    user: { id: student.id, name: student.name, email: student.email, mascotType: student.mascotType },
   });
 }
 
@@ -216,6 +219,9 @@ async function handleResetPassword(data: z.infer<typeof resetPasswordSchema>) {
     data: { passwordHash: newPasswordHash },
   });
 
+  // Re-fetch to get updated student (and mascotType)
+  const updated = await prisma.student.findUnique({ where: { id: student.id } });
+
   // Log the user in after reset
   const token = await createSessionToken({
     sub: student.id,
@@ -225,7 +231,7 @@ async function handleResetPassword(data: z.infer<typeof resetPasswordSchema>) {
   await setSessionCookie(token);
 
   return NextResponse.json({
-    user: { id: student.id, name: student.name, email: student.email },
+    user: { id: student.id, name: student.name, email: student.email, mascotType: updated?.mascotType ?? "penguin" },
   });
 }
 

@@ -7,7 +7,8 @@ import { StreakDisplay } from "./StreakDisplay";
 import { ContinueLearningButton } from "./ContinueLearningButton";
 import { UserMenu } from "./UserMenu";
 import { useDashboardData } from "./use-dashboard-data";
-import { Mascot, getMascotTier } from "@/components/shared/Mascot";
+import { Mascot, getMascotTier, getMascotLabel, type MascotAnimal } from "@/components/shared/Mascot";
+import { getStoredMascotType } from "@/lib/user-profile";
 
 export function DashboardContent() {
   const { skillStates, domainProgress, streakData, weeklySummary, loading } =
@@ -25,6 +26,7 @@ export function DashboardContent() {
     );
   }
 
+  const mascotType: MascotAnimal = getStoredMascotType();
   const hasActivity = skillStates.some((s) => s.attemptsCount > 0);
   const overallMastery =
     skillStates.length > 0
@@ -53,13 +55,13 @@ export function DashboardContent() {
         <section className="flex animate-slide-up flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="flex items-center gap-3">
-              <Mascot tier={mascotTier} size="lg" />
+              <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
               <div>
                 <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-50 md:text-3xl">
                   Welcome back!
                 </h1>
                 <p className="text-xs font-medium text-surface-400 dark:text-surface-500">
-                  Your penguin: {["", "Hatchling", "Explorer", "Bookworm", "Scholar", "Champion"][mascotTier]}
+                  Your {mascotType === "monkey" ? "monkey" : "penguin"}: {getMascotLabel(mascotTier, mascotType)}
                 </p>
               </div>
             </div>

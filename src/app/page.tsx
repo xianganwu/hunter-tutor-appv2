@@ -16,6 +16,7 @@ import {
   authResetPassword,
   syncProgressFromServer,
   syncProgressToServer,
+  type MascotType,
 } from "@/lib/auth-client";
 import { Mascot } from "@/components/shared/Mascot";
 
@@ -28,6 +29,7 @@ export default function ProfilePicker() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [parentPin, setParentPin] = useState("");
+  const [gender, setGender] = useState<"girl" | "boy" | "">("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -104,6 +106,10 @@ export default function ProfilePicker() {
       setError("Please enter your email.");
       return;
     }
+    if (!gender) {
+      setError("Please select boy or girl.");
+      return;
+    }
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
@@ -113,7 +119,8 @@ export default function ProfilePicker() {
     setError("");
     try {
       const trimmedPin = parentPin.trim();
-      const result = await authSignup(trimmedName, trimmedEmail, password, trimmedPin || undefined);
+      const mascotType: MascotType = gender === "boy" ? "monkey" : "penguin";
+      const result = await authSignup(trimmedName, trimmedEmail, password, trimmedPin || undefined, mascotType);
       if (result.error) {
         setError(result.error);
         return;
@@ -224,6 +231,36 @@ export default function ProfilePicker() {
               autoFocus
               className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
             />
+          )}
+
+          {/* Gender selection — signup only */}
+          {mode === "signup" && (
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => { setGender("girl"); clearForm(); }}
+                className={`flex flex-1 items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-lg font-semibold transition-all ${
+                  gender === "girl"
+                    ? "border-pink-400 bg-pink-50 text-pink-700 dark:border-pink-500 dark:bg-pink-900/20 dark:text-pink-300"
+                    : "border-surface-300 bg-white text-surface-500 hover:border-pink-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-pink-500"
+                }`}
+              >
+                <Mascot tier={1} size="sm" mascotType="penguin" />
+                Girl
+              </button>
+              <button
+                type="button"
+                onClick={() => { setGender("boy"); clearForm(); }}
+                className={`flex flex-1 items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-lg font-semibold transition-all ${
+                  gender === "boy"
+                    ? "border-amber-400 bg-amber-50 text-amber-700 dark:border-amber-500 dark:bg-amber-900/20 dark:text-amber-300"
+                    : "border-surface-300 bg-white text-surface-500 hover:border-amber-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-amber-500"
+                }`}
+              >
+                <Mascot tier={1} size="sm" mascotType="monkey" />
+                Boy
+              </button>
+            </div>
           )}
 
           {/* Email */}
