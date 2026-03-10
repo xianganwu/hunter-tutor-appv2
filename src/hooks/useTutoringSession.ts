@@ -28,9 +28,43 @@ import {
   createTeachingMoment,
 } from "@/lib/teaching-moments";
 import type { TeachingMomentEvaluation } from "@/lib/teaching-moments";
-import { loadSkillMastery, saveSkillMastery } from "@/lib/skill-mastery-store";
+import { loadSkillMastery, saveSkillMastery, loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { selectNextSkills } from "@/lib/adaptive";
+import { getSkillIdsForDomain } from "@/lib/exam/curriculum";
 
 const ESTIMATED_QUESTIONS = 12;
+
+const SKILL_DOMAINS = [
+  "reading_comprehension",
+  "math_quantitative_reasoning",
+  "math_achievement",
+] as const;
+
+function pickNextSkill(currentSkillId: string): { skillId: string; skillName: string; route: string } | null {
+  const all = loadAllSkillMasteries();
+  const stateMap = new Map(
+    all.map((s) => [s.skillId, { ...s, lastPracticed: s.lastPracticed ? new Date(s.lastPracticed) : null }])
+  );
+
+  let bestSkillId: string | null = null;
+  let bestScore = -1;
+
+  for (const domain of SKILL_DOMAINS) {
+    const skillIds = getSkillIdsForDomain(domain);
+    const priorities = selectNextSkills(skillIds, stateMap);
+    if (priorities.length > 0 && priorities[0].score > bestScore && priorities[0].skillId !== currentSkillId) {
+      bestScore = priorities[0].score;
+      bestSkillId = priorities[0].skillId;
+    }
+  }
+
+  if (!bestSkillId) return null;
+  const skill = getSkillById(bestSkillId);
+  const route = bestSkillId.startsWith("rc_")
+    ? `/tutor/reading?skill=${bestSkillId}`
+    : `/tutor/math?skill=${bestSkillId}`;
+  return { skillId: bestSkillId, skillName: skill?.name ?? bestSkillId, route };
+}
 
 // ─── Frustration Detection ────────────────────────────────────────────
 
@@ -347,6 +381,8 @@ export function useTutoringSession(skillId: string) {
         }).catch((err: unknown) => console.error("[session] end error:", err));
       }
 
+      const nextSkill = pickNextSkill(s.currentSkillId);
+
       try {
         const res = await callApi({
           type: "get_summary",
@@ -363,6 +399,7 @@ export function useTutoringSession(skillId: string) {
           skillsCovered: s.skillsCovered,
           elapsedMinutes,
           tutorMessage: res.text,
+          nextSkill: nextSkill ?? undefined,
         });
       } catch {
         setSummary({
@@ -372,6 +409,7 @@ export function useTutoringSession(skillId: string) {
           skillsCovered: s.skillsCovered,
           elapsedMinutes,
           tutorMessage: "Great effort today! Keep practicing!",
+          nextSkill: nextSkill ?? undefined,
         });
       }
 

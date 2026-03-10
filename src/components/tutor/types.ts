@@ -114,4 +114,9 @@ export interface SessionSummaryData {
   readonly skillsCovered: readonly string[];
   readonly elapsedMinutes: number;
   readonly tutorMessage: string;
+  readonly nextSkill?: {
+    readonly skillId: string;
+    readonly skillName: string;
+    readonly route: string;
+  };
 }

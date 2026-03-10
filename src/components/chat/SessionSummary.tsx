@@ -50,6 +50,24 @@ export function SessionSummary({ data, onClose }: SessionSummaryProps) {
 
       <p className="text-sm text-surface-600 dark:text-surface-400 leading-relaxed">{data.tutorMessage}</p>
 
+      {/* Next up recommendation */}
+      {data.nextSkill && (
+        <div className="rounded-xl border border-brand-200 bg-brand-50 dark:border-brand-800 dark:bg-brand-900/20 p-4">
+          <p className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide mb-1.5">
+            Up Next
+          </p>
+          <a
+            href={data.nextSkill.route}
+            className="flex items-center justify-between text-sm font-semibold text-brand-700 dark:text-brand-300 hover:text-brand-800 dark:hover:text-brand-200 transition-colors"
+          >
+            {data.nextSkill.skillName}
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M7 4l6 6-6 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+        </div>
+      )}
+
       <div className="flex gap-3">
         <a
           href="/dashboard"

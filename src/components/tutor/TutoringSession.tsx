@@ -129,6 +129,21 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
         </div>
       )}
 
+      {/* Session goal banner */}
+      {state.messages.length === 0 && state.phase === "initializing" && (
+        <div className="mx-4 mt-4 rounded-2xl border border-brand-200 bg-brand-50 dark:border-brand-800 dark:bg-brand-900/20 px-4 py-3 flex items-center gap-3 animate-fade-in">
+          <span className="text-xl shrink-0" aria-hidden="true">🎯</span>
+          <div>
+            <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">
+              Today&apos;s goal: {skill?.name ?? skillId}
+            </p>
+            <p className="text-xs text-brand-600/70 dark:text-brand-400/70">
+              About {state.estimatedQuestions} questions · You&apos;ve got this!
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Chat area */}
       <div
         ref={scrollRef}
