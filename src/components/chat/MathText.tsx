@@ -192,7 +192,7 @@ export function MathText({ text }: MathTextProps) {
           return (
             <div
               key={i}
-              className="my-3 flex justify-center overflow-x-auto [&_svg]:max-w-full [&_svg]:h-auto [&_svg]:rounded-xl [&_svg]:bg-white [&_svg]:dark:bg-surface-800 [&_svg]:p-3 [&_svg]:shadow-sm [&_svg]:border [&_svg]:border-surface-200 [&_svg]:dark:border-surface-700"
+              className="my-3 flex justify-center overflow-x-auto [&_svg]:max-w-full [&_svg]:h-auto [&_svg]:rounded-xl [&_svg]:bg-white [&_svg]:p-3 [&_svg]:shadow-sm [&_svg]:border [&_svg]:border-surface-200 [&_svg]:dark:border-surface-300"
               dangerouslySetInnerHTML={{
                 __html: sanitizeSvg(part.content),
               }}

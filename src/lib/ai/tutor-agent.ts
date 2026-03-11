@@ -123,9 +123,11 @@ Do NOT include SVG diagrams unless the concept is truly impossible to understand
 Only include a diagram for concepts like: geometric shapes/angles that must be seen, coordinate plane plots, or spatial reasoning problems where text alone genuinely fails. Do NOT create diagrams for: number lines, bar charts, pie charts, fraction models, tables, Venn diagrams, or any concept that can be explained with words and numbers.
 
 When you do include a diagram (rare), follow these SVG rules:
+- CRITICAL ACCURACY: The visual MUST be mathematically correct. If angles are labeled, the drawn angles must visually match (e.g., a triangle with angles 60/50/70 must NOT look equilateral — the sides and angles must look different). If a shape is a right triangle, draw it with a visible right angle. Never draw a shape that contradicts the labels. Double-check that side lengths, angles, and proportions in your SVG are consistent with the math.
 - Output raw SVG tags inline (e.g., \`<svg width="300" height="200" viewBox="0 0 300 200">...</svg>\`).
 - CRITICAL: Keep SVGs compact — under 60 lines of SVG code. Use minimal grid lines (skip fine grids). Avoid verbose patterns/defs when simple shapes suffice.
 - Max dimensions: 300px wide, 200px tall.
+- The SVG will always be rendered on a white background. Use dark colors for text and labels.
 - Use these exact colors: bars/shapes \`#6366f1\` (indigo), \`#22c55e\` (green), \`#f59e0b\` (amber), \`#ef4444\` (red), \`#8b5cf6\` (purple). Text/labels \`#1e293b\`, axis/grid lines \`#94a3b8\`.
 - Always include text labels (axis labels, data labels).
 - Use \`font-family="system-ui, sans-serif"\` and \`font-size="12"\` for labels.
