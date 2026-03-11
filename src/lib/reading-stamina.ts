@@ -191,7 +191,7 @@ export function loadStaminaProgress(): StaminaProgress {
 export function saveStaminaProgress(progress: StaminaProgress): void {
   if (typeof window === "undefined") return;
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(progress));
-  notifyProgressChanged();
+  notifyProgressChanged("reading-stamina");
 }
 
 /**

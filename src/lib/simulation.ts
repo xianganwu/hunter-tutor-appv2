@@ -411,7 +411,7 @@ export function saveSimulation(sim: StoredSimulation): void {
   const history = loadSimulationHistory();
   history.push(sim);
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(history));
-  notifyProgressChanged();
+  notifyProgressChanged("simulations");
 }
 
 // ─── Missed Questions & Impact Analysis ──────────────────────────────

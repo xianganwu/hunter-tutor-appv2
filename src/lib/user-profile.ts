@@ -1,23 +1,10 @@
 import { scheduleSyncToServer } from "./auth-client";
+import { DATA_KEYS, type DataKey } from "./data-keys";
 
 const ACTIVE_USER_KEY = "hunter-tutor:active-user";
 const USERS_KEY = "hunter-tutor:users";
 const AUTH_USER_KEY = "hunter-tutor:auth-user";
-
-const DATA_SUFFIXES = [
-  "skill-mastery",
-  "mistakes",
-  "simulations",
-  "reading-stamina",
-  "teaching-moments",
-  "essays",
-  "badges",
-  "mascot-customization",
-  "daily-plan",
-  "drills",
-  "weekly-snapshots",
-  "vocab-deck",
-] as const;
+const DIRTY_KEYS_KEY = "hunter-tutor:dirty-keys";
 
 export function getActiveUser(): string | null {
   try {
@@ -70,7 +57,7 @@ export function removeUser(name: string): void {
   );
   try {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
-    for (const suffix of DATA_SUFFIXES) {
+    for (const suffix of DATA_KEYS) {
       localStorage.removeItem(`hunter-tutor:${name}:${suffix}`);
     }
     const active = getActiveUser();
@@ -84,7 +71,7 @@ export function removeUser(name: string): void {
 
 export function resetUserProgress(name: string): void {
   try {
-    for (const suffix of DATA_SUFFIXES) {
+    for (const suffix of DATA_KEYS) {
       localStorage.removeItem(`hunter-tutor:${name}:${suffix}`);
     }
   } catch {
@@ -108,7 +95,7 @@ export function getStorageKey(baseKey: string): string {
  */
 export function hasLegacyData(): boolean {
   try {
-    return DATA_SUFFIXES.some(
+    return DATA_KEYS.some(
       (suffix) => localStorage.getItem(`hunter-tutor-${suffix}`) !== null
     );
   } catch {
@@ -122,7 +109,7 @@ export function hasLegacyData(): boolean {
  */
 export function migrateAnonymousData(targetUser: string): void {
   try {
-    for (const suffix of DATA_SUFFIXES) {
+    for (const suffix of DATA_KEYS) {
       const oldKey = `hunter-tutor-${suffix}`;
       const data = localStorage.getItem(oldKey);
       if (data) {
@@ -176,11 +163,45 @@ export function clearStoredAuthUser(): void {
   }
 }
 
+// ─── Dirty key tracking ─────────────────────────────────────────────
+
+export function markKeyDirty(key: DataKey): void {
+  try {
+    const dirty = getDirtyKeys();
+    dirty.add(key);
+    localStorage.setItem(DIRTY_KEYS_KEY, JSON.stringify([...dirty]));
+  } catch {
+    // localStorage unavailable
+  }
+}
+
+export function getDirtyKeys(): Set<DataKey> {
+  try {
+    const raw = localStorage.getItem(DIRTY_KEYS_KEY);
+    if (!raw) return new Set();
+    return new Set(JSON.parse(raw) as DataKey[]);
+  } catch {
+    return new Set();
+  }
+}
+
+export function clearDirtyKeys(): void {
+  try {
+    localStorage.removeItem(DIRTY_KEYS_KEY);
+  } catch {
+    // localStorage unavailable
+  }
+}
+
 /**
  * Call after any progress data is saved to localStorage.
+ * Optionally accepts the data key that changed so it can be tracked as dirty.
  * Schedules a debounced background sync to the server if user is authenticated.
  */
-export function notifyProgressChanged(): void {
+export function notifyProgressChanged(key?: DataKey): void {
+  if (key) {
+    markKeyDirty(key);
+  }
   const user = getActiveUser();
   const authUser = getStoredAuthUser();
   if (user && authUser) {

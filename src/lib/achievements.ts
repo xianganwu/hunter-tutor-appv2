@@ -244,7 +244,7 @@ function saveBadges(badges: readonly StoredBadge[]): void {
   try {
     if (typeof window === "undefined") return;
     localStorage.setItem(getStorageKey(BADGES_KEY), JSON.stringify(badges));
-    notifyProgressChanged();
+    notifyProgressChanged("badges");
   } catch {
     // localStorage unavailable
   }
@@ -270,6 +270,7 @@ export function saveMascotCustomization(custom: MascotCustomization): void {
       getStorageKey(MASCOT_CUSTOM_KEY),
       JSON.stringify(custom),
     );
+    notifyProgressChanged("mascot-customization");
   } catch {
     // localStorage unavailable
   }

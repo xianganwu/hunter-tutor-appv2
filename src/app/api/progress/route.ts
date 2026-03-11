@@ -2,15 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod/v4";
 import { prisma } from "@/lib/db";
 import { getSessionFromCookie } from "@/lib/auth";
-
-const VALID_KEYS = [
-  "skill-mastery",
-  "mistakes",
-  "simulations",
-  "reading-stamina",
-  "teaching-moments",
-  "essays",
-] as const;
+import { DATA_KEYS } from "@/lib/data-keys";
 
 // ─── GET /api/progress — download all progress for current user ───────
 
@@ -26,15 +18,17 @@ export async function GET() {
     });
 
     const progress: Record<string, unknown> = {};
+    const timestamps: Record<string, string> = {};
     for (const row of rows) {
       try {
         progress[row.key] = JSON.parse(row.value);
       } catch {
         progress[row.key] = row.value;
       }
+      timestamps[row.key] = row.updatedAt.toISOString();
     }
 
-    return NextResponse.json({ progress });
+    return NextResponse.json({ progress, timestamps });
   } catch (err) {
     console.error("[progress] GET error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
@@ -63,7 +57,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const validKeys = new Set<string>(VALID_KEYS);
+    const validKeys = new Set<string>(DATA_KEYS);
     const entries = Object.entries(parsed.data.progress).filter(
       ([key, value]) => validKeys.has(key) && value !== undefined && value !== null
     );

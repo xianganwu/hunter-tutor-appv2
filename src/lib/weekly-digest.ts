@@ -1,4 +1,4 @@
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 import { loadAllSkillMasteries } from "./skill-mastery-store";
 import { loadEarnedBadges, BADGE_DEFINITIONS } from "./achievements";
 import { loadDrillHistory } from "./drill";
@@ -55,6 +55,7 @@ function saveWeeklySnapshots(snapshots: readonly MasterySnapshot[]): void {
       getStorageKey(SNAPSHOTS_KEY),
       JSON.stringify(trimmed),
     );
+    notifyProgressChanged("weekly-snapshots");
   } catch {
     // localStorage unavailable
   }

@@ -64,7 +64,7 @@ export function loadMistakes(): MistakeEntry[] {
 
 export function saveMistakes(mistakes: readonly MistakeEntry[]): void {
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(mistakes));
-  notifyProgressChanged();
+  notifyProgressChanged("mistakes");
 }
 
 export function addMistake(entry: MistakeEntry): void {

@@ -14,7 +14,7 @@ import {
   authSignup,
   authGetUser,
   authResetPassword,
-  syncProgressFromServer,
+  initializeFromServer,
   syncProgressToServer,
   type MascotType,
 } from "@/lib/auth-client";
@@ -81,7 +81,7 @@ export default function ProfilePicker() {
       addUser(user.name);
       setActiveUser(user.name);
 
-      await syncProgressFromServer(user.name);
+      await initializeFromServer(user.name);
       router.push("/dashboard");
     } catch {
       setError("Something went wrong. Please try again.");
@@ -173,7 +173,7 @@ export default function ProfilePicker() {
       setActiveUser(user.name);
 
       setSuccess("Password reset successfully! Signing you in...");
-      await syncProgressFromServer(user.name);
+      await initializeFromServer(user.name);
       router.push("/dashboard");
     } catch {
       setError("Something went wrong. Please try again.");

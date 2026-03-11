@@ -170,7 +170,7 @@ export function saveVocabDeck(deck: VocabDeck): void {
   try {
     const key = getStorageKey(STORAGE_KEY);
     localStorage.setItem(key, JSON.stringify(deck));
-    notifyProgressChanged();
+    notifyProgressChanged("vocab-deck");
   } catch {
     // localStorage unavailable
   }

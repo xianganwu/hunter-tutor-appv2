@@ -50,7 +50,7 @@ export function saveDrillResult(result: DrillResult): void {
     const history = loadDrillHistory();
     history.push(result);
     localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(history));
-    notifyProgressChanged();
+    notifyProgressChanged("drills");
   } catch {
     // localStorage unavailable
   }

@@ -1,4 +1,4 @@
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 import { selectNextSkills } from "./adaptive";
 import type { StudentSkillState } from "./adaptive";
 import { loadAllSkillMasteries } from "./skill-mastery-store";
@@ -43,6 +43,7 @@ export function saveDailyPlan(plan: DailyPlan): void {
   try {
     if (typeof window === "undefined") return;
     localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(plan));
+    notifyProgressChanged("daily-plan");
   } catch {
     // localStorage unavailable
   }

@@ -31,7 +31,7 @@ function saveAll(entries: readonly StoredSkillMastery[]): void {
   try {
     if (typeof window === "undefined") return;
     localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(entries));
-    notifyProgressChanged();
+    notifyProgressChanged("skill-mastery");
   } catch {
     // localStorage unavailable
   }

@@ -45,7 +45,7 @@ export function saveTeachingMoment(moment: StoredTeachingMoment): void {
   const moments = loadTeachingMoments();
   moments.push(moment);
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(moments));
-  notifyProgressChanged();
+  notifyProgressChanged("teaching-moments");
 }
 
 export function getTeachingMomentsForSkill(

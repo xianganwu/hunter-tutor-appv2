@@ -1,6 +1,8 @@
 // Client-side auth helpers — runs in the browser
 
 import { enqueueSyncRetry, attachOnlineListener } from "./sync-queue";
+import { DATA_KEYS } from "./data-keys";
+import { getDirtyKeys, clearDirtyKeys } from "./user-profile";
 
 export type MascotType = "penguin" | "monkey";
 
@@ -130,15 +132,6 @@ export async function authGetUser(): Promise<AuthUser | null> {
 
 // ─── Progress sync ────────────────────────────────────────────────────
 
-const DATA_KEYS = [
-  "skill-mastery",
-  "mistakes",
-  "simulations",
-  "reading-stamina",
-  "teaching-moments",
-  "essays",
-] as const;
-
 /**
  * Upload all localStorage progress data to the server.
  * Call this after significant progress updates.
@@ -188,6 +181,58 @@ export async function syncProgressFromServer(
       const storageKey = `hunter-tutor:${userName}:${key}`;
       localStorage.setItem(storageKey, JSON.stringify(value));
     }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Initialize localStorage from server data on login.
+ * Uploads any dirty (unsynced) local changes first, then pulls all server data.
+ */
+export async function initializeFromServer(userName: string): Promise<boolean> {
+  try {
+    // 1. Check for dirty keys (unsynced localStorage changes)
+    const dirtyKeys = getDirtyKeys();
+    if (dirtyKeys.size > 0) {
+      // Upload dirty keys first so we don't lose local work
+      const dirtyProgress: Record<string, unknown> = {};
+      for (const key of dirtyKeys) {
+        const storageKey = `hunter-tutor:${userName}:${key}`;
+        const raw = localStorage.getItem(storageKey);
+        if (raw) {
+          try {
+            dirtyProgress[key] = JSON.parse(raw);
+          } catch {
+            dirtyProgress[key] = raw;
+          }
+        }
+      }
+
+      if (Object.keys(dirtyProgress).length > 0) {
+        await fetch("/api/progress", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ progress: dirtyProgress }),
+        });
+      }
+    }
+
+    // 2. GET all server data
+    const res = await fetch("/api/progress");
+    if (!res.ok) return false;
+    const data = await res.json();
+    const progress = data.progress as Record<string, unknown>;
+
+    // 3. Populate localStorage with server data
+    for (const [key, value] of Object.entries(progress)) {
+      const storageKey = `hunter-tutor:${userName}:${key}`;
+      localStorage.setItem(storageKey, JSON.stringify(value));
+    }
+
+    // 4. Clear dirty keys
+    clearDirtyKeys();
     return true;
   } catch {
     return false;
