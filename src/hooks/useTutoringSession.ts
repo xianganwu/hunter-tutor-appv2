@@ -19,6 +19,7 @@ import {
   getNextPacingAction,
 } from "@/lib/adaptive";
 import type { AttemptRecord } from "@/lib/adaptive";
+import type { DifficultyLevel } from "@/lib/types";
 import { addMistake, createMistakeEntry } from "@/lib/mistakes";
 import type { MistakeDiagnosis } from "@/lib/mistakes";
 import { getSkillById, getDomainForSkill } from "@/lib/exam/curriculum";
@@ -282,6 +283,9 @@ export function useTutoringSession(skillId: string) {
   // Fix #4: Integrate session pacing module
   const pacingState = useRef(createPacingState(new Date()));
 
+  // Deferred question: after teaching, wait for student to respond before showing MC question
+  const pendingQuestion = useRef<{ skillId: string; tier: DifficultyLevel } | null>(null);
+
   // Use refs for state values accessed in callbacks to avoid stale closures
   const stateRef = useRef(state);
   stateRef.current = state;
@@ -456,24 +460,9 @@ export function useTutoringSession(skillId: string) {
         streaming.appendDelta
       );
 
-      // Generate first question (non-streamed — needs structured data)
-      const qRes = await callApi({
-        type: "generate_question",
-        skillId,
-        difficultyTier: s.difficultyTier,
-      });
-
-      if (qRes.question) {
-        addMessages(makeTutorMsg(qRes.question.questionText, "question"));
-        questionShownAt.current = Date.now();
-        setState((prev) => ({
-          ...prev,
-          activeQuestion: qRes.question ?? null,
-          phase: "ready",
-        }));
-      } else {
-        setLoading(false);
-      }
+      // Defer the first MC question — let the student respond to the teaching first
+      pendingQuestion.current = { skillId, tier: s.difficultyTier };
+      setState((prev) => ({ ...prev, phase: "ready" }));
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : "Something went wrong";
       addMessages(makeTutorMsg(`Sorry, I had trouble starting. ${errMsg}`, "text"));
@@ -616,9 +605,14 @@ export function useTutoringSession(skillId: string) {
             teachStreaming.appendDelta
           );
           pacingState.current = advancePacingAfterTeaching(pacingState.current);
+
+          // Defer MC question — let student respond to teaching first
+          pendingQuestion.current = { skillId: s.currentSkillId, tier: decision.tier };
+          setState((prev) => ({ ...prev, phase: "ready" }));
+          return;
         }
 
-        // Generate next question
+        // No teaching — generate next question immediately
         const nextQ = await callApi({
           type: "generate_question",
           skillId: s.currentSkillId,
@@ -800,6 +794,32 @@ export function useTutoringSession(skillId: string) {
       } catch {
         addMessages(makeTutorMsg("That's a great thought! Let's keep exploring.", "text"));
       }
+
+      // If a MC question was deferred after teaching, generate it now
+      if (pendingQuestion.current) {
+        const pq = pendingQuestion.current;
+        pendingQuestion.current = null;
+        try {
+          const nextQ = await callApi({
+            type: "generate_question",
+            skillId: pq.skillId,
+            difficultyTier: pq.tier,
+          });
+          if (nextQ.question) {
+            addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
+            questionShownAt.current = Date.now();
+            setState((prev) => ({
+              ...prev,
+              activeQuestion: nextQ.question ?? null,
+              phase: "ready",
+            }));
+            return;
+          }
+        } catch {
+          // Fall through to setLoading(false)
+        }
+      }
+
       setLoading(false);
     },
     [submitAnswer, addMessages, addStreamingMessage, setLoading, getHistory]
@@ -811,6 +831,7 @@ export function useTutoringSession(skillId: string) {
     teachBackTriggeredSkills.current.clear();
     hintUsedForCurrent.current = false;
     questionShownAt.current = null;
+    pendingQuestion.current = null;
     sessionDbId.current = null;
     pacingState.current = createPacingState(new Date());
     setSummary(null);

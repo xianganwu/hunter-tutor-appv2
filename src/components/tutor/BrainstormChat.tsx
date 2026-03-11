@@ -53,6 +53,7 @@ async function callBrainstormApi(
 const STEP_ORDER: BrainstormStep[] = ["reaction", "ideas", "pick", "done"];
 
 export function BrainstormChat({ promptText, onComplete }: BrainstormChatProps) {
+  const [showPrompt, setShowPrompt] = useState(false);
   const [messages, setMessages] = useState<BrainstormMessage[]>([
     {
       id: makeId(),
@@ -135,14 +136,30 @@ export function BrainstormChat({ promptText, onComplete }: BrainstormChatProps) 
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-surface-200 dark:border-surface-700">
-        <span className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide">
-          Brainstorming
-        </span>
-        <span className="text-xs text-surface-400">
-          Step {STEP_ORDER.indexOf(currentStep) + 1} of 3
-        </span>
+      <div className="flex items-center justify-between px-4 py-2 border-b border-surface-200 dark:border-surface-700">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide">
+            Brainstorming
+          </span>
+          <span className="text-xs text-surface-400">
+            Step {STEP_ORDER.indexOf(currentStep) + 1} of 3
+          </span>
+        </div>
+        <button
+          onClick={() => setShowPrompt((v) => !v)}
+          className="text-xs font-medium text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
+        >
+          {showPrompt ? "Hide Prompt" : "Show Prompt"}
+        </button>
       </div>
+
+      {showPrompt && (
+        <div className="px-4 py-2.5 bg-brand-50 dark:bg-brand-600/10 border-b border-brand-100 dark:border-brand-800">
+          <p className="text-xs text-brand-700 dark:text-brand-300">
+            <strong>Prompt:</strong> {promptText}
+          </p>
+        </div>
+      )}
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-1">
         {messages.map((msg) => (
