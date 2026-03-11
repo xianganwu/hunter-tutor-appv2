@@ -1,18 +1,30 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import { SkillMap } from "./SkillMap";
 import { DomainCard } from "./DomainCard";
 import { WeeklySummary } from "./WeeklySummary";
 import { StreakDisplay } from "./StreakDisplay";
 import { ContinueLearningButton } from "./ContinueLearningButton";
 import { UserMenu } from "./UserMenu";
+import { DailyPracticePlan } from "./DailyPracticePlan";
+import { BadgeGallery } from "./BadgeGallery";
 import { useDashboardData } from "./use-dashboard-data";
 import { Mascot, getMascotTier, getMascotLabel, type MascotAnimal } from "@/components/shared/Mascot";
+import { BadgeNotification } from "@/components/shared/BadgeNotification";
+import { Confetti } from "@/components/shared/Confetti";
 import { getStoredMascotType } from "@/lib/user-profile";
+import { shouldTriggerConfetti, type BadgeDefinition } from "@/lib/achievements";
 
 export function DashboardContent() {
-  const { skillStates, domainProgress, streakData, weeklySummary, loading } =
+  const { skillStates, domainProgress, streakData, weeklySummary, newlyEarnedBadges, loading } =
     useDashboardData();
+
+  const [showBadgeNotification, setShowBadgeNotification] = useState(true);
+
+  const handleBadgeDismiss = useCallback(() => {
+    setShowBadgeNotification(false);
+  }, []);
 
   if (loading) {
     return (
@@ -43,8 +55,13 @@ export function DashboardContent() {
     5: "Champion status! Keep that crown shining!",
   };
 
+  const badgesToShow: readonly BadgeDefinition[] = showBadgeNotification ? newlyEarnedBadges : [];
+
   return (
     <main className="min-h-screen bg-surface-50 dark:bg-surface-950">
+      <Confetti active={shouldTriggerConfetti(badgesToShow)} />
+      <BadgeNotification badges={badgesToShow} onDismiss={handleBadgeDismiss} />
+
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-8">
         {/* User Menu */}
         <section className="flex animate-fade-in justify-end">
@@ -80,6 +97,11 @@ export function DashboardContent() {
           <div className="flex-shrink-0">
             <ContinueLearningButton states={skillStates} />
           </div>
+        </section>
+
+        {/* Daily Practice Plan */}
+        <section className="animate-fade-in">
+          <DailyPracticePlan />
         </section>
 
         {/* Skill Map */}
@@ -133,6 +155,15 @@ export function DashboardContent() {
               <span>Reading Stamina</span>
             </a>
             <a
+              href="/drill"
+              className="flex flex-col items-center gap-2 rounded-2xl border border-streak-200 bg-streak-50 px-4 py-5 text-sm font-medium text-streak-600 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow-streak dark:border-streak-600/30 dark:bg-streak-600/10 dark:text-streak-400"
+            >
+              <span className="text-2xl" aria-hidden="true">
+                ⚡
+              </span>
+              <span>Timed Drill</span>
+            </a>
+            <a
               href="/simulate"
               className="flex flex-col items-center gap-2 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-5 text-sm font-medium text-brand-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:border-brand-800 dark:bg-brand-900/20 dark:text-brand-300"
             >
@@ -151,6 +182,11 @@ export function DashboardContent() {
               <span>Parent Dashboard</span>
             </a>
           </div>
+        </section>
+
+        {/* Badge Gallery */}
+        <section className="animate-fade-in">
+          <BadgeGallery />
         </section>
 
         {/* Weekly Summary */}

@@ -10,6 +10,7 @@ interface StagedFeedbackProps {
   readonly feedback: EssayFeedback;
   readonly essayText: string;
   readonly onComplete: () => void;
+  readonly onRevise?: () => void;
 }
 
 function getFirstParagraph(text: string): string {
@@ -21,6 +22,7 @@ export function StagedFeedback({
   feedback,
   essayText,
   onComplete,
+  onRevise,
 }: StagedFeedbackProps) {
   const [stage, setStage] = useState<FeedbackStage>(1);
   const [rewrittenIntro, setRewrittenIntro] = useState("");
@@ -197,12 +199,22 @@ export function StagedFeedback({
           </button>
         )}
         {(stage === 3 && rewriteFeedback) && (
-          <button
-            onClick={onComplete}
-            className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
-          >
-            Finish
-          </button>
+          <>
+            {onRevise && (
+              <button
+                onClick={onRevise}
+                className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
+              >
+                Revise Full Essay
+              </button>
+            )}
+            <button
+              onClick={onComplete}
+              className={`${onRevise ? "" : "flex-1 "}rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors`}
+            >
+              Finish
+            </button>
+          </>
         )}
         {stage === 3 && !rewriteFeedback && (
           <button

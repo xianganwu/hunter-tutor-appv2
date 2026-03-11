@@ -88,13 +88,15 @@ model QuestionAttempt {
 }
 
 model WritingSubmission {
-  id         String   @id @default(cuid())
-  sessionId  String
-  prompt     String
-  essayText  String
-  aiFeedback String?
-  scoresJson String?  // JSON: { organization: number, clarity: number, evidence: number, grammar: number }
-  createdAt  DateTime @default(now())
+  id             String   @id @default(cuid())
+  sessionId      String
+  prompt         String
+  essayText      String
+  aiFeedback     String?
+  scoresJson     String?  // JSON: { organization: number, clarity: number, evidence: number, grammar: number }
+  revisionOf     String?  // ID of original submission
+  revisionNumber Int      @default(0) // 0=original, 1=1st revision, 2=max
+  createdAt      DateTime @default(now())
 
   session TutoringSession @relation(fields: [sessionId], references: [id])
 

@@ -6,6 +6,8 @@ import { loadStaminaProgress } from "@/lib/reading-stamina";
 import type { StaminaProgress, ReadingRecord } from "@/lib/reading-stamina";
 import { loadSimulationHistory } from "@/lib/simulation";
 import type { StoredSimulation } from "@/lib/simulation";
+import { loadDrillHistory } from "@/lib/drill";
+import type { DrillResult } from "@/lib/drill";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 
 // ─── Types ────────────────────────────────────────────────────────────
@@ -117,6 +119,7 @@ export function aggregateParentData(): ParentData {
   const teachingMoments = loadTeachingMoments();
   const stamina = loadStaminaProgress();
   const simulations = loadSimulationHistory();
+  const drills = loadDrillHistory();
 
   // ── Weekly time ──
   const activeDates = new Set<string>();
@@ -136,6 +139,14 @@ export function aggregateParentData(): ParentData {
       const ta = s.report.timeAnalysis;
       weeklyMinutes += ta.elaUsedMinutes + ta.mathUsedMinutes;
       activeDates.add(toDateKey(s.completedAt));
+    }
+  }
+
+  // Drills this week
+  for (const d of drills) {
+    if (isThisWeek(d.completedAt)) {
+      weeklyMinutes += d.durationSeconds / 60;
+      activeDates.add(toDateKey(d.completedAt));
     }
   }
 
@@ -163,7 +174,7 @@ export function aggregateParentData(): ParentData {
   const domainReadiness = buildDomainReadiness(mistakes, teachingMoments, simulations);
 
   // ── Session log ──
-  const sessionLog = buildSessionLog(mistakes, teachingMoments, stamina, simulations);
+  const sessionLog = buildSessionLog(mistakes, teachingMoments, stamina, simulations, drills);
 
   // ── Mistake patterns (parent-safe: counts only) ──
   const patternMap = new Map<string, number>();
@@ -388,7 +399,8 @@ function buildSessionLog(
   mistakes: readonly MistakeEntry[],
   teachingMoments: readonly StoredTeachingMoment[],
   stamina: StaminaProgress,
-  simulations: readonly StoredSimulation[]
+  simulations: readonly StoredSimulation[],
+  drills: readonly DrillResult[] = []
 ): SessionLogEntry[] {
   const entries: SessionLogEntry[] = [];
 
@@ -444,6 +456,16 @@ function buildSessionLog(
       type: "simulation",
       summary: `Practice exam: ${r.overall.percentage}% overall, est. ${r.overall.estimatedPercentile}th percentile`,
       durationMinutes: totalMin,
+    });
+  }
+
+  // Drill sessions
+  for (const d of drills) {
+    entries.push({
+      date: d.completedAt,
+      type: "tutoring",
+      summary: `Timed drill: ${d.skillName} — ${d.accuracy}% accuracy, ${d.questionsPerMinute} q/min`,
+      durationMinutes: Math.round(d.durationSeconds / 60),
     });
   }
 

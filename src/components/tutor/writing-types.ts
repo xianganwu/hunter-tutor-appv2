@@ -17,6 +17,9 @@ export type WorkshopPhase =
   | "writing"
   | "submitting"
   | "feedback"
+  | "revising"
+  | "resubmitting"
+  | "revision_feedback"
   | "complete";
 
 export type BrainstormStep = "reaction" | "ideas" | "pick" | "done";
@@ -57,6 +60,8 @@ export interface StoredEssay {
   readonly wordCount: number;
   readonly feedback: EssayFeedback;
   readonly createdAt: string; // ISO
+  readonly revisionOf: string | null;
+  readonly revisionNumber: number;
 }
 
 // ─── API ─────────────────────────────────────────────────────────────
@@ -78,9 +83,24 @@ export type WritingAction =
       originalIntro: string;
       rewrittenIntro: string;
       suggestion: string;
+    }
+  | {
+      type: "evaluate_revision";
+      promptText: string;
+      originalEssayText: string;
+      revisedEssayText: string;
+      originalFeedback: string;
+      originalSubmissionId: string;
+      revisionNumber: number;
     };
 
 export interface WritingApiResponse {
   readonly text: string;
   readonly feedback?: EssayFeedback;
+  readonly scoreComparison?: readonly {
+    category: string;
+    before: number;
+    after: number;
+  }[];
+  readonly submissionId?: string;
 }

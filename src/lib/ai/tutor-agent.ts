@@ -428,6 +428,72 @@ Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
     };
   }
 
+  /**
+   * Generate a batch of drill questions for rapid-fire practice.
+   * Returns an array of question objects with choices and correct answers.
+   */
+  async generateDrillBatch(
+    skill: Skill,
+    count: number = 10
+  ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[] }[]> {
+    const response = await this.client.messages.create({
+      model: MODEL,
+      max_tokens: 2048,
+      system: this.systemPrompt,
+      messages: [
+        {
+          role: "user",
+          content: `Generate ${count} rapid-fire practice questions for a timed drill.
+
+Skill: "${skill.name}" (${skill.skill_id})
+Description: ${skill.description}
+Target: ${skill.level === "hunter_prep" ? "6th grader (age 11-12)" : "rising 5th grader (age 9-10)"}
+
+These are for speed practice — questions should be clear and solvable quickly (15-30 seconds each).
+Each question should have 4-5 multiple choice answers.
+
+Format your response as a JSON array. ONLY output the JSON array, no other text:
+[
+  {
+    "questionText": "...",
+    "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ..."],
+    "correctAnswer": "A) ..."
+  },
+  ...
+]
+
+Make sure:
+- Questions test the skill directly
+- Distractors are plausible but clearly wrong
+- Each question is distinct (no repeats)
+- Questions are appropriate difficulty for the student's age`,
+        },
+      ],
+    });
+
+    const text = extractText(response);
+
+    try {
+      // Extract JSON from the response (may be wrapped in markdown code block)
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (!jsonMatch) return [];
+
+      const parsed = JSON.parse(jsonMatch[0]) as {
+        questionText: string;
+        correctAnswer: string;
+        answerChoices: string[];
+      }[];
+
+      return parsed.map((q) => ({
+        questionText: q.questionText,
+        correctAnswer: q.correctAnswer,
+        answerChoices: q.answerChoices,
+      }));
+    } catch {
+      return [];
+    }
+  }
+
   /** Get the system prompt (for use by streaming route handler). */
   getSystemPrompt(): string {
     return this.systemPrompt;

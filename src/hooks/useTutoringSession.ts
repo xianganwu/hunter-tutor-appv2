@@ -31,6 +31,8 @@ import type { TeachingMomentEvaluation } from "@/lib/teaching-moments";
 import { loadSkillMastery, saveSkillMastery, loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 import { selectNextSkills } from "@/lib/adaptive";
 import { getSkillIdsForDomain } from "@/lib/exam/curriculum";
+import { autoCompleteDailyTask } from "@/lib/daily-plan";
+import { checkAndAwardBadges, buildBadgeContext } from "@/lib/achievements";
 
 const ESTIMATED_QUESTIONS = 12;
 
@@ -367,6 +369,16 @@ export function useTutoringSession(skillId: string) {
 
       // Persist mastery before ending
       persistMastery();
+
+      // Auto-complete daily plan task
+      autoCompleteDailyTask(s.currentSkillId, "skill_practice");
+
+      // Check and award badges
+      const ctx = buildBadgeContext({
+        sessionQuestions: questionsAnswered,
+        sessionCorrect: correctCount,
+      });
+      checkAndAwardBadges(ctx);
 
       // Close the DB session with final skills covered
       if (sessionDbId.current) {

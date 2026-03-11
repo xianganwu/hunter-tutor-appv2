@@ -11,6 +11,11 @@ const DATA_SUFFIXES = [
   "reading-stamina",
   "teaching-moments",
   "essays",
+  "badges",
+  "mascot-customization",
+  "daily-plan",
+  "drills",
+  "weekly-snapshots",
 ] as const;
 
 export function getActiveUser(): string | null {

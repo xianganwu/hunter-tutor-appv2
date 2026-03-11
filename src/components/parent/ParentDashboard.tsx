@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { MasteryChart } from "./MasteryChart";
+import { WeeklyReport } from "./WeeklyReport";
 import { TypingIndicator } from "@/components/chat/TypingIndicator";
 import { aggregateParentData } from "@/lib/parent-data";
 import type { ParentData, DomainReadiness, SessionLogEntry } from "@/lib/parent-data";
+import { computeWeeklyDigest, type WeeklyDigest } from "@/lib/weekly-digest";
 
 // ─── Main Component ───────────────────────────────────────────────────
 
@@ -139,6 +141,9 @@ function Dashboard() {
   const [assessment, setAssessment] = useState<string | null>(null);
   const [focusAreas, setFocusAreas] = useState<readonly string[]>([]);
   const [loadingAi, setLoadingAi] = useState(false);
+  const [showWeeklyReport, setShowWeeklyReport] = useState(false);
+  const [weeklyDigest, setWeeklyDigest] = useState<WeeklyDigest | null>(null);
+  const [loadingDigest, setLoadingDigest] = useState(false);
 
   // Load data on mount
   useEffect(() => {
@@ -190,6 +195,54 @@ function Dashboard() {
     }
   }, [data, fetchAssessment]);
 
+  const generateWeeklyReport = useCallback(async () => {
+    if (!data) return;
+    setLoadingDigest(true);
+
+    // Compute digest locally
+    const digest = computeWeeklyDigest(
+      data.activeDaysThisWeek,
+      data.weeklyMinutes,
+      { current: 0, longest: 0 }, // Streak data not available directly, but non-critical
+      0, // Essays count not tracked in parent data directly
+    );
+
+    // Fetch AI narrative
+    try {
+      const res = await fetch("/api/parent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "generate_weekly_digest",
+          practiceDays: digest.practiceDays,
+          totalMinutes: digest.totalMinutes,
+          skillsImproved: digest.skillsImproved,
+          areasNeedingAttention: digest.areasNeedingAttention,
+          essaysWritten: digest.essaysWritten,
+          drillsCompleted: digest.drillsCompleted,
+          badgesEarned: digest.badgesEarned,
+          streakCurrent: digest.streakStatus.current,
+          streakLongest: digest.streakStatus.longest,
+        }),
+      });
+
+      if (res.ok) {
+        const result = (await res.json()) as { narrative?: string };
+        setWeeklyDigest({
+          ...digest,
+          aiNarrative: result.narrative ?? "",
+        });
+      } else {
+        setWeeklyDigest(digest);
+      }
+    } catch {
+      setWeeklyDigest(digest);
+    }
+
+    setLoadingDigest(false);
+    setShowWeeklyReport(true);
+  }, [data]);
+
   if (!data) {
     return (
       <div className="flex items-center justify-center min-h-[40vh]">
@@ -200,7 +253,16 @@ function Dashboard() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 space-y-8 bg-surface-50 dark:bg-surface-950 min-h-screen">
+      {/* Weekly Report overlay */}
+      {showWeeklyReport && weeklyDigest && (
+        <WeeklyReport
+          digest={weeklyDigest}
+          onClose={() => setShowWeeklyReport(false)}
+        />
+      )}
+
       {/* Header */}
+      {!showWeeklyReport && (
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-100">
@@ -210,14 +272,25 @@ function Dashboard() {
             Hunter exam prep progress overview
           </p>
         </div>
-        <a
-          href="/dashboard"
-          className="text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
-        >
-          Student View
-        </a>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => void generateWeeklyReport()}
+            disabled={loadingDigest}
+            className="rounded-xl bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 disabled:opacity-50 transition-colors"
+          >
+            {loadingDigest ? "Generating..." : "Weekly Report"}
+          </button>
+          <a
+            href="/dashboard"
+            className="text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
+          >
+            Student View
+          </a>
+        </div>
       </div>
+      )}
 
+      {!showWeeklyReport && <>
       {/* Weekly Practice */}
       <WeeklyPracticeCard
         minutes={data.weeklyMinutes}
@@ -323,6 +396,7 @@ function Dashboard() {
         Individual questions and answers are not shown to preserve your
         child&apos;s sense of safety with the tutor.
       </p>
+      </>}
     </div>
   );
 }

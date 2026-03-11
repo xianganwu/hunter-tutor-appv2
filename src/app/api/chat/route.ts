@@ -281,6 +281,15 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
         return NextResponse.json({ text: response });
       }
 
+      case "generate_drill_batch": {
+        const skill = getSkillById(body.skillId);
+        if (!skill) {
+          return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
+        }
+        const questions = await agent.generateDrillBatch(skill, body.count ?? 10);
+        return NextResponse.json({ questions });
+      }
+
       case "get_summary": {
         const accuracy = body.questionsAnswered > 0
           ? Math.round((body.correctCount / body.questionsAnswered) * 100)

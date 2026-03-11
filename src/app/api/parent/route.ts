@@ -23,6 +23,18 @@ type ParentAction =
       readingLevel: number | null;
       readingWpm: number | null;
       mistakePatterns: readonly { skillName: string; count: number }[];
+    }
+  | {
+      type: "generate_weekly_digest";
+      practiceDays: number;
+      totalMinutes: number;
+      skillsImproved: readonly { name: string; before: number; after: number }[];
+      areasNeedingAttention: readonly { name: string; mastery: number }[];
+      essaysWritten: number;
+      drillsCompleted: number;
+      badgesEarned: readonly string[];
+      streakCurrent: number;
+      streakLongest: number;
     };
 
 // ─── Response ─────────────────────────────────────────────────────────
@@ -31,6 +43,7 @@ interface ParentApiResponse {
   readonly success?: boolean;
   readonly assessment?: string;
   readonly focusAreas?: readonly string[];
+  readonly narrative?: string;
   readonly error?: string;
 }
 
@@ -121,6 +134,43 @@ FOCUS_AREAS: ["rec1", "rec2", "rec3", "rec4"]`,
         }
 
         return NextResponse.json({ assessment, focusAreas });
+      }
+
+      case "generate_weekly_digest": {
+        const client = getAnthropicClient();
+
+        const skillsImpSummary = body.skillsImproved
+          .map((s) => `- ${s.name}: ${s.before}% → ${s.after}%`)
+          .join("\n");
+        const attentionSummary = body.areasNeedingAttention
+          .map((a) => `- ${a.name}: ${a.mastery}% mastery`)
+          .join("\n");
+
+        const response = await client.messages.create({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 256,
+          system: `You are writing a brief weekly progress summary for a parent whose child is preparing for the Hunter College High School entrance exam. Be warm, specific, and encouraging. Keep it to 2-3 sentences.`,
+          messages: [
+            {
+              role: "user",
+              content: `Write a 2-3 sentence parent-friendly summary of this week's progress:
+
+Practice: ${body.practiceDays} days, ${body.totalMinutes} minutes
+Streak: ${body.streakCurrent} days (longest: ${body.streakLongest})
+Essays: ${body.essaysWritten}, Drills: ${body.drillsCompleted}
+Badges earned: ${body.badgesEarned.length > 0 ? body.badgesEarned.join(", ") : "none"}
+${skillsImpSummary ? `Skills improved:\n${skillsImpSummary}` : "No notable skill improvements this week."}
+${attentionSummary ? `Needs attention:\n${attentionSummary}` : ""}
+
+Keep it brief and parent-friendly. Focus on what went well and one area to encourage.`,
+            },
+          ],
+        });
+
+        const narrative =
+          response.content[0].type === "text" ? response.content[0].text : "";
+
+        return NextResponse.json({ narrative });
       }
 
       default:

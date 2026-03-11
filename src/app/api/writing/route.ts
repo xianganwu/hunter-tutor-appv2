@@ -42,6 +42,8 @@ export async function GET(): Promise<NextResponse<{ essays: StoredEssay[] } | { 
         wordCount: countWords(s.essayText),
         feedback,
         createdAt: s.createdAt.toISOString(),
+        revisionOf: s.revisionOf,
+        revisionNumber: s.revisionNumber,
       };
     });
 
@@ -113,6 +115,7 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
         );
 
         // Persist to DB in the background if user is authenticated
+        let submissionId: string | undefined;
         void (async () => {
           try {
             const session = await getSessionFromCookie();
@@ -121,7 +124,7 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
             const writingSession = await prisma.tutoringSession.create({
               data: { studentId: session.sub, domain: "writing" },
             });
-            await prisma.writingSubmission.create({
+            const submission = await prisma.writingSubmission.create({
               data: {
                 sessionId: writingSession.id,
                 prompt: body.promptText,
@@ -129,6 +132,7 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
                 aiFeedback: JSON.stringify(feedback),
               },
             });
+            submissionId = submission.id;
           } catch (err) {
             console.error("[writing] DB save error:", err);
           }
@@ -137,6 +141,51 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
         return NextResponse.json({
           text: feedback.overallFeedback,
           feedback,
+          submissionId,
+        });
+      }
+
+      case "evaluate_revision": {
+        const revisedFeedback = await agent.evaluateEssay(
+          body.promptText,
+          body.revisedEssayText
+        );
+
+        // Persist revision to DB
+        void (async () => {
+          try {
+            const session = await getSessionFromCookie();
+            if (!session) return;
+            const writingSession = await prisma.tutoringSession.create({
+              data: { studentId: session.sub, domain: "writing" },
+            });
+            await prisma.writingSubmission.create({
+              data: {
+                sessionId: writingSession.id,
+                prompt: body.promptText,
+                essayText: body.revisedEssayText,
+                aiFeedback: JSON.stringify(revisedFeedback),
+                revisionOf: body.originalSubmissionId,
+                revisionNumber: body.revisionNumber,
+              },
+            });
+          } catch (err) {
+            console.error("[writing] DB revision save error:", err);
+          }
+        })();
+
+        const originalFeedbackParsed = JSON.parse(body.originalFeedback) as EssayFeedback;
+        const scoreComparison = [
+          { category: "Organization", before: originalFeedbackParsed.scores.organization, after: revisedFeedback.scores.organization },
+          { category: "Clarity", before: originalFeedbackParsed.scores.clarity, after: revisedFeedback.scores.clarity },
+          { category: "Evidence", before: originalFeedbackParsed.scores.evidence, after: revisedFeedback.scores.evidence },
+          { category: "Grammar", before: originalFeedbackParsed.scores.grammar, after: revisedFeedback.scores.grammar },
+        ];
+
+        return NextResponse.json({
+          text: revisedFeedback.overallFeedback,
+          feedback: revisedFeedback,
+          scoreComparison,
         });
       }
 

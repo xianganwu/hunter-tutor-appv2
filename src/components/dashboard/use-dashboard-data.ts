@@ -7,6 +7,13 @@ import { loadMistakes } from "@/lib/mistakes";
 import { loadStaminaProgress } from "@/lib/reading-stamina";
 import { loadTeachingMoments } from "@/lib/teaching-moments";
 import { loadSimulationHistory } from "@/lib/simulation";
+import { loadDrillHistory } from "@/lib/drill";
+import {
+  checkAndAwardBadges,
+  buildBadgeContext,
+  type BadgeDefinition,
+} from "@/lib/achievements";
+import { maybeSnapshotMastery } from "@/lib/weekly-digest";
 import type {
   SerializedSkillState,
   DomainProgress,
@@ -102,6 +109,7 @@ export interface DashboardData {
   readonly domainProgress: readonly DomainProgress[];
   readonly streakData: StreakData;
   readonly weeklySummary: WeeklySummaryData;
+  readonly newlyEarnedBadges: readonly BadgeDefinition[];
   readonly loading: boolean;
 }
 
@@ -116,6 +124,7 @@ export function useDashboardData(): DashboardData {
       sessionsCompleted: 0,
       areasToFocus: [],
     },
+    newlyEarnedBadges: [],
     loading: true,
   });
 
@@ -126,6 +135,10 @@ export function useDashboardData(): DashboardData {
     const stamina = loadStaminaProgress();
     const teachingMoments = loadTeachingMoments();
     const simulations = loadSimulationHistory();
+    const drills = loadDrillHistory();
+
+    // Trigger weekly mastery snapshot if applicable
+    maybeSnapshotMastery();
 
     // Build skill states for every skill in the catalog
     const storedMap = new Map(stored.map((s) => [s.skillId, s]));
@@ -164,13 +177,16 @@ export function useDashboardData(): DashboardData {
       };
     });
 
-    // Streak data
+    // Streak data — include drill dates
+    const drillDates = drills.map((d) => ({
+      completedAt: d.completedAt,
+    }));
     const sortedDates = collectActivityDates(
       stored,
       mistakes,
       stamina.records,
       teachingMoments,
-      simulations,
+      [...simulations, ...drillDates.map((d) => ({ completedAt: d.completedAt }))],
     );
     const { currentStreak, longestStreak } = computeStreaks(sortedDates);
     const fourteenDaysAgo = new Date(Date.now() - 14 * MS_PER_DAY)
@@ -225,6 +241,22 @@ export function useDashboardData(): DashboardData {
       }
     }
 
+    // Check and award badges
+    const overallMastery =
+      states.length > 0
+        ? states.reduce((sum, s) => sum + s.masteryLevel, 0) / states.length
+        : 0;
+    const totalQuestions = states.reduce((sum, s) => sum + s.attemptsCount, 0);
+    const totalCorrect = states.reduce((sum, s) => sum + s.correctCount, 0);
+    const badgeCtx = buildBadgeContext({
+      currentStreak,
+      longestStreak,
+      totalQuestions,
+      totalCorrect,
+      overallMastery,
+    });
+    const newlyEarned = checkAndAwardBadges(badgeCtx);
+
     setData({
       skillStates: states,
       domainProgress: domains,
@@ -239,6 +271,7 @@ export function useDashboardData(): DashboardData {
         sessionsCompleted: weekDates.length,
         areasToFocus: areasToFocus.slice(0, 5),
       },
+      newlyEarnedBadges: newlyEarned,
       loading: false,
     });
   }, []);

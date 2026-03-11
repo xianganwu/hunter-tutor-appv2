@@ -91,6 +91,11 @@ export type ChatAction =
       type: "emotional_response";
       message: string;
       history?: ConversationMessage[];
+    }
+  | {
+      type: "generate_drill_batch";
+      skillId: string;
+      count?: number;
     };
 
 export interface ChatApiResponse {
