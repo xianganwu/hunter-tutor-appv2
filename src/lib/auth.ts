@@ -126,3 +126,12 @@ export async function getSessionFromCookie(): Promise<JwtPayload | null> {
   if (!token) return null;
   return verifySessionToken(token);
 }
+
+/** Parse session directly from a Request's Cookie header — more reliable than cookies() in some Route Handlers. */
+export async function getSessionFromRequest(request: Request): Promise<JwtPayload | null> {
+  const cookieHeader = request.headers.get("cookie") ?? "";
+  const match = cookieHeader.match(new RegExp(`(?:^|;\\s*)${JWT_COOKIE}=([^;]+)`));
+  const token = match?.[1];
+  if (!token) return null;
+  return verifySessionToken(token);
+}

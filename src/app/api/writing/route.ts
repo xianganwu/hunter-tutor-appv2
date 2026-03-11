@@ -3,7 +3,7 @@ import { TutorAgent } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
 import type { WritingAction, WritingApiResponse, StoredEssay } from "@/components/tutor/writing-types";
 import { prisma } from "@/lib/db";
-import { getSessionFromCookie } from "@/lib/auth";
+import { getSessionFromRequest } from "@/lib/auth";
 import type { EssayFeedback } from "@/lib/ai/tutor-agent";
 
 const agent = new TutorAgent();
@@ -14,10 +14,11 @@ function countWords(text: string): number {
 
 // ─── GET /api/writing — list student's essays ─────────────────────────
 
-export async function GET(): Promise<NextResponse<{ essays: StoredEssay[] } | { error: string }>> {
+export async function GET(request: Request): Promise<NextResponse<{ essays: StoredEssay[] } | { error: string }>> {
   try {
-    const session = await getSessionFromCookie();
+    const session = await getSessionFromRequest(request);
     if (!session) {
+      console.warn("[writing] GET: no session found in request cookies");
       return NextResponse.json({ essays: [] });
     }
 
@@ -109,11 +110,10 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
       }
 
       case "evaluate_essay": {
-        // Get session BEFORE the expensive AI call — cookies() context can be
-        // lost after long-running async operations in Next.js App Router.
-        const evalSession = await getSessionFromCookie();
+        // Parse session directly from request headers (cookies() from next/headers is unreliable here).
+        const evalSession = await getSessionFromRequest(request);
         if (!evalSession) {
-          console.warn("[writing] evaluate_essay: no session — essay will not be persisted");
+          console.warn("[writing] evaluate_essay: no session in request cookies — essay will not be persisted");
         }
 
         const feedback = await agent.evaluateEssay(
@@ -150,10 +150,9 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
       }
 
       case "evaluate_revision": {
-        // Get session BEFORE the AI call to avoid losing cookies() context.
-        const revisionSession = await getSessionFromCookie();
+        const revisionSession = await getSessionFromRequest(request);
         if (!revisionSession) {
-          console.warn("[writing] evaluate_revision: no session — revision will not be persisted");
+          console.warn("[writing] evaluate_revision: no session in request cookies — revision will not be persisted");
         }
 
         const revisedFeedback = await agent.evaluateEssay(
