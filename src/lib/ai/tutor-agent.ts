@@ -46,7 +46,7 @@ export interface ConversationMessage {
 // ─── Constants ────────────────────────────────────────────────────────
 
 const MODEL = "claude-sonnet-4-20250514";
-const MAX_TOKENS_LESSON = 2048;
+const MAX_TOKENS_LESSON = 4096;
 const MAX_TOKENS_QUESTION = 512;
 const MAX_TOKENS_FEEDBACK = 768;
 const MAX_TOKENS_ESSAY = 1024;
@@ -122,16 +122,21 @@ When a concept benefits from a visual — bar charts, number lines, shapes, coor
 
 SVG rules:
 - Output raw SVG tags inline (e.g., \`<svg width="300" height="200" viewBox="0 0 300 200">...</svg>\`).
-- Keep diagrams simple and clear: max 300-400px wide, 150-250px tall.
-- Use these exact colors for consistency: bars/shapes use \`#6366f1\` (indigo), \`#22c55e\` (green), \`#f59e0b\` (amber), \`#ef4444\` (red), \`#8b5cf6\` (purple). Use \`#1e293b\` for text/labels and \`#94a3b8\` for axis lines and grid lines.
-- Always include text labels directly in the SVG (axis labels, data labels, legend text).
-- Use \`font-family="system-ui, sans-serif"\` and \`font-size="12"\` for labels, \`font-size="14"\` for titles.
-- For bar charts: include axis lines, labeled bars, and a title.
-- For number lines: show tick marks with labels.
-- For geometry: label sides, angles, and key points.
-- For coordinate grids: draw axes with arrows, label origin and key points.
-- Do NOT reference external images or use \`<image>\` tags. Everything must be self-contained SVG.
-- Place the SVG on its own line, not inline with text. Put text explanation before and/or after the diagram.
+- CRITICAL: Keep SVGs compact — under 60 lines of SVG code. Use minimal grid lines (skip fine grids). Avoid verbose patterns/defs when simple shapes suffice.
+- Max dimensions: 300px wide, 200px tall.
+- Use these exact colors: bars/shapes \`#6366f1\` (indigo), \`#22c55e\` (green), \`#f59e0b\` (amber), \`#ef4444\` (red), \`#8b5cf6\` (purple). Text/labels \`#1e293b\`, axis/grid lines \`#94a3b8\`.
+- Always include text labels (axis labels, data labels).
+- Use \`font-family="system-ui, sans-serif"\` and \`font-size="12"\` for labels.
+- Do NOT reference external images or use \`<image>\` tags. Everything must be self-contained.
+- CRITICAL: Always close every SVG tag properly. The SVG MUST end with \`</svg>\`. Never leave SVG incomplete.
+- Place the SVG on its own line.
+
+Formatting rules:
+- Do NOT use markdown formatting (no ##, no **, no - bullets, no ### headers). The UI does not render markdown.
+- Use plain text for explanations. Separate paragraphs with blank lines.
+- For emphasis, simply state things clearly — do not wrap in asterisks or use header syntax.
+- For lists, write numbered steps like "1. First step" or use natural language ("First,... Then,... Finally,...").
+- Use $...$ for inline math and $$...$$ for display math (LaTeX).
 
 ## Curriculum Taxonomy
 

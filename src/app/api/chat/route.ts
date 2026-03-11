@@ -97,7 +97,7 @@ export async function POST(request: Request): Promise<Response> {
         if (wantStream) {
           return createSSEStream({
             model: "claude-sonnet-4-20250514",
-            max_tokens: 2048,
+            max_tokens: 4096,
             system: agent.getSystemPrompt(),
             messages: agent.buildTeachMessages(skill, body.mastery),
           });
@@ -187,7 +187,7 @@ export async function POST(request: Request): Promise<Response> {
         if (wantStream) {
           return createSSEStream({
             model: "claude-sonnet-4-20250514",
-            max_tokens: 2048,
+            max_tokens: 4096,
             system: agent.getSystemPrompt(),
             messages: agent.buildTeachMessages(skill, body.mastery),
           });

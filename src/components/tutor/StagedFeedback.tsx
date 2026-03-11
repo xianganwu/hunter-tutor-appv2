@@ -3,7 +3,6 @@
 import { useState, useCallback } from "react";
 import type { EssayFeedback } from "@/lib/ai/tutor-agent";
 import type { FeedbackStage, WritingApiResponse } from "./writing-types";
-import { ChatInput } from "@/components/chat/ChatInput";
 import { TypingIndicator } from "@/components/chat/TypingIndicator";
 
 interface StagedFeedbackProps {
@@ -163,11 +162,33 @@ export function StagedFeedback({
               {isLoading ? (
                 <TypingIndicator />
               ) : (
-                <ChatInput
-                  onSend={handleRewriteSubmit}
-                  disabled={isLoading}
-                  placeholder="Rewrite your introduction here..."
-                />
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const trimmed = rewrittenIntro.trim();
+                    if (trimmed) handleRewriteSubmit(trimmed);
+                  }}
+                  className="space-y-2"
+                >
+                  <textarea
+                    value={rewrittenIntro}
+                    onChange={(e) => setRewrittenIntro(e.target.value)}
+                    disabled={isLoading}
+                    placeholder="Rewrite your introduction here..."
+                    rows={6}
+                    className="w-full rounded-xl border border-surface-300 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 px-4 py-3 text-sm text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50 transition-colors resize-y min-h-[120px]"
+                    aria-label="Rewrite your introduction"
+                  />
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={isLoading || !rewrittenIntro.trim()}
+                      className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-40 disabled:hover:bg-brand-600 transition-colors"
+                    >
+                      Submit Rewrite
+                    </button>
+                  </div>
+                </form>
               )}
             </>
           )}
