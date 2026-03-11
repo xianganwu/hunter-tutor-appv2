@@ -1,72 +1,70 @@
-# Todo: 5 Major Features
+# Feature: Reading Passage Library Expansion + Difficulty Tagging
 
-## Feature 5: Richer Motivation & Rewards
-- [x] Create `src/lib/achievements.ts` — badge definitions, types, condition engine, localStorage CRUD
-- [x] Add `"badges"` and `"mascot-customization"` to `DATA_SUFFIXES` in `user-profile.ts`
-- [x] Create `src/components/shared/Confetti.tsx` — pure CSS confetti animation
-- [x] Create `src/components/shared/BadgeNotification.tsx` — toast notification on badge earned
-- [x] Create `src/components/dashboard/BadgeGallery.tsx` — grid of earned/locked badges
-- [ ] Modify `Mascot.tsx` — add `accessory` prop with SVG overlays (hat, cap, badge, cape)
-- [x] Integrate into `DashboardContent.tsx` — badge gallery section, notification rendering, mascot accessory
-- [x] Wire `checkAndAwardBadges` into `use-dashboard-data.ts` on load
-- [x] Wire `checkAndAwardBadges` into `useTutoringSession.ts` on session end
-- [x] Wire `checkAndAwardBadges` into `WritingWorkshop.tsx` on essay feedback
-- [x] Verify: typecheck, lint, build, manual test earning a badge
+## Phase 1: Content Generation (25 new passages → 50 total)
+- [x] Generate 5 new fiction passages (difficulty 2-5, word counts 250-800)
+- [x] Generate 5 new nonfiction passages (difficulty 2-5, word counts 250-800)
+- [x] Generate 5 new poetry passages (difficulty 2-5, word counts 200-400)
+- [x] Generate 5 new historical_document passages (difficulty 2-5, word counts 300-700)
+- [x] Generate 5 new science_article passages (difficulty 2-5, word counts 300-800)
+- [x] Each passage: 5 MC questions tagged to specific reading skills
+- [x] Ensure even distribution across stamina levels (1-6)
 
-## Feature 1: Daily Practice Plan
-- [x] Create `src/lib/daily-plan.ts` — plan generation algorithm, types, storage, auto-complete helper
-- [x] Add `"daily-plan"` to `DATA_SUFFIXES` in `user-profile.ts`
-- [x] Create `src/components/dashboard/DailyPracticePlan.tsx` — card with 3 tasks, checkmarks, start buttons
-- [x] Integrate into `DashboardContent.tsx` — place prominently above skill map
-- [x] Load daily plan in `use-dashboard-data.ts`, include in hook return
-- [x] Wire `autoCompleteDailyTask` into `useTutoringSession.ts` on session end
-- [x] Wire `autoCompleteDailyTask` into `WritingWorkshop.tsx` on feedback
-- [x] Add all-done celebration state with confetti
-- [x] Verify: typecheck, lint, build, manual test completing daily tasks
+## Phase 2: Dynamic Passage Loading
+- [x] Update `passages.ts` to import all 50 passages (10 per genre)
+- [x] Add new query functions: `getPassagesByLexile()`, `getPassagesByTheme()`, `getAllThemes()`
+- [x] Update `queryPassages()` to support lexile and theme filters
 
-## Feature 3: Timed Drill Mode
-- [x] Create `src/lib/drill.ts` — types, localStorage CRUD, result computation
-- [x] Add `"drills"` to `DATA_SUFFIXES` in `user-profile.ts`
-- [x] Add `generateDrillBatch()` method to `TutorAgent` in `tutor-agent.ts`
-- [x] Add `"generate_drill_batch"` handler to `/api/chat/route.ts`
-- [x] Create `src/hooks/useDrillSession.ts` — drill state machine (setup→active→complete)
-- [x] Create `src/components/tutor/DrillMode.tsx` — full drill UI with timer, questions, results
-- [x] Create `src/app/drill/page.tsx` — server component route
-- [x] Add "Timed Drill" quick action to `DashboardContent.tsx`
-- [x] Include drill history in `use-dashboard-data.ts` activity dates
-- [x] Include drill results in `parent-data.ts` session log + weekly minutes
-- [x] Wire badge check on drill completion
-- [x] Wire `autoCompleteDailyTask` on drill completion
-- [x] Verify: typecheck, lint, build, manual test running a drill
+## Phase 3: Enhanced Metadata & Filtering
+- [x] Add `lexile_range` field to PassageMetadata type
+- [x] Add `themes` field to PassageMetadata type
+- [x] Update existing 25 passages with lexile_range and themes
+- [x] All 25 new passages include lexile_range and themes
 
-## Feature 2: Essay Revision Cycle
-- [x] Add `revisionOf` and `revisionNumber` columns to `WritingSubmission` in `prisma/schema.prisma`
-- [x] Run `npx prisma db push` to apply schema changes
-- [x] Extend types in `writing-types.ts` — `StoredEssay`, `WorkshopPhase`, `WritingAction`
-- [x] Add `"evaluate_revision"` handler to `/api/writing/route.ts`
-- [x] Update GET handler to return `revisionOf` and `revisionNumber`
-- [x] Create `src/components/tutor/RevisionFeedback.tsx` — score comparison grid + AI narrative
-- [x] Modify `StagedFeedback.tsx` — add "Revise Full Essay" button + `onRevise` prop
-- [x] Modify `WritingWorkshop.tsx` — add revision phases (revising, resubmitting, revision_feedback)
-- [x] Modify `EssayHistory.tsx` — group by revision chain, show score progression
-- [x] Wire badge check for "Revision Pro" on score improvement
-- [x] Verify: typecheck, lint, build, manual test full revision cycle
+## Phase 4: Integration with Reading Stamina
+- [x] Update `selectPassageForLevel()` to prefer genre diversity
+- [x] Pass recent reading records for genre diversity logic
+- [x] Typecheck + lint + build passes
 
-## Feature 4: Weekly Parent Digest
-- [x] Create `src/lib/weekly-digest.ts` — digest computation, mastery snapshots, text formatter
-- [x] Add `"weekly-snapshots"` to `DATA_SUFFIXES` in `user-profile.ts`
-- [x] Add `"generate_weekly_digest"` handler to `/api/parent/route.ts`
-- [x] Create `src/components/parent/WeeklyReport.tsx` — digest UI with copy-to-clipboard
-- [x] Add "Weekly Report" button to `ParentDashboard.tsx` header
-- [x] Trigger weekly mastery snapshot in `use-dashboard-data.ts`
-- [x] Include drill/essay/badge data from all new features in digest
-- [x] Verify: typecheck, lint, build, manual test generating and copying report
+---
 
-## Final Review
-- [ ] Full flow test: dashboard → daily plan → drill → tutor → writing → parent report
-- [x] Run `npm run typecheck && npm run lint && npm run build`
-- [ ] Verify all badge triggers fire correctly across features
-- [ ] Check mobile responsiveness on all new components
+# Feature: Vocabulary Builder with Spaced Repetition
 
-## Remaining
-- [ ] Modify `Mascot.tsx` — add `accessory` prop with SVG overlays (deferred, non-critical)
+## Phase 1: Data Model & Types
+- [x] Create `src/lib/vocabulary.ts` — VocabWord, VocabCard, VocabDeck types
+- [x] SM-2 spaced repetition algorithm: computeNextReview()
+- [x] Deck operations: getDueCards, getNewCards, addWordToDeck, removeWordFromDeck
+- [x] Storage: loadVocabDeck/saveVocabDeck (localStorage)
+- [x] Stats: computeVocabStats with streak calculation
+
+## Phase 2: Word List Content
+- [x] `content/vocabulary/foundations.json` — 105 words (difficulty 1-3)
+- [x] `content/vocabulary/hunter_prep.json` — 108 words (difficulty 3-5)
+- [x] `src/lib/exam/vocabulary.ts` — word list loader + query functions
+
+## Phase 3: Vocab API
+- [x] `src/app/api/vocab/route.ts` — 3 actions:
+  - generate_context: AI generates example sentences
+  - evaluate_usage: AI evaluates student's sentence
+  - extract_vocab: AI extracts challenging words from passage
+
+## Phase 4: Core UI
+- [x] `src/app/vocab/page.tsx` — route shell
+- [x] `src/hooks/useVocabBuilder.ts` — state machine hook
+- [x] `src/components/vocab/VocabSession.tsx` — full UI with:
+  - Deck overview with stats + suggested words
+  - Card front (word + "Show Definition" / "I Know This")
+  - Card back (definition + example + SM-2 rating buttons)
+  - Use in a sentence mini-exercise with AI evaluation
+  - Session complete with stats summary
+
+## Phase 5: Integration
+- [x] Add "Vocab" to TopNav navigation links
+- [x] Add "Vocab Builder" quick action to DashboardContent
+- [x] Add /vocab to middleware protected paths + matcher
+- [ ] After reading session: extract difficult words → offer to add to vocab deck (future)
+
+## Phase 6: Verify
+- [x] Typecheck passes
+- [x] Lint passes
+- [x] Production build succeeds
+- [x] All 50 passages valid JSON with proper metadata

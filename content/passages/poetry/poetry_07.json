@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "poetry_07",
+    "title": "The Dream Maker's Workshop",
+    "genre": "poetry",
+    "difficulty_level": 3,
+    "word_count": 260,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_figurative_language",
+      "rc_inference",
+      "rc_tone_mood",
+      "rc_vocab_context"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["dreams"]
+  },
+  "pre_reading_context": "This poem imagines what happens inside a mysterious workshop where dreams are crafted each night.",
+  "passage_text": "Somewhere past the edge of waking,\nwhere the clock forgets to chime,\nthere's a workshop made of moonlight\nbuilt outside the walls of time.\n\nThere the Dream Maker is working,\nhands like spiders spinning thread,\nweaving stories out of starlight\nfor the pillow and the bed.\n\nShe has shelves of bottled colors —\nmidnight blue and sunset gold —\nand a cabinet of whispers\nfull of secrets never told.\n\nFor the restless, she makes oceans,\nrolling waves to rock them still.\nFor the lonely, she makes gardens\nblooming on a distant hill.\n\nFor the frightened, she makes armor,\nshields of courage, swords of light.\nFor the dreamers, she makes doorways\nopening on endless night.\n\nShe has never missed a bedtime,\nnever left a child unseen.\nEvery sleeper gets a story\nstitched in silver, stitched in dream.\n\nBut her finest work, she tells me,\nis not the grandest scene she weaves —\nit's the tiny dream of morning,\nthe one that says, \"You can believe.\"\n\nSo when you wake and can't remember\nwhat you dreamed the night before,\nknow the Dream Maker was with you,\nand she'll meet you there once more.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "Dreams are dangerous and should be avoided."},
+        {"letter": "B", "text": "An imaginary Dream Maker carefully crafts personalized dreams for every sleeper, suggesting that dreams are gifts that comfort and inspire us."},
+        {"letter": "C", "text": "People who dream too much have trouble waking up in the morning."},
+        {"letter": "D", "text": "The poem is a set of instructions for how to have better dreams."},
+        {"letter": "E", "text": "The Dream Maker is angry because people forget their dreams."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem describes a Dream Maker who creates customized dreams for different types of sleepers — oceans for the restless, gardens for the lonely, armor for the frightened. The main idea is that dreams are lovingly crafted gifts that bring comfort, courage, and hope.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because nightmares exist, but the poem presents dreams as positive — comforting, courageous, and inspiring."},
+        {"letter": "C", "explanation": "This is tempting because dreaming and waking are both mentioned, but the poem celebrates dreams rather than warning about their effects on waking."},
+        {"letter": "D", "explanation": "This is tempting because the poem discusses dreams in detail, but it tells an imaginative story, not practical instructions."},
+        {"letter": "E", "explanation": "This is tempting because the last stanza mentions forgetting dreams, but the Dream Maker is described as patient and caring — she 'will meet you there once more,' not as angry."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The poem says the Dream Maker has \"hands like spiders spinning thread.\" What type of figurative language is this, and what does it suggest?",
+      "answer_choices": [
+        {"letter": "A", "text": "Metaphor, suggesting the Dream Maker is actually a giant spider."},
+        {"letter": "B", "text": "Simile, comparing the Dream Maker's skillful, delicate handwork to the way a spider spins its web."},
+        {"letter": "C", "text": "Personification, giving human qualities to a spider."},
+        {"letter": "D", "text": "Hyperbole, greatly exaggerating the size of the Dream Maker's hands."},
+        {"letter": "E", "text": "Onomatopoeia, because 'spinning' sounds like thread being pulled."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The word 'like' signals a simile — a direct comparison. The Dream Maker's hands are compared to spiders spinning thread, suggesting her work is intricate, precise, and delicate, just like a spider constructing a web.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because spiders are mentioned, but the use of 'like' makes this a simile, not a metaphor. The Dream Maker is not being called a spider — her hands are compared to spiders."},
+        {"letter": "C", "explanation": "This is tempting because personification involves giving qualities to non-human things, but here a human's hands are being compared to spiders, not the other way around."},
+        {"letter": "D", "explanation": "This is tempting because figurative language can involve exaggeration, but this comparison is about delicacy and skill, not size."},
+        {"letter": "E", "explanation": "This is tempting because onomatopoeia involves sound, but 'spinning' does not imitate a sound the way words like 'buzz' or 'crash' do."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Why does the Dream Maker consider \"the tiny dream of morning\" her finest work?",
+      "answer_choices": [
+        {"letter": "A", "text": "Because it is the longest and most detailed dream she makes."},
+        {"letter": "B", "text": "Because morning dreams are the most colorful and exciting."},
+        {"letter": "C", "text": "Because it gives the sleeper hope and belief to carry into the waking day, which matters more than spectacular dream scenery."},
+        {"letter": "D", "text": "Because it is the easiest dream to remember after waking up."},
+        {"letter": "E", "text": "Because she only makes it for her favorite sleepers."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The poem says the finest work is 'not the grandest scene' but 'the tiny dream of morning, the one that says, You can believe.' This suggests that the most valuable gift is not spectacle but the simple feeling of hope and possibility that a person carries into their day.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because finest work might seem like the biggest work, but the poem explicitly says it is 'not the grandest scene' — it is tiny but meaningful."},
+        {"letter": "B", "explanation": "This is tempting because the poem describes colorful materials, but the morning dream's value comes from its message of belief, not its visual qualities."},
+        {"letter": "D", "explanation": "This is tempting because the last stanza discusses forgetting dreams, but the poem does not say the morning dream is the easiest to remember — its value is in the feeling it leaves behind."},
+        {"letter": "E", "explanation": "This is tempting because 'finest work' might suggest exclusivity, but the poem says the Dream Maker 'never left a child unseen' — she serves everyone equally."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What is the overall tone of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "Frightening and suspenseful"},
+        {"letter": "B", "text": "Warm, magical, and reassuring"},
+        {"letter": "C", "text": "Angry and demanding"},
+        {"letter": "D", "text": "Sad and hopeless"},
+        {"letter": "E", "text": "Scientific and factual"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem creates a magical atmosphere with moonlight, starlight, bottled colors, and whispered secrets. The Dream Maker is caring and attentive ('never left a child unseen'), and the ending is reassuring ('she'll meet you there once more'). The overall feeling is warm, wonder-filled, and comforting.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because nighttime and darkness are present, but the poem fills the night with beauty and comfort, not fear."},
+        {"letter": "C", "explanation": "This is tempting if the reader misreads the Dream Maker's dedication, but she is depicted as generous and caring, not angry."},
+        {"letter": "D", "explanation": "This is tempting because forgetting dreams could feel sad, but the poem ends with reassurance and hope, not sadness."},
+        {"letter": "E", "explanation": "This is tempting because dreams can be studied scientifically, but this poem is entirely imaginative and fantastical, not factual."}
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What does the word \"restless\" most likely mean as used in the fourth stanza?",
+      "answer_choices": [
+        {"letter": "A", "text": "Lazy and unwilling to move"},
+        {"letter": "B", "text": "Unable to relax or be still"},
+        {"letter": "C", "text": "Extremely hungry"},
+        {"letter": "D", "text": "Very tall"},
+        {"letter": "E", "text": "Perfectly calm and peaceful"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The Dream Maker gives the restless 'rolling waves to rock them still,' meaning she creates ocean dreams to calm them. 'Restless' means unable to settle or be still, which is why the soothing dream of ocean waves is the perfect remedy.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'rest' is part of the word, but 'restless' means the opposite of lazy — it means unable to stop moving or calm down."},
+        {"letter": "C", "explanation": "This is tempting as a random guess, but hunger has nothing to do with the poem's context of sleeping and dreaming."},
+        {"letter": "D", "explanation": "This is tempting because it is unrelated to the word's actual meaning — 'restless' describes a state of mind, not physical height."},
+        {"letter": "E", "explanation": "This is tempting because 'rest' sounds peaceful, but the '-less' suffix means without rest — the exact opposite of calm and peaceful."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    }
+  ]
+}

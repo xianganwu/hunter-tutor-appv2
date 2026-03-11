@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "poetry_09",
+    "title": "The Kitchen at Midnight",
+    "genre": "poetry",
+    "difficulty_level": 4,
+    "word_count": 320,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_figurative_language",
+      "rc_advanced_inference",
+      "rc_tone_mood",
+      "rc_advanced_vocab"
+    ],
+    "source_description": "original",
+    "lexile_range": "800L-1000L",
+    "themes": ["home", "memories"]
+  },
+  "pre_reading_context": "This poem describes a late-night visit to the kitchen and the memories it stirs.",
+  "passage_text": "The house has settled into its bones,\nfloorboards sighing under my weight,\nand the kitchen wears its nighttime face —\nshadowed, still, but not asleep.\n\nThe refrigerator hums its one low note,\na lullaby for no one in particular,\nand the faucet drips a metronome\nthat counts the seconds I should be in bed.\n\nBut I am here for the glass of water\nI did not really need,\ndrawn instead by something older,\nsomething threaded through the grain\nof this wooden table where we sat\nevery morning, every argument,\nevery quiet Tuesday supper\nwhen nothing happened and everything did.\n\nMy mother's handwriting is still\non the grocery list pinned to the board —\nmilk, bread, lemons, patience —\nthat last word underlined twice,\na private joke or maybe a prayer.\n\nI run my finger along the counter\nwhere she rolled out dough\nfor empanadas every December,\nher flour-dusted hands conducting\nan orchestra of cinnamon and heat.\n\nThe kitchen does not answer when I stand here.\nIt does not owe me conversation.\nBut it holds what other rooms forget:\nthe residue of living,\nthe warmth that lingers after the flame\nhas long gone out.\n\nI fill my glass. I drink. I stay\na moment longer than I need to,\nbecause this room remembers\nwhat I am afraid of losing,\nand in the silence between the hum\nand the drip, I hear it all again —\n\nthe clatter of plates being stacked,\nthe radio tuned to a Spanish station,\nmy mother singing off-key\nand not caring,\nand the particular sound\nof a family being itself\nwhen no one is watching.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "The speaker is hungry and looking for a midnight snack in the kitchen."},
+        {"letter": "B", "text": "Kitchens should be renovated regularly to keep them in good condition."},
+        {"letter": "C", "text": "A late-night visit to the kitchen becomes an encounter with powerful family memories, revealing that ordinary spaces hold deep emotional significance."},
+        {"letter": "D", "text": "The speaker is upset because the kitchen is too noisy at night."},
+        {"letter": "E", "text": "The poem is about the importance of writing grocery lists."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The speaker says they came for water they 'did not really need' but were 'drawn by something older.' The poem then reveals memories of the mother, family suppers, and ordinary moments. The main idea is that everyday spaces like kitchens can hold profound emotional meaning and connect us to people and moments we cherish.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the speaker is in the kitchen at night, but they explicitly say they came for a glass of water they did not really need — the true purpose is emotional, not physical hunger."},
+        {"letter": "B", "explanation": "This is tempting because the kitchen is described in detail, but the poem is about memory and emotion, not home improvement."},
+        {"letter": "D", "explanation": "This is tempting because the fridge hums and the faucet drips, but the speaker finds these sounds comforting, not annoying — they trigger memories."},
+        {"letter": "E", "explanation": "This is tempting because a grocery list is mentioned, but it is a detail that evokes the mother's personality, not the poem's central message."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The poem describes the mother's hands as \"conducting an orchestra of cinnamon and heat.\" What two figurative language devices are at work in this image?",
+      "answer_choices": [
+        {"letter": "A", "text": "Simile and onomatopoeia"},
+        {"letter": "B", "text": "Metaphor and imagery, comparing cooking to conducting an orchestra and engaging the senses of smell and touch."},
+        {"letter": "C", "text": "Alliteration and hyperbole"},
+        {"letter": "D", "text": "Personification and rhyme"},
+        {"letter": "E", "text": "Irony and repetition"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The mother's cooking is called 'conducting an orchestra' — a metaphor comparing her kitchen work to leading a musical performance, suggesting skill and artistry. 'Cinnamon and heat' create sensory imagery that lets the reader smell the spices and feel the warmth, engaging multiple senses.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because simile and onomatopoeia are real devices, but there is no 'like' or 'as' (so it is not a simile) and no sound-imitating words (so it is not onomatopoeia)."},
+        {"letter": "C", "explanation": "This is tempting because these are real devices, but 'conducting,' 'cinnamon,' and 'orchestra' do not feature prominent repeated starting sounds, and the description is not an exaggeration but a comparison."},
+        {"letter": "D", "explanation": "This is tempting because personification is a common device, but the mother is already a person — giving human qualities to a human is not personification. And the poem does not rhyme in this section."},
+        {"letter": "E", "explanation": "This is tempting because these are real devices, but the image is sincere (not ironic) and does not repeat words for effect."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "The grocery list includes the word \"patience\" underlined twice. The speaker says it might be \"a private joke or maybe a prayer.\" What does this reveal about the speaker's understanding of their mother?",
+      "answer_choices": [
+        {"letter": "A", "text": "The speaker thinks the mother was not very organized when making lists."},
+        {"letter": "B", "text": "The speaker recognizes that the mother had a sense of humor and also faced struggles that required inner strength, and the speaker is not certain which is reflected in that one word."},
+        {"letter": "C", "text": "The speaker believes the mother wanted to buy patience at the grocery store."},
+        {"letter": "D", "text": "The speaker is angry that the mother wrote on the board instead of using a phone."},
+        {"letter": "E", "text": "The speaker thinks the mother was impatient and easily frustrated."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By suggesting the word could be either a joke or a prayer, the speaker shows a nuanced understanding of the mother — someone who could be both playful and earnest, who might laugh about needing patience or genuinely ask for it during hard times. The ambiguity reflects the complexity of the mother's character.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the list mixes real items with an abstract quality, but this makes the list more revealing, not less organized — it shows the mother's personality."},
+        {"letter": "C", "explanation": "This is tempting as an overly literal reading, but 'patience' is not something sold in stores — the speaker and reader both understand this is figurative."},
+        {"letter": "D", "explanation": "This is tempting because the board is a specific detail, but the speaker treasures the handwriting — they are nostalgic, not critical of the mother's method."},
+        {"letter": "E", "explanation": "This is tempting because needing patience could suggest impatience, but the poem treats this detail with tenderness and humor, not as evidence of a character flaw."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What is the overall tone of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "Joyful and celebratory, like a party"},
+        {"letter": "B", "text": "Nostalgic and tender, with an undercurrent of longing and love"},
+        {"letter": "C", "text": "Cold and distant, with no emotional connection"},
+        {"letter": "D", "text": "Frightened and uneasy, as if the speaker is in danger"},
+        {"letter": "E", "text": "Sarcastic and mocking"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem is filled with tender details — the mother's handwriting, her singing off-key, the family's quiet suppers. The speaker lingers in the kitchen 'a moment longer than I need to' and is 'afraid of losing' these memories. The tone combines warmth and love with the ache of nostalgia for something that may be passing.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the memories are positive, but the tone is quiet and reflective, not celebratory — the speaker is alone at midnight, not at a party."},
+        {"letter": "C", "explanation": "This is tempting because the kitchen 'does not answer,' but the speaker's deep emotional engagement with the space and memories shows strong connection, not distance."},
+        {"letter": "D", "explanation": "This is tempting because the poem is set at midnight in a dark house, but the speaker feels safe and drawn to this space, not afraid."},
+        {"letter": "E", "explanation": "This is tempting because there is light humor (the mother singing off-key), but the overall tone is sincere and loving, not mocking."}
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What does the word \"residue\" most likely mean as used in the line \"the residue of living\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Garbage or waste that should be thrown away"},
+        {"letter": "B", "text": "The leftover traces, impressions, and feelings that remain after experiences have passed"},
+        {"letter": "C", "text": "Dust and dirt that accumulate on kitchen surfaces"},
+        {"letter": "D", "text": "Recipes that have been forgotten over time"},
+        {"letter": "E", "text": "Repairs that need to be made to an old house"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "In this context, 'residue' means the traces that remain after something is gone — not physical waste, but the emotional imprint of lived experience. The kitchen holds the 'residue of living': the lingering warmth, sounds, and feelings from years of family moments that have passed but left their mark.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'residue' can mean leftover material, but in this poetic context it refers to meaningful traces of experience, not garbage."},
+        {"letter": "C", "explanation": "This is tempting because residue can mean physical film or dust, but the poem is describing emotional and sensory traces — memories of cooking, singing, and family meals — not cleaning issues."},
+        {"letter": "D", "explanation": "This is tempting because cooking is mentioned, but 'residue of living' encompasses all life experiences, not just recipes."},
+        {"letter": "E", "explanation": "This is tempting because the house is described as settled and old, but the poem values the kitchen's history rather than cataloging things that need repair."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    }
+  ]
+}

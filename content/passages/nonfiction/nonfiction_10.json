@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_10",
+    "title": "The Rise of Veterinary Medicine: Careers That Care for Animals",
+    "genre": "nonfiction",
+    "difficulty_level": 5,
+    "word_count": 802,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_advanced_inference",
+      "rc_advanced_vocab",
+      "rc_comparing_viewpoints",
+      "rc_evidence_reasoning"
+    ],
+    "source_description": "original",
+    "lexile_range": "1000L-1200L",
+    "themes": ["careers"]
+  },
+  "pre_reading_context": "This article examines the growing field of veterinary medicine, the different career paths it offers, and the debate over how to make these careers accessible to more people.",
+  "passage_text": "When most people think of a veterinarian, they picture someone in a white coat examining a golden retriever or listening to a cat's heartbeat with a stethoscope. While that image is not inaccurate, it captures only a small fraction of what modern veterinary medicine encompasses. Today's veterinary professionals work in fields as diverse as wildlife conservation, food safety, public health, biomedical research, and even disaster response. The scope of the profession has expanded dramatically over the past several decades, and with it, the demand for skilled animal-health workers has surged.\n\nThe most visible branch of veterinary medicine is companion animal practice — caring for pets like dogs, cats, rabbits, and birds. Companion animal veterinarians perform examinations, diagnose illnesses, conduct surgeries, and advise pet owners on nutrition and preventive care. This work requires not only medical knowledge but also strong communication skills, since much of the job involves translating complex health information into language that worried pet owners can understand. A veterinarian might spend one hour performing a delicate dental procedure on a Labrador and the next hour gently explaining to a family that their elderly cat has kidney disease.\n\nBeyond companion animals, large-animal veterinarians work with livestock such as cattle, horses, pigs, and sheep. These professionals often travel to farms and ranches, working outdoors in all weather conditions. Their work has enormous economic implications: a single outbreak of disease in a cattle herd can cost a rancher hundreds of thousands of dollars and disrupt food supply chains that affect millions of consumers. Large-animal veterinarians must combine medical expertise with an understanding of agricultural economics and biosecurity — the protocols designed to prevent the spread of infectious diseases.\n\nA less well-known but increasingly important branch is veterinary public health. Veterinarians in this field work to prevent diseases that can jump from animals to humans, known as zoonotic diseases. Approximately sixty percent of all infectious diseases in humans originated in animals, including influenza, Ebola, and the coronaviruses responsible for recent pandemics. Public health veterinarians collaborate with epidemiologists, wildlife biologists, and government agencies to monitor animal populations, track disease outbreaks, and develop vaccination strategies. Their work is largely invisible to the public but critically important to global health security.\n\nDespite the growing demand, the veterinary profession faces significant challenges related to accessibility and workforce sustainability. Veterinary school is expensive — the average graduate carries approximately $190,000 in student loan debt — and starting salaries, while respectable, are considerably lower than those in human medicine. This financial imbalance creates a barrier to entry that disproportionately affects students from lower-income families and underrepresented communities. As a result, the profession remains less diverse than the population it serves.\n\nTwo competing perspectives have emerged on how to address this problem. Some advocates argue for expanding the number of veterinary schools and increasing government-funded scholarships to reduce the financial burden on students. They point to models in countries like the United Kingdom and Australia, where government subsidies keep veterinary education more affordable. Others contend that the more effective approach is to develop and elevate veterinary technology programs — two-year degrees that train veterinary technicians to perform many of the same tasks as veterinarians under supervision, at a fraction of the educational cost. Proponents of this view argue that technicians can fill much of the workforce gap while creating an accessible career path that does not require a doctorate.\n\nCritics of the technician-expansion approach caution that it could create a two-tiered system in which complex medical decisions are increasingly made by professionals with less training. They argue that the quality of animal care — and, by extension, public health — depends on maintaining rigorous educational standards. Supporters counter that a well-regulated technician workforce, combined with clear scope-of-practice guidelines, would actually improve access to veterinary services in rural and underserved areas where full veterinary clinics are scarce.\n\nWhat is clear is that the need for veterinary professionals is not diminishing. As the human population grows, as climate change alters ecosystems and drives wildlife into closer contact with people, and as the bond between humans and their companion animals deepens, the demands placed on veterinary medicine will only intensify. The question is not whether the profession will grow, but whether it will grow in a way that is equitable, sustainable, and responsive to the full range of challenges it is being asked to address.\n\nFor young people considering a career that combines science, compassion, and meaningful impact, veterinary medicine offers a remarkable array of possibilities — far beyond the examination room and the golden retriever on the table.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Veterinary medicine is limited to treating cats and dogs in small clinics."},
+        {"letter": "B", "text": "Veterinary medicine is a diverse and expanding field with multiple career paths, but it faces challenges related to cost, accessibility, and workforce development."},
+        {"letter": "C", "text": "Veterinary technicians should replace veterinarians because they are less expensive to train."},
+        {"letter": "D", "text": "Large-animal veterinarians are more important than companion animal veterinarians."},
+        {"letter": "E", "text": "The cost of veterinary school is the only problem facing the profession today."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage covers the breadth of veterinary medicine (companion animal, large animal, public health), discusses growing demand, and then addresses challenges related to cost, diversity, and workforce development. The main idea encompasses both the profession's scope and its challenges.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because companion animal practice is discussed, but the passage explicitly opens by saying this common image captures 'only a small fraction' of the field."},
+        {"letter": "C", "explanation": "This is tempting because technician expansion is one perspective discussed, but the passage presents it as a debated viewpoint, not a conclusion."},
+        {"letter": "D", "explanation": "This is tempting because large-animal work is described as having 'enormous economic implications,' but the passage does not rank the branches — it shows they are all important."},
+        {"letter": "E", "explanation": "This is tempting because educational cost is a major topic, but the passage also discusses workforce diversity, rural access, scope-of-practice debates, and public health — cost is one of several challenges."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The passage mentions that approximately sixty percent of human infectious diseases originated in animals. What can be inferred about why this statistic is included?",
+      "answer_choices": [
+        {"letter": "A", "text": "To discourage people from keeping pets because animals spread diseases."},
+        {"letter": "B", "text": "To demonstrate that veterinary public health work is critically connected to human health and deserves more attention and resources."},
+        {"letter": "C", "text": "To argue that all veterinarians should switch from treating animals to preventing human diseases."},
+        {"letter": "D", "text": "To show that animals are inherently dangerous and should be avoided."},
+        {"letter": "E", "text": "To explain why veterinary school is so expensive."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The sixty-percent statistic appears in the paragraph about veterinary public health, a branch the author describes as 'less well-known but increasingly important.' By highlighting the direct link between animal diseases and human pandemics, the author builds the case that this underappreciated branch of veterinary medicine deserves greater recognition and resources.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because disease transmission sounds alarming, but the passage advocates for more veterinary public health work to prevent such transmission, not for avoiding animals."},
+        {"letter": "C", "explanation": "This is tempting because the statistic connects animal and human health, but the passage presents public health as one branch among many — it does not argue that all veterinarians should change focus."},
+        {"letter": "D", "explanation": "This is tempting because the statistic involves disease, but the passage discusses disease prevention through professional veterinary work, not a warning to stay away from animals."},
+        {"letter": "E", "explanation": "This is tempting because cost is discussed later, but the sixty-percent statistic is about the importance of public health veterinary work, not about educational costs."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "As used in the passage, what does the word \"biosecurity\" mean?",
+      "answer_choices": [
+        {"letter": "A", "text": "The study of how animals behave in groups"},
+        {"letter": "B", "text": "A system of security cameras used on farms"},
+        {"letter": "C", "text": "Protocols designed to prevent the spread of infectious diseases"},
+        {"letter": "D", "text": "Insurance policies that cover livestock losses"},
+        {"letter": "E", "text": "The natural immunity animals develop over their lifetimes"}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage directly defines biosecurity as 'the protocols designed to prevent the spread of infectious diseases.' The author provides this definition immediately after using the term, making its meaning clear in context.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'bio' relates to life and animals live in groups, but the passage specifically defines the term as disease-prevention protocols."},
+        {"letter": "B", "explanation": "This is tempting because 'security' suggests surveillance, but biosecurity in this context refers to disease prevention measures, not cameras or monitoring equipment."},
+        {"letter": "D", "explanation": "This is tempting because the passage mentions economic costs of livestock disease, but insurance is a financial product, not a disease-prevention protocol."},
+        {"letter": "E", "explanation": "This is tempting because natural immunity relates to disease prevention in a broad sense, but biosecurity refers to human-designed protocols and procedures, not natural biological processes."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 4,
+      "question_text": "The passage presents two viewpoints on how to address the veterinary workforce shortage. How do these viewpoints differ?",
+      "answer_choices": [
+        {"letter": "A", "text": "One side wants to eliminate veterinary schools, while the other wants to build more."},
+        {"letter": "B", "text": "One side favors expanding veterinary schools and scholarships to train more veterinarians, while the other favors developing shorter technician programs as a more accessible career path."},
+        {"letter": "C", "text": "One side believes animals do not need medical care, while the other believes they do."},
+        {"letter": "D", "text": "One side wants to raise veterinary salaries, while the other wants to lower them."},
+        {"letter": "E", "text": "Both sides agree that veterinary technicians should have the same training as veterinarians."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes one group that advocates for more veterinary schools and government-funded scholarships (making the full doctorate more accessible) and another that promotes veterinary technology programs (two-year degrees for technicians) as a faster, cheaper path to filling workforce gaps.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because expanding schools is discussed, but no one advocates eliminating existing veterinary schools — one side wants more schools, the other wants alternative pathways."},
+        {"letter": "C", "explanation": "This is tempting as a dramatic contrast, but both viewpoints agree that animals need care — the debate is about how to train enough people to provide it."},
+        {"letter": "D", "explanation": "This is tempting because salaries are mentioned as lower than in human medicine, but neither viewpoint specifically proposes raising or lowering salaries."},
+        {"letter": "E", "explanation": "This is tempting because both sides care about training quality, but the key difference is that technician programs are shorter (two-year) than veterinary doctorates — they do not have the same training length."}
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Which evidence from the passage best supports the claim that the financial cost of veterinary education creates a barrier for underrepresented students?",
+      "answer_choices": [
+        {"letter": "A", "text": "Companion animal veterinarians perform examinations, diagnose illnesses, and conduct surgeries."},
+        {"letter": "B", "text": "The average veterinary graduate carries approximately $190,000 in student loan debt, and starting salaries are lower than in human medicine, disproportionately affecting lower-income students."},
+        {"letter": "C", "text": "Approximately sixty percent of human infectious diseases originated in animals."},
+        {"letter": "D", "text": "Large-animal veterinarians often travel to farms and ranches and work outdoors."},
+        {"letter": "E", "text": "The bond between humans and their companion animals is deepening."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage directly states the average debt ($190,000), notes that starting salaries are lower than in human medicine, and explains that this 'financial imbalance creates a barrier to entry that disproportionately affects students from lower-income families and underrepresented communities.' This is the most direct evidence.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because it describes what veterinarians do, but it provides no information about the cost of education or its impact on different groups."},
+        {"letter": "C", "explanation": "This is tempting because it is a striking statistic, but it relates to public health, not to the financial barriers of veterinary education."},
+        {"letter": "D", "explanation": "This is tempting because it describes working conditions, but outdoor work is about the nature of the job, not educational costs or accessibility."},
+        {"letter": "E", "explanation": "This is tempting because it explains growing demand for veterinarians, but demand for services is a different issue from the financial barriers to entering the profession."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    }
+  ]
+}

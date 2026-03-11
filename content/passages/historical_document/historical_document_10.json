@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_10",
+    "title": "The Constitutional Convention: Compromise and the Birth of American Democracy",
+    "genre": "historical_document",
+    "difficulty_level": 5,
+    "word_count": 805,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_advanced_inference",
+      "rc_comparing_viewpoints",
+      "rc_advanced_vocab",
+      "rc_advanced_structure"
+    ],
+    "source_description": "original",
+    "lexile_range": "1000L-1200L",
+    "themes": ["democracy"]
+  },
+  "pre_reading_context": "This passage examines the fierce debates at the 1787 Constitutional Convention and how the delegates managed to create a lasting framework of government despite deep disagreements.",
+  "passage_text": "In May 1787, fifty-five delegates from twelve of the thirteen states gathered in Philadelphia for what was supposed to be a modest task: revising the Articles of Confederation, the young nation's first governing document. The Articles had created a loose alliance of states with a weak central government that could not collect taxes, regulate trade, or enforce its own laws. Within weeks of the convention's opening, however, the delegates abandoned the idea of revision altogether. Instead, they set out to design an entirely new system of government from scratch — a decision that was, in the opinion of many historians, both unauthorized and revolutionary.\n\nThe debates that followed were intense, personal, and at times seemed destined to tear the convention apart. The central question was deceptively simple: how should power be distributed? Large states like Virginia and Pennsylvania argued that representation in the national legislature should be based on population. This made intuitive sense to them — why should a state with ten times the population of another state have equal say in making laws? James Madison, the brilliant and meticulous delegate from Virginia, arrived in Philadelphia with a detailed plan, later called the Virginia Plan, that proposed a two-chamber legislature with representation in both chambers based on population.\n\nSmall states were alarmed. Under the Virginia Plan, states like Delaware, New Jersey, and Connecticut would be consistently outvoted on every issue. William Paterson of New Jersey countered with an alternative — the New Jersey Plan — which kept the one-state, one-vote structure of the Articles of Confederation. Paterson argued that the states had entered the union as equal partners and should remain so regardless of population. To do otherwise, he contended, would allow the large states to dominate and effectively eliminate the smaller states' sovereignty.\n\nFor weeks, the convention was deadlocked. Tempers frayed. Some delegates threatened to walk out. Benjamin Franklin, at eighty-one the oldest delegate present, reportedly urged his colleagues to seek divine guidance, suggesting they begin each session with a prayer. Whether or not Franklin's proposal was adopted, his intervention underscored the severity of the crisis — if one of the most experienced statesmen in the room felt the need to invoke spiritual help, the situation was dire.\n\nThe breakthrough came from Connecticut. Roger Sherman and Oliver Ellsworth proposed what became known as the Great Compromise (also called the Connecticut Compromise). Their solution was elegant in its balance: Congress would have two chambers. In the House of Representatives, seats would be apportioned based on population, satisfying the large states. In the Senate, every state would have exactly two senators, regardless of size, protecting the small states' equal voice. The compromise passed narrowly, by a single vote, and it saved the convention from collapse.\n\nBut the Great Compromise was not the only contentious issue. The question of slavery produced some of the convention's most morally fraught debates. Southern states wanted enslaved people counted in their population totals to gain more seats in the House of Representatives, even though enslaved people had no rights and could not vote. Northern delegates objected to this calculation, pointing out the contradiction of counting people as population for representation while treating them as property in every other legal context. The resulting Three-Fifths Compromise — which counted each enslaved person as three-fifths of a free person for purposes of representation and taxation — was a deeply unjust agreement that allowed the convention to continue but embedded the institution of slavery into the nation's founding document.\n\nThe Constitution that emerged from Philadelphia in September 1787 was not a document that any single delegate loved in its entirety. Benjamin Franklin, in his closing speech, admitted that there were \"several parts of this Constitution which I do not at present approve,\" but he urged his colleagues to sign it nonetheless, arguing that no assembly of imperfect men could produce a perfect document. Thirty-nine of the fifty-five delegates signed.\n\nThe Constitutional Convention reveals something important about democratic governance: it is not a process of achieving ideal outcomes but of negotiating workable ones. The delegates did not agree on fundamental questions of power, representation, and human rights. What they did agree on was that maintaining the union — imperfect as it was — was preferable to dissolution. This willingness to compromise, even when compromise meant accepting deeply flawed provisions, is both the Constitution's greatest strength and its most troubling legacy.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the central argument of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "The Constitutional Convention was a complete success because all delegates agreed on everything."},
+        {"letter": "B", "text": "The Constitution was created through difficult compromises among deeply divided delegates, and this process of negotiation — with both its strengths and moral failures — defines the nature of democratic governance."},
+        {"letter": "C", "text": "Small states were wrong to oppose the Virginia Plan."},
+        {"letter": "D", "text": "Benjamin Franklin single-handedly wrote the Constitution."},
+        {"letter": "E", "text": "The Articles of Confederation were a better system of government than the Constitution."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage traces the fierce debates (large vs. small states, slavery), the compromises that resolved them, and concludes that democratic governance is about 'negotiating workable outcomes' rather than achieving perfection. It also acknowledges that compromise produced 'deeply flawed provisions,' making the Constitution both a strength and a troubling legacy.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the Constitution was completed, but the passage emphasizes intense disagreements, a near-collapse, and morally fraught compromises — far from unanimous agreement."},
+        {"letter": "C", "explanation": "This is tempting because the Virginia Plan is presented first, but the passage gives legitimate weight to the small states' concerns about sovereignty and equal partnership."},
+        {"letter": "D", "explanation": "This is tempting because Franklin is quoted at the end, but he is presented as one of many delegates, and his closing speech acknowledges imperfection — he did not write the document alone."},
+        {"letter": "E", "explanation": "This is tempting because the Articles are described, but the passage says they were too weak (couldn't collect taxes, regulate trade, or enforce laws), which is why the convention happened."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The passage mentions that Benjamin Franklin suggested the delegates pray. What does the author infer from this detail?",
+      "answer_choices": [
+        {"letter": "A", "text": "Franklin was deeply religious and wanted to convert the other delegates."},
+        {"letter": "B", "text": "The fact that such an experienced statesman felt compelled to suggest prayer indicated how severe the crisis had become."},
+        {"letter": "C", "text": "Franklin was trying to delay the convention because he did not want it to succeed."},
+        {"letter": "D", "text": "Prayer was required at all government meetings in the 1700s."},
+        {"letter": "E", "text": "Franklin's suggestion immediately solved the deadlock between large and small states."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The author states that Franklin's intervention 'underscored the severity of the crisis' — meaning that if someone as experienced and rational as Franklin felt the need to suggest prayer, the situation must have been truly desperate. The detail serves as evidence of how close the convention came to failure.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because prayer suggests religious belief, but the author uses the detail to measure the crisis's severity, not to discuss Franklin's personal faith."},
+        {"letter": "C", "explanation": "This is tempting because delay could be a strategy, but the passage presents Franklin as trying to help resolve the crisis, not sabotage the convention."},
+        {"letter": "D", "explanation": "This is tempting because prayer in government settings was more common then, but the author specifically uses the detail to show how unusual the crisis was, not to describe standard practice."},
+        {"letter": "E", "explanation": "This is tempting because it follows the mention of the deadlock, but the breakthrough came from the Connecticut Compromise, not from Franklin's prayer suggestion."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "How did the Virginia Plan and the New Jersey Plan differ in their approach to representation?",
+      "answer_choices": [
+        {"letter": "A", "text": "The Virginia Plan favored representation based on population, while the New Jersey Plan wanted equal representation for each state regardless of size."},
+        {"letter": "B", "text": "The Virginia Plan wanted a king, while the New Jersey Plan wanted a president."},
+        {"letter": "C", "text": "Both plans proposed exactly the same system of representation."},
+        {"letter": "D", "text": "The Virginia Plan wanted no legislature at all, while the New Jersey Plan wanted three legislatures."},
+        {"letter": "E", "text": "The New Jersey Plan favored large states, while the Virginia Plan favored small states."}
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage clearly states that the Virginia Plan proposed 'representation in both chambers based on population' (favoring large states), while the New Jersey Plan 'kept the one-state, one-vote structure' (protecting small states). This was the fundamental disagreement that the Great Compromise resolved.",
+      "distractor_explanations": [
+        {"letter": "B", "explanation": "This is tempting because the convention discussed the structure of government, but neither plan involved a king — both proposed a legislature, and the debate was about how representation would work within it."},
+        {"letter": "C", "explanation": "This is tempting because both were proposed at the same convention, but the entire passage revolves around their dramatic differences."},
+        {"letter": "D", "explanation": "This is tempting because the plans involved legislatures, but the Virginia Plan proposed a two-chamber legislature, not no legislature, and the New Jersey Plan did not propose three."},
+        {"letter": "E", "explanation": "This is tempting because it reverses the actual positions — the Virginia Plan favored large states (population-based), and the New Jersey Plan favored small states (equal votes)."}
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"fraught\" mean as used in the phrase \"morally fraught debates\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Simple and straightforward"},
+        {"letter": "B", "text": "Filled with tension, difficulty, and moral complexity"},
+        {"letter": "C", "text": "Brief and unimportant"},
+        {"letter": "D", "text": "Humorous and entertaining"},
+        {"letter": "E", "text": "Secretly recorded and later published"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage uses 'morally fraught' to describe the debates over slavery, which involved deep contradictions (counting enslaved people for representation while denying them rights). 'Fraught' means filled with or accompanied by something unpleasant or problematic — in this case, moral tension and difficulty.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as the opposite meaning — the slavery debates were anything but simple, involving fundamental contradictions about human rights and representation."},
+        {"letter": "C", "explanation": "This is tempting because some debate topics are minor, but the slavery debates are described as one of the convention's most significant issues with lasting consequences."},
+        {"letter": "D", "explanation": "This is tempting because it misreads the tone entirely — the passage treats the slavery debates with gravity, not humor."},
+        {"letter": "E", "explanation": "This is tempting as a creative guess, but 'fraught' has nothing to do with recording — it means loaded with difficulty or tension."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the author structure the concluding paragraphs to shape the reader's understanding of the Constitution?",
+      "answer_choices": [
+        {"letter": "A", "text": "The author ends with unconditional praise, calling the Constitution a perfect document."},
+        {"letter": "B", "text": "The author uses Franklin's admission of imperfection and the concept of 'workable outcomes' to present the Constitution as both an achievement and an ongoing challenge, acknowledging its strengths alongside its moral failures."},
+        {"letter": "C", "text": "The author argues that the Constitution should be completely rewritten because it is outdated."},
+        {"letter": "D", "text": "The author ends by listing all the amendments that have been added to the Constitution since 1787."},
+        {"letter": "E", "text": "The author concludes by blaming the small states for all of the Constitution's problems."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The conclusion presents Franklin's honest admission that he did not approve of every part, and the final paragraph describes the Constitution's reliance on compromise as both 'its greatest strength and its most troubling legacy.' This balanced structure prevents the reader from seeing the document as either entirely heroic or entirely flawed.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the Constitution is often celebrated, but the passage quotes Franklin acknowledging imperfection and calls the Three-Fifths Compromise 'deeply unjust' — this is not unconditional praise."},
+        {"letter": "C", "explanation": "This is tempting because the passage identifies flaws, but it does not argue for rewriting — it presents the Constitution as an imperfect but workable framework."},
+        {"letter": "D", "explanation": "This is tempting because amendments are part of constitutional history, but the passage ends with a reflection on compromise, not a list of amendments."},
+        {"letter": "E", "explanation": "This is tempting because the small states caused a deadlock, but the conclusion blames no single group — it reflects on the nature of compromise itself."}
+      ],
+      "skill_tested": "rc_advanced_structure"
+    }
+  ]
+}

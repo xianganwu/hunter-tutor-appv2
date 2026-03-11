@@ -16,6 +16,7 @@ const DATA_SUFFIXES = [
   "daily-plan",
   "drills",
   "weekly-snapshots",
+  "vocab-deck",
 ] as const;
 
 export function getActiveUser(): string | null {

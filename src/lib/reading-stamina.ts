@@ -105,12 +105,14 @@ export function getStaminaLevel(level: number): StaminaLevel {
 
 /**
  * Select a passage from the library that fits the current stamina level.
+ * Prefers genre diversity — avoids repeating the same genre as recent readings.
  * Returns null if no suitable passage is available (AI generation needed).
  */
 export function selectPassageForLevel(
   level: number,
   completedIds: readonly string[],
-  passages: readonly Passage[]
+  passages: readonly Passage[],
+  recentRecords?: readonly ReadingRecord[]
 ): Passage | null {
   const config = getStaminaLevel(level);
   const completedSet = new Set(completedIds);
@@ -125,13 +127,29 @@ export function selectPassageForLevel(
 
   if (candidates.length === 0) return null;
 
+  // Build a set of recently seen genres (last 3 readings) to prefer diversity
+  const recentGenres = new Set<string>();
+  if (recentRecords && recentRecords.length > 0) {
+    const recent = recentRecords.slice(-3);
+    for (const r of recent) {
+      const p = passages.find((p) => p.metadata.passage_id === r.passageId);
+      if (p) recentGenres.add(p.metadata.genre);
+    }
+  }
+
   // Prefer passages closer to the target range midpoint
   const targetMid = (config.minWords + config.maxWords) / 2;
-  candidates.sort(
-    (a, b) =>
+
+  // Sort: first by genre diversity (unseen genres first), then by word count proximity
+  candidates.sort((a, b) => {
+    const aSeenGenre = recentGenres.has(a.metadata.genre) ? 1 : 0;
+    const bSeenGenre = recentGenres.has(b.metadata.genre) ? 1 : 0;
+    if (aSeenGenre !== bSeenGenre) return aSeenGenre - bSeenGenre;
+    return (
       Math.abs(a.metadata.word_count - targetMid) -
       Math.abs(b.metadata.word_count - targetMid)
-  );
+    );
+  });
 
   return candidates[0];
 }

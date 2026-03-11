@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_07",
+    "title": "The Secret Life of Coral Reefs",
+    "genre": "nonfiction",
+    "difficulty_level": 3,
+    "word_count": 452,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_supporting_details",
+      "rc_vocab_context",
+      "rc_evidence_reasoning",
+      "rc_author_purpose"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["nature"]
+  },
+  "pre_reading_context": "This article explores the hidden world of coral reefs and why they are so important to ocean life.",
+  "passage_text": "From a distance, a coral reef might look like a colorful underwater garden made of rock. But look closer, and you will discover something surprising: coral is alive. Each piece of coral is actually a colony of thousands of tiny animals called polyps, each one no bigger than a pencil eraser. These polyps build hard skeletons around their soft bodies using minerals from the ocean water. Over hundreds and thousands of years, these skeletons stack on top of one another, forming the massive reef structures that divers explore today.\n\nCoral reefs are sometimes called the \"rainforests of the sea\" because of the incredible variety of life they support. Although reefs cover less than one percent of the ocean floor, they are home to roughly twenty-five percent of all marine species. Fish, sea turtles, octopuses, shrimp, and countless other creatures depend on reefs for food and shelter. Some fish hide in the reef's crevices to escape predators. Others feed on the algae that grow on the coral's surface. The reef is like a bustling underwater city where every resident plays a role.\n\nOne of the most fascinating relationships on the reef is between coral and a type of microscopic algae called zooxanthellae. These tiny organisms live inside the coral's tissue and use sunlight to produce food through photosynthesis, just like plants on land. The coral provides the algae with a safe home and the nutrients they need, while the algae provide the coral with up to ninety percent of its energy. This partnership is what gives coral its brilliant colors — the greens, purples, oranges, and blues that make reefs so stunning.\n\nUnfortunately, coral reefs around the world are in danger. When ocean temperatures rise even slightly — by as little as one or two degrees Celsius — the coral becomes stressed and expels the algae living inside it. Without the algae, the coral turns white, a process known as bleaching. If the water stays warm for too long, the coral cannot recover and eventually dies.\n\nScientists estimate that nearly half of the world's coral reefs have been lost in the past thirty years due to warming oceans, pollution, and overfishing. Conservation efforts are underway: marine biologists are growing coral in nurseries and transplanting it to damaged reefs, and governments are creating marine protected areas where fishing and development are restricted. But experts agree that the most important step is slowing climate change to prevent ocean temperatures from rising further. The future of coral reefs — and the millions of species that depend on them — hangs in the balance.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Coral reefs are made of rock and are not alive."},
+        {"letter": "B", "text": "Coral reefs are vital living ecosystems that support enormous biodiversity but face serious threats from environmental changes."},
+        {"letter": "C", "text": "Scientists have already found solutions to save all the world's coral reefs."},
+        {"letter": "D", "text": "Zooxanthellae algae are the most important organisms in the ocean."},
+        {"letter": "E", "text": "Coral reefs should be turned into protected museums for tourists to visit."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that coral reefs are living colonies of animals, describes the biodiversity they support, explains the partnership with algae, and then discusses the threats they face. The main idea encompasses both their ecological importance and their endangered status.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the passage opens by saying reefs might look like rock, but it immediately corrects this — coral is alive, made of tiny animals called polyps."},
+        {"letter": "C", "explanation": "This is tempting because conservation efforts are mentioned, but the passage says the most important step (slowing climate change) has not been achieved — the problem is far from solved."},
+        {"letter": "D", "explanation": "This is tempting because zooxanthellae are discussed in detail, but they are one part of the reef ecosystem — the passage covers much more than just algae."},
+        {"letter": "E", "explanation": "This is tempting because protection is discussed, but the passage talks about marine protected areas for conservation, not converting reefs into tourist museums."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, what percentage of its energy does coral receive from zooxanthellae?",
+      "answer_choices": [
+        {"letter": "A", "text": "About ten percent"},
+        {"letter": "B", "text": "About twenty-five percent"},
+        {"letter": "C", "text": "About fifty percent"},
+        {"letter": "D", "text": "Up to ninety percent"},
+        {"letter": "E", "text": "One hundred percent"}
+      ],
+      "correct_answer": "D",
+      "correct_answer_explanation": "The passage directly states that the algae 'provide the coral with up to ninety percent of its energy.' This detail appears in the third paragraph about the coral-algae partnership.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because it is a number from the passage context, but ten percent is not mentioned — the actual figure is ninety percent."},
+        {"letter": "B", "explanation": "This is tempting because twenty-five percent appears in the passage, but it refers to the percentage of marine species living in reefs, not the coral's energy source."},
+        {"letter": "C", "explanation": "This is tempting because fifty percent might seem like a reasonable guess for a partnership, but the passage specifies up to ninety percent."},
+        {"letter": "E", "explanation": "This is tempting because the algae are clearly very important, but the passage says 'up to ninety percent,' not one hundred — the coral gets some energy from other sources."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word \"expels\" most likely mean as used in the fourth paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Absorbs and keeps inside"},
+        {"letter": "B", "text": "Forces out or pushes away"},
+        {"letter": "C", "text": "Protects and defends"},
+        {"letter": "D", "text": "Feeds and nourishes"},
+        {"letter": "E", "text": "Attracts and collects"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says stressed coral 'expels the algae living inside it,' and the result is that the coral turns white because the algae are gone. This means expels means forces out or pushes away — the algae are removed from the coral.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the algae normally live inside the coral, but expelling is the opposite of absorbing — the coral is getting rid of the algae."},
+        {"letter": "C", "explanation": "This is tempting because the coral normally provides the algae a safe home, but when stressed, it does the opposite — it removes them."},
+        {"letter": "D", "explanation": "This is tempting because the coral-algae relationship normally involves nourishment, but expelling causes the coral to lose its algae and turn white, which is harmful."},
+        {"letter": "E", "explanation": "This is tempting because it sounds positive, but the context shows expelling leads to bleaching and potential death — it is a negative process of removal."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Which evidence from the passage best supports the claim that coral reefs are extremely important to ocean life?",
+      "answer_choices": [
+        {"letter": "A", "text": "Coral polyps are no bigger than a pencil eraser."},
+        {"letter": "B", "text": "Reefs cover less than one percent of the ocean floor but are home to about twenty-five percent of all marine species."},
+        {"letter": "C", "text": "Coral skeletons are made from minerals in the ocean water."},
+        {"letter": "D", "text": "Coral bleaching turns the coral white."},
+        {"letter": "E", "text": "Scientists are growing coral in nurseries."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The statistic that reefs cover less than one percent of the ocean floor yet support twenty-five percent of marine species is the strongest evidence of their importance. This dramatic contrast shows how much life depends on a very small area of reef.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because it is a detail about coral, but the size of polyps does not demonstrate the reef's importance to ocean life."},
+        {"letter": "C", "explanation": "This is tempting because it explains how reefs are built, but the source of skeleton minerals does not show why reefs matter to other species."},
+        {"letter": "D", "explanation": "This is tempting because bleaching threatens reefs, but this detail describes a problem, not the importance of healthy reefs to marine life."},
+        {"letter": "E", "explanation": "This is tempting because it shows humans value reefs, but it describes a conservation effort, not direct evidence of the reef's ecological importance."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Why does the author call coral reefs the \"rainforests of the sea\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Because coral reefs receive a lot of rain from tropical storms."},
+        {"letter": "B", "text": "Because coral reefs are located only in tropical regions near rainforests."},
+        {"letter": "C", "text": "Because, like rainforests on land, coral reefs support an enormous variety of living things in a relatively small area."},
+        {"letter": "D", "text": "Because coral reefs are green like the trees in a rainforest."},
+        {"letter": "E", "text": "Because both rainforests and coral reefs are too dangerous for humans to explore."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The author uses this comparison right before explaining that reefs host twenty-five percent of marine species despite covering less than one percent of the ocean. Rainforests are famous for their biodiversity on land, so the comparison highlights reefs as the ocean's equivalent — small areas with extraordinary variety of life.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'rainforest' contains the word 'rain,' but the comparison is about biodiversity, not weather or rainfall."},
+        {"letter": "B", "explanation": "This is tempting because both are often found in tropical areas, but the comparison is about the diversity of life, not geographic location."},
+        {"letter": "D", "explanation": "This is tempting because color is a visible feature, but the passage describes coral as many colors (greens, purples, oranges, blues) — the comparison is about life diversity, not color."},
+        {"letter": "E", "explanation": "This is tempting because both environments can be challenging, but the passage does not discuss danger — it focuses on biodiversity and ecological importance."}
+      ],
+      "skill_tested": "rc_author_purpose"
+    }
+  ]
+}

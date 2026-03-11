@@ -141,7 +141,7 @@ export function DashboardContent() {
           <h2 className="mb-4 text-xl font-semibold text-surface-800 dark:text-surface-100">
             Quick Actions
           </h2>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
             <a
               href="/mistakes"
               className="flex flex-col items-center gap-2 rounded-2xl bg-surface-0 px-4 py-5 text-sm font-medium text-surface-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:bg-surface-900 dark:text-surface-300"
@@ -177,6 +177,15 @@ export function DashboardContent() {
                 ⚡
               </span>
               <span>Timed Drill</span>
+            </a>
+            <a
+              href="/vocab"
+              className="flex flex-col items-center gap-2 rounded-2xl bg-surface-0 px-4 py-5 text-sm font-medium text-surface-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:bg-surface-900 dark:text-surface-300"
+            >
+              <span className="text-2xl" aria-hidden="true">
+                📖
+              </span>
+              <span>Vocab Builder</span>
             </a>
             <a
               href="/simulate"

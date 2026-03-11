@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "poetry_06",
+    "title": "October's Last Leaf",
+    "genre": "poetry",
+    "difficulty_level": 2,
+    "word_count": 210,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_figurative_language",
+      "rc_vocab_context",
+      "rc_tone_mood",
+      "rc_inference"
+    ],
+    "source_description": "original",
+    "lexile_range": "400L-600L",
+    "themes": ["seasons"]
+  },
+  "pre_reading_context": "This poem describes the final days of autumn as the last leaf clings to its tree.",
+  "passage_text": "The maple stood in silence,\nbare branches reaching wide,\nlike arms stretched out in welcome\nto the cold November tide.\n\nIts sisters lost their colors\nweeks before the frost,\ntheir golds and reds and oranges\nswept up and tumbled, tossed.\n\nBut one small leaf held steady,\na stubborn scrap of flame,\nstill burning bright and copper\nwhen the autumn winds came.\n\nIt trembled in the morning,\nit danced through afternoon,\nand when the stars came glittering\nbeneath a silver moon,\n\nit whispered to the branches,\n\"I'm not quite ready yet.\nThe sky still has its colors —\nI'll stay for one more sunset.\"\n\nAnd so it hung there, glowing,\na lantern in the gray,\none final spark of autumn\nbefore it blew away.\n\nThe tree stood bare and quiet,\nbut if you listened near,\nyou'd almost hear it humming\nthe song of the departing year.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "Trees are dangerous during autumn because their branches are bare."},
+        {"letter": "B", "text": "A single leaf holds on through the end of autumn, symbolizing beauty and persistence before the arrival of winter."},
+        {"letter": "C", "text": "November is the best month of the year for watching trees."},
+        {"letter": "D", "text": "All leaves fall at exactly the same time every year."},
+        {"letter": "E", "text": "The moon causes leaves to fall from trees at night."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem follows one leaf that remains on a maple tree after all the others have fallen. It glows like a 'lantern' and a 'spark of autumn' before finally blowing away. The poem celebrates this last leaf's persistence and beauty as a symbol of holding on before change arrives.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because bare branches are mentioned, but they are described poetically ('like arms stretched out in welcome'), not as dangerous."},
+        {"letter": "C", "explanation": "This is tempting because the poem is set in autumn, but it does not rank months or argue that November is the best time for tree-watching."},
+        {"letter": "D", "explanation": "This is tempting because the other leaves fell earlier, but the poem's entire point is that this one leaf falls later — they do not all fall at the same time."},
+        {"letter": "E", "explanation": "This is tempting because the moon is mentioned, but it is part of the nighttime setting — the poem does not claim the moon causes leaves to fall."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What figurative language device is used in the line \"a stubborn scrap of flame\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Simile, because it uses the word 'like' to compare the leaf to fire."},
+        {"letter": "B", "text": "Metaphor, because it directly calls the leaf a flame without using 'like' or 'as.'"},
+        {"letter": "C", "text": "Onomatopoeia, because 'flame' sounds like fire crackling."},
+        {"letter": "D", "text": "Alliteration, because the words all start with the same letter."},
+        {"letter": "E", "text": "Hyperbole, because the leaf is literally on fire."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The leaf is called 'a stubborn scrap of flame' — it is not compared to flame using 'like' or 'as' (which would be a simile), but directly identified as flame. This is a metaphor that compares the leaf's bright copper color to fire.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because simile and metaphor are similar, but a simile requires 'like' or 'as.' This line says the leaf IS a scrap of flame, making it a metaphor."},
+        {"letter": "C", "explanation": "This is tempting because onomatopoeia involves sound, but 'flame' does not imitate a sound — it is a visual comparison."},
+        {"letter": "D", "explanation": "This is tempting because alliteration involves repeated starting sounds, but the words 'stubborn,' 'scrap,' and 'flame' do not all start with the same letter — only 's' repeats."},
+        {"letter": "E", "explanation": "This is tempting because flame is associated with fire, but the leaf is not literally burning — the word 'flame' describes its color, making this a metaphor, not an exaggeration of a real event."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word \"stubborn\" suggest about the leaf?",
+      "answer_choices": [
+        {"letter": "A", "text": "The leaf is angry at the wind for blowing."},
+        {"letter": "B", "text": "The leaf refuses to give up easily and holds on longer than expected."},
+        {"letter": "C", "text": "The leaf is heavier than the other leaves on the tree."},
+        {"letter": "D", "text": "The leaf is a different species from the other leaves."},
+        {"letter": "E", "text": "The leaf is ugly and unwanted by the tree."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Calling the leaf 'stubborn' gives it a human quality (personification) and suggests it is determined and unwilling to let go. While all the other leaves have fallen, this one persists, refusing to give up its place on the tree.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because stubborn can relate to conflict, but the poem portrays the leaf positively — it is persistent, not angry."},
+        {"letter": "C", "explanation": "This is tempting because a heavier leaf might stay attached longer, but 'stubborn' describes determination, not physical weight."},
+        {"letter": "D", "explanation": "This is tempting because it would explain why the leaf is different, but the poem describes it as part of the same maple tree — it is not a different species."},
+        {"letter": "E", "explanation": "This is tempting because stubborn can have negative connotations, but the poem celebrates the leaf as beautiful — a 'lantern' and a 'spark' — not as ugly or unwanted."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What is the overall tone of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "Angry and frustrated"},
+        {"letter": "B", "text": "Bittersweet and gentle, with a sense of beauty in endings"},
+        {"letter": "C", "text": "Frightening and dark"},
+        {"letter": "D", "text": "Silly and humorous"},
+        {"letter": "E", "text": "Bored and indifferent"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem has a gentle, tender quality — the leaf glows like a lantern, the tree hums a song, and the imagery is warm even as autumn ends. There is sadness in the leaf's departure, but also beauty, creating a bittersweet tone that finds loveliness in endings.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the leaf faces wind and cold, but the poem's language is gentle and admiring, not angry."},
+        {"letter": "C", "explanation": "This is tempting because bare trees and cold weather could feel dark, but the poem fills these images with warmth — flame, lantern, silver moon, glittering stars."},
+        {"letter": "D", "explanation": "This is tempting because the leaf 'talks' to the tree, which could seem playful, but the overall mood is reflective and tender, not silly."},
+        {"letter": "E", "explanation": "This is tempting because the poem is calm, but calmness is not the same as boredom — the poet clearly cares deeply about this small, beautiful moment."}
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 5,
+      "question_text": "When the leaf says \"I'm not quite ready yet,\" what can the reader infer about what the poet is expressing?",
+      "answer_choices": [
+        {"letter": "A", "text": "The poet believes leaves can actually talk to trees."},
+        {"letter": "B", "text": "The poet is expressing the universal feeling of not being ready to let go of something beautiful, even when change is inevitable."},
+        {"letter": "C", "text": "The poet wants autumn to last forever and is upset that seasons change."},
+        {"letter": "D", "text": "The leaf is asking the tree for permission to stay attached."},
+        {"letter": "E", "text": "The poet is writing instructions for how to preserve autumn leaves."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By giving the leaf a voice and having it say it is not ready to go, the poet uses personification to express a feeling that many people share — the wish to hold on to something beautiful a little longer, even though change (winter, in this case) is coming. The leaf represents anyone reluctant to let go.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the leaf speaks in the poem, but this is personification — a literary device — not a literal claim that leaves can talk."},
+        {"letter": "C", "explanation": "This is tempting because the poem values autumn's beauty, but it also accepts the leaf's departure gracefully — the tone is accepting, not upset."},
+        {"letter": "D", "explanation": "This is tempting because the leaf speaks to the branches, but it is declaring its own intention to stay, not asking for permission."},
+        {"letter": "E", "explanation": "This is tempting because someone might want to preserve autumn leaves, but the poem is about emotional experience, not practical instructions."}
+      ],
+      "skill_tested": "rc_inference"
+    }
+  ]
+}

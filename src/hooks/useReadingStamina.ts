@@ -101,11 +101,12 @@ export function useReadingStamina() {
     const levelConfig = getStaminaLevel(s.progress.currentLevel);
     const allPassages = Array.from(getAllPassages().values());
 
-    // Try to find a library passage first
+    // Try to find a library passage first (pass recent records for genre diversity)
     const libraryPassage = selectPassageForLevel(
       s.progress.currentLevel,
       s.progress.completedPassageIds,
-      allPassages
+      allPassages,
+      s.progress.records
     );
 
     if (libraryPassage) {

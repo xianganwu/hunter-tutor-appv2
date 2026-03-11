@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "science_article_07",
+    "title": "The Hidden World Beneath a Rotting Log",
+    "genre": "science_article",
+    "difficulty_level": 3,
+    "word_count": 448,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_supporting_details",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_author_purpose"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["ecology"]
+  },
+  "pre_reading_context": "This article reveals the surprisingly important role that dead trees play in keeping forests alive.",
+  "passage_text": "When a tree falls in the forest, most people would see it as the end of the tree's story. But for ecologists — scientists who study how living things interact with their environments — a fallen tree is just beginning the most important chapter of its life.\n\nA dead log on the forest floor is not simply rotting away. It is being transformed into something essential: a miniature ecosystem teeming with life. From the moment a tree hits the ground, organisms begin colonizing it. Fungi are usually the first to arrive, sending threadlike structures called hyphae deep into the wood. These hyphae break down the tough fibers of the wood, softening it and releasing nutrients that have been locked inside for decades. As the wood softens, beetles bore tunnels through it, creating pathways that allow moisture and air to penetrate deeper. Bacteria and other microorganisms move in next, further decomposing the wood and enriching the surrounding soil.\n\nThe log also becomes a habitat for larger creatures. Salamanders take shelter in the cool, moist spaces beneath and inside rotting logs. Mice and chipmunks nest in hollowed-out cavities. Carpenter ants build elaborate colonies within the softened wood, and their tunnels provide homes for other insects. In some forests, researchers have found over a thousand different species living on, in, or around a single decaying log.\n\nPerhaps the most important function of dead wood is nutrient cycling. A living tree absorbs minerals and nutrients from the soil through its roots and stores them in its trunk, branches, and leaves. When the tree dies and decomposes, all of those stored nutrients are gradually released back into the soil. This process is critical for the forest's health. Without decomposing logs, the soil would slowly lose the nutrients that new trees need to grow. In this sense, dead trees literally feed the next generation of living trees.\n\nDead wood also plays a role in water management. Rotting logs act like sponges, absorbing rainwater and releasing it slowly over time. This helps prevent flooding during heavy rains and keeps the soil moist during dry periods. In streams, fallen logs create small dams that slow water flow, reduce erosion, and create pools where fish can rest and breed.\n\nSome forest managers have begun to recognize the ecological value of dead wood and now deliberately leave fallen trees in place rather than clearing them away. This represents a shift in thinking — from viewing dead trees as waste to understanding them as vital infrastructure for a healthy forest. A forest without dead wood is like a city without plumbing: it may look tidy on the surface, but beneath that appearance, essential systems are missing.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Dead trees are useless waste that should be removed from forests."},
+        {"letter": "B", "text": "Dead and decomposing logs are vital to forest ecosystems, supporting biodiversity, nutrient cycling, and water management."},
+        {"letter": "C", "text": "Fungi are the only organisms that live on dead trees."},
+        {"letter": "D", "text": "Trees should never be allowed to fall down in forests."},
+        {"letter": "E", "text": "Salamanders are the most important animals in the forest."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains three key roles of dead logs: they support biodiversity (fungi, insects, salamanders), they cycle nutrients back into the soil, and they manage water flow. The main idea is that dead wood is not waste but a vital component of healthy forest ecosystems.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because dead trees might look like waste, but the passage argues the opposite — they are 'vital infrastructure for a healthy forest.'"},
+        {"letter": "C", "explanation": "This is tempting because fungi are discussed first and prominently, but the passage also describes beetles, bacteria, salamanders, mice, chipmunks, ants, and over a thousand species."},
+        {"letter": "D", "explanation": "This is tempting because the passage discusses fallen trees, but it argues that fallen trees are beneficial and should be left in place, not prevented from falling."},
+        {"letter": "E", "explanation": "This is tempting because salamanders are mentioned, but they are one of many species — the passage does not rank any single animal as most important."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, which organisms are usually the first to colonize a fallen tree?",
+      "answer_choices": [
+        {"letter": "A", "text": "Salamanders"},
+        {"letter": "B", "text": "Beetles"},
+        {"letter": "C", "text": "Fungi"},
+        {"letter": "D", "text": "Mice and chipmunks"},
+        {"letter": "E", "text": "Fish"}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage directly states that 'Fungi are usually the first to arrive, sending threadlike structures called hyphae deep into the wood.' They begin the decomposition process before other organisms move in.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because salamanders use logs, but the passage describes them as coming later to shelter in already-rotting wood, not as the first colonizers."},
+        {"letter": "B", "explanation": "This is tempting because beetles are mentioned early, but they arrive after fungi have softened the wood — beetles 'bore tunnels through it' after the fungi have already begun breaking it down."},
+        {"letter": "D", "explanation": "This is tempting because these animals live in logs, but they use 'hollowed-out cavities' — spaces created after significant decomposition has already occurred."},
+        {"letter": "E", "explanation": "This is tempting because fish are mentioned in the passage, but they live in streams near fallen logs, not in the logs themselves."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word \"colonizing\" most likely mean as used in the second paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Destroying completely"},
+        {"letter": "B", "text": "Moving into and establishing a presence in a new area"},
+        {"letter": "C", "text": "Painting or decorating"},
+        {"letter": "D", "text": "Running away from"},
+        {"letter": "E", "text": "Photographing for research purposes"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says organisms 'begin colonizing' the log, then describes fungi sending structures into the wood, beetles boring tunnels, and bacteria moving in. Colonizing means moving into a new area and establishing a presence there, just as these organisms establish themselves in the dead log.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the organisms do change the log, but colonizing means establishing a presence, not destroying — the organisms are building homes and communities."},
+        {"letter": "C", "explanation": "This is tempting as a creative guess, but colonizing in an ecological context means settling in and living in a new habitat, not decorating it."},
+        {"letter": "D", "explanation": "This is tempting as the opposite meaning — organisms are moving toward and into the log, not running away from it."},
+        {"letter": "E", "explanation": "This is tempting because scientists study these organisms, but colonizing refers to the organisms' own activity of moving in, not to research."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Based on the passage, what would likely happen to a forest if all dead wood were removed over many years?",
+      "answer_choices": [
+        {"letter": "A", "text": "The forest would become healthier because dead wood attracts harmful pests."},
+        {"letter": "B", "text": "The soil would lose nutrients, biodiversity would decrease, and water management would be disrupted."},
+        {"letter": "C", "text": "New trees would grow faster because they would have more space."},
+        {"letter": "D", "text": "The forest would look the same because dead wood has no important functions."},
+        {"letter": "E", "text": "The forest would become wetter because there would be nothing to absorb the water."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes dead wood as essential for nutrient cycling (returning nutrients to soil), biodiversity (supporting thousands of species), and water management (absorbing rainwater, preventing flooding). Removing all dead wood would disrupt all three functions, leading to nutrient-poor soil, fewer species, and water problems.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because some people view dead wood as attracting pests, but the passage presents the organisms in dead wood as beneficial to the ecosystem, not harmful."},
+        {"letter": "C", "explanation": "This is tempting because more space might seem good for growth, but the passage says dead trees feed new trees by releasing nutrients — without dead wood, new trees would have less nutrition."},
+        {"letter": "D", "explanation": "This is tempting if the reader missed the passage's main argument, but multiple paragraphs describe the critical functions of dead wood."},
+        {"letter": "E", "explanation": "This is tempting because the passage discusses dead wood absorbing water, but the answer about soil nutrient loss and decreased biodiversity is more comprehensive — the water management impact is just one part of the problem."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Why does the author compare a forest without dead wood to \"a city without plumbing\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "To suggest that forests need running water to survive."},
+        {"letter": "B", "text": "To show that dead wood performs essential but invisible functions, just as plumbing is hidden but critical to a city's operation."},
+        {"letter": "C", "text": "To argue that cities should have more trees and forests."},
+        {"letter": "D", "text": "To explain how plumbing systems are designed."},
+        {"letter": "E", "text": "To prove that forests are more important than cities."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The comparison highlights that dead wood, like plumbing, does essential work that is not visible on the surface. A forest might look 'tidy' without dead logs, just as a city looks fine from the outside, but essential systems (nutrient cycling, water management) would be missing — just as a city cannot function without its hidden plumbing.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because both plumbing and water are mentioned, but the comparison is about hidden infrastructure, not about forests needing running water specifically."},
+        {"letter": "C", "explanation": "This is tempting because the passage values forests, but the comparison is explaining the role of dead wood, not arguing for more urban trees."},
+        {"letter": "D", "explanation": "This is tempting because plumbing is mentioned, but the author is not explaining how plumbing works — plumbing is used as a familiar example to make the forest concept clearer."},
+        {"letter": "E", "explanation": "This is tempting because the comparison involves both forests and cities, but the author is not ranking them — the comparison illustrates how essential but invisible dead wood is."}
+      ],
+      "skill_tested": "rc_author_purpose"
+    }
+  ]
+}

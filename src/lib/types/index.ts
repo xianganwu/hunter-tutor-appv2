@@ -128,6 +128,8 @@ export interface PassageMetadata {
   readonly word_count: number;
   readonly tagged_skills: readonly string[];
   readonly source_description: string;
+  readonly lexile_range?: string;
+  readonly themes?: readonly string[];
 }
 
 export interface Passage {

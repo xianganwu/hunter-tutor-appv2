@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "science_article_08",
+    "title": "Chasing Tornadoes: The Science of Severe Storms",
+    "genre": "science_article",
+    "difficulty_level": 3,
+    "word_count": 550,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_supporting_details",
+      "rc_vocab_context",
+      "rc_evidence_reasoning",
+      "rc_passage_structure"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["weather"]
+  },
+  "pre_reading_context": "This article explains how tornadoes form, how scientists study them, and why predicting these powerful storms remains so challenging.",
+  "passage_text": "A tornado is one of nature's most violent phenomena — a rotating column of air that extends from a thunderstorm to the ground, capable of producing winds exceeding 300 miles per hour. In the United States alone, roughly 1,200 tornadoes occur each year, more than in any other country on Earth. Most of these tornadoes strike in a region stretching from Texas to South Dakota known informally as \"Tornado Alley,\" where the geographic and atmospheric conditions align to create the perfect recipe for severe storms.\n\nTornadoes begin with supercells — massive, rotating thunderstorms that can tower fifty thousand feet into the atmosphere. A supercell forms when three ingredients come together: warm, moist air near the ground; cool, dry air at higher altitudes; and wind shear, which is a change in wind speed or direction at different heights. The wind shear causes the air inside the storm to begin rotating horizontally, like a barrel rolling on its side. As the warm air rises rapidly (a process called an updraft), it tilts this rotating tube of air into a vertical position. When this rotating column, called a mesocyclone, tightens and intensifies, it can produce a funnel that descends toward the ground. The moment it touches the surface, it becomes a tornado.\n\nScientists who study tornadoes are called storm chasers or severe weather researchers. Their work is part courage and part precision. Storm chasers drive specially equipped vehicles into the path of developing storms, deploying instruments called probes that measure wind speed, atmospheric pressure, temperature, and humidity directly inside a tornado. Some teams use mobile Doppler radar units — truck-mounted radar systems that can scan the interior of a storm from a safe distance. The data collected from these instruments helps scientists understand the internal structure of tornadoes and improve forecasting models.\n\nDespite decades of research, predicting exactly when and where a tornado will form remains one of meteorology's greatest challenges. Weather forecasters can identify conditions that are favorable for tornado formation and issue watches (meaning tornadoes are possible) and warnings (meaning a tornado has been spotted or detected on radar). However, the average lead time for a tornado warning is only about thirteen minutes. This is because tornadoes develop rapidly and on a very small scale — while a thunderstorm might cover hundreds of square miles, a tornado might be only a few hundred yards wide and last for just minutes.\n\nResearchers are working to extend that warning time. One promising approach involves using networks of smaller, more numerous weather stations and radar units to monitor storm systems at higher resolution. Another involves feeding massive amounts of atmospheric data into computer simulations that can model storm behavior in near-real time. Machine learning — a type of artificial intelligence that can detect patterns in enormous datasets — is also being applied to tornado prediction, with early results showing improvement in identifying which storms are most likely to produce tornadoes.\n\nImproving tornado prediction is not just a scientific challenge — it is a matter of life and death. Every additional minute of warning time gives people more opportunity to seek shelter. Researchers estimate that extending average warning times from thirteen minutes to thirty minutes could reduce tornado-related fatalities by as much as forty-five percent.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Tornadoes are impossible to study because they are too dangerous."},
+        {"letter": "B", "text": "Tornadoes are powerful storms formed by specific atmospheric conditions, and scientists are working to improve prediction times despite significant challenges."},
+        {"letter": "C", "text": "Tornado Alley is the only place where tornadoes ever occur."},
+        {"letter": "D", "text": "Storm chasers enjoy chasing tornadoes as a hobby for fun."},
+        {"letter": "E", "text": "Machine learning has already solved the problem of tornado prediction."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage covers tornado formation (supercells, wind shear, updrafts), how scientists study them (storm chasing, instruments), the challenges of prediction (short warning times), and current research to improve forecasting. The main idea encompasses all of these elements.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because tornadoes are dangerous, but the passage describes scientists who successfully study tornadoes using vehicles, probes, and radar."},
+        {"letter": "C", "explanation": "This is tempting because Tornado Alley is highlighted, but the passage says tornadoes occur across the United States — Tornado Alley just has the most."},
+        {"letter": "D", "explanation": "This is tempting because the term 'storm chasers' sounds adventurous, but the passage describes their work as serious scientific research, not a hobby."},
+        {"letter": "E", "explanation": "This is tempting because machine learning is mentioned, but the passage says it shows 'early results' and is being 'applied' — the problem is not yet solved."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, what three ingredients are needed for a supercell to form?",
+      "answer_choices": [
+        {"letter": "A", "text": "Rain, snow, and hail"},
+        {"letter": "B", "text": "Warm moist air near the ground, cool dry air at higher altitudes, and wind shear"},
+        {"letter": "C", "text": "Flat terrain, a nearby ocean, and cold temperatures"},
+        {"letter": "D", "text": "Lightning, thunder, and heavy rain"},
+        {"letter": "E", "text": "High altitude, low pressure, and sunshine"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage directly lists the three ingredients: 'warm, moist air near the ground; cool, dry air at higher altitudes; and wind shear, which is a change in wind speed or direction at different heights.'",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because these are weather phenomena, but they are products of storms, not the ingredients that create supercells."},
+        {"letter": "C", "explanation": "This is tempting because geography matters for Tornado Alley, but the passage lists atmospheric conditions (warm air, cool air, wind shear), not geographic features."},
+        {"letter": "D", "explanation": "This is tempting because lightning and thunder accompany thunderstorms, but the passage identifies specific atmospheric ingredients, not storm effects."},
+        {"letter": "E", "explanation": "This is tempting because these are atmospheric terms, but they do not match the three ingredients listed in the passage."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word \"phenomena\" most likely mean as used in the first paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Imaginary events that do not really happen"},
+        {"letter": "B", "text": "Observable events or occurrences in nature"},
+        {"letter": "C", "text": "Man-made machines used for weather research"},
+        {"letter": "D", "text": "Types of clouds found only in deserts"},
+        {"letter": "E", "text": "Musical performances given outdoors"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage calls a tornado 'one of nature's most violent phenomena,' meaning it is a natural event or occurrence that can be observed. A phenomenon (singular) or phenomena (plural) refers to observable events, and the context of describing a tornado as a rotating column of air confirms this meaning.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'phenomena' might sound unfamiliar, but the passage describes tornadoes as very real events with measurable wind speeds and documented occurrences."},
+        {"letter": "C", "explanation": "This is tempting because the passage discusses research instruments, but phenomena refers to natural events, not man-made machines."},
+        {"letter": "D", "explanation": "This is tempting because weather is involved, but phenomena is a general term for observable events, not a specific type of cloud."},
+        {"letter": "E", "explanation": "This is tempting as a creative guess, but the context of violent storms makes it clear that phenomena refers to natural events, not performances."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Which evidence from the passage best supports the claim that improving tornado warning times could save lives?",
+      "answer_choices": [
+        {"letter": "A", "text": "Roughly 1,200 tornadoes occur each year in the United States."},
+        {"letter": "B", "text": "Supercells can tower fifty thousand feet into the atmosphere."},
+        {"letter": "C", "text": "Researchers estimate that extending average warning times from thirteen to thirty minutes could reduce tornado-related fatalities by forty-five percent."},
+        {"letter": "D", "text": "Storm chasers drive specially equipped vehicles into developing storms."},
+        {"letter": "E", "text": "Wind shear causes air inside a storm to rotate horizontally."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "This statistic directly connects warning time to lives saved: extending warnings from thirteen to thirty minutes could reduce deaths by forty-five percent. This is the most direct evidence supporting the claim that better predictions save lives.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because it shows how common tornadoes are, but frequency does not directly prove that better warning times save lives."},
+        {"letter": "B", "explanation": "This is tempting because it shows how powerful supercells are, but height does not directly relate to warning times or fatality reduction."},
+        {"letter": "D", "explanation": "This is tempting because storm chasing contributes to research, but it describes a method, not evidence about warning times saving lives."},
+        {"letter": "E", "explanation": "This is tempting because it explains tornado formation, but it does not relate to warning times or their impact on survival."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How is this passage organized?",
+      "answer_choices": [
+        {"letter": "A", "text": "It tells the personal story of a single storm chaser from childhood to retirement."},
+        {"letter": "B", "text": "It moves from what tornadoes are and how they form, to how scientists study them, to the challenge of prediction, and finally to future solutions — building from science to application."},
+        {"letter": "C", "text": "It compares tornadoes in the United States with tornadoes in other countries."},
+        {"letter": "D", "text": "It lists types of weather from least dangerous to most dangerous."},
+        {"letter": "E", "text": "It presents arguments for and against tornado research funding."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage follows a logical progression: it defines tornadoes (paragraph 1), explains formation (paragraph 2), describes how scientists study them (paragraph 3), discusses prediction challenges (paragraph 4), presents future research approaches (paragraph 5), and ends with the human stakes (paragraph 6). This builds from basic science to real-world application.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because storm chasers are mentioned, but the passage discusses the field broadly, not one person's life story."},
+        {"letter": "C", "explanation": "This is tempting because the passage mentions the US having more tornadoes, but it does not compare tornado characteristics between countries."},
+        {"letter": "D", "explanation": "This is tempting because danger levels could be discussed, but the passage focuses on tornadoes specifically, not a ranking of weather types."},
+        {"letter": "E", "explanation": "This is tempting because the passage discusses research, but it does not present opposing arguments about funding — it consistently supports the value of tornado research."}
+      ],
+      "skill_tested": "rc_passage_structure"
+    }
+  ]
+}

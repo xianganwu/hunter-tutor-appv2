@@ -13,7 +13,9 @@
       "rc_inference",
       "rc_tone_mood"
     ],
-    "source_description": "Original composition in the style of a Civil War-era letter from a young Union soldier to his family"
+    "source_description": "Original composition in the style of a Civil War-era letter from a young Union soldier to his family",
+    "lexile_range": "400L-600L",
+    "themes": ["history", "courage", "family"]
   },
   "pre_reading_context": "During the Civil War (1861-1865), soldiers often wrote letters home to their families. This letter is written in the style of one such message from a young soldier at a camp in Virginia.",
   "passage_text": "Dear Mother and Father,\n\nI hope this letter finds you well. I am writing from our camp near the river, where we have been staying for nearly two weeks. The days are long, and the nights are cold, but I remain in good spirits.\n\nWhen I first arrived at camp, I was nervous. The other soldiers seemed so much older and braver than me. But over these past days, I have come to know them as friends. We share meals together and tell stories around the fire at night. Private Thomas, who sleeps in the tent beside mine, taught me how to mend my own socks, which I thought was very kind of him.\n\nThe food here is simple. We eat hardtack and beans most days, and sometimes salted pork when supplies arrive. I confess I miss your cooking terribly, Mother, especially your apple pie. But we do not complain, for we know that many have less than we do.\n\nI want you to know that I believe in the cause we are fighting for. Every person deserves to be free, and I am proud to do my small part. Though I sometimes feel afraid, I remind myself why I am here, and that gives me courage.\n\nPlease give my love to Sarah and little James. Tell James I will bring him a souvenir when I come home. I think of you all every day and carry your love with me like a warm coat against the cold.\n\nYour loving son,\nWilliam",

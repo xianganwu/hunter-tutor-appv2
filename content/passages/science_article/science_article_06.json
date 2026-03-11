@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "science_article_06",
+    "title": "Why Do Stars Twinkle?",
+    "genre": "science_article",
+    "difficulty_level": 2,
+    "word_count": 305,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_supporting_details",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original",
+    "lexile_range": "400L-600L",
+    "themes": ["space"]
+  },
+  "pre_reading_context": "This article explains the science behind one of the most familiar sights in the night sky.",
+  "passage_text": "If you have ever looked up at the night sky, you have probably noticed that stars seem to sparkle and flicker. Sometimes they appear to change color, shifting from white to blue to red and back again. This twinkling is so familiar that we even sing about it: \"Twinkle, twinkle, little star.\" But what actually causes it?\n\nThe answer has nothing to do with the stars themselves. Stars are actually steady sources of light. If you could see them from space — outside Earth's atmosphere — they would shine with a constant, unwavering glow. The twinkling you see from the ground is caused entirely by Earth's atmosphere.\n\nEarth's atmosphere is made up of layers of air, and these layers are constantly moving. Different parts of the atmosphere have different temperatures, which causes the air to bend light as it passes through. Scientists call this bending of light \"refraction.\" As starlight travels through the atmosphere on its way to your eyes, it passes through many pockets of warm and cool air. Each pocket bends the light slightly in a different direction. By the time the light reaches you, it has been bent and redirected many times, making the star appear to shimmer and dance.\n\nPlanets, on the other hand, do not twinkle nearly as much as stars. This is because planets are much closer to Earth, so they appear larger in the sky. The larger apparent size means the light comes from a wider area, and the tiny bending effects of the atmosphere tend to cancel each other out. Stars appear as tiny pinpoints of light, so even a small atmospheric disturbance can make them seem to flicker.\n\nAstronomers who use telescopes actually consider twinkling a problem. It makes images blurry and harder to study. That is one reason why space telescopes like the Hubble are placed above the atmosphere — up there, the stars shine perfectly still.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Stars twinkle because they are constantly turning on and off."},
+        {"letter": "B", "text": "Stars appear to twinkle because Earth's atmosphere bends their light as it travels to our eyes."},
+        {"letter": "C", "text": "Stars are the closest objects to Earth in space."},
+        {"letter": "D", "text": "The Hubble telescope was built to make stars twinkle more brightly."},
+        {"letter": "E", "text": "Planets twinkle more than stars because they are bigger."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that stars themselves are steady light sources, and twinkling is caused by Earth's atmosphere bending (refracting) starlight as it passes through layers of air with different temperatures. This is the central scientific explanation the passage provides.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because twinkling looks like flickering, but the passage explicitly states that stars are 'steady sources of light' — they do not turn on and off."},
+        {"letter": "C", "explanation": "This is tempting because distance is discussed, but the passage says planets are closer to Earth than stars, not the other way around."},
+        {"letter": "D", "explanation": "This is tempting because the Hubble telescope is mentioned, but it was placed above the atmosphere to avoid twinkling (which blurs images), not to enhance it."},
+        {"letter": "E", "explanation": "This is tempting because both planets and twinkling are discussed, but the passage says planets twinkle less than stars because their larger apparent size cancels out atmospheric effects."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, why do planets twinkle less than stars?",
+      "answer_choices": [
+        {"letter": "A", "text": "Planets produce their own light, while stars do not."},
+        {"letter": "B", "text": "Planets are closer to Earth and appear larger, so the atmospheric bending effects tend to cancel each other out."},
+        {"letter": "C", "text": "Planets are not affected by Earth's atmosphere."},
+        {"letter": "D", "text": "Planets move too fast for the atmosphere to bend their light."},
+        {"letter": "E", "text": "Planets are dimmer than stars and cannot be seen clearly."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that because planets are closer to Earth, they appear larger in the sky. Their larger apparent size means light comes from a wider area, so the tiny bending effects of the atmosphere cancel each other out, resulting in less twinkling.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because planets and stars are different, but the passage does not say planets produce their own light — and this would not explain less twinkling."},
+        {"letter": "C", "explanation": "This is tempting because planets twinkle less, but the passage explains this is due to their larger apparent size, not immunity to atmospheric effects."},
+        {"letter": "D", "explanation": "This is tempting because planets do move, but the passage attributes less twinkling to apparent size, not to speed of movement."},
+        {"letter": "E", "explanation": "This is tempting because visibility might seem related, but planets are often brighter than stars — the issue is apparent size, not brightness."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word \"refraction\" mean as explained in the passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "The creation of new light by stars"},
+        {"letter": "B", "text": "The bending of light as it passes through different materials"},
+        {"letter": "C", "text": "The reflection of light off a mirror"},
+        {"letter": "D", "text": "The disappearance of light in darkness"},
+        {"letter": "E", "text": "The speed at which light travels through space"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage directly defines refraction: 'Scientists call this bending of light refraction.' It occurs when light passes through pockets of air at different temperatures, which bend the light in different directions.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because stars and light are discussed, but refraction is about bending existing light, not creating new light."},
+        {"letter": "C", "explanation": "This is tempting because reflection and refraction both involve light changing direction, but reflection bounces light off a surface, while refraction bends it as it passes through a material."},
+        {"letter": "D", "explanation": "This is tempting because darkness is the opposite of light, but refraction is about light being bent, not disappearing."},
+        {"letter": "E", "explanation": "This is tempting because light and speed are related scientific concepts, but refraction is about the bending of light, not its speed."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What can the reader infer about what stars would look like if viewed from the International Space Station?",
+      "answer_choices": [
+        {"letter": "A", "text": "They would twinkle even more because the Space Station is closer to them."},
+        {"letter": "B", "text": "They would appear to shine with a steady, constant light because there is no atmosphere to bend the light."},
+        {"letter": "C", "text": "They would be invisible because there is no air in space."},
+        {"letter": "D", "text": "They would look exactly the same as they do from Earth's surface."},
+        {"letter": "E", "text": "They would appear much larger because of the vacuum of space."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that stars seen from outside Earth's atmosphere 'would shine with a constant, unwavering glow' because twinkling is caused entirely by the atmosphere. The International Space Station orbits above the atmosphere, so stars viewed from there would appear steady.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the Space Station is in space, but the passage says twinkling is caused by the atmosphere, not proximity to stars — without atmosphere, there would be less twinkling, not more."},
+        {"letter": "C", "explanation": "This is tempting because air and visibility might seem connected, but light does not need air to travel — stars are visible in the vacuum of space."},
+        {"letter": "D", "explanation": "This is tempting as a simple answer, but the passage explains that the atmosphere causes twinkling on Earth — without it, stars would look different (steadier)."},
+        {"letter": "E", "explanation": "This is tempting because being in space might seem to bring stars closer, but the Space Station orbits only a few hundred miles above Earth — negligible compared to the distance to stars."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Based on the passage, what can the reader conclude about the relationship between Earth's atmosphere and astronomy?",
+      "answer_choices": [
+        {"letter": "A", "text": "Earth's atmosphere helps astronomers by making stars easier to find."},
+        {"letter": "B", "text": "Earth's atmosphere creates challenges for astronomers by distorting starlight, which is why telescopes are sometimes placed in space."},
+        {"letter": "C", "text": "Earth's atmosphere has no effect on astronomical observations."},
+        {"letter": "D", "text": "Astronomers prefer twinkling stars because they are more beautiful to study."},
+        {"letter": "E", "text": "The atmosphere only affects observations during the daytime."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says astronomers 'consider twinkling a problem' because it makes images 'blurry and harder to study,' and notes that the Hubble telescope was placed above the atmosphere to avoid this issue. This shows the atmosphere creates challenges for astronomical observation.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the atmosphere does protect Earth, but the passage specifically says twinkling is a problem for astronomers, not a help."},
+        {"letter": "C", "explanation": "This is tempting if the reader missed the last paragraph, but the passage clearly states the atmosphere causes twinkling that makes astronomical images blurry."},
+        {"letter": "D", "explanation": "This is tempting because twinkling is beautiful to casual observers, but the passage says astronomers see it as a problem that interferes with their work."},
+        {"letter": "E", "explanation": "This is tempting because stars are observed at night, but atmospheric distortion (refraction) occurs at all times — the passage describes it as a constant property of the atmosphere."}
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    }
+  ]
+}
