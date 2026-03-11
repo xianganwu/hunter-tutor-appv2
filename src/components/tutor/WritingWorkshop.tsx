@@ -274,6 +274,14 @@ export function WritingWorkshop() {
               >
                 Start Brainstorming
               </button>
+              {savedEssays.length > 0 && (
+                <button
+                  onClick={() => setShowHistory(true)}
+                  className="rounded-xl bg-surface-100 dark:bg-surface-800 px-6 py-3 text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+                >
+                  View Previous Essays ({savedEssays.length})
+                </button>
+              )}
               <button
                 onClick={() => {
                   setPrompt(getRandomPrompt());
