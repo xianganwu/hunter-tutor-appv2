@@ -65,13 +65,17 @@ export async function GET() {
       return NextResponse.json({ user: null });
     }
     const student = await prisma.student.findUnique({ where: { id: session.sub } });
+    if (!student) {
+      // JWT is valid but student was deleted — treat as unauthenticated
+      return NextResponse.json({ user: null });
+    }
     return NextResponse.json({
       user: {
-        id: session.sub,
-        name: session.name,
-        email: session.email,
-        mascotType: student?.mascotType ?? "penguin",
-        onboardingComplete: student?.onboardingComplete ?? false,
+        id: student.id,
+        name: student.name,
+        email: student.email,
+        mascotType: student.mascotType ?? "penguin",
+        onboardingComplete: student.onboardingComplete,
       },
     });
   } catch (err) {

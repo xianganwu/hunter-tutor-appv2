@@ -15,6 +15,7 @@ import { Mascot, getMascotTier, getMascotLabel, type MascotAnimal } from "@/comp
 import { BadgeNotification } from "@/components/shared/BadgeNotification";
 import { Confetti } from "@/components/shared/Confetti";
 import { getStoredMascotType, getStoredAuthUser } from "@/lib/user-profile";
+import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 import { shouldTriggerConfetti, type BadgeDefinition } from "@/lib/achievements";
 
 export function DashboardContent() {
@@ -22,8 +23,13 @@ export function DashboardContent() {
 
   useEffect(() => {
     const authUser = getStoredAuthUser();
+    // Only redirect to onboarding if the user hasn't completed it AND has no existing practice data
+    // (existing users who were active before onboarding was added will have mastery data)
     if (authUser && authUser.onboardingComplete === false) {
-      router.replace("/onboarding");
+      const hasExistingData = loadAllSkillMasteries().length > 0;
+      if (!hasExistingData) {
+        router.replace("/onboarding");
+      }
     }
   }, [router]);
   const { skillStates, domainProgress, streakData, weeklySummary, newlyEarnedBadges, loading } =
