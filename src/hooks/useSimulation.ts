@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
+import { getRandomQuestionPhrase, getRandomPassagePhrase } from "@/lib/loading-phrases";
 import {
   assembleReadingSection,
   scoreSection,
@@ -84,7 +85,7 @@ export function useSimulation() {
     setState((s) => ({
       ...s,
       phase: "generating",
-      generationProgress: "Assembling reading passages...",
+      generationProgress: getRandomPassagePhrase(),
       error: null,
     }));
 
@@ -97,7 +98,7 @@ export function useSimulation() {
 
       setState((s) => ({
         ...s,
-        generationProgress: "Generating quantitative reasoning questions...",
+        generationProgress: getRandomQuestionPhrase(),
       }));
 
       // 3. Generate QR questions
@@ -127,7 +128,7 @@ export function useSimulation() {
 
       setState((s) => ({
         ...s,
-        generationProgress: "Generating math achievement questions...",
+        generationProgress: getRandomQuestionPhrase(),
       }));
 
       // 4. Generate MA questions

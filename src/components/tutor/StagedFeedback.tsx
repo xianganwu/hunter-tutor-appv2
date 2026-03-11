@@ -175,8 +175,8 @@ export function StagedFeedback({
                     onChange={(e) => setRewrittenIntro(e.target.value)}
                     disabled={isLoading}
                     placeholder="Rewrite your introduction here..."
-                    rows={6}
-                    className="w-full rounded-xl border border-surface-300 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 px-4 py-3 text-sm text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50 transition-colors resize-y min-h-[120px]"
+                    rows={12}
+                    className="w-full rounded-xl border border-surface-300 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 px-5 py-4 text-base leading-relaxed text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50 transition-colors resize-y min-h-[280px]"
                     aria-label="Rewrite your introduction"
                   />
                   <div className="flex justify-end">

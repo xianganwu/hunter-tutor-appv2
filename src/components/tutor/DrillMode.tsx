@@ -8,6 +8,7 @@ import { Confetti } from "@/components/shared/Confetti";
 import { getBestDrillForSkill } from "@/lib/drill";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 import { shouldTriggerConfetti } from "@/lib/achievements";
+import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
 
 const DOMAINS = [
   { id: "reading_comprehension", label: "Reading" },
@@ -163,7 +164,7 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
             <div className="w-8 h-8 border-2 border-brand-600 border-t-transparent rounded-full animate-spin" />
           </div>
           <p className="text-sm text-surface-600 dark:text-surface-400">
-            Generating questions...
+            {getRandomQuestionPhrase()}
           </p>
         </div>
       </div>

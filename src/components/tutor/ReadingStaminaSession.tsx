@@ -9,6 +9,7 @@ import {
   computeStaminaStats,
   STAMINA_LEVELS,
 } from "@/lib/reading-stamina";
+import { getRandomPassagePhrase } from "@/lib/loading-phrases";
 
 export function ReadingStaminaSession() {
   const {
@@ -100,7 +101,7 @@ export function ReadingStaminaSession() {
           <div className="flex flex-col items-center justify-center py-12 gap-3 animate-fade-in">
             <TypingIndicator />
             <p className="text-sm text-surface-500 dark:text-surface-400">
-              Preparing your next reading passage...
+              {getRandomPassagePhrase()}
             </p>
           </div>
         )}

@@ -7,6 +7,7 @@ import { getStoredAuthUser } from "@/lib/user-profile";
 import { DOMAIN_LABELS, type DiagnosticDomain } from "@/lib/diagnostic";
 import { Mascot } from "@/components/shared/Mascot";
 import { MathText } from "@/components/chat/MathText";
+import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
 
 export function DiagnosticTest() {
   const router = useRouter();
@@ -66,7 +67,7 @@ export function DiagnosticTest() {
       <div className="flex flex-1 flex-col items-center justify-center gap-4 animate-fade-in">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-200 border-t-brand-600" />
         <p className="text-sm text-surface-500 dark:text-surface-400">
-          Preparing your questions...
+          {getRandomQuestionPhrase()}
         </p>
       </div>
     );

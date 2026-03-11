@@ -5,6 +5,7 @@ import "katex/dist/katex.min.css";
 import { MathText } from "@/components/chat/MathText";
 import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
 import { Mascot } from "@/components/shared/Mascot";
+import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
 import {
   useGuidedStudy,
   formatTimeRemaining,
@@ -139,7 +140,7 @@ export function GuidedStudySession() {
               showingFeedback={state.showingFeedback}
               lastAnswerCorrect={state.lastAnswerCorrect}
               isStreaming={state.isStreaming}
-              skillQuestionCount={state.skillQuestionCount}
+
               onAnswer={(a) => void submitAnswer(a)}
               onNext={() => void nextQuestion()}
             />
@@ -291,7 +292,6 @@ function PracticingView({
   showingFeedback,
   lastAnswerCorrect,
   isStreaming,
-  skillQuestionCount,
   onAnswer,
   onNext,
 }: {
@@ -303,7 +303,6 @@ function PracticingView({
   readonly showingFeedback: boolean;
   readonly lastAnswerCorrect: boolean | null;
   readonly isStreaming: boolean;
-  readonly skillQuestionCount: number;
   readonly onAnswer: (answer: string) => void;
   readonly onNext: () => void;
 }) {
@@ -313,7 +312,7 @@ function PracticingView({
       <div className="flex flex-col items-center justify-center py-12 animate-fade-in">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-200 border-t-brand-600" />
         <p className="mt-3 text-sm text-surface-500 dark:text-surface-400">
-          Preparing question {skillQuestionCount + 1}...
+          {getRandomQuestionPhrase()}
         </p>
       </div>
     );
