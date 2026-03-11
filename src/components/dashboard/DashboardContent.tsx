@@ -143,6 +143,15 @@ export function DashboardContent() {
           </h2>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
             <a
+              href="/study"
+              className="flex flex-col items-center gap-2 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-5 text-sm font-medium text-brand-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:border-brand-800 dark:bg-brand-900/20 dark:text-brand-300"
+            >
+              <span className="text-2xl" aria-hidden="true">
+                🧠
+              </span>
+              <span>Study for Me</span>
+            </a>
+            <a
               href="/mistakes"
               className="flex flex-col items-center gap-2 rounded-2xl bg-surface-0 px-4 py-5 text-sm font-medium text-surface-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:bg-surface-900 dark:text-surface-300"
             >

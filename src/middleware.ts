@@ -63,6 +63,7 @@ const PROTECTED_PATHS = [
   "/onboarding",
   "/diagnostic",
   "/vocab",
+  "/study",
 ];
 
 function isProtectedRoute(pathname: string): boolean {
@@ -133,5 +134,6 @@ export const config = {
     "/onboarding/:path*",
     "/diagnostic/:path*",
     "/vocab/:path*",
+    "/study/:path*",
   ],
 };

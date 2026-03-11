@@ -1,70 +1,47 @@
-# Feature: Reading Passage Library Expansion + Difficulty Tagging
+# Feature: Guided Study Mode ("Study for Me")
 
-## Phase 1: Content Generation (25 new passages → 50 total)
-- [x] Generate 5 new fiction passages (difficulty 2-5, word counts 250-800)
-- [x] Generate 5 new nonfiction passages (difficulty 2-5, word counts 250-800)
-- [x] Generate 5 new poetry passages (difficulty 2-5, word counts 200-400)
-- [x] Generate 5 new historical_document passages (difficulty 2-5, word counts 300-700)
-- [x] Generate 5 new science_article passages (difficulty 2-5, word counts 300-800)
-- [x] Each passage: 5 MC questions tagged to specific reading skills
-- [x] Ensure even distribution across stamina levels (1-6)
+## Overview
+30-minute auto-piloted session that picks optimal skills, teaches, practices,
+then moves to the next weakness. Zero decision fatigue — student clicks one
+button and the system runs the entire session.
 
-## Phase 2: Dynamic Passage Loading
-- [x] Update `passages.ts` to import all 50 passages (10 per genre)
-- [x] Add new query functions: `getPassagesByLexile()`, `getPassagesByTheme()`, `getAllThemes()`
-- [x] Update `queryPassages()` to support lexile and theme filters
+## Phase 1: Core Library (`src/lib/guided-study.ts`)
+- [x] Define types: `GuidedStudyPhase`, `SkillSlot`, `GuidedStudySummary`
+- [x] `buildStudyPlan()` — uses `selectNextSkills()` to pick 5 skills across domains
+- [x] `shouldAdvanceSkill()` — logic for when to move to next skill
+- [x] `computeSessionSummary()` — aggregate stats across all skills
+- [x] Constants: `SESSION_DURATION_MS`, `MIN_QUESTIONS_PER_SKILL`, `MAX_QUESTIONS_PER_SKILL`
+- [x] `formatTimeRemaining()` — mm:ss display
 
-## Phase 3: Enhanced Metadata & Filtering
-- [x] Add `lexile_range` field to PassageMetadata type
-- [x] Add `themes` field to PassageMetadata type
-- [x] Update existing 25 passages with lexile_range and themes
-- [x] All 25 new passages include lexile_range and themes
+## Phase 2: State Machine Hook (`src/hooks/useGuidedStudy.ts`)
+- [x] Phases: `planning` → `teaching` → `practicing` → `transitioning` → `complete`
+- [x] Streaming support for teaching + feedback (reuse SSE pattern from useTutoringSession)
+- [x] Auto-select first skill and stream teaching on start
+- [x] Question generation + answer submission + streamed feedback
+- [x] Skill advancement logic (3 consecutive correct = advance early, max 7 questions per skill)
+- [x] Auto-transition to next skill with brief interstitial
+- [x] 30-minute global timer with clean wrap-up
+- [x] Mastery persistence after each skill block via `saveSkillMastery()`
+- [x] Session summary computation on complete
+- [x] Badge awards and daily task auto-completion
 
-## Phase 4: Integration with Reading Stamina
-- [x] Update `selectPassageForLevel()` to prefer genre diversity
-- [x] Pass recent reading records for genre diversity logic
-- [x] Typecheck + lint + build passes
+## Phase 3: UI Component (`src/components/study/GuidedStudySession.tsx`)
+- [x] Header: countdown timer (30:00 → 0:00), skill progress dots, end button
+- [x] Planning phase: skill plan preview with "Begin Session" button
+- [x] Teaching phase: streaming tutor text + "Let's Practice" button
+- [x] Practicing phase: question text + MC choices + streamed feedback + "Next" button
+- [x] Transitioning phase: brief motivational interstitial (auto-advances)
+- [x] Complete phase: session summary with per-skill mastery changes + overall stats
+- [x] MathText integration for LaTeX/SVG rendering throughout
 
----
+## Phase 4: Route + Navigation Integration
+- [x] `src/app/study/page.tsx` — route shell
+- [x] Add "Study" to TopNav navigation links
+- [x] Add "Study for Me" quick action to DashboardContent (prominent placement)
+- [x] Add `/study` to middleware protected paths + matcher
 
-# Feature: Vocabulary Builder with Spaced Repetition
-
-## Phase 1: Data Model & Types
-- [x] Create `src/lib/vocabulary.ts` — VocabWord, VocabCard, VocabDeck types
-- [x] SM-2 spaced repetition algorithm: computeNextReview()
-- [x] Deck operations: getDueCards, getNewCards, addWordToDeck, removeWordFromDeck
-- [x] Storage: loadVocabDeck/saveVocabDeck (localStorage)
-- [x] Stats: computeVocabStats with streak calculation
-
-## Phase 2: Word List Content
-- [x] `content/vocabulary/foundations.json` — 105 words (difficulty 1-3)
-- [x] `content/vocabulary/hunter_prep.json` — 108 words (difficulty 3-5)
-- [x] `src/lib/exam/vocabulary.ts` — word list loader + query functions
-
-## Phase 3: Vocab API
-- [x] `src/app/api/vocab/route.ts` — 3 actions:
-  - generate_context: AI generates example sentences
-  - evaluate_usage: AI evaluates student's sentence
-  - extract_vocab: AI extracts challenging words from passage
-
-## Phase 4: Core UI
-- [x] `src/app/vocab/page.tsx` — route shell
-- [x] `src/hooks/useVocabBuilder.ts` — state machine hook
-- [x] `src/components/vocab/VocabSession.tsx` — full UI with:
-  - Deck overview with stats + suggested words
-  - Card front (word + "Show Definition" / "I Know This")
-  - Card back (definition + example + SM-2 rating buttons)
-  - Use in a sentence mini-exercise with AI evaluation
-  - Session complete with stats summary
-
-## Phase 5: Integration
-- [x] Add "Vocab" to TopNav navigation links
-- [x] Add "Vocab Builder" quick action to DashboardContent
-- [x] Add /vocab to middleware protected paths + matcher
-- [ ] After reading session: extract difficult words → offer to add to vocab deck (future)
-
-## Phase 6: Verify
+## Phase 5: Verify
 - [x] Typecheck passes
 - [x] Lint passes
 - [x] Production build succeeds
-- [x] All 50 passages valid JSON with proper metadata
+- [ ] Smoke test: session starts, teaches, questions work, transitions, timer ends session
