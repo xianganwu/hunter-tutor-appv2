@@ -43,12 +43,17 @@ const resetPasswordSchema = z.object({
   newPassword: z.string().min(6).max(100),
 });
 
+const completeOnboardingSchema = z.object({
+  action: z.literal("complete_onboarding"),
+});
+
 const requestSchema = z.discriminatedUnion("action", [
   signupSchema,
   loginSchema,
   logoutSchema,
   setPinSchema,
   resetPasswordSchema,
+  completeOnboardingSchema,
 ]);
 
 // ─── GET /api/auth — get current user ─────────────────────────────────
@@ -61,7 +66,13 @@ export async function GET() {
     }
     const student = await prisma.student.findUnique({ where: { id: session.sub } });
     return NextResponse.json({
-      user: { id: session.sub, name: session.name, email: session.email, mascotType: student?.mascotType ?? "penguin" },
+      user: {
+        id: session.sub,
+        name: session.name,
+        email: session.email,
+        mascotType: student?.mascotType ?? "penguin",
+        onboardingComplete: student?.onboardingComplete ?? false,
+      },
     });
   } catch (err) {
     console.error("[auth] GET error:", err);
@@ -92,6 +103,8 @@ export async function POST(request: Request) {
       return await handleSetPin(data);
     } else if (data.action === "reset_password") {
       return await handleResetPassword(data);
+    } else if (data.action === "complete_onboarding") {
+      return await handleCompleteOnboarding();
     } else {
       return await handleLogout();
     }
@@ -143,7 +156,7 @@ async function handleSignup(data: z.infer<typeof signupSchema>) {
   await setSessionCookie(token);
 
   return NextResponse.json({
-    user: { id: student.id, name: student.name, email: student.email, mascotType: student.mascotType },
+    user: { id: student.id, name: student.name, email: student.email, mascotType: student.mascotType, onboardingComplete: student.onboardingComplete },
   });
 }
 
@@ -174,7 +187,7 @@ async function handleLogin(data: z.infer<typeof loginSchema>) {
   await setSessionCookie(token);
 
   return NextResponse.json({
-    user: { id: student.id, name: student.name, email: student.email, mascotType: student.mascotType },
+    user: { id: student.id, name: student.name, email: student.email, mascotType: student.mascotType, onboardingComplete: student.onboardingComplete },
   });
 }
 
@@ -231,8 +244,22 @@ async function handleResetPassword(data: z.infer<typeof resetPasswordSchema>) {
   await setSessionCookie(token);
 
   return NextResponse.json({
-    user: { id: student.id, name: student.name, email: student.email, mascotType: updated?.mascotType ?? "penguin" },
+    user: { id: student.id, name: student.name, email: student.email, mascotType: updated?.mascotType ?? "penguin", onboardingComplete: updated?.onboardingComplete ?? false },
   });
+}
+
+async function handleCompleteOnboarding() {
+  const session = await getSessionFromCookie();
+  if (!session) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
+
+  await prisma.student.update({
+    where: { id: session.sub },
+    data: { onboardingComplete: true },
+  });
+
+  return NextResponse.json({ success: true });
 }
 
 async function handleLogout() {

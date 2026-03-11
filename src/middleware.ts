@@ -60,6 +60,8 @@ const PROTECTED_PATHS = [
   "/simulate",
   "/mistakes",
   "/parent",
+  "/onboarding",
+  "/diagnostic",
 ];
 
 function isProtectedRoute(pathname: string): boolean {
@@ -127,5 +129,7 @@ export const config = {
     "/simulate/:path*",
     "/mistakes/:path*",
     "/parent/:path*",
+    "/onboarding/:path*",
+    "/diagnostic/:path*",
   ],
 };

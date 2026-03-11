@@ -9,6 +9,7 @@ export interface AuthUser {
   name: string;
   email: string;
   mascotType?: MascotType;
+  onboardingComplete?: boolean;
 }
 
 export async function authSignup(
@@ -94,6 +95,23 @@ export async function authResetPassword(
     const data = await res.json();
     if (!res.ok) return { error: data.error || "Password reset failed" };
     return { user: data.user };
+  } catch {
+    return { error: "Unable to connect to the server." };
+  }
+}
+
+export async function authCompleteOnboarding(): Promise<{ error?: string }> {
+  try {
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "complete_onboarding" }),
+    });
+    if (!res.ok) {
+      const data = await res.json();
+      return { error: data.error || "Failed to complete onboarding" };
+    }
+    return {};
   } catch {
     return { error: "Unable to connect to the server." };
   }

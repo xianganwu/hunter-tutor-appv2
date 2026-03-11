@@ -96,6 +96,11 @@ export type ChatAction =
       type: "generate_drill_batch";
       skillId: string;
       count?: number;
+    }
+  | {
+      type: "generate_diagnostic";
+      domain: string;
+      skillIds: readonly string[];
     };
 
 export interface ChatApiResponse {

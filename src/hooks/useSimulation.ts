@@ -7,6 +7,7 @@ import {
   estimatePercentile,
   analyzeTime,
   generateLocalRecommendations,
+  collectMissedQuestions,
   saveSimulation,
   ELA_DURATION_MINUTES,
   MATH_DURATION_MINUTES,
@@ -238,6 +239,14 @@ export function useSimulation() {
     const qrScore = scoreSection(s.exam.qrQuestions, s.answers);
     const maScore = scoreSection(s.exam.maQuestions, s.answers);
 
+    // Capture missed questions for score report
+    const missedQuestions = collectMissedQuestions(
+      allReadingQuestions,
+      s.exam.qrQuestions,
+      s.exam.maQuestions,
+      s.answers
+    );
+
     const totalCorrect = readingScore.correct + qrScore.correct + maScore.correct;
     const totalQuestions = readingScore.total + qrScore.total + maScore.total;
     const overallPct = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
@@ -338,6 +347,7 @@ export function useSimulation() {
       ma: maScore,
       timeAnalysis,
       recommendations,
+      missedQuestions,
     };
 
     // Save to history

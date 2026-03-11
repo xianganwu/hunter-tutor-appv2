@@ -97,7 +97,7 @@ export async function POST(request: Request): Promise<Response> {
         if (wantStream) {
           return createSSEStream({
             model: "claude-sonnet-4-20250514",
-            max_tokens: 1024,
+            max_tokens: 2048,
             system: agent.getSystemPrompt(),
             messages: agent.buildTeachMessages(skill, body.mastery),
           });
@@ -187,7 +187,7 @@ export async function POST(request: Request): Promise<Response> {
         if (wantStream) {
           return createSSEStream({
             model: "claude-sonnet-4-20250514",
-            max_tokens: 1024,
+            max_tokens: 2048,
             system: agent.getSystemPrompt(),
             messages: agent.buildTeachMessages(skill, body.mastery),
           });
@@ -288,6 +288,24 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
         }
         const questions = await agent.generateDrillBatch(skill, body.count ?? 10);
         return NextResponse.json({ questions });
+      }
+
+      case "generate_diagnostic": {
+        const diagnosticQuestions = [];
+        for (const skillId of body.skillIds) {
+          const skill = getSkillById(skillId);
+          if (!skill) continue;
+          const batch = await agent.generateDrillBatch(skill, 1);
+          if (batch.length > 0) {
+            diagnosticQuestions.push({
+              skillId,
+              questionText: batch[0].questionText,
+              answerChoices: batch[0].answerChoices,
+              correctAnswer: batch[0].correctAnswer,
+            });
+          }
+        }
+        return NextResponse.json({ questions: diagnosticQuestions });
       }
 
       case "get_summary": {

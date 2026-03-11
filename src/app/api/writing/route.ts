@@ -114,13 +114,11 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
           body.essayText
         );
 
-        // Persist to DB in the background if user is authenticated
+        // Persist to DB before responding so client can fetch the saved essay
         let submissionId: string | undefined;
-        void (async () => {
-          try {
-            const session = await getSessionFromCookie();
-            if (!session) return;
-            // Create a writing session to associate the submission with
+        try {
+          const session = await getSessionFromCookie();
+          if (session) {
             const writingSession = await prisma.tutoringSession.create({
               data: { studentId: session.sub, domain: "writing" },
             });
@@ -133,10 +131,10 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
               },
             });
             submissionId = submission.id;
-          } catch (err) {
-            console.error("[writing] DB save error:", err);
           }
-        })();
+        } catch (err) {
+          console.error("[writing] DB save error:", err);
+        }
 
         return NextResponse.json({
           text: feedback.overallFeedback,
@@ -151,11 +149,10 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
           body.revisedEssayText
         );
 
-        // Persist revision to DB
-        void (async () => {
-          try {
-            const session = await getSessionFromCookie();
-            if (!session) return;
+        // Persist revision to DB before responding
+        try {
+          const session = await getSessionFromCookie();
+          if (session) {
             const writingSession = await prisma.tutoringSession.create({
               data: { studentId: session.sub, domain: "writing" },
             });
@@ -169,10 +166,10 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
                 revisionNumber: body.revisionNumber,
               },
             });
-          } catch (err) {
-            console.error("[writing] DB revision save error:", err);
           }
-        })();
+        } catch (err) {
+          console.error("[writing] DB revision save error:", err);
+        }
 
         const originalFeedbackParsed = JSON.parse(body.originalFeedback) as EssayFeedback;
         const scoreComparison = [

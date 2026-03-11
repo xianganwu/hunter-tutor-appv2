@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { SkillMap } from "./SkillMap";
 import { DomainCard } from "./DomainCard";
 import { WeeklySummary } from "./WeeklySummary";
@@ -13,10 +14,18 @@ import { useDashboardData } from "./use-dashboard-data";
 import { Mascot, getMascotTier, getMascotLabel, type MascotAnimal } from "@/components/shared/Mascot";
 import { BadgeNotification } from "@/components/shared/BadgeNotification";
 import { Confetti } from "@/components/shared/Confetti";
-import { getStoredMascotType } from "@/lib/user-profile";
+import { getStoredMascotType, getStoredAuthUser } from "@/lib/user-profile";
 import { shouldTriggerConfetti, type BadgeDefinition } from "@/lib/achievements";
 
 export function DashboardContent() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const authUser = getStoredAuthUser();
+    if (authUser && authUser.onboardingComplete === false) {
+      router.replace("/onboarding");
+    }
+  }, [router]);
   const { skillStates, domainProgress, streakData, weeklySummary, newlyEarnedBadges, loading } =
     useDashboardData();
 

@@ -1,14 +1,30 @@
 "use client";
 
-import type { ScoreReport as ScoreReportData, SectionScore } from "@/lib/simulation";
+import { useState } from "react";
+import type {
+  ScoreReport as ScoreReportData,
+  SectionScore,
+  MissedQuestion,
+  ImpactSkill,
+} from "@/lib/simulation";
+import {
+  computeImpactAnalysis,
+  formatShareableReport,
+  getSkillPracticeRoute,
+} from "@/lib/simulation";
+import { MathText } from "@/components/chat/MathText";
 
 interface ScoreReportProps {
   readonly report: ScoreReportData;
+  readonly previousReport?: ScoreReportData;
 }
 
-export function ScoreReport({ report }: ScoreReportProps) {
+export function ScoreReport({ report, previousReport }: ScoreReportProps) {
   const { overall, reading, writing, qr, ma, timeAnalysis, recommendations } =
     report;
+
+  const impactSkills = computeImpactAnalysis(report);
+  const weakestSkill = impactSkills[0];
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4 space-y-8">
@@ -43,11 +59,15 @@ export function ScoreReport({ report }: ScoreReportProps) {
         </div>
       </div>
 
+      {/* Score Comparison Banner */}
+      <ScoreComparison current={report} previous={previousReport} />
+
       {/* Section Breakdown */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <SectionCard
           title="Reading Comprehension"
           score={reading}
+          previousScore={previousReport?.reading}
         />
         <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
           <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100 mb-2">
@@ -90,12 +110,19 @@ export function ScoreReport({ report }: ScoreReportProps) {
         <SectionCard
           title="Quantitative Reasoning"
           score={qr}
+          previousScore={previousReport?.qr}
         />
         <SectionCard
           title="Math Achievement"
           score={ma}
+          previousScore={previousReport?.ma}
         />
       </div>
+
+      {/* Impact Analysis */}
+      {impactSkills.length > 0 && (
+        <ImpactAnalysisSection skills={impactSkills} />
+      )}
 
       {/* Time Management */}
       <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-4">
@@ -150,10 +177,15 @@ export function ScoreReport({ report }: ScoreReportProps) {
           Skill-by-Skill Breakdown
         </h3>
 
-        <SkillTable title="Reading" skills={reading.bySkill} />
-        <SkillTable title="Quantitative Reasoning" skills={qr.bySkill} />
-        <SkillTable title="Math Achievement" skills={ma.bySkill} />
+        <SkillTable title="Reading" skills={reading.bySkill} sectionType="reading" />
+        <SkillTable title="Quantitative Reasoning" skills={qr.bySkill} sectionType="math" />
+        <SkillTable title="Math Achievement" skills={ma.bySkill} sectionType="math" />
       </div>
+
+      {/* Question Review */}
+      {report.missedQuestions && report.missedQuestions.length > 0 && (
+        <QuestionReview missedQuestions={report.missedQuestions} />
+      )}
 
       {/* Recommendations */}
       <div className="rounded-2xl border-2 border-success-200 dark:border-success-600/30 bg-success-50 dark:bg-success-500/10 p-5 space-y-3 shadow-card">
@@ -175,8 +207,19 @@ export function ScoreReport({ report }: ScoreReportProps) {
         </ol>
       </div>
 
+      {/* Shareable Summary */}
+      <ShareableSummary report={report} />
+
       {/* Actions */}
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center flex-wrap">
+        {weakestSkill && (
+          <a
+            href={weakestSkill.route}
+            className="rounded-xl border-2 border-brand-600 px-6 py-2.5 text-sm font-medium text-brand-600 hover:bg-brand-50 dark:border-brand-400 dark:text-brand-400 dark:hover:bg-brand-600/10 transition-colors"
+          >
+            Practice Weakest Skill
+          </a>
+        )}
         <a
           href="/dashboard"
           className="rounded-xl bg-brand-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
@@ -188,14 +231,238 @@ export function ScoreReport({ report }: ScoreReportProps) {
   );
 }
 
-// ─── Sub-components ───────────────────────────────────────────────────
+// ─── Score Comparison ────────────────────────────────────────────────
+
+function ScoreComparison({
+  current,
+  previous,
+}: {
+  readonly current: ScoreReportData;
+  readonly previous?: ScoreReportData;
+}) {
+  if (!previous) {
+    return (
+      <div className="rounded-2xl border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 p-4 text-center shadow-card">
+        <p className="text-sm text-surface-500 dark:text-surface-400">
+          First exam — take another to track your progress!
+        </p>
+      </div>
+    );
+  }
+
+  const sections = [
+    { label: "Overall", prev: previous.overall.percentage, curr: current.overall.percentage },
+    { label: "Reading", prev: previous.reading.percentage, curr: current.reading.percentage },
+    { label: "QR", prev: previous.qr.percentage, curr: current.qr.percentage },
+    { label: "Math", prev: previous.ma.percentage, curr: current.ma.percentage },
+  ];
+
+  return (
+    <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
+      <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100 mb-3">
+        Compared to Last Exam
+      </h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {sections.map((s) => {
+          const delta = s.curr - s.prev;
+          return (
+            <div key={s.label} className="text-center">
+              <div className="text-xs text-surface-500 dark:text-surface-400 mb-1">
+                {s.label}
+              </div>
+              <div className="text-sm text-surface-700 dark:text-surface-300">
+                {s.prev}% <span className="text-surface-400 mx-0.5">&rarr;</span> {s.curr}%
+              </div>
+              <div
+                className={`text-xs font-medium ${
+                  delta > 0
+                    ? "text-success-500"
+                    : delta < 0
+                      ? "text-red-500"
+                      : "text-surface-400"
+                }`}
+              >
+                {delta > 0 ? `+${delta}%` : delta < 0 ? `${delta}%` : "No change"}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── Impact Analysis ─────────────────────────────────────────────────
+
+function ImpactAnalysisSection({
+  skills,
+}: {
+  readonly skills: readonly ImpactSkill[];
+}) {
+  return (
+    <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-3">
+      <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100">
+        Highest Impact Skills
+      </h3>
+      <p className="text-xs text-surface-500 dark:text-surface-400">
+        Mastering these skills would raise your score the most.
+      </p>
+      <div className="space-y-2">
+        {skills.map((skill) => (
+          <div
+            key={skill.skillId}
+            className="flex items-center gap-3 rounded-xl bg-surface-50 dark:bg-surface-800/50 px-3 py-2"
+          >
+            <div className="flex-1 min-w-0">
+              <div className="text-xs font-medium text-surface-900 dark:text-surface-100 truncate">
+                {skill.skillName}
+              </div>
+              <div className="text-xs text-surface-500 dark:text-surface-400">
+                {skill.missedCount} missed — Score: {skill.currentPercentage}% &rarr;{" "}
+                {skill.projectedPercentage}% ({skill.currentPercentile}th &rarr;{" "}
+                {skill.projectedPercentile}th pctl)
+              </div>
+            </div>
+            <a
+              href={skill.route}
+              className="flex-shrink-0 rounded-lg bg-brand-600 px-3 py-1 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
+            >
+              Practice
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Question Review ─────────────────────────────────────────────────
+
+function QuestionReview({
+  missedQuestions,
+}: {
+  readonly missedQuestions: readonly MissedQuestion[];
+}) {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const sectionLabels: Record<string, string> = {
+    reading: "Reading",
+    qr: "Quantitative Reasoning",
+    ma: "Math Achievement",
+  };
+
+  const sections = ["reading", "qr", "ma"] as const;
+  const grouped = sections
+    .map((section) => ({
+      section,
+      label: sectionLabels[section],
+      questions: missedQuestions.filter((q) => q.section === section),
+    }))
+    .filter((g) => g.questions.length > 0);
+
+  return (
+    <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-3">
+      <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100">
+        Question Review ({missedQuestions.length} missed)
+      </h3>
+      <div className="space-y-2">
+        {grouped.map((group) => (
+          <div key={group.section}>
+            <button
+              onClick={() =>
+                setExpandedSection(
+                  expandedSection === group.section ? null : group.section
+                )
+              }
+              className="flex w-full items-center justify-between rounded-xl bg-surface-50 dark:bg-surface-800/50 px-3 py-2 text-xs font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
+            >
+              <span>
+                {group.label} ({group.questions.length} missed)
+              </span>
+              <span className="text-surface-400">
+                {expandedSection === group.section ? "\u25B2" : "\u25BC"}
+              </span>
+            </button>
+            {expandedSection === group.section && (
+              <div className="mt-1 space-y-2 pl-1">
+                {group.questions.map((q) => (
+                  <div
+                    key={q.questionId}
+                    className="rounded-lg border border-surface-200 dark:border-surface-700 p-3 text-xs"
+                  >
+                    <p className="text-surface-900 dark:text-surface-100 mb-2 leading-relaxed">
+                      <MathText text={q.questionText} />
+                    </p>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-red-500 dark:text-red-400">
+                        Your answer: {q.studentAnswer}
+                      </span>
+                      <span className="text-success-500 dark:text-success-400">
+                        Correct: {q.correctAnswer}
+                      </span>
+                    </div>
+                    <span className="mt-1 inline-block rounded-full bg-surface-100 dark:bg-surface-700 px-2 py-0.5 text-xs text-surface-500">
+                      {q.skillName}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Shareable Summary ───────────────────────────────────────────────
+
+function ShareableSummary({
+  report,
+}: {
+  readonly report: ScoreReportData;
+}) {
+  const [copied, setCopied] = useState(false);
+  const text = formatShareableReport(report);
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard API not available
+    }
+  }
+
+  return (
+    <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-3">
+      <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100">
+        Share Results
+      </h3>
+      <pre className="rounded-xl bg-surface-50 dark:bg-surface-800/50 p-3 text-xs text-surface-600 dark:text-surface-400 whitespace-pre-wrap overflow-x-auto max-h-40">
+        {text}
+      </pre>
+      <button
+        onClick={handleCopy}
+        className="rounded-lg bg-surface-100 dark:bg-surface-800 px-4 py-1.5 text-xs font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+      >
+        {copied ? "Copied!" : "Copy Results"}
+      </button>
+    </div>
+  );
+}
+
+// ─── Sub-components ──────────────────────────────────────────────────
 
 function SectionCard({
   title,
   score,
+  previousScore,
 }: {
   readonly title: string;
   readonly score: SectionScore;
+  readonly previousScore?: SectionScore;
 }) {
   const pct = score.percentage;
   const textColor =
@@ -204,6 +471,8 @@ function SectionCard({
       : pct >= 60
         ? "text-streak-500"
         : "text-red-500";
+
+  const delta = previousScore ? pct - previousScore.percentage : null;
 
   return (
     <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
@@ -215,6 +484,15 @@ function SectionCard({
         <span className="text-sm text-surface-400">
           ({score.correct}/{score.total})
         </span>
+        {delta !== null && delta !== 0 && (
+          <span
+            className={`text-xs font-medium ${
+              delta > 0 ? "text-success-500" : "text-red-500"
+            }`}
+          >
+            {delta > 0 ? `+${delta}%` : `${delta}%`}
+          </span>
+        )}
       </div>
       {/* Mini bar */}
       <div className="mt-2 h-2 rounded-full bg-surface-200 dark:bg-surface-700 overflow-hidden">
@@ -289,11 +567,13 @@ function SkillTable({
 }: {
   readonly title: string;
   readonly skills: readonly {
+    readonly skillId: string;
     readonly skillName: string;
     readonly correct: number;
     readonly total: number;
     readonly percentage: number;
   }[];
+  readonly sectionType?: "reading" | "math";
 }) {
   if (skills.length === 0) return null;
 
@@ -329,6 +609,14 @@ function SkillTable({
             >
               {s.percentage}%
             </div>
+            {s.percentage < 80 && (
+              <a
+                href={getSkillPracticeRoute(s.skillId)}
+                className="flex-shrink-0 text-brand-600 dark:text-brand-400 hover:underline"
+              >
+                Practice
+              </a>
+            )}
           </div>
         ))}
       </div>

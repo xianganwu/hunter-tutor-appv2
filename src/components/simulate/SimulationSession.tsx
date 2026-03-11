@@ -39,12 +39,18 @@ export function SimulationSession() {
       return <MathBooklet sim={sim} />;
     case "submitting":
       return <SubmittingScreen />;
-    case "results":
-      return state.report ? (
-        <ScoreReport report={state.report} />
-      ) : (
-        <SubmittingScreen />
+    case "results": {
+      if (!state.report) return <SubmittingScreen />;
+      const history = loadSimulationHistory();
+      // Find the second-to-last entry (the one before the current exam)
+      const previousSim = history.length >= 2 ? history[history.length - 2] : undefined;
+      return (
+        <ScoreReport
+          report={state.report}
+          previousReport={previousSim?.report}
+        />
       );
+    }
   }
 }
 

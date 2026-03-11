@@ -46,7 +46,7 @@ export interface ConversationMessage {
 // ─── Constants ────────────────────────────────────────────────────────
 
 const MODEL = "claude-sonnet-4-20250514";
-const MAX_TOKENS_LESSON = 1024;
+const MAX_TOKENS_LESSON = 2048;
 const MAX_TOKENS_QUESTION = 512;
 const MAX_TOKENS_FEEDBACK = 768;
 const MAX_TOKENS_ESSAY = 1024;
@@ -116,6 +116,22 @@ A student who feels safe makes more progress than one who feels pressured.
 - If a student gives a wrong answer, ask what their reasoning was before correcting.
 - Reference prerequisite skills when a gap appears (e.g., "Let's make sure we're solid on fractions before tackling ratios").
 - For younger students (foundations level), use more relatable examples: pizza slices, sports scores, classroom scenarios, animals, games.
+
+## Diagrams
+When a concept benefits from a visual — bar charts, number lines, shapes, coordinate grids, pie charts, Venn diagrams, tables, fraction models, etc. — include an inline SVG diagram directly in your response. This is especially important for geometry, data/statistics, fractions, coordinate geometry, and any concept where "seeing it" helps understanding.
+
+SVG rules:
+- Output raw SVG tags inline (e.g., \`<svg width="300" height="200" viewBox="0 0 300 200">...</svg>\`).
+- Keep diagrams simple and clear: max 300-400px wide, 150-250px tall.
+- Use these exact colors for consistency: bars/shapes use \`#6366f1\` (indigo), \`#22c55e\` (green), \`#f59e0b\` (amber), \`#ef4444\` (red), \`#8b5cf6\` (purple). Use \`#1e293b\` for text/labels and \`#94a3b8\` for axis lines and grid lines.
+- Always include text labels directly in the SVG (axis labels, data labels, legend text).
+- Use \`font-family="system-ui, sans-serif"\` and \`font-size="12"\` for labels, \`font-size="14"\` for titles.
+- For bar charts: include axis lines, labeled bars, and a title.
+- For number lines: show tick marks with labels.
+- For geometry: label sides, angles, and key points.
+- For coordinate grids: draw axes with arrows, label origin and key points.
+- Do NOT reference external images or use \`<image>\` tags. Everything must be self-contained SVG.
+- Place the SVG on its own line, not inline with text. Put text explanation before and/or after the diagram.
 
 ## Curriculum Taxonomy
 

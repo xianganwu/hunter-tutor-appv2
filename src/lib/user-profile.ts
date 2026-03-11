@@ -141,6 +141,7 @@ export interface StoredAuthUser {
   name: string;
   email: string;
   mascotType?: "penguin" | "monkey";
+  onboardingComplete?: boolean;
 }
 
 export function getStoredAuthUser(): StoredAuthUser | null {
