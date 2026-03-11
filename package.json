@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "db:push": "npx prisma db push",
-    "db:push:prod": "echo 'Pushing schema to production Turso DB...' && TURSO_DATABASE_URL=$TURSO_PROD_URL TURSO_AUTH_TOKEN=$TURSO_PROD_TOKEN npx prisma db push",
+    "db:push:turso": "npx tsx scripts/push-turso-schema.ts",
     "db:studio": "npx prisma studio"
   },
   "dependencies": {

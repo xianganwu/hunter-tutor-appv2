@@ -7,7 +7,10 @@ import {
   type StoredSkillMastery,
 } from "@/lib/skill-mastery-store";
 import { loadMistakes, getDueForReview } from "@/lib/mistakes";
-import { getAllSkills } from "@/lib/exam/curriculum";
+import { getAllSkills, getSkillIdsForDomain } from "@/lib/exam/curriculum";
+import { SkillMap } from "@/components/dashboard/SkillMap";
+import { DomainCard } from "@/components/dashboard/DomainCard";
+import type { SerializedSkillState, DomainProgress } from "@/components/dashboard/types";
 
 interface SessionSummary {
   id: string;
@@ -52,7 +55,7 @@ export default function ProgressPage() {
     fetchSessions();
   }, []);
 
-  const skillMap = getAllSkills();
+  const allSkills = getAllSkills();
 
   const practicedSkills = masteries.filter((m) => m.attemptsCount > 0);
   const totalAttempts = practicedSkills.reduce(
@@ -73,6 +76,46 @@ export default function ProgressPage() {
             100
         )
       : 0;
+
+  // Build data for SkillMap and DomainCards
+  const storedMap = new Map(masteries.map((s) => [s.skillId, s]));
+  const skillStates: SerializedSkillState[] = [];
+  for (const [skillId] of allSkills) {
+    const s = storedMap.get(skillId);
+    skillStates.push({
+      skillId,
+      masteryLevel: s?.masteryLevel ?? 0,
+      attemptsCount: s?.attemptsCount ?? 0,
+      correctCount: s?.correctCount ?? 0,
+      lastPracticed: s?.lastPracticed ?? null,
+      confidenceTrend: s?.confidenceTrend ?? "stable",
+    });
+  }
+
+  const DOMAIN_IDS = ["reading_comprehension", "math_quantitative_reasoning", "math_achievement"] as const;
+  const DOMAIN_NAMES: Record<string, string> = {
+    reading_comprehension: "Reading Comprehension",
+    math_quantitative_reasoning: "Math: Quantitative Reasoning",
+    math_achievement: "Math: Achievement",
+  };
+  const domainProgress: DomainProgress[] = DOMAIN_IDS.map((domainId) => {
+    const domainSkillIds = getSkillIdsForDomain(domainId);
+    const domainMasteries = domainSkillIds.map(
+      (id) => skillStates.find((s) => s.skillId === id)?.masteryLevel ?? 0,
+    );
+    const avg = domainMasteries.length > 0
+      ? domainMasteries.reduce((a, b) => a + b, 0) / domainMasteries.length
+      : 0;
+    return {
+      domainId,
+      domainName: DOMAIN_NAMES[domainId] ?? domainId,
+      overallMastery: avg,
+      skillCount: domainSkillIds.length,
+      masteredCount: domainMasteries.filter((m) => m > 0.7).length,
+      inProgressCount: domainMasteries.filter((m) => m >= 0.4 && m <= 0.7).length,
+      needsWorkCount: domainMasteries.filter((m) => m < 0.4).length,
+    };
+  });
 
   const trendIcon = (trend: string) => {
     if (trend === "improving") return "\u2191";
@@ -160,6 +203,21 @@ export default function ProgressPage() {
           </div>
         </div>
 
+        {/* Skill Map */}
+        <SkillMap states={skillStates} />
+
+        {/* Practice by Subject */}
+        <div>
+          <h2 className="mb-4 text-lg font-semibold text-surface-900 dark:text-surface-50">
+            Practice by Subject
+          </h2>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {domainProgress.map((dp) => (
+              <DomainCard key={dp.domainId} progress={dp} />
+            ))}
+          </div>
+        </div>
+
         {/* Skill Mastery Table */}
         {practicedSkills.length > 0 ? (
           <div className="rounded-2xl bg-white shadow-card dark:bg-surface-900">
@@ -172,7 +230,7 @@ export default function ProgressPage() {
               {practicedSkills
                 .sort((a, b) => b.masteryLevel - a.masteryLevel)
                 .map((m) => {
-                  const skill = skillMap.get(m.skillId);
+                  const skill = allSkills.get(m.skillId);
                   const pct = Math.round(m.masteryLevel * 100);
                   return (
                     <div

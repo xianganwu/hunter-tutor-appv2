@@ -29,7 +29,7 @@ export default function ProfilePicker() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [parentPin, setParentPin] = useState("");
-  const [gender, setGender] = useState<"girl" | "boy" | "">("");
+  const [mascotChoice, setMascotChoice] = useState<MascotType | "">("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -106,8 +106,8 @@ export default function ProfilePicker() {
       setError("Please enter your email.");
       return;
     }
-    if (!gender) {
-      setError("Please select boy or girl.");
+    if (!mascotChoice) {
+      setError("Please pick your mascot.");
       return;
     }
     if (password.length < 6) {
@@ -119,8 +119,7 @@ export default function ProfilePicker() {
     setError("");
     try {
       const trimmedPin = parentPin.trim();
-      const mascotType: MascotType = gender === "boy" ? "monkey" : "penguin";
-      const result = await authSignup(trimmedName, trimmedEmail, password, trimmedPin || undefined, mascotType);
+      const result = await authSignup(trimmedName, trimmedEmail, password, trimmedPin || undefined, mascotChoice);
       if (result.error) {
         setError(result.error);
         return;
@@ -233,32 +232,32 @@ export default function ProfilePicker() {
             />
           )}
 
-          {/* Gender selection — signup only */}
+          {/* Mascot selection — signup only */}
           {mode === "signup" && (
             <div className="flex gap-3">
               <button
                 type="button"
-                onClick={() => { setGender("girl"); clearForm(); }}
+                onClick={() => { setMascotChoice("penguin"); clearForm(); }}
                 className={`flex flex-1 items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-lg font-semibold transition-all ${
-                  gender === "girl"
-                    ? "border-pink-400 bg-pink-50 text-pink-700 dark:border-pink-500 dark:bg-pink-900/20 dark:text-pink-300"
-                    : "border-surface-300 bg-white text-surface-500 hover:border-pink-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-pink-500"
+                  mascotChoice === "penguin"
+                    ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500 dark:bg-brand-900/20 dark:text-brand-300"
+                    : "border-surface-300 bg-white text-surface-500 hover:border-brand-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-brand-500"
                 }`}
               >
                 <Mascot tier={1} size="sm" mascotType="penguin" />
-                Girl
+                Penguin
               </button>
               <button
                 type="button"
-                onClick={() => { setGender("boy"); clearForm(); }}
+                onClick={() => { setMascotChoice("monkey"); clearForm(); }}
                 className={`flex flex-1 items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-lg font-semibold transition-all ${
-                  gender === "boy"
-                    ? "border-amber-400 bg-amber-50 text-amber-700 dark:border-amber-500 dark:bg-amber-900/20 dark:text-amber-300"
-                    : "border-surface-300 bg-white text-surface-500 hover:border-amber-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-amber-500"
+                  mascotChoice === "monkey"
+                    ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500 dark:bg-brand-900/20 dark:text-brand-300"
+                    : "border-surface-300 bg-white text-surface-500 hover:border-brand-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-brand-500"
                 }`}
               >
                 <Mascot tier={1} size="sm" mascotType="monkey" />
-                Boy
+                Monkey
               </button>
             </div>
           )}

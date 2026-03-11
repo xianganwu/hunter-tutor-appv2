@@ -4,12 +4,18 @@ import type { StudentSkillState } from "./adaptive";
 import { loadAllSkillMasteries } from "./skill-mastery-store";
 import { getSkillIdsForDomain, getSkillById } from "./exam/curriculum";
 import { getDueForReview, loadMistakes } from "./mistakes";
+import { loadVocabDeck, getDueCards } from "./vocabulary";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
 export interface DailyTask {
   readonly id: string;
-  readonly type: "skill_practice" | "mistake_review" | "writing" | "drill";
+  readonly type:
+    | "skill_practice"
+    | "mistake_review"
+    | "writing"
+    | "drill"
+    | "vocab_review";
   readonly skillId?: string;
   readonly skillName: string;
   readonly domain?: string;
@@ -20,6 +26,7 @@ export interface DailyTask {
 
 export interface DailyPlan {
   date: string; // YYYY-MM-DD
+  timeBudget: number; // 15, 30, or 45
   tasks: DailyTask[];
   completedTaskIds: string[];
 }
@@ -27,13 +34,17 @@ export interface DailyPlan {
 // ─── Storage ─────────────────────────────────────────────────────────
 
 const STORAGE_KEY = "hunter-tutor-daily-plan";
+const TIME_BUDGET_KEY = "hunter-tutor-time-budget";
 
 export function loadDailyPlan(): DailyPlan | null {
   try {
     if (typeof window === "undefined") return null;
     const data = localStorage.getItem(getStorageKey(STORAGE_KEY));
     if (!data) return null;
-    return JSON.parse(data) as DailyPlan;
+    const plan = JSON.parse(data) as DailyPlan;
+    // Backward compat: plans saved before time-budget feature
+    if (!plan.timeBudget) plan.timeBudget = 30;
+    return plan;
   } catch {
     return null;
   }
@@ -44,6 +55,29 @@ export function saveDailyPlan(plan: DailyPlan): void {
     if (typeof window === "undefined") return;
     localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(plan));
     notifyProgressChanged("daily-plan");
+  } catch {
+    // localStorage unavailable
+  }
+}
+
+export function loadTimeBudget(): number {
+  try {
+    if (typeof window === "undefined") return 30;
+    const val = localStorage.getItem(getStorageKey(TIME_BUDGET_KEY));
+    if (val) {
+      const n = parseInt(val, 10);
+      if (n === 15 || n === 30 || n === 45) return n;
+    }
+    return 30;
+  } catch {
+    return 30;
+  }
+}
+
+function saveTimeBudget(minutes: number): void {
+  try {
+    if (typeof window === "undefined") return;
+    localStorage.setItem(getStorageKey(TIME_BUDGET_KEY), String(minutes));
   } catch {
     // localStorage unavailable
   }
@@ -71,11 +105,12 @@ function makeId(): string {
 }
 
 /**
- * Generate a fresh daily plan with 3 tasks.
+ * Build a prioritized list of tasks that fit within the given time budget.
+ * Priority: mistake review → vocab review → skill practice → writing → speed rounds
  */
-export function generateDailyPlan(): DailyPlan {
-  const today = new Date().toISOString().split("T")[0];
+function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
   const tasks: DailyTask[] = [];
+  let remaining = timeBudgetMinutes;
 
   const stored = loadAllSkillMasteries();
   const stateMap = new Map<string, StudentSkillState>(
@@ -88,10 +123,10 @@ export function generateDailyPlan(): DailyPlan {
     ]),
   );
 
-  // Task 1: Check for due mistake reviews
+  // 1. Mistake review (8 min) — highest priority, spaced repetition
   const mistakes = loadMistakes();
   const dueMistakes = getDueForReview(mistakes);
-  if (dueMistakes.length > 0) {
+  if (dueMistakes.length > 0 && remaining >= 8) {
     tasks.push({
       id: makeId(),
       type: "mistake_review",
@@ -99,29 +134,27 @@ export function generateDailyPlan(): DailyPlan {
       estimatedMinutes: 8,
       reason: `${dueMistakes.length} mistake${dueMistakes.length > 1 ? "s" : ""} due for review`,
     });
+    remaining -= 8;
   }
 
-  // Every 3rd day (based on day of year), include a writing task
-  const dayOfYear = Math.floor(
-    (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) /
-      86400000,
-  );
-  const isWritingDay = dayOfYear % 3 === 0;
-
-  if (isWritingDay && tasks.length < 3) {
+  // 2. Vocab review (5 min) — if cards are due
+  const deck = loadVocabDeck();
+  const dueCards = getDueCards(deck);
+  if (dueCards.length > 0 && remaining >= 5) {
     tasks.push({
       id: makeId(),
-      type: "writing",
-      skillName: "Writing Workshop",
-      estimatedMinutes: 25,
-      reason: "Regular writing practice builds essay skills",
+      type: "vocab_review",
+      skillName: "Vocab Review",
+      estimatedMinutes: 5,
+      reason: `${dueCards.length} word${dueCards.length > 1 ? "s" : ""} due for review`,
     });
+    remaining -= 5;
   }
 
-  // Fill remaining slots with skill practice from different domains
+  // 3. Skill practice from different domains (12 min each)
   const usedDomains = new Set<string>();
   for (const domain of DOMAINS) {
-    if (tasks.length >= 3) break;
+    if (remaining < 12) break;
 
     const skillIds = getSkillIdsForDomain(domain);
     const priorities = selectNextSkills(skillIds, stateMap);
@@ -142,38 +175,113 @@ export function generateDailyPlan(): DailyPlan {
         masteryLevel: mastery,
       });
       usedDomains.add(domain);
+      remaining -= 12;
     }
   }
 
-  // If still under 3, add a drill task
-  if (tasks.length < 3) {
-    // Pick a skill with moderate mastery for drill practice
+  // 4. Writing (25 min) — every 3rd day, only if budget allows
+  const dayOfYear = Math.floor(
+    (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) /
+      86400000,
+  );
+  const isWritingDay = dayOfYear % 3 === 0;
+
+  if (isWritingDay && remaining >= 25) {
+    tasks.push({
+      id: makeId(),
+      type: "writing",
+      skillName: "Writing Workshop",
+      estimatedMinutes: 25,
+      reason: "Regular writing practice builds essay skills",
+    });
+    remaining -= 25;
+  }
+
+  // 5. Speed rounds (5 min each) — fill remaining time
+  if (remaining >= 5) {
     const allPriorities = DOMAINS.flatMap((d) => {
       const ids = getSkillIdsForDomain(d);
       return selectNextSkills(ids, stateMap);
     }).sort((a, b) => b.score - a.score);
 
-    const drillCandidate = allPriorities.find(
-      (p) => !tasks.some((t) => t.skillId === p.skillId),
-    );
+    for (const candidate of allPriorities) {
+      if (remaining < 5) break;
+      if (tasks.some((t) => t.skillId === candidate.skillId)) continue;
 
-    if (drillCandidate) {
-      const skill = getSkillById(drillCandidate.skillId);
+      const skill = getSkillById(candidate.skillId);
+      const name = skill?.name ?? candidate.skillId;
       tasks.push({
         id: makeId(),
         type: "drill",
-        skillId: drillCandidate.skillId,
-        skillName: skill?.name ?? drillCandidate.skillId,
+        skillId: candidate.skillId,
+        skillName: `Speed Round: ${name}`,
         estimatedMinutes: 5,
         reason: "Speed practice — build exam pace",
       });
+      remaining -= 5;
+    }
+  }
+
+  return tasks;
+}
+
+/**
+ * Generate a fresh daily plan that fits within the given time budget.
+ */
+export function generateDailyPlan(
+  timeBudgetMinutes: number = 30,
+): DailyPlan {
+  const today = new Date().toISOString().split("T")[0];
+  const tasks = buildTaskList(timeBudgetMinutes);
+
+  const plan: DailyPlan = {
+    date: today,
+    timeBudget: timeBudgetMinutes,
+    tasks,
+    completedTaskIds: [],
+  };
+
+  saveDailyPlan(plan);
+  return plan;
+}
+
+/**
+ * Regenerate today's plan with a new time budget, preserving completed tasks.
+ */
+export function regeneratePlanWithBudget(
+  timeBudgetMinutes: number,
+): DailyPlan {
+  saveTimeBudget(timeBudgetMinutes);
+
+  const existing = loadDailyPlan();
+  const today = new Date().toISOString().split("T")[0];
+
+  // Collect completed tasks from today's existing plan
+  const completedOldTasks =
+    existing?.date === today
+      ? existing.tasks.filter((t) =>
+          existing.completedTaskIds.includes(t.id),
+        )
+      : [];
+
+  const tasks = buildTaskList(timeBudgetMinutes);
+
+  // Carry over completion state by matching type + skillId
+  const completedTaskIds: string[] = [];
+  for (const oldTask of completedOldTasks) {
+    const match = tasks.find(
+      (t) => t.type === oldTask.type && t.skillId === oldTask.skillId,
+    );
+    if (match) {
+      completedTaskIds.push(match.id);
     }
   }
 
   const plan: DailyPlan = {
     date: today,
-    tasks: tasks.slice(0, 3),
-    completedTaskIds: [],
+    timeBudget: timeBudgetMinutes,
+    tasks,
+    completedTaskIds,
   };
 
   saveDailyPlan(plan);
@@ -191,12 +299,12 @@ export function getTodaysPlan(): DailyPlan {
     return existing;
   }
 
-  return generateDailyPlan();
+  return generateDailyPlan(loadTimeBudget());
 }
 
 /**
  * Mark a task as completed by matching skillId and type.
- * Called from tutoring sessions, writing workshop, drill mode.
+ * Called from tutoring sessions, writing workshop, drill mode, vocab, reading.
  */
 export function autoCompleteDailyTask(
   skillId: string | undefined,
@@ -211,9 +319,16 @@ export function autoCompleteDailyTask(
   const match = plan.tasks.find((t) => {
     if (plan.completedTaskIds.includes(t.id)) return false;
     if (t.type !== type) return false;
-    // For writing/mistake_review, match by type only
-    if (type === "writing" || type === "mistake_review") return true;
-    // For skill_practice/drill, match by skillId
+    // For type-only tasks, match by type alone
+    if (
+      type === "writing" ||
+      type === "mistake_review" ||
+      type === "vocab_review"
+    )
+      return true;
+    // For skill_practice/drill: if skillId provided, match exactly;
+    // otherwise match first uncompleted task of this type
+    if (!skillId) return true;
     return t.skillId === skillId;
   });
 
@@ -227,8 +342,6 @@ export function autoCompleteDailyTask(
  * Get the daily plan completion streak (consecutive days with all tasks done).
  */
 export function getDailyPlanStreak(): number {
-  // We only track today's plan in localStorage, so streak is 0 or 1
-  // Extended tracking would need a separate history key
   const plan = loadDailyPlan();
   if (!plan) return 0;
 
@@ -256,5 +369,7 @@ export function getTaskRoute(task: DailyTask): string {
       return "/tutor/writing";
     case "drill":
       return task.skillId ? `/drill?skill=${task.skillId}` : "/drill";
+    case "vocab_review":
+      return "/vocab";
   }
 }

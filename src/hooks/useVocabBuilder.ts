@@ -12,6 +12,7 @@ import {
   removeWordFromDeck,
   computeVocabStats,
 } from "@/lib/vocabulary";
+import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import { getRandomWords, getAllWords } from "@/lib/exam/vocabulary";
 import type { VocabWord } from "@/lib/vocabulary";
 
@@ -191,6 +192,7 @@ export function useVocabBuilder() {
         useWordCorrect: null,
       }));
     } else {
+      autoCompleteDailyTask(undefined, "vocab_review");
       setState((prev) => ({
         ...prev,
         phase: "session_complete",

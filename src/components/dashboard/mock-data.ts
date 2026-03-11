@@ -108,6 +108,9 @@ export function getMockStreakData(): StreakData {
     currentStreak: 5,
     longestStreak: 7,
     practicedDates: dates,
+    frozenDates: [],
+    freezesRemaining: 2,
+    freezesPerWeek: 2,
   };
 }
 

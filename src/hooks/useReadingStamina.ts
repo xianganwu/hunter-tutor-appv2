@@ -13,6 +13,7 @@ import {
   selectPassageForLevel,
   computeStaminaStats,
 } from "@/lib/reading-stamina";
+import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import type { StaminaProgress, ReadingRecord } from "@/lib/reading-stamina";
 
 // ─── Types ────────────────────────────────────────────────────────────
@@ -304,6 +305,7 @@ export function useReadingStamina() {
         record
       );
       saveStaminaProgress(updated);
+      autoCompleteDailyTask(undefined, "skill_practice");
 
       // Check speed drop
       const drop = detectSpeedDrop(updated.records);

@@ -2,14 +2,9 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { SkillMap } from "./SkillMap";
-import { DomainCard } from "./DomainCard";
-import { WeeklySummary } from "./WeeklySummary";
 import { StreakDisplay } from "./StreakDisplay";
-import { ContinueLearningButton } from "./ContinueLearningButton";
 import { UserMenu } from "./UserMenu";
 import { DailyPracticePlan } from "./DailyPracticePlan";
-import { BadgeGallery } from "./BadgeGallery";
 import { useDashboardData } from "./use-dashboard-data";
 import { Mascot, getMascotTier, getMascotLabel, type MascotAnimal } from "@/components/shared/Mascot";
 import { BadgeNotification } from "@/components/shared/BadgeNotification";
@@ -32,7 +27,7 @@ export function DashboardContent() {
       }
     }
   }, [router]);
-  const { skillStates, domainProgress, streakData, weeklySummary, newlyEarnedBadges, loading } =
+  const { skillStates, streakData, newlyEarnedBadges, loading } =
     useDashboardData();
 
   const [showBadgeNotification, setShowBadgeNotification] = useState(true);
@@ -54,7 +49,6 @@ export function DashboardContent() {
   }
 
   const mascotType: MascotAnimal = getStoredMascotType();
-  const hasActivity = skillStates.some((s) => s.attemptsCount > 0);
   const overallMastery =
     skillStates.length > 0
       ? skillStates.reduce((sum, s) => sum + s.masteryLevel, 0) /
@@ -83,149 +77,41 @@ export function DashboardContent() {
           <UserMenu />
         </section>
 
-        {/* Header: Greeting + Streak + Continue Learning */}
-        <section className="flex animate-slide-up flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <div className="flex items-center gap-3">
-              <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
-              <div>
-                <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-50 md:text-3xl">
-                  Welcome back!
-                </h1>
-                <p className="text-xs font-medium text-surface-400 dark:text-surface-500">
-                  Your {mascotType === "monkey" ? "monkey" : "penguin"}: {getMascotLabel(mascotTier, mascotType)}
-                </p>
-              </div>
-            </div>
-            <p className="mt-2 text-surface-500 dark:text-surface-400">
-              {hasActivity
-                ? "Keep up the great work. Every practice session builds your skills for the future!"
-                : "Ready to start building your skills? Pick a subject below to begin!"}
-            </p>
-            <p className="mt-2 text-sm font-medium text-brand-600 dark:text-brand-400">
-              {TIER_MESSAGES[mascotTier]}
-            </p>
-            <div className="mt-4">
-              <StreakDisplay data={streakData} />
+        {/* Header: Greeting + Streak */}
+        <section className="animate-slide-up">
+          <div className="flex items-center gap-3">
+            <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
+            <div>
+              <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-50 md:text-3xl">
+                Welcome back!
+              </h1>
+              <p className="text-xs font-medium text-surface-400 dark:text-surface-500">
+                Your {mascotType === "monkey" ? "monkey" : "penguin"}: {getMascotLabel(mascotTier, mascotType)}
+              </p>
             </div>
           </div>
-          <div className="flex-shrink-0">
-            <ContinueLearningButton states={skillStates} />
+          <p className="mt-1 text-sm font-medium text-brand-600 dark:text-brand-400">
+            {TIER_MESSAGES[mascotTier]}
+          </p>
+          <div className="mt-4">
+            <StreakDisplay data={streakData} />
           </div>
         </section>
 
         {/* Daily Practice Plan */}
         <section className="animate-fade-in">
-          <DailyPracticePlan />
+          <DailyPracticePlan mascotTier={mascotTier} mascotType={mascotType} />
         </section>
 
-        {/* Skill Map */}
-        <section className="animate-fade-in">
-          <SkillMap states={skillStates} />
-        </section>
-
-        {/* Domain Cards */}
-        <section className="animate-fade-in">
-          <h2 className="mb-4 text-xl font-semibold text-surface-800 dark:text-surface-100">
-            Practice by Subject
-          </h2>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {domainProgress.map((dp) => (
-              <DomainCard key={dp.domainId} progress={dp} />
-            ))}
-          </div>
-        </section>
-
-        {/* Quick Links */}
-        <section className="animate-fade-in">
-          <h2 className="mb-4 text-xl font-semibold text-surface-800 dark:text-surface-100">
-            Quick Actions
-          </h2>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-            <a
-              href="/study"
-              className="flex flex-col items-center gap-2 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-5 text-sm font-medium text-brand-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:border-brand-800 dark:bg-brand-900/20 dark:text-brand-300"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                🧠
-              </span>
-              <span>Study for Me</span>
-            </a>
-            <a
-              href="/mistakes"
-              className="flex flex-col items-center gap-2 rounded-2xl bg-surface-0 px-4 py-5 text-sm font-medium text-surface-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:bg-surface-900 dark:text-surface-300"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                📝
-              </span>
-              <span>Mistake Journal</span>
-            </a>
-            <a
-              href="/tutor/writing"
-              className="flex flex-col items-center gap-2 rounded-2xl bg-surface-0 px-4 py-5 text-sm font-medium text-surface-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:bg-surface-900 dark:text-surface-300"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                ✍️
-              </span>
-              <span>Writing Workshop</span>
-            </a>
-            <a
-              href="/tutor/reading"
-              className="flex flex-col items-center gap-2 rounded-2xl bg-surface-0 px-4 py-5 text-sm font-medium text-surface-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:bg-surface-900 dark:text-surface-300"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                📚
-              </span>
-              <span>Reading Stamina</span>
-            </a>
-            <a
-              href="/drill"
-              className="flex flex-col items-center gap-2 rounded-2xl border border-streak-200 bg-streak-50 px-4 py-5 text-sm font-medium text-streak-600 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow-streak dark:border-streak-600/30 dark:bg-streak-600/10 dark:text-streak-400"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                ⚡
-              </span>
-              <span>Timed Drill</span>
-            </a>
-            <a
-              href="/vocab"
-              className="flex flex-col items-center gap-2 rounded-2xl bg-surface-0 px-4 py-5 text-sm font-medium text-surface-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:bg-surface-900 dark:text-surface-300"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                📖
-              </span>
-              <span>Vocab Builder</span>
-            </a>
-            <a
-              href="/simulate"
-              className="flex flex-col items-center gap-2 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-5 text-sm font-medium text-brand-700 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow dark:border-brand-800 dark:bg-brand-900/20 dark:text-brand-300"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                🎯
-              </span>
-              <span>Practice Exam</span>
-            </a>
-            <a
-              href="/parent"
-              className="flex flex-col items-center gap-2 rounded-2xl border border-streak-200 bg-streak-50 px-4 py-5 text-sm font-medium text-streak-600 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow-streak dark:border-streak-600/30 dark:bg-streak-600/10 dark:text-streak-400"
-            >
-              <span className="text-2xl" aria-hidden="true">
-                👨‍👩‍👧
-              </span>
-              <span>Parent Dashboard</span>
-            </a>
-          </div>
-        </section>
-
-        {/* Badge Gallery */}
-        <section className="animate-fade-in">
-          <BadgeGallery />
-        </section>
-
-        {/* Weekly Summary */}
-        <section className="animate-fade-in">
-          <WeeklySummary data={weeklySummary} />
-        </section>
+        {/* Parent link */}
+        <div className="flex justify-center">
+          <a
+            href="/parent"
+            className="text-sm font-medium text-surface-400 transition-colors hover:text-brand-600 dark:text-surface-500 dark:hover:text-brand-400"
+          >
+            Parent Dashboard &rarr;
+          </a>
+        </div>
       </div>
     </main>
   );
