@@ -55,7 +55,44 @@ export async function GET(request: Request): Promise<NextResponse<{ essays: Stor
   }
 }
 
-const BRAINSTORM_SYSTEM = `You are a warm, encouraging writing tutor helping a student brainstorm for an essay. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). Keep responses to 2-3 sentences. Be enthusiastic but not over the top. Never write the essay for them — guide their thinking. Use simple, encouraging language appropriate for their age.`;
+const BRAINSTORM_SYSTEM = `You are a warm, encouraging writing tutor helping a student brainstorm for an essay. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). Keep responses to 2-3 sentences. Be enthusiastic but not over the top. Never write the essay for them — guide their thinking. Use simple, encouraging language appropriate for their age. Vary your tone and phrasing — don't sound like a template.`;
+
+function pick<T>(arr: readonly T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+const REACTION_PROMPTS = [
+  (essay: string, response: string) =>
+    `The student was given this essay prompt: "${essay}"\n\nTheir first reaction is: "${response}"\n\nRespond warmly to their reaction. Acknowledge what they said, then ask them to brainstorm 3 different ideas or angles they could write about. Use your own words — don't say "think bigger" every time.`,
+  (essay: string, response: string) =>
+    `Essay prompt: "${essay}"\nStudent's gut reaction: "${response}"\n\nValidate their instinct, then challenge them: "What are 3 totally different directions you could take this?" Maybe suggest they think about a personal story, an opinion, or a surprising angle. Keep it to 2-3 sentences.`,
+  (essay: string, response: string) =>
+    `The student read this prompt: "${essay}" and said: "${response}"\n\nReact to what they shared — pick out something specific they said that's interesting. Then nudge them to come up with 3 possible essay ideas. You might say something like "What if you tried..." to spark their thinking. Brief and encouraging.`,
+  (essay: string, response: string) =>
+    `Prompt: "${essay}"\nStudent reacted with: "${response}"\n\nConnect with their reaction, then get them brainstorming. Ask them to list 3 ideas — maybe one from their own life, one that's unexpected, and one that feels safe. Keep it playful and short.`,
+] as const;
+
+const IDEAS_PROMPTS = [
+  (essay: string, response: string) =>
+    `The student is brainstorming for: "${essay}"\n\nTheir ideas: "${response}"\n\nBriefly comment on their ideas — highlight one that caught your eye and say why. Then ask which one they want to go with and why. Keep it to 2-3 sentences.`,
+  (essay: string, response: string) =>
+    `Essay prompt: "${essay}"\nStudent brainstormed these ideas: "${response}"\n\nPick out the most original idea and give it a compliment. Ask: "Which one makes you most excited to write?" Encourage them to trust their gut. 2-3 sentences.`,
+  (essay: string, response: string) =>
+    `Prompt: "${essay}"\nIdeas so far: "${response}"\n\nReact with genuine enthusiasm to one specific idea. Then ask the student to choose their favorite and explain what makes it the strongest choice. Be specific about what you liked. Brief.`,
+  (essay: string, response: string) =>
+    `The student is working on: "${essay}" and came up with: "${response}"\n\nPoint out something creative or smart in one of their ideas. Then ask them to pick the one they feel strongest about — "Which one could YOU write better than anyone else?" Keep it short and energizing.`,
+] as const;
+
+const PICK_PROMPTS = [
+  (essay: string, response: string) =>
+    `Prompt: "${essay}"\nThe student chose this idea and explained why: "${response}"\n\nCelebrate their choice briefly. Give ONE specific writing tip — like how to open with a hook, use a detail from their life, or start with a question. End with a short send-off. 3-4 sentences.`,
+  (essay: string, response: string) =>
+    `Essay prompt: "${essay}"\nStudent picked: "${response}"\n\nTell them why that's a great choice. Share ONE concrete tip for getting started — maybe "open with a moment that surprised you" or "describe what you saw/heard/felt first." Wrap up with quick encouragement. 3-4 sentences.`,
+  (essay: string, response: string) =>
+    `The student chose their essay direction for "${essay}": "${response}"\n\nValidate their reasoning. Give ONE practical tip — it could be about their opening line, using dialogue, painting a picture, or making the reader feel something. Close with a confident send-off. 3-4 sentences.`,
+  (essay: string, response: string) =>
+    `Prompt: "${essay}"\nTheir chosen angle: "${response}"\n\nReact to their choice with specifics — what about it will make a great essay? Give ONE actionable tip for the first paragraph (maybe "start in the middle of the action" or "open with the most interesting detail"). Finish with a quick "you've got this!" 3-4 sentences.`,
+] as const;
 
 export async function POST(
   request: Request
@@ -70,29 +107,14 @@ export async function POST(
 
         switch (body.step) {
           case "reaction":
-            prompt = `The student was given this essay prompt: "${body.promptText}"
-
-Their first reaction is: "${body.studentResponse}"
-
-Respond warmly to their reaction. Acknowledge what they said, then ask: "Now let's think bigger — can you come up with 3 different ideas or angles you could write about for this prompt?" Keep it brief and encouraging.`;
+            prompt = pick(REACTION_PROMPTS)(body.promptText, body.studentResponse);
             break;
-
           case "ideas":
-            prompt = `The student is brainstorming for this essay prompt: "${body.promptText}"
-
-They came up with these ideas: "${body.studentResponse}"
-
-Briefly comment on their ideas (pick out one that's interesting). Then ask: "Which of these ideas feels strongest to you? Pick one and tell me why you think it would make a great essay." Keep it to 2-3 sentences.`;
+            prompt = pick(IDEAS_PROMPTS)(body.promptText, body.studentResponse);
             break;
-
           case "pick":
-            prompt = `The student is brainstorming for this essay prompt: "${body.promptText}"
-
-They chose this idea and explained why: "${body.studentResponse}"
-
-Give them a brief, enthusiastic response about their choice. Then give them ONE concrete tip for starting their essay (e.g., "Try opening with a specific moment" or "Start by painting a picture for your reader"). End with something like "You're ready to write! Good luck!" Keep it to 3-4 sentences.`;
+            prompt = pick(PICK_PROMPTS)(body.promptText, body.studentResponse);
             break;
-
           default:
             return NextResponse.json({ text: "Ready to write!" });
         }
