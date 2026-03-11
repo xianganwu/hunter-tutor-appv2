@@ -291,21 +291,82 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
       }
 
       case "generate_diagnostic": {
-        const diagnosticQuestions = [];
-        for (const skillId of body.skillIds) {
-          const skill = getSkillById(skillId);
-          if (!skill) continue;
-          const batch = await agent.generateDrillBatch(skill, 1);
-          if (batch.length > 0) {
-            diagnosticQuestions.push({
-              skillId,
-              questionText: batch[0].questionText,
-              answerChoices: batch[0].answerChoices,
-              correctAnswer: batch[0].correctAnswer,
-            });
-          }
+        // Build skill descriptions for a single batched API call
+        const skillEntries = body.skillIds
+          .map((id) => {
+            const skill = getSkillById(id);
+            return skill ? { id, name: skill.name, description: skill.description, level: skill.level } : null;
+          })
+          .filter((s): s is NonNullable<typeof s> => s !== null);
+
+        if (skillEntries.length === 0) {
+          return NextResponse.json({ questions: [] });
         }
-        return NextResponse.json({ questions: diagnosticQuestions });
+
+        const skillList = skillEntries
+          .map((s, i) => `${i + 1}. skill_id: "${s.id}" — ${s.name}: ${s.description}`)
+          .join("\n");
+
+        const target = skillEntries[0].level === "hunter_prep"
+          ? "6th grader (age 11-12)"
+          : "rising 5th grader (age 9-10)";
+
+        const client = getAnthropicClient();
+        const response = await client.messages.create({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 2048,
+          system: agent.getSystemPrompt(),
+          messages: [
+            {
+              role: "user",
+              content: `Generate exactly ${skillEntries.length} diagnostic placement questions, one per skill listed below.
+Target student: ${target}
+
+Skills:
+${skillList}
+
+Each question should be clear, age-appropriate, and directly test the skill.
+Each question should have 5 multiple choice answers (A through E).
+
+Respond with ONLY a JSON array, no other text:
+[
+  {
+    "skillId": "the_skill_id",
+    "questionText": "...",
+    "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ...", "E) ..."],
+    "correctAnswer": "A) ..."
+  }
+]`,
+            },
+          ],
+        });
+
+        const text = response.content[0].type === "text" ? response.content[0].text : "";
+
+        try {
+          const jsonMatch = text.match(/\[[\s\S]*\]/);
+          if (!jsonMatch) {
+            return NextResponse.json({ questions: [] });
+          }
+
+          const parsed = JSON.parse(jsonMatch[0]) as {
+            skillId: string;
+            questionText: string;
+            answerChoices: string[];
+            correctAnswer: string;
+          }[];
+
+          const questions = parsed.map((q) => ({
+            skillId: q.skillId,
+            questionText: q.questionText,
+            answerChoices: q.answerChoices,
+            correctAnswer: q.correctAnswer,
+          }));
+
+          return NextResponse.json({ questions });
+        } catch {
+          return NextResponse.json({ questions: [] });
+        }
       }
 
       case "get_summary": {

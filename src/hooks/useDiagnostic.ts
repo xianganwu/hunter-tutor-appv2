@@ -65,11 +65,21 @@ export function useDiagnostic() {
         });
         if (!res.ok) throw new Error(`Failed to generate ${domain} questions`);
         const data = (await res.json()) as {
-          questions: { skillId: string; questionText: string; answerChoices: { letter: string; text: string }[]; correctAnswer: string }[];
+          questions: { skillId: string; questionText: string; answerChoices: (string | { letter: string; text: string })[]; correctAnswer: string }[];
         };
         return data.questions.map((q) => ({
-          ...q,
+          skillId: q.skillId,
           domain,
+          questionText: q.questionText,
+          correctAnswer: q.correctAnswer,
+          answerChoices: q.answerChoices.map((c) => {
+            if (typeof c === "object" && "letter" in c) return c;
+            // Parse "A) some text" → { letter: "A", text: "some text" }
+            const match = String(c).match(/^([A-E])\)\s*(.*)/);
+            return match
+              ? { letter: match[1], text: match[2] }
+              : { letter: "?", text: String(c) };
+          }),
         })) as DiagnosticQuestion[];
       });
 
@@ -103,12 +113,14 @@ export function useDiagnostic() {
     const question = s.questions[s.currentIndex];
     if (!question) return;
 
+    // Normalize correctAnswer to just the letter (e.g. "A) text" → "A")
+    const correctLetter = question.correctAnswer.match(/^([A-E])/)?.[1] ?? question.correctAnswer;
     const answer: DiagnosticAnswer = {
       skillId: question.skillId,
       domain: question.domain,
       selectedAnswer,
-      correctAnswer: question.correctAnswer,
-      isCorrect: selectedAnswer === question.correctAnswer,
+      correctAnswer: correctLetter,
+      isCorrect: selectedAnswer === correctLetter,
     };
 
     const newAnswers = [...s.answers, answer];
