@@ -2,6 +2,7 @@
 
 import { useVocabBuilder } from "@/hooks/useVocabBuilder";
 import type { VocabWord, VocabCard } from "@/lib/vocabulary";
+import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 
 // ─── Main Component ──────────────────────────────────────────────────
 
@@ -694,19 +695,14 @@ function SessionComplete({
         )}
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
+        <NextTaskPrompt />
         <button
           onClick={onBackToDashboard}
-          className="w-full rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
+          className="w-full rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-center text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
         >
           Continue Studying
         </button>
-        <a
-          href="/dashboard"
-          className="block w-full text-center text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors py-2"
-        >
-          Back to Dashboard
-        </a>
       </div>
     </div>
   );

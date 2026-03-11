@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDrillSession } from "@/hooks/useDrillSession";
 import { MathText } from "@/components/chat/MathText";
 import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
 import { BadgeNotification } from "@/components/shared/BadgeNotification";
 import { Confetti } from "@/components/shared/Confetti";
 import { getBestDrillForSkill } from "@/lib/drill";
+import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
+import { SessionMascot, type MascotReaction } from "@/components/shared/SessionMascot";
+import { getStoredMascotType } from "@/lib/user-profile";
+import { getMascotTier } from "@/components/shared/Mascot";
+import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 import { shouldTriggerConfetti } from "@/lib/achievements";
 import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
 
@@ -38,6 +43,30 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
 
   const [selectedSkillId, setSelectedSkillId] = useState(initialSkillId ?? "");
   const [, setShowBadges] = useState(false);
+
+  // Mascot reactions
+  const mascotType = getStoredMascotType();
+  const storedMasteries = loadAllSkillMasteries();
+  const overallMastery = storedMasteries.length > 0
+    ? storedMasteries.reduce((sum, s) => sum + s.masteryLevel, 0) / storedMasteries.length
+    : 0;
+  const mascotTier = getMascotTier(overallMastery);
+  const [mascotReaction, setMascotReaction] = useState<MascotReaction>("idle");
+  const [mascotReactionKey, setMascotReactionKey] = useState(0);
+  const prevAttemptsRef = useRef(0);
+
+  useEffect(() => {
+    const count = state.attempts.length;
+    if (count <= prevAttemptsRef.current) return;
+    prevAttemptsRef.current = count;
+
+    if (state.lastAnswerCorrect === true) {
+      setMascotReaction("correct");
+    } else {
+      setMascotReaction("incorrect");
+    }
+    setMascotReactionKey((k) => k + 1);
+  }, [state.attempts.length, state.lastAnswerCorrect]);
 
   // Set initial skill
   useEffect(() => {
@@ -237,6 +266,13 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
             />
           </div>
         </div>
+
+        <SessionMascot
+          mascotType={mascotType}
+          tier={mascotTier}
+          reaction={mascotReaction}
+          reactionKey={mascotReactionKey}
+        />
       </div>
     );
   }
@@ -300,7 +336,8 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
             </div>
           )}
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
+            <NextTaskPrompt />
             <button
               onClick={() => {
                 reset();
@@ -308,16 +345,10 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
                   void startDrill(state.skillId, state.skillName, state.durationMinutes);
                 }
               }}
-              className="rounded-xl bg-brand-600 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
+              className="w-full rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-center text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
             >
               Try Again
             </button>
-            <a
-              href="/dashboard"
-              className="text-sm text-surface-500 hover:text-surface-700 transition-colors"
-            >
-              Back to Dashboard
-            </a>
           </div>
         </div>
       </div>

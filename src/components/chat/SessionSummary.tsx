@@ -2,6 +2,7 @@
 
 import type { SessionSummaryData } from "@/components/tutor/types";
 import { getSkillById } from "@/lib/exam/curriculum";
+import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 
 interface SessionSummaryProps {
   readonly data: SessionSummaryData;
@@ -68,20 +69,14 @@ export function SessionSummary({ data, onClose }: SessionSummaryProps) {
         </div>
       )}
 
-      <div className="flex gap-3">
-        <a
-          href="/dashboard"
-          className="flex-1 rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-center text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
-        >
-          Back to Dashboard
-        </a>
-        <button
-          onClick={onClose}
-          className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-700 transition-colors"
-        >
-          Practice More
-        </button>
-      </div>
+      <NextTaskPrompt />
+
+      <button
+        onClick={onClose}
+        className="w-full rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-center text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+      >
+        Practice More
+      </button>
     </div>
   );
 }

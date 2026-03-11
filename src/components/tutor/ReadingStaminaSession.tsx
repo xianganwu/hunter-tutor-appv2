@@ -10,6 +10,7 @@ import {
   STAMINA_LEVELS,
 } from "@/lib/reading-stamina";
 import { getRandomPassagePhrase } from "@/lib/loading-phrases";
+import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 
 export function ReadingStaminaSession() {
   const {
@@ -598,12 +599,7 @@ function SummaryPhase({
         </div>
       </div>
 
-      <a
-        href="/dashboard"
-        className="block w-full rounded-xl bg-brand-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-700 transition-colors"
-      >
-        Back to Dashboard
-      </a>
+      <NextTaskPrompt />
     </div>
   );
 }

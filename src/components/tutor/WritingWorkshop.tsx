@@ -17,6 +17,7 @@ import { EssayHistory } from "./EssayHistory";
 import { RevisionFeedback } from "./RevisionFeedback";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import { checkAndAwardBadges, buildBadgeContext } from "@/lib/achievements";
+import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 
 const ESSAY_DURATION_MINUTES = 40;
 
@@ -446,25 +447,20 @@ export function WritingWorkshop() {
             <p className="text-surface-600 dark:text-surface-400">
               You&apos;ve completed a writing session. Every essay you write builds your skills for the Hunter exam.
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
+              <NextTaskPrompt />
               <button
                 onClick={startNewSession}
-                className="rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
+                className="w-full rounded-xl bg-surface-100 dark:bg-surface-800 px-6 py-3 text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
               >
                 Write Another Essay
               </button>
               <button
                 onClick={() => setShowHistory(true)}
-                className="rounded-xl bg-surface-100 dark:bg-surface-800 px-6 py-3 text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+                className="text-sm text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors"
               >
                 View Essay History
               </button>
-              <a
-                href="/dashboard"
-                className="text-sm text-surface-500 hover:text-surface-700 transition-colors"
-              >
-                Back to Dashboard
-              </a>
             </div>
           </div>
         </div>

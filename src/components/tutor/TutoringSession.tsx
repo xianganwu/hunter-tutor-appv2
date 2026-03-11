@@ -13,6 +13,10 @@ import { SessionSummary } from "@/components/chat/SessionSummary";
 import { TeachItBack } from "./TeachItBack";
 import { useTutoringSession } from "@/hooks/useTutoringSession";
 import { getSkillById } from "@/lib/exam/curriculum";
+import { SessionMascot, type MascotReaction } from "@/components/shared/SessionMascot";
+import { getStoredMascotType } from "@/lib/user-profile";
+import { getMascotTier } from "@/components/shared/Mascot";
+import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 
 interface TutoringSessionProps {
   readonly skillId: string;
@@ -39,6 +43,31 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
   const isLoading = state.phase === "loading" || state.phase === "initializing";
   const lastMsg = state.messages[state.messages.length - 1];
   const isStreaming = isLoading && lastMsg?.role === "tutor" && lastMsg.content.length > 0;
+
+  // Mascot reactions
+  const mascotType = getStoredMascotType();
+  const storedMasteries = loadAllSkillMasteries();
+  const overallMastery = storedMasteries.length > 0
+    ? storedMasteries.reduce((sum, s) => sum + s.masteryLevel, 0) / storedMasteries.length
+    : 0;
+  const mascotTier = getMascotTier(overallMastery);
+  const [mascotReaction, setMascotReaction] = useState<MascotReaction>("idle");
+  const [mascotReactionKey, setMascotReactionKey] = useState(0);
+  const prevQuestionCountRef = useRef(state.questionCount);
+
+  useEffect(() => {
+    if (state.questionCount <= prevQuestionCountRef.current) return;
+    prevQuestionCountRef.current = state.questionCount;
+
+    if (state.correctStreak >= 3) {
+      setMascotReaction("streak");
+    } else if (state.correctStreak > 0) {
+      setMascotReaction("correct");
+    } else {
+      setMascotReaction("incorrect");
+    }
+    setMascotReactionKey((k) => k + 1);
+  }, [state.questionCount, state.correctStreak]);
 
   // Celebration banner for correct streaks
   const [celebration, setCelebration] = useState<string | null>(null);
@@ -194,6 +223,13 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           }
         />
       </div>
+
+      <SessionMascot
+        mascotType={mascotType}
+        tier={mascotTier}
+        reaction={mascotReaction}
+        reactionKey={mascotReactionKey}
+      />
     </div>
   );
 }
