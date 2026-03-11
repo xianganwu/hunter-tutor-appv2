@@ -9,6 +9,7 @@ import {
   CATEGORY_LABELS,
 } from "@/lib/mistakes";
 import type { MistakeEntry, MistakeCategory } from "@/lib/mistakes";
+import { MathText } from "@/components/chat/MathText";
 
 interface MistakeJournalProps {
   readonly onStartReview: () => void;
@@ -256,7 +257,7 @@ export function MistakeJournal({ onStartReview }: MistakeJournalProps) {
                         Question
                       </div>
                       <p className="text-surface-700 dark:text-surface-300">
-                        {mistake.questionText}
+                        <MathText text={mistake.questionText} />
                       </p>
                     </div>
 
@@ -266,7 +267,7 @@ export function MistakeJournal({ onStartReview }: MistakeJournalProps) {
                           Your answer
                         </div>
                         <p className="text-surface-700 dark:text-surface-300">
-                          {mistake.studentAnswer}
+                          <MathText text={mistake.studentAnswer} />
                         </p>
                       </div>
                       <div>
@@ -274,7 +275,7 @@ export function MistakeJournal({ onStartReview }: MistakeJournalProps) {
                           Correct answer
                         </div>
                         <p className="text-surface-700 dark:text-surface-300">
-                          {mistake.correctAnswer}
+                          <MathText text={mistake.correctAnswer} />
                         </p>
                       </div>
                     </div>

@@ -8,6 +8,7 @@ import {
   CATEGORY_LABELS,
 } from "@/lib/mistakes";
 import type { MistakeEntry } from "@/lib/mistakes";
+import { MathText } from "@/components/chat/MathText";
 
 interface MistakeReviewProps {
   readonly onComplete: () => void;
@@ -149,7 +150,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
       {/* Question */}
       <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4">
         <p className="text-sm text-surface-900 dark:text-surface-100 leading-relaxed">
-          {current.questionText}
+          <MathText text={current.questionText} />
         </p>
       </div>
 
@@ -187,7 +188,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
               disabled={showResult}
               className={classes}
             >
-              {choice}
+              <MathText text={choice} />
             </button>
           );
         })}

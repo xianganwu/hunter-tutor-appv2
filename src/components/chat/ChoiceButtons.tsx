@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MathText } from "./MathText";
 
 interface ChoiceButtonsProps {
   readonly choices: readonly string[];
@@ -46,7 +47,7 @@ export function ChoiceButtons({ choices, onSelect, disabled }: ChoiceButtonsProp
             >
               {displayLetter}
             </span>
-            <span>{choice.slice(choice.indexOf(")") + 1).trim() || choice.slice(2).trim() || choice}</span>
+            <span><MathText text={choice.slice(choice.indexOf(")") + 1).trim() || choice.slice(2).trim() || choice} /></span>
           </button>
         );
       })}

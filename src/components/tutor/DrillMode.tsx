@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useDrillSession } from "@/hooks/useDrillSession";
+import { MathText } from "@/components/chat/MathText";
 import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
 import { BadgeNotification } from "@/components/shared/BadgeNotification";
 import { Confetti } from "@/components/shared/Confetti";
@@ -224,7 +225,7 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 gap-6">
           <div className="max-w-lg w-full text-center">
             <p className="text-base font-medium text-surface-900 dark:text-surface-100 leading-relaxed whitespace-pre-wrap">
-              {currentQuestion.questionText}
+              <MathText text={currentQuestion.questionText} />
             </p>
           </div>
 

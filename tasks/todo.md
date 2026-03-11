@@ -1,47 +1,29 @@
-# Feature: Guided Study Mode ("Study for Me")
+# Fix: Math fractions rendering as raw text
 
-## Overview
-30-minute auto-piloted session that picks optimal skills, teaches, practices,
-then moves to the next weakness. Zero decision fatigue — student clicks one
-button and the system runs the entire session.
+## Root Cause
+`ChoiceButtons` component renders answer choice text as plain `<span>` instead of `<MathText>`.
+When AI generates LaTeX like `$\frac{4}{3}$`, the raw LaTeX shows instead of a rendered fraction.
+The user sees "43" instead of the properly rendered fraction 4/3.
 
-## Phase 1: Core Library (`src/lib/guided-study.ts`)
-- [x] Define types: `GuidedStudyPhase`, `SkillSlot`, `GuidedStudySummary`
-- [x] `buildStudyPlan()` — uses `selectNextSkills()` to pick 5 skills across domains
-- [x] `shouldAdvanceSkill()` — logic for when to move to next skill
-- [x] `computeSessionSummary()` — aggregate stats across all skills
-- [x] Constants: `SESSION_DURATION_MS`, `MIN_QUESTIONS_PER_SKILL`, `MAX_QUESTIONS_PER_SKILL`
-- [x] `formatTimeRemaining()` — mm:ss display
+## Affected Components
+- [x] `src/components/chat/ChoiceButtons.tsx` — answer choices (plain span, no MathText)
+- [x] `src/components/tutor/DrillMode.tsx` — question text (plain text, no MathText)
+- [x] `src/components/tutor/MistakeReview.tsx` — question text + answer choices (plain text)
+- [x] `src/components/tutor/MistakeJournal.tsx` — question text, student/correct answers (plain text)
 
-## Phase 2: State Machine Hook (`src/hooks/useGuidedStudy.ts`)
-- [x] Phases: `planning` → `teaching` → `practicing` → `transitioning` → `complete`
-- [x] Streaming support for teaching + feedback (reuse SSE pattern from useTutoringSession)
-- [x] Auto-select first skill and stream teaching on start
-- [x] Question generation + answer submission + streamed feedback
-- [x] Skill advancement logic (3 consecutive correct = advance early, max 7 questions per skill)
-- [x] Auto-transition to next skill with brief interstitial
-- [x] 30-minute global timer with clean wrap-up
-- [x] Mastery persistence after each skill block via `saveSkillMastery()`
-- [x] Session summary computation on complete
-- [x] Badge awards and daily task auto-completion
+## Already Correct (no changes needed)
+- `DiagnosticTest.tsx` — uses MathText for question + choices
+- `SimulationSession.tsx` QuestionCard — uses MathText
+- `ChatBubble.tsx` — uses MathText
+- `GuidedStudySession.tsx` TeachingView + PracticingView question — uses MathText
 
-## Phase 3: UI Component (`src/components/study/GuidedStudySession.tsx`)
-- [x] Header: countdown timer (30:00 → 0:00), skill progress dots, end button
-- [x] Planning phase: skill plan preview with "Begin Session" button
-- [x] Teaching phase: streaming tutor text + "Let's Practice" button
-- [x] Practicing phase: question text + MC choices + streamed feedback + "Next" button
-- [x] Transitioning phase: brief motivational interstitial (auto-advances)
-- [x] Complete phase: session summary with per-skill mastery changes + overall stats
-- [x] MathText integration for LaTeX/SVG rendering throughout
+## Fix Plan
+1. Update `ChoiceButtons` to wrap choice text in `<MathText>`
+2. Update `DrillMode` to wrap questionText in `<MathText>`
+3. Update `MistakeReview` to use `<MathText>` for question + choices
+4. Update `MistakeJournal` to use `<MathText>` for question, student answer, correct answer
 
-## Phase 4: Route + Navigation Integration
-- [x] `src/app/study/page.tsx` — route shell
-- [x] Add "Study" to TopNav navigation links
-- [x] Add "Study for Me" quick action to DashboardContent (prominent placement)
-- [x] Add `/study` to middleware protected paths + matcher
-
-## Phase 5: Verify
+## Review
 - [x] Typecheck passes
 - [x] Lint passes
-- [x] Production build succeeds
-- [ ] Smoke test: session starts, teaches, questions work, transitions, timer ends session
+- [x] Build passes
