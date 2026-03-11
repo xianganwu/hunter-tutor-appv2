@@ -109,18 +109,24 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
       }
 
       case "evaluate_essay": {
+        // Get session BEFORE the expensive AI call — cookies() context can be
+        // lost after long-running async operations in Next.js App Router.
+        const evalSession = await getSessionFromCookie();
+        if (!evalSession) {
+          console.warn("[writing] evaluate_essay: no session — essay will not be persisted");
+        }
+
         const feedback = await agent.evaluateEssay(
           body.promptText,
           body.essayText
         );
 
-        // Persist to DB before responding so client can fetch the saved essay
+        // Persist to DB so client can fetch the saved essay
         let submissionId: string | undefined;
-        try {
-          const session = await getSessionFromCookie();
-          if (session) {
+        if (evalSession) {
+          try {
             const writingSession = await prisma.tutoringSession.create({
-              data: { studentId: session.sub, domain: "writing" },
+              data: { studentId: evalSession.sub, domain: "writing" },
             });
             const submission = await prisma.writingSubmission.create({
               data: {
@@ -131,9 +137,9 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
               },
             });
             submissionId = submission.id;
+          } catch (err) {
+            console.error("[writing] DB save error:", err);
           }
-        } catch (err) {
-          console.error("[writing] DB save error:", err);
         }
 
         return NextResponse.json({
@@ -144,17 +150,22 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
       }
 
       case "evaluate_revision": {
+        // Get session BEFORE the AI call to avoid losing cookies() context.
+        const revisionSession = await getSessionFromCookie();
+        if (!revisionSession) {
+          console.warn("[writing] evaluate_revision: no session — revision will not be persisted");
+        }
+
         const revisedFeedback = await agent.evaluateEssay(
           body.promptText,
           body.revisedEssayText
         );
 
-        // Persist revision to DB before responding
-        try {
-          const session = await getSessionFromCookie();
-          if (session) {
+        // Persist revision to DB
+        if (revisionSession) {
+          try {
             const writingSession = await prisma.tutoringSession.create({
-              data: { studentId: session.sub, domain: "writing" },
+              data: { studentId: revisionSession.sub, domain: "writing" },
             });
             await prisma.writingSubmission.create({
               data: {
@@ -166,9 +177,9 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
                 revisionNumber: body.revisionNumber,
               },
             });
+          } catch (err) {
+            console.error("[writing] DB revision save error:", err);
           }
-        } catch (err) {
-          console.error("[writing] DB revision save error:", err);
         }
 
         const originalFeedbackParsed = JSON.parse(body.originalFeedback) as EssayFeedback;
