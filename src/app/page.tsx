@@ -234,31 +234,22 @@ export default function ProfilePicker() {
 
           {/* Mascot selection — signup only */}
           {mode === "signup" && (
-            <div className="flex gap-3">
-              <button
-                type="button"
-                onClick={() => { setMascotChoice("penguin"); clearForm(); }}
-                className={`flex flex-1 items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-lg font-semibold transition-all ${
-                  mascotChoice === "penguin"
-                    ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500 dark:bg-brand-900/20 dark:text-brand-300"
-                    : "border-surface-300 bg-white text-surface-500 hover:border-brand-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-brand-500"
-                }`}
-              >
-                <Mascot tier={1} size="sm" mascotType="penguin" />
-                Penguin
-              </button>
-              <button
-                type="button"
-                onClick={() => { setMascotChoice("monkey"); clearForm(); }}
-                className={`flex flex-1 items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-lg font-semibold transition-all ${
-                  mascotChoice === "monkey"
-                    ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500 dark:bg-brand-900/20 dark:text-brand-300"
-                    : "border-surface-300 bg-white text-surface-500 hover:border-brand-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-brand-500"
-                }`}
-              >
-                <Mascot tier={1} size="sm" mascotType="monkey" />
-                Monkey
-              </button>
+            <div className="grid grid-cols-2 gap-3">
+              {(["penguin", "monkey", "phoenix", "dragon"] as const).map((animal) => (
+                <button
+                  key={animal}
+                  type="button"
+                  onClick={() => { setMascotChoice(animal); clearForm(); }}
+                  className={`flex items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-base font-semibold transition-all ${
+                    mascotChoice === animal
+                      ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500 dark:bg-brand-900/20 dark:text-brand-300"
+                      : "border-surface-300 bg-white text-surface-500 hover:border-brand-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-brand-500"
+                  }`}
+                >
+                  <Mascot tier={1} size="sm" mascotType={animal} />
+                  {animal.charAt(0).toUpperCase() + animal.slice(1)}
+                </button>
+              ))}
             </div>
           )}
 

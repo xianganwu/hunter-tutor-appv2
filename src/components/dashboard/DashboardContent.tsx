@@ -9,9 +9,11 @@ import { useDashboardData } from "./use-dashboard-data";
 import { Mascot, getMascotTier, getMascotLabel, type MascotAnimal } from "@/components/shared/Mascot";
 import { BadgeNotification } from "@/components/shared/BadgeNotification";
 import { Confetti } from "@/components/shared/Confetti";
-import { getStoredMascotType, getStoredAuthUser } from "@/lib/user-profile";
+import { getStoredMascotType, getStoredAuthUser, setStoredAuthUser } from "@/lib/user-profile";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 import { shouldTriggerConfetti, type BadgeDefinition } from "@/lib/achievements";
+import { authUpdateMascot } from "@/lib/auth-client";
+import { MascotPicker } from "@/components/shared/MascotPicker";
 
 export function DashboardContent() {
   const router = useRouter();
@@ -31,6 +33,8 @@ export function DashboardContent() {
     useDashboardData();
 
   const [showBadgeNotification, setShowBadgeNotification] = useState(true);
+  const [mascotType, setMascotType] = useState<MascotAnimal>(getStoredMascotType());
+  const [showMascotPicker, setShowMascotPicker] = useState(false);
 
   const handleBadgeDismiss = useCallback(() => {
     setShowBadgeNotification(false);
@@ -47,8 +51,6 @@ export function DashboardContent() {
       </main>
     );
   }
-
-  const mascotType: MascotAnimal = getStoredMascotType();
   const overallMastery =
     skillStates.length > 0
       ? skillStates.reduce((sum, s) => sum + s.masteryLevel, 0) /
@@ -80,16 +82,42 @@ export function DashboardContent() {
         {/* Header: Greeting + Streak */}
         <section className="animate-slide-up">
           <div className="flex items-center gap-3">
-            <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
+            <button
+              onClick={() => setShowMascotPicker(true)}
+              className="rounded-xl transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 dark:focus:ring-offset-surface-950"
+              title="Change mascot"
+            >
+              <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
+            </button>
             <div>
               <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-50 md:text-3xl">
                 Welcome back!
               </h1>
               <p className="text-xs font-medium text-surface-400 dark:text-surface-500">
-                Your {mascotType === "monkey" ? "monkey" : "penguin"}: {getMascotLabel(mascotTier, mascotType)}
+                Your {mascotType}: {getMascotLabel(mascotTier, mascotType)}{" "}
+                <button
+                  onClick={() => setShowMascotPicker(true)}
+                  className="text-brand-500 hover:text-brand-600 dark:text-brand-400 dark:hover:text-brand-300"
+                >
+                  (change)
+                </button>
               </p>
             </div>
           </div>
+          {showMascotPicker && (
+            <MascotPicker
+              currentMascot={mascotType}
+              onSelect={async (newType) => {
+                const result = await authUpdateMascot(newType);
+                if (result.user) {
+                  setStoredAuthUser(result.user);
+                  setMascotType(newType);
+                }
+                setShowMascotPicker(false);
+              }}
+              onClose={() => setShowMascotPicker(false)}
+            />
+          )}
           <p className="mt-1 text-sm font-medium text-brand-600 dark:text-brand-400">
             {TIER_MESSAGES[mascotTier]}
           </p>

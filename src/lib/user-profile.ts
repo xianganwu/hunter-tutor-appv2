@@ -128,7 +128,7 @@ export interface StoredAuthUser {
   id: string;
   name: string;
   email: string;
-  mascotType?: "penguin" | "monkey";
+  mascotType?: "penguin" | "monkey" | "phoenix" | "dragon";
   onboardingComplete?: boolean;
 }
 
@@ -150,9 +150,11 @@ export function setStoredAuthUser(user: StoredAuthUser): void {
   }
 }
 
-export function getStoredMascotType(): "penguin" | "monkey" {
+export function getStoredMascotType(): "penguin" | "monkey" | "phoenix" | "dragon" {
   const user = getStoredAuthUser();
-  return user?.mascotType === "monkey" ? "monkey" : "penguin";
+  const t = user?.mascotType;
+  if (t === "monkey" || t === "phoenix" || t === "dragon") return t;
+  return "penguin";
 }
 
 export function clearStoredAuthUser(): void {

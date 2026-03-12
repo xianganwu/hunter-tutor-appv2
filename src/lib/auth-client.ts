@@ -4,7 +4,7 @@ import { enqueueSyncRetry, attachOnlineListener } from "./sync-queue";
 import { DATA_KEYS } from "./data-keys";
 import { getDirtyKeys, clearDirtyKeys } from "./user-profile";
 
-export type MascotType = "penguin" | "monkey";
+export type MascotType = "penguin" | "monkey" | "phoenix" | "dragon";
 
 export interface AuthUser {
   id: string;
@@ -73,6 +73,23 @@ export async function authSetParentPin(pin: string): Promise<{ error?: string }>
       return { error: data.error || "Failed to set PIN" };
     }
     return {};
+  } catch {
+    return { error: "Unable to connect to the server." };
+  }
+}
+
+export async function authUpdateMascot(
+  mascotType: MascotType
+): Promise<{ user?: AuthUser; error?: string }> {
+  try {
+    const res = await fetch("/api/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "update_mascot", mascotType }),
+    });
+    const data = await res.json();
+    if (!res.ok) return { error: data.error || "Failed to update mascot" };
+    return { user: data.user };
   } catch {
     return { error: "Unable to connect to the server." };
   }

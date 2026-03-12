@@ -18,7 +18,7 @@ const signupSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6).max(100),
   parentPin: z.string().regex(/^\d{4,6}$/).optional(),
-  mascotType: z.enum(["penguin", "monkey"]).default("penguin"),
+  mascotType: z.enum(["penguin", "monkey", "phoenix", "dragon"]).default("penguin"),
 });
 
 const loginSchema = z.object({
@@ -47,6 +47,11 @@ const completeOnboardingSchema = z.object({
   action: z.literal("complete_onboarding"),
 });
 
+const updateMascotSchema = z.object({
+  action: z.literal("update_mascot"),
+  mascotType: z.enum(["penguin", "monkey", "phoenix", "dragon"]),
+});
+
 const requestSchema = z.discriminatedUnion("action", [
   signupSchema,
   loginSchema,
@@ -54,6 +59,7 @@ const requestSchema = z.discriminatedUnion("action", [
   setPinSchema,
   resetPasswordSchema,
   completeOnboardingSchema,
+  updateMascotSchema,
 ]);
 
 // ─── GET /api/auth — get current user ─────────────────────────────────
@@ -109,6 +115,8 @@ export async function POST(request: Request) {
       return await handleResetPassword(data);
     } else if (data.action === "complete_onboarding") {
       return await handleCompleteOnboarding();
+    } else if (data.action === "update_mascot") {
+      return await handleUpdateMascot(data);
     } else {
       return await handleLogout();
     }
@@ -264,6 +272,28 @@ async function handleCompleteOnboarding() {
   });
 
   return NextResponse.json({ success: true });
+}
+
+async function handleUpdateMascot(data: z.infer<typeof updateMascotSchema>) {
+  const session = await getSessionFromCookie();
+  if (!session) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
+
+  const student = await prisma.student.update({
+    where: { id: session.sub },
+    data: { mascotType: data.mascotType },
+  });
+
+  return NextResponse.json({
+    user: {
+      id: student.id,
+      name: student.name,
+      email: student.email,
+      mascotType: student.mascotType,
+      onboardingComplete: student.onboardingComplete,
+    },
+  });
 }
 
 async function handleLogout() {
