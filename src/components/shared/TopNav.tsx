@@ -4,27 +4,15 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DarkModeToggle } from "./DarkModeToggle";
-import { Mascot, getMascotTier, type MascotAnimal } from "./Mascot";
-import { getActiveUser, getStoredMascotType } from "@/lib/user-profile";
-import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { getActiveUser } from "@/lib/user-profile";
 
 export function TopNav() {
   const pathname = usePathname();
   const [userName, setUserName] = useState<string | null>(null);
-  const [mascotTier, setMascotTier] = useState<1 | 2 | 3 | 4 | 5>(1);
-  const [mascotType, setMascotType] = useState<MascotAnimal>("penguin");
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     setUserName(getActiveUser());
-    setMascotType(getStoredMascotType());
-
-    const stored = loadAllSkillMasteries();
-    if (stored.length > 0) {
-      const avg =
-        stored.reduce((sum, s) => sum + s.masteryLevel, 0) / stored.length;
-      setMascotTier(getMascotTier(avg));
-    }
   }, []);
 
   // Close mobile menu on navigation
@@ -55,8 +43,7 @@ export function TopNav() {
           href="/dashboard"
           className="flex items-center gap-2.5 text-lg font-bold text-brand-600 dark:text-brand-400"
         >
-          <Mascot tier={mascotTier} size="sm" mascotType={mascotType} />
-          <span className="hidden sm:inline">Hunter Tutor</span>
+          Hunter Tutor
         </Link>
 
         {/* Desktop Nav Links */}

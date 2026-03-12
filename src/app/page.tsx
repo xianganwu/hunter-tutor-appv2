@@ -196,11 +196,6 @@ export default function ProfilePicker() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-brand-50 to-surface-50 px-4 dark:from-surface-950 dark:to-surface-900">
       <div className="w-full max-w-md text-center animate-fade-in">
-        {/* Mascot */}
-        <div className="mb-6 flex justify-center">
-          <Mascot tier={1} size="lg" />
-        </div>
-
         <h1 className="mb-2 text-3xl font-bold text-surface-900 dark:text-surface-100">
           Hunter Tutor
         </h1>
