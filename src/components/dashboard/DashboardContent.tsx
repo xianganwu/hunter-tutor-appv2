@@ -58,6 +58,19 @@ export function DashboardContent() {
       : 0;
   const mascotTier = getMascotTier(overallMastery);
 
+  const tierThresholds = [0, 0.2, 0.4, 0.6, 0.8, 1.0];
+  const tierStart = tierThresholds[mascotTier - 1];
+  const tierEnd = tierThresholds[mascotTier] ?? 1.0;
+  const tierProgress = mascotTier >= 5
+    ? 1
+    : Math.min(1, Math.max(0, (overallMastery - tierStart) / (tierEnd - tierStart)));
+  const nextTierLabel = mascotTier < 5
+    ? getMascotLabel((mascotTier + 1) as 1 | 2 | 3 | 4 | 5, mascotType)
+    : null;
+  const progressTitle = nextTierLabel
+    ? `${Math.round(tierProgress * 100)}% to ${nextTierLabel}`
+    : "Max evolution!";
+
   const TIER_MESSAGES: Record<number, string> = {
     1: "Every expert was once a beginner. Let's get started!",
     2: "You're exploring new territory. Keep going!",
@@ -82,13 +95,24 @@ export function DashboardContent() {
         {/* Header: Greeting + Streak */}
         <section className="animate-slide-up">
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setShowMascotPicker(true)}
-              className="rounded-xl transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 dark:focus:ring-offset-surface-950"
-              title="Change mascot"
-            >
-              <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
-            </button>
+            <div className="flex flex-col items-center gap-1">
+              <button
+                onClick={() => setShowMascotPicker(true)}
+                className="rounded-xl transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 dark:focus:ring-offset-surface-950"
+                title="Change mascot"
+              >
+                <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
+              </button>
+              <div
+                className="h-1.5 w-14 overflow-hidden rounded-full bg-surface-200 dark:bg-surface-700"
+                title={progressTitle}
+              >
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-brand-400 to-brand-600 transition-all duration-500"
+                  style={{ width: `${Math.round(tierProgress * 100)}%` }}
+                />
+              </div>
+            </div>
             <div>
               <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-50 md:text-3xl">
                 Welcome back!
