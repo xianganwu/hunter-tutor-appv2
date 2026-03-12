@@ -1,0 +1,1375 @@
+{
+  "id": "hunter_tg_3",
+  "title": "Hunter TG Practice Test #3",
+  "sections": {
+    "verbal": [
+      {
+        "id": "hunter_tg_3_v_01",
+        "questionNumber": 1,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "Religious freedom has a long history in America." },
+          { "letter": "B", "text": "People should not allow others to tell them what to do." },
+          { "letter": "C", "text": "Rhode Island was named for the Isle of Rhodes." },
+          { "letter": "D", "text": "Rhode Island may be small, but its history is important." },
+          { "letter": "E", "text": "Rhode Island experienced trouble in the early years." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_02",
+        "questionNumber": 2,
+        "questionText": "Which of these events happened first?",
+        "answerChoices": [
+          { "letter": "A", "text": "the Industrial Revolution" },
+          { "letter": "B", "text": "Roger Williams established Providence Plantations." },
+          { "letter": "C", "text": "the Revolutionary War" },
+          { "letter": "D", "text": "Anne Hutchinson moved to Aquidneck Island." },
+          { "letter": "E", "text": "The colonies faced troubled times." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_03",
+        "questionNumber": 3,
+        "questionText": "According to the passage, Rhode Island was settled because",
+        "answerChoices": [
+          { "letter": "A", "text": "there was good whale hunting there." },
+          { "letter": "B", "text": "the colonies in Connecticut and Massachusetts wanted more land." },
+          { "letter": "C", "text": "people wanted independence from England." },
+          { "letter": "D", "text": "the settlers thought the islands looked like the Isle of Rhodes." },
+          { "letter": "E", "text": "people wanted greater religious freedom." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_04",
+        "questionNumber": 4,
+        "questionText": "The group of settlers influenced by Anne Hutchinson settled",
+        "answerChoices": [
+          { "letter": "A", "text": "in a colony of textile workers." },
+          { "letter": "B", "text": "only on Aquidneck Island." },
+          { "letter": "C", "text": "at the head of a river." },
+          { "letter": "D", "text": "in Providence Plantations." },
+          { "letter": "E", "text": "on several islands at the mouth of Providence River." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_05",
+        "questionNumber": 5,
+        "questionText": "Rhode Island began as",
+        "answerChoices": [
+          { "letter": "A", "text": "two colonies established as refuges for people with independent religious convictions." },
+          { "letter": "B", "text": "one of the first 13 U.S. states." },
+          { "letter": "C", "text": "two separate colonies settled by immigrants from France and England." },
+          { "letter": "D", "text": "a U.S. territory." },
+          { "letter": "E", "text": "a heavily forested wilderness." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_06",
+        "questionNumber": 6,
+        "questionText": "What does the author mean by saying that the Rhode Island colonies were used \"like a tug-of-war rope\"?",
+        "answerChoices": [
+          { "letter": "A", "text": "Rhode Island was establishing a growing trade in rope." },
+          { "letter": "B", "text": "British politicians fought for control of Rhode Island." },
+          { "letter": "C", "text": "Religious freedom created trouble in Rhode Island." },
+          { "letter": "D", "text": "Politics had people tied up in knots." },
+          { "letter": "E", "text": "Tug-of-war was a popular game among the colonists." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_vocab_context",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_07",
+        "questionNumber": 7,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "how to transform a racing greyhound into a good pet" },
+          { "letter": "B", "text": "why people in the dog-racing business should stop racing greyhounds" },
+          { "letter": "C", "text": "why retired racing greyhounds should be adopted as pets" },
+          { "letter": "D", "text": "the pros and cons of adopting a racing greyhound, presented objectively" },
+          { "letter": "E", "text": "why Greyhound racing is such a popular sport" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_08",
+        "questionNumber": 8,
+        "questionText": "The passage promotes the idea that a greyhound is a good pet particularly for people who",
+        "answerChoices": [
+          { "letter": "A", "text": "do not have children." },
+          { "letter": "B", "text": "live in apartments." },
+          { "letter": "C", "text": "do not usually like dogs." },
+          { "letter": "D", "text": "already have another dog or cat." },
+          { "letter": "E", "text": "need a watchdog." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_09",
+        "questionNumber": 9,
+        "questionText": "The passage suggests that more people would adopt retired racing greyhounds if they realized that the dogs",
+        "answerChoices": [
+          { "letter": "A", "text": "were housebroken." },
+          { "letter": "B", "text": "were long-distance runners." },
+          { "letter": "C", "text": "were only about three-and-a-half years old." },
+          { "letter": "D", "text": "loved to be in groups of other dogs." },
+          { "letter": "E", "text": "easily learned tricks." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_10",
+        "questionNumber": 10,
+        "questionText": "According to the author, greyhounds could best be described as",
+        "answerChoices": [
+          { "letter": "A", "text": "difficult to train." },
+          { "letter": "B", "text": "shy and retiring." },
+          { "letter": "C", "text": "nervous but passive." },
+          { "letter": "D", "text": "watchful and independent." },
+          { "letter": "E", "text": "loving and devoted." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_11",
+        "questionNumber": 11,
+        "questionText": "Families who adopt a greyhound might expect their dog to live",
+        "answerChoices": [
+          { "letter": "A", "text": "about three or four years." },
+          { "letter": "B", "text": "to about the age of five." },
+          { "letter": "C", "text": "to about the age of ten." },
+          { "letter": "D", "text": "up to the age of 15." },
+          { "letter": "E", "text": "a year or more." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_12",
+        "questionNumber": 12,
+        "questionText": "One drawback of adopting a greyhound is that",
+        "answerChoices": [
+          { "letter": "A", "text": "greyhounds are not good with children." },
+          { "letter": "B", "text": "greyhounds are old when they retire from racing." },
+          { "letter": "C", "text": "the greyhound's sensitivity makes it temperamental." },
+          { "letter": "D", "text": "greyhounds are not good watchdogs." },
+          { "letter": "E", "text": "greyhounds need a lot of room to run." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_13",
+        "questionNumber": 13,
+        "questionText": "A retired racing greyhound available for adoption will most likely be",
+        "answerChoices": [
+          { "letter": "A", "text": "happy to be retiring." },
+          { "letter": "B", "text": "easily housebroken." },
+          { "letter": "C", "text": "a champion." },
+          { "letter": "D", "text": "high-strung." },
+          { "letter": "E", "text": "a slow runner." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_14",
+        "questionNumber": 14,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "the history of train travel" },
+          { "letter": "B", "text": "which cities have subway systems" },
+          { "letter": "C", "text": "Boston's subway system" },
+          { "letter": "D", "text": "why subways came to be" },
+          { "letter": "E", "text": "how subways are constructed" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_15",
+        "questionNumber": 15,
+        "questionText": "Which is NOT true of American cities?",
+        "answerChoices": [
+          { "letter": "A", "text": "Population growth was a problem even in the nineteenth century." },
+          { "letter": "B", "text": "Population increases caused problems even 200 years ago." },
+          { "letter": "C", "text": "In the 1800s, New York City's population increased about 58% every 10 years." },
+          { "letter": "D", "text": "Population growth did not become a problem until recently." },
+          { "letter": "E", "text": "Several major cities have had problems with population growth." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_16",
+        "questionNumber": 16,
+        "questionText": "Why were subways built?",
+        "answerChoices": [
+          { "letter": "A", "text": "Every city needs a subway system." },
+          { "letter": "B", "text": "Cities were too congested and overcrowded." },
+          { "letter": "C", "text": "People preferred underground trains." },
+          { "letter": "D", "text": "People rely on trains to go to work." },
+          { "letter": "E", "text": "People prefer trains to other modes of transportation." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_17",
+        "questionNumber": 17,
+        "questionText": "According to the passage, Boston built a subway system because",
+        "answerChoices": [
+          { "letter": "A", "text": "New York City had one." },
+          { "letter": "B", "text": "the street-level trolleys could not contend with the other traffic." },
+          { "letter": "C", "text": "the West End Company partnered with the Boston Transit Commission to fund the excavation and construction." },
+          { "letter": "D", "text": "they wanted to be the first." },
+          { "letter": "E", "text": "they already had the necessary materials on hand." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_18",
+        "questionNumber": 18,
+        "questionText": "The first subway was built in",
+        "answerChoices": [
+          { "letter": "A", "text": "New York." },
+          { "letter": "B", "text": "Washington, DC." },
+          { "letter": "C", "text": "San Francisco." },
+          { "letter": "D", "text": "Atlanta." },
+          { "letter": "E", "text": "Boston." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_19",
+        "questionNumber": 19,
+        "questionText": "Which of these best describes \"pneumatic transit\" as mentioned in the passage?",
+        "answerChoices": [
+          { "letter": "A", "text": "electric-powered trolleys" },
+          { "letter": "B", "text": "street-level passenger cars" },
+          { "letter": "C", "text": "subterranean trolleys" },
+          { "letter": "D", "text": "wind-powered passenger cars" },
+          { "letter": "E", "text": "wind-powered surface transportation" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_vocab_context",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_20",
+        "questionNumber": 20,
+        "questionText": "According to the passage, which of the following cities probably does not have a subway system?",
+        "answerChoices": [
+          { "letter": "A", "text": "Baltimore" },
+          { "letter": "B", "text": "Atlanta" },
+          { "letter": "C", "text": "Cleveland" },
+          { "letter": "D", "text": "Miami" },
+          { "letter": "E", "text": "San Francisco" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_21",
+        "questionNumber": 21,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "a once-thriving trade center on the Indian subcontinent" },
+          { "letter": "B", "text": "the culture of Harappa compared to that of Egypt" },
+          { "letter": "C", "text": "how the city of Harappa collapsed between 1900 and 1700 BCE" },
+          { "letter": "D", "text": "how Harappa, Egypt, and Mesopotamia were once connected" },
+          { "letter": "E", "text": "to show that lavish temples and tombs were once associated with urban centers" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_22",
+        "questionNumber": 22,
+        "questionText": "Which of the following facts from the passage best supports the idea that Harappans did not engage in warfare?",
+        "answerChoices": [
+          { "letter": "A", "text": "Harappa was both orderly and functional." },
+          { "letter": "B", "text": "Harappa had no lavish tombs or opulent temples." },
+          { "letter": "C", "text": "Harappa was surrounded by just a single wall, and it had no moat." },
+          { "letter": "D", "text": "Harappa's main gate was just nine feet wide." },
+          { "letter": "E", "text": "Harappan writing has yet to be interpreted." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_evidence_reasoning",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_23",
+        "questionNumber": 23,
+        "questionText": "The passage mentions that all the following were uncovered by archaeologists working in Harappa EXCEPT",
+        "answerChoices": [
+          { "letter": "A", "text": "stone seals used to mark the city's exports." },
+          { "letter": "B", "text": "evidence of agricultural production." },
+          { "letter": "C", "text": "tombs where the Harappan aristocracy was buried." },
+          { "letter": "D", "text": "a gated wall that encircled the entire city." },
+          { "letter": "E", "text": "stone weights used to levy the area's taxes." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_24",
+        "questionNumber": 24,
+        "questionText": "What does the passage suggest as the most likely reason that Harappa went from an agricultural community to an urban center?",
+        "answerChoices": [
+          { "letter": "A", "text": "After 3300 BCE, its farms were no longer productive." },
+          { "letter": "B", "text": "The Indus River shifted, flooding many agricultural villages." },
+          { "letter": "C", "text": "Agricultural output demanded commercial development." },
+          { "letter": "D", "text": "The local aristocracy decided to develop an export business." },
+          { "letter": "E", "text": "It was near the crossroads of several major trade routes." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_25",
+        "questionNumber": 25,
+        "questionText": "Which of the following statements is supported by information given in the passage?",
+        "answerChoices": [
+          { "letter": "A", "text": "The residents of Harappa paid income taxes." },
+          { "letter": "B", "text": "Harappa both imported and exported goods." },
+          { "letter": "C", "text": "Harappa's leaders were generous and kind." },
+          { "letter": "D", "text": "Harappa lacked an irrigation system." },
+          { "letter": "E", "text": "Farming in Harappa was more advanced than farming in Egypt." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_evidence_reasoning",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_26",
+        "questionNumber": 26,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "Greece is where the Olympics began." },
+          { "letter": "B", "text": "how athletes trained for the Olympics" },
+          { "letter": "C", "text": "the history of the Olympics" },
+          { "letter": "D", "text": "The Olympics encourage world cooperation and athletic excellence." },
+          { "letter": "E", "text": "The Olympics started in Athens in 1896." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_27",
+        "questionNumber": 27,
+        "questionText": "Today's Olympics are similar to the games of 3,000 years ago because",
+        "answerChoices": [
+          { "letter": "A", "text": "women participate." },
+          { "letter": "B", "text": "there is more than one event." },
+          { "letter": "C", "text": "more than one country competes." },
+          { "letter": "D", "text": "the games are fiercely competitive." },
+          { "letter": "E", "text": "they have footraces." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_28",
+        "questionNumber": 28,
+        "questionText": "How many years is an Olympiad?",
+        "answerChoices": [
+          { "letter": "A", "text": "two" },
+          { "letter": "B", "text": "four" },
+          { "letter": "C", "text": "six" },
+          { "letter": "D", "text": "one" },
+          { "letter": "E", "text": "three" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_29",
+        "questionNumber": 29,
+        "questionText": "Which is NOT mentioned as a goal of today's Olympics?",
+        "answerChoices": [
+          { "letter": "A", "text": "world cooperation" },
+          { "letter": "B", "text": "putting education and athletics together" },
+          { "letter": "C", "text": "international understanding" },
+          { "letter": "D", "text": "winning awards" },
+          { "letter": "E", "text": "athletic excellence" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_30",
+        "questionNumber": 30,
+        "questionText": "In the original Olympics, Greek women were not allowed to participate or watch. They responded by",
+        "answerChoices": [
+          { "letter": "A", "text": "watching from afar." },
+          { "letter": "B", "text": "participating in disguise." },
+          { "letter": "C", "text": "conducting their own games." },
+          { "letter": "D", "text": "staying home." },
+          { "letter": "E", "text": "rejecting the idea of competitive games." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_31",
+        "questionNumber": 31,
+        "questionText": "In the early days of the Olympics, male champions",
+        "answerChoices": [
+          { "letter": "A", "text": "were given their freedom." },
+          { "letter": "B", "text": "were the strongest in the country." },
+          { "letter": "C", "text": "stayed away from the female champions." },
+          { "letter": "D", "text": "were awarded valuable gifts." },
+          { "letter": "E", "text": "were barred from future competitions." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_32",
+        "questionNumber": 32,
+        "questionText": "The third paragraph describes",
+        "answerChoices": [
+          { "letter": "A", "text": "women's response to the Olympics." },
+          { "letter": "B", "text": "the goals of ancient Greece's Olympics." },
+          { "letter": "C", "text": "what the winners of the Olympics receive." },
+          { "letter": "D", "text": "why athletic excellence is important." },
+          { "letter": "E", "text": "how the Olympics got started." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_passage_structure",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_33",
+        "questionNumber": 33,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "Hansberry wrote excellent plays that had both artistic and political influence." },
+          { "letter": "B", "text": "Hansberry's parents deserve credit for raising a successful daughter." },
+          { "letter": "C", "text": "These are Hansberry's best-known works." },
+          { "letter": "D", "text": "If one is raised in a well-educated family, one is likely to succeed." },
+          { "letter": "E", "text": "Hansberry had a difficult struggle, but ultimately succeeded as a young female writer." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_34",
+        "questionNumber": 34,
+        "questionText": "The writer of this passage suggests that Hansberry's political beliefs originated with her experience as",
+        "answerChoices": [
+          { "letter": "A", "text": "the daughter of politically active parents." },
+          { "letter": "B", "text": "a successful playwright in New York." },
+          { "letter": "C", "text": "a resident of Southside Chicago." },
+          { "letter": "D", "text": "an intellectual in Greenwich Village." },
+          { "letter": "E", "text": "a successful real estate broker." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_35",
+        "questionNumber": 35,
+        "questionText": "Paragraph 3 states that Hansberry's main purpose in writing A Raisin in the Sun was to",
+        "answerChoices": [
+          { "letter": "A", "text": "win her father's approval." },
+          { "letter": "B", "text": "break down stereotypes." },
+          { "letter": "C", "text": "show people how interesting her own family was." },
+          { "letter": "D", "text": "earn the right to produce her own plays." },
+          { "letter": "E", "text": "influence members of the Illinois Supreme Court." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_36",
+        "questionNumber": 36,
+        "questionText": "Which of the following best explains the author's reason for including paragraphs 4 and 5?",
+        "answerChoices": [
+          { "letter": "A", "text": "The cities of Chicago and New York have similar problems." },
+          { "letter": "B", "text": "The civil rights struggle continued even after Hansberry died." },
+          { "letter": "C", "text": "Hansberry actually wrote more poems and essays than she did plays." },
+          { "letter": "D", "text": "A Raisin in the Sun was more successful after Hansberry's death than it was before she died." },
+          { "letter": "E", "text": "Hansberry's work continued to influence people even after her death." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_37",
+        "questionNumber": 37,
+        "questionText": "According to the passage, how many women had won the New York Drama Critic's Circle Award for Best Play of the Year before Lorraine Hansberry did?",
+        "answerChoices": [
+          { "letter": "A", "text": "none" },
+          { "letter": "B", "text": "one" },
+          { "letter": "C", "text": "two" },
+          { "letter": "D", "text": "four" },
+          { "letter": "E", "text": "five" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_38",
+        "questionNumber": 38,
+        "questionText": "According to the passage, which of the following dramatic works was based most directly on Hansberry's life?",
+        "answerChoices": [
+          { "letter": "A", "text": "A Raisin in the Sun" },
+          { "letter": "B", "text": "Les Blancs" },
+          { "letter": "C", "text": "The Sign in Sidney Brustein's Window" },
+          { "letter": "D", "text": "To Be Young, Gifted, and Black" },
+          { "letter": "E", "text": "Southside Chicago" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_39",
+        "questionNumber": 39,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "Two kidnappers gain a lot of money from their misdeeds." },
+          { "letter": "B", "text": "A brave little boy escapes from two dangerous kidnappers." },
+          { "letter": "C", "text": "Two kidnappers end up fighting with each other." },
+          { "letter": "D", "text": "Two kidnappers become fearful of their victim." },
+          { "letter": "E", "text": "Two would-be kidnappers lose their victim before they can collect the ransom." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_40",
+        "questionNumber": 40,
+        "questionText": "Why do Sam and Bill want to kidnap the son of Ebenezer Dorset?",
+        "answerChoices": [
+          { "letter": "A", "text": "They know that Ebenezer will pay them a ransom just to avoid publicity." },
+          { "letter": "B", "text": "They have failed to kidnap any other children from Summit." },
+          { "letter": "C", "text": "They need $100 and know that Ebenezer will pay that sum." },
+          { "letter": "D", "text": "Ebenezer's son is sickly and weak and will be easy to kidnap." },
+          { "letter": "E", "text": "They think that he is wealthy enough to pay a good deal of money to get his only son back." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_41",
+        "questionNumber": 41,
+        "questionText": "Why doesn't the kidnapping victim want to go home?",
+        "answerChoices": [
+          { "letter": "A", "text": "He is afraid his father will punish him." },
+          { "letter": "B", "text": "He wants the sweets that the kidnappers offered him." },
+          { "letter": "C", "text": "He believes he can escape whenever he wants to." },
+          { "letter": "D", "text": "He wants to keep the ransom for himself." },
+          { "letter": "E", "text": "He finds being kidnapped more fun than going to school." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_42",
+        "questionNumber": 42,
+        "questionText": "How is Red Chief different from a typical kidnapping victim?",
+        "answerChoices": [
+          { "letter": "A", "text": "Red Chief acts scared and pleads to go home." },
+          { "letter": "B", "text": "Red Chief scares and hurts his kidnappers." },
+          { "letter": "C", "text": "Red Chief doesn't like being kept hidden in a cave." },
+          { "letter": "D", "text": "Red Chief is afraid his father will not be able to meet the ransom." },
+          { "letter": "E", "text": "Red Chief is afraid he will be killed by his kidnappers." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_43",
+        "questionNumber": 43,
+        "questionText": "Later in the story, after another day spent with Red Chief, Sam and Bill write a ransom note to Ebenezer. They sign the note, \"Two Desperate Men.\" Normally criminals use this phrase to indicate that they will do anything -- even kill -- to get what they want. Based on the passage, what do Sam and Bill most likely mean by that signature?",
+        "answerChoices": [
+          { "letter": "A", "text": "They cannot deal with Red Chief and are desperate to get out of the situation." },
+          { "letter": "B", "text": "They will kill Red Chief if they don't get what they want." },
+          { "letter": "C", "text": "They are wanted for crimes in other states." },
+          { "letter": "D", "text": "They are hungry and urgently need food." },
+          { "letter": "E", "text": "A storm is coming and they need more shelter than the cave can offer." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_advanced_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_44",
+        "questionNumber": 44,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "the connections between eating disorders and the loss of control" },
+          { "letter": "B", "text": "Eating disorders can become a major problem for adolescents or young adult women." },
+          { "letter": "C", "text": "Eating disorders affect body weight in various ways." },
+          { "letter": "D", "text": "There are some similarities between bulimia and anorexia nervosa." },
+          { "letter": "E", "text": "an overview of eating disorders and their consequences" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_45",
+        "questionNumber": 45,
+        "questionText": "Fatalities occur in what percent of people with anorexia nervosa?",
+        "answerChoices": [
+          { "letter": "A", "text": "2%" },
+          { "letter": "B", "text": "10%" },
+          { "letter": "C", "text": "15%" },
+          { "letter": "D", "text": "30%" },
+          { "letter": "E", "text": "45%" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_46",
+        "questionNumber": 46,
+        "questionText": "Which of the following consequences do all the eating disorders mentioned in the passage have in common?",
+        "answerChoices": [
+          { "letter": "A", "text": "heart ailments" },
+          { "letter": "B", "text": "stomach rupture" },
+          { "letter": "C", "text": "swollen joints" },
+          { "letter": "D", "text": "diabetes" },
+          { "letter": "E", "text": "asthma" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_47",
+        "questionNumber": 47,
+        "questionText": "According to the passage, people with binge eating disorders are prone to all the following EXCEPT",
+        "answerChoices": [
+          { "letter": "A", "text": "obesity." },
+          { "letter": "B", "text": "gallbladder disease." },
+          { "letter": "C", "text": "low blood pressure." },
+          { "letter": "D", "text": "high cholesterol." },
+          { "letter": "E", "text": "diabetes." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_48",
+        "questionNumber": 48,
+        "questionText": "Which of the following is NOT a statement from the passage about people with eating disorders?",
+        "answerChoices": [
+          { "letter": "A", "text": "People with anorexia nervosa commonly have a blood-related deficiency." },
+          { "letter": "B", "text": "People with anorexia nervosa perceive themselves as overweight." },
+          { "letter": "C", "text": "The female population is the primary group affected by eating disorders." },
+          { "letter": "D", "text": "Binging and purging in secret is typical of those with bulimia." },
+          { "letter": "E", "text": "Fifty percent of people with bulimia also develop anorexia nervosa." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_49",
+        "questionNumber": 49,
+        "questionText": "People who have an eating disorder but nevertheless appear to be of normal weight are most likely to have",
+        "answerChoices": [
+          { "letter": "A", "text": "obsessive-compulsive disorder." },
+          { "letter": "B", "text": "bulimia nervosa." },
+          { "letter": "C", "text": "binge eating disorder." },
+          { "letter": "D", "text": "anorexia nervosa." },
+          { "letter": "E", "text": "binge eating disorder and anorexia nervosa." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_v_50",
+        "questionNumber": 50,
+        "questionText": "According to the passage, which of the following is true of bulimia patients?",
+        "answerChoices": [
+          { "letter": "A", "text": "They may demonstrate unpredictable social behavior." },
+          { "letter": "B", "text": "They often engage in compulsive exercise." },
+          { "letter": "C", "text": "They are less susceptible to dehydration than are anorexia patients." },
+          { "letter": "D", "text": "They frequently experience stomach ruptures." },
+          { "letter": "E", "text": "They are usually very outgoing." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      }
+    ],
+    "math": [
+      {
+        "id": "hunter_tg_3_m_01",
+        "questionNumber": 51,
+        "questionText": "Find the value of: 4 + (-15) + (-11)",
+        "answerChoices": [
+          { "letter": "A", "text": "-30" },
+          { "letter": "B", "text": "-29" },
+          { "letter": "C", "text": "-22" },
+          { "letter": "D", "text": "-11" },
+          { "letter": "E", "text": "0" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_fraction_decimal_ops",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_02",
+        "questionNumber": 52,
+        "questionText": "When a = 2, c = 1, and d = 0, what is the value of the expression 4a + 2c^2 - 3d^2?",
+        "answerChoices": [
+          { "letter": "A", "text": "7" },
+          { "letter": "B", "text": "9" },
+          { "letter": "C", "text": "12" },
+          { "letter": "D", "text": "15" },
+          { "letter": "E", "text": "10" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_03",
+        "questionNumber": 53,
+        "questionText": "The difference between one half of a number and one fifth of it is 561. Find the number.",
+        "answerChoices": [
+          { "letter": "A", "text": "168" },
+          { "letter": "B", "text": "2805" },
+          { "letter": "C", "text": "1870" },
+          { "letter": "D", "text": "5610" },
+          { "letter": "E", "text": "935" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_04",
+        "questionNumber": 54,
+        "questionText": "Two triangles of the same shape are always",
+        "answerChoices": [
+          { "letter": "A", "text": "similar" },
+          { "letter": "B", "text": "equilateral" },
+          { "letter": "C", "text": "congruent" },
+          { "letter": "D", "text": "symmetrical" },
+          { "letter": "E", "text": "equal" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_05",
+        "questionNumber": 55,
+        "questionText": "After selling one third of his apple crop, a farmer sold the remainder at the same price per bushel for $600. What was the value of the crop?",
+        "answerChoices": [
+          { "letter": "A", "text": "$1,000" },
+          { "letter": "B", "text": "$1,200" },
+          { "letter": "C", "text": "$1,800" },
+          { "letter": "D", "text": "$800" },
+          { "letter": "E", "text": "$900" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_06",
+        "questionNumber": 56,
+        "questionText": "Mr. Marsh left an estate amounting to $24,000. By his will, 10% was to be given to a college, 15% to a church, and the remainder was to be divided equally among 3 nieces. How much money did each niece receive?",
+        "answerChoices": [
+          { "letter": "A", "text": "$6,120" },
+          { "letter": "B", "text": "$2,000" },
+          { "letter": "C", "text": "$6,333.33" },
+          { "letter": "D", "text": "$6,000" },
+          { "letter": "E", "text": "$6,210" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_07",
+        "questionNumber": 57,
+        "questionText": "Coins are available in 1 cent, 5 cent, 10 cent, and 25 cent denominations. How many different sums of money can be obtained by combining any two coins?",
+        "answerChoices": [
+          { "letter": "A", "text": "7" },
+          { "letter": "B", "text": "8" },
+          { "letter": "C", "text": "9" },
+          { "letter": "D", "text": "10" },
+          { "letter": "E", "text": "12" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_08",
+        "questionNumber": 58,
+        "questionText": "On the average, 5 oranges will give 3 cupfuls of juice. If 2 cupfuls make a pint, how many oranges must be used to make 3 gallons of juice?",
+        "answerChoices": [
+          { "letter": "A", "text": "16" },
+          { "letter": "B", "text": "20" },
+          { "letter": "C", "text": "80" },
+          { "letter": "D", "text": "40" },
+          { "letter": "E", "text": "60" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_ratios_proportions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_09",
+        "questionNumber": 59,
+        "questionText": "A boat's gas tank has a capacity of 125 liters. On a full tank of gas the boat can travel 600 miles. What is the gas mileage in miles per liter?",
+        "answerChoices": [
+          { "letter": "A", "text": "2 1/2 miles per liter" },
+          { "letter": "B", "text": "3 3/5 miles per liter" },
+          { "letter": "C", "text": "3 7/8 miles per liter" },
+          { "letter": "D", "text": "4 3/5 miles per liter" },
+          { "letter": "E", "text": "4 4/5 miles per liter" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_fraction_decimal_ops",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_10",
+        "questionNumber": 60,
+        "questionText": "A salesman receives a monthly salary of $80, a 2% commission on all monthly sales over $2,000 and an additional 1% commission on all sales over $11,000 a month. If his total sales for January came to $13,500, how much did he earn that month?",
+        "answerChoices": [
+          { "letter": "A", "text": "$335" },
+          { "letter": "B", "text": "$285" },
+          { "letter": "C", "text": "$315" },
+          { "letter": "D", "text": "$485" },
+          { "letter": "E", "text": "$435" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_11",
+        "questionNumber": 61,
+        "questionText": "How much longer does it take an automobile to travel one mile at 20 miles per hour than at 30 miles per hour?",
+        "answerChoices": [
+          { "letter": "A", "text": "1 minute" },
+          { "letter": "B", "text": "10 minutes" },
+          { "letter": "C", "text": "20 minutes" },
+          { "letter": "D", "text": "40 minutes" },
+          { "letter": "E", "text": "50 minutes" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_12",
+        "questionNumber": 62,
+        "questionText": "A man wishes to construct a poultry house 12 feet long, in which to keep 20 hens. If each hen requires 4 square feet of floor space, how wide should he construct the poultry house?",
+        "answerChoices": [
+          { "letter": "A", "text": "28 feet" },
+          { "letter": "B", "text": "80 feet" },
+          { "letter": "C", "text": "5 feet" },
+          { "letter": "D", "text": "6 feet 8 inches" },
+          { "letter": "E", "text": "68 feet" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_13",
+        "questionNumber": 63,
+        "questionText": "Aluminum bronze consists of copper and aluminum, usually in the ratio of 10:1 by weight. If a machine made of this alloy weighs 66 pounds, how many pounds of aluminum does it contain?",
+        "answerChoices": [
+          { "letter": "A", "text": "660" },
+          { "letter": "B", "text": "60" },
+          { "letter": "C", "text": "6.6" },
+          { "letter": "D", "text": "59.4" },
+          { "letter": "E", "text": "6" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_ratios_proportions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_14",
+        "questionNumber": 64,
+        "questionText": "How many triangles can be formed from this figure?",
+        "answerChoices": [
+          { "letter": "A", "text": "4" },
+          { "letter": "B", "text": "5" },
+          { "letter": "C", "text": "8" },
+          { "letter": "D", "text": "9" },
+          { "letter": "E", "text": "10" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "medium",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_3_m_15",
+        "questionNumber": 65,
+        "questionText": "A dealer bought 3 gross of pencils at $.38 a dozen. He sold the pencils at 5 cents each. How much was his profit per gross?",
+        "answerChoices": [
+          { "letter": "A", "text": "$7.92" },
+          { "letter": "B", "text": "$2.64" },
+          { "letter": "C", "text": "$0.22" },
+          { "letter": "D", "text": "$0.66" },
+          { "letter": "E", "text": "$0.88" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_16",
+        "questionNumber": 66,
+        "questionText": "How many cubic yards of earth had to be removed to make an excavation 30 feet long, 21 feet wide and 6 feet deep?",
+        "answerChoices": [
+          { "letter": "A", "text": "1260" },
+          { "letter": "B", "text": "3780" },
+          { "letter": "C", "text": "140" },
+          { "letter": "D", "text": "420" },
+          { "letter": "E", "text": "57" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_17",
+        "questionNumber": 67,
+        "questionText": "By what number is the area of a circle multiplied if its radius is doubled?",
+        "answerChoices": [
+          { "letter": "A", "text": "2*pi*r" },
+          { "letter": "B", "text": "2" },
+          { "letter": "C", "text": "3.1416" },
+          { "letter": "D", "text": "4" },
+          { "letter": "E", "text": "6.2832" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_18",
+        "questionNumber": 68,
+        "questionText": "A pattern of dots is shown below. At each step, more dots are added to the pattern. The number of dots added at each step is more than the number added in the previous step. The pattern continues infinitely. How many dots are in the 5th step?",
+        "answerChoices": [
+          { "letter": "A", "text": "30" },
+          { "letter": "B", "text": "20" },
+          { "letter": "C", "text": "16" },
+          { "letter": "D", "text": "12" },
+          { "letter": "E", "text": "Cannot be determined" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "mqr_pattern_recognition",
+        "confidence": "medium",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_3_m_19",
+        "questionNumber": 69,
+        "questionText": "A baseball team won w games and lost 1 game. What fractional part of its games did it win?",
+        "answerChoices": [
+          { "letter": "A", "text": "1/w" },
+          { "letter": "B", "text": "w/1" },
+          { "letter": "C", "text": "(w - 1)/w" },
+          { "letter": "D", "text": "(w + 1)/w" },
+          { "letter": "E", "text": "w/(w + 1)" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_20",
+        "questionNumber": 70,
+        "questionText": "A pole is held upright by 3 guy wires, each fastened to the pole 12 feet above the ground. The other ends of these wires are fastened to stakes 16 feet from the foot of the pole. Find the number of feet of wire required if 2 feet are added to each guy wire for making connections.",
+        "answerChoices": [
+          { "letter": "A", "text": "18 feet" },
+          { "letter": "B", "text": "66 feet" },
+          { "letter": "C", "text": "90 feet" },
+          { "letter": "D", "text": "54 feet" },
+          { "letter": "E", "text": "30 feet" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_21",
+        "questionNumber": 71,
+        "questionText": "What is the number of feet traversed in 1 second by an automobile that is traveling 30 miles an hour?",
+        "answerChoices": [
+          { "letter": "A", "text": "176" },
+          { "letter": "B", "text": "2" },
+          { "letter": "C", "text": "2640" },
+          { "letter": "D", "text": "44" },
+          { "letter": "E", "text": "29" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_22",
+        "questionNumber": 72,
+        "questionText": "The Jonesville Construction Company borrowed $225,000 for five years at 3 1/2%. What was the annual charge for interest?",
+        "answerChoices": [
+          { "letter": "A", "text": "$1,575" },
+          { "letter": "B", "text": "$1,555" },
+          { "letter": "C", "text": "$7,875" },
+          { "letter": "D", "text": "$39,375" },
+          { "letter": "E", "text": "$94,500" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_23",
+        "questionNumber": 73,
+        "questionText": "The stock that Mr. Ames bought cost him $80 a share. The par value of the stock is $100. If the stock pays $6 a year in dividends, what rate of interest is Mr. Ames getting on his money?",
+        "answerChoices": [
+          { "letter": "A", "text": "16 2/3%" },
+          { "letter": "B", "text": "7 1/2%" },
+          { "letter": "C", "text": "3%" },
+          { "letter": "D", "text": "6%" },
+          { "letter": "E", "text": "20%" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_24",
+        "questionNumber": 74,
+        "questionText": "The figure below represents a rectangle whose dimensions are l and w, surmounted by a semicircle whose radius is r. Express the area of this figure in terms of l, w, r and pi.",
+        "answerChoices": [
+          { "letter": "A", "text": "wl + (pi*r^2)/2" },
+          { "letter": "B", "text": "lw + pi*r^2" },
+          { "letter": "C", "text": "lw + pi*r" },
+          { "letter": "D", "text": "pi/2 - r^2*lw" },
+          { "letter": "E", "text": "r^2*lw - pi/2" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_25",
+        "questionNumber": 75,
+        "questionText": "If one machine can do a piece of work in 10 hours and a second machine can do the same work in 15 hours, how many hours will it take both machines working simultaneously to do the work?",
+        "answerChoices": [
+          { "letter": "A", "text": "12 1/2" },
+          { "letter": "B", "text": "25" },
+          { "letter": "C", "text": "5" },
+          { "letter": "D", "text": "6" },
+          { "letter": "E", "text": "1/6" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_26",
+        "questionNumber": 76,
+        "questionText": "A baseball diamond is a square 90 feet on a side. Find, correct to the nearest foot, the distance from third base to first base.",
+        "answerChoices": [
+          { "letter": "A", "text": "180 feet" },
+          { "letter": "B", "text": "135 feet" },
+          { "letter": "C", "text": "127 feet" },
+          { "letter": "D", "text": "90 feet" },
+          { "letter": "E", "text": "360 feet" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_27",
+        "questionNumber": 77,
+        "questionText": "A painted wooden cube whose edge is 3 inches is cut into 27 one-inch cubes. How many of these small cubes have just two painted sides?",
+        "answerChoices": [
+          { "letter": "A", "text": "12" },
+          { "letter": "B", "text": "18" },
+          { "letter": "C", "text": "8" },
+          { "letter": "D", "text": "9" },
+          { "letter": "E", "text": "24" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_28",
+        "questionNumber": 78,
+        "questionText": "A certain lending library charges a cents for the first week that a book is loaned and b cents for each day over one week. Write the formula for C, the cost in cents, of taking a book for d days from this library. (d > 7)",
+        "answerChoices": [
+          { "letter": "A", "text": "C = a + bd" },
+          { "letter": "B", "text": "C = a + b(d - 7)" },
+          { "letter": "C", "text": "C = ad" },
+          { "letter": "D", "text": "C = 7a + b(d - 7)" },
+          { "letter": "E", "text": "C = a + 7(b - d)" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_29",
+        "questionNumber": 79,
+        "questionText": "How many gallons of water must be added to 20 gallons of a 10% solution of salt and water to reduce it to an 8% solution?",
+        "answerChoices": [
+          { "letter": "A", "text": "10 gallons" },
+          { "letter": "B", "text": "2 gallons" },
+          { "letter": "C", "text": "16 gallons" },
+          { "letter": "D", "text": "4 gallons" },
+          { "letter": "E", "text": "5 gallons" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_3_m_30",
+        "questionNumber": 80,
+        "questionText": "In the figure, a square is inscribed in a circle with a diameter of 4. Find the area of the shaded region.",
+        "answerChoices": [
+          { "letter": "A", "text": "(1/2)*pi" },
+          { "letter": "B", "text": "pi" },
+          { "letter": "C", "text": "2*pi - 1" },
+          { "letter": "D", "text": "4*pi - 8" },
+          { "letter": "E", "text": "4*pi - 2*sqrt(2)" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      }
+    ]
+  },
+  "metadata": {
+    "totalQuestions": 80,
+    "source": "Hunter TG Practice Form 3",
+    "excludedCount": 3
+  }
+}

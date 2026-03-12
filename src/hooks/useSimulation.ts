@@ -23,6 +23,7 @@ import type {
   WritingScore,
 } from "@/lib/simulation";
 import { getRandomPrompt } from "@/components/tutor/writing-prompts";
+import { assembleSampleExam, getSampleTestMetadata } from "@/lib/exam/sample-tests";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -48,6 +49,7 @@ export interface SimState {
   readonly currentReadingQuestion: number;
   readonly currentQrQuestion: number;
   readonly currentMaQuestion: number;
+  readonly currentMathQuestion: number;
   readonly answers: Record<string, string>;
   readonly essayText: string;
   readonly timings: SectionTiming[];
@@ -68,6 +70,7 @@ export function useSimulation() {
     currentReadingQuestion: 0,
     currentQrQuestion: 0,
     currentMaQuestion: 0,
+    currentMathQuestion: 0,
     answers: {},
     essayText: "",
     timings: [],
@@ -80,8 +83,39 @@ export function useSimulation() {
   stateRef.current = state;
   const sectionStartRef = useRef<number>(0);
 
-  // Start exam generation
-  const startExam = useCallback(async () => {
+  // Start exam generation — if formId is provided, assemble a sample test locally
+  const startExam = useCallback(async (formId?: string) => {
+    // ── Sample test path: pure local data, no API calls ──
+    if (formId) {
+      setState((s) => ({
+        ...s,
+        phase: "generating",
+        generationProgress: "Loading sample test...",
+        error: null,
+      }));
+
+      try {
+        const exam = assembleSampleExam(formId);
+        if (!exam) throw new Error(`Sample test form "${formId}" not found`);
+
+        setState((s) => ({
+          ...s,
+          phase: "instructions",
+          exam,
+          generationProgress: "",
+        }));
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : "Failed to load sample test";
+        setState((s) => ({
+          ...s,
+          phase: "gate",
+          error: msg,
+        }));
+      }
+      return;
+    }
+
+    // ── Random exam path: API-based generation ──
     setState((s) => ({
       ...s,
       phase: "generating",
@@ -164,6 +198,7 @@ export function useSimulation() {
         writingPrompt: { id: writingPrompt.id, text: writingPrompt.text },
         qrQuestions,
         maQuestions,
+        mode: "random",
       };
 
       setState((s) => ({
@@ -209,7 +244,11 @@ export function useSimulation() {
   // Begin Math section
   const beginMath = useCallback(() => {
     sectionStartRef.current = Date.now();
-    setState((s) => ({ ...s, phase: "math", mathTab: "qr" }));
+    setState((s) => ({
+      ...s,
+      phase: "math",
+      mathTab: s.exam?.mode === "sample" ? "qr" : "qr", // both start at first tab
+    }));
   }, []);
 
   // Finish Math section and compute results
@@ -237,32 +276,44 @@ export function useSimulation() {
     // Score sections
     const allReadingQuestions = s.exam.readingBlocks.flatMap((b) => b.questions);
     const readingScore = scoreSection(allReadingQuestions, s.answers);
-    const qrScore = scoreSection(s.exam.qrQuestions, s.answers);
-    const maScore = scoreSection(s.exam.maQuestions, s.answers);
+    const isSample = s.exam.mode === "sample";
+
+    const qrScore = isSample
+      ? { correct: 0, total: 0, percentage: 0, bySkill: [] }
+      : scoreSection(s.exam.qrQuestions, s.answers);
+    const maScore = isSample
+      ? { correct: 0, total: 0, percentage: 0, bySkill: [] }
+      : scoreSection(s.exam.maQuestions, s.answers);
+    const mathScore = isSample && s.exam.mathQuestions
+      ? scoreSection(s.exam.mathQuestions, s.answers)
+      : undefined;
 
     // Capture missed questions for score report
-    const missedQuestions = collectMissedQuestions(
-      allReadingQuestions,
-      s.exam.qrQuestions,
-      s.exam.maQuestions,
-      s.answers
-    );
+    const missedQuestions = isSample && s.exam.mathQuestions
+      ? collectMissedQuestions(
+          allReadingQuestions, [], [], s.answers, s.exam.mathQuestions
+        )
+      : collectMissedQuestions(
+          allReadingQuestions, s.exam.qrQuestions, s.exam.maQuestions, s.answers
+        );
 
-    const totalCorrect = readingScore.correct + qrScore.correct + maScore.correct;
-    const totalQuestions = readingScore.total + qrScore.total + maScore.total;
+    const mathCorrect = mathScore?.correct ?? 0;
+    const mathTotal = mathScore?.total ?? 0;
+    const totalCorrect = readingScore.correct + (isSample ? mathCorrect : qrScore.correct + maScore.correct);
+    const totalQuestions = readingScore.total + (isSample ? mathTotal : qrScore.total + maScore.total);
     const overallPct = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
 
     const timeAnalysis = analyzeTime(allTimings);
 
-    // Evaluate essay
+    // Evaluate essay (skip for sample mode — no writing section)
     let writingScore: WritingScore = {
       score: 0,
-      feedback: "No essay submitted.",
+      feedback: isSample ? "Sample tests do not include an essay section." : "No essay submitted.",
       strengths: [],
-      improvements: ["Complete the essay section during the ELA booklet."],
+      improvements: isSample ? [] : ["Complete the essay section during the ELA booklet."],
     };
 
-    if (s.essayText.trim()) {
+    if (!isSample && s.essayText.trim() && s.exam.writingPrompt) {
       try {
         const essayRes = await fetch("/api/simulate", {
           method: "POST",
@@ -287,51 +338,62 @@ export function useSimulation() {
       }
     }
 
-    // Generate AI recommendations
+    // Generate recommendations
     let aiRecs: readonly string[] = [];
-    try {
-      const allSkills = [
-        ...readingScore.bySkill,
-        ...qrScore.bySkill,
-        ...maScore.bySkill,
-      ];
-      const weakSkills = allSkills
-        .filter((sk) => sk.percentage < 60)
-        .slice(0, 5);
+    const recSkills = isSample
+      ? [...readingScore.bySkill, ...(mathScore?.bySkill ?? [])]
+      : [...readingScore.bySkill, ...qrScore.bySkill, ...maScore.bySkill];
 
-      const recRes = await fetch("/api/simulate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "generate_recommendations",
-          readingPct: readingScore.percentage,
-          writingScore: writingScore.score,
-          qrPct: qrScore.percentage,
-          maPct: maScore.percentage,
-          weakSkills,
-          timeVerdict: {
-            ela: timeAnalysis.elaVerdict,
-            math: timeAnalysis.mathVerdict,
-          },
-        }),
-      });
+    if (!isSample) {
+      try {
+        const weakSkills = recSkills
+          .filter((sk) => sk.percentage < 60)
+          .slice(0, 5);
 
-      if (recRes.ok) {
-        const recData = (await recRes.json()) as {
-          recommendations?: readonly string[];
-        };
-        if (recData.recommendations) {
-          aiRecs = recData.recommendations;
+        const recRes = await fetch("/api/simulate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "generate_recommendations",
+            readingPct: readingScore.percentage,
+            writingScore: writingScore.score,
+            qrPct: qrScore.percentage,
+            maPct: maScore.percentage,
+            weakSkills,
+            timeVerdict: {
+              ela: timeAnalysis.elaVerdict,
+              math: timeAnalysis.mathVerdict,
+            },
+          }),
+        });
+
+        if (recRes.ok) {
+          const recData = (await recRes.json()) as {
+            recommendations?: readonly string[];
+          };
+          if (recData.recommendations) {
+            aiRecs = recData.recommendations;
+          }
         }
+      } catch {
+        // Fall back to local recommendations
       }
-    } catch {
-      // Fall back to local recommendations
     }
 
     const recommendations =
       aiRecs.length > 0
         ? aiRecs
-        : generateLocalRecommendations(readingScore, qrScore, maScore, timeAnalysis);
+        : generateLocalRecommendations(
+            readingScore,
+            isSample ? (mathScore ?? qrScore) : qrScore,
+            isSample ? { correct: 0, total: 0, percentage: 100, bySkill: [] } : maScore,
+            timeAnalysis
+          );
+
+    // Get sample test metadata if applicable
+    const sampleMeta = isSample && s.exam.formId
+      ? getSampleTestMetadata(s.exam.formId)
+      : null;
 
     const report: ScoreReport = {
       examId: s.exam.id,
@@ -346,6 +408,10 @@ export function useSimulation() {
       writing: writingScore,
       qr: qrScore,
       ma: maScore,
+      math: mathScore,
+      mode: s.exam.mode,
+      formTitle: sampleMeta?.title,
+      excludedCount: sampleMeta?.excludedCount,
       timeAnalysis,
       recommendations,
       missedQuestions,
@@ -405,6 +471,10 @@ export function useSimulation() {
     setState((s) => ({ ...s, currentMaQuestion: index }));
   }, []);
 
+  const setMathQuestion = useCallback((index: number) => {
+    setState((s) => ({ ...s, currentMathQuestion: index }));
+  }, []);
+
   return {
     state,
     startExam,
@@ -420,5 +490,6 @@ export function useSimulation() {
     setReadingQuestion,
     setQrQuestion,
     setMaQuestion,
+    setMathQuestion,
   };
 }

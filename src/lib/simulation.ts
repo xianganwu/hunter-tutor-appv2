@@ -25,9 +25,12 @@ export interface SimulationExam {
   readonly id: string;
   readonly createdAt: string;
   readonly readingBlocks: readonly ExamPassageBlock[];
-  readonly writingPrompt: { readonly id: string; readonly text: string };
+  readonly writingPrompt: { readonly id: string; readonly text: string } | null;
   readonly qrQuestions: readonly ExamQuestion[];
   readonly maQuestions: readonly ExamQuestion[];
+  readonly mode: "random" | "sample";
+  readonly formId?: string;
+  readonly mathQuestions?: readonly ExamQuestion[];
 }
 
 export interface SectionTiming {
@@ -78,7 +81,7 @@ export interface MissedQuestion {
   readonly correctAnswer: string;
   readonly skillId: string;
   readonly skillName: string;
-  readonly section: "reading" | "qr" | "ma";
+  readonly section: "reading" | "qr" | "ma" | "math";
 }
 
 export interface ImpactSkill {
@@ -106,6 +109,10 @@ export interface ScoreReport {
   readonly writing: WritingScore;
   readonly qr: SectionScore;
   readonly ma: SectionScore;
+  readonly math?: SectionScore;
+  readonly mode?: "random" | "sample";
+  readonly formTitle?: string;
+  readonly excludedCount?: number;
   readonly timeAnalysis: TimeAnalysis;
   readonly recommendations: readonly string[];
   readonly missedQuestions?: readonly MissedQuestion[];
@@ -420,13 +427,14 @@ export function collectMissedQuestions(
   readingQuestions: readonly ExamQuestion[],
   qrQuestions: readonly ExamQuestion[],
   maQuestions: readonly ExamQuestion[],
-  answers: Record<string, string>
+  answers: Record<string, string>,
+  mathQuestions?: readonly ExamQuestion[]
 ): MissedQuestion[] {
   const missed: MissedQuestion[] = [];
 
   const process = (
     questions: readonly ExamQuestion[],
-    section: "reading" | "qr" | "ma"
+    section: "reading" | "qr" | "ma" | "math"
   ) => {
     for (const q of questions) {
       const selected = answers[q.id];
@@ -450,8 +458,12 @@ export function collectMissedQuestions(
   };
 
   process(readingQuestions, "reading");
-  process(qrQuestions, "qr");
-  process(maQuestions, "ma");
+  if (mathQuestions) {
+    process(mathQuestions, "math");
+  } else {
+    process(qrQuestions, "qr");
+    process(maQuestions, "ma");
+  }
 
   return missed;
 }
@@ -508,15 +520,28 @@ export function computeImpactAnalysis(report: ScoreReport): ImpactSkill[] {
 
 export function formatShareableReport(report: ScoreReport): string {
   const lines: string[] = [];
-  lines.push("Hunter Tutor — Practice Exam Results");
+  const title = report.formTitle
+    ? `Hunter Tutor — ${report.formTitle} Results`
+    : "Hunter Tutor — Practice Exam Results";
+  lines.push(title);
   lines.push(`Date: ${new Date(report.completedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`);
   lines.push("");
   lines.push(`Overall: ${report.overall.percentage}% (${report.overall.correct}/${report.overall.total}) — est. ${report.overall.estimatedPercentile}th percentile`);
   lines.push("");
   lines.push(`Reading: ${report.reading.percentage}% (${report.reading.correct}/${report.reading.total})`);
-  lines.push(`Essay: ${report.writing.score}/10`);
-  lines.push(`Quantitative Reasoning: ${report.qr.percentage}% (${report.qr.correct}/${report.qr.total})`);
-  lines.push(`Math Achievement: ${report.ma.percentage}% (${report.ma.correct}/${report.ma.total})`);
+
+  if (report.mode === "sample") {
+    if (report.math) {
+      lines.push(`Math: ${report.math.percentage}% (${report.math.correct}/${report.math.total})`);
+    }
+    if (report.excludedCount) {
+      lines.push(`(${report.excludedCount} questions excluded — image-dependent)`);
+    }
+  } else {
+    lines.push(`Essay: ${report.writing.score}/10`);
+    lines.push(`Quantitative Reasoning: ${report.qr.percentage}% (${report.qr.correct}/${report.qr.total})`);
+    lines.push(`Math Achievement: ${report.ma.percentage}% (${report.ma.correct}/${report.ma.total})`);
+  }
 
   if (report.recommendations.length > 0) {
     lines.push("");

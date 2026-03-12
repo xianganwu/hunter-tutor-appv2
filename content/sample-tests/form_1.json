@@ -1,0 +1,1343 @@
+{
+  "id": "hunter_tg_1",
+  "title": "Hunter TG Practice Test #1",
+  "sections": {
+    "verbal": [
+      {
+        "id": "hunter_tg_1_v_01",
+        "questionNumber": 1,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "the rhythms of desert life" },
+          { "letter": "B", "text": "storytellers of the desert" },
+          { "letter": "C", "text": "how to survive in the desert" },
+          { "letter": "D", "text": "legendary tracking ability of the Bedouin" },
+          { "letter": "E", "text": "the modern life of a nomadic people" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_02",
+        "questionNumber": 2,
+        "questionText": "When does the yearly migration of the tribes begin?",
+        "answerChoices": [
+          { "letter": "A", "text": "in the severe heat of summer" },
+          { "letter": "B", "text": "after summer is over" },
+          { "letter": "C", "text": "when the tribe has finished doing business in town" },
+          { "letter": "D", "text": "when summer begins" },
+          { "letter": "E", "text": "when the Bedouin have enough water" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_03",
+        "questionNumber": 3,
+        "questionText": "The Bedouin have allowed certain modernizations when those changes",
+        "answerChoices": [
+          { "letter": "A", "text": "help them cope with their harsh existence." },
+          { "letter": "B", "text": "are required by their religion." },
+          { "letter": "C", "text": "will shorten the length of their migration." },
+          { "letter": "D", "text": "do not replace something traditional." },
+          { "letter": "E", "text": "make it possible to avoid desert travel." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_04",
+        "questionNumber": 4,
+        "questionText": "Which of the following facts most clearly suggests that the Bedouin have recently shared some of the wealth of Saudi Arabia?",
+        "answerChoices": [
+          { "letter": "A", "text": "They spend their summers near a town." },
+          { "letter": "B", "text": "They own herds of camels and sheep." },
+          { "letter": "C", "text": "They are generous to visitors." },
+          { "letter": "D", "text": "They own pickup trucks." },
+          { "letter": "E", "text": "They travel wherever they wish." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_05",
+        "questionNumber": 5,
+        "questionText": "Which of the following has had the least influence on the Bedouin lifestyle?",
+        "answerChoices": [
+          { "letter": "A", "text": "the desert" },
+          { "letter": "B", "text": "their herds" },
+          { "letter": "C", "text": "their religious beliefs" },
+          { "letter": "D", "text": "their nomadic travels" },
+          { "letter": "E", "text": "the oil industry" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_06",
+        "questionNumber": 6,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "how the kiwifruit came to New Zealand" },
+          { "letter": "B", "text": "whether the kiwifruit will replace the orange" },
+          { "letter": "C", "text": "the tasty and nutritious kiwifruit" },
+          { "letter": "D", "text": "how the kiwifruit was developed" },
+          { "letter": "E", "text": "the fruits of New Zealand" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_07",
+        "questionNumber": 7,
+        "questionText": "When did the kiwifruit first become a commercial crop?",
+        "answerChoices": [
+          { "letter": "A", "text": "1904" },
+          { "letter": "B", "text": "the 1930s" },
+          { "letter": "C", "text": "the 1950s" },
+          { "letter": "D", "text": "the early 1960s" },
+          { "letter": "E", "text": "about 1980" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_08",
+        "questionNumber": 8,
+        "questionText": "What does the passage imply about the earliest kiwifruit grown in New Zealand?",
+        "answerChoices": [
+          { "letter": "A", "text": "It was thought to be inedible." },
+          { "letter": "B", "text": "It had almost no nutritional value." },
+          { "letter": "C", "text": "Most of it was sold to the Chinese." },
+          { "letter": "D", "text": "Most people did not realize its commercial potential." },
+          { "letter": "E", "text": "Though smaller, it tasted better than the kiwifruit of today." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_09",
+        "questionNumber": 9,
+        "questionText": "Which of the following statements about the popularity of the kiwifruit would the author most likely agree with?",
+        "answerChoices": [
+          { "letter": "A", "text": "The kiwifruit is just a fad and other fruits will probably replace it." },
+          { "letter": "B", "text": "The kiwifruit will become the most popular fruit in the world." },
+          { "letter": "C", "text": "The kiwifruit would become more popular if it was available outside of New Zealand." },
+          { "letter": "D", "text": "The success of the kiwifruit is due primarily to clever advertising." },
+          { "letter": "E", "text": "The popularity of the kiwifruit is likely to keep increasing." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_10",
+        "questionNumber": 10,
+        "questionText": "What characteristic do the kiwifruit and the kiwi bird have in common?",
+        "answerChoices": [
+          { "letter": "A", "text": "Both are round with a fuzzy exterior." },
+          { "letter": "B", "text": "Both were bred to grow larger." },
+          { "letter": "C", "text": "Both are the same size." },
+          { "letter": "D", "text": "Both originated in China." },
+          { "letter": "E", "text": "Both are valued for their beauty." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_11",
+        "questionNumber": 11,
+        "questionText": "Which of the following was NOT an American impressionist painter?",
+        "answerChoices": [
+          { "letter": "A", "text": "Ryder" },
+          { "letter": "B", "text": "Hudson" },
+          { "letter": "C", "text": "Inness" },
+          { "letter": "D", "text": "Blakelock" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_12",
+        "questionNumber": 12,
+        "questionText": "The author implies that Inness",
+        "answerChoices": [
+          { "letter": "A", "text": "rebelled against the art establishment" },
+          { "letter": "B", "text": "was a member of the Hudson Valley River school" },
+          { "letter": "C", "text": "was the most famous American painter of the nineteenth century" },
+          { "letter": "D", "text": "lived and worked in the United States" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_13",
+        "questionNumber": 13,
+        "questionText": "It would be accurate to describe Robert Henri as",
+        "answerChoices": [
+          { "letter": "A", "text": "a romanticist" },
+          { "letter": "B", "text": "an impressionist" },
+          { "letter": "C", "text": "a realist" },
+          { "letter": "D", "text": "a minimalist" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_14",
+        "questionNumber": 14,
+        "questionText": "Paintings created by the progressives",
+        "answerChoices": [
+          { "letter": "A", "text": "appeared in the Armory Show of 1913" },
+          { "letter": "B", "text": "appealed to the art establishment" },
+          { "letter": "C", "text": "were unlike those of Robert Henri" },
+          { "letter": "D", "text": "focused more on scenery than people" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_15",
+        "questionNumber": 15,
+        "questionText": "The passage is mainly about the",
+        "answerChoices": [
+          { "letter": "A", "text": "American impressionist painters" },
+          { "letter": "B", "text": "art of the Hudson Valley River school" },
+          { "letter": "C", "text": "influence of Robert Henri" },
+          { "letter": "D", "text": "rise of modern American art" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_16",
+        "questionNumber": 16,
+        "questionText": "Marco was concerned about being punished for",
+        "answerChoices": [
+          { "letter": "A", "text": "losing his cap" },
+          { "letter": "B", "text": "being late for dinner" },
+          { "letter": "C", "text": "coming home in wet clothes" },
+          { "letter": "D", "text": "disobeying his uncle" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_17",
+        "questionNumber": 17,
+        "questionText": "Marco's main fear was that his",
+        "answerChoices": [
+          { "letter": "A", "text": "uncle would punish him" },
+          { "letter": "B", "text": "cousin would betray him to Marco's uncle" },
+          { "letter": "C", "text": "canoe would be damaged beyond repair" },
+          { "letter": "D", "text": "uncle would learn of his morning activities" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_18",
+        "questionNumber": 18,
+        "questionText": "At dinnertime, Marco was feeling",
+        "answerChoices": [
+          { "letter": "A", "text": "relieved" },
+          { "letter": "B", "text": "anxious" },
+          { "letter": "C", "text": "desperate" },
+          { "letter": "D", "text": "confused" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_tone_mood",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_19",
+        "questionNumber": 19,
+        "questionText": "As used in the passage, the word truancy is best defined as",
+        "answerChoices": [
+          { "letter": "A", "text": "falsehood" },
+          { "letter": "B", "text": "unexcused absence" },
+          { "letter": "C", "text": "mischievous deed" },
+          { "letter": "D", "text": "true motive" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_vocab_context",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_20",
+        "questionNumber": 20,
+        "questionText": "Why did Marco decide to stay outdoors all afternoon?",
+        "answerChoices": [
+          { "letter": "A", "text": "so that his clothes would finish drying" },
+          { "letter": "B", "text": "because the weather was sunny and warm" },
+          { "letter": "C", "text": "to avoid his cousin and his uncle" },
+          { "letter": "D", "text": "to help his cousin with chores" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_21",
+        "questionNumber": 21,
+        "questionText": "This article is most likely to appear in a magazine catering to",
+        "answerChoices": [
+          { "letter": "A", "text": "veterinarians" },
+          { "letter": "B", "text": "pet owners" },
+          { "letter": "C", "text": "horse trainers" },
+          { "letter": "D", "text": "zookeepers" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_22",
+        "questionNumber": 22,
+        "questionText": "Hans's owner believed he had trained Hans to",
+        "answerChoices": [
+          { "letter": "A", "text": "accept treats from strangers who asked him perform arithmetic" },
+          { "letter": "B", "text": "observe the body language of a person asking him for an answer to an arithmetic problem" },
+          { "letter": "C", "text": "perform simple arithmetic such as addition and subtraction" },
+          { "letter": "D", "text": "stomp his hoof upon the owner's command to do so" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_23",
+        "questionNumber": 23,
+        "questionText": "The article's author seems skeptical about the",
+        "answerChoices": [
+          { "letter": "A", "text": "honesty of people who brag about the intelligence of their pets" },
+          { "letter": "B", "text": "intelligence of scientists who study animals" },
+          { "letter": "C", "text": "claim that only humans can develop high-level language skills" },
+          { "letter": "D", "text": "ability of animals to converse using human language" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_author_purpose",
+        "confidence": "medium",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_24",
+        "questionNumber": 24,
+        "questionText": "Which of the following is probably NOT a reason that Hans learned to respond correctly to arithmetic questions?",
+        "answerChoices": [
+          { "letter": "A", "text": "Hans was extremely intelligent." },
+          { "letter": "B", "text": "Hans was punished for giving wrong answers." },
+          { "letter": "C", "text": "Hans was very observant of the humans around him." },
+          { "letter": "D", "text": "Hans was rewarded for his behavior." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_25",
+        "questionNumber": 25,
+        "questionText": "The article strongly supports the claim that animals",
+        "answerChoices": [
+          { "letter": "A", "text": "pay close attention to their owners' behavior" },
+          { "letter": "B", "text": "are more intelligent than most people think" },
+          { "letter": "C", "text": "can be trained to do almost anything" },
+          { "letter": "D", "text": "mimic the behavior of their owners" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_26",
+        "questionNumber": 26,
+        "questionText": "The passage discusses ancient attempts to classify people based mainly on their",
+        "answerChoices": [
+          { "letter": "A", "text": "physical size" },
+          { "letter": "B", "text": "intelligence" },
+          { "letter": "C", "text": "personality" },
+          { "letter": "D", "text": "wealth" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_27",
+        "questionNumber": 27,
+        "questionText": "A phlegmatic person tends to be",
+        "answerChoices": [
+          { "letter": "A", "text": "steady" },
+          { "letter": "B", "text": "optimistic" },
+          { "letter": "C", "text": "irritable" },
+          { "letter": "D", "text": "sociable" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_vocab_context",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_28",
+        "questionNumber": 28,
+        "questionText": "Carl Jung developed a classification system based on",
+        "answerChoices": [
+          { "letter": "A", "text": "humours" },
+          { "letter": "B", "text": "race and ethnic origin" },
+          { "letter": "C", "text": "attitudes" },
+          { "letter": "D", "text": "personal tastes" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_29",
+        "questionNumber": 29,
+        "questionText": "According to the passage, Carl Jung and Sigmund Freud",
+        "answerChoices": [
+          { "letter": "A", "text": "both attended the same university in Germany" },
+          { "letter": "B", "text": "disagreed about whether Freud was an introvert" },
+          { "letter": "C", "text": "both developed a body-mind classification system" },
+          { "letter": "D", "text": "both influenced twentieth-century popular psychology" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_30",
+        "questionNumber": 30,
+        "questionText": "The Myers-Briggs Type Indicator",
+        "answerChoices": [
+          { "letter": "A", "text": "was based on Freud's work" },
+          { "letter": "B", "text": "popularized Jung's work" },
+          { "letter": "C", "text": "influenced Jung and Freud" },
+          { "letter": "D", "text": "is not widely used today" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_31",
+        "questionNumber": 31,
+        "questionText": "As used in the selection, the word forbidding is best defined as",
+        "answerChoices": [
+          { "letter": "A", "text": "prohibited" },
+          { "letter": "B", "text": "unfriendly" },
+          { "letter": "C", "text": "unpredictable" },
+          { "letter": "D", "text": "mountainous" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_vocab_context",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_32",
+        "questionNumber": 32,
+        "questionText": "The selection can best be described as",
+        "answerChoices": [
+          { "letter": "A", "text": "an explanation" },
+          { "letter": "B", "text": "a plea" },
+          { "letter": "C", "text": "a debate" },
+          { "letter": "D", "text": "a complaint" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_33",
+        "questionNumber": 33,
+        "questionText": "The author would strongly agree that, as a people, Afghans are",
+        "answerChoices": [
+          { "letter": "A", "text": "pitiful" },
+          { "letter": "B", "text": "ambitious" },
+          { "letter": "C", "text": "optimistic" },
+          { "letter": "D", "text": "determined" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_34",
+        "questionNumber": 34,
+        "questionText": "Among the following, the selection would most likely be an excerpt from",
+        "answerChoices": [
+          { "letter": "A", "text": "a speech made at an antiwar rally" },
+          { "letter": "B", "text": "an academic lecture on current world events" },
+          { "letter": "C", "text": "a chapter from a textbook on modern world history" },
+          { "letter": "D", "text": "an article at a famine-relief organization's Website" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_author_purpose",
+        "confidence": "medium",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_35",
+        "questionNumber": 35,
+        "questionText": "Here are two sentences related to the previous passage:\n\nThere are millions of land mines buried in Afghanistan.\nIt will take several decades to find and remove them all.\n\nChoose the best way to combine the two sentences.",
+        "answerChoices": [
+          { "letter": "A", "text": "Of the millions of land mines buried in Afghanistan, in several decades they all can be found and removed." },
+          { "letter": "B", "text": "Millions of land mines are buried in Afghanistan, and it will take several decades to find and remove them all." },
+          { "letter": "C", "text": "There are millions of land mines buried in Afghanistan, which it will take several decades to find and remove." },
+          { "letter": "D", "text": "It will take several decades to find and remove all the land mines, millions of which are buried in Afghanistan." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_passage_structure",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_36",
+        "questionNumber": 36,
+        "questionText": "Which sentence is written correctly?",
+        "answerChoices": [
+          { "letter": "A", "text": "Afghanistan's barren deserts are dotted with an occasional green oasis." },
+          { "letter": "B", "text": "Afghanistan's barren deserts they are dotted with an occasional green oasis." },
+          { "letter": "C", "text": "Afghanistan's deserts are barren and dotted occasionally with green oases." },
+          { "letter": "D", "text": "Afghanistan's barren deserts dotted with occasional green oases." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_passage_structure",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_37",
+        "questionNumber": 37,
+        "questionText": "A hydrogen atom is",
+        "answerChoices": [
+          { "letter": "A", "text": "about one nanometer in length" },
+          { "letter": "B", "text": "longer than a nanometer" },
+          { "letter": "C", "text": "shorter than a nanometer" },
+          { "letter": "D", "text": "larger than a nano-sized particle" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_38",
+        "questionNumber": 38,
+        "questionText": "As used in the passage, the word pale most nearly means",
+        "answerChoices": [
+          { "letter": "A", "text": "shrink" },
+          { "letter": "B", "text": "boast" },
+          { "letter": "C", "text": "faster" },
+          { "letter": "D", "text": "continue" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_vocab_context",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_39",
+        "questionNumber": 39,
+        "questionText": "According to the passage, nanotechnology is used to develop",
+        "answerChoices": [
+          { "letter": "A", "text": "cosmetics" },
+          { "letter": "B", "text": "genetically modified grains" },
+          { "letter": "C", "text": "alcoholic beverages" },
+          { "letter": "D", "text": "household cleaning products" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_40",
+        "questionNumber": 40,
+        "questionText": "The author seems worried about",
+        "answerChoices": [
+          { "letter": "A", "text": "the safety of scientists who work with nano-sized particles" },
+          { "letter": "B", "text": "the long-term impact of nanotechnology on human health" },
+          { "letter": "C", "text": "government putting a stop to nanotechnology research" },
+          { "letter": "D", "text": "the use of nanotechnology to make weapons of mass destruction" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_41",
+        "questionNumber": 41,
+        "questionText": "Choose the best concluding sentence for the passage.",
+        "answerChoices": [
+          { "letter": "A", "text": "Nanotechnology will no doubt make the Internet seem old-fashioned someday." },
+          { "letter": "B", "text": "Nobody will benefit from nanotechnology in the long run." },
+          { "letter": "C", "text": "It seems that nanotechnology's benefits might not come without human cost." },
+          { "letter": "D", "text": "The future of nanotechnology depends on financial support from the government." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_42",
+        "questionNumber": 42,
+        "questionText": "Which sentence is written correctly?",
+        "answerChoices": [
+          { "letter": "A", "text": "\"Nanotubes\" four nanometers wide are being used to improve computer processors." },
+          { "letter": "B", "text": "\"Nanotubes\" four nanometers wide is being used to improve computer processors." },
+          { "letter": "C", "text": "\"Nanotubes,\" four nanometers wide, being used to improve computer processors." },
+          { "letter": "D", "text": "\"Nanotubes\" four nanometers wide, used now to improve computer processors." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_passage_structure",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_43",
+        "questionNumber": 43,
+        "questionText": "According to the writer, which of the following do we find in the history of technology?",
+        "answerChoices": [
+          { "letter": "A", "text": "accidental discoveries" },
+          { "letter": "B", "text": "unfulfilled predictions" },
+          { "letter": "C", "text": "pollution of the environment" },
+          { "letter": "D", "text": "huge profits made by investors" },
+          { "letter": "E", "text": "legal restrictions" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_44",
+        "questionNumber": 44,
+        "questionText": "Paragraph 2 focuses primarily on",
+        "answerChoices": [
+          { "letter": "A", "text": "the development of word processing" },
+          { "letter": "B", "text": "issues of typewriter maintenance" },
+          { "letter": "C", "text": "electronic vs. manual typewriters" },
+          { "letter": "D", "text": "the reasons that typewriters haven't become obsolete" },
+          { "letter": "E", "text": "digital vs. analog watches" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_45",
+        "questionNumber": 45,
+        "questionText": "Which of the following is not cited in the passage as an advantage of pagers?",
+        "answerChoices": [
+          { "letter": "A", "text": "Pagers can deliver instant text messages." },
+          { "letter": "B", "text": "Pagers are less expensive than cell phones." },
+          { "letter": "C", "text": "Pagers do not have roaming charges." },
+          { "letter": "D", "text": "Pagers outperform cell phones in \"dead spots.\"" },
+          { "letter": "E", "text": "Pagers are less bulky than cell phones." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_46",
+        "questionNumber": 46,
+        "questionText": "In paragraph 4, the word casual most nearly means",
+        "answerChoices": [
+          { "letter": "A", "text": "irregular" },
+          { "letter": "B", "text": "accidental" },
+          { "letter": "C", "text": "informal" },
+          { "letter": "D", "text": "intentional" },
+          { "letter": "E", "text": "indifferent" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_vocab_context",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_47",
+        "questionNumber": 47,
+        "questionText": "The writer's overall attitude or tone may best be described as",
+        "answerChoices": [
+          { "letter": "A", "text": "stuffy" },
+          { "letter": "B", "text": "sad" },
+          { "letter": "C", "text": "breezy" },
+          { "letter": "D", "text": "sarcastic" },
+          { "letter": "E", "text": "ominous" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_tone_mood",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_48",
+        "questionNumber": 48,
+        "questionText": "The passage is primarily about",
+        "answerChoices": [
+          { "letter": "A", "text": "medieval ballads" },
+          { "letter": "B", "text": "legendary stories set in the distant past" },
+          { "letter": "C", "text": "the musical accompaniment for ballads" },
+          { "letter": "D", "text": "corridos of the Texas-Mexican border" },
+          { "letter": "E", "text": "the legal charges against Gregorio Cortez" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_49",
+        "questionNumber": 49,
+        "questionText": "Two influential factors in the development of corridos were",
+        "answerChoices": [
+          { "letter": "A", "text": "tensions arising from the Mexican War and the hardships of the cattle drives" },
+          { "letter": "B", "text": "the Civil War and Reconstruction" },
+          { "letter": "C", "text": "cattle ranching and citrus farming in Texas" },
+          { "letter": "D", "text": "World War I and World War II" },
+          { "letter": "E", "text": "rapid industrialization and the Spanish-American War" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_v_50",
+        "questionNumber": 50,
+        "questionText": "Which of the following correctly describes the formal structure of most corridos?",
+        "answerChoices": [
+          { "letter": "A", "text": "8-line stanzas with lines of varying length" },
+          { "letter": "B", "text": "2-line couplets with 10 syllables per line" },
+          { "letter": "C", "text": "4-line stanzas with 8 syllables per line" },
+          { "letter": "D", "text": "4-line stanzas with a rhyme scheme of aabb" },
+          { "letter": "E", "text": "5-line stanzas with varying rhyme schemes" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      }
+    ],
+    "math": [
+      {
+        "id": "hunter_tg_1_m_01",
+        "questionNumber": 51,
+        "questionText": "The product of 0.204 and 0.8137 is how much less than 1?",
+        "answerChoices": [
+          { "letter": "A", "text": "0.659948" },
+          { "letter": "B", "text": "0.8340052" },
+          { "letter": "C", "text": "0.8430052" },
+          { "letter": "D", "text": "0.1659984" },
+          { "letter": "E", "text": "0.1659948" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_fraction_decimal_ops",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_02",
+        "questionNumber": 52,
+        "questionText": "What is the difference between 90 percent of 9 and 9 percent of 90?",
+        "answerChoices": [
+          { "letter": "A", "text": "0" },
+          { "letter": "B", "text": "2" },
+          { "letter": "C", "text": "7.29" },
+          { "letter": "D", "text": "10" },
+          { "letter": "E", "text": "81" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_03",
+        "questionNumber": 53,
+        "questionText": "What is the 185th digit in the following pattern: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 ...",
+        "answerChoices": [
+          { "letter": "A", "text": "0" },
+          { "letter": "B", "text": "5" },
+          { "letter": "C", "text": "7" },
+          { "letter": "D", "text": "8" },
+          { "letter": "E", "text": "9" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_pattern_recognition",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_04",
+        "questionNumber": 54,
+        "questionText": "If line segment AB is divided into 3 equal parts by points R and S (not shown), what position will point R fall on? (Assume R is to the left of S.) [Number line from -1 to 9 with A at -1 and B at 8]",
+        "answerChoices": [
+          { "letter": "A", "text": "2" },
+          { "letter": "B", "text": "2.5" },
+          { "letter": "C", "text": "3" },
+          { "letter": "D", "text": "4" },
+          { "letter": "E", "text": "6" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "mqr_number_sense",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_05",
+        "questionNumber": 55,
+        "questionText": "In the figure above, B is a point on line AC. What is the value of m + p? [Figure shows a right angle at A, an angle of 30 degrees between two rays from B, with angles m and p on either side]",
+        "answerChoices": [
+          { "letter": "A", "text": "45" },
+          { "letter": "B", "text": "60" },
+          { "letter": "C", "text": "75" },
+          { "letter": "D", "text": "90" },
+          { "letter": "E", "text": "120" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_1_m_06",
+        "questionNumber": 56,
+        "questionText": "Francine is now 16 years old. In 6 years, she will be twice as old as her brother is then. How old is her brother now?",
+        "answerChoices": [
+          { "letter": "A", "text": "5" },
+          { "letter": "B", "text": "6" },
+          { "letter": "C", "text": "8" },
+          { "letter": "D", "text": "11" },
+          { "letter": "E", "text": "12" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_07",
+        "questionNumber": 57,
+        "questionText": "Bill's dog Muffin ate 14 ounces of Hearty Meal dog food and then helped herself to 6 ounces of steak from Bill's plate while Bill's back was turned. How much food did Muffin consume?",
+        "answerChoices": [
+          { "letter": "A", "text": "1 pound 6 ounces" },
+          { "letter": "B", "text": "1 pound 4 ounces" },
+          { "letter": "C", "text": "1 pound 2 ounces" },
+          { "letter": "D", "text": "1 pound" },
+          { "letter": "E", "text": "7 ounces" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_08",
+        "questionNumber": 58,
+        "questionText": "The graph above shows the relationship between the number of tickets sold and the amount of money received from the sale. What is the price of one ticket?",
+        "answerChoices": [
+          { "letter": "A", "text": "$20.00" },
+          { "letter": "B", "text": "$25.00" },
+          { "letter": "C", "text": "$25.50" },
+          { "letter": "D", "text": "$50.00" },
+          { "letter": "E", "text": "$250.00" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_data_interpretation",
+        "confidence": "medium",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_1_m_09",
+        "questionNumber": 59,
+        "questionText": "A train traveling at a speed of 30 miles per hour passes point A on its way to point B. At the same time, on a parallel track, another train traveling at a speed of 70 miles per hour passes point B on its way to point A. If point A and point B are 300 miles apart, how far from point B will the trains meet?",
+        "answerChoices": [
+          { "letter": "A", "text": "240 miles" },
+          { "letter": "B", "text": "210 miles" },
+          { "letter": "C", "text": "150 miles" },
+          { "letter": "D", "text": "140 miles" },
+          { "letter": "E", "text": "90 miles" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_10",
+        "questionNumber": 60,
+        "questionText": "Mr. James Rossen is just beginning a computer consulting firm and has purchased the following equipment:\n- 3 telephone sets, each costing $125\n- 2 computers, each costing $1300\n- 2 computer monitors, each costing $950\n- 1 printer costing $600\n- 1 answering machine costing $50\nWhat should he write as the total value of the equipment he has purchased so far?",
+        "answerChoices": [
+          { "letter": "A", "text": "$3,025" },
+          { "letter": "B", "text": "$5,400" },
+          { "letter": "C", "text": "$5,525" },
+          { "letter": "D", "text": "$6,525" },
+          { "letter": "E", "text": "$7,200" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_fraction_decimal_ops",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_11",
+        "questionNumber": 61,
+        "questionText": "The area of a rectangular rug is 70 square feet. If the width is 5 feet, what is the perimeter?",
+        "answerChoices": [
+          { "letter": "A", "text": "14 ft." },
+          { "letter": "B", "text": "19 ft." },
+          { "letter": "C", "text": "38 ft." },
+          { "letter": "D", "text": "350 ft." },
+          { "letter": "E", "text": "Cannot be determined from the information given." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_12",
+        "questionNumber": 62,
+        "questionText": "Mei-Ling has paints in 4 different colors. If she is going to paint the inside of a box with one color and the outside of the box with another color, in how many different ways can she paint the box?",
+        "answerChoices": [
+          { "letter": "A", "text": "2" },
+          { "letter": "B", "text": "4" },
+          { "letter": "C", "text": "6" },
+          { "letter": "D", "text": "8" },
+          { "letter": "E", "text": "12" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_13",
+        "questionNumber": 63,
+        "questionText": "If x^ = 1/x, what is the value of 3^*3^? (where ^ denotes the hat operator defined as x^ = 1/x)",
+        "answerChoices": [
+          { "letter": "A", "text": "1/9" },
+          { "letter": "B", "text": "1/3" },
+          { "letter": "C", "text": "1" },
+          { "letter": "D", "text": "3" },
+          { "letter": "E", "text": "9" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_14",
+        "questionNumber": 64,
+        "questionText": "During the last week of track training, Shoshanna achieves the following times in seconds: 66, 57, 54, 54, 64, 59, and 59. Her three best times this week are averaged for her final score on the course. What is her final score?",
+        "answerChoices": [
+          { "letter": "A", "text": "57 seconds" },
+          { "letter": "B", "text": "55 seconds" },
+          { "letter": "C", "text": "59 seconds" },
+          { "letter": "D", "text": "61 seconds" },
+          { "letter": "E", "text": "64 seconds" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_data_interpretation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_15",
+        "questionNumber": 65,
+        "questionText": "Linda is now x years old and Don is 2 years older than Linda. In terms of x, how old was Don 3 years ago?",
+        "answerChoices": [
+          { "letter": "A", "text": "x" },
+          { "letter": "B", "text": "x - 1" },
+          { "letter": "C", "text": "x - 3" },
+          { "letter": "D", "text": "x - 5" },
+          { "letter": "E", "text": "2x - 3" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_16",
+        "questionNumber": 66,
+        "questionText": "What is the least common multiple of R and S?\nR = 3 * 3 * 7 * 11\nS = 3 * 5 * 7 * 7",
+        "answerChoices": [
+          { "letter": "A", "text": "3 * 5" },
+          { "letter": "B", "text": "3 * 7" },
+          { "letter": "C", "text": "3 * 5 * 7 * 11" },
+          { "letter": "D", "text": "3 * 3 * 5 * 7 * 7 * 11" },
+          { "letter": "E", "text": "3 * 3 * 3 * 5 * 7 * 7 * 7 * 11" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "mqr_number_sense",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_17",
+        "questionNumber": 67,
+        "questionText": "A dormitory now houses 30 men and allows 42 square feet of space per man. If five more men are put into this dormitory, how much less space will each man have?",
+        "answerChoices": [
+          { "letter": "A", "text": "5 square feet" },
+          { "letter": "B", "text": "6 square feet" },
+          { "letter": "C", "text": "7 square feet" },
+          { "letter": "D", "text": "8 square feet" },
+          { "letter": "E", "text": "9 square feet" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_18",
+        "questionNumber": 68,
+        "questionText": "Nancy put 23 coins (nickels, dimes, and pennies) with a total value of $1.22 into a jar. She removed seven dimes, seven nickels, and seven pennies. Which coins remain in the jar?",
+        "answerChoices": [
+          { "letter": "A", "text": "2 pennies" },
+          { "letter": "B", "text": "2 nickels" },
+          { "letter": "C", "text": "2 dimes" },
+          { "letter": "D", "text": "1 nickel and 1 penny" },
+          { "letter": "E", "text": "1 dime and 1 penny" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_19",
+        "questionNumber": 69,
+        "questionText": "What is the outer perimeter of the doorway shown below? [Figure shows a rectangular doorway with a semicircular top, width 2 and height 10]",
+        "answerChoices": [
+          { "letter": "A", "text": "12" },
+          { "letter": "B", "text": "24" },
+          { "letter": "C", "text": "20 + 2\u03c0" },
+          { "letter": "D", "text": "24 + 2\u03c0" },
+          { "letter": "E", "text": "36 + 2\u03c0" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_1_m_20",
+        "questionNumber": 70,
+        "questionText": "Which pair of numbers best fits the pattern below?\n| 0,1 | 3,7 | 6,13 | 9,19 | _,_ | 15,31 |",
+        "answerChoices": [
+          { "letter": "A", "text": "12, 18" },
+          { "letter": "B", "text": "12, 22" },
+          { "letter": "C", "text": "12, 25" },
+          { "letter": "D", "text": "18, 19" },
+          { "letter": "E", "text": "18, 22" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_pattern_recognition",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_21",
+        "questionNumber": 71,
+        "questionText": "If x = 2 and y = 3, what is the value of x^y / y^x?",
+        "answerChoices": [
+          { "letter": "A", "text": "8/27" },
+          { "letter": "B", "text": "4/9" },
+          { "letter": "C", "text": "2/3" },
+          { "letter": "D", "text": "8/9" },
+          { "letter": "E", "text": "1" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_22",
+        "questionNumber": 72,
+        "questionText": "In this figure, AB = AD = DB and ABC is a straight line. What is the measure of angle DBC?",
+        "answerChoices": [
+          { "letter": "A", "text": "60\u00b0" },
+          { "letter": "B", "text": "90\u00b0" },
+          { "letter": "C", "text": "100\u00b0" },
+          { "letter": "D", "text": "120\u00b0" },
+          { "letter": "E", "text": "150\u00b0" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_23",
+        "questionNumber": 73,
+        "questionText": "In a certain month, Linda earned twice as much as Jill earned. Susan earned three times as much as Jill. If Susan earned $240, how much did Linda earn?",
+        "answerChoices": [
+          { "letter": "A", "text": "$80" },
+          { "letter": "B", "text": "$160" },
+          { "letter": "C", "text": "$240" },
+          { "letter": "D", "text": "$360" },
+          { "letter": "E", "text": "$480" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_ratios_proportions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_24",
+        "questionNumber": 74,
+        "questionText": "Randy had r fossils in his collection. He sold x fossils. Then he found y fossils. How many fossils does Randy have now?",
+        "answerChoices": [
+          { "letter": "A", "text": "r - x" },
+          { "letter": "B", "text": "r + y" },
+          { "letter": "C", "text": "r + x + y" },
+          { "letter": "D", "text": "r + x - y" },
+          { "letter": "E", "text": "r - x + y" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_25",
+        "questionNumber": 75,
+        "questionText": "When n is divided by 5, the remainder is 2. What is the remainder when n + 4 is divided by 5?",
+        "answerChoices": [
+          { "letter": "A", "text": "1" },
+          { "letter": "B", "text": "2" },
+          { "letter": "C", "text": "3" },
+          { "letter": "D", "text": "4" },
+          { "letter": "E", "text": "6" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "mqr_number_sense",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_26",
+        "questionNumber": 76,
+        "questionText": "How many prime numbers less than 50 are divisible by 3?",
+        "answerChoices": [
+          { "letter": "A", "text": "0" },
+          { "letter": "B", "text": "1" },
+          { "letter": "C", "text": "5" },
+          { "letter": "D", "text": "15" },
+          { "letter": "E", "text": "16" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_number_sense",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_27",
+        "questionNumber": 77,
+        "questionText": "Maria can paint 2/3 of a square wall with 1 gallon of paint. How much of that same wall could she paint with 3/5 of a gallon?",
+        "answerChoices": [
+          { "letter": "A", "text": "1/4" },
+          { "letter": "B", "text": "1/3" },
+          { "letter": "C", "text": "2/5" },
+          { "letter": "D", "text": "1/2" },
+          { "letter": "E", "text": "5/2" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_fraction_decimal_ops",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_28",
+        "questionNumber": 78,
+        "questionText": "When the 69th even natural number is subtracted from the 119th odd natural number, what is the result? (The natural numbers are 1, 2, 3, 4...)",
+        "answerChoices": [
+          { "letter": "A", "text": "49" },
+          { "letter": "B", "text": "51" },
+          { "letter": "C", "text": "99" },
+          { "letter": "D", "text": "101" },
+          { "letter": "E", "text": "103" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_pattern_recognition",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_1_m_29",
+        "questionNumber": 79,
+        "questionText": "How many 4-sided figures are in this diagram?",
+        "answerChoices": [
+          { "letter": "A", "text": "10" },
+          { "letter": "B", "text": "16" },
+          { "letter": "C", "text": "21" },
+          { "letter": "D", "text": "25" },
+          { "letter": "E", "text": "28" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "medium",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_1_m_30",
+        "questionNumber": 80,
+        "questionText": "If a photo measuring 4 inches by 6 inches is placed in a photo frame that is 2 inches wide all around, what percent of the framed photo is the photo itself?",
+        "answerChoices": [
+          { "letter": "A", "text": "24%" },
+          { "letter": "B", "text": "30%" },
+          { "letter": "C", "text": "42%" },
+          { "letter": "D", "text": "50%" },
+          { "letter": "E", "text": "56%" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      }
+    ]
+  },
+  "metadata": {
+    "totalQuestions": 80,
+    "source": "Hunter TG Practice Form 1",
+    "excludedCount": 4
+  }
+}

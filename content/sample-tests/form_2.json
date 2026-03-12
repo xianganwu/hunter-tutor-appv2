@@ -1,0 +1,1375 @@
+{
+  "id": "hunter_tg_2",
+  "title": "Hunter TG Practice Test #2",
+  "sections": {
+    "verbal": [
+      {
+        "id": "hunter_tg_2_v_01",
+        "questionNumber": 1,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "how archaeologists dug up the terra-cotta army" },
+          { "letter": "B", "text": "why the terra-cotta army was created" },
+          { "letter": "C", "text": "what Emperor Qin achieved" },
+          { "letter": "D", "text": "what the terra-cotta army was like" },
+          { "letter": "E", "text": "how the terra-cotta soldiers were created" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_02",
+        "questionNumber": 2,
+        "questionText": "The passage suggests that Emperor Qin",
+        "answerChoices": [
+          { "letter": "A", "text": "had a problem getting the terra-cotta soldiers made." },
+          { "letter": "B", "text": "was a man of many accomplishments." },
+          { "letter": "C", "text": "believed in an afterlife." },
+          { "letter": "D", "text": "died when he was rather young." },
+          { "letter": "E", "text": "wanted the terra-cotta army discovered." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_03",
+        "questionNumber": 3,
+        "questionText": "Which of these statements is true about the Qin Terra-cotta Warriors and Horses?",
+        "answerChoices": [
+          { "letter": "A", "text": "They were made by famous artists of the time." },
+          { "letter": "B", "text": "They were the only terra-cotta statues made in China." },
+          { "letter": "C", "text": "They were the only items that Qin wanted buried with him." },
+          { "letter": "D", "text": "They show what an army was like during Qin's reign." },
+          { "letter": "E", "text": "They are proof that the Chinese were great philosophers." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_04",
+        "questionNumber": 4,
+        "questionText": "Which of the following best describes what is suggested by the statement that \"this preservation technique was not known in the West until the eighteenth century\" (lines 22-23)?",
+        "answerChoices": [
+          { "letter": "A", "text": "At that time, the Chinese were more advanced technologically than the Western world was." },
+          { "letter": "B", "text": "At that time, the Chinese were better educated than the people in the Western world." },
+          { "letter": "C", "text": "During this period, the Chinese were in touch with many other cultures in order to learn how to preserve items." },
+          { "letter": "D", "text": "During this period, the Chinese were intent upon being more capable than people in the Western world." },
+          { "letter": "E", "text": "At that time, scientists in China had done more research than scientists in the Western world." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_05",
+        "questionNumber": 5,
+        "questionText": "What does the existence of the terra-cotta army suggest about this period in China?",
+        "answerChoices": [
+          { "letter": "A", "text": "It was a time when science flourished." },
+          { "letter": "B", "text": "It was a time when the country was unified." },
+          { "letter": "C", "text": "It was a time when armies had been disbanded." },
+          { "letter": "D", "text": "It was a time when most people were at peace." },
+          { "letter": "E", "text": "It was a time when armies were needed." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_06",
+        "questionNumber": 6,
+        "questionText": "What was not a concern of the archaeologists who studied the terra-cotta army?",
+        "answerChoices": [
+          { "letter": "A", "text": "why the terra-cotta army was created" },
+          { "letter": "B", "text": "how the terra-cotta army was discovered" },
+          { "letter": "C", "text": "how many soldiers there were in the terra-cotta army" },
+          { "letter": "D", "text": "figuring out how long it took to create the terra-cotta army" },
+          { "letter": "E", "text": "the cost of creating the terra-cotta army" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_07",
+        "questionNumber": 7,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "why scientists believe in the big bang theory" },
+          { "letter": "B", "text": "which fundamental particles have been identified" },
+          { "letter": "C", "text": "that dark matter is invisible" },
+          { "letter": "D", "text": "how the Large Hadron Collider is constructed and operates" },
+          { "letter": "E", "text": "what scientists are trying to achieve with the Large Hadron Collider" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_08",
+        "questionNumber": 8,
+        "questionText": "The author implies that some fundamental particles",
+        "answerChoices": [
+          { "letter": "A", "text": "can be shot from the Large Hadron Collider." },
+          { "letter": "B", "text": "have been improperly identified." },
+          { "letter": "C", "text": "may never be identified positively." },
+          { "letter": "D", "text": "are easily tested." },
+          { "letter": "E", "text": "stay charged for a long time." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_09",
+        "questionNumber": 9,
+        "questionText": "Which of these statements is true about the Large Hadron Collider?",
+        "answerChoices": [
+          { "letter": "A", "text": "It is the first atom smasher ever used." },
+          { "letter": "B", "text": "It can work continuously for 24 hours." },
+          { "letter": "C", "text": "It was designed by astronomers." },
+          { "letter": "D", "text": "It is difficult to operate." },
+          { "letter": "E", "text": "It provides new information for physicists." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_10",
+        "questionNumber": 10,
+        "questionText": "Which best describes the relationship between an atom and a quark?",
+        "answerChoices": [
+          { "letter": "A", "text": "A quark is a part of an atom." },
+          { "letter": "B", "text": "A quark lasts longer than an atom." },
+          { "letter": "C", "text": "They are the same thing." },
+          { "letter": "D", "text": "They both are fundamental particles." },
+          { "letter": "E", "text": "Their relationship is unknown." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_11",
+        "questionNumber": 11,
+        "questionText": "Which is not true of the Higgs boson?",
+        "answerChoices": [
+          { "letter": "A", "text": "It would explain why some particles possess mass and others do not." },
+          { "letter": "B", "text": "It may be found by using the Large Hadron Collider." },
+          { "letter": "C", "text": "It is also called the \"God particle.\"" },
+          { "letter": "D", "text": "It was named for Peter Higgs." },
+          { "letter": "E", "text": "It has been verified." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_12",
+        "questionNumber": 12,
+        "questionText": "What might be inferred about dark matter?",
+        "answerChoices": [
+          { "letter": "A", "text": "It is part of an atom." },
+          { "letter": "B", "text": "It is a very small particle." },
+          { "letter": "C", "text": "It exists only in smaller galaxies." },
+          { "letter": "D", "text": "There is very little known about it." },
+          { "letter": "E", "text": "It can be verified more easily than other matter." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_13",
+        "questionNumber": 13,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "why Haller Park was a wasteland" },
+          { "letter": "B", "text": "what kinds of animals are living at Haller Park" },
+          { "letter": "C", "text": "which trees were used to change Haller Park into a wildlife sanctuary" },
+          { "letter": "D", "text": "how a wasteland was changed into a wildlife sanctuary" },
+          { "letter": "E", "text": "what awards Rene Haller has received" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_14",
+        "questionNumber": 14,
+        "questionText": "What is not mentioned as being present at Haller Park?",
+        "answerChoices": [
+          { "letter": "A", "text": "rescued animals" },
+          { "letter": "B", "text": "ponds with fish" },
+          { "letter": "C", "text": "crocodiles" },
+          { "letter": "D", "text": "sheep" },
+          { "letter": "E", "text": "savannahs" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_15",
+        "questionNumber": 15,
+        "questionText": "According to the passage, which of the following statements about Haller Park is accurate?",
+        "answerChoices": [
+          { "letter": "A", "text": "Haller Park is the only nature sanctuary that was once a wasteland." },
+          { "letter": "B", "text": "Haller Park has acted as a model for other ecologically devoid areas." },
+          { "letter": "C", "text": "Only rescued animals are permitted at Haller Park." },
+          { "letter": "D", "text": "Only animals that are native to the Haller Park region are allowed there." },
+          { "letter": "E", "text": "Haller Park was supported by the company that caused it to be a wasteland." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_16",
+        "questionNumber": 16,
+        "questionText": "The information about the crocodile farm was included in order to illustrate",
+        "answerChoices": [
+          { "letter": "A", "text": "that crocodile meat is a popular food." },
+          { "letter": "B", "text": "that Haller Park is an experiment." },
+          { "letter": "C", "text": "that Rene Haller enjoys entertaining people." },
+          { "letter": "D", "text": "that some people travel long distances to dine at Haller Park." },
+          { "letter": "E", "text": "that Haller Park produces its own food." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_author_purpose",
+        "confidence": "medium",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_17",
+        "questionNumber": 17,
+        "questionText": "Which of the following is Rene Haller most likely to choose for another project?",
+        "answerChoices": [
+          { "letter": "A", "text": "starting fish farms in areas where there is a lot of unemployment" },
+          { "letter": "B", "text": "creating a cooperative garden" },
+          { "letter": "C", "text": "organizing a community park" },
+          { "letter": "D", "text": "cleaning up a landfill so it can be used as a storage facility" },
+          { "letter": "E", "text": "changing a desert into a lush area where many fruit trees grow" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_18",
+        "questionNumber": 18,
+        "questionText": "What is probably true of Rene Haller?",
+        "answerChoices": [
+          { "letter": "A", "text": "He is an animal lover." },
+          { "letter": "B", "text": "He is a humble person." },
+          { "letter": "C", "text": "He enjoys publicity." },
+          { "letter": "D", "text": "He likes to make others happy." },
+          { "letter": "E", "text": "He has great determination." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_19",
+        "questionNumber": 19,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "how dolphins are taught to tail-walk" },
+          { "letter": "B", "text": "why sharks attack dolphins" },
+          { "letter": "C", "text": "whether or not dolphins should be kept in captivity" },
+          { "letter": "D", "text": "what research has discovered about dolphins' brains" },
+          { "letter": "E", "text": "the fact that dolphins in captivity do not try to escape" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_20",
+        "questionNumber": 20,
+        "questionText": "The best reason that the author began the passage by describing how people can swim with dolphins was to",
+        "answerChoices": [
+          { "letter": "A", "text": "remind the readers that dolphins are in captivity." },
+          { "letter": "B", "text": "impress the reader with how gentle dolphins are." },
+          { "letter": "C", "text": "suggest that dolphins are able to learn tricks easily." },
+          { "letter": "D", "text": "show how easy it is to keep dolphins in captivity." },
+          { "letter": "E", "text": "suggest that people abuse dolphins." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_21",
+        "questionNumber": 21,
+        "questionText": "Which reason is not given for letting dolphins go free?",
+        "answerChoices": [
+          { "letter": "A", "text": "They are extremely intelligent." },
+          { "letter": "B", "text": "They have a concept of themselves." },
+          { "letter": "C", "text": "Their brains work in the same way as human brains." },
+          { "letter": "D", "text": "They are often attacked by predators." },
+          { "letter": "E", "text": "They should be given the status of nonhuman persons." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_22",
+        "questionNumber": 22,
+        "questionText": "Which is true of dolphins?",
+        "answerChoices": [
+          { "letter": "A", "text": "They like to be alone." },
+          { "letter": "B", "text": "They try to protect people." },
+          { "letter": "C", "text": "They are emotional beings." },
+          { "letter": "D", "text": "They are second to chimpanzees in intelligence." },
+          { "letter": "E", "text": "They do not try to escape when in captivity." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_23",
+        "questionNumber": 23,
+        "questionText": "The author includes information about Dr. Marino to",
+        "answerChoices": [
+          { "letter": "A", "text": "lend the passage greater authority." },
+          { "letter": "B", "text": "show that the author is knowledgeable about the subject." },
+          { "letter": "C", "text": "suggest that some research is more accurate than other research." },
+          { "letter": "D", "text": "emphasize how much research has been done on dolphins." },
+          { "letter": "E", "text": "make sure the passage tells both sides of the debate." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_24",
+        "questionNumber": 24,
+        "questionText": "What is likely to happen if dolphins are no longer kept in captivity?",
+        "answerChoices": [
+          { "letter": "A", "text": "People will swim with them in the ocean." },
+          { "letter": "B", "text": "Dolphins will grow in number." },
+          { "letter": "C", "text": "People will not bother with them." },
+          { "letter": "D", "text": "Research on them would end." },
+          { "letter": "E", "text": "More dolphins are likely to die." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "medium",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_25",
+        "questionNumber": 25,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "why flying to the United States was difficult" },
+          { "letter": "B", "text": "what Beryl Markham did as a young person" },
+          { "letter": "C", "text": "how Beryl Markham became a pilot" },
+          { "letter": "D", "text": "how Beryl Markham made her mark on history" },
+          { "letter": "E", "text": "what Beryl Markham did when she landed in Nova Scotia" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_26",
+        "questionNumber": 26,
+        "questionText": "How did the experience of meeting Tom Campbell Black affect Beryl Markham?",
+        "answerChoices": [
+          { "letter": "A", "text": "She became a better person." },
+          { "letter": "B", "text": "She decided to write a book." },
+          { "letter": "C", "text": "She realized what she wanted to do with her life." },
+          { "letter": "D", "text": "She left Kenya for the United States." },
+          { "letter": "E", "text": "She decided to be a career woman." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_27",
+        "questionNumber": 27,
+        "questionText": "Why does the author call Beryl Markham \"a unique and brave woman\" (line 1)?",
+        "answerChoices": [
+          { "letter": "A", "text": "She was good at training horses." },
+          { "letter": "B", "text": "She did something that was dangerous and hard to do." },
+          { "letter": "C", "text": "She returned to Kenya after many years had passed." },
+          { "letter": "D", "text": "She learned to fly a plane." },
+          { "letter": "E", "text": "She received a commercial pilot's license." }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_28",
+        "questionNumber": 28,
+        "questionText": "How did what Charles Lindbergh achieved differ from what Beryl Markham did in her flight across the Atlantic Ocean?",
+        "answerChoices": [
+          { "letter": "A", "text": "Her plane was lighter than his." },
+          { "letter": "B", "text": "She was newer to aviation than he was." },
+          { "letter": "C", "text": "Her flight lasted a long time." },
+          { "letter": "D", "text": "The winds were against her." },
+          { "letter": "E", "text": "She was alone." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_29",
+        "questionNumber": 29,
+        "questionText": "Why do you suppose Beryl Markham returned to Kenya?",
+        "answerChoices": [
+          { "letter": "A", "text": "She always considered it her home." },
+          { "letter": "B", "text": "She could not get an American visa." },
+          { "letter": "C", "text": "She had run out of money." },
+          { "letter": "D", "text": "She was asked to by the Kenyan government." },
+          { "letter": "E", "text": "She wanted to stop flying." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_30",
+        "questionNumber": 30,
+        "questionText": "What can be inferred about Beryl Markham?",
+        "answerChoices": [
+          { "letter": "A", "text": "She was concerned about how she was perceived by the public." },
+          { "letter": "B", "text": "She was difficult to get along with." },
+          { "letter": "C", "text": "She was not practical." },
+          { "letter": "D", "text": "She thought mainly about herself." },
+          { "letter": "E", "text": "She did not let obstacles stand in her way." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_31",
+        "questionNumber": 31,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "how the Canadian government is dealing with use of the Northwest Passage" },
+          { "letter": "B", "text": "what waterways the Northwest Passage runs through" },
+          { "letter": "C", "text": "how the Northwest Passage was discovered and its future potential" },
+          { "letter": "D", "text": "how explorers discovered the North American mainland" },
+          { "letter": "E", "text": "why the Northwest Passage will be useful in the future" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_32",
+        "questionNumber": 32,
+        "questionText": "The passage suggests that the search for the Northwest Passage",
+        "answerChoices": [
+          { "letter": "A", "text": "caused tension between the various explorers." },
+          { "letter": "B", "text": "was undertaken by the Canadian government." },
+          { "letter": "C", "text": "was paid for by European royalty." },
+          { "letter": "D", "text": "was only undertaken after the Suez Canal was built." },
+          { "letter": "E", "text": "caused the death of many explorers." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_33",
+        "questionNumber": 33,
+        "questionText": "Which of these statements is true about Roald Amundsen?",
+        "answerChoices": [
+          { "letter": "A", "text": "He became a rich man because of the discovery." },
+          { "letter": "B", "text": "He realized that a big ship would never get through the Northwest Passage." },
+          { "letter": "C", "text": "He had great determination in the face of significant hardships." },
+          { "letter": "D", "text": "He was the only explorer to learn how to deal with the cold from natives." },
+          { "letter": "E", "text": "He was a better sailor than the other explorers." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_34",
+        "questionNumber": 34,
+        "questionText": "Which of the following best describes what is suggested by the statement that \"Continuing record sea ice melting may indicated that the route will be used by commercial carriers ...\" (lines 27-28)?",
+        "answerChoices": [
+          { "letter": "A", "text": "Global warming is impacting which routes commercial carriers may take." },
+          { "letter": "B", "text": "Fewer small ships will transverse the Northwest Passage because of global warming." },
+          { "letter": "C", "text": "Commercial carriers are forced to carry heavier cargoes because of global warming." },
+          { "letter": "D", "text": "Global warming will make the Northwest Passage more difficult to use." },
+          { "letter": "E", "text": "Global warming will cause more commercial carriers to use smaller ships." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_35",
+        "questionNumber": 35,
+        "questionText": "Which of these is most likely what the Canadian government will do in the future?",
+        "answerChoices": [
+          { "letter": "A", "text": "The government will declare the Northwest Passage an international zone." },
+          { "letter": "B", "text": "The government will allow only European countries to use the route without interference." },
+          { "letter": "C", "text": "The government will develop rules about traveling through the Northwest Passage." },
+          { "letter": "D", "text": "The government will create a series of canals in the Northwest Passage." },
+          { "letter": "E", "text": "The government will close the Northwest Passage." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_36",
+        "questionNumber": 36,
+        "questionText": "What is not mentioned as a difficulty in traversing the Northwest Passage?",
+        "answerChoices": [
+          { "letter": "A", "text": "ice floes" },
+          { "letter": "B", "text": "cold weather" },
+          { "letter": "C", "text": "shallow waters" },
+          { "letter": "D", "text": "hostile natives" },
+          { "letter": "E", "text": "finding food" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_37",
+        "questionNumber": 37,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "why Delta Works is known as one of the Seven Wonders of the Modern World" },
+          { "letter": "B", "text": "why the snow runoff from the Alps affects the Netherlands" },
+          { "letter": "C", "text": "how the Netherlands is the only country that has a plan to manage sea and river water" },
+          { "letter": "D", "text": "how the Netherlands was forced to find a way to deal with destructive storm surges" },
+          { "letter": "E", "text": "how the Netherlands developed and built its sea and river water management program" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_38",
+        "questionNumber": 38,
+        "questionText": "The author implies that without Delta Works",
+        "answerChoices": [
+          { "letter": "A", "text": "the Netherlands would have been absorbed by another European country." },
+          { "letter": "B", "text": "the lives of the people of the Netherlands would be unchanged." },
+          { "letter": "C", "text": "the Netherlands would have been less popular as a tourist destination." },
+          { "letter": "D", "text": "the Netherlands might have lost land to the water." },
+          { "letter": "E", "text": "many of the people of the Netherlands would have moved to other countries." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_inference",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_39",
+        "questionNumber": 39,
+        "questionText": "Why did the author include the information about Hans Brinker at the beginning of the article?",
+        "answerChoices": [
+          { "letter": "A", "text": "to explain how leaks are stopped in dikes" },
+          { "letter": "B", "text": "to show that everyone can help when flooding is imminent" },
+          { "letter": "C", "text": "to show that the Netherlands has many stories written about it" },
+          { "letter": "D", "text": "to suggest that the Dutch are very imaginative when there are problems" },
+          { "letter": "E", "text": "to emphasize that the Netherlands has always had a problem with flooding" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_40",
+        "questionNumber": 40,
+        "questionText": "Which best describes the way in which the plan for Delta Works was developed?",
+        "answerChoices": [
+          { "letter": "A", "text": "It was a cooperative effort by many different people." },
+          { "letter": "B", "text": "It was the work of advanced engineers." },
+          { "letter": "C", "text": "It was modeled after a similar program in Germany." },
+          { "letter": "D", "text": "It came about somewhat by accident." },
+          { "letter": "E", "text": "It was conceived by the people living near the dikes." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_41",
+        "questionNumber": 41,
+        "questionText": "Which of the following is not true of Delta Works?",
+        "answerChoices": [
+          { "letter": "A", "text": "It is an engineering masterpiece." },
+          { "letter": "B", "text": "It was built because of the Great Flood of 1953." },
+          { "letter": "C", "text": "Many people are interested in seeing it." },
+          { "letter": "D", "text": "It is completely finished." },
+          { "letter": "E", "text": "Some parts of the system were built before others." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_42",
+        "questionNumber": 42,
+        "questionText": "With which of the statements would the author most agree?",
+        "answerChoices": [
+          { "letter": "A", "text": "More countries should follow the example of the Netherlands in solving their problems." },
+          { "letter": "B", "text": "Delta Works will soon be the most popular stop for people traveling to Europe." },
+          { "letter": "C", "text": "More time should have been taken in developing the plan to contain storm surges." },
+          { "letter": "D", "text": "Delta Works did not have to be as large a project as it was." },
+          { "letter": "E", "text": "The people of the Netherlands did not want to have Delta Works constructed." }
+        ],
+        "correctAnswer": "A",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_43",
+        "questionNumber": 43,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "what needs to be done to apply henna" },
+          { "letter": "B", "text": "how henna designs are made" },
+          { "letter": "C", "text": "how henna is used to dye hair" },
+          { "letter": "D", "text": "which people use henna" },
+          { "letter": "E", "text": "the use of henna to create body designs" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_44",
+        "questionNumber": 44,
+        "questionText": "What reason is not mentioned for using henna?",
+        "answerChoices": [
+          { "letter": "A", "text": "enables a change of hair color" },
+          { "letter": "B", "text": "ease of using" },
+          { "letter": "C", "text": "not a permanent design" },
+          { "letter": "D", "text": "symbol of love" },
+          { "letter": "E", "text": "attractive designs" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_45",
+        "questionNumber": 45,
+        "questionText": "Which of the following is the most likely reason that Indian brides choose to have mehndi designs on their palms?",
+        "answerChoices": [
+          { "letter": "A", "text": "They are attractive to look at." },
+          { "letter": "B", "text": "They cool the skin." },
+          { "letter": "C", "text": "They leave a red stain." },
+          { "letter": "D", "text": "They are easy to get rid of." },
+          { "letter": "E", "text": "They promise good luck." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_46",
+        "questionNumber": 46,
+        "questionText": "Why does the author say that the \"tradition of henna body painting has definitely evolved with the times\"?",
+        "answerChoices": [
+          { "letter": "A", "text": "to make readers aware that henna body painting is used more now than in the past" },
+          { "letter": "B", "text": "to show that people use mehndi for wedding celebrations" },
+          { "letter": "C", "text": "to show that henna uses have changed over the years" },
+          { "letter": "D", "text": "to make light of people who use henna" },
+          { "letter": "E", "text": "to suggest that today's henna is nothing like the henna that was used years ago" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_47",
+        "questionNumber": 47,
+        "questionText": "Which of the following best tells what this passage is about?",
+        "answerChoices": [
+          { "letter": "A", "text": "the reasons for people drowning" },
+          { "letter": "B", "text": "how people learn to swim in a pool" },
+          { "letter": "C", "text": "the reasons why people should learn to swim" },
+          { "letter": "D", "text": "the kind of motor skills that are used when swimming" },
+          { "letter": "E", "text": "how USA Swimmers helps children learn to swim" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "rc_main_idea",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_48",
+        "questionNumber": 48,
+        "questionText": "Why should beginning swimmers swim with someone else?",
+        "answerChoices": [
+          { "letter": "A", "text": "It will help them improve their swimming." },
+          { "letter": "B", "text": "They will learn to compete with others." },
+          { "letter": "C", "text": "They will enjoy the company." },
+          { "letter": "D", "text": "They will learn to swim faster." },
+          { "letter": "E", "text": "It will keep them safer." }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_supporting_details",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_49",
+        "questionNumber": 49,
+        "questionText": "The author includes information about African American children to demonstrate",
+        "answerChoices": [
+          { "letter": "A", "text": "the difficulty of making this group aware of the water's dangers." },
+          { "letter": "B", "text": "his knowledge of the African American population's history." },
+          { "letter": "C", "text": "why African Americans are good athletes." },
+          { "letter": "D", "text": "how cultural disparities have influenced children in terms of learning to swim." },
+          { "letter": "E", "text": "how African Americans feel about learning to swim." }
+        ],
+        "correctAnswer": "D",
+        "skillId": "rc_author_purpose",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_v_50",
+        "questionNumber": 50,
+        "questionText": "Why do you suppose that USA Swimmers is expanding its programs in inner cities?",
+        "answerChoices": [
+          { "letter": "A", "text": "to create jobs for inner city people" },
+          { "letter": "B", "text": "to explore the new possibilities that come with expansion" },
+          { "letter": "C", "text": "to lower the cost of swimming classes in the cities" },
+          { "letter": "D", "text": "to show that swimming is something that everybody can do" },
+          { "letter": "E", "text": "to reach more African American and Hispanic children" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "rc_drawing_conclusions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      }
+    ],
+    "math": [
+      {
+        "id": "hunter_tg_2_m_01",
+        "questionNumber": 51,
+        "questionText": "If 4x = 10 and 2y = 4x, then y =",
+        "answerChoices": [
+          { "letter": "A", "text": "5" },
+          { "letter": "B", "text": "2 1/2" },
+          { "letter": "C", "text": "10" },
+          { "letter": "D", "text": "1/2" },
+          { "letter": "E", "text": "4" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_algebraic_expressions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_02",
+        "questionNumber": 52,
+        "questionText": "There are 30 students in a class, and 18 of them are boys. What percent of the class are girls?",
+        "answerChoices": [
+          { "letter": "A", "text": "60%" },
+          { "letter": "B", "text": ".60" },
+          { "letter": "C", "text": "40%" },
+          { "letter": "D", "text": ".40" },
+          { "letter": "E", "text": "12" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_03",
+        "questionNumber": 53,
+        "questionText": "Sammy pitched 8 games and won 5 of them. To the nearest percent, what percent of games did Sammy lose?",
+        "answerChoices": [
+          { "letter": "A", "text": "50%" },
+          { "letter": "B", "text": "30%" },
+          { "letter": "C", "text": "40%" },
+          { "letter": "D", "text": "63%" },
+          { "letter": "E", "text": "38%" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_04",
+        "questionNumber": 54,
+        "questionText": "Which of the following shows an isosceles triangle?",
+        "answerChoices": [
+          { "letter": "A", "text": "Triangle with angles 60 degrees and a right angle" },
+          { "letter": "B", "text": "Triangle with angles 30 degrees and 120 degrees" },
+          { "letter": "C", "text": "Triangle with angles 25 degrees and 120 degrees" },
+          { "letter": "D", "text": "Triangle with angles 58 degrees and 62 degrees" },
+          { "letter": "E", "text": "Triangle with angles 30 degrees and 93 degrees" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_2_m_05",
+        "questionNumber": 55,
+        "questionText": "Carole bought a coat for $60.00. This was 75% of its original price. By how much was the coat reduced?",
+        "answerChoices": [
+          { "letter": "A", "text": "$80.00" },
+          { "letter": "B", "text": "$45.00" },
+          { "letter": "C", "text": "$40.00" },
+          { "letter": "D", "text": "20%" },
+          { "letter": "E", "text": "$20.00" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_percent_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_06",
+        "questionNumber": 56,
+        "questionText": "The volume of a rectangular solid whose length is 15 inches, height is 10 inches, and width is 5 inches, is",
+        "answerChoices": [
+          { "letter": "A", "text": "800 in^3" },
+          { "letter": "B", "text": "7.5 in^3" },
+          { "letter": "C", "text": "75 in^3" },
+          { "letter": "D", "text": "10 ft^3" },
+          { "letter": "E", "text": "750 in^3" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_07",
+        "questionNumber": 57,
+        "questionText": "The area of a square rug each of whose sides are 3 feet long is",
+        "answerChoices": [
+          { "letter": "A", "text": "81 in^2" },
+          { "letter": "B", "text": "108 in^2" },
+          { "letter": "C", "text": "243 in^2" },
+          { "letter": "D", "text": "708 in^2" },
+          { "letter": "E", "text": "1296 in^2" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_08",
+        "questionNumber": 58,
+        "questionText": "Two numbers are in the ratio of 2:3. If the larger number is 45, the smaller number is",
+        "answerChoices": [
+          { "letter": "A", "text": "30" },
+          { "letter": "B", "text": "67 1/2" },
+          { "letter": "C", "text": "15" },
+          { "letter": "D", "text": "22 1/2" },
+          { "letter": "E", "text": "12" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_ratios_proportions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_09",
+        "questionNumber": 59,
+        "questionText": "If the area of a circle is 314 square inches, then its circumference is closest to (use pi = 3.14):",
+        "answerChoices": [
+          { "letter": "A", "text": "58 in." },
+          { "letter": "B", "text": "60 in." },
+          { "letter": "C", "text": "63 in." },
+          { "letter": "D", "text": "65 in." },
+          { "letter": "E", "text": "68 in." }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_10",
+        "questionNumber": 60,
+        "questionText": "Ticket prices for the Bronx City Zoo are listed as follows: Monday, Wednesday, Thursday, Friday $5; Saturday, Sunday $8; Tuesday Free. Last week, 21,000 people visited the zoo. If the same number of people visited on each of the seven days, what was the total income from ticket sales?",
+        "answerChoices": [
+          { "letter": "A", "text": "$84,000" },
+          { "letter": "B", "text": "$98,000" },
+          { "letter": "C", "text": "$108,000" },
+          { "letter": "D", "text": "$123,000" },
+          { "letter": "E", "text": "$128,000" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_11",
+        "questionNumber": 61,
+        "questionText": "The following triangles are similar. Find the missing side that is labeled x.",
+        "answerChoices": [
+          { "letter": "A", "text": "2.5" },
+          { "letter": "B", "text": "7.5" },
+          { "letter": "C", "text": "15" },
+          { "letter": "D", "text": "22.5" },
+          { "letter": "E", "text": "12.5" }
+        ],
+        "correctAnswer": "E",
+        "skillId": "ma_ratios_proportions",
+        "confidence": "high",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_2_m_12",
+        "questionNumber": 62,
+        "questionText": "In the figure above, PR = QR. What is the measure of angle x?",
+        "answerChoices": [
+          { "letter": "A", "text": "50" },
+          { "letter": "B", "text": "40" },
+          { "letter": "C", "text": "60" },
+          { "letter": "D", "text": "20" },
+          { "letter": "E", "text": "Cannot be determined" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_2_m_13",
+        "questionNumber": 63,
+        "questionText": "Which number is 1 1/8 times as large as 880?",
+        "answerChoices": [
+          { "letter": "A", "text": "888" },
+          { "letter": "B", "text": "966" },
+          { "letter": "C", "text": "980" },
+          { "letter": "D", "text": "990" },
+          { "letter": "E", "text": "998" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_fraction_decimal_ops",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_14",
+        "questionNumber": 64,
+        "questionText": "Copy Cat Copies charges 18 cents for the first copy and 12 cents for each additional copy. What is the greatest number of copies you can get for $3.00?",
+        "answerChoices": [
+          { "letter": "A", "text": "16" },
+          { "letter": "B", "text": "17" },
+          { "letter": "C", "text": "23" },
+          { "letter": "D", "text": "24" },
+          { "letter": "E", "text": "25" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_15",
+        "questionNumber": 65,
+        "questionText": "What is the next number in the sequence 0, 0, 1, 3, 6, 10, ___?",
+        "answerChoices": [
+          { "letter": "A", "text": "15" },
+          { "letter": "B", "text": "14" },
+          { "letter": "C", "text": "13" },
+          { "letter": "D", "text": "4" },
+          { "letter": "E", "text": "5" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "mqr_pattern_recognition",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_16",
+        "questionNumber": 66,
+        "questionText": "The union of (1, 2, 3) and (3, 4, 5) and (1, 3, 5) is",
+        "answerChoices": [
+          { "letter": "A", "text": "(1, 3, 5)" },
+          { "letter": "B", "text": "(1, 2, 3, 4, 5)" },
+          { "letter": "C", "text": "(3, 4, 5)" },
+          { "letter": "D", "text": "(2, 4)" },
+          { "letter": "E", "text": "an empty set" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_number_sense",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_17",
+        "questionNumber": 67,
+        "questionText": "In the following table, what must you do to make the numbers in the x row the same as the numbers in the y row? x: 2, 3, 4, 5; y: 6, 8, 10, 12",
+        "answerChoices": [
+          { "letter": "A", "text": "multiply by 3" },
+          { "letter": "B", "text": "divide by 3" },
+          { "letter": "C", "text": "multiply by 3 and subtract 1" },
+          { "letter": "D", "text": "multiply by 2 and add 2" },
+          { "letter": "E", "text": "add 4" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "mqr_pattern_recognition",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_18",
+        "questionNumber": 68,
+        "questionText": "At 12:30 P.M., what is the smaller angle between the minute hand and the hour hand?",
+        "answerChoices": [
+          { "letter": "A", "text": "180 degrees" },
+          { "letter": "B", "text": "175 degrees" },
+          { "letter": "C", "text": "165 degrees" },
+          { "letter": "D", "text": "150 degrees" },
+          { "letter": "E", "text": "160 degrees" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_19",
+        "questionNumber": 69,
+        "questionText": "What is the area of the shaded triangle in this square?",
+        "answerChoices": [
+          { "letter": "A", "text": "10 sq cm" },
+          { "letter": "B", "text": "20 sq cm" },
+          { "letter": "C", "text": "100 sq cm" },
+          { "letter": "D", "text": "50 sq cm" },
+          { "letter": "E", "text": "none of these" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_2_m_20",
+        "questionNumber": 70,
+        "questionText": "A jar contains 5 white marbles, 6 black marbles, and 4 green marbles. If Ann removes 3 white marbles, 2 black marbles, and 1 green marble, what is the probability that the next marble removed at random is black?",
+        "answerChoices": [
+          { "letter": "A", "text": "4/5" },
+          { "letter": "B", "text": "1/3" },
+          { "letter": "C", "text": "4/9" },
+          { "letter": "D", "text": "6/15" },
+          { "letter": "E", "text": "4/15" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "ma_probability_statistics",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_21",
+        "questionNumber": 71,
+        "questionText": "If 10 men build a 6-room house in 30 days, how many days will it take 15 men working at the same rate?",
+        "answerChoices": [
+          { "letter": "A", "text": "180" },
+          { "letter": "B", "text": "25" },
+          { "letter": "C", "text": "45" },
+          { "letter": "D", "text": "20" },
+          { "letter": "E", "text": "15" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_ratios_proportions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_22",
+        "questionNumber": 72,
+        "questionText": "Tom has taken 5 tests and his average is 60%. What would he have to average on the next two tests to raise his overall average to 70%?",
+        "answerChoices": [
+          { "letter": "A", "text": "85%" },
+          { "letter": "B", "text": "90%" },
+          { "letter": "C", "text": "93%" },
+          { "letter": "D", "text": "95%" },
+          { "letter": "E", "text": "97%" }
+        ],
+        "correctAnswer": "D",
+        "skillId": "ma_multistep_word_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_23",
+        "questionNumber": 73,
+        "questionText": "The length of a rectangle is 8 feet and its width is 4 feet. The area of a square that has the same perimeter as that of the rectangle is",
+        "answerChoices": [
+          { "letter": "A", "text": "36 sq ft" },
+          { "letter": "B", "text": "24 sq ft" },
+          { "letter": "C", "text": "32 sq ft" },
+          { "letter": "D", "text": "48 sq ft" },
+          { "letter": "E", "text": "64 sq ft" }
+        ],
+        "correctAnswer": "A",
+        "skillId": "ma_area_perimeter_volume",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_24",
+        "questionNumber": 74,
+        "questionText": "If jellybeans cost $1.60 per pound, and there are 7 jellybeans in an ounce, how much would 35 jellybeans cost?",
+        "answerChoices": [
+          { "letter": "A", "text": "$4.57" },
+          { "letter": "B", "text": "50 cents" },
+          { "letter": "C", "text": "22.86 cents" },
+          { "letter": "D", "text": "245 cents" },
+          { "letter": "E", "text": "56 cents" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_multistep_word_problems",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_25",
+        "questionNumber": 75,
+        "questionText": "The ratio of 2.2 hours to 10 minutes is",
+        "answerChoices": [
+          { "letter": "A", "text": "22/1" },
+          { "letter": "B", "text": "66/5" },
+          { "letter": "C", "text": "1/22" },
+          { "letter": "D", "text": "5/66" },
+          { "letter": "E", "text": "66/1" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "ma_ratios_proportions",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_26",
+        "questionNumber": 76,
+        "questionText": "George takes a walk along the path shown in the diagram below. He begins at point A and visits each of the points B, C, and D exactly once, and then returns to point A. He does not walk along the same path twice. In how many ways can he complete his walk?",
+        "answerChoices": [
+          { "letter": "A", "text": "3" },
+          { "letter": "B", "text": "6" },
+          { "letter": "C", "text": "8" },
+          { "letter": "D", "text": "9" },
+          { "letter": "E", "text": "12" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "medium",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_2_m_27",
+        "questionNumber": 77,
+        "questionText": "If you have six people in a room, and each person shakes hands with every other person exactly once, how many total handshakes happen?",
+        "answerChoices": [
+          { "letter": "A", "text": "6" },
+          { "letter": "B", "text": "12" },
+          { "letter": "C", "text": "15" },
+          { "letter": "D", "text": "21" },
+          { "letter": "E", "text": "720" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_28",
+        "questionNumber": 78,
+        "questionText": "How many triangles are in the figure below?",
+        "answerChoices": [
+          { "letter": "A", "text": "6" },
+          { "letter": "B", "text": "8" },
+          { "letter": "C", "text": "9" },
+          { "letter": "D", "text": "10" },
+          { "letter": "E", "text": "12" }
+        ],
+        "correctAnswer": "B",
+        "skillId": "mqr_logical_reasoning",
+        "confidence": "medium",
+        "excluded": true,
+        "excludeReason": "image-dependent"
+      },
+      {
+        "id": "hunter_tg_2_m_29",
+        "questionNumber": 79,
+        "questionText": "A train 40 meters long travels through a 200-meter long tunnel at 10 meters per second. From the moment the train enters the tunnel, how much time passes before the train completely leaves the tunnel?",
+        "answerChoices": [
+          { "letter": "A", "text": "15 seconds" },
+          { "letter": "B", "text": "20 seconds" },
+          { "letter": "C", "text": "24 seconds" },
+          { "letter": "D", "text": "26 seconds" },
+          { "letter": "E", "text": "30 seconds" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      },
+      {
+        "id": "hunter_tg_2_m_30",
+        "questionNumber": 80,
+        "questionText": "Two motorcycles leave Queens, New York, at the same time and travel west on Interstate 495. One travels at a constant speed of 58 miles per hour and the other travels at a constant speed of 66 miles per hour. In how many hours will the distance between them be 32 miles?",
+        "answerChoices": [
+          { "letter": "A", "text": "3 hours" },
+          { "letter": "B", "text": "3.5 hours" },
+          { "letter": "C", "text": "4 hours" },
+          { "letter": "D", "text": "4.25 hours" },
+          { "letter": "E", "text": "6 hours" }
+        ],
+        "correctAnswer": "C",
+        "skillId": "mqr_word_problem_translation",
+        "confidence": "high",
+        "excluded": false,
+        "excludeReason": null
+      }
+    ]
+  },
+  "metadata": {
+    "totalQuestions": 80,
+    "source": "Hunter TG Practice Form 2",
+    "excludedCount": 6
+  }
+}

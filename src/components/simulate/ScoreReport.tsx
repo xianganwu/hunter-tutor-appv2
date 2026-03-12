@@ -22,6 +22,7 @@ interface ScoreReportProps {
 export function ScoreReport({ report, previousReport }: ScoreReportProps) {
   const { overall, reading, writing, qr, ma, timeAnalysis, recommendations } =
     report;
+  const isSample = report.mode === "sample";
 
   const impactSkills = computeImpactAnalysis(report);
   const weakestSkill = impactSkills[0];
@@ -31,7 +32,7 @@ export function ScoreReport({ report, previousReport }: ScoreReportProps) {
       {/* Header */}
       <div className="text-center">
         <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-100">
-          Practice Exam Results
+          {report.formTitle ?? "Practice Exam"} Results
         </h1>
         <p className="text-sm text-surface-500 mt-1">
           Completed{" "}
@@ -57,67 +58,89 @@ export function ScoreReport({ report, previousReport }: ScoreReportProps) {
             Estimated {overall.estimatedPercentile}th Percentile
           </span>
         </div>
+        {isSample && report.excludedCount ? (
+          <div className="mt-2 text-xs text-brand-200">
+            {report.excludedCount} questions excluded (image-dependent)
+          </div>
+        ) : null}
       </div>
 
       {/* Score Comparison Banner */}
       <ScoreComparison current={report} previous={previousReport} />
 
       {/* Section Breakdown */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <SectionCard
-          title="Reading Comprehension"
-          score={reading}
-          previousScore={previousReport?.reading}
-        />
-        <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
-          <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100 mb-2">
-            Essay Writing
-          </h3>
-          <div className="flex items-baseline gap-2">
-            <span className={`text-3xl font-bold ${writing.score >= 7 ? "text-success-500" : writing.score >= 5 ? "text-streak-500" : "text-red-500"}`}>
-              {writing.score}
-            </span>
-            <span className="text-sm text-surface-400">/10</span>
-          </div>
-          <p className="text-xs text-surface-600 dark:text-surface-400 mt-2">
-            {writing.feedback}
-          </p>
-          {writing.strengths.length > 0 && (
-            <div className="mt-2">
-              <div className="text-xs text-success-500 dark:text-success-400 font-medium">
-                Strengths
-              </div>
-              <ul className="text-xs text-surface-600 dark:text-surface-400 mt-0.5">
-                {writing.strengths.map((s, i) => (
-                  <li key={i}>+ {s}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {writing.improvements.length > 0 && (
-            <div className="mt-2">
-              <div className="text-xs text-streak-500 dark:text-streak-400 font-medium">
-                To Improve
-              </div>
-              <ul className="text-xs text-surface-600 dark:text-surface-400 mt-0.5">
-                {writing.improvements.map((s, i) => (
-                  <li key={i}>- {s}</li>
-                ))}
-              </ul>
-            </div>
+      {isSample ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <SectionCard
+            title="Verbal / Reading"
+            score={reading}
+            previousScore={previousReport?.reading}
+          />
+          {report.math && (
+            <SectionCard
+              title="Math"
+              score={report.math}
+              previousScore={previousReport?.math}
+            />
           )}
         </div>
-        <SectionCard
-          title="Quantitative Reasoning"
-          score={qr}
-          previousScore={previousReport?.qr}
-        />
-        <SectionCard
-          title="Math Achievement"
-          score={ma}
-          previousScore={previousReport?.ma}
-        />
-      </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <SectionCard
+            title="Reading Comprehension"
+            score={reading}
+            previousScore={previousReport?.reading}
+          />
+          <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
+            <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100 mb-2">
+              Essay Writing
+            </h3>
+            <div className="flex items-baseline gap-2">
+              <span className={`text-3xl font-bold ${writing.score >= 7 ? "text-success-500" : writing.score >= 5 ? "text-streak-500" : "text-red-500"}`}>
+                {writing.score}
+              </span>
+              <span className="text-sm text-surface-400">/10</span>
+            </div>
+            <p className="text-xs text-surface-600 dark:text-surface-400 mt-2">
+              {writing.feedback}
+            </p>
+            {writing.strengths.length > 0 && (
+              <div className="mt-2">
+                <div className="text-xs text-success-500 dark:text-success-400 font-medium">
+                  Strengths
+                </div>
+                <ul className="text-xs text-surface-600 dark:text-surface-400 mt-0.5">
+                  {writing.strengths.map((s, i) => (
+                    <li key={i}>+ {s}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {writing.improvements.length > 0 && (
+              <div className="mt-2">
+                <div className="text-xs text-streak-500 dark:text-streak-400 font-medium">
+                  To Improve
+                </div>
+                <ul className="text-xs text-surface-600 dark:text-surface-400 mt-0.5">
+                  {writing.improvements.map((s, i) => (
+                    <li key={i}>- {s}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          <SectionCard
+            title="Quantitative Reasoning"
+            score={qr}
+            previousScore={previousReport?.qr}
+          />
+          <SectionCard
+            title="Math Achievement"
+            score={ma}
+            previousScore={previousReport?.ma}
+          />
+        </div>
+      )}
 
       {/* Impact Analysis */}
       {impactSkills.length > 0 && (
@@ -177,9 +200,15 @@ export function ScoreReport({ report, previousReport }: ScoreReportProps) {
           Skill-by-Skill Breakdown
         </h3>
 
-        <SkillTable title="Reading" skills={reading.bySkill} sectionType="reading" />
-        <SkillTable title="Quantitative Reasoning" skills={qr.bySkill} sectionType="math" />
-        <SkillTable title="Math Achievement" skills={ma.bySkill} sectionType="math" />
+        <SkillTable title={isSample ? "Verbal" : "Reading"} skills={reading.bySkill} sectionType="reading" />
+        {isSample ? (
+          report.math && <SkillTable title="Math" skills={report.math.bySkill} sectionType="math" />
+        ) : (
+          <>
+            <SkillTable title="Quantitative Reasoning" skills={qr.bySkill} sectionType="math" />
+            <SkillTable title="Math Achievement" skills={ma.bySkill} sectionType="math" />
+          </>
+        )}
       </div>
 
       {/* Question Review */}
@@ -250,12 +279,19 @@ function ScoreComparison({
     );
   }
 
-  const sections = [
-    { label: "Overall", prev: previous.overall.percentage, curr: current.overall.percentage },
-    { label: "Reading", prev: previous.reading.percentage, curr: current.reading.percentage },
-    { label: "QR", prev: previous.qr.percentage, curr: current.qr.percentage },
-    { label: "Math", prev: previous.ma.percentage, curr: current.ma.percentage },
-  ];
+  const isSample = current.mode === "sample";
+  const sections = isSample
+    ? [
+        { label: "Overall", prev: previous.overall.percentage, curr: current.overall.percentage },
+        { label: "Verbal", prev: previous.reading.percentage, curr: current.reading.percentage },
+        { label: "Math", prev: previous.math?.percentage ?? 0, curr: current.math?.percentage ?? 0 },
+      ]
+    : [
+        { label: "Overall", prev: previous.overall.percentage, curr: current.overall.percentage },
+        { label: "Reading", prev: previous.reading.percentage, curr: current.reading.percentage },
+        { label: "QR", prev: previous.qr.percentage, curr: current.qr.percentage },
+        { label: "Math", prev: previous.ma.percentage, curr: current.ma.percentage },
+      ];
 
   return (
     <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5">
@@ -349,9 +385,10 @@ function QuestionReview({
     reading: "Reading",
     qr: "Quantitative Reasoning",
     ma: "Math Achievement",
+    math: "Math",
   };
 
-  const sections = ["reading", "qr", "ma"] as const;
+  const sections = ["reading", "qr", "ma", "math"] as const;
   const grouped = sections
     .map((section) => ({
       section,
