@@ -3,6 +3,7 @@
 import { useVocabBuilder } from "@/hooks/useVocabBuilder";
 import type { VocabWord, VocabCard } from "@/lib/vocabulary";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
+import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 
 // ─── Main Component ──────────────────────────────────────────────────
 
@@ -63,6 +64,7 @@ export function VocabSession() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          <DailyPlanProgress />
           {stats.streakDays > 0 && (
             <span className="text-xs text-brand-600 dark:text-brand-400 font-medium">
               {stats.streakDays} day streak

@@ -18,6 +18,7 @@ import { RevisionFeedback } from "./RevisionFeedback";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import { checkAndAwardBadges, buildBadgeContext } from "@/lib/achievements";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
+import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 
 const ESSAY_DURATION_MINUTES = 40;
 
@@ -235,6 +236,7 @@ export function WritingWorkshop() {
           </div>
         </div>
         <div className="flex items-center gap-3">
+          <DailyPlanProgress />
           {phase === "writing" && (
             <CountdownTimer
               durationMinutes={ESSAY_DURATION_MINUTES}

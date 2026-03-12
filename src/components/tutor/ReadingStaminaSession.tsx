@@ -11,6 +11,7 @@ import {
 } from "@/lib/reading-stamina";
 import { getRandomPassagePhrase } from "@/lib/loading-phrases";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
+import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 
 export function ReadingStaminaSession() {
   const {
@@ -67,6 +68,7 @@ export function ReadingStaminaSession() {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          <DailyPlanProgress />
           {/* Stamina level indicator */}
           <div className="flex items-center gap-1.5">
             {STAMINA_LEVELS.map((sl) => (

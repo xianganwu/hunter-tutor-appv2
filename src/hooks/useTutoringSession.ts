@@ -29,7 +29,7 @@ import {
   createTeachingMoment,
 } from "@/lib/teaching-moments";
 import type { TeachingMomentEvaluation } from "@/lib/teaching-moments";
-import { loadSkillMastery, saveSkillMastery, loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { loadSkillMastery, saveSkillMastery, loadAllSkillMasteries, computeSkillReviewSchedule } from "@/lib/skill-mastery-store";
 import { selectNextSkills } from "@/lib/adaptive";
 import { getSkillIdsForDomain } from "@/lib/exam/curriculum";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
@@ -243,7 +243,7 @@ async function callApiStream(
 
 // ─── Hook ─────────────────────────────────────────────────────────────
 
-export function useTutoringSession(skillId: string) {
+export function useTutoringSession(skillId: string, isRetentionCheck: boolean = false) {
   // Fix #1: Load prior mastery from localStorage instead of hardcoding 0.5
   const priorMastery = useMemo(() => {
     if (typeof window === "undefined") return null;
@@ -345,14 +345,24 @@ export function useTutoringSession(skillId: string) {
   const persistMastery = useCallback(() => {
     const s = stateRef.current;
     const update = calculateMasteryUpdate(recentAttempts.current, s.difficultyTier);
-    saveSkillMastery({
+    const sessionAccuracy = s.questionCount > 0 ? s.correctCount / s.questionCount : 0;
+
+    const base = {
       skillId: s.currentSkillId,
       masteryLevel: update.newMasteryLevel,
       attemptsCount: (priorMastery?.attemptsCount ?? 0) + s.questionCount,
       correctCount: (priorMastery?.correctCount ?? 0) + s.correctCount,
       lastPracticed: new Date().toISOString(),
       confidenceTrend: update.newConfidenceTrend,
-    });
+      // Carry forward existing SM-2 fields for the schedule computation
+      interval: priorMastery?.interval,
+      easeFactor: priorMastery?.easeFactor,
+      nextReviewDate: priorMastery?.nextReviewDate,
+      repetitions: priorMastery?.repetitions,
+    };
+
+    const schedule = computeSkillReviewSchedule(base, sessionAccuracy);
+    saveSkillMastery({ ...base, ...schedule });
   }, [priorMastery]);
 
   // End session — defined first so submitAnswer can reference it via ref
@@ -375,7 +385,7 @@ export function useTutoringSession(skillId: string) {
       persistMastery();
 
       // Auto-complete daily plan task
-      autoCompleteDailyTask(s.currentSkillId, "skill_practice");
+      autoCompleteDailyTask(s.currentSkillId, isRetentionCheck ? "retention_check" : "skill_practice");
 
       // Check and award badges
       const ctx = buildBadgeContext({
@@ -431,7 +441,7 @@ export function useTutoringSession(skillId: string) {
 
       setState((prev) => ({ ...prev, phase: "complete", activeQuestion: null }));
     },
-    [setLoading, persistMastery]
+    [setLoading, persistMastery, isRetentionCheck]
   );
 
   // Start session: teach concept (streamed), then generate first question

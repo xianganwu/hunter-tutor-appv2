@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   getTodaysPlan,
   getTaskRoute,
   regeneratePlanWithBudget,
   loadTimeBudget,
+  autoCompleteDailyTask,
   type DailyPlan,
 } from "@/lib/daily-plan";
-import { Confetti } from "@/components/shared/Confetti";
 import { Mascot, type MascotAnimal } from "@/components/shared/Mascot";
+import { MistakeReview } from "@/components/tutor/MistakeReview";
 
 interface DailyPracticePlanProps {
   readonly mascotTier?: 1 | 2 | 3 | 4 | 5;
@@ -20,8 +21,7 @@ const TIME_OPTIONS = [15, 30, 45] as const;
 
 export function DailyPracticePlan({ mascotTier = 1, mascotType = "penguin" }: DailyPracticePlanProps) {
   const [plan, setPlan] = useState<DailyPlan | null>(null);
-  const [showConfetti, setShowConfetti] = useState(false);
-  const hasFiredConfetti = useRef(false);
+  const [reviewingMistakes, setReviewingMistakes] = useState(false);
 
   useEffect(() => {
     setPlan(getTodaysPlan());
@@ -29,16 +29,15 @@ export function DailyPracticePlan({ mascotTier = 1, mascotType = "penguin" }: Da
 
   const allDone = plan ? plan.completedTaskIds.length >= plan.tasks.length : false;
 
-  useEffect(() => {
-    if (allDone && !hasFiredConfetti.current) {
-      hasFiredConfetti.current = true;
-      setShowConfetti(true);
-    }
-  }, [allDone]);
-
   const handleBudgetChange = useCallback((minutes: number) => {
     const newPlan = regeneratePlanWithBudget(minutes);
     setPlan(newPlan);
+  }, []);
+
+  const handleMistakeReviewComplete = useCallback(() => {
+    autoCompleteDailyTask(undefined, "mistake_review");
+    setReviewingMistakes(false);
+    setPlan(getTodaysPlan());
   }, []);
 
   if (!plan) return null;
@@ -53,8 +52,6 @@ export function DailyPracticePlan({ mascotTier = 1, mascotType = "penguin" }: Da
 
   return (
     <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-4">
-      <Confetti active={showConfetti} />
-
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -135,16 +132,43 @@ export function DailyPracticePlan({ mascotTier = 1, mascotType = "penguin" }: Da
 
                 {/* Start button */}
                 {!isDone && (
-                  <a
-                    href={route}
-                    className="flex-shrink-0 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
-                  >
-                    Start
-                  </a>
+                  task.type === "mistake_review" ? (
+                    <button
+                      onClick={() => setReviewingMistakes(true)}
+                      className="flex-shrink-0 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
+                    >
+                      Start
+                    </button>
+                  ) : (
+                    <a
+                      href={route}
+                      className="flex-shrink-0 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-700 transition-colors"
+                    >
+                      Start
+                    </a>
+                  )
                 )}
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Inline mistake review */}
+      {reviewingMistakes && (
+        <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800 p-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm font-semibold text-surface-900 dark:text-surface-100">
+              Mistake Review
+            </h3>
+            <button
+              onClick={() => setReviewingMistakes(false)}
+              className="text-xs text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+          <MistakeReview onComplete={handleMistakeReviewComplete} />
         </div>
       )}
 

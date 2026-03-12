@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import type { DrillQuestion, DrillAttempt, DrillResult } from "@/lib/drill";
 import { computeDrillResult, saveDrillResult } from "@/lib/drill";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
+import { loadSkillMastery, saveSkillMastery, computeSkillReviewSchedule } from "@/lib/skill-mastery-store";
 import {
   checkAndAwardBadges,
   buildBadgeContext,
@@ -76,6 +77,16 @@ export function useDrillSession() {
       void endDrill();
     }
   }, [state.remainingSeconds, state.phase, state.startTime]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Update SM-2 review schedule after a drill session
+  const updateSkillReviewSchedule = useCallback((skillId: string, attempts: DrillAttempt[]) => {
+    if (attempts.length === 0) return;
+    const accuracy = attempts.filter((a) => a.isCorrect).length / attempts.length;
+    const existing = loadSkillMastery(skillId);
+    if (!existing) return;
+    const schedule = computeSkillReviewSchedule(existing, accuracy);
+    saveSkillMastery({ ...existing, ...schedule });
+  }, []);
 
   const fetchQuestions = useCallback(
     async (skillId: string, count: number = 10): Promise<DrillQuestion[]> => {
@@ -186,6 +197,7 @@ export function useDrillSession() {
         );
         saveDrillResult(drillResult);
         autoCompleteDailyTask(s.skillId, "drill");
+        updateSkillReviewSchedule(s.skillId, newAttempts);
 
         // Check badges
         const ctx = buildBadgeContext({
@@ -212,7 +224,7 @@ export function useDrillSession() {
         lastAnswerCorrect: isCorrect,
       }));
     },
-    [fetchQuestions],
+    [fetchQuestions, updateSkillReviewSchedule],
   );
 
   const endDrill = useCallback(async () => {
@@ -230,6 +242,7 @@ export function useDrillSession() {
     );
     saveDrillResult(drillResult);
     autoCompleteDailyTask(s.skillId, "drill");
+    updateSkillReviewSchedule(s.skillId, s.attempts);
 
     const ctx = buildBadgeContext({
       drillQuestionsPerMinute: drillResult.questionsPerMinute,
@@ -239,7 +252,7 @@ export function useDrillSession() {
 
     setResult(drillResult);
     setState((prev) => ({ ...prev, phase: "complete" }));
-  }, []);
+  }, [updateSkillReviewSchedule]);
 
   const reset = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);

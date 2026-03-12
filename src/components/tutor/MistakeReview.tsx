@@ -69,7 +69,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
           onClick={onComplete}
           className="rounded-xl bg-surface-100 dark:bg-surface-800 px-6 py-2.5 text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 transition-colors"
         >
-          Back to Journal
+          Done
         </button>
       </div>
     );
@@ -115,7 +115,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
           onClick={onComplete}
           className="rounded-xl bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
         >
-          Back to Journal
+          Done
         </button>
       </div>
     );

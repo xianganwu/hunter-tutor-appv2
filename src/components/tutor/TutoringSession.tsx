@@ -17,13 +17,15 @@ import { SessionMascot, type MascotReaction } from "@/components/shared/SessionM
 import { getStoredMascotType } from "@/lib/user-profile";
 import { getMascotTier } from "@/components/shared/Mascot";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 
 interface TutoringSessionProps {
   readonly skillId: string;
   readonly subject: string;
+  readonly isRetentionCheck?: boolean;
 }
 
-export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
+export function TutoringSession({ skillId, subject, isRetentionCheck = false }: TutoringSessionProps) {
   const {
     state,
     summary,
@@ -36,7 +38,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
     restart,
     handleTeachBackComplete,
     handleTeachBackSkip,
-  } = useTutoringSession(skillId);
+  } = useTutoringSession(skillId, isRetentionCheck);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const skill = getSkillById(skillId);
@@ -68,28 +70,6 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
     }
     setMascotReactionKey((k) => k + 1);
   }, [state.questionCount, state.correctStreak]);
-
-  // Celebration banner for correct streaks
-  const [celebration, setCelebration] = useState<string | null>(null);
-  const prevStreakRef = useRef(0);
-  useEffect(() => {
-    const streak = state.correctStreak;
-    if (streak > prevStreakRef.current && streak >= 3) {
-      const msg =
-        streak >= 5 && streak % 5 === 0
-          ? `🌟 ${streak} in a row! Champion streak!`
-          : streak === 3
-            ? "🔥 3 in a row! You're on fire!"
-            : null;
-      if (msg) {
-        setCelebration(msg);
-        const t = setTimeout(() => setCelebration(null), 2000);
-        prevStreakRef.current = streak;
-        return () => clearTimeout(t);
-      }
-    }
-    prevStreakRef.current = streak;
-  }, [state.correctStreak]);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -130,6 +110,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          <DailyPlanProgress />
           <ProgressIndicator
             current={state.questionCount}
             estimated={state.estimatedQuestions}
@@ -146,17 +127,6 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           </button>
         </div>
       </header>
-
-      {/* Celebration banner */}
-      {celebration && (
-        <div
-          role="status"
-          aria-live="polite"
-          className="absolute left-1/2 top-20 z-50 -translate-x-1/2 animate-bounce rounded-2xl bg-brand-600 px-6 py-3 text-base font-bold text-white shadow-glow"
-        >
-          {celebration}
-        </div>
-      )}
 
       {/* Session goal banner */}
       {state.messages.length === 0 && state.phase === "initializing" && (

@@ -66,17 +66,9 @@ export interface BadgeCheckContext {
   readonly dailyPlanStreak?: number;
 }
 
-// ─── Badge Definitions (18) ──────────────────────────────────────────
+// ─── Badge Definitions (15) ──────────────────────────────────────────
 
 export const BADGE_DEFINITIONS: readonly BadgeDefinition[] = [
-  {
-    id: "first_steps",
-    name: "First Steps",
-    description: "Complete your first tutoring session",
-    icon: "👣",
-    category: "practice",
-    condition: { type: "total_questions", count: 1 },
-  },
   {
     id: "perfect_session",
     name: "Perfect Session",
@@ -182,14 +174,6 @@ export const BADGE_DEFINITIONS: readonly BadgeDefinition[] = [
     condition: { type: "daily_plan_streak", days: 3 },
   },
   {
-    id: "explorer",
-    name: "Explorer",
-    description: "Reach tier 2 with your mascot",
-    icon: "🗺️",
-    category: "milestone",
-    condition: { type: "tier_reached", tier: 2 },
-  },
-  {
     id: "scholar",
     name: "Scholar",
     description: "Reach tier 4 with your mascot",
@@ -204,14 +188,6 @@ export const BADGE_DEFINITIONS: readonly BadgeDefinition[] = [
     icon: "👑",
     category: "milestone",
     condition: { type: "tier_reached", tier: 5 },
-  },
-  {
-    id: "comeback_kid",
-    name: "Comeback Kid",
-    description: "Improve after a declining trend",
-    icon: "🦸",
-    category: "practice",
-    condition: { type: "skill_mastered" },
   },
 ];
 
@@ -448,8 +424,7 @@ export function shouldTriggerConfetti(badges: readonly BadgeDefinition[]): boole
     "scholar",
     "math_champion",
     "reading_whiz",
-    "streak_10",
-    "club_500",
+    "fraction_master",
   ]);
   return badges.some((b) => specialIds.has(b.id));
 }

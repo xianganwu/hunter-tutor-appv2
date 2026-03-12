@@ -1,7 +1,7 @@
 import { getStorageKey, notifyProgressChanged } from "./user-profile";
 import { selectNextSkills } from "./adaptive";
 import type { StudentSkillState } from "./adaptive";
-import { loadAllSkillMasteries } from "./skill-mastery-store";
+import { loadAllSkillMasteries, getSkillsDueForReview } from "./skill-mastery-store";
 import { getSkillIdsForDomain, getSkillById } from "./exam/curriculum";
 import { getDueForReview, loadMistakes } from "./mistakes";
 import { loadVocabDeck, getDueCards } from "./vocabulary";
@@ -15,7 +15,8 @@ export interface DailyTask {
     | "mistake_review"
     | "writing"
     | "drill"
-    | "vocab_review";
+    | "vocab_review"
+    | "retention_check";
   readonly skillId?: string;
   readonly skillName: string;
   readonly domain?: string;
@@ -106,7 +107,7 @@ function makeId(): string {
 
 /**
  * Build a prioritized list of tasks that fit within the given time budget.
- * Priority: mistake review → vocab review → skill practice → writing → speed rounds
+ * Priority: mistake review → vocab review → retention checks → skill practice → writing → speed rounds
  */
 function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
   const tasks: DailyTask[] = [];
@@ -151,7 +152,29 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
     remaining -= 5;
   }
 
-  // 3. Skill practice from different domains (12 min each)
+  // 3. Retention checks — skills due for spaced repetition review (5 min each, up to 2)
+  const dueSkills = getSkillsDueForReview();
+  let retentionCount = 0;
+  for (const skill of dueSkills) {
+    if (remaining < 5 || retentionCount >= 2) break;
+    const skillInfo = getSkillById(skill.skillId);
+    const daysSince = skill.lastPracticed
+      ? Math.round((Date.now() - new Date(skill.lastPracticed).getTime()) / 86400000)
+      : 0;
+    tasks.push({
+      id: makeId(),
+      type: "retention_check",
+      skillId: skill.skillId,
+      skillName: skillInfo?.name ?? skill.skillId,
+      estimatedMinutes: 5,
+      reason: daysSince > 0 ? `Last practiced ${daysSince} days ago` : "Due for retention check",
+      masteryLevel: skill.masteryLevel,
+    });
+    remaining -= 5;
+    retentionCount++;
+  }
+
+  // 4. Skill practice from different domains (12 min each) — skip skills already in retention checks
   const usedDomains = new Set<string>();
   for (const domain of DOMAINS) {
     if (remaining < 12) break;
@@ -159,8 +182,12 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
     const skillIds = getSkillIdsForDomain(domain);
     const priorities = selectNextSkills(skillIds, stateMap);
 
-    if (priorities.length > 0 && !usedDomains.has(domain)) {
-      const top = priorities[0];
+    // Skip skills already covered by retention checks
+    const filtered = priorities.filter(
+      (p) => !tasks.some((t) => t.skillId === p.skillId),
+    );
+    if (filtered.length > 0 && !usedDomains.has(domain)) {
+      const top = filtered[0];
       const skill = getSkillById(top.skillId);
       const mastery = stateMap.get(top.skillId)?.masteryLevel;
 
@@ -179,7 +206,7 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
     }
   }
 
-  // 4. Writing (25 min) — every 3rd day, only if budget allows
+  // 5. Writing (25 min) — every 3rd day, only if budget allows
   const dayOfYear = Math.floor(
     (Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) /
       86400000,
@@ -197,7 +224,7 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
     remaining -= 25;
   }
 
-  // 5. Speed rounds (5 min each) — fill remaining time
+  // 6. Speed rounds (5 min each) — fill remaining time
   if (remaining >= 5) {
     const allPriorities = DOMAINS.flatMap((d) => {
       const ids = getSkillIdsForDomain(d);
@@ -326,7 +353,7 @@ export function autoCompleteDailyTask(
       type === "vocab_review"
     )
       return true;
-    // For skill_practice/drill: if skillId provided, match exactly;
+    // For skill_practice/drill/retention_check: if skillId provided, match exactly;
     // otherwise match first uncompleted task of this type
     if (!skillId) return true;
     return t.skillId === skillId;
@@ -371,5 +398,10 @@ export function getTaskRoute(task: DailyTask): string {
       return task.skillId ? `/drill?skill=${task.skillId}` : "/drill";
     case "vocab_review":
       return "/vocab";
+    case "retention_check":
+      if (task.skillId?.startsWith("rc_")) {
+        return `/tutor/reading?skill=${task.skillId}&retention=1`;
+      }
+      return `/tutor/math?skill=${task.skillId}&retention=1`;
   }
 }

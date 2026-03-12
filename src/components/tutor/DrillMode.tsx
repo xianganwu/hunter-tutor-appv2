@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { useDrillSession } from "@/hooks/useDrillSession";
 import { MathText } from "@/components/chat/MathText";
 import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
-import { BadgeNotification } from "@/components/shared/BadgeNotification";
-import { Confetti } from "@/components/shared/Confetti";
 import { getBestDrillForSkill } from "@/lib/drill";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
@@ -13,8 +11,8 @@ import { SessionMascot, type MascotReaction } from "@/components/shared/SessionM
 import { getStoredMascotType } from "@/lib/user-profile";
 import { getMascotTier } from "@/components/shared/Mascot";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
-import { shouldTriggerConfetti } from "@/lib/achievements";
 import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
+import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 
 const DOMAINS = [
   { id: "reading_comprehension", label: "Reading" },
@@ -32,7 +30,6 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
   const {
     state,
     result,
-    newBadges,
     currentQuestion,
     startDrill,
     submitAnswer,
@@ -42,8 +39,6 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
   } = useDrillSession();
 
   const [selectedSkillId, setSelectedSkillId] = useState(initialSkillId ?? "");
-  const [, setShowBadges] = useState(false);
-
   // Mascot reactions
   const mascotType = getStoredMascotType();
   const storedMasteries = loadAllSkillMasteries();
@@ -74,13 +69,6 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
       setSelectedSkillId(initialSkillId);
     }
   }, [initialSkillId]);
-
-  // Show badge notification
-  useEffect(() => {
-    if (newBadges.length > 0) {
-      setShowBadges(true);
-    }
-  }, [newBadges]);
 
   // Available skills for the picker
   const allSkills = DOMAINS.flatMap((d) =>
@@ -225,6 +213,7 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
             <span className="text-xs text-surface-400">remaining</span>
           </div>
           <div className="flex items-center gap-3">
+            <DailyPlanProgress />
             <span className="text-sm font-medium text-surface-700 dark:text-surface-300">
               {score}/{total}
             </span>
@@ -285,12 +274,6 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
 
     return (
       <div className="flex flex-1 items-center justify-center px-4 animate-fade-in">
-        <Confetti active={shouldTriggerConfetti(newBadges)} />
-        <BadgeNotification
-          badges={newBadges}
-          onDismiss={() => setShowBadges(false)}
-        />
-
         <div className="max-w-md w-full space-y-6 text-center">
           <h2 className="text-xl font-bold text-surface-900 dark:text-surface-100">
             Drill Complete!
