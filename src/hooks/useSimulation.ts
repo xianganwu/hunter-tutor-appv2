@@ -58,6 +58,32 @@ export interface SimState {
   readonly generationProgress: string;
 }
 
+// ─── Helpers ─────────────────────────────────────────────────────────
+
+async function generateMathBatch(
+  section: "quantitative_reasoning" | "math_achievement",
+  questionCount: number,
+  label: string
+): Promise<ExamQuestion[]> {
+  const res = await fetch("/api/simulate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "generate_math_questions", section, questionCount }),
+  });
+
+  if (!res.ok) {
+    const errBody = (await res.json().catch(() => null)) as { error?: string } | null;
+    throw new Error(errBody?.error ?? `${label} generation failed (HTTP ${res.status})`);
+  }
+
+  const data = (await res.json()) as { questions?: ExamQuestion[]; error?: string };
+  if (data.error || !data.questions) {
+    throw new Error(data.error ?? `No ${label} questions returned`);
+  }
+
+  return [...data.questions];
+}
+
 // ─── Hook ─────────────────────────────────────────────────────────────
 
 export function useSimulation() {
@@ -135,63 +161,26 @@ export function useSimulation() {
         generationProgress: getRandomQuestionPhrase(),
       }));
 
-      // 3. Generate QR questions
-      const qrRes = await fetch("/api/simulate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "generate_math_questions",
-          section: "quantitative_reasoning",
-          questionCount: QR_QUESTION_COUNT,
-        }),
-      });
+      // 3–4. Generate QR + MA questions in parallel batches
+      // Splitting into smaller batches keeps each API call well within the 60s timeout.
+      const qrHalf1 = Math.ceil(QR_QUESTION_COUNT / 2);
+      const qrHalf2 = QR_QUESTION_COUNT - qrHalf1;
+      const maHalf1 = Math.ceil(MA_QUESTION_COUNT / 2);
+      const maHalf2 = MA_QUESTION_COUNT - maHalf1;
 
-      if (!qrRes.ok) {
-        const errBody = await qrRes.json().catch(() => null) as { error?: string } | null;
-        throw new Error(errBody?.error ?? `QR generation failed (HTTP ${qrRes.status})`);
-      }
-      const qrData = (await qrRes.json()) as {
-        questions?: readonly ExamQuestion[];
-        error?: string;
-      };
-      if (qrData.error || !qrData.questions) {
-        throw new Error(qrData.error ?? "No QR questions returned");
-      }
+      const [qrBatch1, qrBatch2, maBatch1, maBatch2] = await Promise.all([
+        generateMathBatch("quantitative_reasoning", qrHalf1, "QR"),
+        generateMathBatch("quantitative_reasoning", qrHalf2, "QR"),
+        generateMathBatch("math_achievement", maHalf1, "MA"),
+        generateMathBatch("math_achievement", maHalf2, "MA"),
+      ]);
 
-      const qrQuestions: ExamQuestion[] = qrData.questions.map((q, i) => ({
+      const qrQuestions: ExamQuestion[] = [...qrBatch1, ...qrBatch2].map((q, i) => ({
         ...q,
         id: `qr_${i + 1}`,
       }));
 
-      setState((s) => ({
-        ...s,
-        generationProgress: getRandomQuestionPhrase(),
-      }));
-
-      // 4. Generate MA questions
-      const maRes = await fetch("/api/simulate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "generate_math_questions",
-          section: "math_achievement",
-          questionCount: MA_QUESTION_COUNT,
-        }),
-      });
-
-      if (!maRes.ok) {
-        const errBody = await maRes.json().catch(() => null) as { error?: string } | null;
-        throw new Error(errBody?.error ?? `MA generation failed (HTTP ${maRes.status})`);
-      }
-      const maData = (await maRes.json()) as {
-        questions?: readonly ExamQuestion[];
-        error?: string;
-      };
-      if (maData.error || !maData.questions) {
-        throw new Error(maData.error ?? "No MA questions returned");
-      }
-
-      const maQuestions: ExamQuestion[] = maData.questions.map((q, i) => ({
+      const maQuestions: ExamQuestion[] = [...maBatch1, ...maBatch2].map((q, i) => ({
         ...q,
         id: `ma_${i + 1}`,
       }));

@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 
+// Allow up to 60s for AI question generation
+export const maxDuration = 60;
+
 // ─── Request Types ────────────────────────────────────────────────────
 
 type SimulateAction =
@@ -102,9 +105,12 @@ export async function POST(
             ? "Quantitative Reasoning"
             : "Math Achievement";
 
+        // Scale max_tokens to question count — smaller batches finish faster
+        const maxTokens = Math.min(16384, Math.max(4096, body.questionCount * 400));
+
         const response = await client.messages.create({
           model: "claude-sonnet-4-20250514",
-          max_tokens: 16384,
+          max_tokens: maxTokens,
           system: `You are a math exam question writer creating practice questions for students preparing for the Hunter College High School entrance exam. Students range from rising 5th graders (age 9-10) working on foundations to 6th graders (age 11-12) in intensive prep. Create rigorous, age-appropriate multiple-choice questions. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.`,
           messages: [
             {
