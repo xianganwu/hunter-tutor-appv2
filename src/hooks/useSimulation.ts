@@ -146,7 +146,10 @@ export function useSimulation() {
         }),
       });
 
-      if (!qrRes.ok) throw new Error("Failed to generate QR questions");
+      if (!qrRes.ok) {
+        const errBody = await qrRes.json().catch(() => null) as { error?: string } | null;
+        throw new Error(errBody?.error ?? `QR generation failed (HTTP ${qrRes.status})`);
+      }
       const qrData = (await qrRes.json()) as {
         questions?: readonly ExamQuestion[];
         error?: string;
@@ -176,7 +179,10 @@ export function useSimulation() {
         }),
       });
 
-      if (!maRes.ok) throw new Error("Failed to generate MA questions");
+      if (!maRes.ok) {
+        const errBody = await maRes.json().catch(() => null) as { error?: string } | null;
+        throw new Error(errBody?.error ?? `MA generation failed (HTTP ${maRes.status})`);
+      }
       const maData = (await maRes.json()) as {
         questions?: readonly ExamQuestion[];
         error?: string;

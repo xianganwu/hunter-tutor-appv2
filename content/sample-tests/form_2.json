@@ -8,11 +8,26 @@
         "questionNumber": 1,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "how archaeologists dug up the terra-cotta army" },
-          { "letter": "B", "text": "why the terra-cotta army was created" },
-          { "letter": "C", "text": "what Emperor Qin achieved" },
-          { "letter": "D", "text": "what the terra-cotta army was like" },
-          { "letter": "E", "text": "how the terra-cotta soldiers were created" }
+          {
+            "letter": "A",
+            "text": "how archaeologists dug up the terra-cotta army"
+          },
+          {
+            "letter": "B",
+            "text": "why the terra-cotta army was created"
+          },
+          {
+            "letter": "C",
+            "text": "what Emperor Qin achieved"
+          },
+          {
+            "letter": "D",
+            "text": "what the terra-cotta army was like"
+          },
+          {
+            "letter": "E",
+            "text": "how the terra-cotta soldiers were created"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_main_idea",
@@ -25,11 +40,26 @@
         "questionNumber": 2,
         "questionText": "The passage suggests that Emperor Qin",
         "answerChoices": [
-          { "letter": "A", "text": "had a problem getting the terra-cotta soldiers made." },
-          { "letter": "B", "text": "was a man of many accomplishments." },
-          { "letter": "C", "text": "believed in an afterlife." },
-          { "letter": "D", "text": "died when he was rather young." },
-          { "letter": "E", "text": "wanted the terra-cotta army discovered." }
+          {
+            "letter": "A",
+            "text": "had a problem getting the terra-cotta soldiers made."
+          },
+          {
+            "letter": "B",
+            "text": "was a man of many accomplishments."
+          },
+          {
+            "letter": "C",
+            "text": "believed in an afterlife."
+          },
+          {
+            "letter": "D",
+            "text": "died when he was rather young."
+          },
+          {
+            "letter": "E",
+            "text": "wanted the terra-cotta army discovered."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_inference",
@@ -42,11 +72,26 @@
         "questionNumber": 3,
         "questionText": "Which of these statements is true about the Qin Terra-cotta Warriors and Horses?",
         "answerChoices": [
-          { "letter": "A", "text": "They were made by famous artists of the time." },
-          { "letter": "B", "text": "They were the only terra-cotta statues made in China." },
-          { "letter": "C", "text": "They were the only items that Qin wanted buried with him." },
-          { "letter": "D", "text": "They show what an army was like during Qin's reign." },
-          { "letter": "E", "text": "They are proof that the Chinese were great philosophers." }
+          {
+            "letter": "A",
+            "text": "They were made by famous artists of the time."
+          },
+          {
+            "letter": "B",
+            "text": "They were the only terra-cotta statues made in China."
+          },
+          {
+            "letter": "C",
+            "text": "They were the only items that Qin wanted buried with him."
+          },
+          {
+            "letter": "D",
+            "text": "They show what an army was like during Qin's reign."
+          },
+          {
+            "letter": "E",
+            "text": "They are proof that the Chinese were great philosophers."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -59,11 +104,26 @@
         "questionNumber": 4,
         "questionText": "Which of the following best describes what is suggested by the statement that \"this preservation technique was not known in the West until the eighteenth century\" (lines 22-23)?",
         "answerChoices": [
-          { "letter": "A", "text": "At that time, the Chinese were more advanced technologically than the Western world was." },
-          { "letter": "B", "text": "At that time, the Chinese were better educated than the people in the Western world." },
-          { "letter": "C", "text": "During this period, the Chinese were in touch with many other cultures in order to learn how to preserve items." },
-          { "letter": "D", "text": "During this period, the Chinese were intent upon being more capable than people in the Western world." },
-          { "letter": "E", "text": "At that time, scientists in China had done more research than scientists in the Western world." }
+          {
+            "letter": "A",
+            "text": "At that time, the Chinese were more advanced technologically than the Western world was."
+          },
+          {
+            "letter": "B",
+            "text": "At that time, the Chinese were better educated than the people in the Western world."
+          },
+          {
+            "letter": "C",
+            "text": "During this period, the Chinese were in touch with many other cultures in order to learn how to preserve items."
+          },
+          {
+            "letter": "D",
+            "text": "During this period, the Chinese were intent upon being more capable than people in the Western world."
+          },
+          {
+            "letter": "E",
+            "text": "At that time, scientists in China had done more research than scientists in the Western world."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_inference",
@@ -76,11 +136,26 @@
         "questionNumber": 5,
         "questionText": "What does the existence of the terra-cotta army suggest about this period in China?",
         "answerChoices": [
-          { "letter": "A", "text": "It was a time when science flourished." },
-          { "letter": "B", "text": "It was a time when the country was unified." },
-          { "letter": "C", "text": "It was a time when armies had been disbanded." },
-          { "letter": "D", "text": "It was a time when most people were at peace." },
-          { "letter": "E", "text": "It was a time when armies were needed." }
+          {
+            "letter": "A",
+            "text": "It was a time when science flourished."
+          },
+          {
+            "letter": "B",
+            "text": "It was a time when the country was unified."
+          },
+          {
+            "letter": "C",
+            "text": "It was a time when armies had been disbanded."
+          },
+          {
+            "letter": "D",
+            "text": "It was a time when most people were at peace."
+          },
+          {
+            "letter": "E",
+            "text": "It was a time when armies were needed."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_drawing_conclusions",
@@ -93,11 +168,26 @@
         "questionNumber": 6,
         "questionText": "What was not a concern of the archaeologists who studied the terra-cotta army?",
         "answerChoices": [
-          { "letter": "A", "text": "why the terra-cotta army was created" },
-          { "letter": "B", "text": "how the terra-cotta army was discovered" },
-          { "letter": "C", "text": "how many soldiers there were in the terra-cotta army" },
-          { "letter": "D", "text": "figuring out how long it took to create the terra-cotta army" },
-          { "letter": "E", "text": "the cost of creating the terra-cotta army" }
+          {
+            "letter": "A",
+            "text": "why the terra-cotta army was created"
+          },
+          {
+            "letter": "B",
+            "text": "how the terra-cotta army was discovered"
+          },
+          {
+            "letter": "C",
+            "text": "how many soldiers there were in the terra-cotta army"
+          },
+          {
+            "letter": "D",
+            "text": "figuring out how long it took to create the terra-cotta army"
+          },
+          {
+            "letter": "E",
+            "text": "the cost of creating the terra-cotta army"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -110,11 +200,26 @@
         "questionNumber": 7,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "why scientists believe in the big bang theory" },
-          { "letter": "B", "text": "which fundamental particles have been identified" },
-          { "letter": "C", "text": "that dark matter is invisible" },
-          { "letter": "D", "text": "how the Large Hadron Collider is constructed and operates" },
-          { "letter": "E", "text": "what scientists are trying to achieve with the Large Hadron Collider" }
+          {
+            "letter": "A",
+            "text": "why scientists believe in the big bang theory"
+          },
+          {
+            "letter": "B",
+            "text": "which fundamental particles have been identified"
+          },
+          {
+            "letter": "C",
+            "text": "that dark matter is invisible"
+          },
+          {
+            "letter": "D",
+            "text": "how the Large Hadron Collider is constructed and operates"
+          },
+          {
+            "letter": "E",
+            "text": "what scientists are trying to achieve with the Large Hadron Collider"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_main_idea",
@@ -127,11 +232,26 @@
         "questionNumber": 8,
         "questionText": "The author implies that some fundamental particles",
         "answerChoices": [
-          { "letter": "A", "text": "can be shot from the Large Hadron Collider." },
-          { "letter": "B", "text": "have been improperly identified." },
-          { "letter": "C", "text": "may never be identified positively." },
-          { "letter": "D", "text": "are easily tested." },
-          { "letter": "E", "text": "stay charged for a long time." }
+          {
+            "letter": "A",
+            "text": "can be shot from the Large Hadron Collider."
+          },
+          {
+            "letter": "B",
+            "text": "have been improperly identified."
+          },
+          {
+            "letter": "C",
+            "text": "may never be identified positively."
+          },
+          {
+            "letter": "D",
+            "text": "are easily tested."
+          },
+          {
+            "letter": "E",
+            "text": "stay charged for a long time."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_inference",
@@ -144,11 +264,26 @@
         "questionNumber": 9,
         "questionText": "Which of these statements is true about the Large Hadron Collider?",
         "answerChoices": [
-          { "letter": "A", "text": "It is the first atom smasher ever used." },
-          { "letter": "B", "text": "It can work continuously for 24 hours." },
-          { "letter": "C", "text": "It was designed by astronomers." },
-          { "letter": "D", "text": "It is difficult to operate." },
-          { "letter": "E", "text": "It provides new information for physicists." }
+          {
+            "letter": "A",
+            "text": "It is the first atom smasher ever used."
+          },
+          {
+            "letter": "B",
+            "text": "It can work continuously for 24 hours."
+          },
+          {
+            "letter": "C",
+            "text": "It was designed by astronomers."
+          },
+          {
+            "letter": "D",
+            "text": "It is difficult to operate."
+          },
+          {
+            "letter": "E",
+            "text": "It provides new information for physicists."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -161,11 +296,26 @@
         "questionNumber": 10,
         "questionText": "Which best describes the relationship between an atom and a quark?",
         "answerChoices": [
-          { "letter": "A", "text": "A quark is a part of an atom." },
-          { "letter": "B", "text": "A quark lasts longer than an atom." },
-          { "letter": "C", "text": "They are the same thing." },
-          { "letter": "D", "text": "They both are fundamental particles." },
-          { "letter": "E", "text": "Their relationship is unknown." }
+          {
+            "letter": "A",
+            "text": "A quark is a part of an atom."
+          },
+          {
+            "letter": "B",
+            "text": "A quark lasts longer than an atom."
+          },
+          {
+            "letter": "C",
+            "text": "They are the same thing."
+          },
+          {
+            "letter": "D",
+            "text": "They both are fundamental particles."
+          },
+          {
+            "letter": "E",
+            "text": "Their relationship is unknown."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_supporting_details",
@@ -178,11 +328,26 @@
         "questionNumber": 11,
         "questionText": "Which is not true of the Higgs boson?",
         "answerChoices": [
-          { "letter": "A", "text": "It would explain why some particles possess mass and others do not." },
-          { "letter": "B", "text": "It may be found by using the Large Hadron Collider." },
-          { "letter": "C", "text": "It is also called the \"God particle.\"" },
-          { "letter": "D", "text": "It was named for Peter Higgs." },
-          { "letter": "E", "text": "It has been verified." }
+          {
+            "letter": "A",
+            "text": "It would explain why some particles possess mass and others do not."
+          },
+          {
+            "letter": "B",
+            "text": "It may be found by using the Large Hadron Collider."
+          },
+          {
+            "letter": "C",
+            "text": "It is also called the \"God particle.\""
+          },
+          {
+            "letter": "D",
+            "text": "It was named for Peter Higgs."
+          },
+          {
+            "letter": "E",
+            "text": "It has been verified."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -195,11 +360,26 @@
         "questionNumber": 12,
         "questionText": "What might be inferred about dark matter?",
         "answerChoices": [
-          { "letter": "A", "text": "It is part of an atom." },
-          { "letter": "B", "text": "It is a very small particle." },
-          { "letter": "C", "text": "It exists only in smaller galaxies." },
-          { "letter": "D", "text": "There is very little known about it." },
-          { "letter": "E", "text": "It can be verified more easily than other matter." }
+          {
+            "letter": "A",
+            "text": "It is part of an atom."
+          },
+          {
+            "letter": "B",
+            "text": "It is a very small particle."
+          },
+          {
+            "letter": "C",
+            "text": "It exists only in smaller galaxies."
+          },
+          {
+            "letter": "D",
+            "text": "There is very little known about it."
+          },
+          {
+            "letter": "E",
+            "text": "It can be verified more easily than other matter."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_inference",
@@ -212,11 +392,26 @@
         "questionNumber": 13,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "why Haller Park was a wasteland" },
-          { "letter": "B", "text": "what kinds of animals are living at Haller Park" },
-          { "letter": "C", "text": "which trees were used to change Haller Park into a wildlife sanctuary" },
-          { "letter": "D", "text": "how a wasteland was changed into a wildlife sanctuary" },
-          { "letter": "E", "text": "what awards Rene Haller has received" }
+          {
+            "letter": "A",
+            "text": "why Haller Park was a wasteland"
+          },
+          {
+            "letter": "B",
+            "text": "what kinds of animals are living at Haller Park"
+          },
+          {
+            "letter": "C",
+            "text": "which trees were used to change Haller Park into a wildlife sanctuary"
+          },
+          {
+            "letter": "D",
+            "text": "how a wasteland was changed into a wildlife sanctuary"
+          },
+          {
+            "letter": "E",
+            "text": "what awards Rene Haller has received"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_main_idea",
@@ -229,11 +424,26 @@
         "questionNumber": 14,
         "questionText": "What is not mentioned as being present at Haller Park?",
         "answerChoices": [
-          { "letter": "A", "text": "rescued animals" },
-          { "letter": "B", "text": "ponds with fish" },
-          { "letter": "C", "text": "crocodiles" },
-          { "letter": "D", "text": "sheep" },
-          { "letter": "E", "text": "savannahs" }
+          {
+            "letter": "A",
+            "text": "rescued animals"
+          },
+          {
+            "letter": "B",
+            "text": "ponds with fish"
+          },
+          {
+            "letter": "C",
+            "text": "crocodiles"
+          },
+          {
+            "letter": "D",
+            "text": "sheep"
+          },
+          {
+            "letter": "E",
+            "text": "savannahs"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -246,11 +456,26 @@
         "questionNumber": 15,
         "questionText": "According to the passage, which of the following statements about Haller Park is accurate?",
         "answerChoices": [
-          { "letter": "A", "text": "Haller Park is the only nature sanctuary that was once a wasteland." },
-          { "letter": "B", "text": "Haller Park has acted as a model for other ecologically devoid areas." },
-          { "letter": "C", "text": "Only rescued animals are permitted at Haller Park." },
-          { "letter": "D", "text": "Only animals that are native to the Haller Park region are allowed there." },
-          { "letter": "E", "text": "Haller Park was supported by the company that caused it to be a wasteland." }
+          {
+            "letter": "A",
+            "text": "Haller Park is the only nature sanctuary that was once a wasteland."
+          },
+          {
+            "letter": "B",
+            "text": "Haller Park has acted as a model for other ecologically devoid areas."
+          },
+          {
+            "letter": "C",
+            "text": "Only rescued animals are permitted at Haller Park."
+          },
+          {
+            "letter": "D",
+            "text": "Only animals that are native to the Haller Park region are allowed there."
+          },
+          {
+            "letter": "E",
+            "text": "Haller Park was supported by the company that caused it to be a wasteland."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -263,11 +488,26 @@
         "questionNumber": 16,
         "questionText": "The information about the crocodile farm was included in order to illustrate",
         "answerChoices": [
-          { "letter": "A", "text": "that crocodile meat is a popular food." },
-          { "letter": "B", "text": "that Haller Park is an experiment." },
-          { "letter": "C", "text": "that Rene Haller enjoys entertaining people." },
-          { "letter": "D", "text": "that some people travel long distances to dine at Haller Park." },
-          { "letter": "E", "text": "that Haller Park produces its own food." }
+          {
+            "letter": "A",
+            "text": "that crocodile meat is a popular food."
+          },
+          {
+            "letter": "B",
+            "text": "that Haller Park is an experiment."
+          },
+          {
+            "letter": "C",
+            "text": "that Rene Haller enjoys entertaining people."
+          },
+          {
+            "letter": "D",
+            "text": "that some people travel long distances to dine at Haller Park."
+          },
+          {
+            "letter": "E",
+            "text": "that Haller Park produces its own food."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_author_purpose",
@@ -280,11 +520,26 @@
         "questionNumber": 17,
         "questionText": "Which of the following is Rene Haller most likely to choose for another project?",
         "answerChoices": [
-          { "letter": "A", "text": "starting fish farms in areas where there is a lot of unemployment" },
-          { "letter": "B", "text": "creating a cooperative garden" },
-          { "letter": "C", "text": "organizing a community park" },
-          { "letter": "D", "text": "cleaning up a landfill so it can be used as a storage facility" },
-          { "letter": "E", "text": "changing a desert into a lush area where many fruit trees grow" }
+          {
+            "letter": "A",
+            "text": "starting fish farms in areas where there is a lot of unemployment"
+          },
+          {
+            "letter": "B",
+            "text": "creating a cooperative garden"
+          },
+          {
+            "letter": "C",
+            "text": "organizing a community park"
+          },
+          {
+            "letter": "D",
+            "text": "cleaning up a landfill so it can be used as a storage facility"
+          },
+          {
+            "letter": "E",
+            "text": "changing a desert into a lush area where many fruit trees grow"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_drawing_conclusions",
@@ -297,11 +552,26 @@
         "questionNumber": 18,
         "questionText": "What is probably true of Rene Haller?",
         "answerChoices": [
-          { "letter": "A", "text": "He is an animal lover." },
-          { "letter": "B", "text": "He is a humble person." },
-          { "letter": "C", "text": "He enjoys publicity." },
-          { "letter": "D", "text": "He likes to make others happy." },
-          { "letter": "E", "text": "He has great determination." }
+          {
+            "letter": "A",
+            "text": "He is an animal lover."
+          },
+          {
+            "letter": "B",
+            "text": "He is a humble person."
+          },
+          {
+            "letter": "C",
+            "text": "He enjoys publicity."
+          },
+          {
+            "letter": "D",
+            "text": "He likes to make others happy."
+          },
+          {
+            "letter": "E",
+            "text": "He has great determination."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_inference",
@@ -314,11 +584,26 @@
         "questionNumber": 19,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "how dolphins are taught to tail-walk" },
-          { "letter": "B", "text": "why sharks attack dolphins" },
-          { "letter": "C", "text": "whether or not dolphins should be kept in captivity" },
-          { "letter": "D", "text": "what research has discovered about dolphins' brains" },
-          { "letter": "E", "text": "the fact that dolphins in captivity do not try to escape" }
+          {
+            "letter": "A",
+            "text": "how dolphins are taught to tail-walk"
+          },
+          {
+            "letter": "B",
+            "text": "why sharks attack dolphins"
+          },
+          {
+            "letter": "C",
+            "text": "whether or not dolphins should be kept in captivity"
+          },
+          {
+            "letter": "D",
+            "text": "what research has discovered about dolphins' brains"
+          },
+          {
+            "letter": "E",
+            "text": "the fact that dolphins in captivity do not try to escape"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_main_idea",
@@ -331,11 +616,26 @@
         "questionNumber": 20,
         "questionText": "The best reason that the author began the passage by describing how people can swim with dolphins was to",
         "answerChoices": [
-          { "letter": "A", "text": "remind the readers that dolphins are in captivity." },
-          { "letter": "B", "text": "impress the reader with how gentle dolphins are." },
-          { "letter": "C", "text": "suggest that dolphins are able to learn tricks easily." },
-          { "letter": "D", "text": "show how easy it is to keep dolphins in captivity." },
-          { "letter": "E", "text": "suggest that people abuse dolphins." }
+          {
+            "letter": "A",
+            "text": "remind the readers that dolphins are in captivity."
+          },
+          {
+            "letter": "B",
+            "text": "impress the reader with how gentle dolphins are."
+          },
+          {
+            "letter": "C",
+            "text": "suggest that dolphins are able to learn tricks easily."
+          },
+          {
+            "letter": "D",
+            "text": "show how easy it is to keep dolphins in captivity."
+          },
+          {
+            "letter": "E",
+            "text": "suggest that people abuse dolphins."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_author_purpose",
@@ -348,11 +648,26 @@
         "questionNumber": 21,
         "questionText": "Which reason is not given for letting dolphins go free?",
         "answerChoices": [
-          { "letter": "A", "text": "They are extremely intelligent." },
-          { "letter": "B", "text": "They have a concept of themselves." },
-          { "letter": "C", "text": "Their brains work in the same way as human brains." },
-          { "letter": "D", "text": "They are often attacked by predators." },
-          { "letter": "E", "text": "They should be given the status of nonhuman persons." }
+          {
+            "letter": "A",
+            "text": "They are extremely intelligent."
+          },
+          {
+            "letter": "B",
+            "text": "They have a concept of themselves."
+          },
+          {
+            "letter": "C",
+            "text": "Their brains work in the same way as human brains."
+          },
+          {
+            "letter": "D",
+            "text": "They are often attacked by predators."
+          },
+          {
+            "letter": "E",
+            "text": "They should be given the status of nonhuman persons."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -365,11 +680,26 @@
         "questionNumber": 22,
         "questionText": "Which is true of dolphins?",
         "answerChoices": [
-          { "letter": "A", "text": "They like to be alone." },
-          { "letter": "B", "text": "They try to protect people." },
-          { "letter": "C", "text": "They are emotional beings." },
-          { "letter": "D", "text": "They are second to chimpanzees in intelligence." },
-          { "letter": "E", "text": "They do not try to escape when in captivity." }
+          {
+            "letter": "A",
+            "text": "They like to be alone."
+          },
+          {
+            "letter": "B",
+            "text": "They try to protect people."
+          },
+          {
+            "letter": "C",
+            "text": "They are emotional beings."
+          },
+          {
+            "letter": "D",
+            "text": "They are second to chimpanzees in intelligence."
+          },
+          {
+            "letter": "E",
+            "text": "They do not try to escape when in captivity."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -382,11 +712,26 @@
         "questionNumber": 23,
         "questionText": "The author includes information about Dr. Marino to",
         "answerChoices": [
-          { "letter": "A", "text": "lend the passage greater authority." },
-          { "letter": "B", "text": "show that the author is knowledgeable about the subject." },
-          { "letter": "C", "text": "suggest that some research is more accurate than other research." },
-          { "letter": "D", "text": "emphasize how much research has been done on dolphins." },
-          { "letter": "E", "text": "make sure the passage tells both sides of the debate." }
+          {
+            "letter": "A",
+            "text": "lend the passage greater authority."
+          },
+          {
+            "letter": "B",
+            "text": "show that the author is knowledgeable about the subject."
+          },
+          {
+            "letter": "C",
+            "text": "suggest that some research is more accurate than other research."
+          },
+          {
+            "letter": "D",
+            "text": "emphasize how much research has been done on dolphins."
+          },
+          {
+            "letter": "E",
+            "text": "make sure the passage tells both sides of the debate."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_author_purpose",
@@ -399,11 +744,26 @@
         "questionNumber": 24,
         "questionText": "What is likely to happen if dolphins are no longer kept in captivity?",
         "answerChoices": [
-          { "letter": "A", "text": "People will swim with them in the ocean." },
-          { "letter": "B", "text": "Dolphins will grow in number." },
-          { "letter": "C", "text": "People will not bother with them." },
-          { "letter": "D", "text": "Research on them would end." },
-          { "letter": "E", "text": "More dolphins are likely to die." }
+          {
+            "letter": "A",
+            "text": "People will swim with them in the ocean."
+          },
+          {
+            "letter": "B",
+            "text": "Dolphins will grow in number."
+          },
+          {
+            "letter": "C",
+            "text": "People will not bother with them."
+          },
+          {
+            "letter": "D",
+            "text": "Research on them would end."
+          },
+          {
+            "letter": "E",
+            "text": "More dolphins are likely to die."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_drawing_conclusions",
@@ -416,11 +776,26 @@
         "questionNumber": 25,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "why flying to the United States was difficult" },
-          { "letter": "B", "text": "what Beryl Markham did as a young person" },
-          { "letter": "C", "text": "how Beryl Markham became a pilot" },
-          { "letter": "D", "text": "how Beryl Markham made her mark on history" },
-          { "letter": "E", "text": "what Beryl Markham did when she landed in Nova Scotia" }
+          {
+            "letter": "A",
+            "text": "why flying to the United States was difficult"
+          },
+          {
+            "letter": "B",
+            "text": "what Beryl Markham did as a young person"
+          },
+          {
+            "letter": "C",
+            "text": "how Beryl Markham became a pilot"
+          },
+          {
+            "letter": "D",
+            "text": "how Beryl Markham made her mark on history"
+          },
+          {
+            "letter": "E",
+            "text": "what Beryl Markham did when she landed in Nova Scotia"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_main_idea",
@@ -433,11 +808,26 @@
         "questionNumber": 26,
         "questionText": "How did the experience of meeting Tom Campbell Black affect Beryl Markham?",
         "answerChoices": [
-          { "letter": "A", "text": "She became a better person." },
-          { "letter": "B", "text": "She decided to write a book." },
-          { "letter": "C", "text": "She realized what she wanted to do with her life." },
-          { "letter": "D", "text": "She left Kenya for the United States." },
-          { "letter": "E", "text": "She decided to be a career woman." }
+          {
+            "letter": "A",
+            "text": "She became a better person."
+          },
+          {
+            "letter": "B",
+            "text": "She decided to write a book."
+          },
+          {
+            "letter": "C",
+            "text": "She realized what she wanted to do with her life."
+          },
+          {
+            "letter": "D",
+            "text": "She left Kenya for the United States."
+          },
+          {
+            "letter": "E",
+            "text": "She decided to be a career woman."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_inference",
@@ -450,11 +840,26 @@
         "questionNumber": 27,
         "questionText": "Why does the author call Beryl Markham \"a unique and brave woman\" (line 1)?",
         "answerChoices": [
-          { "letter": "A", "text": "She was good at training horses." },
-          { "letter": "B", "text": "She did something that was dangerous and hard to do." },
-          { "letter": "C", "text": "She returned to Kenya after many years had passed." },
-          { "letter": "D", "text": "She learned to fly a plane." },
-          { "letter": "E", "text": "She received a commercial pilot's license." }
+          {
+            "letter": "A",
+            "text": "She was good at training horses."
+          },
+          {
+            "letter": "B",
+            "text": "She did something that was dangerous and hard to do."
+          },
+          {
+            "letter": "C",
+            "text": "She returned to Kenya after many years had passed."
+          },
+          {
+            "letter": "D",
+            "text": "She learned to fly a plane."
+          },
+          {
+            "letter": "E",
+            "text": "She received a commercial pilot's license."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_author_purpose",
@@ -467,11 +872,26 @@
         "questionNumber": 28,
         "questionText": "How did what Charles Lindbergh achieved differ from what Beryl Markham did in her flight across the Atlantic Ocean?",
         "answerChoices": [
-          { "letter": "A", "text": "Her plane was lighter than his." },
-          { "letter": "B", "text": "She was newer to aviation than he was." },
-          { "letter": "C", "text": "Her flight lasted a long time." },
-          { "letter": "D", "text": "The winds were against her." },
-          { "letter": "E", "text": "She was alone." }
+          {
+            "letter": "A",
+            "text": "Her plane was lighter than his."
+          },
+          {
+            "letter": "B",
+            "text": "She was newer to aviation than he was."
+          },
+          {
+            "letter": "C",
+            "text": "Her flight lasted a long time."
+          },
+          {
+            "letter": "D",
+            "text": "The winds were against her."
+          },
+          {
+            "letter": "E",
+            "text": "She was alone."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -484,11 +904,26 @@
         "questionNumber": 29,
         "questionText": "Why do you suppose Beryl Markham returned to Kenya?",
         "answerChoices": [
-          { "letter": "A", "text": "She always considered it her home." },
-          { "letter": "B", "text": "She could not get an American visa." },
-          { "letter": "C", "text": "She had run out of money." },
-          { "letter": "D", "text": "She was asked to by the Kenyan government." },
-          { "letter": "E", "text": "She wanted to stop flying." }
+          {
+            "letter": "A",
+            "text": "She always considered it her home."
+          },
+          {
+            "letter": "B",
+            "text": "She could not get an American visa."
+          },
+          {
+            "letter": "C",
+            "text": "She had run out of money."
+          },
+          {
+            "letter": "D",
+            "text": "She was asked to by the Kenyan government."
+          },
+          {
+            "letter": "E",
+            "text": "She wanted to stop flying."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_inference",
@@ -501,11 +936,26 @@
         "questionNumber": 30,
         "questionText": "What can be inferred about Beryl Markham?",
         "answerChoices": [
-          { "letter": "A", "text": "She was concerned about how she was perceived by the public." },
-          { "letter": "B", "text": "She was difficult to get along with." },
-          { "letter": "C", "text": "She was not practical." },
-          { "letter": "D", "text": "She thought mainly about herself." },
-          { "letter": "E", "text": "She did not let obstacles stand in her way." }
+          {
+            "letter": "A",
+            "text": "She was concerned about how she was perceived by the public."
+          },
+          {
+            "letter": "B",
+            "text": "She was difficult to get along with."
+          },
+          {
+            "letter": "C",
+            "text": "She was not practical."
+          },
+          {
+            "letter": "D",
+            "text": "She thought mainly about herself."
+          },
+          {
+            "letter": "E",
+            "text": "She did not let obstacles stand in her way."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_inference",
@@ -518,11 +968,26 @@
         "questionNumber": 31,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "how the Canadian government is dealing with use of the Northwest Passage" },
-          { "letter": "B", "text": "what waterways the Northwest Passage runs through" },
-          { "letter": "C", "text": "how the Northwest Passage was discovered and its future potential" },
-          { "letter": "D", "text": "how explorers discovered the North American mainland" },
-          { "letter": "E", "text": "why the Northwest Passage will be useful in the future" }
+          {
+            "letter": "A",
+            "text": "how the Canadian government is dealing with use of the Northwest Passage"
+          },
+          {
+            "letter": "B",
+            "text": "what waterways the Northwest Passage runs through"
+          },
+          {
+            "letter": "C",
+            "text": "how the Northwest Passage was discovered and its future potential"
+          },
+          {
+            "letter": "D",
+            "text": "how explorers discovered the North American mainland"
+          },
+          {
+            "letter": "E",
+            "text": "why the Northwest Passage will be useful in the future"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_main_idea",
@@ -535,11 +1000,26 @@
         "questionNumber": 32,
         "questionText": "The passage suggests that the search for the Northwest Passage",
         "answerChoices": [
-          { "letter": "A", "text": "caused tension between the various explorers." },
-          { "letter": "B", "text": "was undertaken by the Canadian government." },
-          { "letter": "C", "text": "was paid for by European royalty." },
-          { "letter": "D", "text": "was only undertaken after the Suez Canal was built." },
-          { "letter": "E", "text": "caused the death of many explorers." }
+          {
+            "letter": "A",
+            "text": "caused tension between the various explorers."
+          },
+          {
+            "letter": "B",
+            "text": "was undertaken by the Canadian government."
+          },
+          {
+            "letter": "C",
+            "text": "was paid for by European royalty."
+          },
+          {
+            "letter": "D",
+            "text": "was only undertaken after the Suez Canal was built."
+          },
+          {
+            "letter": "E",
+            "text": "caused the death of many explorers."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_inference",
@@ -552,11 +1032,26 @@
         "questionNumber": 33,
         "questionText": "Which of these statements is true about Roald Amundsen?",
         "answerChoices": [
-          { "letter": "A", "text": "He became a rich man because of the discovery." },
-          { "letter": "B", "text": "He realized that a big ship would never get through the Northwest Passage." },
-          { "letter": "C", "text": "He had great determination in the face of significant hardships." },
-          { "letter": "D", "text": "He was the only explorer to learn how to deal with the cold from natives." },
-          { "letter": "E", "text": "He was a better sailor than the other explorers." }
+          {
+            "letter": "A",
+            "text": "He became a rich man because of the discovery."
+          },
+          {
+            "letter": "B",
+            "text": "He realized that a big ship would never get through the Northwest Passage."
+          },
+          {
+            "letter": "C",
+            "text": "He had great determination in the face of significant hardships."
+          },
+          {
+            "letter": "D",
+            "text": "He was the only explorer to learn how to deal with the cold from natives."
+          },
+          {
+            "letter": "E",
+            "text": "He was a better sailor than the other explorers."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_supporting_details",
@@ -569,11 +1064,26 @@
         "questionNumber": 34,
         "questionText": "Which of the following best describes what is suggested by the statement that \"Continuing record sea ice melting may indicated that the route will be used by commercial carriers ...\" (lines 27-28)?",
         "answerChoices": [
-          { "letter": "A", "text": "Global warming is impacting which routes commercial carriers may take." },
-          { "letter": "B", "text": "Fewer small ships will transverse the Northwest Passage because of global warming." },
-          { "letter": "C", "text": "Commercial carriers are forced to carry heavier cargoes because of global warming." },
-          { "letter": "D", "text": "Global warming will make the Northwest Passage more difficult to use." },
-          { "letter": "E", "text": "Global warming will cause more commercial carriers to use smaller ships." }
+          {
+            "letter": "A",
+            "text": "Global warming is impacting which routes commercial carriers may take."
+          },
+          {
+            "letter": "B",
+            "text": "Fewer small ships will transverse the Northwest Passage because of global warming."
+          },
+          {
+            "letter": "C",
+            "text": "Commercial carriers are forced to carry heavier cargoes because of global warming."
+          },
+          {
+            "letter": "D",
+            "text": "Global warming will make the Northwest Passage more difficult to use."
+          },
+          {
+            "letter": "E",
+            "text": "Global warming will cause more commercial carriers to use smaller ships."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_inference",
@@ -586,11 +1096,26 @@
         "questionNumber": 35,
         "questionText": "Which of these is most likely what the Canadian government will do in the future?",
         "answerChoices": [
-          { "letter": "A", "text": "The government will declare the Northwest Passage an international zone." },
-          { "letter": "B", "text": "The government will allow only European countries to use the route without interference." },
-          { "letter": "C", "text": "The government will develop rules about traveling through the Northwest Passage." },
-          { "letter": "D", "text": "The government will create a series of canals in the Northwest Passage." },
-          { "letter": "E", "text": "The government will close the Northwest Passage." }
+          {
+            "letter": "A",
+            "text": "The government will declare the Northwest Passage an international zone."
+          },
+          {
+            "letter": "B",
+            "text": "The government will allow only European countries to use the route without interference."
+          },
+          {
+            "letter": "C",
+            "text": "The government will develop rules about traveling through the Northwest Passage."
+          },
+          {
+            "letter": "D",
+            "text": "The government will create a series of canals in the Northwest Passage."
+          },
+          {
+            "letter": "E",
+            "text": "The government will close the Northwest Passage."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_drawing_conclusions",
@@ -603,11 +1128,26 @@
         "questionNumber": 36,
         "questionText": "What is not mentioned as a difficulty in traversing the Northwest Passage?",
         "answerChoices": [
-          { "letter": "A", "text": "ice floes" },
-          { "letter": "B", "text": "cold weather" },
-          { "letter": "C", "text": "shallow waters" },
-          { "letter": "D", "text": "hostile natives" },
-          { "letter": "E", "text": "finding food" }
+          {
+            "letter": "A",
+            "text": "ice floes"
+          },
+          {
+            "letter": "B",
+            "text": "cold weather"
+          },
+          {
+            "letter": "C",
+            "text": "shallow waters"
+          },
+          {
+            "letter": "D",
+            "text": "hostile natives"
+          },
+          {
+            "letter": "E",
+            "text": "finding food"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -620,11 +1160,26 @@
         "questionNumber": 37,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "why Delta Works is known as one of the Seven Wonders of the Modern World" },
-          { "letter": "B", "text": "why the snow runoff from the Alps affects the Netherlands" },
-          { "letter": "C", "text": "how the Netherlands is the only country that has a plan to manage sea and river water" },
-          { "letter": "D", "text": "how the Netherlands was forced to find a way to deal with destructive storm surges" },
-          { "letter": "E", "text": "how the Netherlands developed and built its sea and river water management program" }
+          {
+            "letter": "A",
+            "text": "why Delta Works is known as one of the Seven Wonders of the Modern World"
+          },
+          {
+            "letter": "B",
+            "text": "why the snow runoff from the Alps affects the Netherlands"
+          },
+          {
+            "letter": "C",
+            "text": "how the Netherlands is the only country that has a plan to manage sea and river water"
+          },
+          {
+            "letter": "D",
+            "text": "how the Netherlands was forced to find a way to deal with destructive storm surges"
+          },
+          {
+            "letter": "E",
+            "text": "how the Netherlands developed and built its sea and river water management program"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_main_idea",
@@ -637,11 +1192,26 @@
         "questionNumber": 38,
         "questionText": "The author implies that without Delta Works",
         "answerChoices": [
-          { "letter": "A", "text": "the Netherlands would have been absorbed by another European country." },
-          { "letter": "B", "text": "the lives of the people of the Netherlands would be unchanged." },
-          { "letter": "C", "text": "the Netherlands would have been less popular as a tourist destination." },
-          { "letter": "D", "text": "the Netherlands might have lost land to the water." },
-          { "letter": "E", "text": "many of the people of the Netherlands would have moved to other countries." }
+          {
+            "letter": "A",
+            "text": "the Netherlands would have been absorbed by another European country."
+          },
+          {
+            "letter": "B",
+            "text": "the lives of the people of the Netherlands would be unchanged."
+          },
+          {
+            "letter": "C",
+            "text": "the Netherlands would have been less popular as a tourist destination."
+          },
+          {
+            "letter": "D",
+            "text": "the Netherlands might have lost land to the water."
+          },
+          {
+            "letter": "E",
+            "text": "many of the people of the Netherlands would have moved to other countries."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_inference",
@@ -654,11 +1224,26 @@
         "questionNumber": 39,
         "questionText": "Why did the author include the information about Hans Brinker at the beginning of the article?",
         "answerChoices": [
-          { "letter": "A", "text": "to explain how leaks are stopped in dikes" },
-          { "letter": "B", "text": "to show that everyone can help when flooding is imminent" },
-          { "letter": "C", "text": "to show that the Netherlands has many stories written about it" },
-          { "letter": "D", "text": "to suggest that the Dutch are very imaginative when there are problems" },
-          { "letter": "E", "text": "to emphasize that the Netherlands has always had a problem with flooding" }
+          {
+            "letter": "A",
+            "text": "to explain how leaks are stopped in dikes"
+          },
+          {
+            "letter": "B",
+            "text": "to show that everyone can help when flooding is imminent"
+          },
+          {
+            "letter": "C",
+            "text": "to show that the Netherlands has many stories written about it"
+          },
+          {
+            "letter": "D",
+            "text": "to suggest that the Dutch are very imaginative when there are problems"
+          },
+          {
+            "letter": "E",
+            "text": "to emphasize that the Netherlands has always had a problem with flooding"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_author_purpose",
@@ -671,11 +1256,26 @@
         "questionNumber": 40,
         "questionText": "Which best describes the way in which the plan for Delta Works was developed?",
         "answerChoices": [
-          { "letter": "A", "text": "It was a cooperative effort by many different people." },
-          { "letter": "B", "text": "It was the work of advanced engineers." },
-          { "letter": "C", "text": "It was modeled after a similar program in Germany." },
-          { "letter": "D", "text": "It came about somewhat by accident." },
-          { "letter": "E", "text": "It was conceived by the people living near the dikes." }
+          {
+            "letter": "A",
+            "text": "It was a cooperative effort by many different people."
+          },
+          {
+            "letter": "B",
+            "text": "It was the work of advanced engineers."
+          },
+          {
+            "letter": "C",
+            "text": "It was modeled after a similar program in Germany."
+          },
+          {
+            "letter": "D",
+            "text": "It came about somewhat by accident."
+          },
+          {
+            "letter": "E",
+            "text": "It was conceived by the people living near the dikes."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_supporting_details",
@@ -688,11 +1288,26 @@
         "questionNumber": 41,
         "questionText": "Which of the following is not true of Delta Works?",
         "answerChoices": [
-          { "letter": "A", "text": "It is an engineering masterpiece." },
-          { "letter": "B", "text": "It was built because of the Great Flood of 1953." },
-          { "letter": "C", "text": "Many people are interested in seeing it." },
-          { "letter": "D", "text": "It is completely finished." },
-          { "letter": "E", "text": "Some parts of the system were built before others." }
+          {
+            "letter": "A",
+            "text": "It is an engineering masterpiece."
+          },
+          {
+            "letter": "B",
+            "text": "It was built because of the Great Flood of 1953."
+          },
+          {
+            "letter": "C",
+            "text": "Many people are interested in seeing it."
+          },
+          {
+            "letter": "D",
+            "text": "It is completely finished."
+          },
+          {
+            "letter": "E",
+            "text": "Some parts of the system were built before others."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -705,11 +1320,26 @@
         "questionNumber": 42,
         "questionText": "With which of the statements would the author most agree?",
         "answerChoices": [
-          { "letter": "A", "text": "More countries should follow the example of the Netherlands in solving their problems." },
-          { "letter": "B", "text": "Delta Works will soon be the most popular stop for people traveling to Europe." },
-          { "letter": "C", "text": "More time should have been taken in developing the plan to contain storm surges." },
-          { "letter": "D", "text": "Delta Works did not have to be as large a project as it was." },
-          { "letter": "E", "text": "The people of the Netherlands did not want to have Delta Works constructed." }
+          {
+            "letter": "A",
+            "text": "More countries should follow the example of the Netherlands in solving their problems."
+          },
+          {
+            "letter": "B",
+            "text": "Delta Works will soon be the most popular stop for people traveling to Europe."
+          },
+          {
+            "letter": "C",
+            "text": "More time should have been taken in developing the plan to contain storm surges."
+          },
+          {
+            "letter": "D",
+            "text": "Delta Works did not have to be as large a project as it was."
+          },
+          {
+            "letter": "E",
+            "text": "The people of the Netherlands did not want to have Delta Works constructed."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_author_purpose",
@@ -722,11 +1352,26 @@
         "questionNumber": 43,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "what needs to be done to apply henna" },
-          { "letter": "B", "text": "how henna designs are made" },
-          { "letter": "C", "text": "how henna is used to dye hair" },
-          { "letter": "D", "text": "which people use henna" },
-          { "letter": "E", "text": "the use of henna to create body designs" }
+          {
+            "letter": "A",
+            "text": "what needs to be done to apply henna"
+          },
+          {
+            "letter": "B",
+            "text": "how henna designs are made"
+          },
+          {
+            "letter": "C",
+            "text": "how henna is used to dye hair"
+          },
+          {
+            "letter": "D",
+            "text": "which people use henna"
+          },
+          {
+            "letter": "E",
+            "text": "the use of henna to create body designs"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_main_idea",
@@ -739,11 +1384,26 @@
         "questionNumber": 44,
         "questionText": "What reason is not mentioned for using henna?",
         "answerChoices": [
-          { "letter": "A", "text": "enables a change of hair color" },
-          { "letter": "B", "text": "ease of using" },
-          { "letter": "C", "text": "not a permanent design" },
-          { "letter": "D", "text": "symbol of love" },
-          { "letter": "E", "text": "attractive designs" }
+          {
+            "letter": "A",
+            "text": "enables a change of hair color"
+          },
+          {
+            "letter": "B",
+            "text": "ease of using"
+          },
+          {
+            "letter": "C",
+            "text": "not a permanent design"
+          },
+          {
+            "letter": "D",
+            "text": "symbol of love"
+          },
+          {
+            "letter": "E",
+            "text": "attractive designs"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_supporting_details",
@@ -756,11 +1416,26 @@
         "questionNumber": 45,
         "questionText": "Which of the following is the most likely reason that Indian brides choose to have mehndi designs on their palms?",
         "answerChoices": [
-          { "letter": "A", "text": "They are attractive to look at." },
-          { "letter": "B", "text": "They cool the skin." },
-          { "letter": "C", "text": "They leave a red stain." },
-          { "letter": "D", "text": "They are easy to get rid of." },
-          { "letter": "E", "text": "They promise good luck." }
+          {
+            "letter": "A",
+            "text": "They are attractive to look at."
+          },
+          {
+            "letter": "B",
+            "text": "They cool the skin."
+          },
+          {
+            "letter": "C",
+            "text": "They leave a red stain."
+          },
+          {
+            "letter": "D",
+            "text": "They are easy to get rid of."
+          },
+          {
+            "letter": "E",
+            "text": "They promise good luck."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_drawing_conclusions",
@@ -773,11 +1448,26 @@
         "questionNumber": 46,
         "questionText": "Why does the author say that the \"tradition of henna body painting has definitely evolved with the times\"?",
         "answerChoices": [
-          { "letter": "A", "text": "to make readers aware that henna body painting is used more now than in the past" },
-          { "letter": "B", "text": "to show that people use mehndi for wedding celebrations" },
-          { "letter": "C", "text": "to show that henna uses have changed over the years" },
-          { "letter": "D", "text": "to make light of people who use henna" },
-          { "letter": "E", "text": "to suggest that today's henna is nothing like the henna that was used years ago" }
+          {
+            "letter": "A",
+            "text": "to make readers aware that henna body painting is used more now than in the past"
+          },
+          {
+            "letter": "B",
+            "text": "to show that people use mehndi for wedding celebrations"
+          },
+          {
+            "letter": "C",
+            "text": "to show that henna uses have changed over the years"
+          },
+          {
+            "letter": "D",
+            "text": "to make light of people who use henna"
+          },
+          {
+            "letter": "E",
+            "text": "to suggest that today's henna is nothing like the henna that was used years ago"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_author_purpose",
@@ -790,11 +1480,26 @@
         "questionNumber": 47,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "the reasons for people drowning" },
-          { "letter": "B", "text": "how people learn to swim in a pool" },
-          { "letter": "C", "text": "the reasons why people should learn to swim" },
-          { "letter": "D", "text": "the kind of motor skills that are used when swimming" },
-          { "letter": "E", "text": "how USA Swimmers helps children learn to swim" }
+          {
+            "letter": "A",
+            "text": "the reasons for people drowning"
+          },
+          {
+            "letter": "B",
+            "text": "how people learn to swim in a pool"
+          },
+          {
+            "letter": "C",
+            "text": "the reasons why people should learn to swim"
+          },
+          {
+            "letter": "D",
+            "text": "the kind of motor skills that are used when swimming"
+          },
+          {
+            "letter": "E",
+            "text": "how USA Swimmers helps children learn to swim"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_main_idea",
@@ -807,11 +1512,26 @@
         "questionNumber": 48,
         "questionText": "Why should beginning swimmers swim with someone else?",
         "answerChoices": [
-          { "letter": "A", "text": "It will help them improve their swimming." },
-          { "letter": "B", "text": "They will learn to compete with others." },
-          { "letter": "C", "text": "They will enjoy the company." },
-          { "letter": "D", "text": "They will learn to swim faster." },
-          { "letter": "E", "text": "It will keep them safer." }
+          {
+            "letter": "A",
+            "text": "It will help them improve their swimming."
+          },
+          {
+            "letter": "B",
+            "text": "They will learn to compete with others."
+          },
+          {
+            "letter": "C",
+            "text": "They will enjoy the company."
+          },
+          {
+            "letter": "D",
+            "text": "They will learn to swim faster."
+          },
+          {
+            "letter": "E",
+            "text": "It will keep them safer."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -824,11 +1544,26 @@
         "questionNumber": 49,
         "questionText": "The author includes information about African American children to demonstrate",
         "answerChoices": [
-          { "letter": "A", "text": "the difficulty of making this group aware of the water's dangers." },
-          { "letter": "B", "text": "his knowledge of the African American population's history." },
-          { "letter": "C", "text": "why African Americans are good athletes." },
-          { "letter": "D", "text": "how cultural disparities have influenced children in terms of learning to swim." },
-          { "letter": "E", "text": "how African Americans feel about learning to swim." }
+          {
+            "letter": "A",
+            "text": "the difficulty of making this group aware of the water's dangers."
+          },
+          {
+            "letter": "B",
+            "text": "his knowledge of the African American population's history."
+          },
+          {
+            "letter": "C",
+            "text": "why African Americans are good athletes."
+          },
+          {
+            "letter": "D",
+            "text": "how cultural disparities have influenced children in terms of learning to swim."
+          },
+          {
+            "letter": "E",
+            "text": "how African Americans feel about learning to swim."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_author_purpose",
@@ -841,11 +1576,26 @@
         "questionNumber": 50,
         "questionText": "Why do you suppose that USA Swimmers is expanding its programs in inner cities?",
         "answerChoices": [
-          { "letter": "A", "text": "to create jobs for inner city people" },
-          { "letter": "B", "text": "to explore the new possibilities that come with expansion" },
-          { "letter": "C", "text": "to lower the cost of swimming classes in the cities" },
-          { "letter": "D", "text": "to show that swimming is something that everybody can do" },
-          { "letter": "E", "text": "to reach more African American and Hispanic children" }
+          {
+            "letter": "A",
+            "text": "to create jobs for inner city people"
+          },
+          {
+            "letter": "B",
+            "text": "to explore the new possibilities that come with expansion"
+          },
+          {
+            "letter": "C",
+            "text": "to lower the cost of swimming classes in the cities"
+          },
+          {
+            "letter": "D",
+            "text": "to show that swimming is something that everybody can do"
+          },
+          {
+            "letter": "E",
+            "text": "to reach more African American and Hispanic children"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_drawing_conclusions",
@@ -860,11 +1610,26 @@
         "questionNumber": 51,
         "questionText": "If 4x = 10 and 2y = 4x, then y =",
         "answerChoices": [
-          { "letter": "A", "text": "5" },
-          { "letter": "B", "text": "2 1/2" },
-          { "letter": "C", "text": "10" },
-          { "letter": "D", "text": "1/2" },
-          { "letter": "E", "text": "4" }
+          {
+            "letter": "A",
+            "text": "5"
+          },
+          {
+            "letter": "B",
+            "text": "2 1/2"
+          },
+          {
+            "letter": "C",
+            "text": "10"
+          },
+          {
+            "letter": "D",
+            "text": "1/2"
+          },
+          {
+            "letter": "E",
+            "text": "4"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_algebraic_expressions",
@@ -877,11 +1642,26 @@
         "questionNumber": 52,
         "questionText": "There are 30 students in a class, and 18 of them are boys. What percent of the class are girls?",
         "answerChoices": [
-          { "letter": "A", "text": "60%" },
-          { "letter": "B", "text": ".60" },
-          { "letter": "C", "text": "40%" },
-          { "letter": "D", "text": ".40" },
-          { "letter": "E", "text": "12" }
+          {
+            "letter": "A",
+            "text": "60%"
+          },
+          {
+            "letter": "B",
+            "text": ".60"
+          },
+          {
+            "letter": "C",
+            "text": "40%"
+          },
+          {
+            "letter": "D",
+            "text": ".40"
+          },
+          {
+            "letter": "E",
+            "text": "12"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_percent_problems",
@@ -894,11 +1674,26 @@
         "questionNumber": 53,
         "questionText": "Sammy pitched 8 games and won 5 of them. To the nearest percent, what percent of games did Sammy lose?",
         "answerChoices": [
-          { "letter": "A", "text": "50%" },
-          { "letter": "B", "text": "30%" },
-          { "letter": "C", "text": "40%" },
-          { "letter": "D", "text": "63%" },
-          { "letter": "E", "text": "38%" }
+          {
+            "letter": "A",
+            "text": "50%"
+          },
+          {
+            "letter": "B",
+            "text": "30%"
+          },
+          {
+            "letter": "C",
+            "text": "40%"
+          },
+          {
+            "letter": "D",
+            "text": "63%"
+          },
+          {
+            "letter": "E",
+            "text": "38%"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_percent_problems",
@@ -911,11 +1706,26 @@
         "questionNumber": 54,
         "questionText": "Which of the following shows an isosceles triangle?",
         "answerChoices": [
-          { "letter": "A", "text": "Triangle with angles 60 degrees and a right angle" },
-          { "letter": "B", "text": "Triangle with angles 30 degrees and 120 degrees" },
-          { "letter": "C", "text": "Triangle with angles 25 degrees and 120 degrees" },
-          { "letter": "D", "text": "Triangle with angles 58 degrees and 62 degrees" },
-          { "letter": "E", "text": "Triangle with angles 30 degrees and 93 degrees" }
+          {
+            "letter": "A",
+            "text": "Triangle with angles 60 degrees and a right angle"
+          },
+          {
+            "letter": "B",
+            "text": "Triangle with angles 30 degrees and 120 degrees"
+          },
+          {
+            "letter": "C",
+            "text": "Triangle with angles 25 degrees and 120 degrees"
+          },
+          {
+            "letter": "D",
+            "text": "Triangle with angles 58 degrees and 62 degrees"
+          },
+          {
+            "letter": "E",
+            "text": "Triangle with angles 30 degrees and 93 degrees"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "ma_area_perimeter_volume",
@@ -928,11 +1738,26 @@
         "questionNumber": 55,
         "questionText": "Carole bought a coat for $60.00. This was 75% of its original price. By how much was the coat reduced?",
         "answerChoices": [
-          { "letter": "A", "text": "$80.00" },
-          { "letter": "B", "text": "$45.00" },
-          { "letter": "C", "text": "$40.00" },
-          { "letter": "D", "text": "20%" },
-          { "letter": "E", "text": "$20.00" }
+          {
+            "letter": "A",
+            "text": "$80.00"
+          },
+          {
+            "letter": "B",
+            "text": "$45.00"
+          },
+          {
+            "letter": "C",
+            "text": "$40.00"
+          },
+          {
+            "letter": "D",
+            "text": "20%"
+          },
+          {
+            "letter": "E",
+            "text": "$20.00"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_percent_problems",
@@ -945,11 +1770,26 @@
         "questionNumber": 56,
         "questionText": "The volume of a rectangular solid whose length is 15 inches, height is 10 inches, and width is 5 inches, is",
         "answerChoices": [
-          { "letter": "A", "text": "800 in^3" },
-          { "letter": "B", "text": "7.5 in^3" },
-          { "letter": "C", "text": "75 in^3" },
-          { "letter": "D", "text": "10 ft^3" },
-          { "letter": "E", "text": "750 in^3" }
+          {
+            "letter": "A",
+            "text": "800 in^3"
+          },
+          {
+            "letter": "B",
+            "text": "7.5 in^3"
+          },
+          {
+            "letter": "C",
+            "text": "75 in^3"
+          },
+          {
+            "letter": "D",
+            "text": "10 ft^3"
+          },
+          {
+            "letter": "E",
+            "text": "750 in^3"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_area_perimeter_volume",
@@ -962,11 +1802,26 @@
         "questionNumber": 57,
         "questionText": "The area of a square rug each of whose sides are 3 feet long is",
         "answerChoices": [
-          { "letter": "A", "text": "81 in^2" },
-          { "letter": "B", "text": "108 in^2" },
-          { "letter": "C", "text": "243 in^2" },
-          { "letter": "D", "text": "708 in^2" },
-          { "letter": "E", "text": "1296 in^2" }
+          {
+            "letter": "A",
+            "text": "81 in^2"
+          },
+          {
+            "letter": "B",
+            "text": "108 in^2"
+          },
+          {
+            "letter": "C",
+            "text": "243 in^2"
+          },
+          {
+            "letter": "D",
+            "text": "708 in^2"
+          },
+          {
+            "letter": "E",
+            "text": "1296 in^2"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_area_perimeter_volume",
@@ -979,11 +1834,26 @@
         "questionNumber": 58,
         "questionText": "Two numbers are in the ratio of 2:3. If the larger number is 45, the smaller number is",
         "answerChoices": [
-          { "letter": "A", "text": "30" },
-          { "letter": "B", "text": "67 1/2" },
-          { "letter": "C", "text": "15" },
-          { "letter": "D", "text": "22 1/2" },
-          { "letter": "E", "text": "12" }
+          {
+            "letter": "A",
+            "text": "30"
+          },
+          {
+            "letter": "B",
+            "text": "67 1/2"
+          },
+          {
+            "letter": "C",
+            "text": "15"
+          },
+          {
+            "letter": "D",
+            "text": "22 1/2"
+          },
+          {
+            "letter": "E",
+            "text": "12"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_ratios_proportions",
@@ -996,11 +1866,26 @@
         "questionNumber": 59,
         "questionText": "If the area of a circle is 314 square inches, then its circumference is closest to (use pi = 3.14):",
         "answerChoices": [
-          { "letter": "A", "text": "58 in." },
-          { "letter": "B", "text": "60 in." },
-          { "letter": "C", "text": "63 in." },
-          { "letter": "D", "text": "65 in." },
-          { "letter": "E", "text": "68 in." }
+          {
+            "letter": "A",
+            "text": "58 in."
+          },
+          {
+            "letter": "B",
+            "text": "60 in."
+          },
+          {
+            "letter": "C",
+            "text": "63 in."
+          },
+          {
+            "letter": "D",
+            "text": "65 in."
+          },
+          {
+            "letter": "E",
+            "text": "68 in."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_area_perimeter_volume",
@@ -1013,11 +1898,26 @@
         "questionNumber": 60,
         "questionText": "Ticket prices for the Bronx City Zoo are listed as follows: Monday, Wednesday, Thursday, Friday $5; Saturday, Sunday $8; Tuesday Free. Last week, 21,000 people visited the zoo. If the same number of people visited on each of the seven days, what was the total income from ticket sales?",
         "answerChoices": [
-          { "letter": "A", "text": "$84,000" },
-          { "letter": "B", "text": "$98,000" },
-          { "letter": "C", "text": "$108,000" },
-          { "letter": "D", "text": "$123,000" },
-          { "letter": "E", "text": "$128,000" }
+          {
+            "letter": "A",
+            "text": "$84,000"
+          },
+          {
+            "letter": "B",
+            "text": "$98,000"
+          },
+          {
+            "letter": "C",
+            "text": "$108,000"
+          },
+          {
+            "letter": "D",
+            "text": "$123,000"
+          },
+          {
+            "letter": "E",
+            "text": "$128,000"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "mqr_word_problem_translation",
@@ -1030,11 +1930,26 @@
         "questionNumber": 61,
         "questionText": "The following triangles are similar. Find the missing side that is labeled x.",
         "answerChoices": [
-          { "letter": "A", "text": "2.5" },
-          { "letter": "B", "text": "7.5" },
-          { "letter": "C", "text": "15" },
-          { "letter": "D", "text": "22.5" },
-          { "letter": "E", "text": "12.5" }
+          {
+            "letter": "A",
+            "text": "2.5"
+          },
+          {
+            "letter": "B",
+            "text": "7.5"
+          },
+          {
+            "letter": "C",
+            "text": "15"
+          },
+          {
+            "letter": "D",
+            "text": "22.5"
+          },
+          {
+            "letter": "E",
+            "text": "12.5"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_ratios_proportions",
@@ -1047,11 +1962,26 @@
         "questionNumber": 62,
         "questionText": "In the figure above, PR = QR. What is the measure of angle x?",
         "answerChoices": [
-          { "letter": "A", "text": "50" },
-          { "letter": "B", "text": "40" },
-          { "letter": "C", "text": "60" },
-          { "letter": "D", "text": "20" },
-          { "letter": "E", "text": "Cannot be determined" }
+          {
+            "letter": "A",
+            "text": "50"
+          },
+          {
+            "letter": "B",
+            "text": "40"
+          },
+          {
+            "letter": "C",
+            "text": "60"
+          },
+          {
+            "letter": "D",
+            "text": "20"
+          },
+          {
+            "letter": "E",
+            "text": "Cannot be determined"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_area_perimeter_volume",
@@ -1064,11 +1994,26 @@
         "questionNumber": 63,
         "questionText": "Which number is 1 1/8 times as large as 880?",
         "answerChoices": [
-          { "letter": "A", "text": "888" },
-          { "letter": "B", "text": "966" },
-          { "letter": "C", "text": "980" },
-          { "letter": "D", "text": "990" },
-          { "letter": "E", "text": "998" }
+          {
+            "letter": "A",
+            "text": "888"
+          },
+          {
+            "letter": "B",
+            "text": "966"
+          },
+          {
+            "letter": "C",
+            "text": "980"
+          },
+          {
+            "letter": "D",
+            "text": "990"
+          },
+          {
+            "letter": "E",
+            "text": "998"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "ma_fraction_decimal_ops",
@@ -1081,11 +2026,26 @@
         "questionNumber": 64,
         "questionText": "Copy Cat Copies charges 18 cents for the first copy and 12 cents for each additional copy. What is the greatest number of copies you can get for $3.00?",
         "answerChoices": [
-          { "letter": "A", "text": "16" },
-          { "letter": "B", "text": "17" },
-          { "letter": "C", "text": "23" },
-          { "letter": "D", "text": "24" },
-          { "letter": "E", "text": "25" }
+          {
+            "letter": "A",
+            "text": "16"
+          },
+          {
+            "letter": "B",
+            "text": "17"
+          },
+          {
+            "letter": "C",
+            "text": "23"
+          },
+          {
+            "letter": "D",
+            "text": "24"
+          },
+          {
+            "letter": "E",
+            "text": "25"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "mqr_word_problem_translation",
@@ -1098,11 +2058,26 @@
         "questionNumber": 65,
         "questionText": "What is the next number in the sequence 0, 0, 1, 3, 6, 10, ___?",
         "answerChoices": [
-          { "letter": "A", "text": "15" },
-          { "letter": "B", "text": "14" },
-          { "letter": "C", "text": "13" },
-          { "letter": "D", "text": "4" },
-          { "letter": "E", "text": "5" }
+          {
+            "letter": "A",
+            "text": "15"
+          },
+          {
+            "letter": "B",
+            "text": "14"
+          },
+          {
+            "letter": "C",
+            "text": "13"
+          },
+          {
+            "letter": "D",
+            "text": "4"
+          },
+          {
+            "letter": "E",
+            "text": "5"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "mqr_pattern_recognition",
@@ -1115,11 +2090,26 @@
         "questionNumber": 66,
         "questionText": "The union of (1, 2, 3) and (3, 4, 5) and (1, 3, 5) is",
         "answerChoices": [
-          { "letter": "A", "text": "(1, 3, 5)" },
-          { "letter": "B", "text": "(1, 2, 3, 4, 5)" },
-          { "letter": "C", "text": "(3, 4, 5)" },
-          { "letter": "D", "text": "(2, 4)" },
-          { "letter": "E", "text": "an empty set" }
+          {
+            "letter": "A",
+            "text": "(1, 3, 5)"
+          },
+          {
+            "letter": "B",
+            "text": "(1, 2, 3, 4, 5)"
+          },
+          {
+            "letter": "C",
+            "text": "(3, 4, 5)"
+          },
+          {
+            "letter": "D",
+            "text": "(2, 4)"
+          },
+          {
+            "letter": "E",
+            "text": "an empty set"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "mqr_number_sense",
@@ -1132,11 +2122,26 @@
         "questionNumber": 67,
         "questionText": "In the following table, what must you do to make the numbers in the x row the same as the numbers in the y row? x: 2, 3, 4, 5; y: 6, 8, 10, 12",
         "answerChoices": [
-          { "letter": "A", "text": "multiply by 3" },
-          { "letter": "B", "text": "divide by 3" },
-          { "letter": "C", "text": "multiply by 3 and subtract 1" },
-          { "letter": "D", "text": "multiply by 2 and add 2" },
-          { "letter": "E", "text": "add 4" }
+          {
+            "letter": "A",
+            "text": "multiply by 3"
+          },
+          {
+            "letter": "B",
+            "text": "divide by 3"
+          },
+          {
+            "letter": "C",
+            "text": "multiply by 3 and subtract 1"
+          },
+          {
+            "letter": "D",
+            "text": "multiply by 2 and add 2"
+          },
+          {
+            "letter": "E",
+            "text": "add 4"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "mqr_pattern_recognition",
@@ -1149,11 +2154,26 @@
         "questionNumber": 68,
         "questionText": "At 12:30 P.M., what is the smaller angle between the minute hand and the hour hand?",
         "answerChoices": [
-          { "letter": "A", "text": "180 degrees" },
-          { "letter": "B", "text": "175 degrees" },
-          { "letter": "C", "text": "165 degrees" },
-          { "letter": "D", "text": "150 degrees" },
-          { "letter": "E", "text": "160 degrees" }
+          {
+            "letter": "A",
+            "text": "180 degrees"
+          },
+          {
+            "letter": "B",
+            "text": "175 degrees"
+          },
+          {
+            "letter": "C",
+            "text": "165 degrees"
+          },
+          {
+            "letter": "D",
+            "text": "150 degrees"
+          },
+          {
+            "letter": "E",
+            "text": "160 degrees"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_area_perimeter_volume",
@@ -1166,11 +2186,26 @@
         "questionNumber": 69,
         "questionText": "What is the area of the shaded triangle in this square?",
         "answerChoices": [
-          { "letter": "A", "text": "10 sq cm" },
-          { "letter": "B", "text": "20 sq cm" },
-          { "letter": "C", "text": "100 sq cm" },
-          { "letter": "D", "text": "50 sq cm" },
-          { "letter": "E", "text": "none of these" }
+          {
+            "letter": "A",
+            "text": "10 sq cm"
+          },
+          {
+            "letter": "B",
+            "text": "20 sq cm"
+          },
+          {
+            "letter": "C",
+            "text": "100 sq cm"
+          },
+          {
+            "letter": "D",
+            "text": "50 sq cm"
+          },
+          {
+            "letter": "E",
+            "text": "none of these"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "ma_area_perimeter_volume",
@@ -1183,11 +2218,26 @@
         "questionNumber": 70,
         "questionText": "A jar contains 5 white marbles, 6 black marbles, and 4 green marbles. If Ann removes 3 white marbles, 2 black marbles, and 1 green marble, what is the probability that the next marble removed at random is black?",
         "answerChoices": [
-          { "letter": "A", "text": "4/5" },
-          { "letter": "B", "text": "1/3" },
-          { "letter": "C", "text": "4/9" },
-          { "letter": "D", "text": "6/15" },
-          { "letter": "E", "text": "4/15" }
+          {
+            "letter": "A",
+            "text": "4/5"
+          },
+          {
+            "letter": "B",
+            "text": "1/3"
+          },
+          {
+            "letter": "C",
+            "text": "4/9"
+          },
+          {
+            "letter": "D",
+            "text": "6/15"
+          },
+          {
+            "letter": "E",
+            "text": "4/15"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_probability_statistics",
@@ -1200,11 +2250,26 @@
         "questionNumber": 71,
         "questionText": "If 10 men build a 6-room house in 30 days, how many days will it take 15 men working at the same rate?",
         "answerChoices": [
-          { "letter": "A", "text": "180" },
-          { "letter": "B", "text": "25" },
-          { "letter": "C", "text": "45" },
-          { "letter": "D", "text": "20" },
-          { "letter": "E", "text": "15" }
+          {
+            "letter": "A",
+            "text": "180"
+          },
+          {
+            "letter": "B",
+            "text": "25"
+          },
+          {
+            "letter": "C",
+            "text": "45"
+          },
+          {
+            "letter": "D",
+            "text": "20"
+          },
+          {
+            "letter": "E",
+            "text": "15"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "ma_ratios_proportions",
@@ -1217,11 +2282,26 @@
         "questionNumber": 72,
         "questionText": "Tom has taken 5 tests and his average is 60%. What would he have to average on the next two tests to raise his overall average to 70%?",
         "answerChoices": [
-          { "letter": "A", "text": "85%" },
-          { "letter": "B", "text": "90%" },
-          { "letter": "C", "text": "93%" },
-          { "letter": "D", "text": "95%" },
-          { "letter": "E", "text": "97%" }
+          {
+            "letter": "A",
+            "text": "85%"
+          },
+          {
+            "letter": "B",
+            "text": "90%"
+          },
+          {
+            "letter": "C",
+            "text": "93%"
+          },
+          {
+            "letter": "D",
+            "text": "95%"
+          },
+          {
+            "letter": "E",
+            "text": "97%"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "ma_multistep_word_problems",
@@ -1234,11 +2314,26 @@
         "questionNumber": 73,
         "questionText": "The length of a rectangle is 8 feet and its width is 4 feet. The area of a square that has the same perimeter as that of the rectangle is",
         "answerChoices": [
-          { "letter": "A", "text": "36 sq ft" },
-          { "letter": "B", "text": "24 sq ft" },
-          { "letter": "C", "text": "32 sq ft" },
-          { "letter": "D", "text": "48 sq ft" },
-          { "letter": "E", "text": "64 sq ft" }
+          {
+            "letter": "A",
+            "text": "36 sq ft"
+          },
+          {
+            "letter": "B",
+            "text": "24 sq ft"
+          },
+          {
+            "letter": "C",
+            "text": "32 sq ft"
+          },
+          {
+            "letter": "D",
+            "text": "48 sq ft"
+          },
+          {
+            "letter": "E",
+            "text": "64 sq ft"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_area_perimeter_volume",
@@ -1251,11 +2346,26 @@
         "questionNumber": 74,
         "questionText": "If jellybeans cost $1.60 per pound, and there are 7 jellybeans in an ounce, how much would 35 jellybeans cost?",
         "answerChoices": [
-          { "letter": "A", "text": "$4.57" },
-          { "letter": "B", "text": "50 cents" },
-          { "letter": "C", "text": "22.86 cents" },
-          { "letter": "D", "text": "245 cents" },
-          { "letter": "E", "text": "56 cents" }
+          {
+            "letter": "A",
+            "text": "$4.57"
+          },
+          {
+            "letter": "B",
+            "text": "50 cents"
+          },
+          {
+            "letter": "C",
+            "text": "22.86 cents"
+          },
+          {
+            "letter": "D",
+            "text": "245 cents"
+          },
+          {
+            "letter": "E",
+            "text": "56 cents"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "ma_multistep_word_problems",
@@ -1268,11 +2378,26 @@
         "questionNumber": 75,
         "questionText": "The ratio of 2.2 hours to 10 minutes is",
         "answerChoices": [
-          { "letter": "A", "text": "22/1" },
-          { "letter": "B", "text": "66/5" },
-          { "letter": "C", "text": "1/22" },
-          { "letter": "D", "text": "5/66" },
-          { "letter": "E", "text": "66/1" }
+          {
+            "letter": "A",
+            "text": "22/1"
+          },
+          {
+            "letter": "B",
+            "text": "66/5"
+          },
+          {
+            "letter": "C",
+            "text": "1/22"
+          },
+          {
+            "letter": "D",
+            "text": "5/66"
+          },
+          {
+            "letter": "E",
+            "text": "66/1"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "ma_ratios_proportions",
@@ -1285,11 +2410,26 @@
         "questionNumber": 76,
         "questionText": "George takes a walk along the path shown in the diagram below. He begins at point A and visits each of the points B, C, and D exactly once, and then returns to point A. He does not walk along the same path twice. In how many ways can he complete his walk?",
         "answerChoices": [
-          { "letter": "A", "text": "3" },
-          { "letter": "B", "text": "6" },
-          { "letter": "C", "text": "8" },
-          { "letter": "D", "text": "9" },
-          { "letter": "E", "text": "12" }
+          {
+            "letter": "A",
+            "text": "3"
+          },
+          {
+            "letter": "B",
+            "text": "6"
+          },
+          {
+            "letter": "C",
+            "text": "8"
+          },
+          {
+            "letter": "D",
+            "text": "9"
+          },
+          {
+            "letter": "E",
+            "text": "12"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "mqr_logical_reasoning",
@@ -1302,11 +2442,26 @@
         "questionNumber": 77,
         "questionText": "If you have six people in a room, and each person shakes hands with every other person exactly once, how many total handshakes happen?",
         "answerChoices": [
-          { "letter": "A", "text": "6" },
-          { "letter": "B", "text": "12" },
-          { "letter": "C", "text": "15" },
-          { "letter": "D", "text": "21" },
-          { "letter": "E", "text": "720" }
+          {
+            "letter": "A",
+            "text": "6"
+          },
+          {
+            "letter": "B",
+            "text": "12"
+          },
+          {
+            "letter": "C",
+            "text": "15"
+          },
+          {
+            "letter": "D",
+            "text": "21"
+          },
+          {
+            "letter": "E",
+            "text": "720"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "mqr_logical_reasoning",
@@ -1319,11 +2474,26 @@
         "questionNumber": 78,
         "questionText": "How many triangles are in the figure below?",
         "answerChoices": [
-          { "letter": "A", "text": "6" },
-          { "letter": "B", "text": "8" },
-          { "letter": "C", "text": "9" },
-          { "letter": "D", "text": "10" },
-          { "letter": "E", "text": "12" }
+          {
+            "letter": "A",
+            "text": "6"
+          },
+          {
+            "letter": "B",
+            "text": "8"
+          },
+          {
+            "letter": "C",
+            "text": "9"
+          },
+          {
+            "letter": "D",
+            "text": "10"
+          },
+          {
+            "letter": "E",
+            "text": "12"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "mqr_logical_reasoning",
@@ -1336,11 +2506,26 @@
         "questionNumber": 79,
         "questionText": "A train 40 meters long travels through a 200-meter long tunnel at 10 meters per second. From the moment the train enters the tunnel, how much time passes before the train completely leaves the tunnel?",
         "answerChoices": [
-          { "letter": "A", "text": "15 seconds" },
-          { "letter": "B", "text": "20 seconds" },
-          { "letter": "C", "text": "24 seconds" },
-          { "letter": "D", "text": "26 seconds" },
-          { "letter": "E", "text": "30 seconds" }
+          {
+            "letter": "A",
+            "text": "15 seconds"
+          },
+          {
+            "letter": "B",
+            "text": "20 seconds"
+          },
+          {
+            "letter": "C",
+            "text": "24 seconds"
+          },
+          {
+            "letter": "D",
+            "text": "26 seconds"
+          },
+          {
+            "letter": "E",
+            "text": "30 seconds"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "mqr_word_problem_translation",
@@ -1353,11 +2538,26 @@
         "questionNumber": 80,
         "questionText": "Two motorcycles leave Queens, New York, at the same time and travel west on Interstate 495. One travels at a constant speed of 58 miles per hour and the other travels at a constant speed of 66 miles per hour. In how many hours will the distance between them be 32 miles?",
         "answerChoices": [
-          { "letter": "A", "text": "3 hours" },
-          { "letter": "B", "text": "3.5 hours" },
-          { "letter": "C", "text": "4 hours" },
-          { "letter": "D", "text": "4.25 hours" },
-          { "letter": "E", "text": "6 hours" }
+          {
+            "letter": "A",
+            "text": "3 hours"
+          },
+          {
+            "letter": "B",
+            "text": "3.5 hours"
+          },
+          {
+            "letter": "C",
+            "text": "4 hours"
+          },
+          {
+            "letter": "D",
+            "text": "4.25 hours"
+          },
+          {
+            "letter": "E",
+            "text": "6 hours"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "mqr_word_problem_translation",
@@ -1371,5 +2571,120 @@
     "totalQuestions": 80,
     "source": "Hunter TG Practice Form 2",
     "excludedCount": 6
-  }
+  },
+  "passages": [
+    {
+      "id": "tg2_p1",
+      "title": "Terra-cotta Warriors",
+      "text": "One of the greatest discoveries of all time took place in the People's Republic of China. It happened in March 1974 when a farmer who was digging a well stumbled across a clay soldier buried in the dirt. The site of the discovery was in a field 18 miles east of Xi'an, the capital of Shaanxi province. After the farmer's discovery, archaeologists continued to dig. They were amazed to discover what are now called the Qin Terra-cotta Warriors and Horses.\n\nXi'an is one of the oldest cities in China. It dates back more than 3,000 years. The clay figures were crafted over 2,200 years ago during the reign of the Emperor Qin Shihuang (259-210 BCE). They were found adjacent to Emperor Qin's tomb. Qin is considered by historians to be the first emperor of China. He is credited as the person who unified China. His reign began in the Qin dynasty. He was also responsible for starting construction on the Great Wall of China.\n\nThe terra-cotta warriors and horses were originally painted with a colored lacquer. This made them look even more realistic and lifelike. Over the years, the paint wore off. The warriors carried iron swords and spears that were coated with chromium and oxide. This kept them from rusting over that many years. Remarkably, this preservation technique was not known in the West until the eighteenth century.\n\nThe clay figures are remarkable! They are life-sized but vary in height. The warriors all have different facial expressions and hairstyles. Their uniforms differ according to rank. Their gestures are all different as well. It is as though they were alive. There are horsemen, longbow bearers, archers, officers, and generals. There are even officials, acrobats, and musicians. Included with the soldiers are chariots and horses. And these amazing warriors are all positioned in battle formation as dictated by the Art of War. This treatise was written by Sun Tzu some 500 to 200 years earlier. Altogether, 6,000 figures were discovered. According to historians, it took 720,000 workers 37 years to craft the terra-cotta warriors, chariots, and horses.\n\nSome believe this terra-cotta army was meant to defend the tomb of Qin Shihuang from thieves and marauders. Others think the warriors and horses were there to allow Qin to rule another empire in the afterlife. Whatever the reason, the terra-cotta army is a magnificent spectacle to view. It is a testament to the power the emperor possessed to commission such a monumental undertaking.",
+      "questionNumbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "id": "tg2_p2",
+      "title": "Large Hadron Collider",
+      "text": "Three hundred feet beneath the surface of the Earth, below rolling hills of farmland and picturesque villages near Geneva, Switzerland, physicists are looking for the building blocks of the universe. What they are seeking are subatomic particles that are not possible to find in a normal laboratory setting. The scientists are using a device called an atom smasher to simulate the conditions that existed when the universe started. The beginning of the universe is called the big bang by scientists. The big bang theory postulates that around 15 billion years ago the universe suddenly expanded. It acted like a balloon that has been popped. And as it expanded, it cooled. It continues to expand and cool to this day.\n\nThe Large Hadron Collider (LHC) is the world's largest atom smasher. It started operating in 2009. It is a large ring that is 17 miles in circumference. There are 9,300 magnets in the ring. The collider shoots two beams of proton particles in opposite directions. The beams are guided by the magnets. The more protons are accelerated, the greater the chance that two protons will smash into each other. The bigger the smasher, the more force at collision. The particles travel around the ring 11,245 times a second at 99.99 percent of the speed of light (about 186,282 miles per second). They produce 600 million collisions every second. When they collide, they produce debris that very quickly disintegrates. Computers analyze the results.\n\nThe scientists are smashing particles together to see what results. Atoms can be broken down into other, smaller particles. The physicists are looking for rare particles that can't be broken down any further. They are fundamental or elementary particles and include quarks, leptons, and bosons. So far, 57 elementary particles have been found. Some have an electrical charge and a spin. Scientists believe that other hypothetical particles exist, but their presence has never been proven. One such particle is the Higgs boson. It is proposed by the physicist Peter Higgs as an answer to why some particles possess mass and others don't. It is often referred to as the \"God particle.\" Researchers are also looking to prove the existence of what is called dark matter. This is invisible matter that is thought to be the most prevalent material in the universe. It is theorized that it was what was left over after the big bang. The Large Hadron Collider was created with the hope that it would provide answers to scientists' questions. It will probably revolutionize particle physics. And it may also lead to more questions.",
+      "questionNumbers": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "tg2_p3",
+      "title": "Haller Park",
+      "text": "Haller Park, also known as the Bamburi Nature Trail, located along the Indian Ocean in Mombasa, Kenya, is a lush paradise of forests, ponds, savannahs, and wetlands. Animals thrive in this wildlife sanctuary. Visitors flock to this nature preserve today, but they find it hard to believe that Haller Park is, indeed, an ecological experiment.\n\nWhen Rene Haller, a Swiss agronomist, a person who studies soil and crop management, first visited the area in 1971, it was an uninhabitable wasteland. The Bamburi Cement Company had mined fossil coral limestone there for years. The exhausted quarry that Dr. Haller first observed had no trees or plants. There were pools of brackish water everywhere, but no living creatures. With the backing of the cement plant, he set out to transform this industrial scar.\n\nAt first Haller found that every tree he planted withered and died. Then one day he discovered casuarina trees. Native to Australia, the casuarina tree is an evergreen that can survive in barren, arid locations. He began planting young trees. Conocarpus, a tree native to Somalia that can also withstand harsh environments, were also planted. As the trees began to thrive and grow, the trees dropped needles to the ground. Millipedes fed on the needles. Their droppings contained bacteria that fertilized the soil.\n\nTermites ate the dead vegetation. Their droppings also enriched the ground. Mushrooms began to grow. Slowly the land began to transform. Haller dug out ponds with a bulldozer. He stocked the ponds with guppies, tilapia, and black mollies. Bulrushes were planted along the shores to provide shelter for birds. Ferns were planted. Eucalyptus, coconut palm, banana, and mango trees were all introduced. The baobab tree, native to Kenya, and the neem tree, native to India, which provide excellent shade, also thrived.\n\nToday, there are miles of nature trails where storks, cranes, and weaver birds abound. Antelopes, buffalo, giraffes, and crocodiles also live there. Most of the animals were rescued, such as the hippos, Sally and Potty. The sanctuary is interactive. Each afternoon, visitors can hand-feed the giraffes. There is a 100-year-old tortoise named Mzee that likes to have his throat tickled. In addition, oryx antelopes and elands are domesticated for meat at the Nguuni Wildlife Sanctuary. There is a crocodile farm and an aquaculture fish farm as well. Visitors to the park can even try a taste of crocodile steak, antelope meat, or tilapia filet at a restaurant in the park.\n\nIn 1987, Rene Haller was presented with the United Nations Environment Programme \"Global 500 Roll of Honor for Environmental Achievement\" Award. It is a fitting tribute to a man who had a vision and persevered to see it come true.",
+      "questionNumbers": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "id": "tg2_p4",
+      "title": "Dolphins in Captivity",
+      "text": "Dolphins are well known to many people. They entertain children and adults in venues like Sea World. There are facilities where people can swim with dolphins, an experience that many call unforgettable. Dolphins are also used in research labs. And they are kept by the U.S. Navy in San Diego for military studies. In all of these circumstances, the dolphins are kept in captivity.\n\nDo animals have rights? The question is a difficult one, with animal rights activists on one side and animal research proponents on the other. As scientists learn more about the mental life of animals, a number of astounding facts have begun to emerge. Scientists and researchers now conclude that dolphins are the second most intelligent creatures after humans. What is important is brain size in relation to overall size.\n\nDr. Lori Marino, a zoologist with Emory University in Atlanta, Georgia, has conducted extensive MRI (magnetic resonance imaging) scans on the brains of dolphins. She has concluded that the mind of a dolphin works in a manner very similar to the brain of a human. \"The tests suggest a psychological continuity between humans and dolphins,\" said Marino.\n\nIn another experiment, researchers marked two dolphins with triangles and circles on their foreheads, backs, and flippers, places they could not see. They then placed a mirror in the tank. Both dolphins immediately swam to the mirror and examined themselves. They exhibited a level of self-awareness only seen in humans and chimpanzees. This showed that dolphins have a concept of themselves.\n\nIn Australia, a rescued dolphin was taught by trainers to tail-walk, the feat of moving backward through the water on its tail. After recuperating, the dolphin was released back into the wild. Amazingly, that dolphin taught dozens of other wild dolphins how to tail-walk. Learned behavior in a community of animals is mainly for getting food. Tail-walking has no practical function; it is only done for fun.\n\nThe question then becomes, can the same quality of research be done in the wild as in captivity? Pro-captivity supporters contend that the dolphins are better off and reproduce well in captivity. They point out that more than 50 percent of dolphins in the wild have scars from shark attacks. Naval researchers claim that even though their dolphins are penned in San Diego Bay, they could easily jump out and swim away, but they don't. Those who advocate releasing dolphins into the wild feel that dolphins are so much like people that they shouldn't be kept in captivity. They believe that dolphins should be granted a special ethical status and should be treated as non-human persons.\n\nThe debate will no doubt continue for many years.",
+      "questionNumbers": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ]
+    },
+    {
+      "id": "tg2_p5",
+      "title": "Beryl Markham",
+      "text": "Beryl Markham was a unique and brave woman. Born Cheryl Clutterback in Leicester, England, in 1902, she moved with her family to Kenya when she was three. Her father, Charles, bought a coffee plantation. After a short time, Charles discovered that he had a knack for training horses, and he used the land to breed and train horses for racing. Beryl grew up on the farm. She learned the native language, and she also learned to ride and train horses. Her horses won many races. That was quite unusual because at that time horse racing was a sport dominated by men.\n\nThen one day something happened that would change her life. She met Tom Campbell Black, a world-famous aviator. Once she had experienced flying, Beryl became obsessed with the idea of being a pilot. She learned to fly and received her commercial pilot's license. She was the first woman pilot in Kenya, becoming a \"bush pilot,\" transporting passengers, supplies, and mail to remote parts of Kenya. There were no airports; she landed and took off on fields or clearings in the forest. At that time, in the infancy of the aviation age, air racing was popular, and Tom tried to convince her to enter a race from Nairobi to Johannesburg, South Africa. Instead, Beryl determined to fly from Kenya to England. Hindered by persistent engine problems and consistent bad weather, it took her 23 days, but she became the first person to fly solo from Nairobi to London.\n\nIn 1936, Beryl decided she wanted to be the first woman to fly alone across the Atlantic. Charles Lindbergh had already soloed across the ocean in 1927 from the United States to England. Beryl wanted to go the opposite way, from east to west. That was much more difficult because of the prevailing winds that would blow against her. On September 4, 1936, Beryl left London in a Vega Gull airplane, a single-engine monoplane crafted from wood and fabric. The plane was outfitted with extra fuel tanks, but Beryl had no radio and no navigational equipment when she took off into the darkness.\n\nTwenty hours later, her fuel line froze, and the plane crash-landed in a peat bog on Cape Breton Island, Nova Scotia. She emerged from the plane unharmed. Two fishermen approached her, and she said calmly, \"I'm Mrs. Markham. I've just flown from England.\" Beryl was taken to New York City and honored with a ticker tape parade. Her feat was reported in newspapers around the world. In 1942 she wrote West with the Night about her life and accomplishments. After living in America for a number of years, Beryl returned to Kenya to be with her beloved horses. She won many more races. She died in 1986.",
+      "questionNumbers": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    {
+      "id": "tg2_p6",
+      "title": "Northwest Passage",
+      "text": "For centuries explorers and traders looked for a way to travel from Europe to Asia without making the long and dangerous trip around the continent of Africa or South America. Before the Suez Canal and Panama Canal were in existence, that route was the Northwest Passage through the Arctic Ocean. The first recorded attempt to traverse the Northwest Passage was in 1497. At that time John Cabot became the first European to discover the mainland of North America. Cabot could go no farther, however. The Arctic was completely frozen and impassable. Consequently, he returned to Italy. Over the years others tried and failed. Some disappeared, never to be heard from again. In 1854 the British explorer John Rae arrived. He mapped the Canadian Arctic coastline and learned how to survive the brutal winter with the help of the Cree Indians. But he too found the waters locked with thick ice.\n\nFinally, in 1903, Norwegian Roald Amundsen departed Norway in a small fishing trawler, the Gjoa. It was only 70 feet long and had a crew of just six. His expedition did successfully navigate the Northwest Passage. The trip from the Atlantic to the Pacific took three years. The ship was stuck frozen in two-foot-thick ice for two winters. But everyone survived. He too learned survival skills from the Inuit Eskimos including how to hunt for food. Then in 1906 he sailed through the Bering Strait and on to Nome, Alaska. If he had taken a larger ship, he would never have made it through because the water in some parts was only three feet deep.\n\nThe Northwest Passage on the eastern side starts with the Davis Strait between Greenland and Canada. It continues into Baffin Bay and then through the Canadian Arctic Archipelago, a collection of more than 36,000 islands, most of them small and uninhabited. There are seven possible routes through the Archipelago, but some of them are too shallow for anything but a small ship. From there one passes into the Beaufort Sea, the Chukchi Sea, through the Bering Strait, and into the Pacific Ocean.\n\nToday, because of global warming, the Northwest Passage is becoming an option for shipping. At the beginning of the twenty-first century, it was recorded that parts of the route were ice free for a short time in the summer months. For 36 days in August and September 2007, the entire route was ice free and navigable. Continuing record sea ice melting may indicate that the route will be used by commercial carriers, instead of going through the Panama Canal. It is about 2,500 miles less in distance, which would save both time and money. As a result, the Canadian government is experiencing new challenges from other governments about international travel through the Northwest Passage.",
+      "questionNumbers": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "id": "tg2_p7",
+      "title": "Delta Works Netherlands",
+      "text": "The Netherlands has spent much effort managing and controlling the sea and the many rivers that run through it using a system of barriers. Dike construction goes back to the tenth century in this European country along the North Sea. One-quarter of the country is at or below sea level, and the country is very densely populated. There are over 3,000 polders, low-lying tracts of land reclaimed from fens and marshes that are protected by dikes. Every Dutch child knows the fable of Hans Brinker, the boy who put his finger in a hole in the dike and saved his town from flooding.\n\nIn January 1953, a cataclysmic windstorm accompanied by an abnormally high spring tide pushed an 18-foot-high storm surge toward the province of Zeeland, a popular summer resort area in southwestern Holland. Dikes were destroyed, and nearly 600 square miles of land were flooded. Over 1,800 people died. The government immediately formed a commission to study how to increase safety in the delta areas. The problem was how to improve safety but still leave the economically important seaways to Dutch ports open for shipping.\n\nAfter years of studies and testimony by engineers, fishermen, farmers, and environmentalists, a plan was agreed upon. It was called Delta Works (Deltawerken in Dutch). Work began on the ambitious plan at once. By 1958, the first phase of Delta Works was completed. A storm surge barrier was built across the river Hollandse IJssel, a branch of the Rhine delta. The barrier is almost 300 feet wide and over 40 feet high. Over the next four decades, a system of storm surge barriers, sluices, dams, and dikes was constructed all across the Netherlands. They manage everything from the North Sea to the runoff from the spring snow melt in the Alps that cascades down the Rhine and its tributaries. They total more than 6,000 miles in length with 300 structures. Many of the Delta Works have visitor centers where one can learn about the history of the area and the construction of the dams. There are many miles of walking and bicycle paths as well.\n\nDelta Works is an undertaking that many consider to be one of the Seven Wonders of the Modern World. They rate it in the same category as the Panama Canal and the Empire State Building. The project is far from over. It is constantly ongoing. Managing saltwater levels and freshwater levels, and balancing the needs of fishing and agriculture, are continually being reassessed. Planners are currently researching rising sea levels because of global warming. Delta Works is an example of what can happen when people work together to ensure that something like the Great Flood of 1953 will never occur again.",
+      "questionNumbers": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ]
+    },
+    {
+      "id": "tg2_p8",
+      "title": "Mehndi Henna Tradition",
+      "text": "The traditional Mehndi Celebration that takes place as part of an Indian wedding has roots that go back over 9,000 years. This was when the henna plant was first used for a variety of purposes in Africa, the Middle East, and India. The origin for using henna was its cooling and astringent effect when applied to the skin. But the custom was also tied into the cultural belief that henna would bring love and good fortune.\n\nHenna, or mehndi in Hindi, was brought to India in the twelfth century by the Mongols who traded for centuries with Arabs. It grows best in desert-like conditions; hence, when the desert people of Rajasthan, Punjab, and Gujarat states became aware of the cooling aspect of the plant, they dipped their hands and feet in a paste made from the plant's crushed leaves. While the plant did cool, it also left a red stain. After a while, some women grew tired of having bright red palms all the time. They found that one large dot in the center of the palm still provided a cooling effect. It was also pleasing to the eye. Other, smaller dots were placed around the center dot. This gradually gave way to the idea of creating artistic designs on the palms.\n\nOver time this process evolved into the Mehndi Celebration for the bride. Indian weddings are elaborate affairs, with many festivities before, during, and after the wedding. A Mehndi Celebration is held at the bride's house before the wedding. Her palms and feet are painted, usually by a henna professional. The stronger the paste, the longer the designs will last. This is desirable since the designs are a symbol of a long-lasting marriage. Popular images of mehndi art are conch shells, flowers, and peacocks. Hidden in the detailed designs of the bridal henna design is the bride's future husband's name. The groom must find his name in the mehndi to show his future wife that he has sharp eyes and an alert mind.\n\nWhile henna has long been used to dye hair in the United States, it is only in recent years that henna tattoo body painting has become popular as a painless, fashionable, and nonpermanent tattoo alternative. Henna body art kits and traditional mehndi stencils are even available for do-it-yourselfers online. Henna art studios are popping up across the United States offering traditional Indian bridal designs as well as decorative body painting. Some artists will come to parties or events and decorate everyone there. The tradition of henna body painting has definitely evolved with the times.",
+      "questionNumbers": [
+        43,
+        44,
+        45,
+        46
+      ]
+    },
+    {
+      "id": "tg2_p9",
+      "title": "Learning to Swim",
+      "text": "Learning how to swim is very important for people of all ages. It's never too late to learn how to swim. Accidents can happen around water of any kind, from a swimming pool to a lake or river to the ocean, even a water park. Knowing how to react if you fall into the water can save your life, especially if you are young. In fact, according to the Centers for Disease Control (CDC), drowning is the second most likely cause of death in children under the age of 14. Learning how to swim is something you can't do online or learn by yourself. You need a teacher, either with a group or privately. YMCAs, community centers, and gyms all offer swimming lessons.\n\nCertain groups of people, like African Americans and Hispanics, statistically face greater dangers near water. A survey conducted by USA Swimmers, an organization that governs competitive swimming in the United States at all age levels, polled nearly 1,800 people in 16 cities. They found that 60 percent of black children under 14 cannot swim. That is twice the rate for white children. Most of the black children who could not swim were inner city residents. Black children drown at three times the rate of white children. Several conclusions emerged. The children didn't learn to swim because their parents didn't learn to swim and were afraid of the water. Also, many parents and grandparents grew up when pools were segregated, and few pools were available to African Americans. USA Swimmers is expanding its learn-to-swim programs, especially in inner cities, to reach more African American children.\n\nThe best place to learn how to swim is in a swimming pool. It is possible to start out where a person can stand with his or her head above water. All professional teachers of swimming will tell you that the first step is to get rid of the fear of water. Whether a child or an adult, the individual needs to get used to being in the water. Beginners need to realize that when swimming, the body is more buoyant, the muscles loosen up, and the spine becomes more relaxed. That is why water is used extensively for rehabilitation from accident or injury.\n\nBeginners will learn to develop confidence in the water as well as the motor skills necessary for swimming. They will learn about safety and what to do if somebody accidentally falls into the water. Discipline is necessary. A beginner swimmer needs to obey rules, do what the lifeguard says to do, and most important, never swim alone. Ultimately, the student will discover, as USA Swimmers states on its website, that \"swimming is a technical and specialized activity involving extensive skill development.\"",
+      "questionNumbers": [
+        47,
+        48,
+        49,
+        50
+      ]
+    }
+  ]
 }

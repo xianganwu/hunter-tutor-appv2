@@ -8,11 +8,26 @@
         "questionNumber": 1,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "Unlike their predecessors, current citizens of Moscow are taking a respectful approach to modernizing their 850-year-old city, allowing new building while preserving important structures and artifacts from the past." },
-          { "letter": "B", "text": "The architecture of Moscow is a strange mix of styles, brought about by chaotic periods in its history during which new structures were built on top of old, or else older structures were simply destroyed." },
-          { "letter": "C", "text": "Today, approximately 5,000 active archeological sites in Moscow are being preserved by the Department of Preservation of Historical Monuments, and every day archeologists are making new and important discoveries." },
-          { "letter": "D", "text": "Because its architectural treasures are now being preserved, Moscow is faring much better than it did when it was part of the Soviet Union and under communist rule." },
-          { "letter": "E", "text": "Manege Square is a good example of what archaeologists and community members can do to satisfy preservation societies." }
+          {
+            "letter": "A",
+            "text": "Unlike their predecessors, current citizens of Moscow are taking a respectful approach to modernizing their 850-year-old city, allowing new building while preserving important structures and artifacts from the past."
+          },
+          {
+            "letter": "B",
+            "text": "The architecture of Moscow is a strange mix of styles, brought about by chaotic periods in its history during which new structures were built on top of old, or else older structures were simply destroyed."
+          },
+          {
+            "letter": "C",
+            "text": "Today, approximately 5,000 active archeological sites in Moscow are being preserved by the Department of Preservation of Historical Monuments, and every day archeologists are making new and important discoveries."
+          },
+          {
+            "letter": "D",
+            "text": "Because its architectural treasures are now being preserved, Moscow is faring much better than it did when it was part of the Soviet Union and under communist rule."
+          },
+          {
+            "letter": "E",
+            "text": "Manege Square is a good example of what archaeologists and community members can do to satisfy preservation societies."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_main_idea",
@@ -25,11 +40,26 @@
         "questionNumber": 2,
         "questionText": "The passage states that Moscow's Manege Square has been and most likely will continue to be a",
         "answerChoices": [
-          { "letter": "A", "text": "residential area." },
-          { "letter": "B", "text": "community meeting place." },
-          { "letter": "C", "text": "business district." },
-          { "letter": "D", "text": "government center." },
-          { "letter": "E", "text": "cultural museum." }
+          {
+            "letter": "A",
+            "text": "residential area."
+          },
+          {
+            "letter": "B",
+            "text": "community meeting place."
+          },
+          {
+            "letter": "C",
+            "text": "business district."
+          },
+          {
+            "letter": "D",
+            "text": "government center."
+          },
+          {
+            "letter": "E",
+            "text": "cultural museum."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_supporting_details",
@@ -42,11 +72,26 @@
         "questionNumber": 3,
         "questionText": "Which of the following can be inferred from the information in the second paragraph?",
         "answerChoices": [
-          { "letter": "A", "text": "Historically, the people of Moscow were more interested in modernization than in preservation." },
-          { "letter": "B", "text": "The Soviet government destroyed many old buildings, in keeping with an anti-czarist policy." },
-          { "letter": "C", "text": "There are very few 850-year-old cities in existence and fewer yet that preserve their past." },
-          { "letter": "D", "text": "Moscow has a history of invasions, with each new conqueror destroying the buildings of the previous regime." },
-          { "letter": "E", "text": "Russia officially became a nation in 1147." }
+          {
+            "letter": "A",
+            "text": "Historically, the people of Moscow were more interested in modernization than in preservation."
+          },
+          {
+            "letter": "B",
+            "text": "The Soviet government destroyed many old buildings, in keeping with an anti-czarist policy."
+          },
+          {
+            "letter": "C",
+            "text": "There are very few 850-year-old cities in existence and fewer yet that preserve their past."
+          },
+          {
+            "letter": "D",
+            "text": "Moscow has a history of invasions, with each new conqueror destroying the buildings of the previous regime."
+          },
+          {
+            "letter": "E",
+            "text": "Russia officially became a nation in 1147."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_inference",
@@ -59,11 +104,26 @@
         "questionNumber": 4,
         "questionText": "Which of the following assumptions is most likely a viewpoint that would be expressed by the writer of this passage?",
         "answerChoices": [
-          { "letter": "A", "text": "Generally speaking, people should be more interested in building new structures than in saving old ones." },
-          { "letter": "B", "text": "Architectural history has little meaning to people struggling to form a new government." },
-          { "letter": "C", "text": "Progress and preservation are equally important principles of urban planning." },
-          { "letter": "D", "text": "Archaeologists and bureaucrats generally do not work well together." },
-          { "letter": "E", "text": "Architectural function is more important than architectural style." }
+          {
+            "letter": "A",
+            "text": "Generally speaking, people should be more interested in building new structures than in saving old ones."
+          },
+          {
+            "letter": "B",
+            "text": "Architectural history has little meaning to people struggling to form a new government."
+          },
+          {
+            "letter": "C",
+            "text": "Progress and preservation are equally important principles of urban planning."
+          },
+          {
+            "letter": "D",
+            "text": "Archaeologists and bureaucrats generally do not work well together."
+          },
+          {
+            "letter": "E",
+            "text": "Architectural function is more important than architectural style."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_author_purpose",
@@ -76,11 +136,26 @@
         "questionNumber": 5,
         "questionText": "According to the passage, which of the following is true of archaeologists in Moscow?",
         "answerChoices": [
-          { "letter": "A", "text": "They have uncovered a number of significant items that will help them to understand Moscow's history." },
-          { "letter": "B", "text": "They operate under severe time constraints, as contractors wait to begin new buildings." },
-          { "letter": "C", "text": "There are not nearly enough archaeological teams to conduct all the possible research." },
-          { "letter": "D", "text": "They are primarily concerned with preserving the artifacts of modes of transportation." },
-          { "letter": "E", "text": "They are opposed to any more new construction in Manege Square." }
+          {
+            "letter": "A",
+            "text": "They have uncovered a number of significant items that will help them to understand Moscow's history."
+          },
+          {
+            "letter": "B",
+            "text": "They operate under severe time constraints, as contractors wait to begin new buildings."
+          },
+          {
+            "letter": "C",
+            "text": "There are not nearly enough archaeological teams to conduct all the possible research."
+          },
+          {
+            "letter": "D",
+            "text": "They are primarily concerned with preserving the artifacts of modes of transportation."
+          },
+          {
+            "letter": "E",
+            "text": "They are opposed to any more new construction in Manege Square."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_supporting_details",
@@ -93,11 +168,26 @@
         "questionNumber": 6,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "how and why a special monument was built" },
-          { "letter": "B", "text": "why a city needs a monument for its skyline" },
-          { "letter": "C", "text": "how monuments serve to inspire mankind" },
-          { "letter": "D", "text": "why people build monuments to their past" },
-          { "letter": "E", "text": "In one day, six thousand visitors can visit the top of the arch." }
+          {
+            "letter": "A",
+            "text": "how and why a special monument was built"
+          },
+          {
+            "letter": "B",
+            "text": "why a city needs a monument for its skyline"
+          },
+          {
+            "letter": "C",
+            "text": "how monuments serve to inspire mankind"
+          },
+          {
+            "letter": "D",
+            "text": "why people build monuments to their past"
+          },
+          {
+            "letter": "E",
+            "text": "In one day, six thousand visitors can visit the top of the arch."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_main_idea",
@@ -110,11 +200,26 @@
         "questionNumber": 7,
         "questionText": "Who chose Saarinen's design for the arch?",
         "answerChoices": [
-          { "letter": "A", "text": "a team of St. Louis architects" },
-          { "letter": "B", "text": "the Jefferson National Expansion Memorial Association" },
-          { "letter": "C", "text": "Eero Saarinen's engineering partners" },
-          { "letter": "D", "text": "the National Park Service" },
-          { "letter": "E", "text": "It was chosen by popular vote." }
+          {
+            "letter": "A",
+            "text": "a team of St. Louis architects"
+          },
+          {
+            "letter": "B",
+            "text": "the Jefferson National Expansion Memorial Association"
+          },
+          {
+            "letter": "C",
+            "text": "Eero Saarinen's engineering partners"
+          },
+          {
+            "letter": "D",
+            "text": "the National Park Service"
+          },
+          {
+            "letter": "E",
+            "text": "It was chosen by popular vote."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_supporting_details",
@@ -127,11 +232,26 @@
         "questionNumber": 8,
         "questionText": "The author compares the arch to the Great Pyramid in Egypt in order to",
         "answerChoices": [
-          { "letter": "A", "text": "show readers that the arch was more difficult to construct." },
-          { "letter": "B", "text": "convince readers that the arch is more beautiful than the Great Pyramid." },
-          { "letter": "C", "text": "make readers aware of how much time it took to build the arch." },
-          { "letter": "D", "text": "prove that modern architects equal those in ancient times." },
-          { "letter": "E", "text": "give readers some idea of the height of the arch." }
+          {
+            "letter": "A",
+            "text": "show readers that the arch was more difficult to construct."
+          },
+          {
+            "letter": "B",
+            "text": "convince readers that the arch is more beautiful than the Great Pyramid."
+          },
+          {
+            "letter": "C",
+            "text": "make readers aware of how much time it took to build the arch."
+          },
+          {
+            "letter": "D",
+            "text": "prove that modern architects equal those in ancient times."
+          },
+          {
+            "letter": "E",
+            "text": "give readers some idea of the height of the arch."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_author_purpose",
@@ -144,11 +264,26 @@
         "questionNumber": 9,
         "questionText": "You can tell that the author probably considers the arch to be",
         "answerChoices": [
-          { "letter": "A", "text": "amusing." },
-          { "letter": "B", "text": "old-fashioned." },
-          { "letter": "C", "text": "impressive." },
-          { "letter": "D", "text": "silly." },
-          { "letter": "E", "text": "terrifying." }
+          {
+            "letter": "A",
+            "text": "amusing."
+          },
+          {
+            "letter": "B",
+            "text": "old-fashioned."
+          },
+          {
+            "letter": "C",
+            "text": "impressive."
+          },
+          {
+            "letter": "D",
+            "text": "silly."
+          },
+          {
+            "letter": "E",
+            "text": "terrifying."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_tone_mood",
@@ -161,11 +296,26 @@
         "questionNumber": 10,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "Thomas is having difficulty writing a song until his growling stomach provides him with a rhythm and a theme." },
-          { "letter": "B", "text": "Hungry and tired, Thomas opens his refrigerator but discovers that he doesn't have any food." },
-          { "letter": "C", "text": "After dinner, Thomas writes two new songs about life on the reservation." },
-          { "letter": "D", "text": "Thomas goes to sleep watching The Sound of Music on television." },
-          { "letter": "E", "text": "Listening to the faint voices that echo all over the reservation, Thomas finds it easy to come up with a new song." }
+          {
+            "letter": "A",
+            "text": "Thomas is having difficulty writing a song until his growling stomach provides him with a rhythm and a theme."
+          },
+          {
+            "letter": "B",
+            "text": "Hungry and tired, Thomas opens his refrigerator but discovers that he doesn't have any food."
+          },
+          {
+            "letter": "C",
+            "text": "After dinner, Thomas writes two new songs about life on the reservation."
+          },
+          {
+            "letter": "D",
+            "text": "Thomas goes to sleep watching The Sound of Music on television."
+          },
+          {
+            "letter": "E",
+            "text": "Listening to the faint voices that echo all over the reservation, Thomas finds it easy to come up with a new song."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_main_idea",
@@ -178,11 +328,26 @@
         "questionNumber": 11,
         "questionText": "Based on the passage, we can conclude that Thomas",
         "answerChoices": [
-          { "letter": "A", "text": "does not take good care of himself." },
-          { "letter": "B", "text": "is poor." },
-          { "letter": "C", "text": "has always wanted to be in a band." },
-          { "letter": "D", "text": "is waiting for someone to help him." },
-          { "letter": "E", "text": "watches too much television." }
+          {
+            "letter": "A",
+            "text": "does not take good care of himself."
+          },
+          {
+            "letter": "B",
+            "text": "is poor."
+          },
+          {
+            "letter": "C",
+            "text": "has always wanted to be in a band."
+          },
+          {
+            "letter": "D",
+            "text": "is waiting for someone to help him."
+          },
+          {
+            "letter": "E",
+            "text": "watches too much television."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_drawing_conclusions",
@@ -195,11 +360,26 @@
         "questionNumber": 12,
         "questionText": "Thomas titles the song \"Reservation Blues.\" Based on this passage, you can expect the song to be about",
         "answerChoices": [
-          { "letter": "A", "text": "the good times he's had on the reservation." },
-          { "letter": "B", "text": "how he and his friends started a band." },
-          { "letter": "C", "text": "fry bread." },
-          { "letter": "D", "text": "the sounds he hears at night on the reservation." },
-          { "letter": "E", "text": "the difficulties of living on a reservation." }
+          {
+            "letter": "A",
+            "text": "the good times he's had on the reservation."
+          },
+          {
+            "letter": "B",
+            "text": "how he and his friends started a band."
+          },
+          {
+            "letter": "C",
+            "text": "fry bread."
+          },
+          {
+            "letter": "D",
+            "text": "the sounds he hears at night on the reservation."
+          },
+          {
+            "letter": "E",
+            "text": "the difficulties of living on a reservation."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_inference",
@@ -212,11 +392,26 @@
         "questionNumber": 13,
         "questionText": "Why does Thomas keep opening and closing the refrigerator?",
         "answerChoices": [
-          { "letter": "A", "text": "He keeps hoping food will magically appear." },
-          { "letter": "B", "text": "He can't believe that the refrigerator is empty." },
-          { "letter": "C", "text": "He is angry and wants the door to break off." },
-          { "letter": "D", "text": "He likes the noise the door makes." },
-          { "letter": "E", "text": "He is bored." }
+          {
+            "letter": "A",
+            "text": "He keeps hoping food will magically appear."
+          },
+          {
+            "letter": "B",
+            "text": "He can't believe that the refrigerator is empty."
+          },
+          {
+            "letter": "C",
+            "text": "He is angry and wants the door to break off."
+          },
+          {
+            "letter": "D",
+            "text": "He likes the noise the door makes."
+          },
+          {
+            "letter": "E",
+            "text": "He is bored."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_inference",
@@ -229,11 +424,26 @@
         "questionNumber": 14,
         "questionText": "The narrator tells us that \"Thomas was hungry on a reservation where there are ninety-seven different ways to say fry bread.\" What is the purpose of this sentence?",
         "answerChoices": [
-          { "letter": "A", "text": "to show us how important fry bread is to the language" },
-          { "letter": "B", "text": "to show us how hungry Thomas was" },
-          { "letter": "C", "text": "to make us want to try fry bread" },
-          { "letter": "D", "text": "to show us the irony of the situation" },
-          { "letter": "E", "text": "to show us how Thomas was inspired" }
+          {
+            "letter": "A",
+            "text": "to show us how important fry bread is to the language"
+          },
+          {
+            "letter": "B",
+            "text": "to show us how hungry Thomas was"
+          },
+          {
+            "letter": "C",
+            "text": "to make us want to try fry bread"
+          },
+          {
+            "letter": "D",
+            "text": "to show us the irony of the situation"
+          },
+          {
+            "letter": "E",
+            "text": "to show us how Thomas was inspired"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_author_purpose",
@@ -246,11 +456,26 @@
         "questionNumber": 15,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "Scientists have strengthened the previously weak alkaline battery." },
-          { "letter": "B", "text": "Battery-driven devices are replacing common household fixtures." },
-          { "letter": "C", "text": "The alkaline battery has affected the development and marketing of portable devices." },
-          { "letter": "D", "text": "This is how alkaline batteries are produced and manufactured." },
-          { "letter": "E", "text": "American homes can reduce the amount of electricity they use." }
+          {
+            "letter": "A",
+            "text": "Scientists have strengthened the previously weak alkaline battery."
+          },
+          {
+            "letter": "B",
+            "text": "Battery-driven devices are replacing common household fixtures."
+          },
+          {
+            "letter": "C",
+            "text": "The alkaline battery has affected the development and marketing of portable devices."
+          },
+          {
+            "letter": "D",
+            "text": "This is how alkaline batteries are produced and manufactured."
+          },
+          {
+            "letter": "E",
+            "text": "American homes can reduce the amount of electricity they use."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_main_idea",
@@ -263,11 +488,26 @@
         "questionNumber": 16,
         "questionText": "As compared with batteries made after 1959, batteries made before 1959",
         "answerChoices": [
-          { "letter": "A", "text": "were weaker and had a shorter life span." },
-          { "letter": "B", "text": "had more power but a shorter life span." },
-          { "letter": "C", "text": "were created for use in household appliances." },
-          { "letter": "D", "text": "were made without cathodes and anodes." },
-          { "letter": "E", "text": "did not use an electrolyte." }
+          {
+            "letter": "A",
+            "text": "were weaker and had a shorter life span."
+          },
+          {
+            "letter": "B",
+            "text": "had more power but a shorter life span."
+          },
+          {
+            "letter": "C",
+            "text": "were created for use in household appliances."
+          },
+          {
+            "letter": "D",
+            "text": "were made without cathodes and anodes."
+          },
+          {
+            "letter": "E",
+            "text": "did not use an electrolyte."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_supporting_details",
@@ -280,11 +520,26 @@
         "questionNumber": 17,
         "questionText": "The passage suggests that alkaline batteries create electricity by",
         "answerChoices": [
-          { "letter": "A", "text": "passing positive and negative electrodes through a zinc electrolyte." },
-          { "letter": "B", "text": "passing electrons between manganese dioxide and carbon." },
-          { "letter": "C", "text": "exchanging the negative cathode with a positive one." },
-          { "letter": "D", "text": "transforming negative electrodes into anodes." },
-          { "letter": "E", "text": "passing electrons between the cathode and the anode." }
+          {
+            "letter": "A",
+            "text": "passing positive and negative electrodes through a zinc electrolyte."
+          },
+          {
+            "letter": "B",
+            "text": "passing electrons between manganese dioxide and carbon."
+          },
+          {
+            "letter": "C",
+            "text": "exchanging the negative cathode with a positive one."
+          },
+          {
+            "letter": "D",
+            "text": "transforming negative electrodes into anodes."
+          },
+          {
+            "letter": "E",
+            "text": "passing electrons between the cathode and the anode."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -297,11 +552,26 @@
         "questionNumber": 18,
         "questionText": "What made researchers in the late 1950s decide that batteries needed to be improved?",
         "answerChoices": [
-          { "letter": "A", "text": "Batteries were weaker and had a shorter life span." },
-          { "letter": "B", "text": "Batteries had more power but a shorter life span." },
-          { "letter": "C", "text": "Batteries were created for use in household appliances." },
-          { "letter": "D", "text": "Batteries were made without cathodes and anodes." },
-          { "letter": "E", "text": "Batteries did not use an electrolyte." }
+          {
+            "letter": "A",
+            "text": "Batteries were weaker and had a shorter life span."
+          },
+          {
+            "letter": "B",
+            "text": "Batteries had more power but a shorter life span."
+          },
+          {
+            "letter": "C",
+            "text": "Batteries were created for use in household appliances."
+          },
+          {
+            "letter": "D",
+            "text": "Batteries were made without cathodes and anodes."
+          },
+          {
+            "letter": "E",
+            "text": "Batteries did not use an electrolyte."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_inference",
@@ -314,11 +584,26 @@
         "questionNumber": 19,
         "questionText": "The last paragraph states that batteries will be smaller and more powerful in the future. This suggests that",
         "answerChoices": [
-          { "letter": "A", "text": "research for improving batteries is currently under way." },
-          { "letter": "B", "text": "batteries will replace electricity as a primary power source." },
-          { "letter": "C", "text": "household appliances will also be smaller." },
-          { "letter": "D", "text": "portable appliances will eventually become obsolete." },
-          { "letter": "E", "text": "batteries will require increased amounts of alkaline." }
+          {
+            "letter": "A",
+            "text": "research for improving batteries is currently under way."
+          },
+          {
+            "letter": "B",
+            "text": "batteries will replace electricity as a primary power source."
+          },
+          {
+            "letter": "C",
+            "text": "household appliances will also be smaller."
+          },
+          {
+            "letter": "D",
+            "text": "portable appliances will eventually become obsolete."
+          },
+          {
+            "letter": "E",
+            "text": "batteries will require increased amounts of alkaline."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_drawing_conclusions",
@@ -331,11 +616,26 @@
         "questionNumber": 20,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "Old friends, Jorge and the narrator are riding to school together as usual." },
-          { "letter": "B", "text": "The narrator expects to become close friends with his neighbor Jorge." },
-          { "letter": "C", "text": "The narrator is annoyed with Jorge's driving and will not ride with him again." },
-          { "letter": "D", "text": "It's clear that the narrator and Jorge take turns driving each other to school." },
-          { "letter": "E", "text": "Jorge is driving the narrator to school, but neither of them is very comfortable." }
+          {
+            "letter": "A",
+            "text": "Old friends, Jorge and the narrator are riding to school together as usual."
+          },
+          {
+            "letter": "B",
+            "text": "The narrator expects to become close friends with his neighbor Jorge."
+          },
+          {
+            "letter": "C",
+            "text": "The narrator is annoyed with Jorge's driving and will not ride with him again."
+          },
+          {
+            "letter": "D",
+            "text": "It's clear that the narrator and Jorge take turns driving each other to school."
+          },
+          {
+            "letter": "E",
+            "text": "Jorge is driving the narrator to school, but neither of them is very comfortable."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_main_idea",
@@ -348,11 +648,26 @@
         "questionNumber": 21,
         "questionText": "What event probably occurred before the beginning of this excerpt?",
         "answerChoices": [
-          { "letter": "A", "text": "Jorge drove the narrator to school for several days." },
-          { "letter": "B", "text": "The narrator's sister recovered from her illness." },
-          { "letter": "C", "text": "Jorge asked whether he has a silly laugh." },
-          { "letter": "D", "text": "The narrator asked Jorge for a ride to school." },
-          { "letter": "E", "text": "The narrator noticed road construction on the way to school." }
+          {
+            "letter": "A",
+            "text": "Jorge drove the narrator to school for several days."
+          },
+          {
+            "letter": "B",
+            "text": "The narrator's sister recovered from her illness."
+          },
+          {
+            "letter": "C",
+            "text": "Jorge asked whether he has a silly laugh."
+          },
+          {
+            "letter": "D",
+            "text": "The narrator asked Jorge for a ride to school."
+          },
+          {
+            "letter": "E",
+            "text": "The narrator noticed road construction on the way to school."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_inference",
@@ -365,11 +680,26 @@
         "questionNumber": 22,
         "questionText": "Why does the narrator lie to Jorge in the opening lines of this excerpt? The narrator",
         "answerChoices": [
-          { "letter": "A", "text": "wants to avoid the awkwardness that would come from telling the truth." },
-          { "letter": "B", "text": "hopes to become close friends with Jorge." },
-          { "letter": "C", "text": "is a compulsive liar who is unable to distinguish between lies and the truth." },
-          { "letter": "D", "text": "plans to tell Jorge the truth about his laugh when they reach the school." },
-          { "letter": "E", "text": "wants to punish Jorge for his poor jokes." }
+          {
+            "letter": "A",
+            "text": "wants to avoid the awkwardness that would come from telling the truth."
+          },
+          {
+            "letter": "B",
+            "text": "hopes to become close friends with Jorge."
+          },
+          {
+            "letter": "C",
+            "text": "is a compulsive liar who is unable to distinguish between lies and the truth."
+          },
+          {
+            "letter": "D",
+            "text": "plans to tell Jorge the truth about his laugh when they reach the school."
+          },
+          {
+            "letter": "E",
+            "text": "wants to punish Jorge for his poor jokes."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_inference",
@@ -382,11 +712,26 @@
         "questionNumber": 23,
         "questionText": "The title of this story is \"Discomfort and Joy.\" What does this title suggest will happen between the narrator and Jorge?",
         "answerChoices": [
-          { "letter": "A", "text": "The tension between them will probably explode into violence." },
-          { "letter": "B", "text": "The tension between them will be resolved, leading to a better relationship between the narrator and Jorge." },
-          { "letter": "C", "text": "The tension between them will continue long after the ride in the car." },
-          { "letter": "D", "text": "The tension between them will increase steadily as the car gets closer to the school." },
-          { "letter": "E", "text": "The tension between them will turn out to have been in the narrator's imagination all the time." }
+          {
+            "letter": "A",
+            "text": "The tension between them will probably explode into violence."
+          },
+          {
+            "letter": "B",
+            "text": "The tension between them will be resolved, leading to a better relationship between the narrator and Jorge."
+          },
+          {
+            "letter": "C",
+            "text": "The tension between them will continue long after the ride in the car."
+          },
+          {
+            "letter": "D",
+            "text": "The tension between them will increase steadily as the car gets closer to the school."
+          },
+          {
+            "letter": "E",
+            "text": "The tension between them will turn out to have been in the narrator's imagination all the time."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_drawing_conclusions",
@@ -399,11 +744,26 @@
         "questionNumber": 24,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "Some animals seem to instinctively display signs of high intelligence." },
-          { "letter": "B", "text": "An amazing parrot can classify materials; classifying is a basic thinking skill." },
-          { "letter": "C", "text": "Chimpanzees have been known to obtain termites to eat by using a complex series of actions." },
-          { "letter": "D", "text": "Some animals can use human language to communicate." },
-          { "letter": "E", "text": "New research shows more signs of intelligence in animals than was previously thought." }
+          {
+            "letter": "A",
+            "text": "Some animals seem to instinctively display signs of high intelligence."
+          },
+          {
+            "letter": "B",
+            "text": "An amazing parrot can classify materials; classifying is a basic thinking skill."
+          },
+          {
+            "letter": "C",
+            "text": "Chimpanzees have been known to obtain termites to eat by using a complex series of actions."
+          },
+          {
+            "letter": "D",
+            "text": "Some animals can use human language to communicate."
+          },
+          {
+            "letter": "E",
+            "text": "New research shows more signs of intelligence in animals than was previously thought."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_main_idea",
@@ -416,11 +776,26 @@
         "questionNumber": 25,
         "questionText": "Crows use sticks to pry peanuts out of cracks. Which of the following is the kind of intelligence or conditioning the situation describes?",
         "answerChoices": [
-          { "letter": "A", "text": "rote learning" },
-          { "letter": "B", "text": "tools" },
-          { "letter": "C", "text": "communication" },
-          { "letter": "D", "text": "instinct" },
-          { "letter": "E", "text": "cueing" }
+          {
+            "letter": "A",
+            "text": "rote learning"
+          },
+          {
+            "letter": "B",
+            "text": "tools"
+          },
+          {
+            "letter": "C",
+            "text": "communication"
+          },
+          {
+            "letter": "D",
+            "text": "instinct"
+          },
+          {
+            "letter": "E",
+            "text": "cueing"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_supporting_details",
@@ -433,11 +808,26 @@
         "questionNumber": 26,
         "questionText": "According to the passage, animal intelligence has been indicated by",
         "answerChoices": [
-          { "letter": "A", "text": "success in the rote conditioning of many animals." },
-          { "letter": "B", "text": "observation of animals in the wild." },
-          { "letter": "C", "text": "observation of animals in zoos." },
-          { "letter": "D", "text": "a new study of instinctive animal behavior." },
-          { "letter": "E", "text": "observation of animals using tools." }
+          {
+            "letter": "A",
+            "text": "success in the rote conditioning of many animals."
+          },
+          {
+            "letter": "B",
+            "text": "observation of animals in the wild."
+          },
+          {
+            "letter": "C",
+            "text": "observation of animals in zoos."
+          },
+          {
+            "letter": "D",
+            "text": "a new study of instinctive animal behavior."
+          },
+          {
+            "letter": "E",
+            "text": "observation of animals using tools."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -450,11 +840,26 @@
         "questionNumber": 27,
         "questionText": "The concluding paragraph of this passage implies which of the following?",
         "answerChoices": [
-          { "letter": "A", "text": "There is no definitive line between those animals with intelligence and those without." },
-          { "letter": "B", "text": "Animals are being given opportunities to display their intelligence." },
-          { "letter": "C", "text": "Research showing higher animal intelligence may fuel debate on ethics and cruelty." },
-          { "letter": "D", "text": "Animals are capable of untrained thought well beyond mere instinct." },
-          { "letter": "E", "text": "Animals are capable of acting intelligently based on instinct." }
+          {
+            "letter": "A",
+            "text": "There is no definitive line between those animals with intelligence and those without."
+          },
+          {
+            "letter": "B",
+            "text": "Animals are being given opportunities to display their intelligence."
+          },
+          {
+            "letter": "C",
+            "text": "Research showing higher animal intelligence may fuel debate on ethics and cruelty."
+          },
+          {
+            "letter": "D",
+            "text": "Animals are capable of untrained thought well beyond mere instinct."
+          },
+          {
+            "letter": "E",
+            "text": "Animals are capable of acting intelligently based on instinct."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_drawing_conclusions",
@@ -467,11 +872,26 @@
         "questionNumber": 28,
         "questionText": "According to the passage, which of the following is true about animals communicating through the use of human language?",
         "answerChoices": [
-          { "letter": "A", "text": "Parrots can imitate or repeat a sound." },
-          { "letter": "B", "text": "Dolphins click and whistle." },
-          { "letter": "C", "text": "Crows screech warnings to other crows." },
-          { "letter": "D", "text": "Chimpanzees and gorillas have been trained to use sign language." },
-          { "letter": "E", "text": "Animals seem to communicate with each other." }
+          {
+            "letter": "A",
+            "text": "Parrots can imitate or repeat a sound."
+          },
+          {
+            "letter": "B",
+            "text": "Dolphins click and whistle."
+          },
+          {
+            "letter": "C",
+            "text": "Crows screech warnings to other crows."
+          },
+          {
+            "letter": "D",
+            "text": "Chimpanzees and gorillas have been trained to use sign language."
+          },
+          {
+            "letter": "E",
+            "text": "Animals seem to communicate with each other."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -484,11 +904,26 @@
         "questionNumber": 29,
         "questionText": "According to the passage, what conclusion can be reached about the chimpanzee's ability to use a tool to get food?",
         "answerChoices": [
-          { "letter": "A", "text": "It illustrates instinct because he is able to get his food and eat it." },
-          { "letter": "B", "text": "It illustrates intelligence because termites are protein-packed." },
-          { "letter": "C", "text": "It illustrates instinct because he faced a difficult task and accomplished it." },
-          { "letter": "D", "text": "It illustrates rote learning because he stored knowledge away and called it up at the right time." },
-          { "letter": "E", "text": "It illustrates high intelligence because it is a complex task that calls upon stored knowledge." }
+          {
+            "letter": "A",
+            "text": "It illustrates instinct because he is able to get his food and eat it."
+          },
+          {
+            "letter": "B",
+            "text": "It illustrates intelligence because termites are protein-packed."
+          },
+          {
+            "letter": "C",
+            "text": "It illustrates instinct because he faced a difficult task and accomplished it."
+          },
+          {
+            "letter": "D",
+            "text": "It illustrates rote learning because he stored knowledge away and called it up at the right time."
+          },
+          {
+            "letter": "E",
+            "text": "It illustrates high intelligence because it is a complex task that calls upon stored knowledge."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_drawing_conclusions",
@@ -501,11 +936,26 @@
         "questionNumber": 30,
         "questionText": "Which of the following is NOT a sign of animal intelligence?",
         "answerChoices": [
-          { "letter": "A", "text": "shows insight" },
-          { "letter": "B", "text": "follows cues" },
-          { "letter": "C", "text": "uses tools" },
-          { "letter": "D", "text": "makes a plan" },
-          { "letter": "E", "text": "classifies objects" }
+          {
+            "letter": "A",
+            "text": "shows insight"
+          },
+          {
+            "letter": "B",
+            "text": "follows cues"
+          },
+          {
+            "letter": "C",
+            "text": "uses tools"
+          },
+          {
+            "letter": "D",
+            "text": "makes a plan"
+          },
+          {
+            "letter": "E",
+            "text": "classifies objects"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_supporting_details",
@@ -518,11 +968,26 @@
         "questionNumber": 31,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "The islands along the coastline of Maine enchant residents and visitors alike. Visitors can receive nature instruction from Arcadia park naturalists." },
-          { "letter": "B", "text": "Only wealthy summer vacationers who have homes in Bar Harbor ever visit Maine's beautiful Mt. Desert Island." },
-          { "letter": "C", "text": "The tops of a former mountain range became islands off the Maine coast." },
-          { "letter": "D", "text": "Marine fossils found on Mt. Desert Island were 225 feet above sea level; that was the level of the shoreline prior to the glacier." },
-          { "letter": "E", "text": "Natural forces formed Maine coastal islands; today's Mt. Desert Island is a beautiful place, popular with residents and tourists." }
+          {
+            "letter": "A",
+            "text": "The islands along the coastline of Maine enchant residents and visitors alike. Visitors can receive nature instruction from Arcadia park naturalists."
+          },
+          {
+            "letter": "B",
+            "text": "Only wealthy summer vacationers who have homes in Bar Harbor ever visit Maine's beautiful Mt. Desert Island."
+          },
+          {
+            "letter": "C",
+            "text": "The tops of a former mountain range became islands off the Maine coast."
+          },
+          {
+            "letter": "D",
+            "text": "Marine fossils found on Mt. Desert Island were 225 feet above sea level; that was the level of the shoreline prior to the glacier."
+          },
+          {
+            "letter": "E",
+            "text": "Natural forces formed Maine coastal islands; today's Mt. Desert Island is a beautiful place, popular with residents and tourists."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_main_idea",
@@ -535,11 +1000,26 @@
         "questionNumber": 32,
         "questionText": "According to the passage, the large number of small islands along the coast of Maine are the result of",
         "answerChoices": [
-          { "letter": "A", "text": "glaciers forcing a mountain range into the sea." },
-          { "letter": "B", "text": "Maine's location between the temperate and sub-Arctic zones." },
-          { "letter": "C", "text": "the irregularity of the Maine coast." },
-          { "letter": "D", "text": "the need for summer communities for wealthy tourists and artists." },
-          { "letter": "E", "text": "the incredibly long coastline." }
+          {
+            "letter": "A",
+            "text": "glaciers forcing a mountain range into the sea."
+          },
+          {
+            "letter": "B",
+            "text": "Maine's location between the temperate and sub-Arctic zones."
+          },
+          {
+            "letter": "C",
+            "text": "the irregularity of the Maine coast."
+          },
+          {
+            "letter": "D",
+            "text": "the need for summer communities for wealthy tourists and artists."
+          },
+          {
+            "letter": "E",
+            "text": "the incredibly long coastline."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_supporting_details",
@@ -552,11 +1032,26 @@
         "questionNumber": 33,
         "questionText": "The content of the fourth paragraph indicates that the writer believes that",
         "answerChoices": [
-          { "letter": "A", "text": "the continued existence of national parks is threatened by budget cuts." },
-          { "letter": "B", "text": "the best way to preserve the environment on Mt. Desert Island is to limit the number of visitors." },
-          { "letter": "C", "text": "national parks allow large numbers of people to visit and learn about interesting wilderness areas." },
-          { "letter": "D", "text": "Mt. Desert Island is the most interesting tourist attraction in Maine." },
-          { "letter": "E", "text": "Mt. Desert Island should be closed to tourists in order to preserve its delicate ecological system." }
+          {
+            "letter": "A",
+            "text": "the continued existence of national parks is threatened by budget cuts."
+          },
+          {
+            "letter": "B",
+            "text": "the best way to preserve the environment on Mt. Desert Island is to limit the number of visitors."
+          },
+          {
+            "letter": "C",
+            "text": "national parks allow large numbers of people to visit and learn about interesting wilderness areas."
+          },
+          {
+            "letter": "D",
+            "text": "Mt. Desert Island is the most interesting tourist attraction in Maine."
+          },
+          {
+            "letter": "E",
+            "text": "Mt. Desert Island should be closed to tourists in order to preserve its delicate ecological system."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_author_purpose",
@@ -569,11 +1064,26 @@
         "questionNumber": 34,
         "questionText": "According to the selection, the coast of Maine is",
         "answerChoices": [
-          { "letter": "A", "text": "2,500 miles long." },
-          { "letter": "B", "text": "3,500 miles long." },
-          { "letter": "C", "text": "225 miles long." },
-          { "letter": "D", "text": "235 miles long." },
-          { "letter": "E", "text": "522 miles long." }
+          {
+            "letter": "A",
+            "text": "2,500 miles long."
+          },
+          {
+            "letter": "B",
+            "text": "3,500 miles long."
+          },
+          {
+            "letter": "C",
+            "text": "225 miles long."
+          },
+          {
+            "letter": "D",
+            "text": "235 miles long."
+          },
+          {
+            "letter": "E",
+            "text": "522 miles long."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_supporting_details",
@@ -586,11 +1096,26 @@
         "questionNumber": 35,
         "questionText": "Which of the following statements best expresses the main idea of the fourth paragraph of the selection?",
         "answerChoices": [
-          { "letter": "A", "text": "The wealthy residents of Mt. Desert Island selfishly kept it to themselves." },
-          { "letter": "B", "text": "Acadia National Park is one of the smallest of the national parks." },
-          { "letter": "C", "text": "On Mt. Desert Island, there is great tension between the year-round residents and the summer tourists." },
-          { "letter": "D", "text": "Due to its location and environment, Mt. Desert Island supports an incredibly diverse animal and plant life." },
-          { "letter": "E", "text": "Many migrating birds rest on the island." }
+          {
+            "letter": "A",
+            "text": "The wealthy residents of Mt. Desert Island selfishly kept it to themselves."
+          },
+          {
+            "letter": "B",
+            "text": "Acadia National Park is one of the smallest of the national parks."
+          },
+          {
+            "letter": "C",
+            "text": "On Mt. Desert Island, there is great tension between the year-round residents and the summer tourists."
+          },
+          {
+            "letter": "D",
+            "text": "Due to its location and environment, Mt. Desert Island supports an incredibly diverse animal and plant life."
+          },
+          {
+            "letter": "E",
+            "text": "Many migrating birds rest on the island."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_main_idea",
@@ -603,11 +1128,26 @@
         "questionNumber": 36,
         "questionText": "The answer to which of the following questions would best tell what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "How did scientists apply what they knew about storms to their research?" },
-          { "letter": "B", "text": "What made scientists choose Goodland, Kansas, as their research base?" },
-          { "letter": "C", "text": "How did the data collected on land compare to that collected in the air?" },
-          { "letter": "D", "text": "What is the difference between a thunderstorm and a lightning storm?" },
-          { "letter": "E", "text": "How did scientists attempt to learn more about severe storm systems?" }
+          {
+            "letter": "A",
+            "text": "How did scientists apply what they knew about storms to their research?"
+          },
+          {
+            "letter": "B",
+            "text": "What made scientists choose Goodland, Kansas, as their research base?"
+          },
+          {
+            "letter": "C",
+            "text": "How did the data collected on land compare to that collected in the air?"
+          },
+          {
+            "letter": "D",
+            "text": "What is the difference between a thunderstorm and a lightning storm?"
+          },
+          {
+            "letter": "E",
+            "text": "How did scientists attempt to learn more about severe storm systems?"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_main_idea",
@@ -620,11 +1160,26 @@
         "questionNumber": 37,
         "questionText": "Which of the following actions did the scientists carry out first?",
         "answerChoices": [
-          { "letter": "A", "text": "They gathered storm data." },
-          { "letter": "B", "text": "They formed a hypothesis." },
-          { "letter": "C", "text": "They drove toward the storm front." },
-          { "letter": "D", "text": "They waited for bad weather." },
-          { "letter": "E", "text": "They measured water particles." }
+          {
+            "letter": "A",
+            "text": "They gathered storm data."
+          },
+          {
+            "letter": "B",
+            "text": "They formed a hypothesis."
+          },
+          {
+            "letter": "C",
+            "text": "They drove toward the storm front."
+          },
+          {
+            "letter": "D",
+            "text": "They waited for bad weather."
+          },
+          {
+            "letter": "E",
+            "text": "They measured water particles."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -637,11 +1192,26 @@
         "questionNumber": 38,
         "questionText": "Which of the following is suggested about the research data collected by the scientists in Kansas?",
         "answerChoices": [
-          { "letter": "A", "text": "The data has explained why some storms dump hail and others do not." },
-          { "letter": "B", "text": "The data was so great that it will take time to sort out properly." },
-          { "letter": "C", "text": "The data has provided clear answers to the scientists' questions." },
-          { "letter": "D", "text": "The data will trigger other research projects at the STEPS laboratories." },
-          { "letter": "E", "text": "The data contradicted what most researchers suspected about super cells." }
+          {
+            "letter": "A",
+            "text": "The data has explained why some storms dump hail and others do not."
+          },
+          {
+            "letter": "B",
+            "text": "The data was so great that it will take time to sort out properly."
+          },
+          {
+            "letter": "C",
+            "text": "The data has provided clear answers to the scientists' questions."
+          },
+          {
+            "letter": "D",
+            "text": "The data will trigger other research projects at the STEPS laboratories."
+          },
+          {
+            "letter": "E",
+            "text": "The data contradicted what most researchers suspected about super cells."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_inference",
@@ -654,11 +1224,26 @@
         "questionNumber": 39,
         "questionText": "The passage states that large, chaotic storm systems can be caused",
         "answerChoices": [
-          { "letter": "A", "text": "by tornadoes." },
-          { "letter": "B", "text": "by large hail and ice." },
-          { "letter": "C", "text": "when water particles make clouds grow too large." },
-          { "letter": "D", "text": "when barometric pressure rises and humidity lowers." },
-          { "letter": "E", "text": "when moist air and hot, dry air clash." }
+          {
+            "letter": "A",
+            "text": "by tornadoes."
+          },
+          {
+            "letter": "B",
+            "text": "by large hail and ice."
+          },
+          {
+            "letter": "C",
+            "text": "when water particles make clouds grow too large."
+          },
+          {
+            "letter": "D",
+            "text": "when barometric pressure rises and humidity lowers."
+          },
+          {
+            "letter": "E",
+            "text": "when moist air and hot, dry air clash."
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_supporting_details",
@@ -671,11 +1256,26 @@
         "questionNumber": 40,
         "questionText": "Some of the scientists rode in a special single-engine plane mainly because they",
         "answerChoices": [
-          { "letter": "A", "text": "wanted to view the storms from another angle." },
-          { "letter": "B", "text": "needed to communicate with the researchers on the ground." },
-          { "letter": "C", "text": "hoped to gather data about the composition of storm clouds." },
-          { "letter": "D", "text": "were the only ones who could operate the special radar station." },
-          { "letter": "E", "text": "hoped to be able to see exactly how hail is formed." }
+          {
+            "letter": "A",
+            "text": "wanted to view the storms from another angle."
+          },
+          {
+            "letter": "B",
+            "text": "needed to communicate with the researchers on the ground."
+          },
+          {
+            "letter": "C",
+            "text": "hoped to gather data about the composition of storm clouds."
+          },
+          {
+            "letter": "D",
+            "text": "were the only ones who could operate the special radar station."
+          },
+          {
+            "letter": "E",
+            "text": "hoped to be able to see exactly how hail is formed."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_inference",
@@ -688,11 +1288,26 @@
         "questionNumber": 41,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "Jane finds the idea of the world beyond Lowood frightening and wonders if she can ever leave." },
-          { "letter": "B", "text": "Looking at the blue mountain peaks, Jane longs to climb them." },
-          { "letter": "C", "text": "Comparing the world of Lowood with what she knows of the outside world, Jane is eager to leave the boarding school." },
-          { "letter": "D", "text": "Jane remembers vacations away from school and decides she will leave." },
-          { "letter": "E", "text": "Jane considers a letter from a friend urging her to leave Lowood." }
+          {
+            "letter": "A",
+            "text": "Jane finds the idea of the world beyond Lowood frightening and wonders if she can ever leave."
+          },
+          {
+            "letter": "B",
+            "text": "Looking at the blue mountain peaks, Jane longs to climb them."
+          },
+          {
+            "letter": "C",
+            "text": "Comparing the world of Lowood with what she knows of the outside world, Jane is eager to leave the boarding school."
+          },
+          {
+            "letter": "D",
+            "text": "Jane remembers vacations away from school and decides she will leave."
+          },
+          {
+            "letter": "E",
+            "text": "Jane considers a letter from a friend urging her to leave Lowood."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_main_idea",
@@ -705,11 +1320,26 @@
         "questionNumber": 42,
         "questionText": "Which of the following best describes life at Lowood?",
         "answerChoices": [
-          { "letter": "A", "text": "very unconventional and modern" },
-          { "letter": "B", "text": "very structured and isolated" },
-          { "letter": "C", "text": "harsh and demeaning" },
-          { "letter": "D", "text": "liberal and carefree" },
-          { "letter": "E", "text": "urban and sophisticated" }
+          {
+            "letter": "A",
+            "text": "very unconventional and modern"
+          },
+          {
+            "letter": "B",
+            "text": "very structured and isolated"
+          },
+          {
+            "letter": "C",
+            "text": "harsh and demeaning"
+          },
+          {
+            "letter": "D",
+            "text": "liberal and carefree"
+          },
+          {
+            "letter": "E",
+            "text": "urban and sophisticated"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_inference",
@@ -722,11 +1352,26 @@
         "questionNumber": 43,
         "questionText": "The narrator",
         "answerChoices": [
-          { "letter": "A", "text": "realizes she wants to experience the world." },
-          { "letter": "B", "text": "decides that she must get married." },
-          { "letter": "C", "text": "realizes she can never leave Lowood." },
-          { "letter": "D", "text": "decides to return to her family." },
-          { "letter": "E", "text": "determines to become a teacher." }
+          {
+            "letter": "A",
+            "text": "realizes she wants to experience the world."
+          },
+          {
+            "letter": "B",
+            "text": "decides that she must get married."
+          },
+          {
+            "letter": "C",
+            "text": "realizes she can never leave Lowood."
+          },
+          {
+            "letter": "D",
+            "text": "decides to return to her family."
+          },
+          {
+            "letter": "E",
+            "text": "determines to become a teacher."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_drawing_conclusions",
@@ -739,11 +1384,26 @@
         "questionNumber": 44,
         "questionText": "Which of the following best describes Jane's nature?",
         "answerChoices": [
-          { "letter": "A", "text": "fearful and angry" },
-          { "letter": "B", "text": "timid and solitary" },
-          { "letter": "C", "text": "dependent on her friends" },
-          { "letter": "D", "text": "steady and sensible" },
-          { "letter": "E", "text": "curious and adventurous" }
+          {
+            "letter": "A",
+            "text": "fearful and angry"
+          },
+          {
+            "letter": "B",
+            "text": "timid and solitary"
+          },
+          {
+            "letter": "C",
+            "text": "dependent on her friends"
+          },
+          {
+            "letter": "D",
+            "text": "steady and sensible"
+          },
+          {
+            "letter": "E",
+            "text": "curious and adventurous"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "rc_tone_mood",
@@ -756,11 +1416,26 @@
         "questionNumber": 45,
         "questionText": "The narrator reduces her prayer from freedom to \"at least a new servitude.\" Judging from the passage, which of these is most likely the reason that she changes her prayer?",
         "answerChoices": [
-          { "letter": "A", "text": "She doesn't believe in prayer." },
-          { "letter": "B", "text": "She is not in a free country." },
-          { "letter": "C", "text": "She has been offered a position as a servant." },
-          { "letter": "D", "text": "She thinks that freedom might be an unrealistic wish." },
-          { "letter": "E", "text": "She has been treated like a slave at Lowood." }
+          {
+            "letter": "A",
+            "text": "She doesn't believe in prayer."
+          },
+          {
+            "letter": "B",
+            "text": "She is not in a free country."
+          },
+          {
+            "letter": "C",
+            "text": "She has been offered a position as a servant."
+          },
+          {
+            "letter": "D",
+            "text": "She thinks that freedom might be an unrealistic wish."
+          },
+          {
+            "letter": "E",
+            "text": "She has been treated like a slave at Lowood."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_inference",
@@ -773,11 +1448,26 @@
         "questionNumber": 46,
         "questionText": "Which of the following best tells what this passage is about?",
         "answerChoices": [
-          { "letter": "A", "text": "a suggestion that there are unknown species of sage grouse" },
-          { "letter": "B", "text": "a comparison and contrast of two species of sage grouse" },
-          { "letter": "C", "text": "a plea to save Colorado's endangered sage grouse" },
-          { "letter": "D", "text": "a theory about sage grouse that has been proven to be true" },
-          { "letter": "E", "text": "a prediction that new sage grouse species will soon be discovered" }
+          {
+            "letter": "A",
+            "text": "a suggestion that there are unknown species of sage grouse"
+          },
+          {
+            "letter": "B",
+            "text": "a comparison and contrast of two species of sage grouse"
+          },
+          {
+            "letter": "C",
+            "text": "a plea to save Colorado's endangered sage grouse"
+          },
+          {
+            "letter": "D",
+            "text": "a theory about sage grouse that has been proven to be true"
+          },
+          {
+            "letter": "E",
+            "text": "a prediction that new sage grouse species will soon be discovered"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_main_idea",
@@ -790,11 +1480,26 @@
         "questionNumber": 47,
         "questionText": "Based on the passage, how are the Gunnison sage grouse and the northern sage grouse alike?",
         "answerChoices": [
-          { "letter": "A", "text": "They have the same coloration." },
-          { "letter": "B", "text": "The two species interbreed." },
-          { "letter": "C", "text": "They are similar in size and weight." },
-          { "letter": "D", "text": "Their populations have been declining." },
-          { "letter": "E", "text": "They have the same strut and the same tail feathers." }
+          {
+            "letter": "A",
+            "text": "They have the same coloration."
+          },
+          {
+            "letter": "B",
+            "text": "The two species interbreed."
+          },
+          {
+            "letter": "C",
+            "text": "They are similar in size and weight."
+          },
+          {
+            "letter": "D",
+            "text": "Their populations have been declining."
+          },
+          {
+            "letter": "E",
+            "text": "They have the same strut and the same tail feathers."
+          }
         ],
         "correctAnswer": "D",
         "skillId": "rc_supporting_details",
@@ -807,11 +1512,26 @@
         "questionNumber": 48,
         "questionText": "The passage suggests that the Gunnison sage grouse has probably existed",
         "answerChoices": [
-          { "letter": "A", "text": "ever since DNA tests demonstrated it was distinct." },
-          { "letter": "B", "text": "as long as any other species of sage grouse." },
-          { "letter": "C", "text": "ever since the end of the nineteenth century." },
-          { "letter": "D", "text": "as long as there has been an endangered species list." },
-          { "letter": "E", "text": "ever since people settled the Gunnison Basin." }
+          {
+            "letter": "A",
+            "text": "ever since DNA tests demonstrated it was distinct."
+          },
+          {
+            "letter": "B",
+            "text": "as long as any other species of sage grouse."
+          },
+          {
+            "letter": "C",
+            "text": "ever since the end of the nineteenth century."
+          },
+          {
+            "letter": "D",
+            "text": "as long as there has been an endangered species list."
+          },
+          {
+            "letter": "E",
+            "text": "ever since people settled the Gunnison Basin."
+          }
         ],
         "correctAnswer": "B",
         "skillId": "rc_inference",
@@ -824,11 +1544,26 @@
         "questionNumber": 49,
         "questionText": "Which of the following proved that the Gunnison sage grouse and the northern sage grouse were different species?",
         "answerChoices": [
-          { "letter": "A", "text": "Taxonomists cited the birds' different sizes." },
-          { "letter": "B", "text": "Dr. Young's studies revealed that the birds had different tail feathers." },
-          { "letter": "C", "text": "DNA testing indicated that the birds were not closely related." },
-          { "letter": "D", "text": "The Gunnison sage grouse was put on the endangered species list." },
-          { "letter": "E", "text": "The birds' populations showed markedly different rates of decline." }
+          {
+            "letter": "A",
+            "text": "Taxonomists cited the birds' different sizes."
+          },
+          {
+            "letter": "B",
+            "text": "Dr. Young's studies revealed that the birds had different tail feathers."
+          },
+          {
+            "letter": "C",
+            "text": "DNA testing indicated that the birds were not closely related."
+          },
+          {
+            "letter": "D",
+            "text": "The Gunnison sage grouse was put on the endangered species list."
+          },
+          {
+            "letter": "E",
+            "text": "The birds' populations showed markedly different rates of decline."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "rc_evidence_reasoning",
@@ -841,11 +1576,26 @@
         "questionNumber": 50,
         "questionText": "The discussion of Dr. Young's research suggests that",
         "answerChoices": [
-          { "letter": "A", "text": "mating only occurs within, and not among, sage grouse species." },
-          { "letter": "B", "text": "female sage grouse do not recognize male mating calls." },
-          { "letter": "C", "text": "sage grouse mating habits explain why the species are endangered." },
-          { "letter": "D", "text": "Gunnison sage grouse have a mating call but northern sage grouse do not." },
-          { "letter": "E", "text": "DNA has little or nothing to do with species' mating habits." }
+          {
+            "letter": "A",
+            "text": "mating only occurs within, and not among, sage grouse species."
+          },
+          {
+            "letter": "B",
+            "text": "female sage grouse do not recognize male mating calls."
+          },
+          {
+            "letter": "C",
+            "text": "sage grouse mating habits explain why the species are endangered."
+          },
+          {
+            "letter": "D",
+            "text": "Gunnison sage grouse have a mating call but northern sage grouse do not."
+          },
+          {
+            "letter": "E",
+            "text": "DNA has little or nothing to do with species' mating habits."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "rc_drawing_conclusions",
@@ -860,11 +1610,26 @@
         "questionNumber": 51,
         "questionText": "The crown in the figure is made up of toothpicks that each have the same length. If each toothpick is 6 centimeters long, the base of the crown uses two toothpicks, and the three points use one toothpick on each side, what is the perimeter of the crown in centimeters?",
         "answerChoices": [
-          { "letter": "A", "text": "7" },
-          { "letter": "B", "text": "12" },
-          { "letter": "C", "text": "36" },
-          { "letter": "D", "text": "42" },
-          { "letter": "E", "text": "48" }
+          {
+            "letter": "A",
+            "text": "7"
+          },
+          {
+            "letter": "B",
+            "text": "12"
+          },
+          {
+            "letter": "C",
+            "text": "36"
+          },
+          {
+            "letter": "D",
+            "text": "42"
+          },
+          {
+            "letter": "E",
+            "text": "48"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_area_perimeter_volume",
@@ -877,11 +1642,26 @@
         "questionNumber": 52,
         "questionText": "Gary has a collection of 16 different movies, and his roommate Parth has a collection of 18 different movies. If Parth and Gary have 4 movies common to both collections, how many different movies do they have between them?",
         "answerChoices": [
-          { "letter": "A", "text": "18" },
-          { "letter": "B", "text": "30" },
-          { "letter": "C", "text": "34" },
-          { "letter": "D", "text": "36" },
-          { "letter": "E", "text": "38" }
+          {
+            "letter": "A",
+            "text": "18"
+          },
+          {
+            "letter": "B",
+            "text": "30"
+          },
+          {
+            "letter": "C",
+            "text": "34"
+          },
+          {
+            "letter": "D",
+            "text": "36"
+          },
+          {
+            "letter": "E",
+            "text": "38"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "mqr_logical_reasoning",
@@ -894,11 +1674,26 @@
         "questionNumber": 53,
         "questionText": "If (1/9)G = 18, then (1/3)G =",
         "answerChoices": [
-          { "letter": "A", "text": "1" },
-          { "letter": "B", "text": "9" },
-          { "letter": "C", "text": "36" },
-          { "letter": "D", "text": "54" },
-          { "letter": "E", "text": "162" }
+          {
+            "letter": "A",
+            "text": "1"
+          },
+          {
+            "letter": "B",
+            "text": "9"
+          },
+          {
+            "letter": "C",
+            "text": "36"
+          },
+          {
+            "letter": "D",
+            "text": "54"
+          },
+          {
+            "letter": "E",
+            "text": "162"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "ma_algebraic_expressions",
@@ -911,11 +1706,26 @@
         "questionNumber": 54,
         "questionText": "A model sailboat is floating on the water and attached to the dock using a 1 meter long string, as shown in the figure. If the string is tied to a post on the edge of the side of the dock, which of the following best shows the area of water on which the sailboat can float?",
         "answerChoices": [
-          { "letter": "A", "text": "(image A)" },
-          { "letter": "B", "text": "(image B)" },
-          { "letter": "C", "text": "(image C)" },
-          { "letter": "D", "text": "(image D)" },
-          { "letter": "E", "text": "(image E)" }
+          {
+            "letter": "A",
+            "text": "(image A)"
+          },
+          {
+            "letter": "B",
+            "text": "(image B)"
+          },
+          {
+            "letter": "C",
+            "text": "(image C)"
+          },
+          {
+            "letter": "D",
+            "text": "(image D)"
+          },
+          {
+            "letter": "E",
+            "text": "(image E)"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "ma_area_perimeter_volume",
@@ -928,11 +1738,26 @@
         "questionNumber": 55,
         "questionText": "At a party, there are exactly 4 times as many adults as children. Which of the following could be the total number of people at this party?",
         "answerChoices": [
-          { "letter": "A", "text": "14" },
-          { "letter": "B", "text": "16" },
-          { "letter": "C", "text": "21" },
-          { "letter": "D", "text": "25" },
-          { "letter": "E", "text": "29" }
+          {
+            "letter": "A",
+            "text": "14"
+          },
+          {
+            "letter": "B",
+            "text": "16"
+          },
+          {
+            "letter": "C",
+            "text": "21"
+          },
+          {
+            "letter": "D",
+            "text": "25"
+          },
+          {
+            "letter": "E",
+            "text": "29"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "mqr_number_sense",
@@ -945,11 +1770,26 @@
         "questionNumber": 56,
         "questionText": "Using a pair of scissors, which of the following CANNOT be made from a 20 cm by 28 cm rectangular sheet of paper by one straight cut?",
         "answerChoices": [
-          { "letter": "A", "text": "triangle" },
-          { "letter": "B", "text": "square" },
-          { "letter": "C", "text": "trapezoid" },
-          { "letter": "D", "text": "pentagon" },
-          { "letter": "E", "text": "hexagon" }
+          {
+            "letter": "A",
+            "text": "triangle"
+          },
+          {
+            "letter": "B",
+            "text": "square"
+          },
+          {
+            "letter": "C",
+            "text": "trapezoid"
+          },
+          {
+            "letter": "D",
+            "text": "pentagon"
+          },
+          {
+            "letter": "E",
+            "text": "hexagon"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "mqr_logical_reasoning",
@@ -962,11 +1802,26 @@
         "questionNumber": 57,
         "questionText": "According to the graph, what was the average number of students taking the swimming class during the four months of March through June?",
         "answerChoices": [
-          { "letter": "A", "text": "50" },
-          { "letter": "B", "text": "55" },
-          { "letter": "C", "text": "60" },
-          { "letter": "D", "text": "65" },
-          { "letter": "E", "text": "70" }
+          {
+            "letter": "A",
+            "text": "50"
+          },
+          {
+            "letter": "B",
+            "text": "55"
+          },
+          {
+            "letter": "C",
+            "text": "60"
+          },
+          {
+            "letter": "D",
+            "text": "65"
+          },
+          {
+            "letter": "E",
+            "text": "70"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "ma_data_interpretation",
@@ -977,13 +1832,28 @@
       {
         "id": "hunter_tg_4_m_08",
         "questionNumber": 58,
-        "questionText": "Questions 58-59 are based on the following definition. For all real numbers n and r, n \u2663 r = (n - 1) - n/r. What is the value of 4 \u2663 2?",
+        "questionText": "Questions 58-59 are based on the following definition. For all real numbers n and r, n ♣ r = (n - 1) - n/r. What is the value of 4 ♣ 2?",
         "answerChoices": [
-          { "letter": "A", "text": "1" },
-          { "letter": "B", "text": "2" },
-          { "letter": "C", "text": "6" },
-          { "letter": "D", "text": "8" },
-          { "letter": "E", "text": "16" }
+          {
+            "letter": "A",
+            "text": "1"
+          },
+          {
+            "letter": "B",
+            "text": "2"
+          },
+          {
+            "letter": "C",
+            "text": "6"
+          },
+          {
+            "letter": "D",
+            "text": "8"
+          },
+          {
+            "letter": "E",
+            "text": "16"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_algebraic_expressions",
@@ -994,13 +1864,28 @@
       {
         "id": "hunter_tg_4_m_09",
         "questionNumber": 59,
-        "questionText": "Using the definition n \u2663 r = (n - 1) - n/r: If Q \u2663 2 = 4, then Q =",
+        "questionText": "Using the definition n ♣ r = (n - 1) - n/r: If Q ♣ 2 = 4, then Q =",
         "answerChoices": [
-          { "letter": "A", "text": "10" },
-          { "letter": "B", "text": "8" },
-          { "letter": "C", "text": "6" },
-          { "letter": "D", "text": "4" },
-          { "letter": "E", "text": "2" }
+          {
+            "letter": "A",
+            "text": "10"
+          },
+          {
+            "letter": "B",
+            "text": "8"
+          },
+          {
+            "letter": "C",
+            "text": "6"
+          },
+          {
+            "letter": "D",
+            "text": "4"
+          },
+          {
+            "letter": "E",
+            "text": "2"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_algebraic_expressions",
@@ -1013,11 +1898,26 @@
         "questionNumber": 60,
         "questionText": "If Henry traveled at a rate of 45 miles per hour, how many hours did it take him to drive 225 miles?",
         "answerChoices": [
-          { "letter": "A", "text": "3" },
-          { "letter": "B", "text": "4" },
-          { "letter": "C", "text": "4 1/2" },
-          { "letter": "D", "text": "5" },
-          { "letter": "E", "text": "5 1/2" }
+          {
+            "letter": "A",
+            "text": "3"
+          },
+          {
+            "letter": "B",
+            "text": "4"
+          },
+          {
+            "letter": "C",
+            "text": "4 1/2"
+          },
+          {
+            "letter": "D",
+            "text": "5"
+          },
+          {
+            "letter": "E",
+            "text": "5 1/2"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "mqr_word_problem_translation",
@@ -1030,11 +1930,26 @@
         "questionNumber": 61,
         "questionText": "Raoul wants to leave a 20 percent tip for a dinner that costs $20.95. Which of the following is closest to the amount of tip he should leave?",
         "answerChoices": [
-          { "letter": "A", "text": "$2.10" },
-          { "letter": "B", "text": "$3.15" },
-          { "letter": "C", "text": "$4.20" },
-          { "letter": "D", "text": "$4.50" },
-          { "letter": "E", "text": "$25.45" }
+          {
+            "letter": "A",
+            "text": "$2.10"
+          },
+          {
+            "letter": "B",
+            "text": "$3.15"
+          },
+          {
+            "letter": "C",
+            "text": "$4.20"
+          },
+          {
+            "letter": "D",
+            "text": "$4.50"
+          },
+          {
+            "letter": "E",
+            "text": "$25.45"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_percent_problems",
@@ -1047,11 +1962,26 @@
         "questionNumber": 62,
         "questionText": "Juan studied from 4:00 p.m. to 6:00 p.m. and finished one-third of his assignments. He is taking a break and wants to finish his homework by 10:30 p.m. If he plans to continue working at the same rate, what is the latest that he can return to his studies?",
         "answerChoices": [
-          { "letter": "A", "text": "6:30 p.m." },
-          { "letter": "B", "text": "7:00 p.m." },
-          { "letter": "C", "text": "7:30 p.m." },
-          { "letter": "D", "text": "8:00 p.m." },
-          { "letter": "E", "text": "8:30 p.m." }
+          {
+            "letter": "A",
+            "text": "6:30 p.m."
+          },
+          {
+            "letter": "B",
+            "text": "7:00 p.m."
+          },
+          {
+            "letter": "C",
+            "text": "7:30 p.m."
+          },
+          {
+            "letter": "D",
+            "text": "8:00 p.m."
+          },
+          {
+            "letter": "E",
+            "text": "8:30 p.m."
+          }
         ],
         "correctAnswer": "A",
         "skillId": "mqr_word_problem_translation",
@@ -1064,11 +1994,26 @@
         "questionNumber": 63,
         "questionText": "Mrs. Brown and her c children each ate four strawberries. What is the total number of strawberries they ate?",
         "answerChoices": [
-          { "letter": "A", "text": "c + 1" },
-          { "letter": "B", "text": "c + 4" },
-          { "letter": "C", "text": "4c" },
-          { "letter": "D", "text": "4c + 1" },
-          { "letter": "E", "text": "4c + 4" }
+          {
+            "letter": "A",
+            "text": "c + 1"
+          },
+          {
+            "letter": "B",
+            "text": "c + 4"
+          },
+          {
+            "letter": "C",
+            "text": "4c"
+          },
+          {
+            "letter": "D",
+            "text": "4c + 1"
+          },
+          {
+            "letter": "E",
+            "text": "4c + 4"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_algebraic_expressions",
@@ -1081,11 +2026,26 @@
         "questionNumber": 64,
         "questionText": "1 1/6 + 2/3 + 2 3/4 =",
         "answerChoices": [
-          { "letter": "A", "text": "4.17" },
-          { "letter": "B", "text": "4.25" },
-          { "letter": "C", "text": "4.33" },
-          { "letter": "D", "text": "4.50" },
-          { "letter": "E", "text": "4.75" }
+          {
+            "letter": "A",
+            "text": "4.17"
+          },
+          {
+            "letter": "B",
+            "text": "4.25"
+          },
+          {
+            "letter": "C",
+            "text": "4.33"
+          },
+          {
+            "letter": "D",
+            "text": "4.50"
+          },
+          {
+            "letter": "E",
+            "text": "4.75"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_fraction_decimal_ops",
@@ -1098,11 +2058,26 @@
         "questionNumber": 65,
         "questionText": "Which figure can be drawn WITHOUT lifting the pencil or retracing?",
         "answerChoices": [
-          { "letter": "A", "text": "(triangle figure)" },
-          { "letter": "B", "text": "(rectangle with diagonal figure)" },
-          { "letter": "C", "text": "(square with X figure)" },
-          { "letter": "D", "text": "(diamond figure)" },
-          { "letter": "E", "text": "(circle with line figure)" }
+          {
+            "letter": "A",
+            "text": "(triangle figure)"
+          },
+          {
+            "letter": "B",
+            "text": "(rectangle with diagonal figure)"
+          },
+          {
+            "letter": "C",
+            "text": "(square with X figure)"
+          },
+          {
+            "letter": "D",
+            "text": "(diamond figure)"
+          },
+          {
+            "letter": "E",
+            "text": "(circle with line figure)"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "mqr_logical_reasoning",
@@ -1115,11 +2090,26 @@
         "questionNumber": 66,
         "questionText": "If 0.59 is about N/5, then N is closest to which of the following?",
         "answerChoices": [
-          { "letter": "A", "text": "0.3" },
-          { "letter": "B", "text": "1" },
-          { "letter": "C", "text": "2" },
-          { "letter": "D", "text": "3" },
-          { "letter": "E", "text": "30" }
+          {
+            "letter": "A",
+            "text": "0.3"
+          },
+          {
+            "letter": "B",
+            "text": "1"
+          },
+          {
+            "letter": "C",
+            "text": "2"
+          },
+          {
+            "letter": "D",
+            "text": "3"
+          },
+          {
+            "letter": "E",
+            "text": "30"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "mqr_estimation",
@@ -1132,11 +2122,26 @@
         "questionNumber": 67,
         "questionText": "If the largest of seven consecutive integers is 25, what is the average of the seven integers?",
         "answerChoices": [
-          { "letter": "A", "text": "24" },
-          { "letter": "B", "text": "22" },
-          { "letter": "C", "text": "21" },
-          { "letter": "D", "text": "20" },
-          { "letter": "E", "text": "16" }
+          {
+            "letter": "A",
+            "text": "24"
+          },
+          {
+            "letter": "B",
+            "text": "22"
+          },
+          {
+            "letter": "C",
+            "text": "21"
+          },
+          {
+            "letter": "D",
+            "text": "20"
+          },
+          {
+            "letter": "E",
+            "text": "16"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "mqr_number_sense",
@@ -1149,11 +2154,26 @@
         "questionNumber": 68,
         "questionText": "The price of a bag of pretzels increased from $0.93 to $1.08. The increase in price is closest to what percent?",
         "answerChoices": [
-          { "letter": "A", "text": "1%" },
-          { "letter": "B", "text": "14%" },
-          { "letter": "C", "text": "15%" },
-          { "letter": "D", "text": "16%" },
-          { "letter": "E", "text": "20%" }
+          {
+            "letter": "A",
+            "text": "1%"
+          },
+          {
+            "letter": "B",
+            "text": "14%"
+          },
+          {
+            "letter": "C",
+            "text": "15%"
+          },
+          {
+            "letter": "D",
+            "text": "16%"
+          },
+          {
+            "letter": "E",
+            "text": "20%"
+          }
         ],
         "correctAnswer": "D",
         "skillId": "ma_percent_problems",
@@ -1166,11 +2186,26 @@
         "questionNumber": 69,
         "questionText": "The result of 7,236 divided by 89.2 is closest to which of the following?",
         "answerChoices": [
-          { "letter": "A", "text": "8" },
-          { "letter": "B", "text": "9" },
-          { "letter": "C", "text": "80" },
-          { "letter": "D", "text": "90" },
-          { "letter": "E", "text": "800" }
+          {
+            "letter": "A",
+            "text": "8"
+          },
+          {
+            "letter": "B",
+            "text": "9"
+          },
+          {
+            "letter": "C",
+            "text": "80"
+          },
+          {
+            "letter": "D",
+            "text": "90"
+          },
+          {
+            "letter": "E",
+            "text": "800"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "mqr_estimation",
@@ -1183,11 +2218,26 @@
         "questionNumber": 70,
         "questionText": "What is the least number of square tiles with side 6 cm needed to cover a rectangular floor 72 cm long and 48 cm wide?",
         "answerChoices": [
-          { "letter": "A", "text": "14" },
-          { "letter": "B", "text": "72" },
-          { "letter": "C", "text": "96" },
-          { "letter": "D", "text": "144" },
-          { "letter": "E", "text": "192" }
+          {
+            "letter": "A",
+            "text": "14"
+          },
+          {
+            "letter": "B",
+            "text": "72"
+          },
+          {
+            "letter": "C",
+            "text": "96"
+          },
+          {
+            "letter": "D",
+            "text": "144"
+          },
+          {
+            "letter": "E",
+            "text": "192"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_area_perimeter_volume",
@@ -1200,11 +2250,26 @@
         "questionNumber": 71,
         "questionText": "It takes Amari 5 minutes to type p pages. At this rate, how many minutes will it take him to type 20 pages?",
         "answerChoices": [
-          { "letter": "A", "text": "p/100" },
-          { "letter": "B", "text": "4/p" },
-          { "letter": "C", "text": "100/p" },
-          { "letter": "D", "text": "4p" },
-          { "letter": "E", "text": "100p" }
+          {
+            "letter": "A",
+            "text": "p/100"
+          },
+          {
+            "letter": "B",
+            "text": "4/p"
+          },
+          {
+            "letter": "C",
+            "text": "100/p"
+          },
+          {
+            "letter": "D",
+            "text": "4p"
+          },
+          {
+            "letter": "E",
+            "text": "100p"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_algebraic_expressions",
@@ -1217,11 +2282,26 @@
         "questionNumber": 72,
         "questionText": "The width of a rectangular swimming pool is one-quarter of its length. If the length is 60 meters, what is the perimeter of the pool?",
         "answerChoices": [
-          { "letter": "A", "text": "60 m" },
-          { "letter": "B", "text": "120 m" },
-          { "letter": "C", "text": "150 m" },
-          { "letter": "D", "text": "180 m" },
-          { "letter": "E", "text": "240 m" }
+          {
+            "letter": "A",
+            "text": "60 m"
+          },
+          {
+            "letter": "B",
+            "text": "120 m"
+          },
+          {
+            "letter": "C",
+            "text": "150 m"
+          },
+          {
+            "letter": "D",
+            "text": "180 m"
+          },
+          {
+            "letter": "E",
+            "text": "240 m"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "ma_area_perimeter_volume",
@@ -1234,11 +2314,26 @@
         "questionNumber": 73,
         "questionText": "The price of a dress at a clothing store decreases by 20 percent every month it is not sold. After 3 months, the current price of the unsold dress is approximately what percent of the original price?",
         "answerChoices": [
-          { "letter": "A", "text": "40%" },
-          { "letter": "B", "text": "50%" },
-          { "letter": "C", "text": "60%" },
-          { "letter": "D", "text": "70%" },
-          { "letter": "E", "text": "80%" }
+          {
+            "letter": "A",
+            "text": "40%"
+          },
+          {
+            "letter": "B",
+            "text": "50%"
+          },
+          {
+            "letter": "C",
+            "text": "60%"
+          },
+          {
+            "letter": "D",
+            "text": "70%"
+          },
+          {
+            "letter": "E",
+            "text": "80%"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "ma_percent_problems",
@@ -1251,11 +2346,26 @@
         "questionNumber": 74,
         "questionText": "If p is a positive integer and n is a negative integer, which of the following is greatest?",
         "answerChoices": [
-          { "letter": "A", "text": "p/n" },
-          { "letter": "B", "text": "n/p" },
-          { "letter": "C", "text": "1/(p - n)" },
-          { "letter": "D", "text": "1/(n - p)" },
-          { "letter": "E", "text": "It cannot be determined from the information given." }
+          {
+            "letter": "A",
+            "text": "p/n"
+          },
+          {
+            "letter": "B",
+            "text": "n/p"
+          },
+          {
+            "letter": "C",
+            "text": "1/(p - n)"
+          },
+          {
+            "letter": "D",
+            "text": "1/(n - p)"
+          },
+          {
+            "letter": "E",
+            "text": "It cannot be determined from the information given."
+          }
         ],
         "correctAnswer": "C",
         "skillId": "mqr_number_sense",
@@ -1268,11 +2378,26 @@
         "questionNumber": 75,
         "questionText": "At a party, 2/3 of the guests drank only soda and 1/4 of the guests drank only juice. If the remaining 5 guests had nothing to drink, then how many guests were at the party?",
         "answerChoices": [
-          { "letter": "A", "text": "60" },
-          { "letter": "B", "text": "50" },
-          { "letter": "C", "text": "45" },
-          { "letter": "D", "text": "30" },
-          { "letter": "E", "text": "25" }
+          {
+            "letter": "A",
+            "text": "60"
+          },
+          {
+            "letter": "B",
+            "text": "50"
+          },
+          {
+            "letter": "C",
+            "text": "45"
+          },
+          {
+            "letter": "D",
+            "text": "30"
+          },
+          {
+            "letter": "E",
+            "text": "25"
+          }
         ],
         "correctAnswer": "A",
         "skillId": "ma_fraction_decimal_ops",
@@ -1285,11 +2410,26 @@
         "questionNumber": 76,
         "questionText": "What is the greatest prime number less than 40?",
         "answerChoices": [
-          { "letter": "A", "text": "31" },
-          { "letter": "B", "text": "37" },
-          { "letter": "C", "text": "38" },
-          { "letter": "D", "text": "39" },
-          { "letter": "E", "text": "41" }
+          {
+            "letter": "A",
+            "text": "31"
+          },
+          {
+            "letter": "B",
+            "text": "37"
+          },
+          {
+            "letter": "C",
+            "text": "38"
+          },
+          {
+            "letter": "D",
+            "text": "39"
+          },
+          {
+            "letter": "E",
+            "text": "41"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "mqr_number_sense",
@@ -1302,11 +2442,26 @@
         "questionNumber": 77,
         "questionText": "If 3(0.4 + 0.07) is equal to 6 times a number, what is the number?",
         "answerChoices": [
-          { "letter": "A", "text": "0.0235" },
-          { "letter": "B", "text": "0.235" },
-          { "letter": "C", "text": "2.35" },
-          { "letter": "D", "text": "14.1" },
-          { "letter": "E", "text": "1.41" }
+          {
+            "letter": "A",
+            "text": "0.0235"
+          },
+          {
+            "letter": "B",
+            "text": "0.235"
+          },
+          {
+            "letter": "C",
+            "text": "2.35"
+          },
+          {
+            "letter": "D",
+            "text": "14.1"
+          },
+          {
+            "letter": "E",
+            "text": "1.41"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "ma_fraction_decimal_ops",
@@ -1319,11 +2474,26 @@
         "questionNumber": 78,
         "questionText": "What is the least integer greater than 27/4?",
         "answerChoices": [
-          { "letter": "A", "text": "5" },
-          { "letter": "B", "text": "6" },
-          { "letter": "C", "text": "7" },
-          { "letter": "D", "text": "8" },
-          { "letter": "E", "text": "9" }
+          {
+            "letter": "A",
+            "text": "5"
+          },
+          {
+            "letter": "B",
+            "text": "6"
+          },
+          {
+            "letter": "C",
+            "text": "7"
+          },
+          {
+            "letter": "D",
+            "text": "8"
+          },
+          {
+            "letter": "E",
+            "text": "9"
+          }
         ],
         "correctAnswer": "C",
         "skillId": "mqr_number_sense",
@@ -1336,11 +2506,26 @@
         "questionNumber": 79,
         "questionText": "What is the value of the following expression? (7/2 - 1/4) / (2/3 - 1/4)",
         "answerChoices": [
-          { "letter": "A", "text": "5/36" },
-          { "letter": "B", "text": "65/48" },
-          { "letter": "C", "text": "3" },
-          { "letter": "D", "text": "21/4" },
-          { "letter": "E", "text": "39/5" }
+          {
+            "letter": "A",
+            "text": "5/36"
+          },
+          {
+            "letter": "B",
+            "text": "65/48"
+          },
+          {
+            "letter": "C",
+            "text": "3"
+          },
+          {
+            "letter": "D",
+            "text": "21/4"
+          },
+          {
+            "letter": "E",
+            "text": "39/5"
+          }
         ],
         "correctAnswer": "E",
         "skillId": "ma_fraction_decimal_ops",
@@ -1353,11 +2538,26 @@
         "questionNumber": 80,
         "questionText": "Linda needs to read 14 pages for her History class, 26 pages for English, 12 pages for Civics, and 28 pages for Biology. She has read 1/6 of the entire number of pages. How many pages has she read?",
         "answerChoices": [
-          { "letter": "A", "text": "80 pages" },
-          { "letter": "B", "text": "13 1/3 pages" },
-          { "letter": "C", "text": "48 1/2 pages" },
-          { "letter": "D", "text": "17 pages" },
-          { "letter": "E", "text": "21 pages" }
+          {
+            "letter": "A",
+            "text": "80 pages"
+          },
+          {
+            "letter": "B",
+            "text": "13 1/3 pages"
+          },
+          {
+            "letter": "C",
+            "text": "48 1/2 pages"
+          },
+          {
+            "letter": "D",
+            "text": "17 pages"
+          },
+          {
+            "letter": "E",
+            "text": "21 pages"
+          }
         ],
         "correctAnswer": "B",
         "skillId": "ma_fraction_decimal_ops",
@@ -1371,5 +2571,127 @@
     "totalQuestions": 80,
     "source": "Hunter TG Practice Form 4",
     "excludedCount": 4
-  }
+  },
+  "passages": [
+    {
+      "id": "tg4_p1",
+      "title": "Moscow's Architectural Preservation",
+      "text": "In 1997, the city of Moscow, capital of the newly independent nation of Russia, celebrated the 850th anniversary of its founding. In the more than eight centuries that Moscow has existed, it has been characterized by waves of new construction, the most recent one continuing into the present. Its architecture represents a hodgepodge of styles, as twelfth-century forms mingle with elegant estates from the times of the czars and functional structures that reflect the pragmatism of the Soviet era. As Moscow grows under a new system of government, there is concern that some of the city's architectural history will be lost.\n\nRussia has begun an enormous attempt to salvage and preserve as much of Moscow's past as possible. Realizing that, unless precautions are taken, new construction could destroy valuable historical structures and artifacts, the Department of Preservation of Historical Monuments is ensuring that this work is done in a manner that respects the past. Five thousand buildings have been designated as protected locations.\n\nMoscow has a history of chaotic periods that ended with the destruction of the largely wooden city and the building of the \"new\" city on top of the rubble of the old. The result is a layered city, with each tier holding information about a part of Russia's past. In some areas, archaeologists have reached the layer from 1147, the year of Moscow's founding. Among the findings from the various periods of Moscow's history are carved bones, metal tools, pottery, glass, jewelry, and crosses.\n\nOne example of the work done by the Department of Preservation is Manege Square. Throughout Moscow's past, this square has been a commercial district. In keeping with that history, the area will be developed as a modern shopping mall, complete with restaurants, theaters, and a parking garage. Before construction could begin, however, the site was excavated and a wealth of Russian history was uncovered.\n\nArchaeologists working in Manege Square uncovered the commercial life of eight centuries and with it a profusion of historical artifacts. By excavating five meters deep, archaeologists were able to reconstruct the evolution of commercial Moscow. Among the finds are wooden street pavement from the time of Ivan the Terrible (sixteenth century), a wide cobblestone road from the era of Peter the Great (early eighteenth century), street paving from the reign of Catherine the Great (mid to late eighteenth century), and a wealthy merchant's estate (nineteenth century). The citizens of the present are determined that history will not repeat itself, and that the past will be uncovered and celebrated rather than shrouded and forgotten.",
+      "questionNumbers": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "tg4_p2",
+      "title": "The Gateway Arch",
+      "text": "The skyline of St. Louis, Missouri, is fairly unremarkable, with one huge exception: the Gateway Arch that stands on the banks of the Mississippi as part of the Jefferson National Expansion Memorial. The arch is an amazing structure built to honor St. Louis's role as the gateway to the West.\n\nIn 1947, a group of interested citizens known as the Jefferson National Expansion Memorial Association held a nationwide competition to select a design for a new monument that would celebrate the growth of the United States. Other U.S. monuments are spires, statues, or imposing buildings, but the winner of this contest was a plan for a completely different type of structure. The man who submitted the winning design, Eero Saarinen, later became a famous architect. In designing the arch, Saarinen wanted to \"create a monument which would have lasting significance and would be a landmark of our time.\"\n\nThe Gateway Arch is a masterpiece of engineering, a monument even taller than the Great Pyramid in Egypt. In its own way, the arch is at least as majestic as the Great Pyramid. The shape of the Gateway Arch is that of an inverted catenary curve, the same shape that a heavy chain will form if it is suspended between two points. The arch is covered with a sleek skin of stainless steel that often reflects dazzling bursts of sunlight. In a beautiful display of symmetry, the height of the arch is the same as the distance between the legs at ground level. The legs of the arch are equilateral triangles that decrease gracefully as the height increases. Inside the arch, there are structural reinforcements and a complex tram system to take visitors to the top.\n\nConstruction of the arch on the St. Louis waterfront finally began in February 1964. First, excavators dug 60 feet into the ground to lay the foundations for the arch. Then, using derricks, cranes, and other equipment, each section of the arch was hoisted into place and carefully welded together. Although the project was very dangerous, no one was killed during the construction. When the arch was finished in October 1965, more than 5,000 tons of steel and 38,000 tons of concrete had been used in the structure. The overall cost of the project was $13 million.\n\nToday, the arch stands high over the surrounding community, an architectural masterpiece and a beautiful tribute to the explorers and pioneers who passed through St. Louis on their journeys westward. It is administered by the National Park Service and staffed with park rangers. In a single day, 6,400 visitors can travel to the top of the arch by means of the special tram system that operates inside the structure. Although the windows at the top are small because of structural pressures, the view is magnificent. On a clear day, people can see the horizon 30 miles away or gaze at closer landmarks from a unique perspective.",
+      "questionNumbers": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "tg4_p3",
+      "title": "Reservation Blues",
+      "text": "[Thomas Builds-the-Fire is a Spokane Indian living on the Spokane Indian Reservation.]\n\nSo Thomas went home and tried to write his first song. He sat alone in his house with his bass guitar and waited for the song. He waited and waited. It's nearly impossible to write a song with a bass guitar, but Thomas didn't know that. He'd never written a song before.\n\nBut the song would not come, so Thomas closed his eyes, tried to find a story with a soundtrack. He turned on the television and watched The Sound of Music on channel four. Julie Andrews put him to sleep for the sixty-seventh time, and neither story nor song came in his dreams. After he woke up, he paced around the room, stood on his porch, and listened to those faint voices that echoed all over the reservation. Everybody heard those voices, but nobody liked to talk about them. They were loudest at night, when Thomas tried to sleep, and he always thought they sounded like horses.\n\n\"Please,\" Thomas prayed.\n\nFor hours, Thomas waited for the song. Then, hungry and tired, he opened his refrigerator for something to eat and discovered that he didn't have any food. So he closed the fridge and opened it again, but it was still empty. In a ceremony that he had practiced since his youth, he opened, closed, and opened the fridge again, expecting an immaculate conception of a jar of pickles. Thomas was hungry on a reservation where there are ninety-seven different ways to say fry bread....\n\nAs his growling stomach provided the rhythm, Thomas sat again with his bass guitar, wrote the first song, and called it \"Reservation Blues.\"\n\n-Sherman Alexie, from Reservation Blues (1995)",
+      "questionNumbers": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "tg4_p4",
+      "title": "The Alkaline Battery",
+      "text": "Consider the lowly alkaline battery. Compared to laptop computers, camcorders, and cell phones, this ordinary battery doesn't seem very important. But without it, none of these portable modern conveniences would be possible.\n\nAlthough batteries have been available to the public since the turn of the twentieth century, until 1959 they were weak and provided only enough energy to power a dimly lit flashlight for a very short time. It was the invention of the alkaline battery that opened the door to the invention of laptop computers, calculators, and portable CD players not to mention the portable computer games that we take for granted today.\n\nIn the 1950s, there was a boom in the invention and marketing of household conveniences. During that decade, refrigerators, washers and dryers, and television sets-all designed to make life easier-became common fixtures in American homes. However, all those new inventions had to be plugged into the wall, which limited their use. Researchers decided it was time to improve the battery and allow for the development of portable appliances, such as the transistor radio.\n\nAll batteries work essentially the same way. Each has a cathode, or positive electrode, and an anode, or negative electrode. These are placed in a material known as an electrolyte that passes electrons between the cathode and the anode. This action is what creates electricity. However, as the electrons pass from the anode to the cathode, the capacity of the battery decreases and eventually the battery dies.\n\nThe alkaline battery changed all that. By using alkaline for the electrolyte, a cathode made of manganese dioxide and carbon, and an anode made of zinc, scientists developed a battery with more power and longer life. It wasn't until batteries had the capabilities of the alkaline battery that a whole array of portable devices could be marketed. Today, most homes contain about 18 different devices that use batteries. Research suggests that, in the future, batteries will be even more powerful but much smaller. A battery as small as the one in a wristwatch will have enough power to run a cell phone.",
+      "questionNumbers": [
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "tg4_p5",
+      "title": "Discomfort and Joy",
+      "text": "He laughs and asks, \"Do I have a silly laugh?\"\n\n\"No,\" I say, \"no.\" But he does. Jorge does have a silly laugh. Faw faw fawwww. Faw faw fawwww. With squeaks. You'd actually get up and change seats in a movie theater if you were sitting behind somebody who had this laugh, because how could you watch the movie with that going on?\n\n\"People have told me I have a silly laugh.\"\n\n\"No, you don't have a silly laugh.\" The next means \"No, you shouldn't listen to your friends.\" Another means \"No, I wouldn't say that since, after all, you're doing me a favor by driving me to school.\" I could lie more explicitly, but the words just come out \"no, no, no.\"\n\n\"Oh no,\" I say, \"no.\" My words are specific, chosen. Each no is its own precise lie. One means\n\n\"I'm glad your sister got sick,\" he says, and wham!\n\n... After a moment of embarrassed silence, Jorge realizes what he has just said and nervously offers an explanation.\n\n\"I mean, I'm not glad she got sick. When I said I was glad she got sick, I didn't mean it. What I meant was that I'm glad she couldn't drive you to school. I mean, I'm not glad she couldn't, but I'm glad that I get to, you know? Because I've been wanting to meet you ever since you moved in.\"\n\nThe silence in the car becomes thicker as we slow to a halt. Outside the window, a worker is redirecting traffic onto the shoulder while a construction crew prepares to dig up a big chunk of the highway. Inside the car, Jorge works to fill the silence with more hot air.\n\nI nod. I should say something like \"yes, me too,\" or \"I've wanted to get to know you too, Jorge,\" but those lies catch in my throat.\n\n\"I mean, we are neighbors now, so we should know more about each other, right? Good neighbors make good fences,\" Jorge says and laughs again. Faw faw fawwww.\n\n-Eric Reade, \"Discomfort and Joy\"",
+      "questionNumbers": [
+        20,
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "id": "tg4_p6",
+      "title": "Animal Intelligence",
+      "text": "New research suggests that animals have a much higher level of brainpower than previously thought. But even if animals do have real intelligence, how can scientists measure it?\n\nScientists believe that insight, the ability to use tools, and communication using human language are all effective measures of the mental ability of animals.\n\nBefore defining animals' intelligence, scientists defined what is not intelligence. Instinct is not intelligence. It is a skill programmed into an animal's brain by its genetic heritage. Rote conditioning is also not intelligence. Tricks can be learned by repetition, but no real thinking is involved. Cuing, in which animals learn to do or not to do certain things by following outside signals, does not demonstrate intelligence.\n\nWhen judging animal intelligence, scientists look for insight, which they define as a flash of sudden understanding. When a young female gorilla could not reach fruit from a tree, she noticed crates scattered about the lawn near the tree. She piled the crates into a pyramid, then climbed on them to reach her reward. The gorilla's insight allowed her to solve a new problem without trial and error.\n\nThe ability to use tools is also an important sign of intelligence. Crows use sticks to pry peanuts out of cracks. A crow exhibits intelligence by showing it has learned what a stick can do. Likewise, otters use rocks to crack open crab shells in order to get at the meat. Chimpanzees have been known to use sticks and stalks in a series of complex moves to get at a favorite snack-termites.\n\nTo make and use a termite tool, a chimp first selects just the right stalk or twig. The animal trims and shapes the stick, then finds the entrance to a termite mound. While inserting the stick carefully into the entrance, the chimpanzee turns it skillfully to fit the inner tunnels. Then the chimp attracts the insects by shaking the twig. Careful not to scrape off any termites, the chimp pulls the tool out. Finally, the chimp uses its own lips to skim the termites into its mouth.\n\nAn amazing parrot can distinguish five objects of two different types. He can understand the difference between the number, color, and kind of object. The ability to classify is a basic thinking skill. The parrot also seems to use language to express his needs and emotions. When ill and taken to the animal hospital for his first overnight stay, this parrot turned to go. \"Come here!\" he cried to a scientist who works with him. \"I love you. I'm sorry. Wanna go back?\"\n\nMany animals have learned to communicate using human language. Some primates have learned hundreds of words in sign language. One chimpanzee can recognize and correctly use more than 250 abstract symbols on a keyboard. These symbols represent human words.\n\nThe research on animal intelligence raises important questions. If animals are smarter than once thought, would that change the way humans interact with them? Would humans stop hunting them for sport or survival? Would animals still be used for food, clothing, or medical experimentation? Finding the answer to these tough questions makes a difficult puzzle even for a large-brained, problem-solving species like our own.",
+      "questionNumbers": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    {
+      "id": "tg4_p7",
+      "title": "Maine's Drowned Coastline",
+      "text": "The coast of the state of Maine is one of the most irregular in the world. A straight line running from the southernmost coastal city to the northernmost coastal city would measure about 225 miles. If you followed the coastline between these points, you would travel more than ten times as far. This irregularity is the result of what is called a drowned coastline. The term comes from the glacial activity of the ice age. At that time, the whole area that is now Maine was part of a mountain range that towered above the sea. As the glacier descended, however, it expended enormous force on those mountains, and they sank into the sea.\n\nAs the mountains sank, ocean water charged over the lowest parts of the remaining land, forming a series of twisting inlets and lagoons of contorted grottos and nooks. The highest parts of the former mountain range, nearest the shore, remained as islands. Mt. Desert Island is one of the most famous of all the islands left behind by the glacier. Marine fossils found here were 225 feet above sea level, indicating the level of the shoreline prior to the glacier.\n\nThe 2,500-mile-long rocky and jagged coastline of Maine keeps watch over nearly two thousand islands. Many of these islands are tiny and uninhabited, but many are home to thriving communities. Mt. Desert Island is one of the largest, most beautiful of the Maine coast islands. Measuring 16 miles by 12 miles, Mt. Desert was essentially formed as two distinct islands. It is split almost in half by Somes Sound, a deep and narrow stretch of water, seven miles long.\n\nFor years, Mt. Desert Island, particularly its major settlement, Bar Harbor, afforded summer homes for the wealthy. Recently, though, Bar Harbor has become a burgeoning arts community as well. But, the best part of the island is the unspoiled forest land known as Acadia National Park. Because the island sits on the boundary line between the temperate and sub-Arctic zones, the island supports the flora and fauna of both zones as well as beach, inland, and alpine plants. It also lies in a major bird migration lane and is a resting spot for many birds. The establishment of Acadia National Park in 1916 means that this natural reserve will be perpetually available to all people, not just the wealthy. Visitors to Acadia may receive nature instruction from the park naturalists as well as enjoy camping, hiking, cycling, and boating. Or they may choose to spend time at the archeological museum, learning about the Stone Age inhabitants of the island.\n\nThe best view on Mt. Desert Island is from the top of Cadillac Mountain. This mountain rises 1,532 feet, making it the highest mountain on the Atlantic seaboard. From the summit, you can gaze back toward the mainland or out over the Atlantic Ocean and contemplate the beauty created by a retreating glacier.",
+      "questionNumbers": [
+        31,
+        32,
+        33,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "tg4_p8",
+      "title": "Severe Thunderstorm Study",
+      "text": "For eight weeks last summer, scientists from several universities and government weather laboratories conducted the Severe Thunderstorm Electrification and Precipitation Study (STEPS). They set up shop in Goodland, Kansas, home to some of the most violent thunderstorms in the United States. In this area, moist air from the Gulf of Mexico meets hot, dry air from the southwest, resulting in storms so huge that they can last for days as they move east across the country.\n\nThe scientists working in Goodland were trying to learn as much as they could about these chaotic storm systems. They already knew that the combination of strong winds, large amounts of moisture, and significant differences in temperatures could produce thunderheads with vortices of circulating air, known as super cells. They also knew that super cells could produce violent weather, including tornadoes. What the scientists did not know, however, was why some super cells produce heavy rain, lightning, and tornadoes, while others produce large hail that can ruin a wheat crop or damage a roof. The scientists suspected that the physical properties of storm clouds would give the reason for such differences.\n\nTo study the storm clouds, the researchers in Goodland met each morning and studied weather data, hoping for bad weather. Their cars, complete with roof-mounted weather instruments, were ready. Whenever a storm approached, a crew of scientists drove toward the storm front and began collecting data on winds, temperature, barometric pressure, and humidity. During the storm, they also calculated the time and place of every lightning strike.\n\nAt the same time that the scientists on the ground were gathering their data, researchers in the air were operating a special radar station that would help them measure the shape and size of the water particles inside the clouds. These scientists rode in a single-engine plane specifically designed to fly through severe weather systems. While the pilot guided the plane through heavy wind, lightning, hail, and ice, the scientists on board gathered their storm data.\n\nResearchers admit that it will take years for them to understand all the data they have collected. Their hope is that by comparing the conditions on the ground with the conditions in the air, it may be possible to learn much more about how lightning is generated, why some storms dump hail the size of baseballs, and why others produce devastating floods and tornadoes.",
+      "questionNumbers": [
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    {
+      "id": "tg4_p9",
+      "title": "Jane Eyre's Longing",
+      "text": "[In this excerpt, Jane Eyre decides to leave Lowood, the boarding school where she has lived for eight years.]\n\nMy world had for some years been in Lowood: my experience had been of its rules and systems; now I remembered that the real world was wide, and that a varied field of hopes and fears, of sensations and excitements, awaited those who had courage to go forth into its expanse, to seek real knowledge of life amidst its perils.\n\nI went to my window, opened it, and looked out. There were the two wings of the building; there was the garden; there were the skirts of Lowood; there was the hilly horizon. My eye passed all other objects to rest on those most remote, the blue peaks: it was those I longed to surmount; all within their boundary of rock and heath seemed a prison-ground, exile limits. I traced the white road winding round the base of one mountain, and vanishing in a gorge between two: how I longed to follow it further! I recalled the time when I had traveled that very road in a coach; I remembered descending that hill at twilight: an age seemed to have elapsed since the day which brought me first to Lowood, and I had never quitted it since. My vacations had all been spent at school: Mrs. Reed had never sent for me to Gateshead; neither she nor any of her family had ever been to visit me. I had had no communication by letter or message with the outer world: school-rules, school-duties, school-habits and notions, and voices, and faces, and phrases, and costumes, and preferences, and antipathies: such was what I knew of existence.\n\nAnd now I felt that it was not enough: I tired of the routine of eight years in one afternoon. I desired liberty; for liberty I gasped; for liberty I uttered a prayer; it seemed scattered on the wind then faintly blowing. I abandoned it and framed a humbler supplication; for change, stimulus: that petition, too, seemed swept off into vague space: \"Then,\" I cried, half desperate, \"grant me at least a new servitude!\"\n\n-Charlotte Bronte, from Jane Eyre (1847)",
+      "questionNumbers": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ]
+    },
+    {
+      "id": "tg4_p10",
+      "title": "Gunnison Sage Grouse",
+      "text": "Although the Gunnison sage grouse-a bird that was named for the area of Colorado where it is most plentiful-has been around at least as long as the northern sage grouse, it has only recently received recognition as a new species. Bird taxonomists had assumed that the Gunnison sage grouse and the northern sage grouse were the same species, even though the two are very different in size and behavior. Recent DNA testing, however, demonstrated that the birds are too distantly related to be the same species.\n\nEven before the DNA tests, there were clues that the Gunnison was not related to the northern sage grouse. For one thing, the two species do not interbreed. In fact, when one scientist, Dr. Jessica Young, played a recording of the mating calls of the male Gunnison sage grouse, the female northern sage grouse immediately left the area. The same thing happened when Dr. Young played northern sage grouse sounds to the female Gunnison sage grouse.\n\nThe two species are also very different in appearance. The Gunnison sage grouse is smaller than the northern sage and has different coloration. For example, the Gunnison has a white band on its tail feathers that the northern sage grouse does not have. The two are also very different in behavior. Gunnison males have a different kind of strut and like to throw their elaborate neck feathers over their heads and wag their tail feathers in a visible display.\n\nThe Gunnison sage grouse will now be added to the American Ornithological Union's official catalog of bird species. Officials at the Union believe it is the first time a new species has been added since the end of the nineteenth century, and bird-watchers are anxious to make trips to Colorado's Gunnison Basin, hoping to view the new species.\n\nUnfortunately, just as the Gunnison sage grouse is receiving recognition as a distinct species, it may be time to add it to the endangered species list. Environmental groups are worried about the bird's survival and have petitioned the U.S. Fish and Wildlife Service for an emergency listing. Experts estimate that the northern sage grouse population has declined by 90% or more-from about 1 million birds down to about 100,000. Environmentalists believe the situation of the Gunnison sage grouse is even worse.",
+      "questionNumbers": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    }
+  ]
 }

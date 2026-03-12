@@ -14,6 +14,13 @@ export interface SampleTestQuestion {
   readonly excludeReason?: string | null;
 }
 
+export interface SampleTestPassage {
+  readonly id: string;
+  readonly title: string;
+  readonly text: string;
+  readonly questionNumbers: readonly number[];
+}
+
 export interface SampleTestForm {
   readonly id: string;
   readonly title: string;
@@ -21,6 +28,7 @@ export interface SampleTestForm {
     readonly verbal: readonly SampleTestQuestion[];
     readonly math: readonly SampleTestQuestion[];
   };
+  readonly passages: readonly SampleTestPassage[];
   readonly metadata: {
     readonly totalQuestions: number;
     readonly source: string;
@@ -82,32 +90,47 @@ function toExamQuestion(q: SampleTestQuestion): ExamQuestion {
 }
 
 /**
- * Group verbal reading-comprehension questions (Q1-30ish, passage-based)
- * into ExamPassageBlock format. Standalone questions (vocab/logic/grammar)
- * become blocks with empty passage text.
+ * Group verbal questions into ExamPassageBlocks using passage data.
+ * Each passage becomes a block with its questions grouped together.
  */
 function groupVerbalIntoBlocks(
-  questions: readonly SampleTestQuestion[]
+  questions: readonly SampleTestQuestion[],
+  passages: readonly SampleTestPassage[]
 ): ExamPassageBlock[] {
-  // For sample tests, we don't have separate passage text — the questions
-  // themselves are self-contained (the passage context is embedded in the
-  // question text for reading comp, or standalone for vocab/grammar).
-  // Group them in chunks of ~5-6 to mirror the passage-block UI.
   const active = questions.filter((q) => !q.excluded);
   const blocks: ExamPassageBlock[] = [];
-  const CHUNK_SIZE = 6;
 
-  for (let i = 0; i < active.length; i += CHUNK_SIZE) {
-    const chunk = active.slice(i, i + CHUNK_SIZE);
-    const blockIndex = Math.floor(i / CHUNK_SIZE) + 1;
+  for (const passage of passages) {
+    const nums = new Set(passage.questionNumbers);
+    const pQuestions = active.filter((q) => nums.has(q.questionNumber));
+    if (pQuestions.length === 0) continue;
+
     blocks.push({
-      passageId: `sample_verbal_block_${blockIndex}`,
-      title: `Questions ${chunk[0].questionNumber}–${chunk[chunk.length - 1].questionNumber}`,
+      passageId: passage.id,
+      title: passage.title,
       preReadingContext: "Hunter College Entrance Exam — Verbal Section",
-      passageText: "",
-      wordCount: 0,
-      questions: chunk.map(toExamQuestion),
+      passageText: passage.text,
+      wordCount: passage.text.split(/\s+/).filter(Boolean).length,
+      questions: pQuestions.map(toExamQuestion),
     });
+  }
+
+  // Any questions not assigned to a passage get grouped as standalone
+  const assignedNums = new Set(passages.flatMap((p) => [...p.questionNumbers]));
+  const unassigned = active.filter((q) => !assignedNums.has(q.questionNumber));
+  if (unassigned.length > 0) {
+    const CHUNK_SIZE = 6;
+    for (let i = 0; i < unassigned.length; i += CHUNK_SIZE) {
+      const chunk = unassigned.slice(i, i + CHUNK_SIZE);
+      blocks.push({
+        passageId: `sample_standalone_${blocks.length + 1}`,
+        title: `Questions ${chunk[0].questionNumber}–${chunk[chunk.length - 1].questionNumber}`,
+        preReadingContext: "Hunter College Entrance Exam — Verbal Section",
+        passageText: "",
+        wordCount: 0,
+        questions: chunk.map(toExamQuestion),
+      });
+    }
   }
 
   return blocks;
@@ -120,7 +143,7 @@ export function assembleSampleExam(formId: string): SimulationExam | null {
   const form = loadSampleTestForm(formId);
   if (!form) return null;
 
-  const readingBlocks = groupVerbalIntoBlocks(form.sections.verbal);
+  const readingBlocks = groupVerbalIntoBlocks(form.sections.verbal, form.passages ?? []);
   const mathQuestions = form.sections.math
     .filter((q) => !q.excluded)
     .map(toExamQuestion);
