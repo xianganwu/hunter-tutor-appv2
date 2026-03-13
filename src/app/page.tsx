@@ -196,7 +196,7 @@ export default function ProfilePicker() {
           Hunter Tutor
         </h1>
         <p className="mb-1 text-sm font-medium text-brand-600 dark:text-brand-400">
-          Build Your Path to Hunter High School
+          Build Your Path to Any School You Want
         </p>
         <p className="mb-8 text-lg text-surface-500 dark:text-surface-400">
           {mode === "login"
