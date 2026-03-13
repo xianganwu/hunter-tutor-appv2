@@ -3,6 +3,7 @@ import type { MistakeEntry } from "@/lib/mistakes";
 import type { StoredTeachingMoment } from "@/lib/teaching-moments";
 import type { StaminaProgress } from "@/lib/reading-stamina";
 import type { StoredSimulation, SectionScore, ScoreReport } from "@/lib/simulation";
+import type { DrillResult, DrillAttempt } from "@/lib/drill";
 
 // ─── Mocks ───────────────────────────────────────────────────────────
 
@@ -20,6 +21,9 @@ vi.mock("@/lib/reading-stamina", () => ({
 vi.mock("@/lib/simulation", () => ({
   loadSimulationHistory: vi.fn(() => []),
 }));
+vi.mock("@/lib/drill", () => ({
+  loadDrillHistory: vi.fn(() => []),
+}));
 vi.mock("@/lib/exam/curriculum", () => ({
   getSkillIdsForDomain: vi.fn(() => []),
   getSkillById: vi.fn((id: string) => ({ name: id })),
@@ -30,6 +34,7 @@ import { loadMistakes } from "@/lib/mistakes";
 import { loadTeachingMoments } from "@/lib/teaching-moments";
 import { loadStaminaProgress } from "@/lib/reading-stamina";
 import { loadSimulationHistory } from "@/lib/simulation";
+import { loadDrillHistory } from "@/lib/drill";
 import { getSkillIdsForDomain } from "@/lib/exam/curriculum";
 
 // ─── Helpers ──────────────────────────────────────────────────────────
@@ -133,6 +138,37 @@ function makeSimulation(
   };
 }
 
+function makeDrillAttempt(
+  overrides: Partial<DrillAttempt> = {}
+): DrillAttempt {
+  return {
+    questionText: "What is 5 + 3?",
+    studentAnswer: "7",
+    correctAnswer: "8",
+    isCorrect: false,
+    timeSpentMs: 3000,
+    ...overrides,
+  };
+}
+
+function makeDrillResult(
+  overrides: Partial<DrillResult> = {}
+): DrillResult {
+  return {
+    id: `drill_${Math.random().toString(36).slice(2, 6)}`,
+    skillId: "math_addition",
+    skillName: "Addition",
+    durationSeconds: 60,
+    attempts: [makeDrillAttempt()],
+    totalCorrect: 0,
+    totalQuestions: 1,
+    accuracy: 0,
+    questionsPerMinute: 1,
+    completedAt: new Date().toISOString(),
+    ...overrides,
+  };
+}
+
 // ─── Tests ────────────────────────────────────────────────────────────
 
 beforeEach(() => {
@@ -144,6 +180,7 @@ beforeEach(() => {
     completedPassageIds: [],
   });
   vi.mocked(loadSimulationHistory).mockReturnValue([]);
+  vi.mocked(loadDrillHistory).mockReturnValue([]);
   vi.mocked(getSkillIdsForDomain).mockReturnValue([]);
 });
 
@@ -423,7 +460,7 @@ describe("aggregateParentData", () => {
     expect(data.mistakePatterns.length).toBeLessThanOrEqual(8);
   });
 
-  it("does not expose individual wrong answers", () => {
+  it("includes missed questions in missedQuestionsByWeek", () => {
     vi.mocked(loadMistakes).mockReturnValue([
       makeMistake({ questionText: "Secret question" }),
     ]);
@@ -431,10 +468,13 @@ describe("aggregateParentData", () => {
     const data = aggregateParentData();
     const serialized = JSON.stringify(data);
 
-    // Should not contain individual question details
-    expect(serialized).not.toContain("Secret question");
-    expect(serialized).not.toContain("studentAnswer");
-    expect(serialized).not.toContain("correctAnswer");
+    // Missed questions are now intentionally exposed via missedQuestionsByWeek
+    expect(serialized).toContain("Secret question");
+    expect(data.missedQuestionsByWeek.length).toBeGreaterThan(0);
+    expect(data.missedQuestionsByWeek[0].questions[0].questionText).toBe(
+      "Secret question"
+    );
+    expect(data.missedQuestionsByWeek[0].questions[0].source).toBe("tutoring");
   });
 
   it("does not count old data in weekly minutes", () => {
@@ -477,6 +517,119 @@ describe("aggregateParentData", () => {
     );
     expect(teachEntry).toBeTruthy();
     expect(teachEntry?.type).toBe("tutoring");
+  });
+
+  it("returns empty missedQuestionsByWeek with no data", () => {
+    const data = aggregateParentData();
+    expect(data.missedQuestionsByWeek).toEqual([]);
+  });
+
+  it("groups missed questions by week, newest first", () => {
+    const thisWeek = new Date();
+    const lastWeek = new Date(Date.now() - 7 * 86400000);
+    const twoWeeksAgo = new Date(Date.now() - 14 * 86400000);
+
+    vi.mocked(loadMistakes).mockReturnValue([
+      makeMistake({
+        id: "m1",
+        questionText: "Q this week",
+        createdAt: thisWeek.toISOString(),
+      }),
+      makeMistake({
+        id: "m2",
+        questionText: "Q last week",
+        createdAt: lastWeek.toISOString(),
+      }),
+      makeMistake({
+        id: "m3",
+        questionText: "Q two weeks ago",
+        createdAt: twoWeeksAgo.toISOString(),
+      }),
+    ]);
+
+    const data = aggregateParentData();
+
+    // Should have 2-3 week groups depending on date boundaries
+    expect(data.missedQuestionsByWeek.length).toBeGreaterThanOrEqual(2);
+
+    // Newest week first
+    for (let i = 1; i < data.missedQuestionsByWeek.length; i++) {
+      const prev = new Date(data.missedQuestionsByWeek[i - 1].weekStartISO).getTime();
+      const curr = new Date(data.missedQuestionsByWeek[i].weekStartISO).getTime();
+      expect(prev).toBeGreaterThan(curr);
+    }
+  });
+
+  it("includes only incorrect drill attempts in missedQuestionsByWeek", () => {
+    vi.mocked(loadDrillHistory).mockReturnValue([
+      makeDrillResult({
+        id: "drill_1",
+        attempts: [
+          makeDrillAttempt({
+            questionText: "Wrong answer Q",
+            isCorrect: false,
+          }),
+          makeDrillAttempt({
+            questionText: "Right answer Q",
+            isCorrect: true,
+            studentAnswer: "8",
+            correctAnswer: "8",
+          }),
+          makeDrillAttempt({
+            questionText: "Another wrong Q",
+            isCorrect: false,
+          }),
+        ],
+      }),
+    ]);
+
+    const data = aggregateParentData();
+    const allQuestions = data.missedQuestionsByWeek.flatMap((w) => w.questions);
+
+    expect(allQuestions).toHaveLength(2);
+    expect(allQuestions.every((q) => q.source === "drill")).toBe(true);
+    expect(allQuestions.map((q) => q.questionText)).toContain("Wrong answer Q");
+    expect(allQuestions.map((q) => q.questionText)).toContain("Another wrong Q");
+    expect(allQuestions.map((q) => q.questionText)).not.toContain("Right answer Q");
+  });
+
+  it("includes simulation missed questions when present", () => {
+    vi.mocked(loadSimulationHistory).mockReturnValue([
+      makeSimulation({
+        completedAt: new Date().toISOString(),
+        report: makeScoreReport({
+          missedQuestions: [
+            {
+              questionId: "q1",
+              questionText: "What is the main idea of passage 3?",
+              studentAnswer: "A",
+              correctAnswer: "C",
+              skillId: "rc_main_idea",
+              skillName: "Main Idea",
+              section: "reading" as const,
+            },
+            {
+              questionId: "q2",
+              questionText: "Solve: $3x + 5 = 20$",
+              studentAnswer: "B",
+              correctAnswer: "D",
+              skillId: "ma_algebra",
+              skillName: "Algebra",
+              section: "ma" as const,
+            },
+          ],
+        }),
+      }),
+    ]);
+
+    const data = aggregateParentData();
+    const allQuestions = data.missedQuestionsByWeek.flatMap((w) => w.questions);
+
+    const examQuestions = allQuestions.filter((q) => q.source === "practice-exam");
+    expect(examQuestions).toHaveLength(2);
+    expect(examQuestions[0].skillName).toBe("Main Idea");
+    expect(examQuestions[1].skillName).toBe("Algebra");
+    expect(examQuestions.every((q) => q.diagnosis === null)).toBe(true);
   });
 
   it("uses simulation mastery for domain readiness when available", () => {

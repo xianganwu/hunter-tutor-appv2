@@ -6,6 +6,7 @@ import { WeeklyReport } from "./WeeklyReport";
 import { TypingIndicator } from "@/components/chat/TypingIndicator";
 import { aggregateParentData } from "@/lib/parent-data";
 import type { ParentData, DomainReadiness, SessionLogEntry } from "@/lib/parent-data";
+import { MissedQuestionsByWeek } from "./MissedQuestionsByWeek";
 import { computeWeeklyDigest, type WeeklyDigest } from "@/lib/weekly-digest";
 
 // ─── Main Component ───────────────────────────────────────────────────
@@ -391,10 +392,15 @@ function Dashboard() {
         <SessionLog entries={data.sessionLog} />
       </section>
 
+      {/* Missed Questions by Week */}
+      {data.missedQuestionsByWeek.length > 0 && (
+        <MissedQuestionsByWeek weeks={data.missedQuestionsByWeek} />
+      )}
+
       {/* Privacy note */}
       <p className="text-xs text-surface-400 text-center pb-4">
-        Individual questions and answers are not shown to preserve your
-        child&apos;s sense of safety with the tutor.
+        Missed questions are shown to help you support your child&apos;s
+        learning. We recommend using these to encourage and guide, not to test.
       </p>
       </>}
     </div>
