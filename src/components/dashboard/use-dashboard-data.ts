@@ -173,7 +173,7 @@ export function useDashboardData(): DashboardData {
   const [data, setData] = useState<DashboardData>({
     skillStates: [],
     domainProgress: [],
-    streakData: { currentStreak: 0, longestStreak: 0, practicedDates: [], frozenDates: [], freezesRemaining: FREEZES_PER_WEEK, freezesPerWeek: FREEZES_PER_WEEK },
+    streakData: { currentStreak: 0, longestStreak: 0, practicedDates: [] },
     weeklySummary: {
       skillsImproved: [],
       totalMinutesPracticed: 0,
@@ -265,12 +265,13 @@ export function useDashboardData(): DashboardData {
       saveStreakFreezes(freezeData);
     }
 
-    const freezesRemaining = FREEZES_PER_WEEK - freezeData.freezesUsedThisWeek;
     const { currentStreak, longestStreak } = computeStreaks(sortedDates, freezeData.frozenDates);
     const fourteenDaysAgo = new Date(Date.now() - 14 * MS_PER_DAY)
       .toISOString()
       .split("T")[0];
-    const recentDates = sortedDates.filter((d) => d >= fourteenDaysAgo);
+    // Merge frozen dates into practiced dates so they display as normal practice days
+    const recentFrozen = freezeData.frozenDates.filter((d) => d >= fourteenDaysAgo);
+    const recentDates = [...new Set([...sortedDates.filter((d) => d >= fourteenDaysAgo), ...recentFrozen])].sort();
 
     // Weekly summary
     const oneWeekAgo = new Date(Date.now() - 7 * MS_PER_DAY)
@@ -342,9 +343,6 @@ export function useDashboardData(): DashboardData {
         currentStreak,
         longestStreak,
         practicedDates: recentDates,
-        frozenDates: freezeData.frozenDates.filter((d) => d >= fourteenDaysAgo),
-        freezesRemaining,
-        freezesPerWeek: FREEZES_PER_WEEK,
       },
       weeklySummary: {
         skillsImproved: [],

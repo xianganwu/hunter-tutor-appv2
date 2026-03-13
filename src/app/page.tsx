@@ -18,9 +18,9 @@ import {
   syncProgressToServer,
   type MascotType,
 } from "@/lib/auth-client";
-import { Mascot } from "@/components/shared/Mascot";
-
 type Mode = "login" | "signup" | "reset";
+
+const MASCOT_TYPES: MascotType[] = ["penguin", "monkey", "phoenix", "dragon"];
 
 export default function ProfilePicker() {
   const router = useRouter();
@@ -29,7 +29,6 @@ export default function ProfilePicker() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [parentPin, setParentPin] = useState("");
-  const [mascotChoice, setMascotChoice] = useState<MascotType | "">("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -106,10 +105,6 @@ export default function ProfilePicker() {
       setError("Please enter your email.");
       return;
     }
-    if (!mascotChoice) {
-      setError("Please pick your mascot.");
-      return;
-    }
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
@@ -119,7 +114,8 @@ export default function ProfilePicker() {
     setError("");
     try {
       const trimmedPin = parentPin.trim();
-      const result = await authSignup(trimmedName, trimmedEmail, password, trimmedPin || undefined, mascotChoice);
+      const mascot = MASCOT_TYPES[Math.floor(Math.random() * MASCOT_TYPES.length)];
+      const result = await authSignup(trimmedName, trimmedEmail, password, trimmedPin || undefined, mascot);
       if (result.error) {
         setError(result.error);
         return;
@@ -225,27 +221,6 @@ export default function ProfilePicker() {
               autoFocus
               className="w-full rounded-2xl border border-surface-300 bg-white px-5 py-3.5 text-lg text-black placeholder:text-surface-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200 dark:border-surface-600 dark:bg-surface-900 dark:text-white dark:placeholder:text-surface-500 dark:focus:border-brand-400 dark:focus:ring-brand-600/30"
             />
-          )}
-
-          {/* Mascot selection — signup only */}
-          {mode === "signup" && (
-            <div className="grid grid-cols-2 gap-3">
-              {(["penguin", "monkey", "phoenix", "dragon"] as const).map((animal) => (
-                <button
-                  key={animal}
-                  type="button"
-                  onClick={() => { setMascotChoice(animal); clearForm(); }}
-                  className={`flex items-center justify-center gap-2 rounded-2xl border-2 px-4 py-3 text-base font-semibold transition-all ${
-                    mascotChoice === animal
-                      ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500 dark:bg-brand-900/20 dark:text-brand-300"
-                      : "border-surface-300 bg-white text-surface-500 hover:border-brand-300 dark:border-surface-600 dark:bg-surface-900 dark:text-surface-400 dark:hover:border-brand-500"
-                  }`}
-                >
-                  <Mascot tier={1} size="sm" mascotType={animal} />
-                  {animal.charAt(0).toUpperCase() + animal.slice(1)}
-                </button>
-              ))}
-            </div>
           )}
 
           {/* Email */}

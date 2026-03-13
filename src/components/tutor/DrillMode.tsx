@@ -24,9 +24,10 @@ const DURATIONS = [2, 3, 5] as const;
 
 interface DrillModeProps {
   readonly initialSkillId?: string;
+  readonly autoStart?: boolean;
 }
 
-export function DrillMode({ initialSkillId }: DrillModeProps) {
+export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillModeProps) {
   const {
     state,
     result,
@@ -69,6 +70,16 @@ export function DrillMode({ initialSkillId }: DrillModeProps) {
       setSelectedSkillId(initialSkillId);
     }
   }, [initialSkillId]);
+
+  // Auto-start for speed rounds
+  useEffect(() => {
+    if (autoStartProp && state.phase === "setup" && initialSkillId) {
+      const skill = getSkillById(initialSkillId);
+      if (skill) {
+        void startDrill(initialSkillId, skill.name, 2);
+      }
+    }
+  }, [autoStartProp, state.phase, initialSkillId, startDrill]);
 
   // Available skills for the picker
   const allSkills = DOMAINS.flatMap((d) =>

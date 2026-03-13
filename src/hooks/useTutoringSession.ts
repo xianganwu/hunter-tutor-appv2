@@ -5,6 +5,7 @@ import type {
   ChatAction,
   ChatApiResponse,
   ChatMessageDisplay,
+  LevelUpEvent,
   SessionState,
   SessionSummaryData,
 } from "@/components/tutor/types";
@@ -17,6 +18,7 @@ import {
   advancePacingAfterQuestion,
   advancePacingAfterTeaching,
   getNextPacingAction,
+  tierLabel,
 } from "@/lib/adaptive";
 import type { AttemptRecord } from "@/lib/adaptive";
 import type { DifficultyLevel } from "@/lib/types";
@@ -269,6 +271,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
 
   const [summary, setSummary] = useState<SessionSummaryData | null>(null);
   const [teachBackActive, setTeachBackActive] = useState(false);
+  const [levelUpEvent, setLevelUpEvent] = useState<LevelUpEvent | null>(null);
   const recentAttempts = useRef<AttemptRecord[]>([]);
   const initialized = useRef(false);
   const teachBackTriggeredSkills = useRef(new Set<string>());
@@ -381,6 +384,25 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
 
       setLoading(true);
 
+      // Compute progress diff before persisting (so we still have the "before" state)
+      let progressDiff: SessionSummaryData["progressDiff"];
+      if (questionsAnswered > 0) {
+        const beforeMastery = priorMastery?.masteryLevel ?? 0.5;
+        const afterUpdate = calculateMasteryUpdate(recentAttempts.current, s.difficultyTier);
+        const afterMastery = afterUpdate.newMasteryLevel;
+        const tBefore = masteryToTier(beforeMastery);
+        const tAfter = masteryToTier(afterMastery);
+        const skill = getSkillById(s.currentSkillId);
+        progressDiff = {
+          skillName: skill?.name ?? s.currentSkillId,
+          masteryBefore: beforeMastery,
+          masteryAfter: afterMastery,
+          tierBefore: tBefore,
+          tierAfter: tAfter,
+          tierLabelAfter: tierLabel(tAfter),
+        };
+      }
+
       // Persist mastery before ending
       persistMastery();
 
@@ -426,6 +448,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           elapsedMinutes,
           tutorMessage: res.text,
           nextSkill: nextSkill ?? undefined,
+          progressDiff,
         });
       } catch {
         setSummary({
@@ -436,12 +459,13 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           elapsedMinutes,
           tutorMessage: "Great effort today! Keep practicing!",
           nextSkill: nextSkill ?? undefined,
+          progressDiff,
         });
       }
 
       setState((prev) => ({ ...prev, phase: "complete", activeQuestion: null }));
     },
-    [setLoading, persistMastery, isRetentionCheck]
+    [setLoading, persistMastery, isRetentionCheck, priorMastery]
   );
 
   // Start session: teach concept (streamed), then generate first question
@@ -577,6 +601,18 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           recentAttempts.current,
           decision.tier
         );
+
+        // Level-up detection: compare old tier vs new tier
+        const oldTier = masteryToTier(s.mastery);
+        const newTier = masteryToTier(masteryUpdate.newMasteryLevel);
+        if (newTier > oldTier) {
+          const skill = getSkillById(s.currentSkillId);
+          setLevelUpEvent({
+            skillName: skill?.name ?? s.currentSkillId,
+            newTier,
+            newTierLabel: tierLabel(newTier),
+          });
+        }
 
         setState((prev) => ({
           ...prev,
@@ -880,6 +916,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
     pacingState.current = createPacingState(new Date());
     setSummary(null);
     setTeachBackActive(false);
+    setLevelUpEvent(null);
 
     const stored = loadSkillMastery(skillId);
     const mastery = stored?.masteryLevel ?? 0.5;
@@ -909,10 +946,14 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
     }
   }, [state.phase, startSession]);
 
+  const clearLevelUp = useCallback(() => setLevelUpEvent(null), []);
+
   return {
     state,
     summary,
     teachBackActive,
+    levelUpEvent,
+    clearLevelUp,
     submitAnswer,
     sendMessage,
     requestHint,

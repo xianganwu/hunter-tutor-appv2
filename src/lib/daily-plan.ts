@@ -394,8 +394,11 @@ export function getTaskRoute(task: DailyTask): string {
       return "/mistakes";
     case "writing":
       return "/tutor/writing";
-    case "drill":
-      return task.skillId ? `/drill?skill=${task.skillId}` : "/drill";
+    case "drill": {
+      if (!task.skillId) return "/tutor/math?mode=drill";
+      const subject = task.skillId.startsWith("rc_") ? "reading" : "math";
+      return `/tutor/${subject}?skill=${task.skillId}&mode=drill`;
+    }
     case "vocab_review":
       return "/vocab";
     case "retention_check":

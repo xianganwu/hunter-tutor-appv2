@@ -115,6 +115,25 @@ export interface ChatApiResponse {
   };
 }
 
+// ─── Level-Up Event ──────────────────────────────────────────────────
+
+export interface LevelUpEvent {
+  readonly skillName: string;
+  readonly newTier: DifficultyLevel;
+  readonly newTierLabel: string;
+}
+
+// ─── Progress Diff ───────────────────────────────────────────────────
+
+export interface SkillProgressDiff {
+  readonly skillName: string;
+  readonly masteryBefore: number; // 0-1
+  readonly masteryAfter: number; // 0-1
+  readonly tierBefore: DifficultyLevel;
+  readonly tierAfter: DifficultyLevel;
+  readonly tierLabelAfter: string;
+}
+
 // ─── Session Summary ─────────────────────────────────────────────────
 
 export interface SessionSummaryData {
@@ -129,4 +148,5 @@ export interface SessionSummaryData {
     readonly skillName: string;
     readonly route: string;
   };
+  readonly progressDiff?: SkillProgressDiff;
 }

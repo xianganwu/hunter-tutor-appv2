@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { TutoringSession } from "@/components/tutor/TutoringSession";
+import { DrillMode } from "@/components/tutor/DrillMode";
 import { getSkillById, getSkillIdsForDomain, curriculum } from "@/lib/exam/curriculum";
 import { selectNextSkills } from "@/lib/adaptive";
 import { MathTopicPicker, type SerializedDomain } from "@/components/tutor/MathTopicPicker";
@@ -13,7 +14,7 @@ const VALID_SUBJECTS = ["math", "reading"] as const;
 
 interface TutorPageProps {
   params: { subject: string };
-  searchParams: { skill?: string; retention?: string; firstSession?: string };
+  searchParams: { skill?: string; retention?: string; firstSession?: string; mode?: string };
 }
 
 function pickDefaultSkill(subject: string): string {
@@ -81,6 +82,14 @@ export default function TutorPage({ params, searchParams }: TutorPageProps) {
 
   if (!skill) {
     notFound();
+  }
+
+  if (searchParams.mode === "drill") {
+    return (
+      <main className="flex flex-col min-h-screen bg-surface-50 dark:bg-surface-950">
+        <DrillMode initialSkillId={skillId} />
+      </main>
+    );
   }
 
   return (

@@ -24,9 +24,6 @@ export interface StreakData {
   readonly currentStreak: number;
   readonly longestStreak: number;
   readonly practicedDates: readonly string[]; // ISO date strings, last 14 days
-  readonly frozenDates: readonly string[];    // YYYY-MM-DD dates where a streak freeze was used
-  readonly freezesRemaining: number;          // freezes left this week (max freezesPerWeek)
-  readonly freezesPerWeek: number;            // constant = 2
 }
 
 export interface WeeklySummaryData {

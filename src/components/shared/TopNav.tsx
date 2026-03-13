@@ -30,7 +30,6 @@ export function TopNav() {
     { href: "/tutor/writing", label: "Writing" },
     { href: "/vocab", label: "Vocab" },
     { href: "/study", label: "Study" },
-    { href: "/drill", label: "Drill" },
     { href: "/simulate", label: "Practice Exam" },
     { href: "/progress", label: "Progress" },
   ];

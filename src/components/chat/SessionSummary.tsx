@@ -1,16 +1,79 @@
 "use client";
 
-import type { SessionSummaryData } from "@/components/tutor/types";
+import type { SessionSummaryData, SkillProgressDiff } from "@/components/tutor/types";
 import { getSkillById } from "@/lib/exam/curriculum";
+import { MASTERY_TIER_LABELS } from "@/lib/adaptive";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 
 interface SessionSummaryProps {
   readonly data: SessionSummaryData;
   readonly onClose: () => void;
   readonly isFirstSession?: boolean;
+  readonly onStartDrill?: () => void;
 }
 
-export function SessionSummary({ data, onClose, isFirstSession = false }: SessionSummaryProps) {
+function ProgressDiffSection({ diff }: { readonly diff: SkillProgressDiff }) {
+  const beforePct = Math.round(diff.masteryBefore * 100);
+  const afterPct = Math.round(diff.masteryAfter * 100);
+  const delta = afterPct - beforePct;
+  const tierChanged = diff.tierAfter > diff.tierBefore;
+
+  let framing: string;
+  if (delta > 0) {
+    framing = `+${delta}%`;
+  } else if (delta === 0) {
+    framing = "Solid practice!";
+  } else {
+    framing = "Tough session, but every attempt builds strength!";
+  }
+
+  return (
+    <div className="rounded-xl border border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/50 p-4 space-y-3">
+      <h4 className="text-sm font-medium text-surface-700 dark:text-surface-300">
+        Your Progress on {diff.skillName}
+      </h4>
+
+      {/* Layered progress bar */}
+      <div className="relative h-4 rounded-full bg-surface-200 dark:bg-surface-700 overflow-hidden">
+        {/* Before mastery (gray underlay) */}
+        <div
+          className="absolute inset-y-0 left-0 rounded-full bg-surface-300 dark:bg-surface-600"
+          style={{ width: `${beforePct}%` }}
+        />
+        {/* After mastery (green overlay) */}
+        <div
+          className="absolute inset-y-0 left-0 rounded-full bg-success-500 dark:bg-success-400 transition-all duration-700"
+          style={{ width: `${afterPct}%` }}
+        />
+      </div>
+
+      {/* Percentage text */}
+      <div className="flex items-baseline justify-between text-sm">
+        <span className="text-surface-600 dark:text-surface-400">
+          {beforePct}% &rarr; {afterPct}%
+        </span>
+        <span
+          className={
+            delta > 0
+              ? "font-semibold text-success-600 dark:text-success-400"
+              : "text-surface-500 dark:text-surface-400"
+          }
+        >
+          {framing}
+        </span>
+      </div>
+
+      {/* Tier transition label */}
+      {tierChanged && (
+        <div className="text-xs font-medium text-brand-600 dark:text-brand-400">
+          {MASTERY_TIER_LABELS[diff.tierBefore]} &rarr; {MASTERY_TIER_LABELS[diff.tierAfter]}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function SessionSummary({ data, onClose, isFirstSession = false, onStartDrill }: SessionSummaryProps) {
   const skillNames = data.skillsCovered.map(
     (id) => getSkillById(id)?.name ?? id
   );
@@ -35,6 +98,8 @@ export function SessionSummary({ data, onClose, isFirstSession = false }: Sessio
           <div className="text-xs text-surface-500 dark:text-surface-400 mt-1">Duration</div>
         </div>
       </div>
+
+      {data.progressDiff && <ProgressDiffSection diff={data.progressDiff} />}
 
       <div>
         <h4 className="text-sm font-medium text-surface-700 dark:text-surface-300 mb-2">Skills Covered</h4>
@@ -71,6 +136,16 @@ export function SessionSummary({ data, onClose, isFirstSession = false }: Sessio
       )}
 
       {!isFirstSession && <NextTaskPrompt />}
+
+      {!isFirstSession && onStartDrill && (
+        <button
+          onClick={onStartDrill}
+          className="w-full rounded-xl border border-brand-200 dark:border-brand-800 bg-brand-50 dark:bg-brand-900/20 px-4 py-2.5 text-center transition-colors hover:bg-brand-100 dark:hover:bg-brand-900/30"
+        >
+          <span className="text-sm font-semibold text-brand-700 dark:text-brand-300">Speed Round</span>
+          <span className="block text-xs text-brand-600/70 dark:text-brand-400/70 mt-0.5">2-min rapid-fire practice</span>
+        </button>
+      )}
 
       <button
         onClick={onClose}

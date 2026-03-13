@@ -19,6 +19,8 @@ import { getStoredMascotType } from "@/lib/user-profile";
 import { getMascotTier } from "@/components/shared/Mascot";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
+import { LevelUpBanner } from "@/components/shared/LevelUpBanner";
+import { DrillMode } from "./DrillMode";
 
 interface TutoringSessionProps {
   readonly skillId: string;
@@ -32,6 +34,8 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
     state,
     summary,
     teachBackActive,
+    levelUpEvent,
+    clearLevelUp,
     submitAnswer,
     sendMessage,
     requestHint,
@@ -63,7 +67,10 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
     if (state.questionCount <= prevQuestionCountRef.current) return;
     prevQuestionCountRef.current = state.questionCount;
 
-    if (state.correctStreak >= 3) {
+    // Level-up overrides normal reaction with bounce animation
+    if (levelUpEvent) {
+      setMascotReaction("streak");
+    } else if (state.correctStreak >= 3) {
       setMascotReaction("streak");
     } else if (state.correctStreak > 0) {
       setMascotReaction("correct");
@@ -71,7 +78,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
       setMascotReaction("incorrect");
     }
     setMascotReactionKey((k) => k + 1);
-  }, [state.questionCount, state.correctStreak]);
+  }, [state.questionCount, state.correctStreak, levelUpEvent]);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -79,6 +86,8 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [state.messages, isLoading]);
+
+  const [drillActive, setDrillActive] = useState(false);
 
   const router = useRouter();
   const handleSummaryClose = useCallback(() => {
@@ -89,10 +98,18 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
     }
   }, [isFirstSession, router, restart]);
 
+  if (summary && drillActive) {
+    return (
+      <div className="flex flex-col min-h-screen bg-surface-50 dark:bg-surface-950">
+        <DrillMode initialSkillId={state.currentSkillId} autoStart />
+      </div>
+    );
+  }
+
   if (summary) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-8 bg-surface-50 dark:bg-surface-950 min-h-screen">
-        <SessionSummary data={summary} onClose={handleSummaryClose} isFirstSession={isFirstSession} />
+        <SessionSummary data={summary} onClose={handleSummaryClose} isFirstSession={isFirstSession} onStartDrill={() => setDrillActive(true)} />
       </div>
     );
   }
@@ -204,6 +221,10 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
           }
         />
       </div>
+
+      {levelUpEvent && (
+        <LevelUpBanner event={levelUpEvent} onDismiss={clearLevelUp} />
+      )}
 
       <SessionMascot
         mascotType={mascotType}

@@ -59,6 +59,20 @@ export interface MasteryUpdate {
   readonly newConfidenceTrend: ConfidenceTrend;
 }
 
+// ─── Tier Labels ─────────────────────────────────────────────────────
+
+export const MASTERY_TIER_LABELS: Record<DifficultyLevel, string> = {
+  1: "Getting Started",
+  2: "Building Up",
+  3: "In Progress",
+  4: "Almost There",
+  5: "Mastered",
+};
+
+export function tierLabel(tier: DifficultyLevel): string {
+  return MASTERY_TIER_LABELS[tier];
+}
+
 // ─── Constants ────────────────────────────────────────────────────────
 
 const MASTERY_THRESHOLD_LOW = 0.6;
