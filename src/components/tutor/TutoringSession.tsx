@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import "katex/dist/katex.min.css";
 import { ChatBubble } from "@/components/chat/ChatBubble";
 import { ChatInput } from "@/components/chat/ChatInput";
@@ -23,9 +24,10 @@ interface TutoringSessionProps {
   readonly skillId: string;
   readonly subject: string;
   readonly isRetentionCheck?: boolean;
+  readonly isFirstSession?: boolean;
 }
 
-export function TutoringSession({ skillId, subject, isRetentionCheck = false }: TutoringSessionProps) {
+export function TutoringSession({ skillId, subject, isRetentionCheck = false, isFirstSession = false }: TutoringSessionProps) {
   const {
     state,
     summary,
@@ -38,7 +40,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false }: 
     restart,
     handleTeachBackComplete,
     handleTeachBackSkip,
-  } = useTutoringSession(skillId, isRetentionCheck);
+  } = useTutoringSession(skillId, isRetentionCheck, isFirstSession);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const skill = getSkillById(skillId);
@@ -78,10 +80,19 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false }: 
     }
   }, [state.messages, isLoading]);
 
+  const router = useRouter();
+  const handleSummaryClose = useCallback(() => {
+    if (isFirstSession) {
+      router.push("/dashboard");
+    } else {
+      restart();
+    }
+  }, [isFirstSession, router, restart]);
+
   if (summary) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-8 bg-surface-50 dark:bg-surface-950 min-h-screen">
-        <SessionSummary data={summary} onClose={restart} />
+        <SessionSummary data={summary} onClose={handleSummaryClose} isFirstSession={isFirstSession} />
       </div>
     );
   }

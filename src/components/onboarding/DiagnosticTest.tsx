@@ -8,6 +8,7 @@ import { DOMAIN_LABELS, type DiagnosticDomain } from "@/lib/diagnostic";
 import { Mascot } from "@/components/shared/Mascot";
 import { MathText } from "@/components/chat/MathText";
 import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
+import { DiagnosticResultsNarrative } from "./DiagnosticResultsNarrative";
 
 export function DiagnosticTest() {
   const router = useRouter();
@@ -137,35 +138,7 @@ export function DiagnosticTest() {
 
   // Results phase
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md space-y-6 animate-fade-in">
-        <div className="text-center">
-          <div className="flex justify-center mb-4">
-            <Mascot tier={3} size="lg" />
-          </div>
-          <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-100">
-            You&apos;re All Set!
-          </h1>
-          <p className="mt-2 text-sm text-surface-500 dark:text-surface-400">
-            Here&apos;s where you&apos;re starting. Your tutor will adjust to match your level.
-          </p>
-        </div>
-
-        {/* Domain bars */}
-        <div className="space-y-4">
-          {state.results.map((result) => (
-            <DomainResultBar key={result.domain} result={result} />
-          ))}
-        </div>
-
-        <button
-          onClick={() => router.push("/dashboard")}
-          className="w-full rounded-2xl bg-brand-600 py-3.5 text-lg font-semibold text-white shadow-glow transition-all hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-surface-900"
-        >
-          Go to Dashboard
-        </button>
-      </div>
-    </div>
+    <DiagnosticResultsNarrative answers={state.answers} results={state.results} />
   );
 }
 
@@ -190,37 +163,3 @@ function DomainChip({ domain }: { readonly domain: DiagnosticDomain }) {
   );
 }
 
-function DomainResultBar({
-  result,
-}: {
-  readonly result: { domain: DiagnosticDomain; correct: number; total: number; mastery: number };
-}) {
-  const pct = Math.round(result.mastery * 100);
-  const barColor =
-    pct >= 80
-      ? "bg-success-500"
-      : pct >= 60
-        ? "bg-streak-500"
-        : pct >= 40
-          ? "bg-brand-500"
-          : "bg-red-500";
-
-  return (
-    <div className="rounded-2xl bg-surface-0 p-4 shadow-card dark:bg-surface-900">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-sm font-medium text-surface-900 dark:text-surface-100">
-          {DOMAIN_LABELS[result.domain]}
-        </span>
-        <span className="text-sm font-bold text-surface-700 dark:text-surface-300">
-          {result.correct}/{result.total} ({pct}%)
-        </span>
-      </div>
-      <div className="h-3 rounded-full bg-surface-200 dark:bg-surface-700 overflow-hidden">
-        <div
-          className={`h-full rounded-full ${barColor} transition-all duration-500`}
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-    </div>
-  );
-}

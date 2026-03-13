@@ -243,7 +243,7 @@ async function callApiStream(
 
 // ─── Hook ─────────────────────────────────────────────────────────────
 
-export function useTutoringSession(skillId: string, isRetentionCheck: boolean = false) {
+export function useTutoringSession(skillId: string, isRetentionCheck: boolean = false, isFirstSession: boolean = false) {
   // Fix #1: Load prior mastery from localStorage instead of hardcoding 0.5
   const priorMastery = useMemo(() => {
     if (typeof window === "undefined") return null;
@@ -463,22 +463,50 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
         }
       }).catch((err: unknown) => console.error("[session] create error:", err));
 
-      // Stream the teaching explanation
-      const streaming = addStreamingMessage("teaching");
-      await callApiStream(
-        { type: "teach", skillId, mastery: s.mastery },
-        streaming.appendDelta
-      );
+      if (isFirstSession) {
+        // First session: warm welcome, then jump straight to a question
+        const skill = getSkillById(skillId);
+        const skillName = skill?.name ?? skillId;
+        addMessages(makeTutorMsg(
+          `Welcome! Let's try a few questions on **${skillName}** — your strongest area. Ready? Here we go!`,
+          "text"
+        ));
 
-      // Defer the first MC question — let the student respond to the teaching first
-      pendingQuestion.current = { skillId, tier: s.difficultyTier };
-      setState((prev) => ({ ...prev, phase: "ready" }));
+        const nextQ = await callApi({
+          type: "generate_question",
+          skillId,
+          difficultyTier: s.difficultyTier,
+        });
+
+        if (nextQ.question) {
+          addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
+          questionShownAt.current = Date.now();
+          setState((prev) => ({
+            ...prev,
+            activeQuestion: nextQ.question ?? null,
+            phase: "ready",
+          }));
+        } else {
+          setLoading(false);
+        }
+      } else {
+        // Normal session: stream the teaching explanation
+        const streaming = addStreamingMessage("teaching");
+        await callApiStream(
+          { type: "teach", skillId, mastery: s.mastery },
+          streaming.appendDelta
+        );
+
+        // Defer the first MC question — let the student respond to the teaching first
+        pendingQuestion.current = { skillId, tier: s.difficultyTier };
+        setState((prev) => ({ ...prev, phase: "ready" }));
+      }
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : "Something went wrong";
       addMessages(makeTutorMsg(`Sorry, I had trouble starting. ${errMsg}`, "text"));
       setLoading(false);
     }
-  }, [skillId, setLoading, addMessages, addStreamingMessage]);
+  }, [skillId, isFirstSession, setLoading, addMessages, addStreamingMessage]);
 
   // Initialize on mount
   useEffect(() => {
@@ -574,6 +602,12 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           return;
         }
 
+        // First session: end after 3 questions
+        if (isFirstSession && pacingState.current.totalQuestions >= 3) {
+          await doEndSession(newQuestionCount, newCorrectCount);
+          return;
+        }
+
         // Fix #5: Handle rushing detection
         if (pacingAction.action === "slow_down") {
           addMessages(makeTutorMsg(pacingAction.reason, "text"));
@@ -646,7 +680,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
         setLoading(false);
       }
     },
-    [addMessages, addStreamingMessage, setLoading, getHistory, doEndSession]
+    [addMessages, addStreamingMessage, setLoading, getHistory, doEndSession, isFirstSession]
   );
 
   // Request hint (streamed) — Fix #6: Mark hint as used for current question

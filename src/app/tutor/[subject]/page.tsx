@@ -13,7 +13,7 @@ const VALID_SUBJECTS = ["math", "reading"] as const;
 
 interface TutorPageProps {
   params: { subject: string };
-  searchParams: { skill?: string; retention?: string };
+  searchParams: { skill?: string; retention?: string; firstSession?: string };
 }
 
 function pickDefaultSkill(subject: string): string {
@@ -85,7 +85,7 @@ export default function TutorPage({ params, searchParams }: TutorPageProps) {
 
   return (
     <main className="min-h-screen bg-surface-50 dark:bg-surface-950">
-      <TutoringSession skillId={skillId} subject={subject} isRetentionCheck={searchParams.retention === "1"} />
+      <TutoringSession skillId={skillId} subject={subject} isRetentionCheck={searchParams.retention === "1"} isFirstSession={searchParams.firstSession === "1"} />
     </main>
   );
 }

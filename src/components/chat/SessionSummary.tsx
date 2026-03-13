@@ -7,9 +7,10 @@ import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 interface SessionSummaryProps {
   readonly data: SessionSummaryData;
   readonly onClose: () => void;
+  readonly isFirstSession?: boolean;
 }
 
-export function SessionSummary({ data, onClose }: SessionSummaryProps) {
+export function SessionSummary({ data, onClose, isFirstSession = false }: SessionSummaryProps) {
   const skillNames = data.skillsCovered.map(
     (id) => getSkillById(id)?.name ?? id
   );
@@ -17,7 +18,7 @@ export function SessionSummary({ data, onClose }: SessionSummaryProps) {
   return (
     <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 space-y-5 animate-scale-in">
       <h3 className="text-xl font-bold text-surface-900 dark:text-surface-100">
-        Great job! Session Complete
+        {isFirstSession ? "Your First Lesson — Complete!" : "Great job! Session Complete"}
       </h3>
 
       <div className="grid grid-cols-3 gap-4 text-center">
@@ -51,8 +52,8 @@ export function SessionSummary({ data, onClose }: SessionSummaryProps) {
 
       <p className="text-sm text-surface-600 dark:text-surface-400 leading-relaxed">{data.tutorMessage}</p>
 
-      {/* Next up recommendation */}
-      {data.nextSkill && (
+      {/* Next up recommendation — hidden for first session */}
+      {!isFirstSession && data.nextSkill && (
         <div className="rounded-xl border border-brand-200 bg-brand-50 dark:border-brand-800 dark:bg-brand-900/20 p-4">
           <p className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide mb-1.5">
             Up Next
@@ -69,13 +70,16 @@ export function SessionSummary({ data, onClose }: SessionSummaryProps) {
         </div>
       )}
 
-      <NextTaskPrompt />
+      {!isFirstSession && <NextTaskPrompt />}
 
       <button
         onClick={onClose}
-        className="w-full rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-center text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+        className={isFirstSession
+          ? "w-full rounded-xl bg-brand-600 px-4 py-2.5 text-center text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
+          : "w-full rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-center text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors"
+        }
       >
-        Practice More
+        {isFirstSession ? "Go to Dashboard" : "Practice More"}
       </button>
     </div>
   );
