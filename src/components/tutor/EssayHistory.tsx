@@ -145,10 +145,10 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                       <span
                         className={`text-sm font-bold ${
                           avg >= 7
-                            ? "text-success-500"
+                            ? "text-success-500 dark:text-success-400"
                             : avg >= 5
-                              ? "text-streak-500"
-                              : "text-red-500"
+                              ? "text-streak-500 dark:text-streak-400"
+                              : "text-red-500 dark:text-red-400"
                         }`}
                       >
                         {avg}/10
@@ -192,7 +192,7 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                       </div>
 
                       <details>
-                        <summary className="text-xs text-brand-600 cursor-pointer">
+                        <summary className="text-xs text-brand-600 dark:text-brand-400 cursor-pointer">
                           View essay
                         </summary>
                         <div className="mt-2 rounded-xl bg-surface-50 dark:bg-surface-800 p-3 text-sm text-surface-700 dark:text-surface-300 whitespace-pre-wrap font-serif max-h-48 overflow-y-auto">
@@ -215,7 +215,7 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                 <span className="font-medium">Score trend:</span>
                 {scoreTrend.map((s, i) => (
                   <span key={i}>
-                    {i > 0 && <span className={s > scoreTrend[i - 1] ? "text-success-500" : s < scoreTrend[i - 1] ? "text-red-500" : ""}> → </span>}
+                    {i > 0 && <span className={s > scoreTrend[i - 1] ? "text-success-500 dark:text-success-400" : s < scoreTrend[i - 1] ? "text-red-500 dark:text-red-400" : ""}> → </span>}
                     <span className="font-medium">{s}</span>
                   </span>
                 ))}

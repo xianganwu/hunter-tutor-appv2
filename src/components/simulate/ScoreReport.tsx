@@ -96,7 +96,7 @@ export function ScoreReport({ report, previousReport }: ScoreReportProps) {
               Essay Writing
             </h3>
             <div className="flex items-baseline gap-2">
-              <span className={`text-3xl font-bold ${writing.score >= 7 ? "text-success-500" : writing.score >= 5 ? "text-streak-500" : "text-red-500"}`}>
+              <span className={`text-3xl font-bold ${writing.score >= 7 ? "text-success-500 dark:text-success-400" : writing.score >= 5 ? "text-streak-500 dark:text-streak-400" : "text-red-500 dark:text-red-400"}`}>
                 {writing.score}
               </span>
               <span className="text-sm text-surface-400">/10</span>
@@ -312,9 +312,9 @@ function ScoreComparison({
               <div
                 className={`text-xs font-medium ${
                   delta > 0
-                    ? "text-success-500"
+                    ? "text-success-500 dark:text-success-400"
                     : delta < 0
-                      ? "text-red-500"
+                      ? "text-red-500 dark:text-red-400"
                       : "text-surface-400"
                 }`}
               >
@@ -504,10 +504,10 @@ function SectionCard({
   const pct = score.percentage;
   const textColor =
     pct >= 80
-      ? "text-success-500"
+      ? "text-success-500 dark:text-success-400"
       : pct >= 60
-        ? "text-streak-500"
-        : "text-red-500";
+        ? "text-streak-500 dark:text-streak-400"
+        : "text-red-500 dark:text-red-400";
 
   const delta = previousScore ? pct - previousScore.percentage : null;
 
@@ -524,7 +524,7 @@ function SectionCard({
         {delta !== null && delta !== 0 && (
           <span
             className={`text-xs font-medium ${
-              delta > 0 ? "text-success-500" : "text-red-500"
+              delta > 0 ? "text-success-500 dark:text-success-400" : "text-red-500 dark:text-red-400"
             }`}
           >
             {delta > 0 ? `+${delta}%` : `${delta}%`}
@@ -638,10 +638,10 @@ function SkillTable({
             <div
               className={`w-10 text-right font-medium flex-shrink-0 ${
                 s.percentage >= 80
-                  ? "text-success-500"
+                  ? "text-success-500 dark:text-success-400"
                   : s.percentage >= 60
-                    ? "text-streak-500"
-                    : "text-red-500"
+                    ? "text-streak-500 dark:text-streak-400"
+                    : "text-red-500 dark:text-red-400"
               }`}
             >
               {s.percentage}%

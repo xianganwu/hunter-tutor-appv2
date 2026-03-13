@@ -433,7 +433,7 @@ function WeeklyPracticeCard({
       </div>
 
       <div className="flex items-baseline gap-2 mb-2">
-        <span className={`text-3xl font-bold ${onTrack ? "text-success-500" : "text-streak-500"}`}>
+        <span className={`text-3xl font-bold ${onTrack ? "text-success-500 dark:text-success-400" : "text-streak-500 dark:text-streak-400"}`}>
           {minutes}
         </span>
         <span className="text-sm text-surface-400">/ {target} min target</span>
@@ -490,10 +490,10 @@ function DomainCard({
         <span
           className={`text-2xl font-bold ${
             domain.mastery >= 70
-              ? "text-success-500"
+              ? "text-success-500 dark:text-success-400"
               : domain.mastery >= 50
-                ? "text-streak-500"
-                : "text-red-500"
+                ? "text-streak-500 dark:text-streak-400"
+                : "text-red-500 dark:text-red-400"
           }`}
         >
           {domain.mastery}%

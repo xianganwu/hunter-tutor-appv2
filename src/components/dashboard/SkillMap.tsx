@@ -278,7 +278,7 @@ function SkillTile({
 
       {/* Percentage or "New" badge */}
       {notStarted ? (
-        <span className="flex-shrink-0 rounded bg-surface-100 dark:bg-surface-800 px-1.5 py-0.5 text-[10px] font-medium text-surface-400">
+        <span className="flex-shrink-0 rounded bg-surface-100 dark:bg-surface-800 px-1.5 py-0.5 text-[10px] font-medium text-surface-400 dark:text-surface-500">
           New
         </span>
       ) : (

@@ -348,11 +348,11 @@ function FeedbackPhase({
       {/* Stats cards */}
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-3 text-center">
-          <div className="text-2xl font-bold text-brand-600">{wpm}</div>
+          <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">{wpm}</div>
           <div className="text-xs text-surface-500 mt-0.5">Words/min</div>
         </div>
         <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-3 text-center">
-          <div className={`text-2xl font-bold ${accuracy >= 80 ? "text-success-500" : accuracy >= 60 ? "text-streak-500" : "text-red-500"}`}>
+          <div className={`text-2xl font-bold ${accuracy >= 80 ? "text-success-500 dark:text-success-400" : accuracy >= 60 ? "text-streak-500 dark:text-streak-400" : "text-red-500 dark:text-red-400"}`}>
             {accuracy}%
           </div>
           <div className="text-xs text-surface-500 mt-0.5">Accuracy</div>

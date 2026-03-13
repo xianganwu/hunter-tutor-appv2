@@ -215,7 +215,7 @@ export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillMod
             <span
               className={`text-lg font-mono font-bold ${
                 state.remainingSeconds <= 30
-                  ? "text-red-500 animate-pulse"
+                  ? "text-red-500 dark:text-red-400 animate-pulse"
                   : "text-surface-900 dark:text-surface-100"
               }`}
             >
@@ -369,7 +369,7 @@ function StatCard({
       <div
         className={`text-2xl font-bold ${
           highlight
-            ? "text-success-500"
+            ? "text-success-500 dark:text-success-400"
             : "text-surface-900 dark:text-surface-100"
         }`}
       >

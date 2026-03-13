@@ -617,7 +617,7 @@ function SessionComplete({
       {/* Session stats */}
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-2xl shadow-soft bg-surface-0 dark:bg-surface-900 p-3 text-center">
-          <div className="text-2xl font-bold text-brand-600">
+          <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">
             {stats.reviewed}
           </div>
           <div className="text-xs text-surface-500 mt-0.5">Reviewed</div>
@@ -626,10 +626,10 @@ function SessionComplete({
           <div
             className={`text-2xl font-bold ${
               accuracy >= 80
-                ? "text-success-500"
+                ? "text-success-500 dark:text-success-400"
                 : accuracy >= 60
-                  ? "text-streak-500"
-                  : "text-red-500"
+                  ? "text-streak-500 dark:text-streak-400"
+                  : "text-red-500 dark:text-red-400"
             }`}
           >
             {accuracy}%
@@ -726,7 +726,7 @@ function StatCard({
       <div
         className={`text-2xl font-bold ${
           highlight
-            ? "text-brand-600"
+            ? "text-brand-600 dark:text-brand-400"
             : "text-surface-900 dark:text-surface-100"
         }`}
       >
