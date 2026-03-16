@@ -519,6 +519,81 @@ Make sure:
     }
   }
 
+  /**
+   * Generate a batch of mixed drill questions spanning multiple skills.
+   * Each returned question is tagged with its skillId.
+   */
+  async generateMixedDrillBatch(
+    skills: Array<{ skill: Skill; tier: DifficultyLevel }>,
+    totalCount: number
+  ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[]; skillId: string }[]> {
+    const skillList = skills
+      .map(
+        (s) =>
+          `- skill_id: "${s.skill.skill_id}", name: "${s.skill.name}", tier: ${s.tier}/5, description: ${s.skill.description}`
+      )
+      .join("\n");
+
+    const response = await this.client.messages.create({
+      model: MODEL,
+      max_tokens: 2048,
+      system: this.systemPrompt,
+      messages: [
+        {
+          role: "user",
+          content: `Generate exactly ${totalCount} rapid-fire practice questions spread across these skills. Distribute questions as evenly as possible across the skills.
+
+Skills:
+${skillList}
+
+These are for a mixed drill — questions should be clear and solvable quickly (15-30 seconds each).
+Each question should have 4-5 multiple choice answers.
+Each question MUST include the skill_id it belongs to.
+
+Format your response as a JSON array. ONLY output the JSON array, no other text:
+[
+  {
+    "skillId": "the_skill_id",
+    "questionText": "...",
+    "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ..."],
+    "correctAnswer": "A) ..."
+  },
+  ...
+]
+
+Make sure:
+- Questions test the specified skill directly
+- Distractors are plausible but clearly wrong
+- Each question is distinct (no repeats)
+- Questions are at the specified difficulty tier for each skill`,
+        },
+      ],
+    });
+
+    const text = extractText(response);
+
+    try {
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (!jsonMatch) return [];
+
+      const parsed = JSON.parse(jsonMatch[0]) as {
+        skillId: string;
+        questionText: string;
+        correctAnswer: string;
+        answerChoices: string[];
+      }[];
+
+      return parsed.map((q) => ({
+        skillId: q.skillId,
+        questionText: q.questionText,
+        correctAnswer: q.correctAnswer,
+        answerChoices: q.answerChoices,
+      }));
+    } catch {
+      return [];
+    }
+  }
+
   /** Get the system prompt (for use by streaming route handler). */
   getSystemPrompt(): string {
     return this.systemPrompt;

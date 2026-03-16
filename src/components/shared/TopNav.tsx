@@ -28,6 +28,7 @@ export function TopNav() {
     { href: "/tutor/math", label: "Math" },
     { href: "/tutor/reading", label: "Reading" },
     { href: "/tutor/writing", label: "Writing" },
+    { href: "/drill", label: "Drill" },
     { href: "/vocab", label: "Vocab" },
     { href: "/study", label: "Study" },
     { href: "/simulate", label: "Practice Exam" },

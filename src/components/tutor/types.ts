@@ -98,6 +98,11 @@ export type ChatAction =
       count?: number;
     }
   | {
+      type: "generate_mixed_drill_batch";
+      skills: Array<{ skillId: string; tier: DifficultyLevel }>;
+      totalCount: number;
+    }
+  | {
       type: "generate_diagnostic";
       domain: string;
       skillIds: readonly string[];

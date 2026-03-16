@@ -290,6 +290,25 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
         return NextResponse.json({ questions });
       }
 
+      case "generate_mixed_drill_batch": {
+        const resolvedSkills = body.skills
+          .map((s: { skillId: string; tier: DifficultyLevel }) => {
+            const skill = getSkillById(s.skillId);
+            return skill ? { skill, tier: s.tier } : null;
+          })
+          .filter((s): s is NonNullable<typeof s> => s !== null);
+
+        if (resolvedSkills.length === 0) {
+          return NextResponse.json({ questions: [] });
+        }
+
+        const mixedQuestions = await agent.generateMixedDrillBatch(
+          resolvedSkills,
+          body.totalCount,
+        );
+        return NextResponse.json({ questions: mixedQuestions });
+      }
+
       case "generate_diagnostic": {
         // Build skill descriptions for a single batched API call
         const skillEntries = body.skillIds
