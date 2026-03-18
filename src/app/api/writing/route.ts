@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { TutorAgent } from "@/lib/ai/tutor-agent";
+import { TutorAgent, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
 import type { WritingAction, WritingApiResponse, StoredEssay } from "@/components/tutor/writing-types";
 import { prisma } from "@/lib/db";
@@ -54,7 +54,9 @@ export async function GET(): Promise<NextResponse<{ essays: StoredEssay[] } | { 
   }
 }
 
-const BRAINSTORM_SYSTEM = `You are a warm, encouraging writing tutor helping a student brainstorm for an essay. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). Keep responses to 2-3 sentences. Be enthusiastic but not over the top. Never write the essay for them — guide their thinking. Use simple, encouraging language appropriate for their age.`;
+const BRAINSTORM_SYSTEM_TEXT = `You are a warm, encouraging writing tutor helping a student brainstorm for an essay. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). Keep responses to 2-3 sentences. Be enthusiastic but not over the top. Never write the essay for them — guide their thinking. Use simple, encouraging language appropriate for their age.`;
+
+const BRAINSTORM_SYSTEM_CACHED = [{ type: "text" as const, text: BRAINSTORM_SYSTEM_TEXT, cache_control: { type: "ephemeral" as const } }];
 
 export async function POST(
   request: Request
@@ -97,9 +99,9 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
         }
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 256,
-          system: BRAINSTORM_SYSTEM,
+          system: BRAINSTORM_SYSTEM_CACHED,
           messages: [{ role: "user", content: prompt }],
         });
 
@@ -189,9 +191,9 @@ Give them a brief, enthusiastic response about their choice. Then give them ONE 
       case "rewrite_feedback": {
         const client = getAnthropicClient();
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 512,
-          system: BRAINSTORM_SYSTEM,
+          system: BRAINSTORM_SYSTEM_CACHED,
           messages: [
             {
               role: "user",

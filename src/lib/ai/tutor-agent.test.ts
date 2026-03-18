@@ -17,9 +17,23 @@ function createMockClient(responseText: string): Anthropic {
 
 function getLastCallArgs(
   client: Anthropic
-): Anthropic.MessageCreateParams & { system: string } {
+): Anthropic.MessageCreateParams {
   const mock = client.messages.create as ReturnType<typeof vi.fn>;
   return mock.mock.calls[mock.mock.calls.length - 1][0];
+}
+
+/** Extract the system prompt text from either string or TextBlockParam[] format. */
+function getSystemText(
+  system: string | Anthropic.TextBlockParam[] | undefined
+): string {
+  if (typeof system === "string") return system;
+  if (Array.isArray(system)) {
+    return system
+      .filter((b): b is Anthropic.TextBlockParam => b.type === "text")
+      .map((b) => b.text)
+      .join("\n");
+  }
+  return "";
 }
 
 // ─── Tests ────────────────────────────────────────────────────────────
@@ -36,12 +50,13 @@ describe("TutorAgent", () => {
       agent.teachConcept(mainIdeaSkill, 0.5);
 
       const args = getLastCallArgs(mockClient);
-      expect(args.system).toContain("rc_main_idea");
-      expect(args.system).toContain("rc_inference");
-      expect(args.system).toContain("ma_fraction_decimal_ops");
-      expect(args.system).toContain("Socratic");
-      expect(args.system).toContain("Hunter College");
-      expect(args.system).toContain("prerequisite");
+      const systemText = getSystemText(args.system);
+      expect(systemText).toContain("rc_main_idea");
+      expect(systemText).toContain("rc_inference");
+      expect(systemText).toContain("ma_fraction_decimal_ops");
+      expect(systemText).toContain("Socratic");
+      expect(systemText).toContain("Hunter College");
+      expect(systemText).toContain("prerequisite");
     });
 
     it("uses claude-sonnet-4-20250514 model", async () => {
