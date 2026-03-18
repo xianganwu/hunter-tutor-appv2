@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
+import { MODEL_HAIKU, MODEL_SONNET } from "@/lib/ai/tutor-agent";
 
 // ─── Request Types ────────────────────────────────────────────────────
 
@@ -59,10 +60,9 @@ export async function POST(
     switch (body.type) {
       case "generate_context": {
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 512,
-          system:
-            "You are a vocabulary tutor for students preparing for the Hunter College High School entrance exam. Students are ages 9-12. Generate clear, age-appropriate example sentences that demonstrate the word's meaning in context. Make each sentence showcase a different usage or context for the word.",
+          system: [{ type: "text" as const, text: "You are a vocabulary tutor for students preparing for the Hunter College High School entrance exam. Students are ages 9-12. Generate clear, age-appropriate example sentences that demonstrate the word's meaning in context. Make each sentence showcase a different usage or context for the word.", cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -111,10 +111,9 @@ Requirements:
 
       case "evaluate_usage": {
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 256,
-          system:
-            "You are a warm, encouraging vocabulary tutor for students ages 9-12 preparing for the Hunter College High School entrance exam. Evaluate whether the student used the vocabulary word correctly in their sentence. Be supportive — celebrate correct usage and gently guide incorrect usage. Never say 'wrong' — instead, help them understand how to improve.",
+          system: [{ type: "text" as const, text: "You are a warm, encouraging vocabulary tutor for students ages 9-12 preparing for the Hunter College High School entrance exam. Evaluate whether the student used the vocabulary word correctly in their sentence. Be supportive — celebrate correct usage and gently guide incorrect usage. Never say 'wrong' — instead, help them understand how to improve.", cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -159,10 +158,9 @@ If incorrect: gently explain how the word should be used and give a tip.`,
 
       case "extract_vocab": {
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 1024,
-          system:
-            "You are a vocabulary tutor for students ages 9-12 preparing for the Hunter College High School entrance exam. Extract challenging but grade-appropriate vocabulary words from passages. Provide kid-friendly definitions.",
+          system: [{ type: "text" as const, text: "You are a vocabulary tutor for students ages 9-12 preparing for the Hunter College High School entrance exam. Extract challenging but grade-appropriate vocabulary words from passages. Provide kid-friendly definitions.", cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",

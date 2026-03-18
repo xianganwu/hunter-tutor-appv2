@@ -103,3 +103,17 @@ model WritingSubmission {
 
   @@index([sessionId])
 }
+
+model QuestionCache {
+  id             String   @id @default(cuid())
+  skillId        String
+  difficultyTier Int
+  questionText   String
+  answerChoices  String   // JSON array of choice strings
+  correctAnswer  String
+  explanation    String   @default("")
+  used           Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  @@index([skillId, difficultyTier, used])
+}

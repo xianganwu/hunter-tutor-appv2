@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
+import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 
 // Allow up to 60s for AI question generation
@@ -109,9 +110,9 @@ export async function POST(
         const maxTokens = Math.min(16384, Math.max(4096, body.questionCount * 400));
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: maxTokens,
-          system: `You are a math exam question writer creating practice questions for students preparing for the Hunter College High School entrance exam. Students range from rising 5th graders (age 9-10) working on foundations to 6th graders (age 11-12) in intensive prep. Create rigorous, age-appropriate multiple-choice questions. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.`,
+          system: [{ type: "text" as const, text: `You are a math exam question writer creating practice questions for students preparing for the Hunter College High School entrance exam. Students range from rising 5th graders (age 9-10) working on foundations to 6th graders (age 11-12) in intensive prep. Create rigorous, age-appropriate multiple-choice questions. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -187,9 +188,9 @@ Requirements:
         }
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 1024,
-          system: `You are evaluating a student's essay written under timed practice conditions. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12) preparing for the Hunter College High School entrance exam. Score fairly but kindly, calibrating expectations to the student's apparent age and skill level. The essay was written in approximately 25-30 minutes.`,
+          system: [{ type: "text" as const, text: `You are evaluating a student's essay written under timed practice conditions. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12) preparing for the Hunter College High School entrance exam. Score fairly but kindly, calibrating expectations to the student's apparent age and skill level. The essay was written in approximately 25-30 minutes.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -243,9 +244,9 @@ IMPROVEMENTS: [comma-separated list of 2-3 specific areas to improve]`,
           .join("\n");
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 1024,
-          system: `You are a warm, encouraging test prep tutor for a student building skills toward the Hunter College High School entrance exam. The student may be a rising 5th grader building foundations or a 6th grader in intensive prep. Provide specific, actionable study recommendations based on their practice exam results. Be positive but honest.`,
+          system: [{ type: "text" as const, text: `You are a warm, encouraging test prep tutor for a student building skills toward the Hunter College High School entrance exam. The student may be a rising 5th grader building foundations or a 6th grader in intensive prep. Provide specific, actionable study recommendations based on their practice exam results. Be positive but honest.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",

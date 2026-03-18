@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
+import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 
 // ─── Request Types ────────────────────────────────────────────────────
 
@@ -57,9 +58,9 @@ export async function POST(
         const target = body.targetWordCount;
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 4096,
-          system: `You are a reading passage author creating content for students building toward the Hunter College High School entrance exam. Students range from rising 5th graders (age 9-10) to 6th graders (age 11-12). Write engaging, age-appropriate passages that challenge reading comprehension without being frustrating. Calibrate vocabulary and sentence complexity to the difficulty level requested. Include rich detail that supports inference and analysis questions.`,
+          system: [{ type: "text" as const, text: `You are a reading passage author creating content for students building toward the Hunter College High School entrance exam. Students range from rising 5th graders (age 9-10) to 6th graders (age 11-12). Write engaging, age-appropriate passages that challenge reading comprehension without being frustrating. Calibrate vocabulary and sentence complexity to the difficulty level requested. Include rich detail that supports inference and analysis questions.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -120,9 +121,9 @@ Requirements:
 
       case "speed_feedback": {
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 512,
-          system: `You are a warm, encouraging reading tutor. The student's reading speed has dropped on a longer passage. Your job is to normalize this, offer specific strategies, and ask an open-ended question to understand where they struggled. Be conversational and supportive — never make them feel bad about slowing down. Keep your response to 3-4 sentences.`,
+          system: [{ type: "text" as const, text: `You are a warm, encouraging reading tutor. The student's reading speed has dropped on a longer passage. Your job is to normalize this, offer specific strategies, and ask an open-ended question to understand where they struggled. Be conversational and supportive — never make them feel bad about slowing down. Keep your response to 3-4 sentences.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",

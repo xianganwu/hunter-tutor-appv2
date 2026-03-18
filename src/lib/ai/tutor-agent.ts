@@ -45,7 +45,8 @@ export interface ConversationMessage {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
-const MODEL = "claude-sonnet-4-20250514";
+export const MODEL_SONNET = "claude-sonnet-4-20250514";
+export const MODEL_HAIKU = "claude-haiku-4-5-20251001";
 const MAX_TOKENS_LESSON = 4096;
 const MAX_TOKENS_QUESTION = 512;
 const MAX_TOKENS_FEEDBACK = 768;
@@ -160,6 +161,17 @@ Use this taxonomy to:
 - Celebrate when a student is ready to progress from foundations to hunter_prep level skills`;
 }
 
+/** Build a cached system prompt block for Anthropic API calls. */
+function buildCachedSystemBlock(text: string): Anthropic.TextBlockParam[] {
+  return [
+    {
+      type: "text" as const,
+      text,
+      cache_control: { type: "ephemeral" as const },
+    },
+  ];
+}
+
 /** Extract the choice letter from "B) text" or bare "B" formats */
 function extractChoiceLetter(s: string): string {
   return s.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ?? s.trim().charAt(0).toUpperCase();
@@ -170,10 +182,16 @@ function extractChoiceLetter(s: string): string {
 export class TutorAgent {
   private readonly client: Anthropic;
   private readonly systemPrompt: string;
+  private readonly cachedSystemBlock: Anthropic.TextBlockParam[];
 
   constructor(client?: Anthropic) {
     this.client = client ?? getAnthropicClient();
     this.systemPrompt = buildSystemPrompt();
+    this.cachedSystemBlock = buildCachedSystemBlock(this.systemPrompt);
+  }
+
+  getCachedSystemBlock(): Anthropic.TextBlockParam[] {
+    return this.cachedSystemBlock;
   }
 
   /** Build messages for teachConcept (shared by streaming and non-streaming). */
@@ -212,9 +230,9 @@ Give me a clear explanation with one worked example. End by asking me a question
     studentMastery: number
   ): Promise<TeachConceptResult> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_LESSON,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: this.buildTeachMessages(skill, studentMastery),
     });
 
@@ -231,9 +249,9 @@ Give me a clear explanation with one worked example. End by asking me a question
     difficultyTier: DifficultyLevel
   ): Promise<GeneratedQuestion> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_QUESTION,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: [
         {
           role: "user",
@@ -315,9 +333,9 @@ Keep it encouraging. We want them to try again.`;
     );
 
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_FEEDBACK,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages,
     });
 
@@ -335,9 +353,9 @@ Keep it encouraging. We want them to try again.`;
     essayText: string
   ): Promise<EssayFeedback> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_ESSAY,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: [
         {
           role: "user",
@@ -405,9 +423,9 @@ This seems like they might be feeling frustrated, anxious, or discouraged. Respo
     conversationHistory: readonly ConversationMessage[] = []
   ): Promise<string> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_HAIKU,
       max_tokens: MAX_TOKENS_FEEDBACK,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: this.buildEmotionalMessages(message, conversationHistory),
     });
 
@@ -443,9 +461,9 @@ Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
     conversationHistory: readonly ConversationMessage[] = []
   ): Promise<SocraticFollowUp> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_HAIKU,
       max_tokens: MAX_TOKENS_FOLLOWUP,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: this.buildHintMessages(context, conversationHistory),
     });
 
@@ -463,9 +481,9 @@ Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
     count: number = 10
   ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[] }[]> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: 2048,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: [
         {
           role: "user",
@@ -536,9 +554,9 @@ Make sure:
       .join("\n");
 
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: 2048,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: [
         {
           role: "user",
@@ -680,3 +698,5 @@ function clampScore(n: number): number {
   if (isNaN(n)) return 5;
   return Math.max(1, Math.min(10, n));
 }
+
+

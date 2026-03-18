@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
+import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 
 // ─── Request Types ────────────────────────────────────────────────────
 
@@ -83,9 +84,9 @@ export async function POST(
           .join("\n");
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 1024,
-          system: `You are a thoughtful education consultant briefing a parent on their child's progress building skills toward the Hunter College High School entrance exam. The student may be a rising 5th grader (age 9-10) working on foundations or a 6th grader (age 11-12) in intensive prep. Be honest but encouraging. The parent wants to know: (1) a clear readiness assessment, and (2) specific focus areas for the coming week. Speak directly to the parent. Keep it concise and actionable.`,
+          system: [{ type: "text" as const, text: `You are a thoughtful education consultant briefing a parent on their child's progress building skills toward the Hunter College High School entrance exam. The student may be a rising 5th grader (age 9-10) working on foundations or a 6th grader (age 11-12) in intensive prep. Be honest but encouraging. The parent wants to know: (1) a clear readiness assessment, and (2) specific focus areas for the coming week. Speak directly to the parent. Keep it concise and actionable.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -147,9 +148,9 @@ FOCUS_AREAS: ["rec1", "rec2", "rec3", "rec4"]`,
           .join("\n");
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 256,
-          system: `You are writing a brief weekly progress summary for a parent whose child is preparing for the Hunter College High School entrance exam. Be warm, specific, and encouraging. Keep it to 2-3 sentences.`,
+          system: [{ type: "text" as const, text: `You are writing a brief weekly progress summary for a parent whose child is preparing for the Hunter College High School entrance exam. Be warm, specific, and encouraging. Keep it to 2-3 sentences.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",

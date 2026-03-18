@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import type Anthropic from "@anthropic-ai/sdk";
-import { TutorAgent } from "@/lib/ai/tutor-agent";
+import { TutorAgent, MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { getSkillById } from "@/lib/exam/curriculum";
 import { prisma } from "@/lib/db";
+import { getCachedQuestion } from "@/lib/question-cache";
 import type { ChatAction } from "@/components/tutor/types";
 import type { DifficultyLevel } from "@/lib/types";
 
@@ -16,7 +17,7 @@ type StreamMeta = Record<string, unknown>;
 interface StreamParams {
   model: string;
   max_tokens: number;
-  system: string;
+  system: string | Anthropic.TextBlockParam[];
   messages: Anthropic.MessageParam[];
 }
 
@@ -96,9 +97,9 @@ export async function POST(request: Request): Promise<Response> {
 
         if (wantStream) {
           return createSSEStream({
-            model: "claude-sonnet-4-20250514",
+            model: MODEL_SONNET,
             max_tokens: 4096,
-            system: agent.getSystemPrompt(),
+            system: agent.getCachedSystemBlock(),
             messages: agent.buildTeachMessages(skill, body.mastery),
           });
         }
@@ -112,7 +113,11 @@ export async function POST(request: Request): Promise<Response> {
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
-        const question = await agent.generateQuestion(skill, body.difficultyTier as DifficultyLevel);
+        const question = await getCachedQuestion(
+          skill,
+          body.difficultyTier as DifficultyLevel,
+          agent
+        );
         return NextResponse.json({ text: question.questionText, question });
       }
 
@@ -143,9 +148,9 @@ export async function POST(request: Request): Promise<Response> {
         if (wantStream) {
           return createSSEStream(
             {
-              model: "claude-sonnet-4-20250514",
+              model: MODEL_SONNET,
               max_tokens: 768,
-              system: agent.getSystemPrompt(),
+              system: agent.getCachedSystemBlock(),
               messages,
             },
             { isCorrect }
@@ -167,9 +172,9 @@ export async function POST(request: Request): Promise<Response> {
       case "get_hint": {
         if (wantStream) {
           return createSSEStream({
-            model: "claude-sonnet-4-20250514",
+            model: MODEL_HAIKU,
             max_tokens: 256,
-            system: agent.getSystemPrompt(),
+            system: agent.getCachedSystemBlock(),
             messages: agent.buildHintMessages(body.context, body.history ?? []),
           });
         }
@@ -186,9 +191,9 @@ export async function POST(request: Request): Promise<Response> {
 
         if (wantStream) {
           return createSSEStream({
-            model: "claude-sonnet-4-20250514",
+            model: MODEL_SONNET,
             max_tokens: 4096,
-            system: agent.getSystemPrompt(),
+            system: agent.getCachedSystemBlock(),
             messages: agent.buildTeachMessages(skill, body.mastery),
           });
         }
@@ -205,9 +210,9 @@ export async function POST(request: Request): Promise<Response> {
 
         const client = getAnthropicClient();
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 512,
-          system: `You are a warm tutor evaluating a student's explanation of a concept. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). They are trying to "teach it back" — explaining the concept as if teaching a friend. Evaluate their explanation for completeness and accuracy, then respond in a structured format. Match your language to the student's age level.`,
+          system: [{ type: "text" as const, text: `You are a warm tutor evaluating a student's explanation of a concept. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). They are trying to "teach it back" — explaining the concept as if teaching a friend. Evaluate their explanation for completeness and accuracy, then respond in a structured format. Match your language to the student's age level.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -267,9 +272,9 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
       case "emotional_response": {
         if (wantStream) {
           return createSSEStream({
-            model: "claude-sonnet-4-20250514",
+            model: MODEL_HAIKU,
             max_tokens: 768,
-            system: agent.getSystemPrompt(),
+            system: agent.getCachedSystemBlock(),
             messages: agent.buildEmotionalMessages(body.message, body.history ?? []),
           });
         }
@@ -332,9 +337,9 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
 
         const client = getAnthropicClient();
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 2048,
-          system: agent.getSystemPrompt(),
+          system: agent.getCachedSystemBlock(),
           messages: [
             {
               role: "user",
