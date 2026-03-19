@@ -105,7 +105,13 @@ export async function POST(
         const response = await client.messages.create({
           model: "claude-sonnet-4-20250514",
           max_tokens: 16384,
-          system: `You are a math exam question writer for the Hunter College High School entrance exam. Create rigorous, age-appropriate multiple-choice questions for 6th graders. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.`,
+          system: `You are a math exam question writer for the Hunter College High School entrance exam. Create rigorous, age-appropriate multiple-choice questions for 6th graders. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.
+
+CRITICAL — Answer Uniqueness:
+- Before finalizing each question, verify that ONLY the answer marked as correct satisfies ALL conditions in the question. No other answer choice may also be valid.
+- For "which number" questions (e.g. place value, digit constraints), check EVERY answer choice against ALL stated conditions. If more than one choice satisfies the conditions, rewrite the question to add constraints that make the answer unique, or replace conflicting wrong answers.
+- For computation questions, double-check the arithmetic. The correct answer must actually equal the result of the computation.
+- Distractors (wrong answers) must be plausible but definitively wrong — they must fail at least one condition in the question.`,
           messages: [
             {
               role: "user",
@@ -138,7 +144,8 @@ Requirements:
 - skillId must be one of the skill IDs listed above
 - Use LaTeX for math: $\\frac{3}{4}$, $x^2 + 3$, etc.
 - Difficulty should range from straightforward to challenging
-- No duplicate questions`,
+- No duplicate questions
+- IMPORTANT: For each question, verify that exactly one answer choice is correct and the other four are definitively wrong. Check every answer choice against the question's conditions before including it.`,
             },
           ],
         });
@@ -158,7 +165,32 @@ Requirements:
           const questions = JSON.parse(
             jsonMatch[0]
           ) as GeneratedMathQuestion[];
-          return NextResponse.json({ questions });
+
+          // Validate question structure
+          const validLetters = new Set(["A", "B", "C", "D", "E"]);
+          const validQuestions = questions.filter((q) => {
+            // Must have question text
+            if (!q.questionText?.trim()) return false;
+            // Must have exactly 5 answer choices with letters A-E
+            if (!Array.isArray(q.answerChoices) || q.answerChoices.length !== 5)
+              return false;
+            const letters = q.answerChoices.map((c) => c.letter);
+            if (!letters.every((l) => validLetters.has(l))) return false;
+            if (new Set(letters).size !== 5) return false;
+            // Correct answer must reference an existing choice
+            if (!validLetters.has(q.correctAnswer)) return false;
+            // Must have a skillId
+            if (!q.skillId?.trim()) return false;
+            return true;
+          });
+
+          if (validQuestions.length < questions.length) {
+            console.warn(
+              `Filtered out ${questions.length - validQuestions.length} malformed math questions`
+            );
+          }
+
+          return NextResponse.json({ questions: validQuestions });
         } catch {
           return NextResponse.json({
             error: "Failed to parse generated questions",
