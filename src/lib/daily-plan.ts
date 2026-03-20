@@ -323,10 +323,36 @@ export function getTodaysPlan(): DailyPlan {
   const today = new Date().toISOString().split("T")[0];
 
   if (existing && existing.date === today) {
+    // Regenerate if the cached plan is stale — e.g. mistakes were cleared
+    // but the plan still shows a "Review Past Mistakes" task.
+    if (isPlanStale(existing)) {
+      return generateDailyPlan(loadTimeBudget());
+    }
     return existing;
   }
 
   return generateDailyPlan(loadTimeBudget());
+}
+
+/**
+ * Check if a cached daily plan has become stale because the underlying
+ * data no longer matches the tasks. For example, the plan may list a
+ * mistake-review task but all mistakes have been cleared.
+ */
+function isPlanStale(plan: DailyPlan): boolean {
+  const hasMistakeTask = plan.tasks.some((t) => t.type === "mistake_review");
+  if (hasMistakeTask) {
+    const dueMistakes = getDueForReview(loadMistakes());
+    if (dueMistakes.length === 0) return true;
+  }
+
+  const hasVocabTask = plan.tasks.some((t) => t.type === "vocab_review");
+  if (hasVocabTask) {
+    const dueCards = getDueCards(loadVocabDeck());
+    if (dueCards.length === 0) return true;
+  }
+
+  return false;
 }
 
 /**
