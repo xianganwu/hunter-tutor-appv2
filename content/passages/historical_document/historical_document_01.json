@@ -158,7 +158,7 @@
         { "letter": "C", "explanation": "There is no mention of who gave William his coat. The phrase is a comparison, not a description of a real object." },
         { "letter": "D", "explanation": "This takes the comparison too literally. William means that love comforts him emotionally, not that love physically warms him." }
       ],
-      "skill_tested": "rc_inference"
+      "skill_tested": "rc_figurative_language"
     },
     {
       "question_number": 8,

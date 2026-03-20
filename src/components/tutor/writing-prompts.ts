@@ -77,12 +77,29 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
   },
 ];
 
+/** Track recently used prompt IDs to avoid repeats. */
+const recentPromptIds: string[] = [];
+const MAX_RECENT = 3;
+
 export function getRandomPrompt(level?: "foundations" | "hunter_prep"): EssayPrompt {
   const filtered = level
     ? ESSAY_PROMPTS.filter((p) => p.level === level)
     : ESSAY_PROMPTS;
-  const index = Math.floor(Math.random() * filtered.length);
-  return filtered[index];
+
+  // Prefer prompts not recently used
+  const unused = filtered.filter((p) => !recentPromptIds.includes(p.id));
+  const pool = unused.length > 0 ? unused : filtered;
+
+  const index = Math.floor(Math.random() * pool.length);
+  const selected = pool[index];
+
+  // Track this prompt as recently used
+  recentPromptIds.push(selected.id);
+  if (recentPromptIds.length > MAX_RECENT) {
+    recentPromptIds.shift();
+  }
+
+  return selected;
 }
 
 export function getPromptById(id: string): EssayPrompt | undefined {

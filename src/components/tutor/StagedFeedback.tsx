@@ -71,15 +71,19 @@ export function StagedFeedback({
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Scores overview */}
-      <div className="grid grid-cols-4 gap-2">
-        {(
-          [
-            ["Organization", feedback.scores.organization],
-            ["Clarity", feedback.scores.clarity],
-            ["Evidence", feedback.scores.evidence],
-            ["Grammar", feedback.scores.grammar],
-          ] as const
-        ).map(([label, score]) => (
+      {(() => {
+        const scoreEntries: [string, number][] = [
+          ["Organization", feedback.scores.organization],
+          ["Clarity", feedback.scores.clarity],
+          ["Evidence", feedback.scores.evidence],
+          ["Grammar", feedback.scores.grammar],
+          ...(feedback.scores.voice != null ? [["Voice", feedback.scores.voice] as [string, number]] : []),
+          ...(feedback.scores.ideas != null ? [["Ideas", feedback.scores.ideas] as [string, number]] : []),
+        ];
+        const hasExtended = scoreEntries.length > 4;
+        return (
+      <div className={`grid gap-2 ${hasExtended ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
+        {scoreEntries.map(([label, score]) => (
           <div
             key={label}
             className="rounded-2xl bg-surface-50 dark:bg-surface-800 p-3 text-center shadow-soft"
@@ -91,6 +95,8 @@ export function StagedFeedback({
           </div>
         ))}
       </div>
+        );
+      })()}
 
       {/* Stage 1: Praise */}
       <div className="rounded-2xl border-2 border-success-200 dark:border-success-600/30 bg-success-50 dark:bg-success-500/10 p-4">

@@ -63,20 +63,17 @@ export function RevisionFeedback({
       before: originalFeedback.scores.grammar,
       after: revisedFeedback.scores.grammar,
     },
+    ...(originalFeedback.scores.voice != null && revisedFeedback.scores.voice != null
+      ? [{ category: "Voice", before: originalFeedback.scores.voice, after: revisedFeedback.scores.voice }]
+      : []),
+    ...(originalFeedback.scores.ideas != null && revisedFeedback.scores.ideas != null
+      ? [{ category: "Ideas", before: originalFeedback.scores.ideas, after: revisedFeedback.scores.ideas }]
+      : []),
   ];
 
-  const avgBefore =
-    (originalFeedback.scores.organization +
-      originalFeedback.scores.clarity +
-      originalFeedback.scores.evidence +
-      originalFeedback.scores.grammar) /
-    4;
-  const avgAfter =
-    (revisedFeedback.scores.organization +
-      revisedFeedback.scores.clarity +
-      revisedFeedback.scores.evidence +
-      revisedFeedback.scores.grammar) /
-    4;
+  // Use comparisons array for averages so both sides use the same denominator
+  const avgBefore = comparisons.reduce((a, c) => a + c.before, 0) / comparisons.length;
+  const avgAfter = comparisons.reduce((a, c) => a + c.after, 0) / comparisons.length;
 
   const improved = avgAfter > avgBefore;
 
@@ -105,7 +102,7 @@ export function RevisionFeedback({
       </div>
 
       {/* Score comparison grid */}
-      <div className="grid grid-cols-4 gap-2">
+      <div className={`grid gap-2 ${comparisons.length > 4 ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
         {comparisons.map((c) => (
           <div
             key={c.category}
