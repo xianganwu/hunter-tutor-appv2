@@ -4,7 +4,8 @@ import { TutorAgent, MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { getSkillById } from "@/lib/exam/curriculum";
 import { prisma } from "@/lib/db";
-import { getCachedQuestion } from "@/lib/question-cache";
+import { getCachedQuestion, ensureCacheFlushed } from "@/lib/question-cache";
+import { verifyQuestionAnswers } from "@/lib/ai/verify-answers";
 import type { ChatAction } from "@/components/tutor/types";
 import type { DifficultyLevel } from "@/lib/types";
 
@@ -84,6 +85,9 @@ interface StreamableAction extends Record<string, unknown> {
 }
 
 export async function POST(request: Request): Promise<Response> {
+  // Flush stale/buggy cached questions on first request after deploy
+  await ensureCacheFlushed();
+
   try {
     const body = (await request.json()) as ChatAction & StreamableAction;
     const wantStream = body.stream === true;
@@ -291,7 +295,8 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
-        const questions = await agent.generateDrillBatch(skill, body.count ?? 10);
+        const rawQuestions = await agent.generateDrillBatch(skill, body.count ?? 10);
+        const questions = await verifyQuestionAnswers(rawQuestions);
         return NextResponse.json({ questions });
       }
 
@@ -307,10 +312,11 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
           return NextResponse.json({ questions: [] });
         }
 
-        const mixedQuestions = await agent.generateMixedDrillBatch(
+        const rawMixed = await agent.generateMixedDrillBatch(
           resolvedSkills,
           body.totalCount,
         );
+        const mixedQuestions = await verifyQuestionAnswers(rawMixed);
         return NextResponse.json({ questions: mixedQuestions });
       }
 
@@ -380,13 +386,14 @@ Respond with ONLY a JSON array, no other text:
             correctAnswer: string;
           }[];
 
-          const questions = parsed.map((q) => ({
+          const rawDiagnostic = parsed.map((q) => ({
             skillId: q.skillId,
             questionText: q.questionText,
             answerChoices: q.answerChoices,
             correctAnswer: q.correctAnswer,
           }));
 
+          const questions = await verifyQuestionAnswers(rawDiagnostic);
           return NextResponse.json({ questions });
         } catch {
           return NextResponse.json({ questions: [] });
