@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { TutorAgent } from "@/lib/ai/tutor-agent";
 import type { GeneratedQuestion } from "@/lib/ai/tutor-agent";
 import type { Skill, DifficultyLevel } from "@/lib/types";
+import { verifyQuestionAnswers } from "@/lib/ai/verify-answers";
 
 // ─── Constants ────────────────────────────────────────────────────────
 
@@ -81,6 +82,42 @@ export async function cleanupStaleQuestions(): Promise<number> {
   });
 
   return result.count;
+}
+
+/**
+ * Flush all unused cached questions. Call after deploying answer-correctness
+ * fixes to ensure old buggy questions are not served.
+ */
+export async function flushUnusedCache(): Promise<number> {
+  const result = await prisma.questionCache.deleteMany({
+    where: { used: false },
+  });
+
+  if (result.count > 0) {
+    console.log(`[question-cache] Flushed ${result.count} unused cached questions`);
+  }
+
+  return result.count;
+}
+
+// ─── One-time cache flush on deploy ──────────────────────────────────
+//
+// After deploying answer-verification fixes, we need to flush any
+// pre-existing cached questions that may have incorrect answer keys.
+// This runs once per server process startup.
+
+let cacheFlushDone = false;
+
+export async function ensureCacheFlushed(): Promise<void> {
+  if (cacheFlushDone) return;
+  cacheFlushDone = true;
+
+  try {
+    await flushUnusedCache();
+    await cleanupStaleQuestions();
+  } catch (err) {
+    console.error("[question-cache] Cache flush on startup failed:", err);
+  }
 }
 
 // ─── Internal helpers ─────────────────────────────────────────────────
@@ -197,11 +234,14 @@ async function generateAndCacheBatch(
 
   if (rawQuestions.length === 0) return null;
 
+  // Verify answers before caching to prevent wrong answer keys from persisting
+  const verifiedQuestions = await verifyQuestionAnswers(rawQuestions);
+
   // First question is served immediately → mark as used.
   // Remaining questions go into the pool as unused.
   try {
     await prisma.questionCache.createMany({
-      data: rawQuestions.map((q, i) => ({
+      data: verifiedQuestions.map((q, i) => ({
         skillId: skill.skill_id,
         difficultyTier,
         questionText: q.questionText,
@@ -215,7 +255,7 @@ async function generateAndCacheBatch(
     // Still return the first question even if caching failed
   }
 
-  const first = rawQuestions[0];
+  const first = verifiedQuestions[0];
   return {
     questionText: first.questionText,
     answerChoices: first.answerChoices,

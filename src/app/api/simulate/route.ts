@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
+import { verifyQuestionAnswers } from "@/lib/ai/verify-answers";
 
 // Allow up to 60s for AI question generation
 export const maxDuration = 60;
@@ -77,88 +78,6 @@ function buildQuestionDistribution(
       return `- ${count} questions for "${skill?.name ?? id}" (skillId: "${id}")`;
     })
     .join("\n");
-}
-
-// ─── Answer Verification ─────────────────────────────────────────────
-
-const VERIFY_BATCH_SIZE = 10;
-
-async function verifyAnswers(
-  client: ReturnType<typeof getAnthropicClient>,
-  questions: GeneratedMathQuestion[]
-): Promise<GeneratedMathQuestion[]> {
-  if (questions.length === 0) return questions;
-
-  // Process in batches to stay within token limits
-  const results: GeneratedMathQuestion[] = [];
-
-  for (let i = 0; i < questions.length; i += VERIFY_BATCH_SIZE) {
-    const batch = questions.slice(i, i + VERIFY_BATCH_SIZE);
-    const batchResults = await verifyBatch(client, batch);
-    results.push(...batchResults);
-  }
-
-  return results;
-}
-
-async function verifyBatch(
-  client: ReturnType<typeof getAnthropicClient>,
-  questions: GeneratedMathQuestion[]
-): Promise<GeneratedMathQuestion[]> {
-  const questionsForVerification = questions.map((q, idx) => {
-    const choices = q.answerChoices
-      .map((c) => `  ${c.letter}) ${c.text}`)
-      .join("\n");
-    return `QUESTION ${idx + 1}:\n${q.questionText}\n${choices}\nStated correct answer: ${q.correctAnswer}`;
-  });
-
-  try {
-    const response = await client.messages.create({
-      model: MODEL_HAIKU,
-      max_tokens: 2048,
-      system:
-        "You are a math answer verifier. For each question, determine the ACTUALLY correct answer by solving it yourself. Respond with ONLY a JSON array of objects, one per question, in order. Each object: {\"question\": <1-based index>, \"verified_answer\": \"<letter A-E>\", \"matches\": <true if stated answer is correct, false if wrong>}. No explanation, no markdown.",
-      messages: [
-        {
-          role: "user",
-          content: `Verify the correct answer for each question below. Solve each one yourself and check if the stated answer is right.\n\n${questionsForVerification.join("\n\n")}`,
-        },
-      ],
-    });
-
-    const text =
-      response.content[0].type === "text" ? response.content[0].text : "";
-    const jsonMatch = text.match(/\[[\s\S]*\]/);
-    if (!jsonMatch) return questions; // fallback: return unmodified
-
-    const verifications = JSON.parse(jsonMatch[0]) as {
-      question: number;
-      verified_answer: string;
-      matches: boolean;
-    }[];
-
-    const validLetters = new Set(["A", "B", "C", "D", "E"]);
-
-    return questions.map((q, idx) => {
-      const v = verifications.find((v) => v.question === idx + 1);
-      if (!v) return q; // no verification found, keep original
-
-      if (v.matches) return q; // answer confirmed correct
-
-      // Answer was wrong — fix it if the verified answer is valid
-      if (validLetters.has(v.verified_answer)) {
-        console.warn(
-          `Answer correction: Q${idx + 1} "${q.questionText.slice(0, 60)}..." changed from ${q.correctAnswer} to ${v.verified_answer}`
-        );
-        return { ...q, correctAnswer: v.verified_answer };
-      }
-
-      return q;
-    });
-  } catch (err) {
-    console.error("Answer verification failed, using unverified questions:", err);
-    return questions; // fallback: return unmodified on error
-  }
 }
 
 // ─── Handler ──────────────────────────────────────────────────────────
@@ -276,8 +195,16 @@ Requirements:
             );
           }
 
-          // ── Verification pass: use a fast model to check each answer ──
-          const verifiedQuestions = await verifyAnswers(client, structurallyValid);
+          // ── Verification pass: convert to verifier format and back ──
+          const forVerification = structurallyValid.map((q) => ({
+            ...q,
+            answerChoices: q.answerChoices.map((c) => `${c.letter}) ${c.text}`),
+          }));
+          const verified = await verifyQuestionAnswers(forVerification);
+          const verifiedQuestions = verified.map((q, i) => ({
+            ...structurallyValid[i],
+            correctAnswer: q.correctAnswer.charAt(0).toUpperCase(),
+          }));
 
           return NextResponse.json({ questions: verifiedQuestions });
         } catch {
