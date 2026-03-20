@@ -554,23 +554,23 @@
         "answerChoices": [
           {
             "letter": "A",
-            "text": "Batteries were weaker and had a shorter life span."
+            "text": "Existing batteries lacked the power and durability that new portable devices required."
           },
           {
             "letter": "B",
-            "text": "Batteries had more power but a shorter life span."
+            "text": "Consumers wanted batteries that were larger and easier to handle."
           },
           {
             "letter": "C",
-            "text": "Batteries were created for use in household appliances."
+            "text": "The materials used in older batteries had become too expensive to produce."
           },
           {
             "letter": "D",
-            "text": "Batteries were made without cathodes and anodes."
+            "text": "Government regulations required batteries to meet new safety standards."
           },
           {
             "letter": "E",
-            "text": "Batteries did not use an electrolyte."
+            "text": "Researchers discovered that alkaline batteries were harmful to the environment."
           }
         ],
         "correctAnswer": "A",
@@ -669,7 +669,7 @@
             "text": "The narrator noticed road construction on the way to school."
           }
         ],
-        "correctAnswer": "C",
+        "correctAnswer": "D",
         "skillId": "rc_inference",
         "confidence": "medium",
         "excluded": false,
@@ -2312,7 +2312,7 @@
       {
         "id": "hunter_tg_4_m_23",
         "questionNumber": 73,
-        "questionText": "The price of a dress at a clothing store decreases by 20 percent every month it is not sold. After 3 months, the current price of the unsold dress is approximately what percent of the original price?",
+        "questionText": "The price of a dress at a clothing store decreases by 20 percent every month it is not sold. After 3 months, the current price of the unsold dress is closest to what percent of the original price?",
         "answerChoices": [
           {
             "letter": "A",

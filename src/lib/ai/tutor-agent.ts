@@ -29,6 +29,8 @@ export interface EssayFeedback {
     readonly clarity: number;
     readonly evidence: number;
     readonly grammar: number;
+    readonly voice?: number;
+    readonly ideas?: number;
   };
   readonly strengths: readonly string[];
   readonly improvements: readonly string[];
@@ -375,10 +377,12 @@ Evaluate this student's essay. Be encouraging but honest. Format your response E
 OVERALL: [2-3 sentences of overall feedback — start with something positive]
 
 SCORES (1-10 each):
-Organization: [score]
-Clarity: [score]
-Evidence: [score]
-Grammar: [score]
+Organization: [score — structure, paragraphs, logical flow]
+Clarity: [score — clear sentences, appropriate word choice]
+Evidence: [score — specific details, examples, support for ideas]
+Grammar: [score — mechanics, punctuation, spelling]
+Voice: [score — authentic, engaging tone; does the writing sound like a real person with something to say?]
+Ideas: [score — depth of thinking, addresses the prompt directly, develops ideas beyond surface level]
 
 STRENGTHS:
 - [specific thing they did well, with a quote from their essay]
@@ -632,18 +636,42 @@ Make sure:
 /**
  * Check that all answer choices are distinct after normalizing.
  * Strips the leading letter prefix (e.g. "A) "), trims whitespace,
- * and lower-cases before comparing to catch duplicates like "40%" vs ".40".
+ * and normalizes common equivalent representations before comparing.
  */
 function hasDistinctChoices(choices: string[]): boolean {
-  const normalized = choices.map((c) => {
-    // Strip leading letter+paren prefix: "A) 30%" → "30%"
-    const stripped = c.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
-    // Normalize common equivalent representations
-    // Convert ".40" to "0.40" so it can be compared numerically
-    const withLeadingZero = stripped.replace(/^\.(\d)/, "0.$1");
-    return withLeadingZero;
-  });
+  const normalized = choices.map((c) => normalizeChoiceValue(c));
   return new Set(normalized).size === normalized.length;
+}
+
+/**
+ * Normalize a single answer choice for equivalence comparison.
+ * Handles: leading letter prefix, decimals, fractions, percentages,
+ * currency symbols, trailing zeros, and whitespace variations.
+ */
+function normalizeChoiceValue(choice: string): string {
+  // Strip leading letter+paren prefix: "A) 30%" → "30%"
+  let s = choice.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+  // Remove currency symbols and commas: "$1,500" → "1500"
+  s = s.replace(/[$,]/g, "");
+  // Add leading zero: ".40" → "0.40"
+  s = s.replace(/^\.(\d)/, "0.$1");
+  // Remove trailing zeros after decimal: "0.40" → "0.4", "3.0" → "3"
+  s = s.replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
+  // Normalize simple fractions to decimals for comparison
+  const fractionMatch = s.match(/^(\d+)\/(\d+)$/);
+  if (fractionMatch) {
+    const num = parseInt(fractionMatch[1], 10);
+    const den = parseInt(fractionMatch[2], 10);
+    if (den !== 0) s = String(num / den);
+  }
+  // Normalize percentage to decimal: "50%" → "0.5"
+  const pctMatch = s.match(/^(\d+(?:\.\d+)?)%$/);
+  if (pctMatch) {
+    s = String(parseFloat(pctMatch[1]) / 100);
+  }
+  // Collapse whitespace
+  s = s.replace(/\s+/g, " ");
+  return s;
 }
 
 function extractText(response: Anthropic.Message): string {
@@ -692,6 +720,8 @@ function parseEssayFeedback(text: string): EssayFeedback {
   const clarityMatch = text.match(/Clarity:\s*(\d+)/);
   const evidenceMatch = text.match(/Evidence:\s*(\d+)/);
   const grammarMatch = text.match(/Grammar:\s*(\d+)/);
+  const voiceMatch = text.match(/Voice:\s*(\d+)/);
+  const ideasMatch = text.match(/Ideas:\s*(\d+)/);
 
   const strengthsMatch = text.match(
     /STRENGTHS:\s*\n([\s\S]*?)(?=\nIMPROVEMENTS:)/
@@ -713,6 +743,8 @@ function parseEssayFeedback(text: string): EssayFeedback {
       clarity: clampScore(parseInt(clarityMatch?.[1] ?? "5", 10)),
       evidence: clampScore(parseInt(evidenceMatch?.[1] ?? "5", 10)),
       grammar: clampScore(parseInt(grammarMatch?.[1] ?? "5", 10)),
+      voice: voiceMatch ? clampScore(parseInt(voiceMatch[1], 10)) : undefined,
+      ideas: ideasMatch ? clampScore(parseInt(ideasMatch[1], 10)) : undefined,
     },
     strengths: parseBullets(strengthsMatch?.[1]),
     improvements: parseBullets(improvementsMatch?.[1]),

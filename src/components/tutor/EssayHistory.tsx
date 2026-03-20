@@ -174,15 +174,19 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
 
                   {expanded && (
                     <div className={`px-4 pb-4 space-y-3 border-t border-surface-100 dark:border-surface-800 pt-3 ${isRevision ? "pl-8" : ""}`}>
-                      <div className="grid grid-cols-4 gap-2 text-center text-xs">
-                        {(
-                          [
-                            ["Org", essay.feedback.scores.organization],
-                            ["Clarity", essay.feedback.scores.clarity],
-                            ["Evidence", essay.feedback.scores.evidence],
-                            ["Grammar", essay.feedback.scores.grammar],
-                          ] as const
-                        ).map(([label, score]) => (
+                      {(() => {
+                        const historyScoreEntries: [string, number][] = [
+                          ["Org", essay.feedback.scores.organization],
+                          ["Clarity", essay.feedback.scores.clarity],
+                          ["Evidence", essay.feedback.scores.evidence],
+                          ["Grammar", essay.feedback.scores.grammar],
+                          ...(essay.feedback.scores.voice != null ? [["Voice", essay.feedback.scores.voice] as [string, number]] : []),
+                          ...(essay.feedback.scores.ideas != null ? [["Ideas", essay.feedback.scores.ideas] as [string, number]] : []),
+                        ];
+                        const historyHasExtended = historyScoreEntries.length > 4;
+                        return (
+                      <div className={`grid gap-2 text-center text-xs ${historyHasExtended ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
+                        {historyScoreEntries.map(([label, score]) => (
                           <div key={label}>
                             <span className="font-bold">{score}</span>
                             <span className="text-surface-400">/{10}</span>
@@ -190,6 +194,8 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                           </div>
                         ))}
                       </div>
+                        );
+                      })()}
 
                       <details>
                         <summary className="text-xs text-brand-600 dark:text-brand-400 cursor-pointer">
