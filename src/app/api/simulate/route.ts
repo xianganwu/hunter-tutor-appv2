@@ -79,6 +79,88 @@ function buildQuestionDistribution(
     .join("\n");
 }
 
+// ─── Answer Verification ─────────────────────────────────────────────
+
+const VERIFY_BATCH_SIZE = 10;
+
+async function verifyAnswers(
+  client: ReturnType<typeof getAnthropicClient>,
+  questions: GeneratedMathQuestion[]
+): Promise<GeneratedMathQuestion[]> {
+  if (questions.length === 0) return questions;
+
+  // Process in batches to stay within token limits
+  const results: GeneratedMathQuestion[] = [];
+
+  for (let i = 0; i < questions.length; i += VERIFY_BATCH_SIZE) {
+    const batch = questions.slice(i, i + VERIFY_BATCH_SIZE);
+    const batchResults = await verifyBatch(client, batch);
+    results.push(...batchResults);
+  }
+
+  return results;
+}
+
+async function verifyBatch(
+  client: ReturnType<typeof getAnthropicClient>,
+  questions: GeneratedMathQuestion[]
+): Promise<GeneratedMathQuestion[]> {
+  const questionsForVerification = questions.map((q, idx) => {
+    const choices = q.answerChoices
+      .map((c) => `  ${c.letter}) ${c.text}`)
+      .join("\n");
+    return `QUESTION ${idx + 1}:\n${q.questionText}\n${choices}\nStated correct answer: ${q.correctAnswer}`;
+  });
+
+  try {
+    const response = await client.messages.create({
+      model: MODEL_HAIKU,
+      max_tokens: 2048,
+      system:
+        "You are a math answer verifier. For each question, determine the ACTUALLY correct answer by solving it yourself. Respond with ONLY a JSON array of objects, one per question, in order. Each object: {\"question\": <1-based index>, \"verified_answer\": \"<letter A-E>\", \"matches\": <true if stated answer is correct, false if wrong>}. No explanation, no markdown.",
+      messages: [
+        {
+          role: "user",
+          content: `Verify the correct answer for each question below. Solve each one yourself and check if the stated answer is right.\n\n${questionsForVerification.join("\n\n")}`,
+        },
+      ],
+    });
+
+    const text =
+      response.content[0].type === "text" ? response.content[0].text : "";
+    const jsonMatch = text.match(/\[[\s\S]*\]/);
+    if (!jsonMatch) return questions; // fallback: return unmodified
+
+    const verifications = JSON.parse(jsonMatch[0]) as {
+      question: number;
+      verified_answer: string;
+      matches: boolean;
+    }[];
+
+    const validLetters = new Set(["A", "B", "C", "D", "E"]);
+
+    return questions.map((q, idx) => {
+      const v = verifications.find((v) => v.question === idx + 1);
+      if (!v) return q; // no verification found, keep original
+
+      if (v.matches) return q; // answer confirmed correct
+
+      // Answer was wrong — fix it if the verified answer is valid
+      if (validLetters.has(v.verified_answer)) {
+        console.warn(
+          `Answer correction: Q${idx + 1} "${q.questionText.slice(0, 60)}..." changed from ${q.correctAnswer} to ${v.verified_answer}`
+        );
+        return { ...q, correctAnswer: v.verified_answer };
+      }
+
+      return q;
+    });
+  } catch (err) {
+    console.error("Answer verification failed, using unverified questions:", err);
+    return questions; // fallback: return unmodified on error
+  }
+}
+
 // ─── Handler ──────────────────────────────────────────────────────────
 
 export async function POST(
@@ -114,11 +196,12 @@ export async function POST(
           max_tokens: maxTokens,
           system: [{ type: "text" as const, text: `You are a math exam question writer creating practice questions for students preparing for the Hunter College High School entrance exam. Students range from rising 5th graders (age 9-10) working on foundations to 6th graders (age 11-12) in intensive prep. Create rigorous, age-appropriate multiple-choice questions. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.
 
-CRITICAL — Answer Uniqueness:
-- Before finalizing each question, verify that ONLY the answer marked as correct satisfies ALL conditions in the question. No other answer choice may also be valid.
-- For "which number" questions (e.g. place value, digit constraints), check EVERY answer choice against ALL stated conditions. If more than one choice satisfies the conditions, rewrite the question to add constraints that make the answer unique, or replace conflicting wrong answers.
-- For computation questions, double-check the arithmetic. The correct answer must actually equal the result of the computation.
-- Distractors (wrong answers) must be plausible but definitively wrong — they must fail at least one condition in the question.`, cache_control: { type: "ephemeral" as const } }],
+CRITICAL — Answer Correctness:
+Before setting correctAnswer for EACH question, you MUST solve the question yourself:
+1. For comparison questions ("which is the most/least/largest/smallest"): compare ALL values in the problem and identify the correct one. Then find which answer choice letter matches. Do NOT assume the answer — actually compare the numbers.
+2. For computation questions: perform the arithmetic step by step. Verify your result matches the answer choice you mark as correct.
+3. For place value / digit questions: check EVERY answer choice against ALL stated conditions. Only one choice may satisfy all conditions.
+4. Double-check that the letter you put in correctAnswer corresponds to the choice that is actually correct — a common mistake is computing the right answer but assigning the wrong letter.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -175,29 +258,28 @@ Requirements:
 
           // Validate question structure
           const validLetters = new Set(["A", "B", "C", "D", "E"]);
-          const validQuestions = questions.filter((q) => {
-            // Must have question text
+          const structurallyValid = questions.filter((q) => {
             if (!q.questionText?.trim()) return false;
-            // Must have exactly 5 answer choices with letters A-E
             if (!Array.isArray(q.answerChoices) || q.answerChoices.length !== 5)
               return false;
             const letters = q.answerChoices.map((c) => c.letter);
             if (!letters.every((l) => validLetters.has(l))) return false;
             if (new Set(letters).size !== 5) return false;
-            // Correct answer must reference an existing choice
             if (!validLetters.has(q.correctAnswer)) return false;
-            // Must have a skillId
             if (!q.skillId?.trim()) return false;
             return true;
           });
 
-          if (validQuestions.length < questions.length) {
+          if (structurallyValid.length < questions.length) {
             console.warn(
-              `Filtered out ${questions.length - validQuestions.length} malformed math questions`
+              `Filtered out ${questions.length - structurallyValid.length} malformed math questions`
             );
           }
 
-          return NextResponse.json({ questions: validQuestions });
+          // ── Verification pass: use a fast model to check each answer ──
+          const verifiedQuestions = await verifyAnswers(client, structurallyValid);
+
+          return NextResponse.json({ questions: verifiedQuestions });
         } catch {
           return NextResponse.json({
             error: "Failed to parse generated questions",
