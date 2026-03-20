@@ -41,7 +41,7 @@ export async function getCachedQuestion(
   skill: Skill,
   difficultyTier: DifficultyLevel,
   agent: TutorAgent
-): Promise<GeneratedQuestion> {
+): Promise<GeneratedQuestion | null> {
   // Try to serve from cache first
   const cached = await popUnusedQuestion(skill.skill_id, difficultyTier);
 

@@ -130,13 +130,14 @@ CORRECT: B`;
 
       const result = await agent.generateQuestion(mainIdeaSkill, 2);
 
-      expect(result.skillId).toBe("rc_main_idea");
-      expect(result.difficultyTier).toBe(2);
-      expect(result.answerChoices).toHaveLength(5);
-      expect(result.correctAnswer).toBe(
-        "Octopuses are remarkably intelligent animals"
+      expect(result).not.toBeNull();
+      expect(result!.skillId).toBe("rc_main_idea");
+      expect(result!.difficultyTier).toBe(2);
+      expect(result!.answerChoices).toHaveLength(5);
+      expect(result!.correctAnswer).toBe(
+        "B) Octopuses are remarkably intelligent animals"
       );
-      expect(result.questionText).toContain("main idea");
+      expect(result!.questionText).toContain("main idea");
     });
 
     it("sends correct difficulty tier in the prompt", async () => {

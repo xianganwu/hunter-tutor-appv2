@@ -3,6 +3,7 @@ import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 import { verifyQuestionAnswers } from "@/lib/ai/verify-answers";
+import { parseWarn, parseError } from "@/lib/ai/parse-logger";
 
 // Allow up to 60s for AI question generation
 export const maxDuration = 60;
@@ -262,7 +263,21 @@ IMPROVEMENTS: [comma-separated list of 2-3 specific areas to improve]`,
           /IMPROVEMENTS:\s*([\s\S]+?)$/i
         );
 
-        const score = Math.min(10, Math.max(1, parseInt(scoreMatch?.[1] ?? "5", 10)));
+        if (!scoreMatch) {
+          parseWarn({ parser: "simulate/evaluate_essay", field: "score", fallback: 5, rawSnippet: text });
+        }
+        if (!feedbackMatch) {
+          parseWarn({ parser: "simulate/evaluate_essay", field: "feedback", fallback: "raw text", rawSnippet: text });
+        }
+        if (!strengthsMatch) {
+          parseWarn({ parser: "simulate/evaluate_essay", field: "strengths", fallback: "[]", rawSnippet: text });
+        }
+        if (!improvementsMatch) {
+          parseWarn({ parser: "simulate/evaluate_essay", field: "improvements", fallback: "[]", rawSnippet: text });
+        }
+
+        const rawScore = parseInt(scoreMatch?.[1] ?? "5", 10);
+        const score = Math.min(10, Math.max(1, isNaN(rawScore) ? 5 : rawScore));
 
         return NextResponse.json({
           essayScore: {
@@ -317,9 +332,12 @@ Provide exactly 5 specific study recommendations. Each should be 1-2 sentences, 
           try {
             const recs = JSON.parse(jsonMatch[0]) as string[];
             return NextResponse.json({ recommendations: recs });
-          } catch {
-            // fall through
+          } catch (err) {
+            parseError({ parser: "simulate/generate_recommendations", field: "JSON", fallback: "default recommendation", rawSnippet: text });
+            console.error("[simulate] Recommendation JSON parse error:", err);
           }
+        } else {
+          parseError({ parser: "simulate/generate_recommendations", field: "JSON", fallback: "default recommendation", rawSnippet: text });
         }
 
         return NextResponse.json({

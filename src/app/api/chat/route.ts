@@ -6,6 +6,7 @@ import { getSkillById } from "@/lib/exam/curriculum";
 import { prisma } from "@/lib/db";
 import { getCachedQuestion, ensureCacheFlushed } from "@/lib/question-cache";
 import { verifyQuestionAnswers } from "@/lib/ai/verify-answers";
+import { parseError } from "@/lib/ai/parse-logger";
 import type { ChatAction } from "@/components/tutor/types";
 import type { DifficultyLevel } from "@/lib/types";
 
@@ -122,6 +123,10 @@ export async function POST(request: Request): Promise<Response> {
           body.difficultyTier as DifficultyLevel,
           agent
         );
+        if (!question) {
+          console.error("[chat] generate_question: all generation paths returned null for skill", body.skillId);
+          return NextResponse.json({ error: "Failed to generate a valid question. Please try again." }, { status: 500 });
+        }
         return NextResponse.json({ text: question.questionText, question });
       }
 
@@ -376,6 +381,7 @@ Respond with ONLY a JSON array, no other text:
         try {
           const jsonMatch = text.match(/\[[\s\S]*\]/);
           if (!jsonMatch) {
+            parseError({ parser: "chat/generate_diagnostic", field: "JSON", fallback: "[] (no JSON array found)", rawSnippet: text });
             return NextResponse.json({ questions: [] });
           }
 
@@ -395,7 +401,9 @@ Respond with ONLY a JSON array, no other text:
 
           const questions = await verifyQuestionAnswers(rawDiagnostic);
           return NextResponse.json({ questions });
-        } catch {
+        } catch (err) {
+          parseError({ parser: "chat/generate_diagnostic", field: "JSON", fallback: "[] (parse exception)", rawSnippet: text });
+          console.error("[chat] generate_diagnostic JSON parse error:", err);
           return NextResponse.json({ questions: [] });
         }
       }

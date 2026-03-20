@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
+import { parseError } from "@/lib/ai/parse-logger";
 
 // ─── Request Types ────────────────────────────────────────────────────
 
@@ -99,6 +100,7 @@ Requirements:
         // Extract JSON from the response (handle potential markdown wrapping)
         const jsonMatch = text.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {
+          parseError({ parser: "reading/generate_passage", field: "JSON", fallback: "error response", rawSnippet: text });
           return NextResponse.json(
             { error: "Failed to generate passage" },
             { status: 500 }
@@ -111,7 +113,9 @@ Requirements:
             text: parsed.title,
             passage: parsed,
           });
-        } catch {
+        } catch (err) {
+          parseError({ parser: "reading/generate_passage", field: "JSON", fallback: "error response (parse exception)", rawSnippet: text });
+          console.error("[reading] generate_passage JSON parse error:", err);
           return NextResponse.json(
             { error: "Failed to parse generated passage" },
             { status: 500 }

@@ -2,6 +2,7 @@ import type Anthropic from "@anthropic-ai/sdk";
 import type { DifficultyLevel, Skill } from "@/lib/types";
 import { getAnthropicClient } from "./client";
 import { getAllSkills } from "@/lib/exam/curriculum";
+import { parseWarn, parseError } from "./parse-logger";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -249,7 +250,7 @@ Give me a clear explanation with one worked example. End by asking me a question
   async generateQuestion(
     skill: Skill,
     difficultyTier: DifficultyLevel
-  ): Promise<GeneratedQuestion> {
+  ): Promise<GeneratedQuestion | null> {
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_QUESTION,
@@ -527,7 +528,10 @@ Make sure:
     try {
       // Extract JSON from the response (may be wrapped in markdown code block)
       const jsonMatch = text.match(/\[[\s\S]*\]/);
-      if (!jsonMatch) return [];
+      if (!jsonMatch) {
+        parseError({ parser: "generateDrillBatch", field: "JSON", fallback: "[]", rawSnippet: text });
+        return [];
+      }
 
       const parsed = JSON.parse(jsonMatch[0]) as {
         questionText: string;
@@ -535,14 +539,22 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      return parsed
-        .filter((q) => hasDistinctChoices(q.answerChoices))
-        .map((q) => ({
+      const filtered = parsed.filter((q) => hasDistinctChoices(q.answerChoices));
+      if (filtered.length < parsed.length) {
+        parseWarn({ parser: "generateDrillBatch", field: "distinctChoices", fallback: `${filtered.length}/${parsed.length} questions passed` });
+      }
+      if (filtered.length === 0) {
+        parseError({ parser: "generateDrillBatch", field: "result", fallback: "[] (all questions filtered out)", rawSnippet: text });
+      }
+
+      return filtered.map((q) => ({
           questionText: q.questionText,
           correctAnswer: q.correctAnswer,
           answerChoices: q.answerChoices,
         }));
-    } catch {
+    } catch (err) {
+      parseError({ parser: "generateDrillBatch", field: "JSON", fallback: "[] (parse exception)", rawSnippet: text });
+      console.error("[tutor-agent] generateDrillBatch JSON parse error:", err);
       return [];
     }
   }
@@ -603,7 +615,10 @@ Make sure:
 
     try {
       const jsonMatch = text.match(/\[[\s\S]*\]/);
-      if (!jsonMatch) return [];
+      if (!jsonMatch) {
+        parseError({ parser: "generateMixedDrillBatch", field: "JSON", fallback: "[]", rawSnippet: text });
+        return [];
+      }
 
       const parsed = JSON.parse(jsonMatch[0]) as {
         skillId: string;
@@ -612,15 +627,23 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      return parsed
-        .filter((q) => hasDistinctChoices(q.answerChoices))
-        .map((q) => ({
+      const filtered = parsed.filter((q) => hasDistinctChoices(q.answerChoices));
+      if (filtered.length < parsed.length) {
+        parseWarn({ parser: "generateMixedDrillBatch", field: "distinctChoices", fallback: `${filtered.length}/${parsed.length} questions passed` });
+      }
+      if (filtered.length === 0) {
+        parseError({ parser: "generateMixedDrillBatch", field: "result", fallback: "[] (all questions filtered out)", rawSnippet: text });
+      }
+
+      return filtered.map((q) => ({
           skillId: q.skillId,
           questionText: q.questionText,
           correctAnswer: q.correctAnswer,
           answerChoices: q.answerChoices,
         }));
-    } catch {
+    } catch (err) {
+      parseError({ parser: "generateMixedDrillBatch", field: "JSON", fallback: "[] (parse exception)", rawSnippet: text });
+      console.error("[tutor-agent] generateMixedDrillBatch JSON parse error:", err);
       return [];
     }
   }
@@ -694,16 +717,34 @@ function parseGeneratedQuestion(
   text: string,
   skillId: string,
   difficultyTier: DifficultyLevel
-): GeneratedQuestion {
+): GeneratedQuestion | null {
   const questionMatch = text.match(/QUESTION:\s*([\s\S]+?)(?=\n[A-E]\))/);
   const choiceMatches = text.match(/[A-E]\)\s*.+/g);
   const correctMatch = text.match(/CORRECT:\s*([A-E])/i);
 
+  if (!questionMatch) {
+    parseWarn({ parser: "parseGeneratedQuestion", field: "questionText", fallback: "raw text", rawSnippet: text });
+  }
   const questionText = questionMatch?.[1]?.trim() ?? text;
-  const answerChoices = choiceMatches?.map((c) => c.trim()) ?? [];
-  const correctLetter = correctMatch?.[1]?.toUpperCase() ?? "A";
+
+  if (!choiceMatches || choiceMatches.length === 0) {
+    parseError({ parser: "parseGeneratedQuestion", field: "answerChoices", fallback: "[]", rawSnippet: text });
+    return null;
+  }
+  const answerChoices = choiceMatches.map((c) => c.trim());
+
+  if (!correctMatch) {
+    parseError({ parser: "parseGeneratedQuestion", field: "correctAnswer", fallback: "REJECTED (no CORRECT: line)", rawSnippet: text });
+    return null;
+  }
+  const correctLetter = correctMatch[1].toUpperCase();
   const correctIndex = correctLetter.charCodeAt(0) - "A".charCodeAt(0);
-  const correctAnswer = answerChoices[correctIndex] ?? correctLetter;
+
+  if (correctIndex < 0 || correctIndex >= answerChoices.length) {
+    parseError({ parser: "parseGeneratedQuestion", field: "correctAnswer", fallback: `REJECTED (letter ${correctLetter} out of range for ${answerChoices.length} choices)`, rawSnippet: text });
+    return null;
+  }
+  const correctAnswer = answerChoices[correctIndex];
 
   return {
     questionText,
@@ -736,23 +777,57 @@ function parseEssayFeedback(text: string): EssayFeedback {
       .filter((line) => line.length > 0);
   };
 
+  if (!overallMatch) {
+    parseWarn({ parser: "parseEssayFeedback", field: "overallFeedback", fallback: "raw text (first 200 chars)", rawSnippet: text });
+  }
+
+  // Parse each score, logging when any falls back to 5
+  const scoreFields: [string, RegExpMatchArray | null][] = [
+    ["organization", orgMatch],
+    ["clarity", clarityMatch],
+    ["evidence", evidenceMatch],
+    ["grammar", grammarMatch],
+  ];
+  const parsedScores: Record<string, number> = {};
+  for (const [name, match] of scoreFields) {
+    if (!match) {
+      parseWarn({ parser: "parseEssayFeedback", field: name, fallback: 5, rawSnippet: text });
+      parsedScores[name] = 5;
+    } else {
+      parsedScores[name] = clampScore(parseInt(match[1], 10), "parseEssayFeedback", name, text);
+    }
+  }
+
+  if (!strengthsMatch) {
+    parseWarn({ parser: "parseEssayFeedback", field: "strengths", fallback: "[]", rawSnippet: text });
+  }
+  if (!improvementsMatch) {
+    parseWarn({ parser: "parseEssayFeedback", field: "improvements", fallback: "[]", rawSnippet: text });
+  }
+
   return {
     overallFeedback: overallMatch?.[1]?.trim() ?? text.slice(0, 200),
     scores: {
-      organization: clampScore(parseInt(orgMatch?.[1] ?? "5", 10)),
-      clarity: clampScore(parseInt(clarityMatch?.[1] ?? "5", 10)),
-      evidence: clampScore(parseInt(evidenceMatch?.[1] ?? "5", 10)),
-      grammar: clampScore(parseInt(grammarMatch?.[1] ?? "5", 10)),
-      voice: voiceMatch ? clampScore(parseInt(voiceMatch[1], 10)) : undefined,
-      ideas: ideasMatch ? clampScore(parseInt(ideasMatch[1], 10)) : undefined,
+      organization: parsedScores["organization"],
+      clarity: parsedScores["clarity"],
+      evidence: parsedScores["evidence"],
+      grammar: parsedScores["grammar"],
+      voice: voiceMatch ? clampScore(parseInt(voiceMatch[1], 10), "parseEssayFeedback", "voice", text) : undefined,
+      ideas: ideasMatch ? clampScore(parseInt(ideasMatch[1], 10), "parseEssayFeedback", "ideas", text) : undefined,
     },
     strengths: parseBullets(strengthsMatch?.[1]),
     improvements: parseBullets(improvementsMatch?.[1]),
   };
 }
 
-function clampScore(n: number): number {
-  if (isNaN(n)) return 5;
+function clampScore(n: number, parser?: string, field?: string, rawSnippet?: string): number {
+  if (isNaN(n)) {
+    parseWarn({ parser: parser ?? "clampScore", field: field ?? "score", fallback: 5, rawSnippet });
+    return 5;
+  }
+  if (n < 1 || n > 10) {
+    parseWarn({ parser: parser ?? "clampScore", field: field ?? "score", fallback: Math.max(1, Math.min(10, n)), rawSnippet: `Original value: ${n}` });
+  }
   return Math.max(1, Math.min(10, n));
 }
 
