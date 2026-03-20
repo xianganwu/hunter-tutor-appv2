@@ -1823,7 +1823,7 @@
             "text": "12"
           }
         ],
-        "correctAnswer": "A",
+        "correctAnswer": "D",
         "skillId": "mqr_logical_reasoning",
         "confidence": "high",
         "excluded": false,
@@ -1919,7 +1919,7 @@
             "text": "$435"
           }
         ],
-        "correctAnswer": "C",
+        "correctAnswer": "A",
         "skillId": "ma_percent_problems",
         "confidence": "high",
         "excluded": false,

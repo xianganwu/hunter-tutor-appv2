@@ -271,7 +271,9 @@ D) [choice D]
 E) [choice E]
 CORRECT: [letter]
 
-Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.`,
+Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.
+
+CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.`,
         },
       ],
     });
@@ -510,7 +512,8 @@ Make sure:
 - Questions test the skill directly
 - Distractors are plausible but clearly wrong
 - Each question is distinct (no repeats)
-- Questions are appropriate difficulty for the student's age`,
+- Questions are appropriate difficulty for the student's age
+- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.`,
         },
       ],
     });
@@ -528,11 +531,13 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      return parsed.map((q) => ({
-        questionText: q.questionText,
-        correctAnswer: q.correctAnswer,
-        answerChoices: q.answerChoices,
-      }));
+      return parsed
+        .filter((q) => hasDistinctChoices(q.answerChoices))
+        .map((q) => ({
+          questionText: q.questionText,
+          correctAnswer: q.correctAnswer,
+          answerChoices: q.answerChoices,
+        }));
     } catch {
       return [];
     }
@@ -584,7 +589,8 @@ Make sure:
 - Questions test the specified skill directly
 - Distractors are plausible but clearly wrong
 - Each question is distinct (no repeats)
-- Questions are at the specified difficulty tier for each skill`,
+- Questions are at the specified difficulty tier for each skill
+- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.`,
         },
       ],
     });
@@ -602,12 +608,14 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      return parsed.map((q) => ({
-        skillId: q.skillId,
-        questionText: q.questionText,
-        correctAnswer: q.correctAnswer,
-        answerChoices: q.answerChoices,
-      }));
+      return parsed
+        .filter((q) => hasDistinctChoices(q.answerChoices))
+        .map((q) => ({
+          skillId: q.skillId,
+          questionText: q.questionText,
+          correctAnswer: q.correctAnswer,
+          answerChoices: q.answerChoices,
+        }));
     } catch {
       return [];
     }
@@ -620,6 +628,23 @@ Make sure:
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────
+
+/**
+ * Check that all answer choices are distinct after normalizing.
+ * Strips the leading letter prefix (e.g. "A) "), trims whitespace,
+ * and lower-cases before comparing to catch duplicates like "40%" vs ".40".
+ */
+function hasDistinctChoices(choices: string[]): boolean {
+  const normalized = choices.map((c) => {
+    // Strip leading letter+paren prefix: "A) 30%" → "30%"
+    const stripped = c.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+    // Normalize common equivalent representations
+    // Convert ".40" to "0.40" so it can be compared numerically
+    const withLeadingZero = stripped.replace(/^\.(\d)/, "0.$1");
+    return withLeadingZero;
+  });
+  return new Set(normalized).size === normalized.length;
+}
 
 function extractText(response: Anthropic.Message): string {
   const block = response.content[0];

@@ -1887,7 +1887,7 @@
             "text": "9"
           }
         ],
-        "correctAnswer": "E",
+        "correctAnswer": "A",
         "skillId": "ma_algebraic_expressions",
         "confidence": "high",
         "excluded": false,
@@ -2047,7 +2047,7 @@
             "text": "1 dime and 1 penny"
           }
         ],
-        "correctAnswer": "C",
+        "correctAnswer": "B",
         "skillId": "mqr_logical_reasoning",
         "confidence": "high",
         "excluded": false,
@@ -2143,7 +2143,7 @@
             "text": "1"
           }
         ],
-        "correctAnswer": "A",
+        "correctAnswer": "D",
         "skillId": "ma_algebraic_expressions",
         "confidence": "high",
         "excluded": false,
@@ -2431,7 +2431,7 @@
             "text": "56%"
           }
         ],
-        "correctAnswer": "A",
+        "correctAnswer": "B",
         "skillId": "ma_percent_problems",
         "confidence": "high",
         "excluded": false,
