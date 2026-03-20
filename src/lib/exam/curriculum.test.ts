@@ -8,17 +8,23 @@ import {
 } from "./curriculum";
 
 describe("curriculum taxonomy", () => {
-  it("has three domains", () => {
-    expect(curriculum.domains).toHaveLength(3);
+  it("has four domains", () => {
+    expect(curriculum.domains).toHaveLength(4);
     const domainIds = curriculum.domains.map((d) => d.domain_id);
     expect(domainIds).toContain("reading_comprehension");
     expect(domainIds).toContain("math_quantitative_reasoning");
     expect(domainIds).toContain("math_achievement");
+    expect(domainIds).toContain("writing");
   });
 
-  it("has 45 total skills (foundations + hunter_prep)", () => {
+  it("has 56 total skills (foundations + hunter_prep)", () => {
     const skills = getAllSkills();
-    expect(skills.size).toBe(45);
+    expect(skills.size).toBe(56);
+  });
+
+  it("has 11 writing skills", () => {
+    const ids = getSkillIdsForDomain("writing");
+    expect(ids).toHaveLength(11);
   });
 
   it("has 14 reading comprehension skills", () => {

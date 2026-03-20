@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because the Harvard study is prominent, but the passage also discusses the glymphatic system, the amygdala and prefrontal cortex, and statistics about teen sleep habits — it draws from multiple sources."}
       ],
       "skill_tested": "rc_advanced_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "The passage describes how the prefrontal cortex becomes less active with insufficient sleep while the amygdala becomes hyperactive. Which evidence from the passage best explains why this combination is particularly harmful?",
+      "answer_choices": [
+        {"letter": "A", "text": "The hippocampus acts like a temporary holding area for new information."},
+        {"letter": "B", "text": "The prefrontal cortex helps with rational thinking and impulse control, so when it is less active, a person cannot manage the heightened emotional reactions produced by the overactive amygdala."},
+        {"letter": "C", "text": "The glymphatic system flushes out toxins during sleep."},
+        {"letter": "D", "text": "The Harvard study showed a fifteen percent improvement in participants who slept."},
+        {"letter": "E", "text": "Nine to twelve hours of sleep per night is recommended for children ages six to twelve."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that the amygdala processes emotions like fear and anger and becomes hyperactive without sleep, while the prefrontal cortex handles rational thinking and impulse control but becomes less active. The combination means the brain is 'simultaneously more emotional and less capable of managing those emotions,' making this pairing particularly harmful.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the hippocampus is an important brain region discussed in the passage, but it relates to memory consolidation, not emotional regulation."},
+        {"letter": "C", "explanation": "This is tempting because the glymphatic system is another sleep function, but it relates to brain cleaning, not to the emotional dysregulation caused by the amygdala-prefrontal cortex imbalance."},
+        {"letter": "D", "explanation": "This is tempting because it is a significant finding from the passage, but this study focused on learning and memory, not on emotional regulation."},
+        {"letter": "E", "explanation": "This is tempting because sleep recommendations are relevant to the overall argument, but a recommended sleep amount does not explain why the specific brain combination is harmful."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 7,
+      "question_text": "The passage compares the brain in standby mode to a computer. Why is this comparison important to the author's argument?",
+      "answer_choices": [
+        {"letter": "A", "text": "It proves that brains and computers work in exactly the same way."},
+        {"letter": "B", "text": "It establishes a common misconception about sleep that the author then spends the rest of the passage disproving with scientific evidence."},
+        {"letter": "C", "text": "It supports the author's point that sleep is a time of inactivity."},
+        {"letter": "D", "text": "It explains how the glymphatic system functions."},
+        {"letter": "E", "text": "It shows that the author is a computer scientist rather than a neuroscientist."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage opens by noting that 'most people think of sleep as a time when the body shuts down, like a computer going into standby mode' and then immediately counters with 'But neuroscientists have discovered that sleep is one of the most active and important periods.' This rhetorical strategy establishes the misconception so the author can spend the rest of the passage dismantling it with evidence.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because a comparison is made, but the author introduces the computer analogy specifically to show it is wrong — the brain does not shut down like a computer."},
+        {"letter": "C", "explanation": "This is tempting because that is what the analogy literally suggests, but the author presents it as a misconception and then argues the opposite — that sleep is highly active."},
+        {"letter": "D", "explanation": "This is tempting because the glymphatic system is discussed later, but the computer comparison appears in the opening paragraph and sets up the overall argument, not one specific system."},
+        {"letter": "E", "explanation": "This is tempting because the author uses a tech analogy, but using a comparison to computers does not indicate the author's profession — it is a rhetorical device."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "In the fifth paragraph, the passage states that during sleep 'the spaces between brain cells expand by up to sixty percent.' How does this detail function within the passage's overall structure?",
+      "answer_choices": [
+        {"letter": "A", "text": "It provides a transition from the discussion of emotions to the discussion of the brain's physical cleaning process, adding a third scientific function of sleep to the author's argument."},
+        {"letter": "B", "text": "It contradicts the findings of the Harvard study discussed earlier."},
+        {"letter": "C", "text": "It introduces the passage's conclusion about teen sleep habits."},
+        {"letter": "D", "text": "It is a random fact included for entertainment that does not connect to the rest of the passage."},
+        {"letter": "E", "text": "It serves as the passage's main idea statement."}
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage builds its argument by presenting three scientific functions of sleep in sequence: memory consolidation, emotional regulation, and brain cleaning (glymphatic system). The sixty-percent detail introduces the third function, advancing the author's layered case that sleep is actively important, before transitioning to the consequences of sleep deprivation.",
+      "distractor_explanations": [
+        {"letter": "B", "explanation": "This is tempting because both are scientific findings, but the glymphatic system detail does not contradict the Harvard study — it adds another layer to the argument that sleep is beneficial."},
+        {"letter": "C", "explanation": "This is tempting because teen sleep habits are discussed later, but the sixty-percent statistic introduces the brain-cleaning function of sleep, not the conclusion about teen behavior."},
+        {"letter": "D", "explanation": "This is tempting if the reader does not see the structural pattern, but the detail directly supports the argument by adding a third scientific reason that sleep matters."},
+        {"letter": "E", "explanation": "This is tempting because it is an important detail, but the main idea encompasses all of sleep's functions and consequences, not just one statistic about brain cell spacing."}
+      ],
+      "skill_tested": "rc_advanced_structure"
     }
   ]
 }

@@ -10,11 +10,15 @@
       "rc_supporting_details",
       "rc_inference",
       "rc_author_purpose",
-      "rc_drawing_conclusions"
+      "rc_drawing_conclusions",
+      "rc_vocab_context",
+      "rc_evidence_reasoning"
     ],
     "source_description": "original",
     "lexile_range": "600L-800L",
-    "themes": ["civil rights"]
+    "themes": [
+      "civil rights"
+    ]
   },
   "pre_reading_context": "This passage tells the story of the young people who played a surprising and courageous role in the civil rights movement in Birmingham, Alabama, in 1963.",
   "passage_text": "In the spring of 1963, the city of Birmingham, Alabama, was one of the most segregated places in the United States. Black citizens were not allowed to eat at the same lunch counters, drink from the same water fountains, or attend the same schools as white citizens. Civil rights leaders, including Dr. Martin Luther King Jr., organized protests to challenge these unjust laws, but the movement was struggling. Many adult Black workers were afraid to march because they knew they could be arrested and lose their jobs. Without large numbers of demonstrators, the protests were not attracting enough national attention to create pressure for change.\n\nThat is when civil rights organizer James Bevel proposed a bold and controversial idea: let the children march.\n\nOn May 2, 1963, more than a thousand Black students — some as young as six years old, most between the ages of ten and eighteen — walked out of their schools and marched toward downtown Birmingham. They sang freedom songs and carried signs demanding equal rights. Police arrested over six hundred of them that first day, filling the city's jails to capacity.\n\nThe next day, even more young people came. This time, Birmingham's public safety commissioner, Bull Connor, ordered firefighters to turn high-pressure fire hoses on the children. The force of the water was strong enough to knock people off their feet, tear clothing, and strip bark from trees. Connor also ordered police dogs to be unleashed on the young marchers. Photographers captured these scenes, and the images were published in newspapers and broadcast on television screens across the country and around the world.\n\nThe public reaction was swift and powerful. Americans who had been unaware of or indifferent to the conditions in Birmingham were horrified by what they saw. Pressure mounted on President John F. Kennedy and Congress to act. Business leaders in Birmingham, facing economic boycotts and international embarrassment, agreed to begin desegregating lunch counters, restrooms, and drinking fountains. Within months, President Kennedy introduced the Civil Rights Act, which would eventually become law in 1964 under President Lyndon B. Johnson.\n\nThe children of Birmingham did not end segregation by themselves. But their courage forced the nation to confront the brutality of the system it had tolerated for decades. By putting themselves at risk, young people accomplished what many adults had been unable to do: they made the injustice impossible to ignore.",
@@ -23,19 +27,46 @@
       "question_number": 1,
       "question_text": "What is the main idea of this passage?",
       "answer_choices": [
-        {"letter": "A", "text": "Children are too young to understand political issues and should not be involved in protests."},
-        {"letter": "B", "text": "Young people in Birmingham played a crucial role in the civil rights movement by marching in the face of danger, forcing the nation to confront segregation."},
-        {"letter": "C", "text": "Dr. Martin Luther King Jr. personally organized the children's march in Birmingham."},
-        {"letter": "D", "text": "The Civil Rights Act was passed because of a single march in one city."},
-        {"letter": "E", "text": "Bull Connor successfully stopped the civil rights movement in Birmingham."}
+        {
+          "letter": "A",
+          "text": "Children are too young to understand political issues and should not be involved in protests."
+        },
+        {
+          "letter": "B",
+          "text": "Young people in Birmingham played a crucial role in the civil rights movement by marching in the face of danger, forcing the nation to confront segregation."
+        },
+        {
+          "letter": "C",
+          "text": "Dr. Martin Luther King Jr. personally organized the children's march in Birmingham."
+        },
+        {
+          "letter": "D",
+          "text": "The Civil Rights Act was passed because of a single march in one city."
+        },
+        {
+          "letter": "E",
+          "text": "Bull Connor successfully stopped the civil rights movement in Birmingham."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage centers on the children's march and its impact. Despite facing fire hoses and police dogs, the young marchers drew national and international attention to segregation, contributing to desegregation in Birmingham and the passage of the Civil Rights Act.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because the children's involvement was 'controversial,' but the passage shows that the children's actions were effective and courageous, not that they were too young."},
-        {"letter": "C", "explanation": "This is tempting because Dr. King is mentioned, but the passage credits James Bevel with proposing the idea for children to march."},
-        {"letter": "D", "explanation": "This is tempting because the passage connects the march to the Civil Rights Act, but it also notes that the children 'did not end segregation by themselves' — many factors contributed."},
-        {"letter": "E", "explanation": "This is tempting because Connor used force, but his actions backfired — the images of violence against children created public outrage that actually advanced the civil rights cause."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the children's involvement was 'controversial,' but the passage shows that the children's actions were effective and courageous, not that they were too young."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because Dr. King is mentioned, but the passage credits James Bevel with proposing the idea for children to march."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the passage connects the march to the Civil Rights Act, but it also notes that the children 'did not end segregation by themselves' — many factors contributed."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because Connor used force, but his actions backfired — the images of violence against children created public outrage that actually advanced the civil rights cause."
+        }
       ],
       "skill_tested": "rc_main_idea"
     },
@@ -43,19 +74,46 @@
       "question_number": 2,
       "question_text": "According to the passage, why were many adult Black workers reluctant to march in the Birmingham protests?",
       "answer_choices": [
-        {"letter": "A", "text": "They did not believe in the civil rights movement."},
-        {"letter": "B", "text": "They were afraid of being arrested and losing their jobs."},
-        {"letter": "C", "text": "They thought the children should march instead of them."},
-        {"letter": "D", "text": "They had already successfully desegregated their workplaces."},
-        {"letter": "E", "text": "They were not aware that protests were happening in Birmingham."}
+        {
+          "letter": "A",
+          "text": "They did not believe in the civil rights movement."
+        },
+        {
+          "letter": "B",
+          "text": "They were afraid of being arrested and losing their jobs."
+        },
+        {
+          "letter": "C",
+          "text": "They thought the children should march instead of them."
+        },
+        {
+          "letter": "D",
+          "text": "They had already successfully desegregated their workplaces."
+        },
+        {
+          "letter": "E",
+          "text": "They were not aware that protests were happening in Birmingham."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage directly states that 'many adult Black workers were afraid to march because they knew they could be arrested and lose their jobs.' The economic risk of losing employment was a real and serious concern.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because reluctance might suggest disagreement, but the passage explains the fear was about practical consequences (arrest and job loss), not about ideology."},
-        {"letter": "C", "explanation": "This is tempting because children did eventually march, but James Bevel proposed this idea as a solution — the adults did not originally suggest it."},
-        {"letter": "D", "explanation": "This is tempting because it sounds positive, but the passage describes Birmingham as 'one of the most segregated places' — workplaces were not yet desegregated."},
-        {"letter": "E", "explanation": "This is tempting because awareness is a factor, but the passage says Black citizens were directly affected by segregation — they were aware of the movement but afraid of consequences."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because reluctance might suggest disagreement, but the passage explains the fear was about practical consequences (arrest and job loss), not about ideology."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because children did eventually march, but James Bevel proposed this idea as a solution — the adults did not originally suggest it."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because it sounds positive, but the passage describes Birmingham as 'one of the most segregated places' — workplaces were not yet desegregated."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because awareness is a factor, but the passage says Black citizens were directly affected by segregation — they were aware of the movement but afraid of consequences."
+        }
       ],
       "skill_tested": "rc_supporting_details"
     },
@@ -63,19 +121,46 @@
       "question_number": 3,
       "question_text": "Why did the photographs of the Birmingham protests have such a powerful effect on the American public?",
       "answer_choices": [
-        {"letter": "A", "text": "The photographs showed beautiful scenery in Birmingham that made people want to visit."},
-        {"letter": "B", "text": "The images of children being attacked with fire hoses and police dogs made the violence of segregation impossible to dismiss or ignore."},
-        {"letter": "C", "text": "The photographs proved that the children were not actually in danger."},
-        {"letter": "D", "text": "The images showed that Bull Connor was a kind and fair leader."},
-        {"letter": "E", "text": "The photographs were sold as artwork and raised money for the movement."}
+        {
+          "letter": "A",
+          "text": "The photographs showed beautiful scenery in Birmingham that made people want to visit."
+        },
+        {
+          "letter": "B",
+          "text": "The images of children being attacked with fire hoses and police dogs made the violence of segregation impossible to dismiss or ignore."
+        },
+        {
+          "letter": "C",
+          "text": "The photographs proved that the children were not actually in danger."
+        },
+        {
+          "letter": "D",
+          "text": "The images showed that Bull Connor was a kind and fair leader."
+        },
+        {
+          "letter": "E",
+          "text": "The photographs were sold as artwork and raised money for the movement."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage says Americans who had been 'unaware of or indifferent to' conditions in Birmingham were 'horrified' by the images. Seeing children — some as young as six — being knocked down by fire hoses and attacked by police dogs made the brutality of segregation viscerally real and undeniable.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because photographs can show scenery, but these photos captured violence against children, not tourist attractions."},
-        {"letter": "C", "explanation": "This is tempting because it relates to the photographs, but the images showed the opposite — children being knocked off their feet and attacked by dogs, proving they were in serious danger."},
-        {"letter": "D", "explanation": "This is tempting because Connor is mentioned, but the images showed him ordering violence against children, which made him look cruel, not kind."},
-        {"letter": "E", "explanation": "This is tempting because photographs can be sold, but the passage says the images' power came from exposing injustice to a national audience, not from being sold."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because photographs can show scenery, but these photos captured violence against children, not tourist attractions."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because it relates to the photographs, but the images showed the opposite — children being knocked off their feet and attacked by dogs, proving they were in serious danger."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Connor is mentioned, but the images showed him ordering violence against children, which made him look cruel, not kind."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because photographs can be sold, but the passage says the images' power came from exposing injustice to a national audience, not from being sold."
+        }
       ],
       "skill_tested": "rc_inference"
     },
@@ -83,19 +168,46 @@
       "question_number": 4,
       "question_text": "Why does the author include the detail that the fire hoses were strong enough to \"strip bark from trees\"?",
       "answer_choices": [
-        {"letter": "A", "text": "To explain how fire hoses work in everyday firefighting."},
-        {"letter": "B", "text": "To show that the trees in Birmingham were in poor condition."},
-        {"letter": "C", "text": "To help the reader understand the extreme and dangerous force being used against children."},
-        {"letter": "D", "text": "To argue that fire hoses should be banned from use everywhere."},
-        {"letter": "E", "text": "To describe the landscaping in downtown Birmingham."}
+        {
+          "letter": "A",
+          "text": "To explain how fire hoses work in everyday firefighting."
+        },
+        {
+          "letter": "B",
+          "text": "To show that the trees in Birmingham were in poor condition."
+        },
+        {
+          "letter": "C",
+          "text": "To help the reader understand the extreme and dangerous force being used against children."
+        },
+        {
+          "letter": "D",
+          "text": "To argue that fire hoses should be banned from use everywhere."
+        },
+        {
+          "letter": "E",
+          "text": "To describe the landscaping in downtown Birmingham."
+        }
       ],
       "correct_answer": "C",
       "correct_answer_explanation": "By noting that the water pressure could strip bark from trees, the author gives the reader a concrete way to understand how powerful and dangerous these hoses were. This detail makes it clear that using them on children was an act of extreme violence.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because fire hoses are used in firefighting, but the author includes this detail to show the violence of their misuse against people, not to explain normal firefighting."},
-        {"letter": "B", "explanation": "This is tempting because tree bark is mentioned, but the detail is about the power of the water, not the health of the trees."},
-        {"letter": "D", "explanation": "This is tempting because the hoses were used harmfully, but the author's purpose is to illustrate the violence of this specific event, not to argue for a general ban on fire hoses."},
-        {"letter": "E", "explanation": "This is tempting because trees are part of a landscape, but this detail is about the destructive power of the water, not about Birmingham's scenery."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because fire hoses are used in firefighting, but the author includes this detail to show the violence of their misuse against people, not to explain normal firefighting."
+        },
+        {
+          "letter": "B",
+          "explanation": "This is tempting because tree bark is mentioned, but the detail is about the power of the water, not the health of the trees."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the hoses were used harmfully, but the author's purpose is to illustrate the violence of this specific event, not to argue for a general ban on fire hoses."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because trees are part of a landscape, but this detail is about the destructive power of the water, not about Birmingham's scenery."
+        }
       ],
       "skill_tested": "rc_author_purpose"
     },
@@ -103,21 +215,189 @@
       "question_number": 5,
       "question_text": "Based on the passage, what can the reader conclude about the long-term significance of the Birmingham children's march?",
       "answer_choices": [
-        {"letter": "A", "text": "It was a minor event that was quickly forgotten by the public."},
-        {"letter": "B", "text": "It only affected Birmingham and had no impact on the rest of the country."},
-        {"letter": "C", "text": "It was a turning point that helped lead to federal civil rights legislation and demonstrated the power of young people to create social change."},
-        {"letter": "D", "text": "It proved that protests are always dangerous and should be avoided."},
-        {"letter": "E", "text": "It convinced all Americans to immediately support equal rights for everyone."}
+        {
+          "letter": "A",
+          "text": "It was a minor event that was quickly forgotten by the public."
+        },
+        {
+          "letter": "B",
+          "text": "It only affected Birmingham and had no impact on the rest of the country."
+        },
+        {
+          "letter": "C",
+          "text": "It was a turning point that helped lead to federal civil rights legislation and demonstrated the power of young people to create social change."
+        },
+        {
+          "letter": "D",
+          "text": "It proved that protests are always dangerous and should be avoided."
+        },
+        {
+          "letter": "E",
+          "text": "It convinced all Americans to immediately support equal rights for everyone."
+        }
       ],
       "correct_answer": "C",
       "correct_answer_explanation": "The passage connects the children's march to immediate desegregation in Birmingham and to President Kennedy's introduction of the Civil Rights Act, which became law in 1964. The concluding paragraph emphasizes that the children 'made the injustice impossible to ignore,' showing their actions had lasting national significance.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because some historical events fade, but the passage shows the march had immediate and lasting effects — desegregation in Birmingham and federal legislation."},
-        {"letter": "B", "explanation": "This is tempting because the march happened in one city, but the passage shows it had national effects — President Kennedy introduced federal legislation, and the images were seen worldwide."},
-        {"letter": "D", "explanation": "This is tempting because the marchers did face danger, but the passage celebrates their courage and its positive results, not arguing against protests."},
-        {"letter": "E", "explanation": "This is tempting because the public reaction was strong, but the passage notes the march was one part of a larger movement — it does not claim all Americans immediately supported equal rights."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because some historical events fade, but the passage shows the march had immediate and lasting effects — desegregation in Birmingham and federal legislation."
+        },
+        {
+          "letter": "B",
+          "explanation": "This is tempting because the march happened in one city, but the passage shows it had national effects — President Kennedy introduced federal legislation, and the images were seen worldwide."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the marchers did face danger, but the passage celebrates their courage and its positive results, not arguing against protests."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the public reaction was strong, but the passage notes the march was one part of a larger movement — it does not claim all Americans immediately supported equal rights."
+        }
       ],
       "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What does the word \"indifferent\" most likely mean as used in the fifth paragraph?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "Strongly opposed to something"
+        },
+        {
+          "letter": "B",
+          "text": "Not caring about or paying attention to something"
+        },
+        {
+          "letter": "C",
+          "text": "Deeply interested and fascinated"
+        },
+        {
+          "letter": "D",
+          "text": "Afraid of something dangerous"
+        },
+        {
+          "letter": "E",
+          "text": "Confused about a complicated situation"
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says Americans who had been 'unaware of or indifferent to' the conditions in Birmingham were 'horrified' by the images. Placing 'indifferent' alongside 'unaware' suggests it means people who knew about the conditions but did not care enough to act — they were unconcerned or apathetic.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because strong feelings are involved, but 'indifferent' describes a lack of feeling, not opposition — these Americans simply were not engaged with the issue."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting as the opposite meaning — indifferent means not interested, not deeply fascinated."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because fear is a strong emotion, but 'indifferent' describes people who had no strong feelings about the situation, not people who were afraid."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the situation was complex, but 'indifferent' describes a lack of concern, not a lack of understanding."
+        }
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What was the cause-and-effect relationship between the photographs of the Birmingham protests and the political actions that followed?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "The photographs caused Bull Connor to resign immediately, which ended segregation."
+        },
+        {
+          "letter": "B",
+          "text": "The photographs horrified Americans nationwide, creating public pressure that led to desegregation in Birmingham and President Kennedy's introduction of the Civil Rights Act."
+        },
+        {
+          "letter": "C",
+          "text": "The photographs had no effect on politics and were only appreciated as art."
+        },
+        {
+          "letter": "D",
+          "text": "The photographs caused all businesses in Birmingham to close permanently."
+        },
+        {
+          "letter": "E",
+          "text": "The photographs convinced the children to stop marching and return to school."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes a clear chain of cause and effect: photographs of violence against children were published nationally, Americans were horrified, pressure mounted on politicians and business leaders, Birmingham began desegregating, and President Kennedy introduced the Civil Rights Act.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because Connor was a central figure, but the passage does not mention his resignation — the effects were on public opinion, business leaders, and federal legislation."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because photographs can be viewed as art, but the passage clearly describes their massive political impact on legislation and desegregation."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because economic boycotts are mentioned, but business leaders agreed to desegregate, not to close permanently."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the children were students, but the passage says even more young people came the next day — the photographs encouraged further action, not retreat."
+        }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Which sentence from the passage best supports the idea that James Bevel's plan was considered risky?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "\"Civil rights leaders, including Dr. Martin Luther King Jr., organized protests to challenge these unjust laws.\""
+        },
+        {
+          "letter": "B",
+          "text": "\"That is when civil rights organizer James Bevel proposed a bold and controversial idea: let the children march.\""
+        },
+        {
+          "letter": "C",
+          "text": "\"They sang freedom songs and carried signs demanding equal rights.\""
+        },
+        {
+          "letter": "D",
+          "text": "\"Business leaders in Birmingham, facing economic boycotts and international embarrassment, agreed to begin desegregating.\""
+        },
+        {
+          "letter": "E",
+          "text": "\"Within months, President Kennedy introduced the Civil Rights Act.\""
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The words 'bold and controversial' directly indicate that Bevel's idea was considered risky. Something that is 'bold' involves daring or courage, and 'controversial' means it provoked strong disagreement — both words signal that the plan carried significant risk.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because organizing protests involves risk, but this sentence describes the general movement, not Bevel's specific controversial plan."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because the children's actions are described, but singing and carrying signs does not convey the riskiness of the decision to let children march."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because it describes a result of the protests, but it addresses the business response, not the riskiness of Bevel's original plan."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because it is a significant outcome, but it describes a legislative result, not the risk involved in Bevel's proposal."
+        }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
     }
   ]
 }

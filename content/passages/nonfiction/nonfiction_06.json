@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because new technology can be expensive, but the passage compares future 3D printers to common appliances like toasters, suggesting they will be affordable."}
       ],
       "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 6,
+      "question_text": "According to the passage, how does a 3D printer create an object?",
+      "answer_choices": [
+        {"letter": "A", "text": "It carves the shape out of a large block of plastic."},
+        {"letter": "B", "text": "It lays down thin layers of material, one on top of another, until the object is formed."},
+        {"letter": "C", "text": "It uses a mold to pour hot plastic into a specific shape."},
+        {"letter": "D", "text": "It arranges tiny magnets into the correct pattern."},
+        {"letter": "E", "text": "It folds sheets of paper into a three-dimensional design."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that a 3D printer 'works by laying down thin layers of material, usually plastic, one on top of another' and that 'hundreds or even thousands of layers stack up to form a three-dimensional shape.' This additive, layer-by-layer process is the key method described.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because carving is a way to create shapes, but the passage describes an additive process of building up layers, not a subtractive process of cutting material away."},
+        {"letter": "C", "explanation": "This is tempting because molds are used in traditional manufacturing, but the passage describes layers being stacked, not liquid being poured into a mold."},
+        {"letter": "D", "explanation": "This is tempting as a futuristic-sounding method, but the passage says the material is usually plastic laid in layers, not magnets arranged in patterns."},
+        {"letter": "E", "explanation": "This is tempting because the passage compares each layer's thickness to a sheet of paper, but the material is plastic, not paper, and the layers are stacked rather than folded."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the phrase \"brings their ideas to life\" most likely mean in the fourth paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "The printer creates a living creature from a student's drawing."},
+        {"letter": "B", "text": "The printer turns a digital design into a real, physical object that students can hold."},
+        {"letter": "C", "text": "The printer displays an animation of the student's idea on a screen."},
+        {"letter": "D", "text": "The printer sends the student's design to a factory for mass production."},
+        {"letter": "E", "text": "The printer makes the student's homework come alive and move on its own."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says students 'design objects on a computer and then watch as the printer brings their ideas to life.' In context, this figurative expression means the printer transforms a digital design into a tangible, physical object — making an idea real and touchable.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'brings to life' could suggest creating something alive, but the phrase is figurative — it means making ideas into real objects, not creating living things."},
+        {"letter": "C", "explanation": "This is tempting because computers display things on screens, but the passage describes printing physical objects like a model heart or phone stand, not showing animations."},
+        {"letter": "D", "explanation": "This is tempting because manufacturing is related to making objects, but the passage says the printer itself creates the object right there in the school, not that designs are sent elsewhere."},
+        {"letter": "E", "explanation": "This is tempting because 'come alive' could suggest movement, but the phrase means the idea becomes a real object, not that the object literally moves on its own."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the examples in the passage, what conclusion can the reader draw about the types of problems 3D printing can solve?",
+      "answer_choices": [
+        {"letter": "A", "text": "3D printing can only solve problems related to space exploration."},
+        {"letter": "B", "text": "3D printing is useful only when traditional tools have broken and need replacing."},
+        {"letter": "C", "text": "3D printing can solve a wide variety of problems, from creating custom medical devices to building structures to manufacturing parts in remote locations."},
+        {"letter": "D", "text": "3D printing is best suited for entertainment and creating toys for children."},
+        {"letter": "E", "text": "3D printing works well for small objects but cannot be used for anything larger than a phone stand."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage gives examples spanning many different fields: custom casts for broken bones (medicine), printing entire houses (construction), printing replacement parts on the space station (remote manufacturing), and creating educational models (schools). Together, these examples show that 3D printing addresses a wide variety of problems across many areas.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because NASA's use is a memorable example, but the passage also describes medical, construction, and educational applications — space is just one of many fields."},
+        {"letter": "B", "explanation": "This is tempting because replacement parts are one use, but the passage also mentions custom medical casts, entire houses, and educational models — not just replacing broken tools."},
+        {"letter": "D", "explanation": "This is tempting because toys are mentioned in the opening sentence, but the passage quickly moves on to professional uses in medicine, construction, space, and education."},
+        {"letter": "E", "explanation": "This is tempting because some examples are small objects, but the passage specifically mentions 'giant printers' that have printed entire houses, showing the technology works at large scales too."}
+      ],
+      "skill_tested": "rc_drawing_conclusions"
     }
   ]
 }

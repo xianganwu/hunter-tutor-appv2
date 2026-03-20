@@ -4,7 +4,7 @@
     "title": "October's Last Leaf",
     "genre": "poetry",
     "difficulty_level": 2,
-    "word_count": 210,
+    "word_count": 145,
     "tagged_skills": [
       "rc_main_idea",
       "rc_figurative_language",
@@ -116,6 +116,66 @@
         {"letter": "C", "explanation": "This is tempting because the poem values autumn's beauty, but it also accepts the leaf's departure gracefully — the tone is accepting, not upset."},
         {"letter": "D", "explanation": "This is tempting because the leaf speaks to the branches, but it is declaring its own intention to stay, not asking for permission."},
         {"letter": "E", "explanation": "This is tempting because someone might want to preserve autumn leaves, but the poem is about emotional experience, not practical instructions."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 6,
+      "question_text": "In the last stanza, the tree is described as \"humming the song of the departing year.\" What figurative language device is used here?",
+      "answer_choices": [
+        {"letter": "A", "text": "Simile, because the tree is compared to a singer using 'like' or 'as.'"},
+        {"letter": "B", "text": "Personification, because the tree is given the human ability to hum a song."},
+        {"letter": "C", "text": "Hyperbole, because trees cannot actually make any sound at all."},
+        {"letter": "D", "text": "Alliteration, because the words start with the same letter."},
+        {"letter": "E", "text": "Onomatopoeia, because 'humming' imitates the sound of a bee."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The tree is described as 'humming' a song, which is a human action. Giving a non-human thing (the tree) a human quality (humming) is personification. This device makes the tree seem alive and emotionally connected to the changing season, as if it, too, feels the departure of autumn.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because both simile and personification are comparisons, but there is no 'like' or 'as' here — the tree is directly given a human quality."},
+        {"letter": "C", "explanation": "This is tempting because trees do not literally hum, but the point is not exaggeration — it is giving the tree a human-like behavior, which is personification."},
+        {"letter": "D", "explanation": "This is tempting because alliteration involves repeated sounds, but 'humming,' 'song,' and 'departing' do not share starting sounds in a patterned way."},
+        {"letter": "E", "explanation": "This is tempting because 'humming' does relate to sound, but here it describes the tree singing, not imitating a natural noise — the device is personification."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the word \"tide\" mean in the phrase \"the cold November tide\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "An ocean wave that floods the tree during November."},
+        {"letter": "B", "text": "A powerful, unstoppable force or flow — in this case, the arrival of cold winter weather."},
+        {"letter": "C", "text": "A cleaning product used to wash the branches of the tree."},
+        {"letter": "D", "text": "A specific date on the calendar when November begins."},
+        {"letter": "E", "text": "The sound the wind makes when it blows through leaves."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "In this context, 'tide' is used figuratively to describe the arrival of November's cold weather as a powerful, sweeping force — like an ocean tide rolling in. The word suggests that winter comes gradually but inevitably, washing over the landscape the way water covers a shore.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'tide' literally refers to ocean water, but the poem is set on land with a maple tree — 'tide' is used figuratively for the wave of cold weather."},
+        {"letter": "C", "explanation": "This is tempting only as a wordplay confusion with a brand name, but the poem uses 'tide' as a poetic word for a sweeping natural force."},
+        {"letter": "D", "explanation": "This is tempting because 'tide' could sound like 'time,' but it refers to a flowing force, not a calendar date."},
+        {"letter": "E", "explanation": "This is tempting because wind and tide both involve movement, but 'tide' describes the arriving force of cold weather, not a specific sound."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the poem, what can you infer about why the poet describes the leaf as \"a lantern in the gray\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "The leaf is actually giving off light and heat like a real lantern."},
+        {"letter": "B", "text": "The poet wants to show that the leaf's bright color stands out against the dull, gray late-autumn landscape, offering a small point of warmth and beauty in an otherwise bleak setting."},
+        {"letter": "C", "text": "Someone has hung a lantern on the tree to help people find it in the dark."},
+        {"letter": "D", "text": "The gray sky means it is about to rain, and the leaf is getting wet."},
+        {"letter": "E", "text": "The poet is describing a streetlight near the tree, not the leaf itself."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By calling the leaf 'a lantern in the gray,' the poet uses a metaphor to show that the leaf's bright copper color shines against the dull gray of late autumn. Just as a lantern provides a small but meaningful light in darkness, the last leaf provides a spot of color and beauty in an otherwise bare, gray landscape.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because lanterns produce light, but this is a metaphor — the leaf's bright color resembles a lantern's glow, but the leaf is not actually producing light or heat."},
+        {"letter": "C", "explanation": "This is tempting because lanterns are real objects, but the poet is comparing the leaf to a lantern, not describing an actual lantern hanging on the tree."},
+        {"letter": "D", "explanation": "This is tempting because gray skies can signal rain, but the 'gray' here represents the dull, colorless late-autumn landscape, not a specific weather prediction."},
+        {"letter": "E", "explanation": "This is tempting because lanterns and streetlights both give light, but the line clearly refers to the leaf — it is the leaf that is 'a lantern,' described as the 'one final spark of autumn.'"}
       ],
       "skill_tested": "rc_inference"
     }

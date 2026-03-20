@@ -11,7 +11,8 @@
       "rc_author_purpose",
       "rc_evidence_reasoning",
       "rc_inference",
-      "rc_tone_mood"
+      "rc_tone_mood",
+      "rc_figurative_language"
     ],
     "source_description": "Original composition in the style of a Civil War-era letter from a young Union soldier to his family",
     "lexile_range": "400L-600L",

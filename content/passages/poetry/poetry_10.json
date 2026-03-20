@@ -4,7 +4,7 @@
     "title": "What We Carry",
     "genre": "poetry",
     "difficulty_level": 5,
-    "word_count": 380,
+    "word_count": 319,
     "tagged_skills": [
       "rc_advanced_inference",
       "rc_figurative_language",
@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because the glow-in-the-dark stars and sneaking downstairs have light moments, but the overall poem is reflective and emotional, not humorous."}
       ],
       "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 6,
+      "question_text": "The speaker describes the glow-in-the-dark stars as arranged \"in the shape of Orion, and got wrong, and never fixed, because the wrongness became ours.\" What does this detail reveal about the speaker's relationship to imperfection?",
+      "answer_choices": [
+        {"letter": "A", "text": "The speaker is frustrated that the stars were arranged incorrectly and wishes they had been fixed."},
+        {"letter": "B", "text": "The speaker values the imperfection because it became a unique, personal marker of their family's shared experience — the mistake itself became meaningful and beloved."},
+        {"letter": "C", "text": "The speaker does not know what the constellation Orion looks like and is embarrassed."},
+        {"letter": "D", "text": "The speaker thinks astronomy is unimportant and does not care about accuracy."},
+        {"letter": "E", "text": "The speaker is criticizing the new family who lives in the house for not fixing the stars."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The phrase 'the wrongness became ours' is key: the mistake was never corrected because it transformed from an error into something that belonged to the family — a personal, imperfect detail that no one else would share. This reveals that the speaker values lived experience over perfection, understanding that the flaws and quirks of a home are what make it uniquely yours.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because mistakes can cause frustration, but the speaker explicitly embraces the wrongness — it 'became ours,' suggesting affection, not frustration."},
+        {"letter": "C", "explanation": "This is tempting because they got Orion wrong, but the tone is fond and proud of the mistake, not embarrassed about astronomical knowledge."},
+        {"letter": "D", "explanation": "This is tempting because they did not fix the stars, but the reason was not indifference to accuracy — it was that the imperfection had become meaningful and personal."},
+        {"letter": "E", "explanation": "This is tempting because someone else now lives in the room, but the speaker's focus is on their own attachment to the imperfect stars, not criticism of the new occupants."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 7,
+      "question_text": "The poem ends with the lines: \"every room still standing, / every door still open, / every light still on.\" What is the effect of this structural choice?",
+      "answer_choices": [
+        {"letter": "A", "text": "It describes the actual condition of the house after the family moved out."},
+        {"letter": "B", "text": "The repeated parallel structure (\"every... still...\") creates a sense of permanence and completeness, affirming that the entire house lives on intact in the speaker's memory — nothing has been lost internally even though the physical house is gone."},
+        {"letter": "C", "text": "It shows that the family was wasteful and left all the lights on when they moved."},
+        {"letter": "D", "text": "It is a list of things the family forgot to pack in the moving truck."},
+        {"letter": "E", "text": "It suggests the speaker plans to return and move back into the house someday."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The three parallel lines beginning with 'every' and containing 'still' create a rhythmic, declarative ending that feels like an affirmation or a promise. Each line insists that parts of the house remain alive — rooms standing, doors open, lights on — within the speaker. This structural repetition gives the poem a sense of lasting wholeness that counters the loss described earlier.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as a literal reading, but the speaker carries the house 'in the architecture of who I am' — these lines describe the house as it exists in memory, not its physical state."},
+        {"letter": "C", "explanation": "This is tempting because lights being left on could suggest waste, but the 'lights still on' is a metaphor for memories remaining vivid and alive in the speaker's mind."},
+        {"letter": "D", "explanation": "This is tempting because the poem discusses packing, but rooms, doors, and lights cannot be packed — they are metaphors for the speaker's internalized experience of home."},
+        {"letter": "E", "explanation": "This is tempting because the speaker clearly loves the house, but the poem's resolution is about carrying the house internally, not about a physical return."}
+      ],
+      "skill_tested": "rc_advanced_structure"
+    },
+    {
+      "question_number": 8,
+      "question_text": "The speaker says the sister \"still says 'I'm going to my room' and means a room three hundred miles away.\" What does this example illustrate about how people experience the loss of a home?",
+      "answer_choices": [
+        {"letter": "A", "text": "The sister has a poor sense of direction and does not know where she is."},
+        {"letter": "B", "text": "It illustrates how the language and habits of home persist in our speech even after the physical place is gone, revealing that our sense of belonging remains anchored to the original home long after we have left it."},
+        {"letter": "C", "text": "The sister is being sarcastic and making a joke about the move."},
+        {"letter": "D", "text": "The sister wants to buy the old house back from the new owners."},
+        {"letter": "E", "text": "The sister refuses to unpack her belongings in the new house."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The sister's habitual phrase 'I'm going to my room' reveals that her internal map of home has not updated to match physical reality. She unconsciously refers to a room that is no longer hers, three hundred miles away. This example shows how deeply home is embedded in our language, habits, and identity — the move happened physically, but emotionally, parts of us remain where we grew up.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because she references a distant room, but this is not about confusion or direction — it is about how habits of speech reveal emotional attachment."},
+        {"letter": "C", "explanation": "This is tempting because the mismatch could seem humorous, but the poem's tone in this section is poignant and reflective, not sarcastic."},
+        {"letter": "D", "explanation": "This is tempting because the sister clearly misses her room, but the poem does not mention any desire to repurchase — it is about the persistence of memory and habit."},
+        {"letter": "E", "explanation": "This is tempting because it would show attachment to the old home, but the poem describes a specific speech habit, not a refusal to settle in the new house."}
+      ],
+      "skill_tested": "rc_advanced_inference"
     }
   ]
 }

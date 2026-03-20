@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because the comparison involves both forests and cities, but the author is not ranking them — the comparison illustrates how essential but invisible dead wood is."}
       ],
       "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 6,
+      "question_text": "According to the passage, how do rotting logs help manage water in a forest?",
+      "answer_choices": [
+        {"letter": "A", "text": "They block all water from entering the soil."},
+        {"letter": "B", "text": "They absorb rainwater like sponges and release it slowly, and in streams they slow water flow and reduce erosion."},
+        {"letter": "C", "text": "They filter out pollution from rainwater before it reaches the soil."},
+        {"letter": "D", "text": "They attract rain clouds by releasing moisture into the air."},
+        {"letter": "E", "text": "They create underground rivers that carry water to nearby lakes."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that rotting logs 'act like sponges, absorbing rainwater and releasing it slowly over time,' which prevents flooding and keeps soil moist. In streams, fallen logs 'create small dams that slow water flow, reduce erosion, and create pools where fish can rest and breed.'",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because logs interact with water, but the passage says they absorb and slowly release water, not that they block it entirely from entering the soil."},
+        {"letter": "C", "explanation": "This is tempting because filtering water sounds beneficial, but the passage describes logs absorbing and releasing water, not filtering out pollution."},
+        {"letter": "D", "explanation": "This is tempting because moisture and forests are related, but the passage describes logs absorbing ground-level rainwater, not attracting rain clouds."},
+        {"letter": "E", "explanation": "This is tempting because water and underground systems exist in forests, but the passage describes surface-level water management, not underground rivers."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the word \"teeming\" most likely mean in the phrase \"a miniature ecosystem teeming with life\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Completely empty and lifeless"},
+        {"letter": "B", "text": "Overflowing and full of a great number of living things"},
+        {"letter": "C", "text": "Slowly dying and losing energy"},
+        {"letter": "D", "text": "Hidden beneath the surface of the ground"},
+        {"letter": "E", "text": "Rotating and spinning in circles"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes a dead log being 'transformed into something essential: a miniature ecosystem teeming with life,' and then lists numerous organisms that inhabit it — fungi, beetles, bacteria, salamanders, mice, chipmunks, and ants. 'Teeming' means full of or swarming with a great number of things.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as the opposite meaning — the passage emphasizes that the log is full of life, not empty."},
+        {"letter": "C", "explanation": "This is tempting because the log itself is dead, but 'teeming with life' describes abundant living organisms, not a dying process."},
+        {"letter": "D", "explanation": "This is tempting because some organisms live beneath the log, but 'teeming' describes abundance, not location."},
+        {"letter": "E", "explanation": "This is tempting as an unrelated meaning, but nothing in the context suggests rotation — 'teeming' describes being crowded with many living things."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, what can you infer about why some forest managers used to remove dead trees?",
+      "answer_choices": [
+        {"letter": "A", "text": "They removed them because dead trees were known to attract dangerous predators to the forest."},
+        {"letter": "B", "text": "They likely viewed dead trees as waste or clutter that made the forest look untidy, without understanding their ecological value."},
+        {"letter": "C", "text": "They removed them because dead trees release harmful chemicals that poison the soil."},
+        {"letter": "D", "text": "They removed them because scientists told them dead wood had no purpose."},
+        {"letter": "E", "text": "They removed them to make room for buildings and parking lots inside the forest."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says forest managers now 'deliberately leave fallen trees in place rather than clearing them away,' calling this a 'shift in thinking — from viewing dead trees as waste to understanding them as vital infrastructure.' This implies they previously removed dead trees because they saw them as waste, similar to the analogy of a city looking 'tidy on the surface.'",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because wildlife is discussed, but the passage describes the organisms in dead wood as beneficial (fungi, insects, salamanders), not dangerous predators."},
+        {"letter": "C", "explanation": "This is tempting because soil chemistry is discussed, but the passage says dead wood enriches soil with nutrients, not that it poisons it."},
+        {"letter": "D", "explanation": "This is tempting because science informs management, but the passage implies the old practice was based on a lack of ecological understanding, not on scientific advice."},
+        {"letter": "E", "explanation": "This is tempting because clearing land for development does happen, but the passage is about forest management practices within forests, not about replacing forests with structures."}
+      ],
+      "skill_tested": "rc_inference"
     }
   ]
 }

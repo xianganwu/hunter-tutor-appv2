@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because the passage discusses research, but it does not present opposing arguments about funding — it consistently supports the value of tornado research."}
       ],
       "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What does the term \"wind shear\" mean as it is explained in the passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "A sudden stop of all wind in a storm"},
+        {"letter": "B", "text": "A change in wind speed or direction at different heights"},
+        {"letter": "C", "text": "The sound that wind makes during a tornado"},
+        {"letter": "D", "text": "A tool used by storm chasers to measure wind"},
+        {"letter": "E", "text": "The damage caused by strong winds hitting buildings"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage directly defines wind shear: 'wind shear, which is a change in wind speed or direction at different heights.' It is identified as one of the three ingredients needed for a supercell to form.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'shear' might suggest cutting or stopping, but the passage defines it as a change in wind speed or direction, not a cessation of wind."},
+        {"letter": "C", "explanation": "This is tempting because storms are loud, but wind shear is a physical condition of the atmosphere, not a sound."},
+        {"letter": "D", "explanation": "This is tempting because measurement tools are discussed in the passage, but wind shear is an atmospheric condition, not an instrument."},
+        {"letter": "E", "explanation": "This is tempting because tornadoes cause damage, but wind shear refers to changing wind conditions at different altitudes, not to the destruction caused by wind."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 7,
+      "question_text": "According to the passage, what is the difference between a tornado watch and a tornado warning?",
+      "answer_choices": [
+        {"letter": "A", "text": "A watch means a tornado has been seen, while a warning means conditions are favorable."},
+        {"letter": "B", "text": "A watch means conditions are favorable for tornado formation, while a warning means a tornado has been spotted or detected on radar."},
+        {"letter": "C", "text": "A watch is issued by storm chasers, while a warning is issued by the public."},
+        {"letter": "D", "text": "A watch lasts for thirteen minutes, while a warning lasts for an hour."},
+        {"letter": "E", "text": "A watch applies only to Tornado Alley, while a warning can be issued anywhere."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that forecasters 'issue watches (meaning tornadoes are possible) and warnings (meaning a tornado has been spotted or detected on radar).' A watch indicates favorable conditions, while a warning indicates an actual or detected tornado.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because it reverses the definitions — the passage says a watch means tornadoes are possible, and a warning means one has been spotted, not the other way around."},
+        {"letter": "C", "explanation": "This is tempting because storm chasers are discussed, but the passage says watches and warnings are issued by weather forecasters, not by the public."},
+        {"letter": "D", "explanation": "This is tempting because thirteen minutes is mentioned, but that is the average lead time for a warning, not the duration of a watch."},
+        {"letter": "E", "explanation": "This is tempting because Tornado Alley is mentioned, but the passage does not limit watches or warnings to specific regions."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Which of the following best explains why predicting tornadoes is so difficult, according to the passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Scientists do not have any tools that can detect tornadoes."},
+        {"letter": "B", "text": "Tornadoes only happen at night when visibility is poor."},
+        {"letter": "C", "text": "Tornadoes develop rapidly and on a very small scale compared to the larger thunderstorms they come from."},
+        {"letter": "D", "text": "The government does not allow storm chasers to get close enough to study tornadoes."},
+        {"letter": "E", "text": "Tornadoes are too rare to study in meaningful numbers."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that 'tornadoes develop rapidly and on a very small scale — while a thunderstorm might cover hundreds of square miles, a tornado might be only a few hundred yards wide and last for just minutes.' This rapid development and small scale make precise prediction extremely challenging.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because prediction is hard, but the passage describes multiple tools including probes, mobile Doppler radar, and computer simulations that scientists use to study tornadoes."},
+        {"letter": "B", "explanation": "This is tempting because visibility could affect observation, but the passage does not say tornadoes only happen at night — the difficulty is their rapid formation and small scale."},
+        {"letter": "D", "explanation": "This is tempting because access could limit research, but the passage describes storm chasers actively driving into storms and deploying instruments inside tornadoes."},
+        {"letter": "E", "explanation": "This is tempting because rarity could limit study, but the passage says roughly 1,200 tornadoes occur annually in the US alone — they are not rare."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
     }
   ]
 }

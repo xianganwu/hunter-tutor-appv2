@@ -10,7 +10,8 @@
       "rc_advanced_inference",
       "rc_comparing_viewpoints",
       "rc_advanced_vocab",
-      "rc_advanced_structure"
+      "rc_advanced_structure",
+      "rc_evidence_reasoning"
     ],
     "source_description": "original",
     "lexile_range": "1000L-1200L",
@@ -118,6 +119,66 @@
         {"letter": "E", "explanation": "This is tempting because the small states caused a deadlock, but the conclusion blames no single group — it reflects on the nature of compromise itself."}
       ],
       "skill_tested": "rc_advanced_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "The passage describes the Three-Fifths Compromise as \"deeply unjust.\" Which evidence from the passage best supports this characterization?",
+      "answer_choices": [
+        {"letter": "A", "text": "The compromise passed narrowly by a single vote."},
+        {"letter": "B", "text": "Northern delegates pointed out the contradiction of counting enslaved people as population for representation while treating them as property who had no rights and could not vote."},
+        {"letter": "C", "text": "Thirty-nine of the fifty-five delegates signed the Constitution."},
+        {"letter": "D", "text": "Benjamin Franklin was eighty-one years old during the convention."},
+        {"letter": "E", "text": "The convention was originally supposed to revise the Articles of Confederation."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage highlights the fundamental moral contradiction at the heart of the Three-Fifths Compromise: enslaved people were counted for political representation (benefiting slaveholding states) while being denied all rights and treated as property. This contradiction is what makes the compromise 'deeply unjust' — it exploited enslaved people's existence for political power without granting them any humanity.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because a narrow vote suggests controversy, but this detail refers to the Great Compromise (about state representation), not the Three-Fifths Compromise about slavery."},
+        {"letter": "C", "explanation": "This is tempting because it shows not all delegates agreed, but signing the final document does not specifically address the injustice of the Three-Fifths Compromise."},
+        {"letter": "D", "explanation": "This is tempting because Franklin is an important figure in the passage, but his age is irrelevant to why the Three-Fifths Compromise was unjust."},
+        {"letter": "E", "explanation": "This is tempting because it provides context for the convention, but the original purpose of the meeting has no bearing on the moral injustice of the slavery compromise."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the word \"dissolution\" mean as used in the final paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "The process of becoming stronger and more powerful"},
+        {"letter": "B", "text": "The breaking apart or ending of the union of states"},
+        {"letter": "C", "text": "A formal celebration or ceremony"},
+        {"letter": "D", "text": "The act of dissolving a substance in water"},
+        {"letter": "E", "text": "A new method of electing leaders"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that the delegates agreed that 'maintaining the union — imperfect as it was — was preferable to dissolution.' In this context, 'dissolution' means the opposite of maintaining the union: the breaking apart or disintegration of the alliance of states. The delegates chose imperfect unity over complete fragmentation.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as the opposite meaning, but dissolution is contrasted with 'maintaining the union,' making it clear that it means breaking apart, not growing stronger."},
+        {"letter": "C", "explanation": "This is tempting because the convention was a formal gathering, but 'dissolution' in this context means the collapse of the union, not a celebratory event."},
+        {"letter": "D", "explanation": "This is tempting because 'dissolution' can refer to dissolving substances in chemistry, but here it is used in a political context to mean the breakup of the union."},
+        {"letter": "E", "explanation": "This is tempting because the convention discussed governance, but 'dissolution' refers to the potential collapse of the union, not to any electoral process."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, why does the author describe the delegates' decision to write an entirely new constitution as \"both unauthorized and revolutionary\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Because the delegates were criminals who had no right to meet in Philadelphia."},
+        {"letter": "B", "text": "Because the delegates were sent only to revise the Articles of Confederation, not to create a new government, so designing a new constitution went beyond their authority and was a radical departure from their instructions."},
+        {"letter": "C", "text": "Because the delegates used revolutionary weapons to force the states to accept the new Constitution."},
+        {"letter": "D", "text": "Because the king of England had ordered the delegates to write the Constitution."},
+        {"letter": "E", "text": "Because all fifty-five delegates unanimously agreed from the start to write a new constitution."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that the delegates gathered for 'what was supposed to be a modest task: revising the Articles of Confederation.' Instead, they 'abandoned the idea of revision altogether' and designed an entirely new system of government. This exceeded their mandate ('unauthorized') and represented a fundamental transformation of governance ('revolutionary').",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'unauthorized' suggests acting without permission, but the delegates were legitimate representatives of their states — they simply exceeded the scope of their assignment."},
+        {"letter": "C", "explanation": "This is tempting because 'revolutionary' can suggest violence, but the author uses it to describe the radical nature of the political decision, not any use of force."},
+        {"letter": "D", "explanation": "This is tempting because it involves authority, but the United States had already declared independence from England — the king had no role in the convention."},
+        {"letter": "E", "explanation": "This is tempting because it describes consensus, but the passage says the decision happened 'within weeks of the convention's opening' after initial debates — it was not the unanimous starting plan."}
+      ],
+      "skill_tested": "rc_advanced_inference"
     }
   ]
 }

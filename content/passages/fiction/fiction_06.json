@@ -10,11 +10,17 @@
       "rc_inference",
       "rc_vocab_context",
       "rc_supporting_details",
-      "rc_drawing_conclusions"
+      "rc_drawing_conclusions",
+      "rc_tone_mood",
+      "rc_figurative_language",
+      "rc_passage_structure"
     ],
     "source_description": "original",
     "lexile_range": "400L-600L",
-    "themes": ["competition", "friendship"]
+    "themes": [
+      "competition",
+      "friendship"
+    ]
   },
   "pre_reading_context": "Two classmates find themselves competing against each other in their school's annual spelling bee.",
   "passage_text": "Priya had been studying spelling words every night for two months. She kept a notebook full of tricky words, writing each one ten times until the letters felt automatic. The school spelling bee was on Friday, and she wanted to win more than anything.\n\nOn Monday, Ms. Garcia announced that a new student named David would also be entering the spelling bee. By Wednesday, everyone in class knew David was good. Really good. He spelled \"accommodate\" without blinking and rattled off \"mischievous\" like it was nothing.\n\nPriya felt a knot form in her stomach. She had worked so hard, but what if it wasn't enough?\n\nOn Friday afternoon, the auditorium was packed. One by one, students walked to the microphone and spelled their words. Some got nervous and mixed up letters. Others smiled with relief when the judge said \"correct.\" By the fifth round, only Priya and David were left.\n\nDavid went first. His word was \"necessary.\" He paused, took a breath, and spelled it perfectly. Then it was Priya's turn. Her word was \"rhythm.\" She closed her eyes, pictured the word in her notebook, and spelled it letter by letter.\n\n\"Correct,\" said the judge.\n\nThree more rounds passed. Finally, David stumbled on \"parallel,\" saying \"p-a-r-a-l-l-e-l-l.\" The judge shook her head. Now Priya just needed to get her word right to win.\n\n\"Exaggerate,\" said the judge.\n\nPriya's heart pounded. She had written this word dozens of times. \"E-x-a-g-g-e-r-a-t-e.\"\n\n\"Correct! Priya is our winner!\"\n\nThe audience clapped. David walked over and shook her hand. \"Nice job,\" he said, and he meant it. Priya smiled. Winning felt wonderful, but earning the respect of a tough competitor felt even better.",
@@ -23,19 +29,46 @@
       "question_number": 1,
       "question_text": "What is the main idea of this passage?",
       "answer_choices": [
-        {"letter": "A", "text": "Spelling bees are unfair because some students are naturally talented."},
-        {"letter": "B", "text": "Hard work and preparation can pay off, even when the competition is tough."},
-        {"letter": "C", "text": "New students always have an advantage in school competitions."},
-        {"letter": "D", "text": "Priya is the smartest student in her entire school."},
-        {"letter": "E", "text": "David lost the spelling bee because he did not study enough."}
+        {
+          "letter": "A",
+          "text": "Spelling bees are unfair because some students are naturally talented."
+        },
+        {
+          "letter": "B",
+          "text": "Hard work and preparation can pay off, even when the competition is tough."
+        },
+        {
+          "letter": "C",
+          "text": "New students always have an advantage in school competitions."
+        },
+        {
+          "letter": "D",
+          "text": "Priya is the smartest student in her entire school."
+        },
+        {
+          "letter": "E",
+          "text": "David lost the spelling bee because he did not study enough."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage focuses on Priya's dedicated preparation over two months and how it helped her succeed against a strong competitor. The main idea is that hard work and preparation lead to success even when facing tough competition.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because David seems naturally talented, but the passage does not suggest the bee is unfair — Priya wins through preparation."},
-        {"letter": "C", "explanation": "This is tempting because David is new and skilled, but the passage shows Priya, the existing student, winning — new students do not automatically have an advantage."},
-        {"letter": "D", "explanation": "This is tempting because Priya wins the bee, but the passage only shows she won the spelling bee, not that she is the smartest at everything."},
-        {"letter": "E", "explanation": "This is tempting because David made a mistake, but the passage never says David did not study — he was clearly very prepared and simply made one error."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because David seems naturally talented, but the passage does not suggest the bee is unfair — Priya wins through preparation."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because David is new and skilled, but the passage shows Priya, the existing student, winning — new students do not automatically have an advantage."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Priya wins the bee, but the passage only shows she won the spelling bee, not that she is the smartest at everything."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because David made a mistake, but the passage never says David did not study — he was clearly very prepared and simply made one error."
+        }
       ],
       "skill_tested": "rc_main_idea"
     },
@@ -43,19 +76,46 @@
       "question_number": 2,
       "question_text": "What can the reader infer about why Priya closes her eyes before spelling \"rhythm\"?",
       "answer_choices": [
-        {"letter": "A", "text": "She is feeling dizzy from being nervous."},
-        {"letter": "B", "text": "She is trying to remember how the word looked in her notebook."},
-        {"letter": "C", "text": "She wants the audience to feel sorry for her."},
-        {"letter": "D", "text": "She is about to give up and leave the stage."},
-        {"letter": "E", "text": "She is copying a technique she saw David use."}
+        {
+          "letter": "A",
+          "text": "She is feeling dizzy from being nervous."
+        },
+        {
+          "letter": "B",
+          "text": "She is trying to remember how the word looked in her notebook."
+        },
+        {
+          "letter": "C",
+          "text": "She wants the audience to feel sorry for her."
+        },
+        {
+          "letter": "D",
+          "text": "She is about to give up and leave the stage."
+        },
+        {
+          "letter": "E",
+          "text": "She is copying a technique she saw David use."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage says she 'closed her eyes, pictured the word in her notebook, and spelled it letter by letter.' This directly shows she is visualizing the word from her study sessions to help her spell it correctly.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because Priya is nervous, but the passage connects closing her eyes to picturing the word, not to dizziness."},
-        {"letter": "C", "explanation": "This is tempting because closing eyes might look dramatic, but Priya is focused on spelling correctly, not on the audience's emotions."},
-        {"letter": "D", "explanation": "This is tempting because closing eyes could signal defeat, but Priya immediately spells the word correctly afterward."},
-        {"letter": "E", "explanation": "This is tempting because David also pauses before spelling, but David takes a breath — the passage does not say he closes his eyes, and Priya's technique comes from her study habits."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because Priya is nervous, but the passage connects closing her eyes to picturing the word, not to dizziness."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because closing eyes might look dramatic, but Priya is focused on spelling correctly, not on the audience's emotions."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because closing eyes could signal defeat, but Priya immediately spells the word correctly afterward."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because David also pauses before spelling, but David takes a breath — the passage does not say he closes his eyes, and Priya's technique comes from her study habits."
+        }
       ],
       "skill_tested": "rc_inference"
     },
@@ -63,19 +123,46 @@
       "question_number": 3,
       "question_text": "What does the word \"rattled\" most likely mean as used in the second paragraph?",
       "answer_choices": [
-        {"letter": "A", "text": "Shook nervously"},
-        {"letter": "B", "text": "Said quickly and easily"},
-        {"letter": "C", "text": "Whispered quietly"},
-        {"letter": "D", "text": "Wrote down carefully"},
-        {"letter": "E", "text": "Forgot completely"}
+        {
+          "letter": "A",
+          "text": "Shook nervously"
+        },
+        {
+          "letter": "B",
+          "text": "Said quickly and easily"
+        },
+        {
+          "letter": "C",
+          "text": "Whispered quietly"
+        },
+        {
+          "letter": "D",
+          "text": "Wrote down carefully"
+        },
+        {
+          "letter": "E",
+          "text": "Forgot completely"
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The phrase 'rattled off' means to say something quickly and confidently. David spelled 'mischievous' like it was nothing, meaning he did it with ease and speed.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because 'rattle' can mean to shake, but 'rattled off' is an idiom meaning to say something quickly, and the context shows David was confident, not nervous."},
-        {"letter": "C", "explanation": "This is tempting because it is a way of speaking, but whispering suggests hesitation, while 'rattled off' suggests speed and confidence."},
-        {"letter": "D", "explanation": "This is tempting because it involves communicating a word, but 'rattled off' refers to speaking, not writing."},
-        {"letter": "E", "explanation": "This is tempting as a guess, but forgetting is the opposite of what David does — he spells the word perfectly and easily."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because 'rattle' can mean to shake, but 'rattled off' is an idiom meaning to say something quickly, and the context shows David was confident, not nervous."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because it is a way of speaking, but whispering suggests hesitation, while 'rattled off' suggests speed and confidence."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because it involves communicating a word, but 'rattled off' refers to speaking, not writing."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting as a guess, but forgetting is the opposite of what David does — he spells the word perfectly and easily."
+        }
       ],
       "skill_tested": "rc_vocab_context"
     },
@@ -83,19 +170,46 @@
       "question_number": 4,
       "question_text": "Which detail from the passage shows that Priya was worried about competing against David?",
       "answer_choices": [
-        {"letter": "A", "text": "She kept a notebook full of tricky words."},
-        {"letter": "B", "text": "She felt a knot form in her stomach."},
-        {"letter": "C", "text": "She closed her eyes before spelling her word."},
-        {"letter": "D", "text": "She had been studying for two months."},
-        {"letter": "E", "text": "She smiled after winning the competition."}
+        {
+          "letter": "A",
+          "text": "She kept a notebook full of tricky words."
+        },
+        {
+          "letter": "B",
+          "text": "She felt a knot form in her stomach."
+        },
+        {
+          "letter": "C",
+          "text": "She closed her eyes before spelling her word."
+        },
+        {
+          "letter": "D",
+          "text": "She had been studying for two months."
+        },
+        {
+          "letter": "E",
+          "text": "She smiled after winning the competition."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage says Priya 'felt a knot form in her stomach' right after learning how good David was. A knot in the stomach is a physical sign of worry and anxiety about the competition.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because keeping a notebook shows effort, but she started the notebook before David arrived — it shows dedication, not worry about him specifically."},
-        {"letter": "C", "explanation": "This is tempting because closing eyes could show nervousness, but this happens during the bee itself and is connected to her visualization technique, not specifically to worrying about David."},
-        {"letter": "D", "explanation": "This is tempting because extensive studying might suggest worry, but she began studying two months before David even arrived at her school."},
-        {"letter": "E", "explanation": "This is tempting because emotions are involved, but smiling after winning shows happiness, not worry."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because keeping a notebook shows effort, but she started the notebook before David arrived — it shows dedication, not worry about him specifically."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because closing eyes could show nervousness, but this happens during the bee itself and is connected to her visualization technique, not specifically to worrying about David."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because extensive studying might suggest worry, but she began studying two months before David even arrived at her school."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because emotions are involved, but smiling after winning shows happiness, not worry."
+        }
       ],
       "skill_tested": "rc_supporting_details"
     },
@@ -103,21 +217,189 @@
       "question_number": 5,
       "question_text": "Based on the ending of the passage, what can the reader conclude about how Priya feels?",
       "answer_choices": [
-        {"letter": "A", "text": "She is relieved the spelling bee is over and never wants to compete again."},
-        {"letter": "B", "text": "She feels guilty about beating David and wishes he had won instead."},
-        {"letter": "C", "text": "She values both the victory and the sportsmanship David showed her."},
-        {"letter": "D", "text": "She is disappointed because she wanted to win by a bigger margin."},
-        {"letter": "E", "text": "She is already worried about next year's spelling bee."}
+        {
+          "letter": "A",
+          "text": "She is relieved the spelling bee is over and never wants to compete again."
+        },
+        {
+          "letter": "B",
+          "text": "She feels guilty about beating David and wishes he had won instead."
+        },
+        {
+          "letter": "C",
+          "text": "She values both the victory and the sportsmanship David showed her."
+        },
+        {
+          "letter": "D",
+          "text": "She is disappointed because she wanted to win by a bigger margin."
+        },
+        {
+          "letter": "E",
+          "text": "She is already worried about next year's spelling bee."
+        }
       ],
       "correct_answer": "C",
       "correct_answer_explanation": "The last sentence says 'Winning felt wonderful, but earning the respect of a tough competitor felt even better.' This shows Priya values both winning and the mutual respect between her and David.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because competitions can be stressful, but the passage ends with Priya feeling positive, not exhausted or unwilling to compete again."},
-        {"letter": "B", "explanation": "This is tempting because Priya might feel sympathy for David, but the passage shows her smiling and feeling good — there is no guilt."},
-        {"letter": "D", "explanation": "This is tempting because competitive people sometimes want dominant victories, but Priya is happy and appreciates the close competition."},
-        {"letter": "E", "explanation": "This is tempting because the passage is about competition, but the ending focuses on the present moment of satisfaction, not future worries."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because competitions can be stressful, but the passage ends with Priya feeling positive, not exhausted or unwilling to compete again."
+        },
+        {
+          "letter": "B",
+          "explanation": "This is tempting because Priya might feel sympathy for David, but the passage shows her smiling and feeling good — there is no guilt."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because competitive people sometimes want dominant victories, but Priya is happy and appreciates the close competition."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the passage is about competition, but the ending focuses on the present moment of satisfaction, not future worries."
+        }
       ],
       "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 6,
+      "question_text": "How would you describe the mood in the auditorium during the final rounds of the spelling bee?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "Boring and uninteresting because the audience had lost attention."
+        },
+        {
+          "letter": "B",
+          "text": "Tense and exciting as the competition narrowed to two skilled spellers."
+        },
+        {
+          "letter": "C",
+          "text": "Angry and hostile because the students were fighting."
+        },
+        {
+          "letter": "D",
+          "text": "Calm and relaxed because everyone knew who would win."
+        },
+        {
+          "letter": "E",
+          "text": "Sad and gloomy because students were being eliminated."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes the auditorium as 'packed,' hearts pounding, and two strong competitors going back and forth round after round. These details create a tense and exciting mood as the audience watches the close competition unfold.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because spelling bees can seem slow, but the packed auditorium and close competition suggest the audience was engaged, not bored."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because it is a competition, but the students are competing respectfully — David even shakes Priya's hand afterward."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because someone does eventually win, but the back-and-forth rounds and Priya's pounding heart show uncertainty, not calmness."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because students are eliminated, but the focus is on the exciting final matchup, not on sadness over losing."
+        }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the phrase \"the letters felt automatic\" suggest about Priya's study method?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "She used a computer program to practice her spelling."
+        },
+        {
+          "letter": "B",
+          "text": "She practiced so much that spelling the words became effortless and natural."
+        },
+        {
+          "letter": "C",
+          "text": "She did not enjoy studying and found it mechanical and dull."
+        },
+        {
+          "letter": "D",
+          "text": "She could only spell the words if she wrote them, not if she said them aloud."
+        },
+        {
+          "letter": "E",
+          "text": "She copied the words from someone else's notebook."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says Priya wrote each word ten times until the letters 'felt automatic,' meaning she practiced until the correct spelling came naturally without effort. This describes the result of intensive repetition building muscle memory and confidence.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because 'automatic' could relate to machines, but the passage describes handwriting in a notebook, not computer use."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because repetitive practice could feel dull, but 'automatic' here means effortless mastery, and Priya wanted to win 'more than anything,' showing she was motivated."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the passage mentions writing, but 'felt automatic' describes her overall comfort with the words, not a limitation to one method."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because it involves a notebook, but the passage clearly states Priya kept her own notebook and wrote words herself."
+        }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Which event happens immediately after David misspells \"parallel\"?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "The audience gives David a standing ovation."
+        },
+        {
+          "letter": "B",
+          "text": "Priya must spell her word correctly to win the bee."
+        },
+        {
+          "letter": "C",
+          "text": "Ms. Garcia announces that the spelling bee is canceled."
+        },
+        {
+          "letter": "D",
+          "text": "David and Priya shake hands and leave the stage together."
+        },
+        {
+          "letter": "E",
+          "text": "Priya is given the word \"rhythm\" to spell."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Right after the judge shakes her head at David's incorrect spelling, the passage states 'Now Priya just needed to get her word right to win.' She is then given 'exaggerate' and spells it correctly. The immediate consequence of David's mistake is that Priya gets a chance to win.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the audience does clap later, but they clap for Priya's victory, not for David after he misspells."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because something goes wrong, but the bee continues — it is not canceled after David's error."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because they do shake hands, but that happens after Priya wins, not immediately after David's mistake."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because 'rhythm' is a word Priya spells, but she spells 'rhythm' earlier in the competition. After David's mistake, her word is 'exaggerate.'"
+        }
+      ],
+      "skill_tested": "rc_passage_structure"
     }
   ]
 }

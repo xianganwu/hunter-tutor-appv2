@@ -61,6 +61,19 @@ export function getMockStudentStates(): SerializedSkillState[] {
     makeSkill("ma_coordinate_geometry", 0.32, 5, 0.4, 9, "stable"),
     makeSkill("ma_algebraic_expressions", 0.62, 14, 0.64, 2, "improving"),
     makeSkill("ma_multistep_word_problems", 0.2, 5, 0.2, 12, "declining"),
+
+    // Writing
+    makeSkill("w_sentence_structure", 0.8, 18, 0.78, 1, "stable"),
+    makeSkill("w_grammar_mechanics", 0.65, 14, 0.64, 2, "improving"),
+    makeSkill("w_paragraph_writing", 0.72, 16, 0.69, 1, "stable"),
+    makeSkill("w_personal_narrative", 0.55, 10, 0.5, 3, "stable"),
+    makeSkill("w_opinion_writing", 0.48, 8, 0.5, 4, "declining"),
+    makeSkill("w_word_choice", 0.6, 12, 0.58, 2, "improving"),
+    makeSkill("w_essay_structure", 0.35, 6, 0.33, 6, "stable"),
+    makeSkill("w_persuasive_writing", 0.28, 5, 0.4, 8, "stable"),
+    makeSkill("w_expository_writing", 0.22, 4, 0.25, 10, "declining"),
+    makeSkill("w_evidence_integration", 0.15, 3, 0.33, 12, "stable"),
+    makeSkill("w_revision_editing", 0.4, 7, 0.43, 5, "improving"),
   ];
 }
 
@@ -72,6 +85,7 @@ export function getMockDomainProgress(): DomainProgress[] {
     { id: "reading_comprehension", name: "Reading Comprehension" },
     { id: "math_quantitative_reasoning", name: "Math: Quantitative Reasoning" },
     { id: "math_achievement", name: "Math: Achievement" },
+    { id: "writing", name: "Writing" },
   ];
 
   return domains.map((d) => {

@@ -10,7 +10,9 @@
       "rc_supporting_details",
       "rc_vocab_context",
       "rc_evidence_reasoning",
-      "rc_passage_structure"
+      "rc_passage_structure",
+      "rc_author_purpose",
+      "rc_inference"
     ],
     "source_description": "original",
     "lexile_range": "600L-800L",
@@ -118,6 +120,66 @@
         {"letter": "E", "explanation": "This is tempting because the light bulb is discussed, but the passage is about Edison's approach to innovation, not a debate about the merits of electric light."}
       ],
       "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Why does the author begin the passage by mentioning the common image of Edison as a \"lone genius\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "To prove that Edison was not actually a good inventor."},
+        {"letter": "B", "text": "To set up a contrast between the popular myth and the more accurate, interesting reality of Edison's team-based approach."},
+        {"letter": "C", "text": "To argue that the light bulb was not an important invention."},
+        {"letter": "D", "text": "To explain why people should stop admiring Edison."},
+        {"letter": "E", "text": "To describe Edison's childhood and education."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The author opens with the common misconception ('lone genius who invented the light bulb in a flash of brilliance') and then immediately says 'the truth, however, is far more interesting.' This sets up the entire passage as a correction of the popular myth, establishing the contrast that drives the argument.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the passage challenges a myth, but it challenges how Edison worked, not whether he was successful — his 1,093 patents show great achievement."},
+        {"letter": "C", "explanation": "This is tempting because the passage deemphasizes the light bulb, but only to highlight something even more important — Edison's system for inventing, not to diminish the bulb's significance."},
+        {"letter": "D", "explanation": "This is tempting because the passage corrects a myth, but the author presents the real story as 'far more interesting and instructive' — more admirable, not less."},
+        {"letter": "E", "explanation": "This is tempting because biographies often begin with childhood, but the passage starts with a common perception of Edison, not his personal history."}
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Based on the passage, what can the reader infer about why Edison kept detailed notebooks of failed experiments?",
+      "answer_choices": [
+        {"letter": "A", "text": "He was required to keep them by law."},
+        {"letter": "B", "text": "He wanted to sell the notebooks to other inventors."},
+        {"letter": "C", "text": "The records helped his team avoid repeating mistakes and build systematically toward solutions."},
+        {"letter": "D", "text": "He enjoyed writing and wanted to become an author."},
+        {"letter": "E", "text": "He kept them as proof that his employees were doing their jobs."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that Edison's detailed notebooks 'allowed his team to avoid repeating mistakes and to build systematically toward solutions.' Recording failures was a strategic choice — each failed experiment provided data that narrowed the path toward success.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because records can be legally required, but the passage presents the notebooks as Edison's deliberate method for managing experimentation, not a legal obligation."},
+        {"letter": "B", "explanation": "This is tempting because notebooks could have commercial value, but the passage describes them as internal tools for Edison's team, not products for sale."},
+        {"letter": "D", "explanation": "This is tempting because Edison did write extensively, but the notebooks served a scientific and engineering purpose, not a literary one."},
+        {"letter": "E", "explanation": "This is tempting because managers do track employee work, but the passage frames the notebooks as tools for learning from failure, not as employee monitoring."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does the word \"staggering\" most likely mean as used in the phrase \"the results of this approach were staggering\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Disappointing and unimpressive"},
+        {"letter": "B", "text": "Astonishingly great or overwhelming"},
+        {"letter": "C", "text": "Dangerous and harmful"},
+        {"letter": "D", "text": "Slow and gradual"},
+        {"letter": "E", "text": "Confusing and unclear"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage uses 'staggering' to introduce a list of extraordinary achievements: the phonograph, the light bulb, an electrical power system, and 1,093 patents. The word conveys that the results were astonishingly impressive and overwhelming in their scope.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as the opposite meaning, but the passage immediately lists remarkable inventions and a record number of patents — clearly impressive, not disappointing."},
+        {"letter": "C", "explanation": "This is tempting because 'staggering' can sound negative, but in this context it describes the impressive scale of Edison's achievements, not any danger."},
+        {"letter": "D", "explanation": "This is tempting because the work took years, but 'staggering' describes the magnitude of the results, not the pace at which they came."},
+        {"letter": "E", "explanation": "This is tempting because someone might associate 'staggering' with being off-balance, but here it means the results were so impressive they were almost hard to believe."}
+      ],
+      "skill_tested": "rc_vocab_context"
     }
   ]
 }

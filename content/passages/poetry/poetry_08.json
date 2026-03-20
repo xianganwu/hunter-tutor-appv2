@@ -4,7 +4,7 @@
     "title": "The Hawk Above the Highway",
     "genre": "poetry",
     "difficulty_level": 3,
-    "word_count": 290,
+    "word_count": 198,
     "tagged_skills": [
       "rc_main_idea",
       "rc_figurative_language",
@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting if the reader misses the connecting contrast, but every stanza relates to the central theme of the hawk's world versus the human world below."}
       ],
       "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "The poem describes the hawk as \"a king upon a throne of wind.\" What does this metaphor suggest about the hawk?",
+      "answer_choices": [
+        {"letter": "A", "text": "The hawk is wearing a crown and sitting on a chair made of clouds."},
+        {"letter": "B", "text": "The hawk commands its aerial space with authority and ease, ruling the sky the way a king rules from a throne — effortlessly and with complete dominance."},
+        {"letter": "C", "text": "The hawk is the oldest bird in the area and has been elected leader."},
+        {"letter": "D", "text": "The wind is dangerous and the hawk is struggling to stay in the air."},
+        {"letter": "E", "text": "Kings and hawks are the same species of animal."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Calling the hawk 'a king upon a throne of wind' is a metaphor that conveys majesty and dominance. The hawk hangs 'motionless' above the chaos below, perfectly at ease in the sky. Just as a king sits confidently on a throne, the hawk owns its space in the air with calm authority.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as a literal reading, but this is a metaphor — the hawk is compared to a king to show its commanding presence, not to describe actual royal clothing."},
+        {"letter": "C", "explanation": "This is tempting because kings are leaders, but the comparison is about the hawk's bearing and authority in the sky, not about any social hierarchy among birds."},
+        {"letter": "D", "explanation": "This is tempting because wind could be threatening, but the poem presents the hawk as completely in control — 'motionless' and riding the wind, not fighting it."},
+        {"letter": "E", "explanation": "This is tempting as a literal confusion, but the poet is using a comparison between two different things (hawk and king) to highlight the hawk's regal quality."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Why does the poet use the phrase \"the highway holds its breath\" in the last line?",
+      "answer_choices": [
+        {"letter": "A", "text": "The highway is literally a living creature that breathes air."},
+        {"letter": "B", "text": "The traffic has stopped because of an accident on the road."},
+        {"letter": "C", "text": "The poet uses personification to create a moment of suspense and awe, as if the entire world pauses to witness the hawk's dramatic dive."},
+        {"letter": "D", "text": "The drivers are all holding their breath because they finally noticed the hawk."},
+        {"letter": "E", "text": "The highway is underwater and bubbles are coming up."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "By saying 'the highway holds its breath,' the poet gives the highway a human reaction — holding one's breath in suspense. This personification creates a moment of dramatic tension at the poem's climax, as if the entire landscape is struck silent by the hawk's sudden, powerful dive. It elevates the hawk's action into something awe-inspiring.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'holds its breath' is a physical action, but this is personification — giving a non-living thing (the highway) a human reaction to create dramatic effect."},
+        {"letter": "B", "explanation": "This is tempting because traffic stopping could cause a pause, but the phrase is about the dramatic impact of the hawk's dive, not about a traffic incident."},
+        {"letter": "D", "explanation": "This is tempting because holding breath is a human action, but the poem has established that 'not one driver lifts their eyes' — the highway itself, not the drivers, is personified here."},
+        {"letter": "E", "explanation": "This is tempting only as a very literal misreading, but 'holds its breath' is a common expression meaning to pause in suspense, not a description of being underwater."}
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 8,
+      "question_text": "In the second stanza, the poet writes \"Horns blare. Tempers flare.\" What effect does this word choice create?",
+      "answer_choices": [
+        {"letter": "A", "text": "It creates a calm, peaceful mood that matches the hawk's serenity above."},
+        {"letter": "B", "text": "The short, rhyming sentences create a sharp, harsh rhythm that mirrors the frustration and chaos of traffic, contrasting with the hawk's smooth flight."},
+        {"letter": "C", "text": "It suggests that the drivers are having fun honking their horns together."},
+        {"letter": "D", "text": "It is an example of a simile comparing horns to tempers."},
+        {"letter": "E", "text": "It shows that the hawk is frightened by the loud noises from below."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The two short, punchy sentences 'Horns blare. Tempers flare.' rhyme and have a staccato rhythm that sounds abrupt and aggressive — perfectly matching the frustration of stop-and-go traffic. This choppy, tense language contrasts sharply with the smooth, flowing descriptions of the hawk above, reinforcing the poem's central contrast.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because peacefulness exists in the poem, but the traffic stanza is deliberately harsh and chaotic — the calm belongs to the hawk's world above."},
+        {"letter": "C", "explanation": "This is tempting because horns are mentioned, but 'tempers flare' makes clear the drivers are frustrated, not having fun."},
+        {"letter": "D", "explanation": "This is tempting because both phrases use similar-sounding words, but they are separate statements placed side by side for rhythmic effect, not a simile — there is no 'like' or 'as' comparison."},
+        {"letter": "E", "explanation": "This is tempting because loud noises could scare a bird, but the poem says the hawk 'sees none of this' — the hawk is unaffected by the chaos below."}
+      ],
+      "skill_tested": "rc_tone_mood"
     }
   ]
 }

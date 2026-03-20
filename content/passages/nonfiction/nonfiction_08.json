@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because the passage is positive about the Pony Express, but it ends by reflecting on its legacy, not by arguing for its revival."}
       ],
       "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "According to the passage, what was a mochila?",
+      "answer_choices": [
+        {"letter": "A", "text": "A type of horse specially bred for speed and endurance"},
+        {"letter": "B", "text": "A specially designed leather pouch with four locked compartments that fit over the saddle and held mail"},
+        {"letter": "C", "text": "A relay station where riders stopped to eat and rest overnight"},
+        {"letter": "D", "text": "A map that riders used to navigate the trail in the dark"},
+        {"letter": "E", "text": "A signal flag used to communicate between stations"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage directly describes the mochila as 'a specially designed leather pouch called a mochila, which fit over the saddle and had four locked compartments for mail.' This detail appears in the second paragraph.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because horses were important to the Pony Express, but the passage defines the mochila as a leather pouch for carrying mail, not a breed of horse."},
+        {"letter": "C", "explanation": "This is tempting because relay stations are discussed in the passage, but the mochila was the mail pouch itself, not a station."},
+        {"letter": "D", "explanation": "This is tempting because the passage mentions riders navigating by starlight, but the mochila was a mail-carrying pouch, not a navigation tool."},
+        {"letter": "E", "explanation": "This is tempting because communication between stations would be useful, but the passage clearly defines the mochila as the leather pouch that held the mail."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 7,
+      "question_text": "The passage states that the Pony Express riders faced \"the constant threat of attack from bandits or hostile groups.\" What can the reader infer about the routes the riders traveled?",
+      "answer_choices": [
+        {"letter": "A", "text": "The routes passed through well-populated cities with strong law enforcement."},
+        {"letter": "B", "text": "The routes passed through remote, sparsely settled, and dangerous territory with little protection."},
+        {"letter": "C", "text": "The routes were entirely within the state of Missouri."},
+        {"letter": "D", "text": "The routes were carefully guarded by soldiers at every mile."},
+        {"letter": "E", "text": "The routes followed major rivers where boats could provide backup."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes riders crossing prairies, deserts, and mountain passes, facing blizzards, scorching heat, bandits, and hostile groups, and navigating by starlight. These details together suggest the routes passed through wild, remote, and largely unsettled territory with little to no protection or law enforcement.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because cities existed in the 1860s, but the threats described — bandits, extreme weather, navigating by starlight — indicate remote territory far from populated areas."},
+        {"letter": "C", "explanation": "This is tempting because Missouri is mentioned as the starting point, but the route stretched nearly two thousand miles to Sacramento, California, crossing prairies, deserts, and mountain passes."},
+        {"letter": "D", "explanation": "This is tempting because military protection would make sense, but the passage emphasizes that riders faced constant dangers, suggesting no such protection was in place."},
+        {"letter": "E", "explanation": "This is tempting because rivers were important for travel in the 1800s, but the passage describes prairies, deserts, and mountains — terrain far from major waterways."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does the word \"legendary\" most likely mean as used in the first paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Completely made up and not based on real events"},
+        {"letter": "B", "text": "So remarkable and famous that it became part of American folklore and storytelling"},
+        {"letter": "C", "text": "Illegal and not approved by the government"},
+        {"letter": "D", "text": "Very profitable for the company that operated it"},
+        {"letter": "E", "text": "Ordinary and similar to other mail services of the time"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says the Pony Express 'was about to become one of the most legendary operations in American history,' and later describes how 'books, movies, and television shows have celebrated its riders for over 160 years.' In context, legendary means so remarkable and famous that it entered American folklore, not that it was fictional.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'legend' can suggest fiction, but the passage describes real historical events — here 'legendary' means extraordinarily famous, not fictional."},
+        {"letter": "C", "explanation": "This is tempting as a misreading of the word, but the passage describes a legitimate business operation, and 'legendary' refers to fame and admiration, not legality."},
+        {"letter": "D", "explanation": "This is tempting because successful businesses are sometimes called legendary, but the passage says the company lost $200,000 — it was legendary for its daring, not its profitability."},
+        {"letter": "E", "explanation": "This is tempting because it was a mail service, but the passage emphasizes how extraordinary the Pony Express was — 'legendary' means the opposite of ordinary."}
+      ],
+      "skill_tested": "rc_vocab_context"
     }
   ]
 }

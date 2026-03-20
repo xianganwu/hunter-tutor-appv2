@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because it explains growing demand for veterinarians, but demand for services is a different issue from the financial barriers to entering the profession."}
       ],
       "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 6,
+      "question_text": "As used in the passage, what does the word \"disproportionately\" mean in the context of the financial barriers to veterinary education?",
+      "answer_choices": [
+        {"letter": "A", "text": "Equally affecting all groups in society"},
+        {"letter": "B", "text": "Having an unfairly greater impact on certain groups compared to others"},
+        {"letter": "C", "text": "Happening very rarely and only in extreme cases"},
+        {"letter": "D", "text": "Being intentionally designed to exclude specific people"},
+        {"letter": "E", "text": "Decreasing steadily over time as conditions improve"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that the financial imbalance 'disproportionately affects students from lower-income families and underrepresented communities.' In context, disproportionately means the burden falls more heavily and unfairly on these groups compared to wealthier students, even though the tuition is the same for everyone.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the same tuition applies to all students, but 'disproportionately' specifically means the impact is unequal — lower-income students bear a heavier burden from the same costs."},
+        {"letter": "C", "explanation": "This is tempting because one might downplay the problem, but the passage describes a systemic and widespread issue affecting the profession's diversity, not a rare occurrence."},
+        {"letter": "D", "explanation": "This is tempting because the effect seems discriminatory, but 'disproportionately' describes an unequal outcome, not an intentional design — the costs were not created to exclude people."},
+        {"letter": "E", "explanation": "This is tempting because one might assume progress is being made, but the passage presents the financial barrier as a current and ongoing problem, not one that is improving."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Critics of the technician-expansion approach argue that it could create a \"two-tiered system.\" What can be inferred about what this concern means?",
+      "answer_choices": [
+        {"letter": "A", "text": "That veterinary offices would need to be built with two floors instead of one."},
+        {"letter": "B", "text": "That there would be one level of care performed by fully trained veterinarians and a lower level of care performed by less-trained technicians, potentially resulting in unequal quality of treatment."},
+        {"letter": "C", "text": "That veterinarians and technicians would work in separate buildings and never communicate."},
+        {"letter": "D", "text": "That animal owners would have to pay twice as much for veterinary services."},
+        {"letter": "E", "text": "That the government would divide the country into two regions with different veterinary regulations."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that critics worry 'complex medical decisions are increasingly made by professionals with less training.' A two-tiered system would mean animals in some settings receive care from fully trained veterinarians while animals in other settings receive care from technicians with less education, creating an unequal standard of care.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as a literal interpretation of 'two-tiered,' but the phrase is figurative — it describes two levels of professional qualification, not a physical building structure."},
+        {"letter": "C", "explanation": "This is tempting because separation could be implied, but the passage describes technicians working 'under supervision,' meaning they would work alongside veterinarians, not in isolation."},
+        {"letter": "D", "explanation": "This is tempting because cost is a theme in the passage, but the two-tiered concern is about quality of care, not the price charged to animal owners."},
+        {"letter": "E", "explanation": "This is tempting because regulations are mentioned (scope-of-practice guidelines), but the two-tiered concern is about levels of professional training, not geographic divisions in regulation."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "How do the supporters of the technician-expansion approach respond to the concern that it could reduce the quality of animal care?",
+      "answer_choices": [
+        {"letter": "A", "text": "They argue that quality does not matter as long as more animals receive some level of care."},
+        {"letter": "B", "text": "They claim that technicians are actually better trained than veterinarians."},
+        {"letter": "C", "text": "They argue that a well-regulated technician workforce with clear scope-of-practice guidelines would improve access to veterinary services in underserved areas where full clinics are scarce."},
+        {"letter": "D", "text": "They suggest that all veterinarians should be replaced by technicians within the next decade."},
+        {"letter": "E", "text": "They propose that animal owners should be trained to treat their own animals at home."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage states that supporters 'counter that a well-regulated technician workforce, combined with clear scope-of-practice guidelines, would actually improve access to veterinary services in rural and underserved areas where full veterinary clinics are scarce.' Their argument is that regulation ensures quality while expanding access to areas currently without care.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because access is their priority, but the supporters specifically address quality by emphasizing regulation and scope-of-practice guidelines — they do not dismiss quality concerns."},
+        {"letter": "B", "explanation": "This is tempting because supporters are defending technicians, but they argue that technicians can fill workforce gaps under supervision, not that technicians have superior training to veterinarians."},
+        {"letter": "D", "explanation": "This is tempting because the debate involves technician roles, but supporters propose technicians as a complement to veterinarians in underserved areas, not as complete replacements."},
+        {"letter": "E", "explanation": "This is tempting because improving access is the goal, but the supporters advocate for professionally trained technicians, not for untrained animal owners providing their own care."}
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
     }
   ]
 }

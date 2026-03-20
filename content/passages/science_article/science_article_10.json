@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because Velcro opens the passage, but it is followed by three other detailed examples (bullet train, building ventilation, gecko adhesives) plus critiques."}
       ],
       "skill_tested": "rc_advanced_structure"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What does the phrase \"bio-utopian thinking\" mean as used in the passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "The scientific study of biological organisms in their natural habitats"},
+        {"letter": "B", "text": "The assumption that nature's solutions are inherently superior to human-engineered ones"},
+        {"letter": "C", "text": "The belief that humans should stop using all technology and return to nature"},
+        {"letter": "D", "text": "A type of computer simulation used to model biological systems"},
+        {"letter": "E", "text": "The practice of raising animals in captivity for scientific research"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage defines 'bio-utopian thinking' as 'the assumption that nature's solutions are inherently superior to human-engineered ones.' Critics use this term to caution against automatically assuming that copying nature will produce the best result, since evolution optimizes for specific conditions, not universal efficiency.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because biology is involved, but 'bio-utopian thinking' is a critical term about overidealizing nature, not a neutral description of scientific study."},
+        {"letter": "C", "explanation": "This is tempting because it involves favoring nature, but 'bio-utopian thinking' is specifically about assuming nature's designs are better for engineering, not about abandoning technology entirely."},
+        {"letter": "D", "explanation": "This is tempting because technology and biology are both discussed, but 'bio-utopian thinking' is a philosophical attitude, not a computer tool."},
+        {"letter": "E", "explanation": "This is tempting because biology and research are themes of the passage, but 'bio-utopian thinking' is about idealizing nature's designs, not about animal captivity."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Based on the passage, why does the author include both successful examples and criticisms of biomimicry?",
+      "answer_choices": [
+        {"letter": "A", "text": "To confuse the reader about whether biomimicry is good or bad"},
+        {"letter": "B", "text": "To present a balanced, nuanced argument that acknowledges biomimicry's promise while honestly addressing its limitations"},
+        {"letter": "C", "text": "To argue that all biomimicry research should be immediately stopped"},
+        {"letter": "D", "text": "To show that scientists can never agree on anything"},
+        {"letter": "E", "text": "To prove that the criticisms are wrong and the successes are the only thing that matters"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage deliberately presents multiple successes (Velcro, bullet train, Eastgate Centre, gecko adhesives) alongside substantive critiques (oversimplification, bio-utopian thinking), then concludes that the field continues to grow. This structure builds a balanced argument that values biomimicry as inspiration while cautioning against blind copying.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because both sides are presented, but the goal is clarity through balanced analysis, not confusion — the conclusion clearly supports continued growth of the field."},
+        {"letter": "C", "explanation": "This is tempting because criticisms are included, but the passage ends by describing biomimicry as a growing field taught in engineering schools — it does not advocate stopping research."},
+        {"letter": "D", "explanation": "This is tempting because different viewpoints exist, but the passage presents a coherent narrative where both supporters and critics offer valuable perspectives, not chaos or disagreement for its own sake."},
+        {"letter": "E", "explanation": "This is tempting because the passage is generally positive about biomimicry, but the author treats the criticisms as 'valid critiques' — they are not dismissed as wrong."}
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 8,
+      "question_text": "The passage states that evolution 'optimizes for reproductive success within specific environmental constraints, not for universal efficiency.' What does this imply about using a spider's web design for a bridge cable?",
+      "answer_choices": [
+        {"letter": "A", "text": "A spider's web would be the perfect material for bridge cables because nature always produces the best designs."},
+        {"letter": "B", "text": "A spider's web design might be remarkably efficient for a spider's needs but may not be the optimal engineering solution when applied to a completely different context and scale."},
+        {"letter": "C", "text": "Bridge engineers have already replaced all their cables with spider web material."},
+        {"letter": "D", "text": "Spiders evolved specifically to help humans build better bridges."},
+        {"letter": "E", "text": "Spider webs are weaker than any human-made material and have nothing to teach engineers."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage argues that evolution produces solutions for specific conditions, not universal ones. A spider's web is 'remarkably strong for its weight' but evolved for trapping insects at small scale, not for supporting vehicles at bridge scale. The implication is that biomimicry should use nature as a starting point, not assume direct transferability across vastly different contexts.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because spider web strength is praised, but this is exactly the 'bio-utopian thinking' the passage warns against — assuming nature's solutions are automatically superior."},
+        {"letter": "C", "explanation": "This is tempting because the passage discusses real-world applications, but it does not claim spider web material is currently used in bridges — it uses the example to illustrate a limitation."},
+        {"letter": "D", "explanation": "This is tempting because the passage connects nature to engineering, but evolution has no goal of helping humans — it optimizes for the organism's own survival and reproduction."},
+        {"letter": "E", "explanation": "This is tempting because the critique suggests limitations, but the passage acknowledges spider webs are 'remarkably strong for their weight' — the point is about context, not that the design has no value."}
+      ],
+      "skill_tested": "rc_advanced_inference"
     }
   ]
 }

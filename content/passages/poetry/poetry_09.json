@@ -4,7 +4,7 @@
     "title": "The Kitchen at Midnight",
     "genre": "poetry",
     "difficulty_level": 4,
-    "word_count": 320,
+    "word_count": 268,
     "tagged_skills": [
       "rc_main_idea",
       "rc_figurative_language",
@@ -116,6 +116,66 @@
         {"letter": "C", "explanation": "This is tempting because residue can mean physical film or dust, but the poem is describing emotional and sensory traces — memories of cooking, singing, and family meals — not cleaning issues."},
         {"letter": "D", "explanation": "This is tempting because cooking is mentioned, but 'residue of living' encompasses all life experiences, not just recipes."},
         {"letter": "E", "explanation": "This is tempting because the house is described as settled and old, but the poem values the kitchen's history rather than cataloging things that need repair."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 6,
+      "question_text": "The poem says the house \"has settled into its bones.\" What does this figurative language suggest?",
+      "answer_choices": [
+        {"letter": "A", "text": "The house is literally made of bones and is a haunted building."},
+        {"letter": "B", "text": "The house has grown old and quiet, creaking and settling into its structure the way an aging body settles into its frame — suggesting familiarity, age, and a sense of being lived-in."},
+        {"letter": "C", "text": "The house is about to collapse because its foundation is weak."},
+        {"letter": "D", "text": "The bones refer to a pet skeleton that was buried under the house."},
+        {"letter": "E", "text": "The house was recently built and is still brand new."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The metaphor 'settled into its bones' compares the house to an aging body that has relaxed into its frame. This personification suggests the house is old, familiar, and comfortable in its own structure — with creaking floorboards and sighing sounds that come from years of use. It creates a sense of the house as a lived-in, almost sentient presence.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'bones' sounds physical, but this is a metaphor — the house's structural framework is compared to a skeleton, not made from actual bones."},
+        {"letter": "C", "explanation": "This is tempting because 'settling' can refer to structural problems, but the tone is warm and nostalgic — the house is comfortably worn, not dangerously unstable."},
+        {"letter": "D", "explanation": "This is tempting as a literal interpretation of 'bones,' but the phrase describes the house itself settling into its own structure, not anything buried beneath it."},
+        {"letter": "E", "explanation": "This is tempting as an opposite reading, but 'settled into its bones' implies age and wear — the floorboards sigh, and the kitchen holds years of memories."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 7,
+      "question_text": "The speaker says they came for \"the glass of water I did not really need.\" What deeper meaning can be inferred from this admission?",
+      "answer_choices": [
+        {"letter": "A", "text": "The speaker is confused about whether they are thirsty or not."},
+        {"letter": "B", "text": "The speaker uses the water as a pretext — their real need is emotional, not physical. They are drawn to the kitchen by a longing to reconnect with family memories, not by thirst."},
+        {"letter": "C", "text": "The speaker wants to waste water because they do not care about conservation."},
+        {"letter": "D", "text": "The speaker is sleepwalking and does not realize they have gone to the kitchen."},
+        {"letter": "E", "text": "The glass of water is a symbol for sadness and crying."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By admitting the water was not really needed, the speaker reveals that the physical errand is an excuse. The real reason for the midnight visit is emotional — they are 'drawn by something older,' a need to be in the space where family memories live. The water is a pretext that allows them to linger where they feel connected to their mother and their past.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the speaker admits the water was not needed, but this is not confusion — it is self-awareness about the true reason for the visit."},
+        {"letter": "C", "explanation": "This is tempting because the water is unnecessary, but the poem is about emotional longing, not carelessness about resources."},
+        {"letter": "D", "explanation": "This is tempting because it is nighttime, but the speaker is fully conscious and reflective, examining their own motivations with clarity."},
+        {"letter": "E", "explanation": "This is tempting because water and tears can be symbolically connected, but the poem indicates the water is a practical excuse to be in the kitchen — the emotional content comes from the memories, not from the water itself."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does the word \"metronome\" mean as used in \"the faucet drips a metronome that counts the seconds I should be in bed\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "A device that keeps a steady beat, suggesting the dripping faucet creates a rhythmic, clock-like sound marking the passage of time."},
+        {"letter": "B", "text": "A type of faucet brand that is known for dripping water."},
+        {"letter": "C", "text": "A musical instrument the speaker plays in the kitchen at night."},
+        {"letter": "D", "text": "A thermometer that measures the temperature of the water."},
+        {"letter": "E", "text": "A type of alarm clock that wakes people up in the morning."}
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "A metronome is a device used by musicians that ticks at a regular interval to keep time. By saying the faucet 'drips a metronome,' the poet means each drip falls at a steady rhythm, like a clock counting seconds. This metaphor connects the sound of the drip to the passage of time, reminding the speaker — almost like a gentle conscience — that they should be asleep.",
+      "distractor_explanations": [
+        {"letter": "B", "explanation": "This is tempting because the faucet drips, but 'metronome' is a real word meaning a timing device — the poet is using it as a metaphor for the rhythmic dripping, not as a brand name."},
+        {"letter": "C", "explanation": "This is tempting because a metronome is related to music, but it is a time-keeping device, not an instrument — and here it describes the sound of the dripping faucet."},
+        {"letter": "D", "explanation": "This is tempting because 'metro-' might sound scientific, but a metronome measures rhythm and tempo, not temperature."},
+        {"letter": "E", "explanation": "This is tempting because the metronome-drip reminds the speaker of time passing, but a metronome is a beat-keeping device, not an alarm clock."}
       ],
       "skill_tested": "rc_advanced_vocab"
     }

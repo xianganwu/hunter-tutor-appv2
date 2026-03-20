@@ -4,13 +4,16 @@
     "title": "Angel Island: The Other Gateway to America",
     "genre": "historical_document",
     "difficulty_level": 4,
-    "word_count": 650,
+    "word_count": 549,
     "tagged_skills": [
       "rc_main_idea",
       "rc_advanced_inference",
       "rc_evidence_reasoning",
       "rc_vocab_context",
-      "rc_comparing_viewpoints"
+      "rc_comparing_viewpoints",
+      "rc_author_purpose",
+      "rc_supporting_details",
+      "rc_passage_structure"
     ],
     "source_description": "original",
     "lexile_range": "800L-1000L",
@@ -118,6 +121,66 @@
         {"letter": "E", "explanation": "This is tempting because they are geographically separate, but the passage explicitly argues they must be understood together for a 'complete and honest picture.'"}
       ],
       "skill_tested": "rc_comparing_viewpoints"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Why does the author include the specific interrogation questions that officials asked, such as \"What direction does your village face?\" and \"How many steps lead to your front door?\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "To show that officials were interested in Chinese architecture and village planning."},
+        {"letter": "B", "text": "To demonstrate how unreasonably detailed and invasive the questioning was, making the reader understand the impossible standard immigrants faced."},
+        {"letter": "C", "text": "To suggest that the questions were easy and that most immigrants passed without difficulty."},
+        {"letter": "D", "text": "To explain the typical interview process used at all immigration stations."},
+        {"letter": "E", "text": "To prove that Chinese immigrants were hiding information from officials."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By including these specific questions, the author lets the reader experience how absurdly detailed the interrogations were. Questions about the direction a village faces or the number of steps to a door reveal an interrogation system designed to find inconsistencies, not to verify identity reasonably.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the questions involve village details, but the passage makes clear the purpose was catching inconsistencies for deportation, not cultural curiosity."},
+        {"letter": "C", "explanation": "This is tempting because one might assume factual questions are easy, but the passage shows that any minor discrepancy could mean deportation — these questions were traps, not formalities."},
+        {"letter": "D", "explanation": "This is tempting because the passage discusses immigration processing, but it explicitly contrasts Angel Island's harsh interrogations with Ellis Island's relatively quick process."},
+        {"letter": "E", "explanation": "This is tempting because the questions were designed to catch lies, but the author's purpose is to show the system was unjust, not to validate the officials' suspicions."}
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 7,
+      "question_text": "According to the passage, what key detail about the Ellis Island experience made it fundamentally different from the Angel Island experience?",
+      "answer_choices": [
+        {"letter": "A", "text": "Ellis Island processed fewer total immigrants than Angel Island."},
+        {"letter": "B", "text": "The majority of European immigrants at Ellis Island were processed and admitted within a few hours, while Chinese immigrants at Angel Island could be detained for weeks, months, or even years."},
+        {"letter": "C", "text": "Ellis Island was located on the West Coast, while Angel Island was on the East Coast."},
+        {"letter": "D", "text": "Ellis Island immigrants were not required to undergo any medical examinations."},
+        {"letter": "E", "text": "Ellis Island and Angel Island had exactly the same processing procedures."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage directly contrasts the processing times: most European immigrants at Ellis Island were admitted within hours, while Chinese immigrants at Angel Island faced interrogations lasting days or weeks and detention lasting weeks, months, or in extreme cases nearly two years. This difference in duration is the clearest evidence of fundamentally different treatment.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because numbers are compared, but Ellis Island actually processed far more immigrants (twelve million) than Angel Island (approximately one million)."},
+        {"letter": "C", "explanation": "This is tempting because both locations are discussed, but the passage states the opposite — Ellis Island was in New York Harbor (East Coast) and Angel Island was in San Francisco Bay (West Coast)."},
+        {"letter": "D", "explanation": "This is tempting because medical exams are mentioned, but the passage states Ellis Island immigrants did undergo medical examinations as part of their processing."},
+        {"letter": "E", "explanation": "This is tempting if the reader missed the contrast, but the entire passage is built on showing how dramatically different the two stations' procedures were."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 8,
+      "question_text": "How does the structure of the passage support its central argument?",
+      "answer_choices": [
+        {"letter": "A", "text": "It tells the story of one immigrant family from beginning to end."},
+        {"letter": "B", "text": "It begins with the familiar Ellis Island narrative, then contrasts it with Angel Island's harsh reality, and concludes by arguing that both stories are needed for a complete understanding of immigration history."},
+        {"letter": "C", "text": "It lists every immigration law passed in the United States in chronological order."},
+        {"letter": "D", "text": "It alternates between fictional stories and real historical facts."},
+        {"letter": "E", "text": "It presents only the positive aspects of American immigration to celebrate the nation's history."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage is structured as a deliberate contrast: it opens with the well-known Ellis Island experience, then shifts to the lesser-known Angel Island story with its detention and discrimination, and concludes by arguing both narratives must be understood together. This structure mirrors the argument — moving from an incomplete picture to a complete one.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the passage discusses immigrants, but it does not follow any single family — it examines the systemic experiences at two different stations."},
+        {"letter": "C", "explanation": "This is tempting because the Chinese Exclusion Act is mentioned, but the passage focuses on the contrast between two stations, not a comprehensive legal history."},
+        {"letter": "D", "explanation": "This is tempting because the passage includes a poem, but the poem is a real historical artifact carved into the barracks walls, not fiction."},
+        {"letter": "E", "explanation": "This is tempting because Ellis Island is presented positively, but the passage devotes most of its length to the negative experience at Angel Island, arguing against an only-positive view."}
+      ],
+      "skill_tested": "rc_passage_structure"
     }
   ]
 }

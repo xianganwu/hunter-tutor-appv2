@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because informal openings can sometimes signal humor, but the passage presents rigorous scientific evidence — the conversational framing makes the science accessible, not unserious."}
       ],
       "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What does the word \"deciphering\" most likely mean as used in the third paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Ignoring or deliberately overlooking"},
+        {"letter": "B", "text": "Working to figure out and interpret the meaning of something complex"},
+        {"letter": "C", "text": "Creating or inventing from nothing"},
+        {"letter": "D", "text": "Destroying or breaking apart permanently"},
+        {"letter": "E", "text": "Memorizing information for a test"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says 'Scientists are still deciphering the content of these messages,' referring to the signals the gut sends to the brain. In this context, 'deciphering' means working to figure out or interpret something that is not yet fully understood, like cracking a code or translating a complex message.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as an opposite meaning, but the passage describes active scientific research into these signals — scientists are trying to understand them, not ignore them."},
+        {"letter": "C", "explanation": "This is tempting because scientists are discovering new things, but 'deciphering' means interpreting existing signals, not creating something new."},
+        {"letter": "D", "explanation": "This is tempting because 'deciphering' might sound like 'disassembling,' but it means figuring out meaning, not physically breaking something apart."},
+        {"letter": "E", "explanation": "This is tempting because learning is involved, but 'deciphering' refers to the process of interpreting complex or unclear information, not rote memorization."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Why does the author include the detail that ninety-five percent of the body's serotonin is produced in the gut?",
+      "answer_choices": [
+        {"letter": "A", "text": "To prove that the brain does not need serotonin to function"},
+        {"letter": "B", "text": "To provide striking evidence that the gut plays a far larger role in brain chemistry and mood than most people would expect"},
+        {"letter": "C", "text": "To argue that people should stop taking medication for depression"},
+        {"letter": "D", "text": "To explain why the gut is physically larger than the brain"},
+        {"letter": "E", "text": "To show that serotonin is a harmful chemical that should be reduced"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The ninety-five percent statistic is a surprising and powerful detail that supports the passage's central argument: the gut significantly influences brain function and mood. Since serotonin is 'strongly associated with feelings of happiness and well-being,' the fact that almost all of it is produced in the gut — not the brain — dramatically illustrates the gut's importance to mental health.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because so little serotonin is made in the brain, but the passage does not claim the brain does not need serotonin — it highlights where serotonin is produced to show the gut's influence."},
+        {"letter": "C", "explanation": "This is tempting because the passage discusses mental health treatments, but the author describes probiotics as a 'complementary treatment,' not a replacement for medication."},
+        {"letter": "D", "explanation": "This is tempting because proportions are discussed, but the serotonin statistic is about chemical production, not about the physical size of organs."},
+        {"letter": "E", "explanation": "This is tempting because the passage discusses chemical balance, but serotonin is described as associated with 'happiness and well-being' — it is beneficial, not harmful."}
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, what can be inferred about why the researchers in the mouse experiment used germ-free mice rather than ordinary mice?",
+      "answer_choices": [
+        {"letter": "A", "text": "Germ-free mice are cheaper and easier to care for in a laboratory."},
+        {"letter": "B", "text": "Using mice with no gut bacteria allowed the researchers to isolate the specific effect of gut bacteria on behavior by removing that single variable."},
+        {"letter": "C", "text": "Ordinary mice cannot survive in a laboratory environment."},
+        {"letter": "D", "text": "Germ-free mice are naturally calmer, which made them easier to observe."},
+        {"letter": "E", "text": "The researchers wanted to study a rare disease that only affects germ-free mice."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes the experiment as comparing germ-free mice (no gut bacteria) to mice with normal microbiomes, then introducing bacteria to the germ-free mice and observing behavior changes. This experimental design isolates gut bacteria as the variable, allowing researchers to determine whether the bacteria specifically caused the behavioral differences.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as a practical explanation, but raising mice in completely sterile environments is actually very expensive and difficult — the reason was scientific control, not cost savings."},
+        {"letter": "C", "explanation": "This is tempting as a practical concern, but ordinary mice with normal microbiomes were used as the comparison group, so they clearly can survive in laboratories."},
+        {"letter": "D", "explanation": "This is tempting because temperament could affect observation, but the passage says germ-free mice showed higher stress and anxiety — they were less calm, not more."},
+        {"letter": "E", "explanation": "This is tempting because specialized research often studies diseases, but the experiment focused on the relationship between gut bacteria and emotional behavior, not on a specific disease."}
+      ],
+      "skill_tested": "rc_advanced_inference"
     }
   ]
 }

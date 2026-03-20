@@ -1,11 +1,13 @@
 import type { SkillNodeLayout, SkillEdgeLayout, SerializedSkillState } from "./types";
 import type { CurriculumTaxonomy } from "@/lib/types";
 
-const DOMAIN_CONFIGS = [
-  { id: "reading_comprehension", label: "Reading" },
-  { id: "math_quantitative_reasoning", label: "Math Reasoning" },
-  { id: "math_achievement", label: "Math Achievement" },
-] as const;
+/** Human-readable labels per domain. Falls back to the domain_id if unknown. */
+const DOMAIN_LABELS_MAP: Record<string, string> = {
+  reading_comprehension: "Reading",
+  math_quantitative_reasoning: "Math Reasoning",
+  math_achievement: "Math Achievement",
+  writing: "Writing",
+};
 
 interface LayoutConfig {
   readonly columnWidth: number;
@@ -27,7 +29,7 @@ const DESKTOP_CONFIG: LayoutConfig = {
 
 /**
  * Compute (x, y) positions for every skill node in the curriculum.
- * Layout: 3 columns (one per domain), rows by difficulty tier (1=top, 5=bottom).
+ * Layout: one column per domain, rows by difficulty tier (1=top, 5=bottom).
  * Skills sharing a tier within a domain are spread horizontally.
  */
 export function computeSkillLayout(
@@ -39,11 +41,10 @@ export function computeSkillLayout(
   const positionMap = new Map<string, { x: number; y: number }>();
 
   let maxTier = 1;
+  const domainCount = taxonomy.domains.length;
 
-  for (let domainIdx = 0; domainIdx < DOMAIN_CONFIGS.length; domainIdx++) {
-    const domainConfig = DOMAIN_CONFIGS[domainIdx];
-    const domain = taxonomy.domains.find((d) => d.domain_id === domainConfig.id);
-    if (!domain) continue;
+  for (let domainIdx = 0; domainIdx < domainCount; domainIdx++) {
+    const domain = taxonomy.domains[domainIdx];
 
     // Gather all skills and group by tier
     const tierGroups = new Map<number, { skillId: string; name: string }[]>();
@@ -81,7 +82,7 @@ export function computeSkillLayout(
           mastery: state?.masteryLevel ?? 0,
           attemptsCount: state?.attemptsCount ?? 0,
           confidenceTrend: state?.confidenceTrend ?? "stable",
-          domainId: domainConfig.id,
+          domainId: domain.domain_id,
         });
       }
     }
@@ -110,7 +111,7 @@ export function computeSkillLayout(
     }
   }
 
-  const width = config.paddingX * 2 + DOMAIN_CONFIGS.length * config.columnWidth;
+  const width = config.paddingX * 2 + domainCount * config.columnWidth;
   const height = config.paddingY * 2 + (maxTier - 1) * config.rowHeight;
 
   return { nodes, edges, width, height };
@@ -177,5 +178,7 @@ export function wrapSkillName(name: string, maxLineChars = 18): string[] {
   return [name.slice(0, maxLineChars - 1) + "..."];
 }
 
-/** Domain labels for column headers */
-export const DOMAIN_LABELS = DOMAIN_CONFIGS;
+/** Get domain label for column headers. Falls back to domain_id. */
+export function getDomainLabel(domainId: string): string {
+  return DOMAIN_LABELS_MAP[domainId] ?? domainId;
+}

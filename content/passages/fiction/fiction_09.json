@@ -10,11 +10,17 @@
       "rc_advanced_inference",
       "rc_vocab_context",
       "rc_author_purpose",
-      "rc_drawing_conclusions"
+      "rc_drawing_conclusions",
+      "rc_tone_mood",
+      "rc_figurative_language",
+      "rc_inference"
     ],
     "source_description": "original",
     "lexile_range": "800L-1000L",
-    "themes": ["identity", "courage"]
+    "themes": [
+      "identity",
+      "courage"
+    ]
   },
   "pre_reading_context": "A sixth-grader who loves theater must decide whether to audition for the school play despite pressure from friends to try out for basketball instead.",
   "passage_text": "Kai had memorized every line of the lead role in the school's spring play, \"The Wanderer.\" He had practiced the monologue in front of his bedroom mirror so many times that his younger brother, Deshawn, could recite it too. The audition was tomorrow afternoon, and Kai felt ready — terrified, but ready.\n\nThe problem was basketball. Kai's three closest friends — Andre, Tyler, and Marcus — were all trying out for the sixth-grade team, and they assumed Kai would be there too. He was tall for his age and decent at layups, and in their minds, the four of them were going to dominate the court together. They had been talking about it since September.\n\n\"You're coming tomorrow, right?\" Andre asked at lunch, bouncing an invisible basketball off the cafeteria table.\n\nKai opened his mouth to say yes. It would have been the easy answer, the one that kept everything smooth and uncomplicated. But somewhere between his brain and his tongue, the word got stuck.\n\n\"Actually,\" Kai said, \"I'm auditioning for the play.\"\n\nThe silence that followed was louder than the entire cafeteria. Andre stopped mid-bounce. Tyler's eyebrows climbed halfway up his forehead. Marcus just stared.\n\n\"The play,\" Andre repeated flatly.\n\n\"Yeah. 'The Wanderer.' I want to try for the lead.\"\n\n\"But you're good at basketball,\" Tyler said, as if this were a logical argument against performing in a play.\n\n\"I'm okay at basketball,\" Kai corrected. \"I'm better at acting. I've been practicing for months.\"\n\nMarcus finally spoke. \"Isn't the play kind of...\" He trailed off, but Kai knew what he was going to say. He had heard variations of it before — that theater was weird, that boys didn't do plays, that it wasn't cool. None of these things were true, but they circulated like bad rumors, and sometimes they were hard to shake off.\n\n\"Kind of what?\" Kai asked quietly. He didn't say it aggressively. He said it the way a teacher might ask a student to finish an incomplete thought — patient, but firm.\n\nMarcus shifted in his seat. \"Never mind.\"\n\nThe rest of lunch was awkward. Kai ate his sandwich in small bites and tried not to feel like he had detonated a bomb in the middle of his social life. He kept reminding himself of something his mother had told him: \"The things that make you different are the same things that make you interesting. Don't sand down your edges to fit into someone else's frame.\"\n\nThe next afternoon, Kai stood in the wings of the auditorium while three other students auditioned ahead of him. His palms were damp and his heart hammered against his ribs like a trapped bird. When Ms. Petrov finally called his name, he walked to center stage and looked out at the empty seats.\n\nFor a split second, he imagined Andre, Tyler, and Marcus sitting in those seats, watching him. Then he imagined them cheering.\n\nHe took a breath, found the character inside himself the way his drama teacher had taught him — not pretending to be someone else, but finding the part of himself that understood The Wanderer's loneliness and hope — and he began.\n\nThe monologue lasted two minutes. When he finished, Ms. Petrov was smiling. \"Kai,\" she said, \"that was remarkable.\"\n\nHe walked out of the auditorium into the late afternoon sunlight, and for the first time all week, the knot in his chest loosened. Whatever happened with the cast list, whatever happened with his friends, he had done the thing that mattered most: he had been honest about who he was.",
@@ -23,19 +29,46 @@
       "question_number": 1,
       "question_text": "What is the central theme of this passage?",
       "answer_choices": [
-        {"letter": "A", "text": "Basketball is more popular than theater in middle school."},
-        {"letter": "B", "text": "Being true to yourself requires courage, especially when it means going against expectations."},
-        {"letter": "C", "text": "Kai should have tried out for both basketball and the play at the same time."},
-        {"letter": "D", "text": "Friends who do not share the same interests cannot stay friends."},
-        {"letter": "E", "text": "Adults always know better than kids about which activities to choose."}
+        {
+          "letter": "A",
+          "text": "Basketball is more popular than theater in middle school."
+        },
+        {
+          "letter": "B",
+          "text": "Being true to yourself requires courage, especially when it means going against expectations."
+        },
+        {
+          "letter": "C",
+          "text": "Kai should have tried out for both basketball and the play at the same time."
+        },
+        {
+          "letter": "D",
+          "text": "Friends who do not share the same interests cannot stay friends."
+        },
+        {
+          "letter": "E",
+          "text": "Adults always know better than kids about which activities to choose."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage follows Kai as he struggles with the tension between what his friends expect (basketball) and what he truly wants (theater). His decision to audition despite social pressure, and the relief he feels afterward, convey the theme that being true to yourself takes courage but is ultimately fulfilling.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because Kai's friends assume basketball is the obvious choice, but the passage challenges this assumption rather than confirming it — Kai chooses theater and succeeds."},
-        {"letter": "C", "explanation": "This is tempting because it sounds like a practical solution, but the passage does not present this as an option, and the conflict is about identity and self-expression, not scheduling."},
-        {"letter": "D", "explanation": "This is tempting because there is tension between Kai and his friends, but the passage does not conclude that their friendship is over — Kai even imagines them cheering for him."},
-        {"letter": "E", "explanation": "This is tempting because Kai's mother gives him good advice, but the passage is about Kai making his own decision, not about adults knowing best."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because Kai's friends assume basketball is the obvious choice, but the passage challenges this assumption rather than confirming it — Kai chooses theater and succeeds."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because it sounds like a practical solution, but the passage does not present this as an option, and the conflict is about identity and self-expression, not scheduling."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because there is tension between Kai and his friends, but the passage does not conclude that their friendship is over — Kai even imagines them cheering for him."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because Kai's mother gives him good advice, but the passage is about Kai making his own decision, not about adults knowing best."
+        }
       ],
       "skill_tested": "rc_main_idea"
     },
@@ -43,19 +76,46 @@
       "question_number": 2,
       "question_text": "When the passage says Kai found \"the part of himself that understood The Wanderer's loneliness and hope,\" what does this reveal about Kai's approach to acting?",
       "answer_choices": [
-        {"letter": "A", "text": "Kai believes acting is just memorizing lines and repeating them on stage."},
-        {"letter": "B", "text": "Kai connects to characters by finding real emotions within himself that match the character's feelings."},
-        {"letter": "C", "text": "Kai feels lonely at school and uses acting to escape his real life."},
-        {"letter": "D", "text": "Kai does not actually understand the character and is pretending to feel emotions."},
-        {"letter": "E", "text": "Kai's drama teacher told him exactly what emotions to fake during the audition."}
+        {
+          "letter": "A",
+          "text": "Kai believes acting is just memorizing lines and repeating them on stage."
+        },
+        {
+          "letter": "B",
+          "text": "Kai connects to characters by finding real emotions within himself that match the character's feelings."
+        },
+        {
+          "letter": "C",
+          "text": "Kai feels lonely at school and uses acting to escape his real life."
+        },
+        {
+          "letter": "D",
+          "text": "Kai does not actually understand the character and is pretending to feel emotions."
+        },
+        {
+          "letter": "E",
+          "text": "Kai's drama teacher told him exactly what emotions to fake during the audition."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage explicitly says Kai's approach is 'not pretending to be someone else, but finding the part of himself that understood The Wanderer's loneliness and hope.' This shows he connects to characters through genuine personal emotion, drawing on his own experiences to bring authenticity to his performance.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because Kai did memorize lines, but the passage shows his acting goes far beyond memorization — he connects emotionally to the character."},
-        {"letter": "C", "explanation": "This is tempting because Kai does feel some isolation from his friends, but the passage presents acting as something Kai is passionate about, not an escape mechanism."},
-        {"letter": "D", "explanation": "This is tempting because acting involves portraying emotions, but the passage specifically says he is not pretending — he finds real feelings within himself."},
-        {"letter": "E", "explanation": "This is tempting because his drama teacher is mentioned, but the teacher taught him a technique for finding emotion — Kai applies it himself using his own feelings."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because Kai did memorize lines, but the passage shows his acting goes far beyond memorization — he connects emotionally to the character."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because Kai does feel some isolation from his friends, but the passage presents acting as something Kai is passionate about, not an escape mechanism."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because acting involves portraying emotions, but the passage specifically says he is not pretending — he finds real feelings within himself."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because his drama teacher is mentioned, but the teacher taught him a technique for finding emotion — Kai applies it himself using his own feelings."
+        }
       ],
       "skill_tested": "rc_advanced_inference"
     },
@@ -63,19 +123,46 @@
       "question_number": 3,
       "question_text": "What does the phrase \"sand down your edges\" mean as used in Kai's mother's advice?",
       "answer_choices": [
-        {"letter": "A", "text": "Smooth out rough surfaces on wooden furniture"},
-        {"letter": "B", "text": "Change the unique parts of who you are to fit in with others"},
-        {"letter": "C", "text": "Practice basketball drills until your skills improve"},
-        {"letter": "D", "text": "Argue with your friends until they agree with you"},
-        {"letter": "E", "text": "Study harder so you can get better grades in school"}
+        {
+          "letter": "A",
+          "text": "Smooth out rough surfaces on wooden furniture"
+        },
+        {
+          "letter": "B",
+          "text": "Change the unique parts of who you are to fit in with others"
+        },
+        {
+          "letter": "C",
+          "text": "Practice basketball drills until your skills improve"
+        },
+        {
+          "letter": "D",
+          "text": "Argue with your friends until they agree with you"
+        },
+        {
+          "letter": "E",
+          "text": "Study harder so you can get better grades in school"
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "In the metaphor, 'edges' represent the qualities that make someone unique or different. 'Sanding them down' means removing those distinctive qualities to become more like everyone else. Kai's mother is telling him not to change who he is just to fit into others' expectations.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because sanding is literally done to wood, but in this context it is a metaphor about identity, not a literal instruction about furniture."},
-        {"letter": "C", "explanation": "This is tempting because basketball is part of the conflict, but the phrase is about not changing yourself, not about practicing a sport."},
-        {"letter": "D", "explanation": "This is tempting because the passage involves a disagreement with friends, but sanding down edges means conforming, which is the opposite of arguing."},
-        {"letter": "E", "explanation": "This is tempting because it sounds like practical advice, but the mother's quote is about staying true to your unique identity, not about academic performance."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because sanding is literally done to wood, but in this context it is a metaphor about identity, not a literal instruction about furniture."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because basketball is part of the conflict, but the phrase is about not changing yourself, not about practicing a sport."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the passage involves a disagreement with friends, but sanding down edges means conforming, which is the opposite of arguing."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because it sounds like practical advice, but the mother's quote is about staying true to your unique identity, not about academic performance."
+        }
       ],
       "skill_tested": "rc_vocab_context"
     },
@@ -83,19 +170,46 @@
       "question_number": 4,
       "question_text": "Why does the author include the moment where Kai imagines his friends sitting in the audience and cheering?",
       "answer_choices": [
-        {"letter": "A", "text": "To show that Kai's friends have already agreed to come watch the play."},
-        {"letter": "B", "text": "To suggest that Kai hopes his friends will eventually support him, even if they do not understand his choice right now."},
-        {"letter": "C", "text": "To indicate that Kai is hallucinating due to stage fright."},
-        {"letter": "D", "text": "To prove that Kai cares more about his friends' opinions than about acting."},
-        {"letter": "E", "text": "To show that the auditorium is usually full during auditions."}
+        {
+          "letter": "A",
+          "text": "To show that Kai's friends have already agreed to come watch the play."
+        },
+        {
+          "letter": "B",
+          "text": "To suggest that Kai hopes his friends will eventually support him, even if they do not understand his choice right now."
+        },
+        {
+          "letter": "C",
+          "text": "To indicate that Kai is hallucinating due to stage fright."
+        },
+        {
+          "letter": "D",
+          "text": "To prove that Kai cares more about his friends' opinions than about acting."
+        },
+        {
+          "letter": "E",
+          "text": "To show that the auditorium is usually full during auditions."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "By imagining his friends in the audience cheering, Kai reveals his hope that they will come around and support his passion. The author includes this detail to show that Kai values his friendships and hopes they can coexist with his authentic self-expression.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because it would be a positive development, but Kai imagines them there — the passage does not say they agreed to come. The seats are described as empty."},
-        {"letter": "C", "explanation": "This is tempting because Kai is nervous, but imagining a supportive audience is a normal way to calm nerves, not a sign of hallucination."},
-        {"letter": "D", "explanation": "This is tempting because Kai does care about his friends, but the fact that he auditions anyway shows he prioritizes being true to himself — the imagined cheering is about hope for acceptance, not about needing approval to act."},
-        {"letter": "E", "explanation": "This is tempting because it involves the auditorium seats, but the passage specifically says the seats are empty — Kai is imagining, not observing a full audience."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because it would be a positive development, but Kai imagines them there — the passage does not say they agreed to come. The seats are described as empty."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because Kai is nervous, but imagining a supportive audience is a normal way to calm nerves, not a sign of hallucination."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Kai does care about his friends, but the fact that he auditions anyway shows he prioritizes being true to himself — the imagined cheering is about hope for acceptance, not about needing approval to act."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because it involves the auditorium seats, but the passage specifically says the seats are empty — Kai is imagining, not observing a full audience."
+        }
       ],
       "skill_tested": "rc_author_purpose"
     },
@@ -103,21 +217,189 @@
       "question_number": 5,
       "question_text": "Based on the passage, what can the reader conclude about what matters most to Kai by the end of the story?",
       "answer_choices": [
-        {"letter": "A", "text": "Getting the lead role in the play is the only thing that will make him happy."},
-        {"letter": "B", "text": "He regrets not trying out for basketball and plans to apologize to his friends."},
-        {"letter": "C", "text": "Being honest about who he is matters more to him than the specific outcome of the audition."},
-        {"letter": "D", "text": "He wants to quit acting and focus on making his friends happy."},
-        {"letter": "E", "text": "He is confident he will be cast as the lead and is already celebrating."}
+        {
+          "letter": "A",
+          "text": "Getting the lead role in the play is the only thing that will make him happy."
+        },
+        {
+          "letter": "B",
+          "text": "He regrets not trying out for basketball and plans to apologize to his friends."
+        },
+        {
+          "letter": "C",
+          "text": "Being honest about who he is matters more to him than the specific outcome of the audition."
+        },
+        {
+          "letter": "D",
+          "text": "He wants to quit acting and focus on making his friends happy."
+        },
+        {
+          "letter": "E",
+          "text": "He is confident he will be cast as the lead and is already celebrating."
+        }
       ],
       "correct_answer": "C",
       "correct_answer_explanation": "The final sentence states that 'whatever happened with the cast list, whatever happened with his friends, he had done the thing that mattered most: he had been honest about who he was.' This shows that authenticity and self-honesty are more important to Kai than any specific result.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because Kai wants the lead role, but the ending specifically says 'whatever happened with the cast list' — he has already found fulfillment in being honest, regardless of the outcome."},
-        {"letter": "B", "explanation": "This is tempting because the friendship tension is unresolved, but the passage ends with relief and pride, not regret."},
-        {"letter": "D", "explanation": "This is tempting because Kai cares about his friends, but his decision to audition and his relief afterward show he is committed to acting, not giving it up."},
-        {"letter": "E", "explanation": "This is tempting because Ms. Petrov praised his audition, but the passage says 'whatever happened with the cast list' — Kai is not assuming he got the part."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because Kai wants the lead role, but the ending specifically says 'whatever happened with the cast list' — he has already found fulfillment in being honest, regardless of the outcome."
+        },
+        {
+          "letter": "B",
+          "explanation": "This is tempting because the friendship tension is unresolved, but the passage ends with relief and pride, not regret."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Kai cares about his friends, but his decision to audition and his relief afterward show he is committed to acting, not giving it up."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because Ms. Petrov praised his audition, but the passage says 'whatever happened with the cast list' — Kai is not assuming he got the part."
+        }
       ],
       "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 6,
+      "question_text": "How does the tone shift between the cafeteria scene and the auditorium scene?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "It shifts from humorous to tragic."
+        },
+        {
+          "letter": "B",
+          "text": "It shifts from socially uncomfortable and tense to nervous but empowering."
+        },
+        {
+          "letter": "C",
+          "text": "It remains angry and confrontational throughout both scenes."
+        },
+        {
+          "letter": "D",
+          "text": "It shifts from confident and bold to fearful and regretful."
+        },
+        {
+          "letter": "E",
+          "text": "It shifts from exciting to boring as the story loses momentum."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "In the cafeteria, the tone is awkward and tense as Kai faces his friends' disapproval — the silence is 'louder than the entire cafeteria' and he feels like he 'detonated a bomb.' In the auditorium, while Kai is still nervous (damp palms, hammering heart), the tone shifts to something empowering as he performs and earns praise.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the tone does shift, but neither scene is humorous, and the auditorium scene ends positively — it is not tragic."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because there is conflict with friends, but Kai is not angry or confrontational — he responds quietly and patiently."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Kai is nervous at the audition, but the auditorium scene ends with Ms. Petrov's praise and Kai's relief, not with regret."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting as a subjective response, but the auditorium scene builds to a climax with the audition — the story gains momentum rather than losing it."
+        }
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What does the simile \"his heart hammered against his ribs like a trapped bird\" suggest about Kai's emotional state before the audition?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "He is so calm that he barely notices his heartbeat."
+        },
+        {
+          "letter": "B",
+          "text": "He is experiencing intense nervous energy, as though something wild and uncontrollable is happening inside him."
+        },
+        {
+          "letter": "C",
+          "text": "He is angry at himself for choosing the play over basketball."
+        },
+        {
+          "letter": "D",
+          "text": "He is physically ill and should not be performing."
+        },
+        {
+          "letter": "E",
+          "text": "He is bored and restless from waiting too long for his turn."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Comparing his heartbeat to a trapped bird creates an image of frantic, uncontrollable energy. A trapped bird beats its wings desperately against its enclosure, which mirrors the intense, almost panicky nervousness Kai feels as he waits to perform something deeply personal in front of others.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting as an opposite interpretation, but a heart hammering like a trapped bird conveys intensity and agitation, not calmness."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because the basketball conflict is part of the story, but this moment is about performance anxiety, not regret over his choice."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because physical symptoms are described, but the hammering heart is a sign of nervousness and adrenaline, not illness."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because he is waiting for his turn, but the simile conveys intense anxiety, not boredom."
+        }
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does Marcus's decision to say \"Never mind\" after Kai asks \"Kind of what?\" reveal about the social dynamics in the scene?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "Marcus has forgotten what he was going to say because he was distracted."
+        },
+        {
+          "letter": "B",
+          "text": "Marcus realizes his incomplete comment was based on a stereotype and backs down when Kai calmly challenges him to finish it."
+        },
+        {
+          "letter": "C",
+          "text": "Marcus agrees with Kai and wants to audition for the play too."
+        },
+        {
+          "letter": "D",
+          "text": "Marcus is trying to be supportive but does not know how to express it."
+        },
+        {
+          "letter": "E",
+          "text": "Marcus is planning to make fun of Kai later when they are alone."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Marcus trails off before finishing a thought the passage identifies as a stereotype — 'that theater was weird, that boys didn't do plays.' When Kai patiently but firmly asks him to finish, Marcus 'shifted in his seat' and says 'Never mind,' showing he recognizes he cannot defend the incomplete prejudice when directly confronted.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because 'Never mind' can mean someone forgot, but the passage makes clear Marcus trailed off deliberately, and Kai knew exactly what he was going to say."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting as a positive reading, but nothing in the passage suggests Marcus wants to do theater — he drops an uncomfortable comment, not expresses interest."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Marcus might not be hostile, but his unfinished comment was heading toward a stereotype about theater, not toward support."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because peer pressure could continue later, but the passage gives no evidence of planned future mockery — Marcus simply retreats from his statement."
+        }
+      ],
+      "skill_tested": "rc_inference"
     }
   ]
 }

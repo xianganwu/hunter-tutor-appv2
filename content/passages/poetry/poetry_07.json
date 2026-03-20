@@ -4,7 +4,7 @@
     "title": "The Dream Maker's Workshop",
     "genre": "poetry",
     "difficulty_level": 3,
-    "word_count": 260,
+    "word_count": 191,
     "tagged_skills": [
       "rc_main_idea",
       "rc_figurative_language",
@@ -116,6 +116,66 @@
         {"letter": "C", "explanation": "This is tempting as a random guess, but hunger has nothing to do with the poem's context of sleeping and dreaming."},
         {"letter": "D", "explanation": "This is tempting because it is unrelated to the word's actual meaning — 'restless' describes a state of mind, not physical height."},
         {"letter": "E", "explanation": "This is tempting because 'rest' sounds peaceful, but the '-less' suffix means without rest — the exact opposite of calm and peaceful."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 6,
+      "question_text": "The poem says the Dream Maker has \"a cabinet of whispers full of secrets never told.\" What does this image suggest about the dreams she creates?",
+      "answer_choices": [
+        {"letter": "A", "text": "The Dream Maker is hiding information from the children and being dishonest."},
+        {"letter": "B", "text": "The dreams contain private, mysterious elements drawn from quiet, hidden knowledge — things felt but not spoken aloud."},
+        {"letter": "C", "text": "The cabinet is a real piece of furniture that can be purchased at a store."},
+        {"letter": "D", "text": "The whispers are too loud and wake the children up from sleep."},
+        {"letter": "E", "text": "The Dream Maker is afraid of speaking at full volume."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The 'cabinet of whispers full of secrets never told' suggests that dreams tap into the quiet, hidden parts of our inner lives — things we feel deeply but may never say out loud. This image portrays the Dream Maker as someone who understands the unspoken parts of each sleeper's heart and weaves them into dreams.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'secrets' can imply deception, but the poem's warm tone presents the Dream Maker as caring and generous, not dishonest."},
+        {"letter": "C", "explanation": "This is tempting if read literally, but the cabinet is an imaginative detail in a fantastical workshop made of moonlight, not a real object."},
+        {"letter": "D", "explanation": "This is tempting because whispers involve sound, but whispers are quiet by definition — the poem emphasizes the softness and mystery of the dreams, not noise."},
+        {"letter": "E", "explanation": "This is tempting because whispers are soft-spoken, but the image is about the nature of dream content (private, mysterious), not about the Dream Maker's speaking volume."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 7,
+      "question_text": "The last stanza says \"know the Dream Maker was with you, and she'll meet you there once more.\" What can you infer about the poem's message from these lines?",
+      "answer_choices": [
+        {"letter": "A", "text": "The Dream Maker is a real person who visits children's houses each night."},
+        {"letter": "B", "text": "The poem suggests that the comfort and creativity of dreaming are always available to us, even when we cannot remember our dreams — a reassurance that we are never truly alone at night."},
+        {"letter": "C", "text": "People should set an alarm to wake up and try to remember their dreams."},
+        {"letter": "D", "text": "The Dream Maker is threatening to return and give the children nightmares."},
+        {"letter": "E", "text": "Dreams only happen once and can never be experienced again."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The final stanza addresses the reader directly, reassuring them that even when dreams are forgotten upon waking, the Dream Maker was still there and will return the next night. This conveys the poem's comforting message: the gift of dreams is reliable, recurring, and always available — a source of comfort that never disappears.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the Dream Maker 'was with you,' but the entire poem is an imaginative fantasy — the Dream Maker symbolizes the mysterious, caring nature of dreams themselves."},
+        {"letter": "C", "explanation": "This is tempting because the stanza mentions not remembering dreams, but the poem's point is that the value of dreaming exists regardless of memory — it is not giving practical advice about alarms."},
+        {"letter": "D", "explanation": "This is tempting because 'she'll meet you there once more' could sound ominous, but the poem's warm, magical tone makes clear this is a promise of comfort, not a threat."},
+        {"letter": "E", "explanation": "This is tempting because forgetting dreams might feel like losing them, but the poem says the Dream Maker will return — dreams are a recurring gift, not a one-time event."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "What does the phrase \"stitched in silver, stitched in dream\" suggest about how the Dream Maker creates her stories?",
+      "answer_choices": [
+        {"letter": "A", "text": "She uses a real sewing machine with silver thread to make blankets."},
+        {"letter": "B", "text": "Her work is careless and rushed because she has many sleepers to serve."},
+        {"letter": "C", "text": "Her dream-making is a careful, delicate craft, like sewing or weaving, using precious and magical materials."},
+        {"letter": "D", "text": "Silver is the only color she uses in her dreams."},
+        {"letter": "E", "text": "She charges money for the dreams she makes, since silver is a form of currency."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The word 'stitched' extends the poem's extended metaphor of dream-making as a textile craft (spinning thread, weaving stories). 'Silver' suggests something precious and luminous, while the repetition of 'stitched in' creates a rhythmic, careful quality — emphasizing that each dream is crafted with skill and care using magical materials.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'stitched' relates to sewing, but this is figurative language — the Dream Maker's work is described metaphorically as a craft, not literal sewing."},
+        {"letter": "B", "explanation": "This is tempting because the Dream Maker serves many sleepers, but the word 'stitched' implies precision and care — the opposite of carelessness."},
+        {"letter": "D", "explanation": "This is tempting because silver is mentioned, but the poem also describes 'midnight blue,' 'sunset gold,' and 'starlight' — the Dream Maker uses many colors and materials."},
+        {"letter": "E", "explanation": "This is tempting because silver can mean money, but the poem says every sleeper gets a story and the Dream Maker 'never left a child unseen' — the dreams are freely given gifts."}
       ],
       "skill_tested": "rc_vocab_context"
     }

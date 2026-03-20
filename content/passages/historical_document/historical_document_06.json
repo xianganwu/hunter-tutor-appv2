@@ -10,11 +10,16 @@
       "rc_supporting_details",
       "rc_vocab_context",
       "rc_inference",
-      "rc_drawing_conclusions"
+      "rc_drawing_conclusions",
+      "rc_author_purpose",
+      "rc_passage_structure",
+      "rc_evidence_reasoning"
     ],
     "source_description": "original",
     "lexile_range": "400L-600L",
-    "themes": ["exploration"]
+    "themes": [
+      "exploration"
+    ]
   },
   "pre_reading_context": "This passage describes the dangerous ocean journey that brought a group of English settlers to North America in 1620.",
   "passage_text": "In September 1620, a small wooden ship called the Mayflower set sail from Plymouth, England, carrying 102 passengers and about 30 crew members. The passengers were a mix of people. Some, known as Pilgrims, were leaving England because they wanted the freedom to practice their religion in their own way. Others were merchants, servants, and craftspeople looking for new opportunities in a land they had never seen.\n\nThe voyage across the Atlantic Ocean was brutal. The Mayflower was only about 100 feet long — roughly the length of a basketball court — and most passengers were crammed into a space below deck with low ceilings and no windows. The ship rocked violently in storms, and waves sometimes crashed over the deck and leaked into the living areas below. Many passengers became terribly seasick, and there was no medicine to help them. Fresh food ran out quickly, so people survived on hard biscuits, dried meat, and beer, which was safer to drink than the water onboard.\n\nThe journey took sixty-six days. When the passengers finally spotted land on November 9, 1620, they were exhausted, hungry, and far from where they had planned to land. Instead of arriving in Virginia, where they had permission to settle, they found themselves off the coast of what is now Massachusetts.\n\nBefore going ashore, the passengers faced an important decision. Since they were outside the territory covered by their original agreement, they needed new rules for governing themselves. Forty-one men signed a document called the Mayflower Compact, in which they agreed to work together and follow laws made for the good of the whole group. This simple agreement became one of the earliest examples of self-government in American history.",
@@ -23,19 +28,46 @@
       "question_number": 1,
       "question_text": "What is the main idea of this passage?",
       "answer_choices": [
-        {"letter": "A", "text": "The Mayflower was the largest and fastest ship in England."},
-        {"letter": "B", "text": "The Mayflower's voyage was a difficult journey that led to an important moment in American self-government."},
-        {"letter": "C", "text": "The Pilgrims were the only passengers on the Mayflower."},
-        {"letter": "D", "text": "The passengers planned to settle in Massachusetts all along."},
-        {"letter": "E", "text": "Life on a ship in the 1600s was comfortable and enjoyable."}
+        {
+          "letter": "A",
+          "text": "The Mayflower was the largest and fastest ship in England."
+        },
+        {
+          "letter": "B",
+          "text": "The Mayflower's voyage was a difficult journey that led to an important moment in American self-government."
+        },
+        {
+          "letter": "C",
+          "text": "The Pilgrims were the only passengers on the Mayflower."
+        },
+        {
+          "letter": "D",
+          "text": "The passengers planned to settle in Massachusetts all along."
+        },
+        {
+          "letter": "E",
+          "text": "Life on a ship in the 1600s was comfortable and enjoyable."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage describes the harsh conditions of the voyage, explains who the passengers were, and concludes with the signing of the Mayflower Compact. The main idea captures both the difficulty of the journey and its historical significance for self-government.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because the Mayflower is the central ship, but the passage describes it as only 100 feet long and makes no claims about it being the largest or fastest."},
-        {"letter": "C", "explanation": "This is tempting because Pilgrims are the most famous passengers, but the passage specifically says others included merchants, servants, and craftspeople."},
-        {"letter": "D", "explanation": "This is tempting because they did land in Massachusetts, but the passage says they had planned to land in Virginia and ended up off course."},
-        {"letter": "E", "explanation": "This is tempting as an extreme opposite of what the passage describes — the voyage was brutal, cramped, and uncomfortable."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the Mayflower is the central ship, but the passage describes it as only 100 feet long and makes no claims about it being the largest or fastest."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because Pilgrims are the most famous passengers, but the passage specifically says others included merchants, servants, and craftspeople."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because they did land in Massachusetts, but the passage says they had planned to land in Virginia and ended up off course."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting as an extreme opposite of what the passage describes — the voyage was brutal, cramped, and uncomfortable."
+        }
       ],
       "skill_tested": "rc_main_idea"
     },
@@ -43,19 +75,46 @@
       "question_number": 2,
       "question_text": "According to the passage, why did the passengers sign the Mayflower Compact?",
       "answer_choices": [
-        {"letter": "A", "text": "They wanted to declare war against the people already living in the area."},
-        {"letter": "B", "text": "They needed new rules for governing themselves because they had landed outside the territory covered by their original agreement."},
-        {"letter": "C", "text": "The king of England required them to sign it before leaving the ship."},
-        {"letter": "D", "text": "They wanted to return to England and needed a formal request."},
-        {"letter": "E", "text": "The ship's captain refused to let them leave without a written document."}
+        {
+          "letter": "A",
+          "text": "They wanted to declare war against the people already living in the area."
+        },
+        {
+          "letter": "B",
+          "text": "They needed new rules for governing themselves because they had landed outside the territory covered by their original agreement."
+        },
+        {
+          "letter": "C",
+          "text": "The king of England required them to sign it before leaving the ship."
+        },
+        {
+          "letter": "D",
+          "text": "They wanted to return to England and needed a formal request."
+        },
+        {
+          "letter": "E",
+          "text": "The ship's captain refused to let them leave without a written document."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage directly states that because the passengers landed outside Virginia (where their original permission applied), they 'needed new rules for governing themselves.' The Mayflower Compact was their solution — an agreement to create and follow laws together.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because conflict existed in colonial history, but the Mayflower Compact was about self-governance among the passengers, not about war."},
-        {"letter": "C", "explanation": "This is tempting because the king granted permission for the voyage, but the Compact was created by the passengers themselves because they were outside their authorized territory."},
-        {"letter": "D", "explanation": "This is tempting because the journey was difficult, but the passengers signed the Compact to establish governance in the new land, not to go back to England."},
-        {"letter": "E", "explanation": "This is tempting because the signing happened before going ashore, but the passage says the passengers made this decision themselves — no captain's demand is mentioned."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because conflict existed in colonial history, but the Mayflower Compact was about self-governance among the passengers, not about war."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because the king granted permission for the voyage, but the Compact was created by the passengers themselves because they were outside their authorized territory."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the journey was difficult, but the passengers signed the Compact to establish governance in the new land, not to go back to England."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the signing happened before going ashore, but the passage says the passengers made this decision themselves — no captain's demand is mentioned."
+        }
       ],
       "skill_tested": "rc_supporting_details"
     },
@@ -63,19 +122,46 @@
       "question_number": 3,
       "question_text": "What does the word \"brutal\" most likely mean as used in the second paragraph?",
       "answer_choices": [
-        {"letter": "A", "text": "Quick and easy"},
-        {"letter": "B", "text": "Extremely harsh and difficult"},
-        {"letter": "C", "text": "Peaceful and relaxing"},
-        {"letter": "D", "text": "Short and uneventful"},
-        {"letter": "E", "text": "Expensive and wasteful"}
+        {
+          "letter": "A",
+          "text": "Quick and easy"
+        },
+        {
+          "letter": "B",
+          "text": "Extremely harsh and difficult"
+        },
+        {
+          "letter": "C",
+          "text": "Peaceful and relaxing"
+        },
+        {
+          "letter": "D",
+          "text": "Short and uneventful"
+        },
+        {
+          "letter": "E",
+          "text": "Expensive and wasteful"
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage uses 'brutal' to describe the voyage, then immediately provides details about cramped quarters, violent storms, seasickness, and limited food. All of these details confirm that brutal means extremely harsh and difficult.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because it is the opposite meaning, but the passage describes sixty-six days of storms, sickness, and scarce food — nothing about the voyage was quick or easy."},
-        {"letter": "C", "explanation": "This is tempting as another opposite, but the passage describes violent rocking, crashing waves, and seasickness — not a peaceful journey."},
-        {"letter": "D", "explanation": "This is tempting because someone might confuse 'brutal' with 'brief,' but sixty-six days in terrible conditions is neither short nor uneventful."},
-        {"letter": "E", "explanation": "This is tempting because the voyage did use resources, but 'brutal' describes the physical hardship, not the cost."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because it is the opposite meaning, but the passage describes sixty-six days of storms, sickness, and scarce food — nothing about the voyage was quick or easy."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting as another opposite, but the passage describes violent rocking, crashing waves, and seasickness — not a peaceful journey."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because someone might confuse 'brutal' with 'brief,' but sixty-six days in terrible conditions is neither short nor uneventful."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the voyage did use resources, but 'brutal' describes the physical hardship, not the cost."
+        }
       ],
       "skill_tested": "rc_vocab_context"
     },
@@ -83,19 +169,46 @@
       "question_number": 4,
       "question_text": "Why does the author compare the Mayflower's length to a basketball court?",
       "answer_choices": [
-        {"letter": "A", "text": "To show that the Mayflower was used for sports during the voyage."},
-        {"letter": "B", "text": "To help readers understand how small the ship was by comparing it to something familiar."},
-        {"letter": "C", "text": "To suggest that the passengers played basketball to pass the time."},
-        {"letter": "D", "text": "To prove that basketball courts existed in the 1600s."},
-        {"letter": "E", "text": "To explain why the ship was shaped like a rectangle."}
+        {
+          "letter": "A",
+          "text": "To show that the Mayflower was used for sports during the voyage."
+        },
+        {
+          "letter": "B",
+          "text": "To help readers understand how small the ship was by comparing it to something familiar."
+        },
+        {
+          "letter": "C",
+          "text": "To suggest that the passengers played basketball to pass the time."
+        },
+        {
+          "letter": "D",
+          "text": "To prove that basketball courts existed in the 1600s."
+        },
+        {
+          "letter": "E",
+          "text": "To explain why the ship was shaped like a rectangle."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "Most readers know the size of a basketball court, so comparing the ship to one helps them visualize how small the Mayflower was — especially for 130 people. This comparison makes the historical detail more relatable and understandable.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because basketball is mentioned, but the comparison is about size, not about sports being played on the ship."},
-        {"letter": "C", "explanation": "This is tempting because it connects basketball to the voyage, but the comparison is a modern reference point to help readers understand the ship's size."},
-        {"letter": "D", "explanation": "This is tempting because the comparison involves basketball and the 1600s, but basketball courts are a modern reference — they did not exist during the Mayflower's voyage."},
-        {"letter": "E", "explanation": "This is tempting because a basketball court is rectangular, but the comparison is about length (100 feet), not shape."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because basketball is mentioned, but the comparison is about size, not about sports being played on the ship."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because it connects basketball to the voyage, but the comparison is a modern reference point to help readers understand the ship's size."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the comparison involves basketball and the 1600s, but basketball courts are a modern reference — they did not exist during the Mayflower's voyage."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because a basketball court is rectangular, but the comparison is about length (100 feet), not shape."
+        }
       ],
       "skill_tested": "rc_inference"
     },
@@ -103,21 +216,189 @@
       "question_number": 5,
       "question_text": "Based on the passage, what can the reader conclude about the Mayflower Compact?",
       "answer_choices": [
-        {"letter": "A", "text": "It was a failure because the passengers could not agree on anything."},
-        {"letter": "B", "text": "It was an important early step toward the idea that people can govern themselves by making agreements together."},
-        {"letter": "C", "text": "It was only signed by the women on the ship."},
-        {"letter": "D", "text": "It was written by the king of England before the voyage began."},
-        {"letter": "E", "text": "It had no lasting significance in American history."}
+        {
+          "letter": "A",
+          "text": "It was a failure because the passengers could not agree on anything."
+        },
+        {
+          "letter": "B",
+          "text": "It was an important early step toward the idea that people can govern themselves by making agreements together."
+        },
+        {
+          "letter": "C",
+          "text": "It was only signed by the women on the ship."
+        },
+        {
+          "letter": "D",
+          "text": "It was written by the king of England before the voyage began."
+        },
+        {
+          "letter": "E",
+          "text": "It had no lasting significance in American history."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage calls the Mayflower Compact 'one of the earliest examples of self-government in American history.' The passengers agreed to 'work together and follow laws made for the good of the whole group,' demonstrating the principle that ordinary people can create their own rules for living together.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because agreements can fail, but the passage presents the Compact positively as a significant achievement in self-governance."},
-        {"letter": "C", "explanation": "This is tempting because the passage mentions who signed it, but it says 'forty-one men signed' — it does not say only women signed."},
-        {"letter": "D", "explanation": "This is tempting because the king did authorize the voyage, but the Compact was written by the passengers themselves after they landed off course."},
-        {"letter": "E", "explanation": "This is tempting because the Compact was simple, but the passage explicitly calls it 'one of the earliest examples of self-government in American history,' indicating lasting significance."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because agreements can fail, but the passage presents the Compact positively as a significant achievement in self-governance."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because the passage mentions who signed it, but it says 'forty-one men signed' — it does not say only women signed."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the king did authorize the voyage, but the Compact was written by the passengers themselves after they landed off course."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the Compact was simple, but the passage explicitly calls it 'one of the earliest examples of self-government in American history,' indicating lasting significance."
+        }
       ],
       "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What is the most likely reason the author mentions that beer was \"safer to drink than the water onboard\"?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "To explain that the passengers preferred the taste of beer to water."
+        },
+        {
+          "letter": "B",
+          "text": "To help the reader understand that the conditions on the ship were so poor that even the drinking water was unsafe."
+        },
+        {
+          "letter": "C",
+          "text": "To argue that beer is healthier than water."
+        },
+        {
+          "letter": "D",
+          "text": "To show that the passengers celebrated during the voyage."
+        },
+        {
+          "letter": "E",
+          "text": "To prove that the Mayflower was mainly a ship for transporting beverages."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The author includes this detail to emphasize how harsh the conditions were on the Mayflower. The fact that stored water became unsafe to drink illustrates the difficult and unsanitary conditions passengers endured during the sixty-six-day voyage.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because personal preference is a common reason people choose drinks, but the passage specifies 'safer,' indicating a health concern rather than a taste preference."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because the sentence compares beer and water, but the author is describing 1620s ship conditions, not making a general health claim."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because beer is associated with celebration, but the passage context is about survival and hardship, not festivities."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because beverages are mentioned, but the Mayflower carried 102 passengers seeking a new life — it was not a cargo ship for drinks."
+        }
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 7,
+      "question_text": "Which of the following events happened LAST according to the passage?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "The Mayflower set sail from Plymouth, England."
+        },
+        {
+          "letter": "B",
+          "text": "The passengers spotted land on November 9, 1620."
+        },
+        {
+          "letter": "C",
+          "text": "Forty-one men signed the Mayflower Compact."
+        },
+        {
+          "letter": "D",
+          "text": "Fresh food ran out during the voyage."
+        },
+        {
+          "letter": "E",
+          "text": "Storms caused waves to crash over the deck."
+        }
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage follows a chronological sequence: the ship departed in September, experienced harsh conditions during the voyage, spotted land in November, and then the passengers signed the Mayflower Compact before going ashore. The signing was the final event described.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because it is a key event, but it is the first event described in the passage — the beginning of the journey, not the end."
+        },
+        {
+          "letter": "B",
+          "explanation": "This is tempting because spotting land seems like a conclusion, but the signing of the Compact happened after they spotted land and before going ashore."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because running out of food sounds like it could happen late, but it occurred during the voyage, before the passengers reached land."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because storms are dramatic events, but they occurred during the ocean crossing, well before the Compact was signed."
+        }
+      ],
+      "skill_tested": "rc_passage_structure"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, what caused the passengers to create the Mayflower Compact instead of following their original agreement?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "The king of England canceled their original agreement."
+        },
+        {
+          "letter": "B",
+          "text": "They landed in Massachusetts instead of Virginia, putting them outside the territory covered by their original permission."
+        },
+        {
+          "letter": "C",
+          "text": "The ship's crew refused to follow the original rules."
+        },
+        {
+          "letter": "D",
+          "text": "The passengers had a disagreement about religion."
+        },
+        {
+          "letter": "E",
+          "text": "Their original agreement was destroyed by seawater during the voyage."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains a clear cause-and-effect relationship: the passengers had permission to settle in Virginia, but they landed off the coast of Massachusetts instead. Because they were outside the territory of their original agreement, they needed new rules, which led them to create the Mayflower Compact.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the king had authority, but the passage says nothing about the king canceling anything — the issue was that they landed in the wrong place."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because the crew is mentioned, but the passage does not describe any conflict between passengers and crew over rules."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because religion motivated some passengers to leave England, but the Compact was created because of their unexpected landing location, not a religious dispute."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because seawater and storms are described, but the passage says nothing about documents being physically damaged during the voyage."
+        }
+      ],
+      "skill_tested": "rc_evidence_reasoning"
     }
   ]
 }

@@ -10,11 +10,16 @@
       "rc_inference",
       "rc_vocab_context",
       "rc_tone_mood",
-      "rc_drawing_conclusions"
+      "rc_drawing_conclusions",
+      "rc_supporting_details",
+      "rc_author_purpose"
     ],
     "source_description": "original",
     "lexile_range": "600L-800L",
-    "themes": ["honesty", "courage"]
+    "themes": [
+      "honesty",
+      "courage"
+    ]
   },
   "pre_reading_context": "A boy must decide whether to tell the truth after an accident during a neighborhood baseball game.",
   "passage_text": "The crack of the bat echoed across Maple Street, and for one glorious second, Tomás thought he had hit the perfect home run. The ball sailed over Marcus's outstretched glove, cleared the chain-link fence around the Hendersons' yard, and smashed straight through their living room window.\n\nEveryone froze. Then, as if someone had fired a starting pistol, every kid on the street scattered. Tomás stood alone on the makeshift pitcher's mound — a flattened cardboard box — his bat still raised, his mouth hanging open.\n\nHis best friend Jaylen reappeared from behind a parked car. \"Come on!\" he whispered urgently. \"Nobody saw. If we leave now, they'll never know who did it.\"\n\nTomás looked at the Henderson house. Mr. Henderson was seventy-two years old and lived alone. He walked with a cane and always waved at the kids from his porch. Last winter, when Tomás's little sister slipped on the icy sidewalk in front of his house, Mr. Henderson had come outside with a bag of rock salt and spent twenty minutes spreading it so no one else would fall.\n\nTomás set the bat on the ground. \"I can't just leave.\"\n\n\"Are you serious?\" Jaylen's eyes widened. \"You'll have to pay for it. That's going to be expensive.\"\n\n\"I know.\" Tomás swallowed hard. His allowance was five dollars a week. A new window probably cost more than he would earn all year. But the thought of Mr. Henderson finding that shattered glass and not knowing what happened — wondering if someone had done it on purpose — made Tomás's stomach twist.\n\nHe walked across the street and up Mr. Henderson's front steps. His hand trembled as he pressed the doorbell. After what felt like an eternity, the door opened. Mr. Henderson looked at Tomás, then past him at the scattered baseball equipment in the street, then back at Tomás.\n\n\"I hit a baseball through your window,\" Tomás said. His voice cracked, but he kept going. \"I'm really sorry. I'll pay for it. It might take me a while, but I'll pay for all of it.\"\n\nMr. Henderson studied him for a long moment. Then the old man's face softened. \"I appreciate you telling me, son. That takes guts.\" He paused. \"Tell you what. I need someone to help with yard work this spring. You help me out on Saturdays, and we'll call it even. Deal?\"\n\nTomás blinked. \"Deal,\" he said quickly, before Mr. Henderson could change his mind.\n\nWalking back across the street, Tomás saw Jaylen watching from behind the car. Tomás shrugged and smiled. His hands had stopped shaking. The window was still broken, but something else felt like it had been fixed.",
@@ -23,19 +28,46 @@
       "question_number": 1,
       "question_text": "What is the main idea of this passage?",
       "answer_choices": [
-        {"letter": "A", "text": "Kids should not play baseball near houses because it is dangerous."},
-        {"letter": "B", "text": "Telling the truth, even when it is difficult, is the right thing to do and can lead to unexpected rewards."},
-        {"letter": "C", "text": "Old people are always kind and forgiving toward children."},
-        {"letter": "D", "text": "Friends will always give you bad advice when you are in trouble."},
-        {"letter": "E", "text": "Breaking a window is not a serious problem if you apologize."}
+        {
+          "letter": "A",
+          "text": "Kids should not play baseball near houses because it is dangerous."
+        },
+        {
+          "letter": "B",
+          "text": "Telling the truth, even when it is difficult, is the right thing to do and can lead to unexpected rewards."
+        },
+        {
+          "letter": "C",
+          "text": "Old people are always kind and forgiving toward children."
+        },
+        {
+          "letter": "D",
+          "text": "Friends will always give you bad advice when you are in trouble."
+        },
+        {
+          "letter": "E",
+          "text": "Breaking a window is not a serious problem if you apologize."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage centers on Tomás's decision to be honest about breaking the window despite being afraid of the consequences. His honesty leads to Mr. Henderson's respect and a fair arrangement, showing that telling the truth is both right and can bring positive outcomes.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because the accident happens during a street baseball game, but the passage is about honesty and responsibility, not about where kids should play."},
-        {"letter": "C", "explanation": "This is tempting because Mr. Henderson is kind, but the passage does not make a claim about all old people — Mr. Henderson is one specific character whose kindness is relevant to the story."},
-        {"letter": "D", "explanation": "This is tempting because Jaylen suggests running away, but the passage does not say friends always give bad advice — Jaylen is scared, not malicious."},
-        {"letter": "E", "explanation": "This is tempting because Mr. Henderson offers a fair deal, but the passage shows that Tomás expected serious consequences and was willing to pay — it was serious, and his honesty is what made the difference."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the accident happens during a street baseball game, but the passage is about honesty and responsibility, not about where kids should play."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because Mr. Henderson is kind, but the passage does not make a claim about all old people — Mr. Henderson is one specific character whose kindness is relevant to the story."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Jaylen suggests running away, but the passage does not say friends always give bad advice — Jaylen is scared, not malicious."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because Mr. Henderson offers a fair deal, but the passage shows that Tomás expected serious consequences and was willing to pay — it was serious, and his honesty is what made the difference."
+        }
       ],
       "skill_tested": "rc_main_idea"
     },
@@ -43,19 +75,46 @@
       "question_number": 2,
       "question_text": "Why does the author include the detail about Mr. Henderson spreading rock salt on the sidewalk?",
       "answer_choices": [
-        {"letter": "A", "text": "To explain why Tomás's sister was afraid of Mr. Henderson."},
-        {"letter": "B", "text": "To show that Mr. Henderson is a caring neighbor, which makes Tomás feel worse about running away."},
-        {"letter": "C", "text": "To prove that Mr. Henderson is too old to take care of his own property."},
-        {"letter": "D", "text": "To suggest that Tomás's family owes Mr. Henderson a favor."},
-        {"letter": "E", "text": "To describe what the weather is like during the story."}
+        {
+          "letter": "A",
+          "text": "To explain why Tomás's sister was afraid of Mr. Henderson."
+        },
+        {
+          "letter": "B",
+          "text": "To show that Mr. Henderson is a caring neighbor, which makes Tomás feel worse about running away."
+        },
+        {
+          "letter": "C",
+          "text": "To prove that Mr. Henderson is too old to take care of his own property."
+        },
+        {
+          "letter": "D",
+          "text": "To suggest that Tomás's family owes Mr. Henderson a favor."
+        },
+        {
+          "letter": "E",
+          "text": "To describe what the weather is like during the story."
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The rock salt detail shows that Mr. Henderson is kind and thoughtful toward his neighbors. This makes it harder for Tomás to justify running away because he knows Mr. Henderson is a good person who does not deserve to be left wondering who broke his window.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because the sister is mentioned, but she slipped on ice — Mr. Henderson helped her. There is no fear involved."},
-        {"letter": "C", "explanation": "This is tempting because Mr. Henderson is elderly, but the detail shows him actively helping others, not being unable to care for his property."},
-        {"letter": "D", "explanation": "This is tempting because Mr. Henderson did something nice for the family, but the passage does not suggest a debt — it shows Mr. Henderson's character."},
-        {"letter": "E", "explanation": "This is tempting because the detail mentions winter and ice, but the baseball game takes place in another season — the winter detail is a flashback to establish Mr. Henderson's kindness."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the sister is mentioned, but she slipped on ice — Mr. Henderson helped her. There is no fear involved."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because Mr. Henderson is elderly, but the detail shows him actively helping others, not being unable to care for his property."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Mr. Henderson did something nice for the family, but the passage does not suggest a debt — it shows Mr. Henderson's character."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the detail mentions winter and ice, but the baseball game takes place in another season — the winter detail is a flashback to establish Mr. Henderson's kindness."
+        }
       ],
       "skill_tested": "rc_inference"
     },
@@ -63,19 +122,46 @@
       "question_number": 3,
       "question_text": "What does the word \"makeshift\" most likely mean as used in the second paragraph?",
       "answer_choices": [
-        {"letter": "A", "text": "Official and approved"},
-        {"letter": "B", "text": "Broken beyond repair"},
-        {"letter": "C", "text": "Serving as a temporary substitute"},
-        {"letter": "D", "text": "Expensive and well-built"},
-        {"letter": "E", "text": "Hidden from view"}
+        {
+          "letter": "A",
+          "text": "Official and approved"
+        },
+        {
+          "letter": "B",
+          "text": "Broken beyond repair"
+        },
+        {
+          "letter": "C",
+          "text": "Serving as a temporary substitute"
+        },
+        {
+          "letter": "D",
+          "text": "Expensive and well-built"
+        },
+        {
+          "letter": "E",
+          "text": "Hidden from view"
+        }
       ],
       "correct_answer": "C",
       "correct_answer_explanation": "A 'makeshift pitcher's mound' made from a flattened cardboard box is something improvised from available materials. Makeshift means used as a temporary or rough substitute for the real thing.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because a pitcher's mound is an official part of baseball, but a flattened cardboard box is clearly not official — it is improvised."},
-        {"letter": "B", "explanation": "This is tempting because 'makeshift' might sound like 'make-break,' but the cardboard box is being used on purpose, not described as broken."},
-        {"letter": "D", "explanation": "This is tempting because it is the opposite of what makeshift means — a flattened cardboard box is neither expensive nor well-built."},
-        {"letter": "E", "explanation": "This is tempting because the kids are playing in the street informally, but nothing about a flattened cardboard box suggests it is hidden."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because a pitcher's mound is an official part of baseball, but a flattened cardboard box is clearly not official — it is improvised."
+        },
+        {
+          "letter": "B",
+          "explanation": "This is tempting because 'makeshift' might sound like 'make-break,' but the cardboard box is being used on purpose, not described as broken."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because it is the opposite of what makeshift means — a flattened cardboard box is neither expensive nor well-built."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the kids are playing in the street informally, but nothing about a flattened cardboard box suggests it is hidden."
+        }
       ],
       "skill_tested": "rc_vocab_context"
     },
@@ -83,19 +169,46 @@
       "question_number": 4,
       "question_text": "How would you describe the overall tone of the passage?",
       "answer_choices": [
-        {"letter": "A", "text": "Humorous and lighthearted throughout"},
-        {"letter": "B", "text": "Tense and anxious, shifting to hopeful and relieved"},
-        {"letter": "C", "text": "Angry and resentful from beginning to end"},
-        {"letter": "D", "text": "Sad and depressing with no resolution"},
-        {"letter": "E", "text": "Mysterious and suspenseful like a detective story"}
+        {
+          "letter": "A",
+          "text": "Humorous and lighthearted throughout"
+        },
+        {
+          "letter": "B",
+          "text": "Tense and anxious, shifting to hopeful and relieved"
+        },
+        {
+          "letter": "C",
+          "text": "Angry and resentful from beginning to end"
+        },
+        {
+          "letter": "D",
+          "text": "Sad and depressing with no resolution"
+        },
+        {
+          "letter": "E",
+          "text": "Mysterious and suspenseful like a detective story"
+        }
       ],
       "correct_answer": "B",
       "correct_answer_explanation": "The passage begins with the anxiety of breaking a window and the tension of deciding what to do. After Tomás confesses and Mr. Henderson responds kindly, the tone shifts to relief and hope, as shown by Tomás's hands stopping their shaking and feeling like something had been fixed.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because there are light moments (kids scattering, Jaylen hiding behind a car), but the core conflict is serious, and the tone is more anxious than humorous."},
-        {"letter": "C", "explanation": "This is tempting because Tomás might feel frustrated, but neither he nor any other character expresses anger — the passage is about responsibility and forgiveness."},
-        {"letter": "D", "explanation": "This is tempting because the situation starts badly, but the passage has a positive resolution — Mr. Henderson's offer and Tomás's relief show it is not depressing."},
-        {"letter": "E", "explanation": "This is tempting because there is a question of what Tomás will do, but this is moral tension, not a mystery — there is no detective or unknown culprit."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because there are light moments (kids scattering, Jaylen hiding behind a car), but the core conflict is serious, and the tone is more anxious than humorous."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because Tomás might feel frustrated, but neither he nor any other character expresses anger — the passage is about responsibility and forgiveness."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the situation starts badly, but the passage has a positive resolution — Mr. Henderson's offer and Tomás's relief show it is not depressing."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because there is a question of what Tomás will do, but this is moral tension, not a mystery — there is no detective or unknown culprit."
+        }
       ],
       "skill_tested": "rc_tone_mood"
     },
@@ -103,21 +216,189 @@
       "question_number": 5,
       "question_text": "What does the last sentence of the passage most likely mean?",
       "answer_choices": [
-        {"letter": "A", "text": "Mr. Henderson secretly fixed the window while Tomás was walking away."},
-        {"letter": "B", "text": "Tomás repaired the window himself before going home."},
-        {"letter": "C", "text": "Tomás felt that by being honest, he had restored something more important than a window — his sense of doing the right thing."},
-        {"letter": "D", "text": "Jaylen came out from behind the car and helped fix the window."},
-        {"letter": "E", "text": "The window was not actually broken after all."}
+        {
+          "letter": "A",
+          "text": "Mr. Henderson secretly fixed the window while Tomás was walking away."
+        },
+        {
+          "letter": "B",
+          "text": "Tomás repaired the window himself before going home."
+        },
+        {
+          "letter": "C",
+          "text": "Tomás felt that by being honest, he had restored something more important than a window — his sense of doing the right thing."
+        },
+        {
+          "letter": "D",
+          "text": "Jaylen came out from behind the car and helped fix the window."
+        },
+        {
+          "letter": "E",
+          "text": "The window was not actually broken after all."
+        }
       ],
       "correct_answer": "C",
       "correct_answer_explanation": "The sentence 'The window was still broken, but something else felt like it had been fixed' uses figurative language. The physical window is still damaged, but Tomás's conscience and self-respect have been restored by doing the honest thing.",
       "distractor_explanations": [
-        {"letter": "A", "explanation": "This is tempting because it offers a literal explanation for something being fixed, but the sentence says the window is 'still broken,' and the something else refers to Tomás's feelings."},
-        {"letter": "B", "explanation": "This is tempting because it takes 'fixed' literally, but the passage clearly states the window is still broken and the fix is emotional, not physical."},
-        {"letter": "D", "explanation": "This is tempting because Jaylen is mentioned watching, but he does not come out or help — and the sentence refers to something abstract being fixed, not the physical window."},
-        {"letter": "E", "explanation": "This is tempting as a literal reading, but the passage explicitly describes the ball smashing through the window and mentions glass — the window is definitely broken."}
+        {
+          "letter": "A",
+          "explanation": "This is tempting because it offers a literal explanation for something being fixed, but the sentence says the window is 'still broken,' and the something else refers to Tomás's feelings."
+        },
+        {
+          "letter": "B",
+          "explanation": "This is tempting because it takes 'fixed' literally, but the passage clearly states the window is still broken and the fix is emotional, not physical."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because Jaylen is mentioned watching, but he does not come out or help — and the sentence refers to something abstract being fixed, not the physical window."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting as a literal reading, but the passage explicitly describes the ball smashing through the window and mentions glass — the window is definitely broken."
+        }
       ],
       "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 6,
+      "question_text": "Which detail from the passage best supports the idea that Tomás felt guilty about the possibility of running away?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "He hit the ball over Marcus's outstretched glove."
+        },
+        {
+          "letter": "B",
+          "text": "The thought of Mr. Henderson finding shattered glass and not knowing what happened made his stomach twist."
+        },
+        {
+          "letter": "C",
+          "text": "His allowance was five dollars a week."
+        },
+        {
+          "letter": "D",
+          "text": "Jaylen's eyes widened when Tomás said he couldn't leave."
+        },
+        {
+          "letter": "E",
+          "text": "Every kid on the street scattered after the window broke."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says imagining Mr. Henderson finding the glass without knowing who did it 'made Tomás's stomach twist.' This physical reaction to the idea of leaving without confessing directly shows guilt about potentially running away.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because it describes the accident, but hitting the ball shows what happened, not how Tomás felt about running away."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because his small allowance shows the cost would be a burden, but it relates to financial worry, not guilt about being dishonest."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because it is an emotional reaction, but it is Jaylen's reaction to Tomás staying, not evidence of Tomás's own guilt."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because it describes the aftermath of the accident, but the other kids scattering shows their fear, not Tomás's guilt."
+        }
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 7,
+      "question_text": "What can the reader infer about Jaylen's character based on his actions in the passage?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "He is a bully who always gets Tomás into trouble."
+        },
+        {
+          "letter": "B",
+          "text": "He is scared of the consequences and would rather avoid the situation than face it."
+        },
+        {
+          "letter": "C",
+          "text": "He secretly broke the window himself and is trying to blame Tomás."
+        },
+        {
+          "letter": "D",
+          "text": "He is planning to tell Mr. Henderson the truth after Tomás leaves."
+        },
+        {
+          "letter": "E",
+          "text": "He does not care about Mr. Henderson or anyone else in the neighborhood."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Jaylen hides behind a car, urgently whispers to Tomás to leave, and warns about the cost of the window. These actions show he is driven by fear of consequences rather than malice. He is not a bad person, but he lacks the courage to do the right thing in this moment.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because Jaylen gives bad advice, but the passage describes him as Tomás's best friend and his suggestion comes from fear, not from wanting to cause trouble."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting as an alternative theory, but the passage clearly describes Tomás hitting the ball and everyone seeing it happen."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because it would redeem Jaylen, but the passage shows him still hiding behind the car at the end, not planning to confess."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because Jaylen wants to run, but his motivation is self-preservation and fear, not a lack of caring about others."
+        }
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Why does the author include the detail about Tomás's allowance being five dollars a week?",
+      "answer_choices": [
+        {
+          "letter": "A",
+          "text": "To show that Tomás's family is wealthy and can easily pay for the window."
+        },
+        {
+          "letter": "B",
+          "text": "To emphasize how significant the financial sacrifice would be, which makes his honesty even more admirable."
+        },
+        {
+          "letter": "C",
+          "text": "To suggest that Tomás should not have to pay for the window because he is too young."
+        },
+        {
+          "letter": "D",
+          "text": "To explain why Tomás does not want to play baseball anymore."
+        },
+        {
+          "letter": "E",
+          "text": "To prove that Jaylen was right about running away being the better choice."
+        }
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By noting that Tomás's allowance is only five dollars a week and a window 'probably cost more than he would earn all year,' the author shows how enormous the financial cost would be. This makes Tomás's decision to confess even more impressive because he is willing to accept a significant personal sacrifice.",
+      "distractor_explanations": [
+        {
+          "letter": "A",
+          "explanation": "This is tempting because the allowance is mentioned, but five dollars a week compared to the cost of a window shows the opposite — the expense would be a major burden."
+        },
+        {
+          "letter": "C",
+          "explanation": "This is tempting because the cost seems unfair for a child, but the passage presents Tomás's willingness to pay as admirable, not as something he should avoid."
+        },
+        {
+          "letter": "D",
+          "explanation": "This is tempting because the accident happened during baseball, but the passage never suggests Tomás wants to stop playing — the detail is about the cost of honesty."
+        },
+        {
+          "letter": "E",
+          "explanation": "This is tempting because the financial burden supports Jaylen's practical concern, but the passage frames Tomás's honesty as the right choice despite the cost."
+        }
+      ],
+      "skill_tested": "rc_author_purpose"
     }
   ]
 }

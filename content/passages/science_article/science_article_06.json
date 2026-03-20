@@ -118,6 +118,66 @@
         {"letter": "E", "explanation": "This is tempting because stars are observed at night, but atmospheric distortion (refraction) occurs at all times — the passage describes it as a constant property of the atmosphere."}
       ],
       "skill_tested": "rc_drawing_conclusions"
+    },
+    {
+      "question_number": 6,
+      "question_text": "What does the word \"unwavering\" most likely mean as used in the second paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Extremely bright and blinding"},
+        {"letter": "B", "text": "Steady and not changing or flickering"},
+        {"letter": "C", "text": "Moving quickly from side to side"},
+        {"letter": "D", "text": "Invisible to the human eye"},
+        {"letter": "E", "text": "Growing weaker over time"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says stars seen from space 'would shine with a constant, unwavering glow,' pairing 'unwavering' with 'constant' to emphasize that the light is steady and does not flicker or change. This contrasts with the twinkling seen from Earth's surface.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because stars are bright, but 'unwavering' describes steadiness, not brightness level."},
+        {"letter": "C", "explanation": "This is tempting because it suggests movement, but 'unwavering' means the opposite — not moving or changing at all."},
+        {"letter": "D", "explanation": "This is tempting because space is discussed, but stars are visible from space — 'unwavering' describes how they look, not whether they can be seen."},
+        {"letter": "E", "explanation": "This is tempting because light could dim, but 'unwavering' means consistent and stable, not weakening."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 7,
+      "question_text": "According to the passage, what causes different pockets of air in the atmosphere to bend light in different directions?",
+      "answer_choices": [
+        {"letter": "A", "text": "The different colors of starlight"},
+        {"letter": "B", "text": "The different temperatures of the air layers"},
+        {"letter": "C", "text": "The distance between the stars and Earth"},
+        {"letter": "D", "text": "The rotation of Earth on its axis"},
+        {"letter": "E", "text": "The gravity of the Moon pulling on the atmosphere"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that 'different parts of the atmosphere have different temperatures, which causes the air to bend light as it passes through.' The warm and cool air pockets each bend the light slightly differently, creating the twinkling effect.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the passage mentions stars appearing to change color, but the color shifts are a result of refraction, not a cause of it."},
+        {"letter": "C", "explanation": "This is tempting because distance is discussed in relation to planets and stars, but refraction is caused by atmospheric temperature differences, not by the distance to stars."},
+        {"letter": "D", "explanation": "This is tempting because Earth's rotation is a real scientific concept, but the passage attributes light bending to temperature differences in air, not to Earth's rotation."},
+        {"letter": "E", "explanation": "This is tempting because the Moon does affect Earth, but the passage does not mention the Moon — atmospheric refraction is caused by temperature variations in air layers."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 8,
+      "question_text": "Based on the passage, why would a very bright star still appear to twinkle when seen from Earth's surface?",
+      "answer_choices": [
+        {"letter": "A", "text": "Because bright stars produce more heat, which creates atmospheric disturbance around them"},
+        {"letter": "B", "text": "Because even a bright star appears as a tiny pinpoint of light, and any small atmospheric disturbance can make it flicker"},
+        {"letter": "C", "text": "Because bright stars are farther away than dim stars"},
+        {"letter": "D", "text": "Because the atmosphere blocks most of a bright star's light"},
+        {"letter": "E", "text": "Because bright stars actually do turn on and off rapidly"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that stars appear as 'tiny pinpoints of light,' so even a small atmospheric disturbance can make them flicker. Brightness does not change the fact that a star's apparent size is extremely small, making it vulnerable to the bending effects of the atmosphere.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because brightness and heat are related in some contexts, but a star's brightness does not create atmospheric disturbance — the atmosphere's own temperature variations cause refraction."},
+        {"letter": "C", "explanation": "This is tempting because distance affects appearance, but the passage does not say bright stars are farther away — twinkling depends on apparent size, not brightness or distance."},
+        {"letter": "D", "explanation": "This is tempting because the atmosphere does affect starlight, but the passage says the atmosphere bends light, not that it blocks it."},
+        {"letter": "E", "explanation": "This is tempting because twinkling looks like flickering, but the passage explicitly states that stars are 'steady sources of light' and do not turn on and off."}
+      ],
+      "skill_tested": "rc_inference"
     }
   ]
 }

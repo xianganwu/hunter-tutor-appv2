@@ -9,7 +9,7 @@ import {
   queryPassages,
 } from "./passages";
 import { getSkillIdsForDomain } from "./curriculum";
-import type { Passage, PassageGenre } from "@/lib/types";
+import type { DifficultyLevel, Passage, PassageGenre } from "@/lib/types";
 
 const VALID_GENRES: PassageGenre[] = [
   "fiction",
@@ -27,26 +27,32 @@ const passageEntries = Array.from(passages.entries());
 // ─── Collection-Level Tests ──────────────────────────────────────────
 
 describe("passage collection", () => {
-  it("has exactly 25 passages", () => {
-    expect(passages.size).toBe(25);
+  it("has exactly 50 passages", () => {
+    expect(passages.size).toBe(50);
   });
 
-  it("has exactly 5 passages per genre", () => {
+  it("has exactly 10 passages per genre", () => {
     for (const genre of VALID_GENRES) {
       const genrePassages = getPassagesByGenre(genre);
-      expect(genrePassages).toHaveLength(5);
+      expect(genrePassages).toHaveLength(10);
       for (const p of genrePassages) {
         expect(p.metadata.genre).toBe(genre);
       }
     }
   });
 
-  it("each genre has one passage per difficulty level (1-5)", () => {
+  it("each genre covers all difficulty levels 1-5", () => {
+    const allLevels: DifficultyLevel[] = [1, 2, 3, 4, 5];
     for (const genre of VALID_GENRES) {
-      const levels = getPassagesByGenre(genre).map(
-        (p) => p.metadata.difficulty_level
+      const levels = new Set(
+        getPassagesByGenre(genre).map((p) => p.metadata.difficulty_level)
       );
-      expect(levels.sort()).toEqual([1, 2, 3, 4, 5]);
+      for (const d of allLevels) {
+        expect(
+          levels.has(d),
+          `${genre} missing difficulty level ${d}`
+        ).toBe(true);
+      }
     }
   });
 
@@ -251,11 +257,14 @@ describe("passage query functions", () => {
     expect(getPassageById("nonexistent")).toBeUndefined();
   });
 
-  it("getPassagesByDifficulty returns 5 passages (one per genre)", () => {
+  it("getPassagesByDifficulty returns passages covering all genres", () => {
     const level3 = getPassagesByDifficulty(3);
-    expect(level3).toHaveLength(5);
-    const genres = level3.map((p) => p.metadata.genre).sort();
-    expect(genres).toEqual([...VALID_GENRES].sort());
+    expect(level3.length).toBeGreaterThanOrEqual(5);
+    const genres = new Set(level3.map((p) => p.metadata.genre));
+    expect([...genres].sort()).toEqual([...VALID_GENRES].sort());
+    for (const p of level3) {
+      expect(p.metadata.difficulty_level).toBe(3);
+    }
   });
 
   it("getPassagesBySkill returns passages testing that skill", () => {
@@ -266,16 +275,18 @@ describe("passage query functions", () => {
     }
   });
 
-  it("queryPassages with genre and difficulty returns exactly 1", () => {
+  it("queryPassages with genre and difficulty filters correctly", () => {
     const result = queryPassages({ genre: "poetry", difficulty: 2 });
-    expect(result).toHaveLength(1);
-    expect(result[0].metadata.genre).toBe("poetry");
-    expect(result[0].metadata.difficulty_level).toBe(2);
+    expect(result.length).toBeGreaterThanOrEqual(1);
+    for (const p of result) {
+      expect(p.metadata.genre).toBe("poetry");
+      expect(p.metadata.difficulty_level).toBe(2);
+    }
   });
 
-  it("queryPassages with empty query returns all 25", () => {
+  it("queryPassages with empty query returns all 50", () => {
     const result = queryPassages({});
-    expect(result).toHaveLength(25);
+    expect(result).toHaveLength(50);
   });
 
   it("queryPassages with nonexistent skill returns empty", () => {
