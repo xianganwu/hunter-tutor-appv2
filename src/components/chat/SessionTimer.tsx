@@ -25,7 +25,7 @@ export function SessionTimer({ startTime, stopped }: SessionTimerProps) {
   }, [startTime, stopped]);
 
   return (
-    <div className="text-xs text-gray-500 dark:text-gray-400 tabular-nums" aria-label={`Session time: ${formatTime(elapsed)}`}>
+    <div className="text-xs text-surface-500 dark:text-surface-400 tabular-nums" aria-label={`Session time: ${formatTime(elapsed)}`}>
       {formatTime(elapsed)}
     </div>
   );

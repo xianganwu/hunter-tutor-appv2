@@ -1,19 +1,32 @@
-import type { CurriculumTaxonomy, Skill } from "@/lib/types";
+import type { CurriculumTaxonomy, Skill, SkillLevel } from "@/lib/types";
 import taxonomyData from "../../../content/curriculum-taxonomy.json";
 
 export const curriculum = taxonomyData as unknown as CurriculumTaxonomy;
 
-/** Flat map of all skills keyed by skill_id */
-export function getAllSkills(): Map<string, Skill> {
+// Module-level caches — built once on first access, never rebuilt
+let _skillsCache: Map<string, Skill> | null = null;
+let _domainBySkillCache: Map<string, string> | null = null;
+
+function buildCaches(): void {
   const skills = new Map<string, Skill>();
+  const domainBySkill = new Map<string, string>();
   for (const domain of curriculum.domains) {
     for (const category of domain.skill_categories) {
       for (const skill of category.skills) {
-        skills.set(skill.skill_id, skill);
+        const enrichedSkill = skill.level ? skill : { ...skill, level: "foundations" as SkillLevel };
+        skills.set(skill.skill_id, enrichedSkill);
+        domainBySkill.set(skill.skill_id, domain.domain_id);
       }
     }
   }
-  return skills;
+  _skillsCache = skills;
+  _domainBySkillCache = domainBySkill;
+}
+
+/** Flat map of all skills keyed by skill_id */
+export function getAllSkills(): Map<string, Skill> {
+  if (!_skillsCache) buildCaches();
+  return _skillsCache!;
 }
 
 /** Get a single skill by ID, or undefined if not found */
@@ -28,6 +41,38 @@ export function getSkillIdsForDomain(domainId: string): string[] {
   return domain.skill_categories.flatMap((cat) =>
     cat.skills.map((s) => s.skill_id)
   );
+}
+
+/** Get skill IDs for a domain, filtered by level */
+export function getSkillIdsForDomainByLevel(
+  domainId: string,
+  level: SkillLevel
+): string[] {
+  const domain = curriculum.domains.find((d) => d.domain_id === domainId);
+  if (!domain) return [];
+  return domain.skill_categories.flatMap((cat) =>
+    cat.skills
+      .filter((s) => (s as Skill).level === level || (!('level' in s) && level === "foundations"))
+      .map((s) => s.skill_id)
+  );
+}
+
+/** Get all skills filtered by level */
+export function getSkillsByLevel(level: SkillLevel): Map<string, Skill> {
+  const allSkills = getAllSkills();
+  const filtered = new Map<string, Skill>();
+  for (const [id, skill] of Array.from(allSkills.entries())) {
+    if (skill.level === level) {
+      filtered.set(id, skill);
+    }
+  }
+  return filtered;
+}
+
+/** Get the domain ID that contains a given skill */
+export function getDomainForSkill(skillId: string): string | null {
+  if (!_domainBySkillCache) buildCaches();
+  return _domainBySkillCache!.get(skillId) ?? null;
 }
 
 /** Validate that all prerequisite references point to real skill IDs */

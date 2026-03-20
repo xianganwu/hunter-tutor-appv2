@@ -8,6 +8,7 @@ import {
   CATEGORY_LABELS,
 } from "@/lib/mistakes";
 import type { MistakeEntry } from "@/lib/mistakes";
+import { MathText } from "@/components/chat/MathText";
 
 interface MistakeReviewProps {
   readonly onComplete: () => void;
@@ -68,7 +69,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
           onClick={onComplete}
           className="rounded-xl bg-surface-100 dark:bg-surface-800 px-6 py-2.5 text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-200 transition-colors"
         >
-          Back to Journal
+          Done
         </button>
       </div>
     );
@@ -114,7 +115,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
           onClick={onComplete}
           className="rounded-xl bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 transition-colors"
         >
-          Back to Journal
+          Done
         </button>
       </div>
     );
@@ -149,7 +150,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
       {/* Question */}
       <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4">
         <p className="text-sm text-surface-900 dark:text-surface-100 leading-relaxed">
-          {current.questionText}
+          <MathText text={current.questionText} />
         </p>
       </div>
 
@@ -187,7 +188,7 @@ export function MistakeReview({ onComplete }: MistakeReviewProps) {
               disabled={showResult}
               className={classes}
             >
-              {choice}
+              <MathText text={choice} />
             </button>
           );
         })}

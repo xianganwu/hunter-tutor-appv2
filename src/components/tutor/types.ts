@@ -33,6 +33,7 @@ export interface SessionState {
   readonly difficultyTier: DifficultyLevel;
   readonly questionCount: number;
   readonly correctCount: number;
+  readonly correctStreak: number;
   readonly skillsCovered: readonly string[];
   readonly startTime: number; // epoch ms
   readonly estimatedQuestions: number;
@@ -57,6 +58,10 @@ export type ChatAction =
       studentAnswer: string;
       correctAnswer: string;
       history?: ConversationMessage[];
+      sessionId?: string;
+      skillId?: string;
+      timeSpentSeconds?: number;
+      hintUsed?: boolean;
     }
   | {
       type: "get_hint";
@@ -86,6 +91,21 @@ export type ChatAction =
       type: "emotional_response";
       message: string;
       history?: ConversationMessage[];
+    }
+  | {
+      type: "generate_drill_batch";
+      skillId: string;
+      count?: number;
+    }
+  | {
+      type: "generate_mixed_drill_batch";
+      skills: Array<{ skillId: string; tier: DifficultyLevel }>;
+      totalCount: number;
+    }
+  | {
+      type: "generate_diagnostic";
+      domain: string;
+      skillIds: readonly string[];
     };
 
 export interface ChatApiResponse {
@@ -100,6 +120,25 @@ export interface ChatApiResponse {
   };
 }
 
+// ─── Level-Up Event ──────────────────────────────────────────────────
+
+export interface LevelUpEvent {
+  readonly skillName: string;
+  readonly newTier: DifficultyLevel;
+  readonly newTierLabel: string;
+}
+
+// ─── Progress Diff ───────────────────────────────────────────────────
+
+export interface SkillProgressDiff {
+  readonly skillName: string;
+  readonly masteryBefore: number; // 0-1
+  readonly masteryAfter: number; // 0-1
+  readonly tierBefore: DifficultyLevel;
+  readonly tierAfter: DifficultyLevel;
+  readonly tierLabelAfter: string;
+}
+
 // ─── Session Summary ─────────────────────────────────────────────────
 
 export interface SessionSummaryData {
@@ -109,4 +148,10 @@ export interface SessionSummaryData {
   readonly skillsCovered: readonly string[];
   readonly elapsedMinutes: number;
   readonly tutorMessage: string;
+  readonly nextSkill?: {
+    readonly skillId: string;
+    readonly skillName: string;
+    readonly route: string;
+  };
+  readonly progressDiff?: SkillProgressDiff;
 }

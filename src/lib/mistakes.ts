@@ -36,7 +36,7 @@ export interface MistakePattern {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 
 const STORAGE_KEY = "hunter-tutor-mistakes";
 
@@ -64,6 +64,7 @@ export function loadMistakes(): MistakeEntry[] {
 
 export function saveMistakes(mistakes: readonly MistakeEntry[]): void {
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(mistakes));
+  notifyProgressChanged("mistakes");
 }
 
 export function addMistake(entry: MistakeEntry): void {

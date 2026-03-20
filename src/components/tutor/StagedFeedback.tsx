@@ -3,13 +3,13 @@
 import { useState, useCallback } from "react";
 import type { EssayFeedback } from "@/lib/ai/tutor-agent";
 import type { FeedbackStage, WritingApiResponse } from "./writing-types";
-import { ChatInput } from "@/components/chat/ChatInput";
 import { TypingIndicator } from "@/components/chat/TypingIndicator";
 
 interface StagedFeedbackProps {
   readonly feedback: EssayFeedback;
   readonly essayText: string;
   readonly onComplete: () => void;
+  readonly onRevise?: () => void;
 }
 
 function getFirstParagraph(text: string): string {
@@ -21,6 +21,7 @@ export function StagedFeedback({
   feedback,
   essayText,
   onComplete,
+  onRevise,
 }: StagedFeedbackProps) {
   const [stage, setStage] = useState<FeedbackStage>(1);
   const [rewrittenIntro, setRewrittenIntro] = useState("");
@@ -161,11 +162,33 @@ export function StagedFeedback({
               {isLoading ? (
                 <TypingIndicator />
               ) : (
-                <ChatInput
-                  onSend={handleRewriteSubmit}
-                  disabled={isLoading}
-                  placeholder="Rewrite your introduction here..."
-                />
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const trimmed = rewrittenIntro.trim();
+                    if (trimmed) handleRewriteSubmit(trimmed);
+                  }}
+                  className="space-y-2"
+                >
+                  <textarea
+                    value={rewrittenIntro}
+                    onChange={(e) => setRewrittenIntro(e.target.value)}
+                    disabled={isLoading}
+                    placeholder="Rewrite your introduction here..."
+                    rows={12}
+                    className="w-full rounded-xl border border-surface-300 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 px-5 py-4 text-base leading-relaxed text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50 transition-colors resize-y min-h-[280px]"
+                    aria-label="Rewrite your introduction"
+                  />
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={isLoading || !rewrittenIntro.trim()}
+                      className="rounded-xl bg-brand-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-700 disabled:opacity-40 disabled:hover:bg-brand-600 transition-colors"
+                    >
+                      Submit Rewrite
+                    </button>
+                  </div>
+                </form>
               )}
             </>
           )}
@@ -197,12 +220,22 @@ export function StagedFeedback({
           </button>
         )}
         {(stage === 3 && rewriteFeedback) && (
-          <button
-            onClick={onComplete}
-            className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
-          >
-            Finish
-          </button>
+          <>
+            {onRevise && (
+              <button
+                onClick={onRevise}
+                className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
+              >
+                Revise Full Essay
+              </button>
+            )}
+            <button
+              onClick={onComplete}
+              className={`${onRevise ? "" : "flex-1 "}rounded-xl bg-surface-100 dark:bg-surface-800 px-4 py-2.5 text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-200 dark:hover:bg-surface-700 transition-colors`}
+            >
+              Finish
+            </button>
+          </>
         )}
         {stage === 3 && !rewriteFeedback && (
           <button

@@ -1,0 +1,842 @@
+[
+  {
+    "wordId": "abundant",
+    "word": "abundant",
+    "definition": "Existing in very large amounts; more than enough.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The garden had an abundant supply of tomatoes this summer.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "accomplish",
+    "word": "accomplish",
+    "definition": "To succeed in doing something, especially something that takes effort.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "She worked hard to accomplish her goal of reading fifty books in one year.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "accurate",
+    "word": "accurate",
+    "definition": "Correct and exact, without any mistakes.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The scientist made sure her measurements were accurate before recording them.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "adapt",
+    "word": "adapt",
+    "definition": "To change or adjust in order to fit a new situation.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Animals must adapt to their environment to survive.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "ancient",
+    "word": "ancient",
+    "definition": "Very old; from a time long ago in history.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The museum displayed ancient pottery from thousands of years ago.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "anxious",
+    "word": "anxious",
+    "definition": "Feeling worried or nervous about something.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Marcus felt anxious about his first day at the new school.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "apparent",
+    "word": "apparent",
+    "definition": "Easy to see or understand; obvious.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "It was apparent from her smile that she had good news to share.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "approximately",
+    "word": "approximately",
+    "definition": "Close to an exact amount but not completely exact.",
+    "partOfSpeech": "adverb",
+    "exampleSentence": "The drive from home to school takes approximately twenty minutes.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "arrange",
+    "word": "arrange",
+    "definition": "To put things in a particular order or to plan something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The librarian helped arrange the books on the shelf by author name.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "assume",
+    "word": "assume",
+    "definition": "To believe something is true without checking the facts.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Don't assume the answer is wrong just because it looks different.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "atmosphere",
+    "word": "atmosphere",
+    "definition": "The layer of gases surrounding a planet, or the mood of a place.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Earth's atmosphere protects us from harmful rays from the sun.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "benefit",
+    "word": "benefit",
+    "definition": "Something good that helps or improves a situation.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "One benefit of reading every day is that your vocabulary grows.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "boundary",
+    "word": "boundary",
+    "definition": "A line or limit that separates one area from another.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The river forms a natural boundary between the two towns.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "capable",
+    "word": "capable",
+    "definition": "Having the skill or ability to do something well.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "She is a very capable student who always finishes her work on time.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "cautious",
+    "word": "cautious",
+    "definition": "Being careful to avoid danger or mistakes.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The cautious hiker checked the trail map before setting out.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "characteristic",
+    "word": "characteristic",
+    "definition": "A feature or quality that makes someone or something recognizable.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Stripes are a key characteristic of zebras.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "civilization",
+    "word": "civilization",
+    "definition": "An organized society with its own culture, government, and way of life.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The ancient Egyptian civilization built the pyramids thousands of years ago.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "climate",
+    "word": "climate",
+    "definition": "The usual weather conditions in a particular area over a long time.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The tropical climate near the equator is warm and rainy year-round.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "collapse",
+    "word": "collapse",
+    "definition": "To fall down or break apart suddenly.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The old bridge began to collapse after years without repairs.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "compare",
+    "word": "compare",
+    "definition": "To look at two or more things to find how they are alike or different.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The teacher asked us to compare the two stories and find three similarities.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "conclude",
+    "word": "conclude",
+    "definition": "To reach a decision or opinion after thinking about the facts.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Based on the clues in the story, we can conclude that the character is brave.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "conflict",
+    "word": "conflict",
+    "definition": "A struggle or disagreement between two sides.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The conflict between the two friends was resolved when they talked it out.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "consequence",
+    "word": "consequence",
+    "definition": "A result or effect that happens because of something else.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "One consequence of not studying is doing poorly on the test.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "constant",
+    "word": "constant",
+    "definition": "Happening all the time or never changing.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The constant rain made it impossible to play outside all week.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "construct",
+    "word": "construct",
+    "definition": "To build or put something together.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The workers will construct a new playground in the park this summer.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "contribute",
+    "word": "contribute",
+    "definition": "To give or add something to help a group or cause.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Every student can contribute ideas during a class discussion.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "convince",
+    "word": "convince",
+    "definition": "To persuade someone to believe or do something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "She tried to convince her parents to let her adopt a kitten.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "courageous",
+    "word": "courageous",
+    "definition": "Brave enough to do something that is difficult or scary.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The courageous firefighter ran into the burning building to help.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "curious",
+    "word": "curious",
+    "definition": "Wanting to learn or know more about something.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The curious child asked dozens of questions about how rockets work.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "debate",
+    "word": "debate",
+    "definition": "A formal discussion where people argue different sides of a topic.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The class held a debate about whether students should wear uniforms.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "decline",
+    "word": "decline",
+    "definition": "To become smaller, fewer, or weaker over time.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The number of butterflies in the area has started to decline.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "demonstrate",
+    "word": "demonstrate",
+    "definition": "To show clearly how something works or how to do it.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The teacher will demonstrate how to solve the math problem step by step.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "depend",
+    "word": "depend",
+    "definition": "To rely on someone or something for support or help.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Baby birds depend on their parents for food until they can fly.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "describe",
+    "word": "describe",
+    "definition": "To explain what something is like using words.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Can you describe what the main character looks like in the story?",
+    "difficulty": 1
+  },
+  {
+    "wordId": "determine",
+    "word": "determine",
+    "definition": "To figure out or decide something after careful thought.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Scientists must determine whether the experiment's results are reliable.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "develop",
+    "word": "develop",
+    "definition": "To grow or change over time into something more complete.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "A caterpillar will develop into a butterfly over several weeks.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "discover",
+    "word": "discover",
+    "definition": "To find or learn about something for the first time.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Marie Curie helped discover the element radium.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "distinguish",
+    "word": "distinguish",
+    "definition": "To notice the differences between two or more things.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "It can be hard to distinguish between a frog and a toad at first glance.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "drought",
+    "word": "drought",
+    "definition": "A long period of time with very little or no rain.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The drought caused the lake to dry up almost completely.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "eager",
+    "word": "eager",
+    "definition": "Very excited and wanting to do something right away.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The eager students raised their hands before the teacher finished the question.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "effect",
+    "word": "effect",
+    "definition": "A change that happens because of a cause or action.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "One effect of pollution is that the air becomes harder to breathe.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "elaborate",
+    "word": "elaborate",
+    "definition": "To give more details or explain something more fully.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The author could elaborate on the character's feelings to make the story richer.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "emerge",
+    "word": "emerge",
+    "definition": "To come out from a hidden or enclosed place.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The butterfly will emerge from its cocoon when it is ready.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "encourage",
+    "word": "encourage",
+    "definition": "To give someone support or confidence to do something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Good coaches encourage their players even after a tough loss.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "enormous",
+    "word": "enormous",
+    "definition": "Extremely large in size or amount.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The enormous whale was longer than a school bus.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "environment",
+    "word": "environment",
+    "definition": "The natural world around us, including air, water, and land.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Recycling is one way we can help protect the environment.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "essential",
+    "word": "essential",
+    "definition": "Absolutely necessary; something you cannot do without.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Water is essential for all living things to survive.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "establish",
+    "word": "establish",
+    "definition": "To set up or create something that is meant to last.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The colonists worked to establish a new town near the river.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "estimate",
+    "word": "estimate",
+    "definition": "To make a careful guess about an amount or value.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Can you estimate how many jelly beans are in the jar?",
+    "difficulty": 1
+  },
+  {
+    "wordId": "evidence",
+    "word": "evidence",
+    "definition": "Facts or details that help prove something is true.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The detective found evidence that helped solve the mystery.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "examine",
+    "word": "examine",
+    "definition": "To look at something very carefully to learn more about it.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The scientist used a microscope to examine the tiny cells.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "exceed",
+    "word": "exceed",
+    "definition": "To go beyond or be greater than a limit or expectation.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Her test score will exceed the class average if she studies hard.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "exchange",
+    "word": "exchange",
+    "definition": "To give something and receive something else in return.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The two pen pals exchange letters every month.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "experiment",
+    "word": "experiment",
+    "definition": "A test done to learn something new or check if an idea is correct.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "We designed an experiment to find out which soil helps plants grow fastest.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "explain",
+    "word": "explain",
+    "definition": "To make something clear so that others can understand it.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The teacher asked the student to explain how she got her answer.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "familiar",
+    "word": "familiar",
+    "definition": "Well known because you have seen or experienced it before.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The song sounded familiar, but she couldn't remember the title.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "feature",
+    "word": "feature",
+    "definition": "An important or noticeable part of something.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "One feature of a desert is that it receives very little rainfall.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "flexible",
+    "word": "flexible",
+    "definition": "Able to bend easily or willing to change plans.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "A flexible schedule allows the family to take trips on different days.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "frequent",
+    "word": "frequent",
+    "definition": "Happening often or many times.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Frequent practice is the best way to improve at playing the piano.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "generation",
+    "word": "generation",
+    "definition": "All the people born and living around the same time period.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Each generation brings new ideas and inventions to the world.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "genuine",
+    "word": "genuine",
+    "definition": "Real and true; not fake or pretend.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Her smile was genuine because she was truly happy to see her friend.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "gradually",
+    "word": "gradually",
+    "definition": "Happening slowly, little by little over time.",
+    "partOfSpeech": "adverb",
+    "exampleSentence": "The sky gradually turned from blue to orange as the sun set.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "habitat",
+    "word": "habitat",
+    "definition": "The natural home or living place of an animal or plant.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "A coral reef is the habitat for thousands of different fish species.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "hesitate",
+    "word": "hesitate",
+    "definition": "To pause before doing something because you feel uncertain.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "She didn't hesitate to raise her hand when the teacher asked for volunteers.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "identify",
+    "word": "identify",
+    "definition": "To recognize or figure out what something is.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Can you identify the main idea of this paragraph?",
+    "difficulty": 1
+  },
+  {
+    "wordId": "illustrate",
+    "word": "illustrate",
+    "definition": "To explain or make something clear by using examples or pictures.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The diagram helps illustrate how the water cycle works.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "impact",
+    "word": "impact",
+    "definition": "A strong effect or influence on something.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The new recycling program had a big impact on reducing waste in the school.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "indicate",
+    "word": "indicate",
+    "definition": "To show or point out something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Dark clouds indicate that a storm might be on the way.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "individual",
+    "word": "individual",
+    "definition": "A single person, separate from others in a group.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Each individual on the team has a special role to play.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "influence",
+    "word": "influence",
+    "definition": "The power to change or affect someone's actions or thoughts.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Her older sister was a big influence on her love of reading.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "inhabit",
+    "word": "inhabit",
+    "definition": "To live in a particular place.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Many different species of birds inhabit the tropical rainforest.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "investigate",
+    "word": "investigate",
+    "definition": "To carefully study or examine something to learn the truth.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The students decided to investigate why the plants near the window grew taller.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "justify",
+    "word": "justify",
+    "definition": "To give good reasons to explain why something is right.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "You must justify your answer by showing your work on the math problem.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "locate",
+    "word": "locate",
+    "definition": "To find where something is.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Use the map to locate the capital city of each state.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "magnificent",
+    "word": "magnificent",
+    "definition": "Extremely beautiful or impressive.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The view from the mountaintop was absolutely magnificent.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "majority",
+    "word": "majority",
+    "definition": "More than half of a group or total.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The majority of students voted for pizza at the school lunch poll.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "method",
+    "word": "method",
+    "definition": "A planned way of doing something.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The scientific method helps researchers test their ideas carefully.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "migrate",
+    "word": "migrate",
+    "definition": "To move from one place to another, usually with the seasons.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Geese migrate south every fall to find warmer weather.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "moist",
+    "word": "moist",
+    "definition": "Slightly wet; damp.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The soil needs to stay moist for the seeds to sprout.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "narrative",
+    "word": "narrative",
+    "definition": "A story or account of events.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The author wrote a narrative about a family's journey across the country.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "necessary",
+    "word": "necessary",
+    "definition": "Needed; something that must be done or had.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "It is necessary to wear a helmet when riding a bicycle.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "observe",
+    "word": "observe",
+    "definition": "To watch something carefully to learn from it.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Scientists observe animals in the wild to learn about their behavior.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "obtain",
+    "word": "obtain",
+    "definition": "To get something, especially through effort.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "You can obtain a library card by signing up at the front desk.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "occur",
+    "word": "occur",
+    "definition": "To happen or take place.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Earthquakes occur when pieces of the earth's surface suddenly shift.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "oppose",
+    "word": "oppose",
+    "definition": "To disagree with or act against something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Some citizens opposed the plan to build a highway through the park.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "organize",
+    "word": "organize",
+    "definition": "To arrange things in a neat or logical order.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "She likes to organize her notes by color before studying for a test.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "origin",
+    "word": "origin",
+    "definition": "The place or situation where something begins.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The origin of the tradition can be traced back hundreds of years.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "passage",
+    "word": "passage",
+    "definition": "A section of a written work, or a way through from one place to another.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Read the passage carefully before answering the questions.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "persist",
+    "word": "persist",
+    "definition": "To keep going even when something is difficult.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "If you persist in practicing, you will eventually learn to play the song.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "persuade",
+    "word": "persuade",
+    "definition": "To cause someone to do or believe something through reasoning.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The essay tried to persuade readers to recycle more often.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "predict",
+    "word": "predict",
+    "definition": "To say what you think will happen in the future.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Based on the clues in the story, can you predict what will happen next?",
+    "difficulty": 1
+  },
+  {
+    "wordId": "preserve",
+    "word": "preserve",
+    "definition": "To keep something safe and in good condition.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "National parks help preserve natural land for future generations.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "previous",
+    "word": "previous",
+    "definition": "Happening or existing before the current one.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "In the previous chapter, the hero found the hidden map.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "process",
+    "word": "process",
+    "definition": "A series of steps or actions taken to complete something.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Photosynthesis is the process plants use to make food from sunlight.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "produce",
+    "word": "produce",
+    "definition": "To make or create something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Factories produce goods that people buy in stores.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "rare",
+    "word": "rare",
+    "definition": "Not found or seen very often; uncommon.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Seeing a snow leopard in the wild is extremely rare.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "recommend",
+    "word": "recommend",
+    "definition": "To suggest something as a good choice.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "I recommend this book because it has an exciting plot and interesting characters.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "region",
+    "word": "region",
+    "definition": "A large area of land that has common features.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The desert region receives less than ten inches of rain each year.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "represent",
+    "word": "represent",
+    "definition": "To stand for or be a symbol of something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The stars on the flag represent the fifty states.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "require",
+    "word": "require",
+    "definition": "To need something or make something necessary.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Most plants require sunlight and water to grow.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "resemble",
+    "word": "resemble",
+    "definition": "To look like or be similar to something else.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The cloud formations resemble animals if you use your imagination.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "resource",
+    "word": "resource",
+    "definition": "Something useful that can be used to accomplish a goal.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Water is one of our most important natural resources.",
+    "difficulty": 1
+  },
+  {
+    "wordId": "reveal",
+    "word": "reveal",
+    "definition": "To show or make known something that was hidden.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The last chapter will reveal the identity of the mysterious stranger.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "sequence",
+    "word": "sequence",
+    "definition": "A particular order in which things follow each other.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Put the events of the story in the correct sequence from first to last.",
+    "difficulty": 2
+  },
+  {
+    "wordId": "significant",
+    "word": "significant",
+    "definition": "Important enough to have an effect or be noticed.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The invention of the printing press was a significant moment in history.",
+    "difficulty": 3
+  }
+]

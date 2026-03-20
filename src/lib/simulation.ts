@@ -1,6 +1,6 @@
 import type { Passage, PassageGenre } from "@/lib/types";
 import { getAllPassages, getPassagesByGenre } from "@/lib/exam/passages";
-import { getSkillById } from "@/lib/exam/curriculum";
+import { getSkillById, getDomainForSkill } from "@/lib/exam/curriculum";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -25,9 +25,12 @@ export interface SimulationExam {
   readonly id: string;
   readonly createdAt: string;
   readonly readingBlocks: readonly ExamPassageBlock[];
-  readonly writingPrompt: { readonly id: string; readonly text: string };
+  readonly writingPrompt: { readonly id: string; readonly text: string } | null;
   readonly qrQuestions: readonly ExamQuestion[];
   readonly maQuestions: readonly ExamQuestion[];
+  readonly mode: "random" | "sample";
+  readonly formId?: string;
+  readonly mathQuestions?: readonly ExamQuestion[];
 }
 
 export interface SectionTiming {
@@ -71,6 +74,28 @@ export interface WritingScore {
   readonly improvements: readonly string[];
 }
 
+export interface MissedQuestion {
+  readonly questionId: string;
+  readonly questionText: string;
+  readonly studentAnswer: string;
+  readonly correctAnswer: string;
+  readonly skillId: string;
+  readonly skillName: string;
+  readonly section: "reading" | "qr" | "ma" | "math";
+}
+
+export interface ImpactSkill {
+  readonly skillId: string;
+  readonly skillName: string;
+  readonly missedCount: number;
+  readonly currentPercentage: number;
+  readonly projectedPercentage: number;
+  readonly currentPercentile: number;
+  readonly projectedPercentile: number;
+  readonly delta: number;
+  readonly route: string;
+}
+
 export interface ScoreReport {
   readonly examId: string;
   readonly completedAt: string;
@@ -84,8 +109,13 @@ export interface ScoreReport {
   readonly writing: WritingScore;
   readonly qr: SectionScore;
   readonly ma: SectionScore;
+  readonly math?: SectionScore;
+  readonly mode?: "random" | "sample";
+  readonly formTitle?: string;
+  readonly excludedCount?: number;
   readonly timeAnalysis: TimeAnalysis;
   readonly recommendations: readonly string[];
+  readonly missedQuestions?: readonly MissedQuestion[];
 }
 
 export interface StoredSimulation {
@@ -96,7 +126,7 @@ export interface StoredSimulation {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
-import { getStorageKey } from "./user-profile";
+import { getStorageKey, notifyProgressChanged } from "./user-profile";
 
 const STORAGE_KEY = "hunter-tutor-simulations";
 
@@ -388,7 +418,143 @@ export function saveSimulation(sim: StoredSimulation): void {
   const history = loadSimulationHistory();
   history.push(sim);
   localStorage.setItem(getStorageKey(STORAGE_KEY), JSON.stringify(history));
+  notifyProgressChanged("simulations");
 }
+
+// ─── Missed Questions & Impact Analysis ──────────────────────────────
+
+export function collectMissedQuestions(
+  readingQuestions: readonly ExamQuestion[],
+  qrQuestions: readonly ExamQuestion[],
+  maQuestions: readonly ExamQuestion[],
+  answers: Record<string, string>,
+  mathQuestions?: readonly ExamQuestion[]
+): MissedQuestion[] {
+  const missed: MissedQuestion[] = [];
+
+  const process = (
+    questions: readonly ExamQuestion[],
+    section: "reading" | "qr" | "ma" | "math"
+  ) => {
+    for (const q of questions) {
+      const selected = answers[q.id];
+      if (selected !== q.correctAnswer) {
+        const skill = getSkillById(q.skillId);
+        const studentChoice = q.answerChoices.find((c) => c.letter === selected);
+        const correctChoice = q.answerChoices.find((c) => c.letter === q.correctAnswer);
+        missed.push({
+          questionId: q.id,
+          questionText: q.questionText,
+          studentAnswer: selected
+            ? `${selected}) ${studentChoice?.text ?? ""}`
+            : "(no answer)",
+          correctAnswer: `${q.correctAnswer}) ${correctChoice?.text ?? ""}`,
+          skillId: q.skillId,
+          skillName: skill?.name ?? q.skillId,
+          section,
+        });
+      }
+    }
+  };
+
+  process(readingQuestions, "reading");
+  if (mathQuestions) {
+    process(mathQuestions, "math");
+  } else {
+    process(qrQuestions, "qr");
+    process(maQuestions, "ma");
+  }
+
+  return missed;
+}
+
+export function getSkillPracticeRoute(skillId: string): string {
+  const domain = getDomainForSkill(skillId);
+  if (domain === "reading_comprehension") {
+    return `/tutor/reading?skill=${skillId}`;
+  }
+  return `/tutor/math?skill=${skillId}`;
+}
+
+export function computeImpactAnalysis(report: ScoreReport): ImpactSkill[] {
+  if (!report.missedQuestions || report.missedQuestions.length === 0) return [];
+
+  const { overall } = report;
+  const totalQuestions = overall.total;
+
+  // Group missed questions by skill
+  const bySkill = new Map<string, { skillName: string; count: number }>();
+  for (const mq of report.missedQuestions) {
+    const existing = bySkill.get(mq.skillId);
+    if (existing) {
+      existing.count++;
+    } else {
+      bySkill.set(mq.skillId, { skillName: mq.skillName, count: 1 });
+    }
+  }
+
+  const impacts: ImpactSkill[] = [];
+  for (const [skillId, data] of Array.from(bySkill.entries())) {
+    const projectedCorrect = overall.correct + data.count;
+    const projectedPct = Math.round((projectedCorrect / totalQuestions) * 100);
+    const delta = projectedPct - overall.percentage;
+
+    impacts.push({
+      skillId,
+      skillName: data.skillName,
+      missedCount: data.count,
+      currentPercentage: overall.percentage,
+      projectedPercentage: projectedPct,
+      currentPercentile: overall.estimatedPercentile,
+      projectedPercentile: estimatePercentile(projectedPct),
+      delta,
+      route: getSkillPracticeRoute(skillId),
+    });
+  }
+
+  // Sort by delta descending (highest impact first)
+  impacts.sort((a, b) => b.delta - a.delta);
+
+  return impacts.slice(0, 5);
+}
+
+export function formatShareableReport(report: ScoreReport): string {
+  const lines: string[] = [];
+  const title = report.formTitle
+    ? `Hunter Tutor — ${report.formTitle} Results`
+    : "Hunter Tutor — Practice Exam Results";
+  lines.push(title);
+  lines.push(`Date: ${new Date(report.completedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`);
+  lines.push("");
+  lines.push(`Overall: ${report.overall.percentage}% (${report.overall.correct}/${report.overall.total}) — est. ${report.overall.estimatedPercentile}th percentile`);
+  lines.push("");
+  lines.push(`Reading: ${report.reading.percentage}% (${report.reading.correct}/${report.reading.total})`);
+
+  if (report.mode === "sample") {
+    if (report.math) {
+      lines.push(`Math: ${report.math.percentage}% (${report.math.correct}/${report.math.total})`);
+    }
+    if (report.excludedCount) {
+      lines.push(`(${report.excludedCount} questions excluded — image-dependent)`);
+    }
+  } else {
+    lines.push(`Essay: ${report.writing.score}/10`);
+    lines.push(`Quantitative Reasoning: ${report.qr.percentage}% (${report.qr.correct}/${report.qr.total})`);
+    lines.push(`Math Achievement: ${report.ma.percentage}% (${report.ma.correct}/${report.ma.total})`);
+  }
+
+  if (report.recommendations.length > 0) {
+    lines.push("");
+    lines.push("Recommendations:");
+    for (const rec of report.recommendations) {
+      lines.push(`  - ${rec.replace(/\*\*/g, "")}`);
+    }
+  }
+
+  return lines.join("\n");
+}
+
+// ─── Cooldown / Storage ───────────────────────────────────────────────
 
 export function checkCooldown(): {
   allowed: boolean;

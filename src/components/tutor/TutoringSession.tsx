@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import "katex/dist/katex.min.css";
 import { ChatBubble } from "@/components/chat/ChatBubble";
 import { ChatInput } from "@/components/chat/ChatInput";
@@ -13,17 +14,28 @@ import { SessionSummary } from "@/components/chat/SessionSummary";
 import { TeachItBack } from "./TeachItBack";
 import { useTutoringSession } from "@/hooks/useTutoringSession";
 import { getSkillById } from "@/lib/exam/curriculum";
+import { SessionMascot, type MascotReaction } from "@/components/shared/SessionMascot";
+import { getStoredMascotType } from "@/lib/user-profile";
+import { getMascotTier } from "@/components/shared/Mascot";
+import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
+import { LevelUpBanner } from "@/components/shared/LevelUpBanner";
+import { DrillMode } from "./DrillMode";
 
 interface TutoringSessionProps {
   readonly skillId: string;
   readonly subject: string;
+  readonly isRetentionCheck?: boolean;
+  readonly isFirstSession?: boolean;
 }
 
-export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
+export function TutoringSession({ skillId, subject, isRetentionCheck = false, isFirstSession = false }: TutoringSessionProps) {
   const {
     state,
     summary,
     teachBackActive,
+    levelUpEvent,
+    clearLevelUp,
     submitAnswer,
     sendMessage,
     requestHint,
@@ -32,11 +44,41 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
     restart,
     handleTeachBackComplete,
     handleTeachBackSkip,
-  } = useTutoringSession(skillId);
+  } = useTutoringSession(skillId, isRetentionCheck, isFirstSession);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const skill = getSkillById(skillId);
   const isLoading = state.phase === "loading" || state.phase === "initializing";
+  const lastMsg = state.messages[state.messages.length - 1];
+  const isStreaming = isLoading && lastMsg?.role === "tutor" && lastMsg.content.length > 0;
+
+  // Mascot reactions
+  const mascotType = getStoredMascotType();
+  const storedMasteries = loadAllSkillMasteries();
+  const overallMastery = storedMasteries.length > 0
+    ? storedMasteries.reduce((sum, s) => sum + s.masteryLevel, 0) / storedMasteries.length
+    : 0;
+  const mascotTier = getMascotTier(overallMastery);
+  const [mascotReaction, setMascotReaction] = useState<MascotReaction>("idle");
+  const [mascotReactionKey, setMascotReactionKey] = useState(0);
+  const prevQuestionCountRef = useRef(state.questionCount);
+
+  useEffect(() => {
+    if (state.questionCount <= prevQuestionCountRef.current) return;
+    prevQuestionCountRef.current = state.questionCount;
+
+    // Level-up overrides normal reaction with bounce animation
+    if (levelUpEvent) {
+      setMascotReaction("streak");
+    } else if (state.correctStreak >= 3) {
+      setMascotReaction("streak");
+    } else if (state.correctStreak > 0) {
+      setMascotReaction("correct");
+    } else {
+      setMascotReaction("incorrect");
+    }
+    setMascotReactionKey((k) => k + 1);
+  }, [state.questionCount, state.correctStreak, levelUpEvent]);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -45,16 +87,35 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
     }
   }, [state.messages, isLoading]);
 
+  const [drillActive, setDrillActive] = useState(false);
+
+  const router = useRouter();
+  const handleSummaryClose = useCallback(() => {
+    if (isFirstSession) {
+      router.push("/dashboard");
+    } else {
+      restart();
+    }
+  }, [isFirstSession, router, restart]);
+
+  if (summary && drillActive) {
+    return (
+      <div className="flex flex-col min-h-screen bg-surface-50 dark:bg-surface-950">
+        <DrillMode initialSkillId={state.currentSkillId} autoStart />
+      </div>
+    );
+  }
+
   if (summary) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-8 bg-surface-50 dark:bg-surface-950 min-h-screen">
-        <SessionSummary data={summary} onClose={restart} />
+        <SessionSummary data={summary} onClose={handleSummaryClose} isFirstSession={isFirstSession} onStartDrill={() => setDrillActive(true)} />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto bg-surface-50 dark:bg-surface-950">
+    <div className="relative flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto bg-surface-50 dark:bg-surface-950">
       {/* Header */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900">
         <div className="flex items-center gap-3">
@@ -77,6 +138,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          <DailyPlanProgress />
           <ProgressIndicator
             current={state.questionCount}
             estimated={state.estimatedQuestions}
@@ -93,6 +155,21 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           </button>
         </div>
       </header>
+
+      {/* Session goal banner */}
+      {state.messages.length === 0 && state.phase === "initializing" && (
+        <div className="mx-4 mt-4 rounded-2xl border border-brand-200 bg-brand-50 dark:border-brand-800 dark:bg-brand-900/20 px-4 py-3 flex items-center gap-3 animate-fade-in">
+          <span className="text-xl shrink-0" aria-hidden="true">🎯</span>
+          <div>
+            <p className="text-sm font-semibold text-brand-700 dark:text-brand-300">
+              Today&apos;s goal: {skill?.name ?? skillId}
+            </p>
+            <p className="text-xs text-brand-600/70 dark:text-brand-400/70">
+              About {state.estimatedQuestions} questions · You&apos;ve got this!
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Chat area */}
       <div
@@ -122,7 +199,7 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           />
         )}
 
-        {isLoading && <TypingIndicator />}
+        {isLoading && !isStreaming && <TypingIndicator />}
       </div>
 
       {/* Bottom controls */}
@@ -144,6 +221,17 @@ export function TutoringSession({ skillId, subject }: TutoringSessionProps) {
           }
         />
       </div>
+
+      {levelUpEvent && (
+        <LevelUpBanner event={levelUpEvent} onDismiss={clearLevelUp} />
+      )}
+
+      <SessionMascot
+        mascotType={mascotType}
+        tier={mascotTier}
+        reaction={mascotReaction}
+        reactionKey={mascotReactionKey}
+      />
     </div>
   );
 }

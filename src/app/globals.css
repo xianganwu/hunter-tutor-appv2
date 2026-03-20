@@ -65,6 +65,17 @@ html {
   color: #e2e8f0;
 }
 
+/* ─── KaTeX dark mode overrides ──────────────────────────── */
+.dark .katex .mord,
+.dark .katex .mbin,
+.dark .katex .mrel,
+.dark .katex .mopen,
+.dark .katex .mclose,
+.dark .katex .mpunct,
+.dark .katex .minner {
+  color: inherit;
+}
+
 /* ─── Page transitions ─────────────────────────────────────── */
 @layer utilities {
   .text-balance {

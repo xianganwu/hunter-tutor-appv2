@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_08",
+    "title": "Thomas Edison and the Invention Factory",
+    "genre": "historical_document",
+    "difficulty_level": 3,
+    "word_count": 545,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_supporting_details",
+      "rc_vocab_context",
+      "rc_evidence_reasoning",
+      "rc_passage_structure"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["inventions"]
+  },
+  "pre_reading_context": "This passage tells the story of Thomas Edison's approach to inventing and how his laboratory in Menlo Park changed the way people think about innovation.",
+  "passage_text": "Thomas Edison is often remembered as a lone genius who invented the light bulb in a flash of brilliance. The truth, however, is far more interesting — and far more instructive. Edison did not work alone, and his greatest invention was not the light bulb itself, but the system he created for inventing things.\n\nIn 1876, Edison established a laboratory in Menlo Park, New Jersey, that he called his \"invention factory.\" Unlike other inventors of the era, who typically worked by themselves in small workshops, Edison assembled a team of skilled workers — machinists, glassblowers, chemists, and draftsmen — and put them all under one roof. The lab was stocked with every material and tool Edison could imagine needing: chemicals, metals, wires, fabrics, and even animal parts. He wanted to be able to test any idea at any time without waiting for supplies.\n\nEdison's approach to inventing was based on relentless experimentation rather than sudden inspiration. When his team was working on the incandescent light bulb, they tested over three thousand different materials for the filament — the thin strand inside the bulb that glows when electricity passes through it. They tried platinum, bamboo, fishing line, human hair, and hundreds of other substances. Most of these trials failed. When asked about the failures, Edison reportedly said, \"I have not failed. I've just found ten thousand ways that won't work.\"\n\nThis attitude — treating failure as useful information rather than defeat — was central to Edison's philosophy. He kept detailed notebooks recording every experiment, including the ones that did not succeed. These records allowed his team to avoid repeating mistakes and to build systematically toward solutions. In Edison's lab, failure was not a setback but a step forward.\n\nThe results of this approach were staggering. Between 1876 and 1882, Edison's Menlo Park laboratory produced the phonograph (the first device to record and play back sound), a commercially practical incandescent light bulb, and an entire electrical power distribution system. Edison eventually held 1,093 United States patents — more than any other individual inventor in American history at the time.\n\nBut perhaps Edison's most lasting contribution was the model of the research laboratory itself. Before Menlo Park, inventing was largely a solitary activity. After Menlo Park, companies and governments began building their own team-based research laboratories. Bell Telephone Laboratories, founded in 1925, was directly inspired by Edison's model. So were the research divisions of companies like General Electric and DuPont. The modern corporate research lab — where teams of scientists and engineers collaborate on solving problems — traces its origins to a wooden building in a small New Jersey town.\n\nEdison understood something that many people still overlook: great inventions rarely emerge from a single brilliant mind working in isolation. They emerge from teams of skilled people, abundant resources, systematic experimentation, and a willingness to learn from failure. The light bulb may be the symbol of a great idea, but it took thousands of bad ideas to make it glow.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Thomas Edison was the smartest person who ever lived."},
+        {"letter": "B", "text": "Edison's greatest achievement was not any single invention but the team-based, experiment-driven approach to innovation that transformed how inventions are made."},
+        {"letter": "C", "text": "The light bulb was easy to invent because Edison was a natural genius."},
+        {"letter": "D", "text": "Edison's laboratory failed more often than it succeeded, which proves his methods were flawed."},
+        {"letter": "E", "text": "All important inventions were made before 1900."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage opens by saying Edison's greatest invention was 'the system he created for inventing things,' then describes his team-based lab, systematic experimentation, and how this model influenced future research laboratories. The main idea is about his approach to innovation, not any single product.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because Edison was brilliant, but the passage specifically challenges the 'lone genius' narrative and emphasizes teamwork and systematic effort."},
+        {"letter": "C", "explanation": "This is tempting because the light bulb is iconic, but the passage describes over 3,000 filament tests — the invention was the result of exhaustive work, not easy brilliance."},
+        {"letter": "D", "explanation": "This is tempting because many experiments failed, but Edison treated failure as 'useful information' and produced remarkable results, including 1,093 patents."},
+        {"letter": "E", "explanation": "This is tempting because the passage focuses on the 1800s, but it discusses labs founded in the 1900s (Bell Labs, 1925) and does not claim all important inventions predated 1900."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, what materials did Edison's team test as potential filaments for the light bulb?",
+      "answer_choices": [
+        {"letter": "A", "text": "Only platinum and copper wire"},
+        {"letter": "B", "text": "Platinum, bamboo, fishing line, human hair, and hundreds of other substances"},
+        {"letter": "C", "text": "Only materials that were known to conduct electricity"},
+        {"letter": "D", "text": "Glass and wood"},
+        {"letter": "E", "text": "The passage does not mention any specific filament materials"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage specifically lists 'platinum, bamboo, fishing line, human hair, and hundreds of other substances' as materials tested for the filament, showing the breadth of Edison's experimentation.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because platinum is mentioned, but copper wire is not listed, and the passage names many more materials beyond just platinum."},
+        {"letter": "C", "explanation": "This is tempting because conductivity matters for filaments, but the passage shows they tested unusual materials like bamboo and hair, not just known conductors."},
+        {"letter": "D", "explanation": "This is tempting as a guess, but glass and wood are not listed among the filament materials in the passage."},
+        {"letter": "E", "explanation": "This is tempting if the reader skimmed the passage, but several specific materials are clearly named in the third paragraph."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word \"relentless\" most likely mean as used in the third paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Careless and sloppy"},
+        {"letter": "B", "text": "Continuous and determined, never giving up"},
+        {"letter": "C", "text": "Slow and cautious"},
+        {"letter": "D", "text": "Random and disorganized"},
+        {"letter": "E", "text": "Expensive and wasteful"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage says Edison's approach was 'based on relentless experimentation' and then describes testing over 3,000 materials. This context shows that 'relentless' means continuous and persistent — refusing to stop despite repeated failures.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because of the many failures, but the passage describes careful record-keeping and systematic testing — the opposite of careless."},
+        {"letter": "C", "explanation": "This is tempting because thoroughness can involve patience, but 'relentless' emphasizes persistence and intensity, not slowness."},
+        {"letter": "D", "explanation": "This is tempting because they tested many materials, but the passage says Edison kept detailed notebooks and built 'systematically toward solutions' — the process was organized, not random."},
+        {"letter": "E", "explanation": "This is tempting because extensive testing uses resources, but 'relentless' describes the determination, not the cost."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Which evidence from the passage best supports the claim that Edison's laboratory model had a lasting influence beyond his own work?",
+      "answer_choices": [
+        {"letter": "A", "text": "Edison tested over three thousand materials for the light bulb filament."},
+        {"letter": "B", "text": "Edison held 1,093 United States patents."},
+        {"letter": "C", "text": "Bell Telephone Laboratories, General Electric, and DuPont all built research labs inspired by Edison's Menlo Park model."},
+        {"letter": "D", "text": "Edison reportedly said he had found ten thousand ways that won't work."},
+        {"letter": "E", "text": "The Menlo Park laboratory was built in a small New Jersey town."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage names specific companies (Bell Labs, General Electric, DuPont) that built their own research laboratories inspired by Edison's model. This directly demonstrates that his approach influenced how other organizations conducted research, proving a lasting impact beyond Edison's own work.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because it shows Edison's thoroughness, but it describes his own lab's methods, not the influence those methods had on others."},
+        {"letter": "B", "explanation": "This is tempting because it shows Edison's productivity, but patent counts measure his personal output, not his influence on other organizations."},
+        {"letter": "D", "explanation": "This is tempting because it reveals Edison's philosophy, but a quote about his mindset does not show that other companies adopted his model."},
+        {"letter": "E", "explanation": "This is tempting because it describes the lab's location, but where the lab was built does not demonstrate its lasting influence on other organizations."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How is this passage organized?",
+      "answer_choices": [
+        {"letter": "A", "text": "It presents a common belief about Edison, then corrects it by explaining what actually made him successful, and finally shows the broader impact of his approach."},
+        {"letter": "B", "text": "It lists all of Edison's inventions in the order he created them."},
+        {"letter": "C", "text": "It compares Edison to other inventors and argues he was the least talented."},
+        {"letter": "D", "text": "It tells the story of Edison's childhood and how he grew up to become famous."},
+        {"letter": "E", "text": "It presents arguments for and against the use of electric light bulbs."}
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage begins by noting the common image of Edison as a lone genius, then explains the reality — his team-based lab and systematic methods. Finally, it shows how this model influenced future research labs. This structure moves from myth to reality to lasting impact.",
+      "distractor_explanations": [
+        {"letter": "B", "explanation": "This is tempting because inventions are mentioned, but the passage focuses on Edison's method, not a comprehensive chronological list of his inventions."},
+        {"letter": "C", "explanation": "This is tempting because other inventors are briefly mentioned for context, but the passage celebrates Edison's approach rather than ranking him against others."},
+        {"letter": "D", "explanation": "This is tempting because biographies often start with childhood, but the passage begins in 1876 when Edison was already an adult establishing his laboratory."},
+        {"letter": "E", "explanation": "This is tempting because the light bulb is discussed, but the passage is about Edison's approach to innovation, not a debate about the merits of electric light."}
+      ],
+      "skill_tested": "rc_passage_structure"
+    }
+  ]
+}

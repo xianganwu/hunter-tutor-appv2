@@ -1,0 +1,866 @@
+[
+  {
+    "wordId": "adversary",
+    "word": "adversary",
+    "definition": "An opponent or enemy in a conflict or competition.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The chess player studied her adversary's moves to find a weakness.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "advocate",
+    "word": "advocate",
+    "definition": "A person who publicly supports a cause, or the act of supporting it.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "She became an advocate for protecting endangered species.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "allude",
+    "word": "allude",
+    "definition": "To refer to something indirectly without mentioning it directly.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The author alluded to Greek mythology when naming the main character.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "ambiguous",
+    "word": "ambiguous",
+    "definition": "Having more than one possible meaning; unclear.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The poem's ending was ambiguous, leaving readers to draw their own conclusions.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "analyze",
+    "word": "analyze",
+    "definition": "To examine something in detail to understand its parts and meaning.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The students were asked to analyze the author's use of figurative language.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "anticipate",
+    "word": "anticipate",
+    "definition": "To expect something and prepare for it ahead of time.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Experienced sailors anticipate changes in the weather by reading the sky.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "apprehensive",
+    "word": "apprehensive",
+    "definition": "Feeling worried or fearful about something that might happen.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "She was apprehensive about giving a speech in front of the entire school.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "articulate",
+    "word": "articulate",
+    "definition": "Able to express ideas clearly and effectively in words.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The articulate speaker held the audience's attention throughout the presentation.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "assert",
+    "word": "assert",
+    "definition": "To state something confidently and forcefully as true.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The editorial asserts that recycling programs should receive more funding.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "bias",
+    "word": "bias",
+    "definition": "A tendency to favor one side over another, often unfairly.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "A good journalist tries to report the facts without showing bias.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "candid",
+    "word": "candid",
+    "definition": "Truthful and straightforward; not hiding anything.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The mayor gave a candid interview about the challenges the city faces.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "chronicle",
+    "word": "chronicle",
+    "definition": "A detailed record of events in the order they happened.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The historian wrote a chronicle of the community's first hundred years.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "circumstance",
+    "word": "circumstance",
+    "definition": "A condition or fact that affects a situation.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Under the circumstances, the school decided to cancel the outdoor event.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "coherent",
+    "word": "coherent",
+    "definition": "Logical, clear, and easy to understand as a whole.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "A strong essay presents a coherent argument from beginning to end.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "compelling",
+    "word": "compelling",
+    "definition": "So interesting or convincing that you cannot look away or disagree.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The documentary presented compelling evidence that changed many viewers' minds.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "compliment",
+    "word": "complement",
+    "definition": "Something that completes or goes well with something else.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The illustrations are a perfect complement to the story's vivid descriptions.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "compromise",
+    "word": "compromise",
+    "definition": "An agreement where both sides give up something to reach a solution.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The two groups reached a compromise that satisfied everyone's main concerns.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "concede",
+    "word": "concede",
+    "definition": "To admit that something is true, often unwillingly.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The debater had to concede that her opponent made a valid point.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "condense",
+    "word": "condense",
+    "definition": "To make something shorter or more concentrated.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Try to condense your summary into just three sentences.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "contemplate",
+    "word": "contemplate",
+    "definition": "To think about something carefully and deeply.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "She sat by the window to contemplate the meaning of the poem.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "contradict",
+    "word": "contradict",
+    "definition": "To say the opposite of what someone else has said.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The new findings contradict what scientists believed for decades.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "convey",
+    "word": "convey",
+    "definition": "To communicate or express a message, feeling, or idea.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The author uses dark imagery to convey a sense of danger.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "credible",
+    "word": "credible",
+    "definition": "Believable and worthy of trust.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Only use credible sources when writing a research paper.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "critique",
+    "word": "critique",
+    "definition": "A careful evaluation of something, pointing out strengths and weaknesses.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The teacher's critique helped the student improve her essay significantly.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "crucial",
+    "word": "crucial",
+    "definition": "Extremely important and necessary for success.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Understanding fractions is crucial for solving many types of math problems.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "cultivate",
+    "word": "cultivate",
+    "definition": "To grow and develop something with care over time.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Reading widely helps cultivate a deeper understanding of the world.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "deduce",
+    "word": "deduce",
+    "definition": "To figure out something by using logic and available information.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "From the muddy footprints, the detective could deduce that someone had entered through the back door.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "deficiency",
+    "word": "deficiency",
+    "definition": "A lack or shortage of something that is needed.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "A vitamin D deficiency can weaken your bones over time.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "deliberate",
+    "word": "deliberate",
+    "definition": "Done on purpose; planned and intentional.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The author's use of repetition was a deliberate choice to emphasize the theme.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "denounce",
+    "word": "denounce",
+    "definition": "To publicly declare that something is wrong or evil.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Many citizens gathered to denounce the unfair policy.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "depict",
+    "word": "depict",
+    "definition": "To describe or show something through art or words.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The painting depicts a bustling marketplace in ancient Rome.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "derive",
+    "word": "derive",
+    "definition": "To obtain or receive something from a particular source.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Many English words derive from Latin and Greek roots.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "deteriorate",
+    "word": "deteriorate",
+    "definition": "To become worse in quality or condition over time.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Without proper care, the historic building continued to deteriorate.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "devise",
+    "word": "devise",
+    "definition": "To plan or invent something through careful thought.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The engineer devised a clever solution to the drainage problem.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "diminish",
+    "word": "diminish",
+    "definition": "To become or make something smaller, less important, or weaker.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Nothing could diminish her excitement about starting the new project.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "discern",
+    "word": "discern",
+    "definition": "To recognize or see something that is not obvious.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "It was difficult to discern the author's true opinion from the sarcastic tone.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "disparity",
+    "word": "disparity",
+    "definition": "A great difference between two or more things.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The report highlighted the disparity between funding for city and rural schools.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "disposition",
+    "word": "disposition",
+    "definition": "A person's natural tendency or usual mood.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Her cheerful disposition made her popular among classmates.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "dissent",
+    "word": "dissent",
+    "definition": "Disagreement with an official decision or popular opinion.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The right to express dissent is a cornerstone of a free society.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "distinct",
+    "word": "distinct",
+    "definition": "Clearly different or separate from something else.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Each chapter in the novel has a distinct voice and writing style.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "diverse",
+    "word": "diverse",
+    "definition": "Made up of many different kinds or types.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "New York City is known for its diverse population from around the world.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "doctrine",
+    "word": "doctrine",
+    "definition": "A set of beliefs or principles held by a group or organization.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The Monroe Doctrine shaped American foreign policy for many years.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "eloquent",
+    "word": "eloquent",
+    "definition": "Fluent, persuasive, and graceful in speaking or writing.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Martin Luther King Jr. was known for his eloquent speeches.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "elusive",
+    "word": "elusive",
+    "definition": "Difficult to find, catch, or achieve.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The elusive snow leopard is rarely seen by humans in the wild.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "embody",
+    "word": "embody",
+    "definition": "To represent an idea or quality in a visible or real form.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The character of Atticus Finch embodies courage and moral integrity.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "endorse",
+    "word": "endorse",
+    "definition": "To publicly express approval or support for something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The committee voted to endorse the new environmental protection plan.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "enhance",
+    "word": "enhance",
+    "definition": "To improve the quality or value of something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Adding vivid details will enhance your descriptive writing.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "entail",
+    "word": "entail",
+    "definition": "To involve or require something as a necessary part.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Being class president entails organizing meetings and representing student interests.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "erode",
+    "word": "erode",
+    "definition": "To gradually wear away or destroy over time.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Wind and rain slowly erode the surface of the canyon walls.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "evoke",
+    "word": "evoke",
+    "definition": "To bring a strong feeling or image to mind.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The photograph evoked powerful memories of her childhood summers.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "exaggerate",
+    "word": "exaggerate",
+    "definition": "To describe something as larger or more extreme than it really is.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Writers sometimes exaggerate for comic effect, a technique called hyperbole.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "excerpt",
+    "word": "excerpt",
+    "definition": "A short passage taken from a longer piece of writing.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The test included an excerpt from a famous novel by Toni Morrison.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "exemplify",
+    "word": "exemplify",
+    "definition": "To serve as a perfect example of something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Her dedication to volunteer work exemplifies true community spirit.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "explicit",
+    "word": "explicit",
+    "definition": "Stated clearly and directly, leaving no room for confusion.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The instructions were explicit about which materials to bring.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "fluctuate",
+    "word": "fluctuate",
+    "definition": "To rise and fall irregularly; to keep changing.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Temperatures fluctuate throughout the day, rising at noon and dropping at night.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "formidable",
+    "word": "formidable",
+    "definition": "Inspiring fear or respect because of being impressively powerful.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The opposing team was a formidable challenger in the championship game.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "fundamental",
+    "word": "fundamental",
+    "definition": "Forming the base or foundation; absolutely essential.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Understanding place value is fundamental to all of mathematics.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "generate",
+    "word": "generate",
+    "definition": "To produce or create something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Solar panels generate electricity from sunlight.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "hypothesis",
+    "word": "hypothesis",
+    "definition": "An educated guess or proposed explanation that can be tested.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The scientist formed a hypothesis before designing the experiment.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "ideology",
+    "word": "ideology",
+    "definition": "A system of ideas and beliefs that guides a person or group.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The two political parties have very different ideologies about the role of government.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "imminent",
+    "word": "imminent",
+    "definition": "About to happen very soon.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "With dark clouds gathering, rain seemed imminent.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "impartial",
+    "word": "impartial",
+    "definition": "Treating all sides equally; not favoring one over another.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "A judge must remain impartial when hearing both sides of a case.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "implement",
+    "word": "implement",
+    "definition": "To put a plan or decision into action.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The school decided to implement a new reading program this fall.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "implication",
+    "word": "implication",
+    "definition": "A meaning that is suggested but not directly stated.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The author's description of the empty house had a clear implication of loneliness.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "implicit",
+    "word": "implicit",
+    "definition": "Suggested or understood without being directly expressed.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The story's implicit message was that kindness is more powerful than strength.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "infer",
+    "word": "infer",
+    "definition": "To figure out something based on evidence and reasoning rather than direct statements.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "From the character's actions, readers can infer that she feels guilty.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "innovation",
+    "word": "innovation",
+    "definition": "A new idea, method, or invention that changes how things are done.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The printing press was an innovation that transformed education worldwide.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "integrate",
+    "word": "integrate",
+    "definition": "To combine different things so they work together as a whole.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The curriculum integrates science and art by having students draw what they observe.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "integrity",
+    "word": "integrity",
+    "definition": "The quality of being honest and having strong moral principles.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "She showed great integrity by returning the wallet she found on the ground.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "irony",
+    "word": "irony",
+    "definition": "When the opposite of what you expect actually happens or is said.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "There is irony in the fire station catching fire.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "legitimate",
+    "word": "legitimate",
+    "definition": "Reasonable, fair, or acceptable according to rules or standards.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The students raised legitimate concerns about the unfair grading policy.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "manipulate",
+    "word": "manipulate",
+    "definition": "To control or influence something or someone in a clever way.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Advertisers sometimes manipulate images to make products look more appealing.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "meticulous",
+    "word": "meticulous",
+    "definition": "Showing great attention to detail; very careful and precise.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The meticulous researcher checked every fact before publishing her findings.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "mitigate",
+    "word": "mitigate",
+    "definition": "To make something less severe or serious.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Planting trees can help mitigate the effects of air pollution.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "motive",
+    "word": "motive",
+    "definition": "A reason that causes someone to act in a certain way.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The detective questioned the suspect to discover the motive for the crime.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "nuance",
+    "word": "nuance",
+    "definition": "A subtle difference in meaning, expression, or sound.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Understanding the nuance between 'happy' and 'elated' improves your writing.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "objective",
+    "word": "objective",
+    "definition": "Based on facts rather than personal feelings or opinions.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "A news report should be as objective as possible, presenting facts without bias.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "obscure",
+    "word": "obscure",
+    "definition": "Not well known, or difficult to understand.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The passage referenced an obscure historical event that few readers recognized.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "paradox",
+    "word": "paradox",
+    "definition": "A statement that seems to contradict itself but may actually be true.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "It is a paradox that standing still on a moving train means you are also moving.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "perceive",
+    "word": "perceive",
+    "definition": "To become aware of something through the senses or the mind.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Different readers may perceive the same poem in very different ways.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "perspective",
+    "word": "perspective",
+    "definition": "A particular way of thinking about something; a point of view.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Reading stories from different cultures broadens your perspective on the world.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "plausible",
+    "word": "plausible",
+    "definition": "Seeming reasonable or likely to be true.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The student gave a plausible explanation for why the experiment failed.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "precedent",
+    "word": "precedent",
+    "definition": "An earlier event or action that serves as an example for the future.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The court's decision set a precedent for how similar cases would be handled.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "predominant",
+    "word": "predominant",
+    "definition": "Most common, powerful, or influential.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The predominant theme of the novel is the struggle between freedom and duty.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "profound",
+    "word": "profound",
+    "definition": "Very deep or intense; having great meaning or importance.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The book had a profound effect on how she thought about fairness.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "propaganda",
+    "word": "propaganda",
+    "definition": "Information spread to promote a particular point of view, often misleading.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "During the war, both sides used propaganda to influence public opinion.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "prosperity",
+    "word": "prosperity",
+    "definition": "The state of being successful, especially in terms of wealth.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The town experienced prosperity after the new factory brought jobs.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "provoke",
+    "word": "provoke",
+    "definition": "To cause a strong reaction or feeling in someone.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The essay was written to provoke thoughtful discussion among readers.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "rationale",
+    "word": "rationale",
+    "definition": "The underlying reasons or logical basis for a decision.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The principal explained the rationale behind the new homework policy.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "reconcile",
+    "word": "reconcile",
+    "definition": "To find a way to make two different ideas or situations agree.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "It was hard to reconcile the character's kind words with her cruel actions.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "refute",
+    "word": "refute",
+    "definition": "To prove that a statement or argument is wrong.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The scientist used new data to refute the outdated theory.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "relevant",
+    "word": "relevant",
+    "definition": "Closely connected to the topic being discussed.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Make sure every detail in your essay is relevant to your main argument.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "reluctant",
+    "word": "reluctant",
+    "definition": "Unwilling or hesitant to do something.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "He was reluctant to speak up at first but eventually shared his ideas.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "renowned",
+    "word": "renowned",
+    "definition": "Famous and admired for a special quality or achievement.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The museum displayed works by renowned artists from around the world.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "rhetoric",
+    "word": "rhetoric",
+    "definition": "The art of using language effectively and persuasively.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "The candidate's powerful rhetoric inspired many voters during the campaign.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "saturate",
+    "word": "saturate",
+    "definition": "To soak completely or fill something to the fullest extent.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Heavy rains saturated the ground, causing puddles everywhere.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "scrutinize",
+    "word": "scrutinize",
+    "definition": "To examine something very carefully and closely.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "The editor scrutinized every sentence before the article was published.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "skeptical",
+    "word": "skeptical",
+    "definition": "Having doubts about whether something is true or real.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The audience was skeptical of the magician's claim that he could read minds.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "subtle",
+    "word": "subtle",
+    "definition": "So small or delicate that it is difficult to notice or describe.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The author made subtle changes to the character's dialogue to show growth.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "sufficient",
+    "word": "sufficient",
+    "definition": "Enough to meet a need or purpose.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "Is there sufficient evidence in the text to support your conclusion?",
+    "difficulty": 3
+  },
+  {
+    "wordId": "surpass",
+    "word": "surpass",
+    "definition": "To go beyond or do better than what was expected.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Her final project surpassed everyone's expectations.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "sustain",
+    "word": "sustain",
+    "definition": "To keep something going over a long period of time.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "A balanced diet helps sustain your energy throughout the school day.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "synthesize",
+    "word": "synthesize",
+    "definition": "To combine different pieces of information to form a new understanding.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Good readers synthesize ideas from multiple paragraphs to understand the whole text.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "thematic",
+    "word": "thematic",
+    "definition": "Relating to or based on a theme or subject.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The teacher pointed out the thematic connections between the two novels.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "thesis",
+    "word": "thesis",
+    "definition": "The main argument or claim in an essay or piece of writing.",
+    "partOfSpeech": "noun",
+    "exampleSentence": "Your thesis should clearly state your position on the topic.",
+    "difficulty": 3
+  },
+  {
+    "wordId": "undermine",
+    "word": "undermine",
+    "definition": "To gradually weaken or damage something.",
+    "partOfSpeech": "verb",
+    "exampleSentence": "Spreading rumors can undermine trust between friends.",
+    "difficulty": 4
+  },
+  {
+    "wordId": "unprecedented",
+    "word": "unprecedented",
+    "definition": "Never done or experienced before.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The scientist made an unprecedented discovery that changed the field.",
+    "difficulty": 5
+  },
+  {
+    "wordId": "valid",
+    "word": "valid",
+    "definition": "Well-founded, logical, and supported by evidence.",
+    "partOfSpeech": "adjective",
+    "exampleSentence": "The student presented a valid argument backed by evidence from the text.",
+    "difficulty": 3
+  }
+]

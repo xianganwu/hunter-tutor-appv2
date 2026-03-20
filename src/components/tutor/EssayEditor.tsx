@@ -47,10 +47,10 @@ export function EssayEditor({ value, onChange, disabled }: EssayEditorProps) {
 
   const wordCountColor =
     words >= 200
-      ? "text-success-500"
+      ? "text-success-500 dark:text-success-400"
       : words >= 100
-        ? "text-streak-500"
-        : "text-surface-500";
+        ? "text-streak-500 dark:text-streak-400"
+        : "text-surface-500 dark:text-surface-400";
 
   return (
     <div className="flex flex-col h-full">
@@ -64,13 +64,13 @@ export function EssayEditor({ value, onChange, disabled }: EssayEditorProps) {
         </div>
         <div>
           {words < 200 && (
-            <span className="text-surface-400">Aim for 200+ words</span>
+            <span className="text-surface-400 dark:text-surface-500">Aim for 200+ words</span>
           )}
           {words >= 200 && words < 400 && (
-            <span className="text-success-500">Good length!</span>
+            <span className="text-success-500 dark:text-success-400">Good length!</span>
           )}
           {words >= 400 && (
-            <span className="text-success-500">Strong essay!</span>
+            <span className="text-success-500 dark:text-success-400">Strong essay!</span>
           )}
         </div>
       </div>
@@ -84,11 +84,11 @@ export function EssayEditor({ value, onChange, disabled }: EssayEditorProps) {
           onKeyDown={handleKeyDown}
           disabled={disabled}
           placeholder="Start writing your essay here..."
-          className="w-full h-full resize-none rounded-b-2xl border-0 bg-surface-0 dark:bg-surface-900 px-4 py-3 pb-8 text-base leading-loose text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-0 disabled:opacity-50 font-serif"
+          className="w-full h-full resize-none rounded-b-2xl border-0 bg-surface-0 dark:bg-surface-900 px-4 py-3 pb-8 text-base leading-loose text-surface-900 dark:text-surface-100 placeholder-surface-400 dark:placeholder-surface-500 focus:outline-none focus:ring-0 disabled:opacity-50 font-serif"
           style={{ minHeight: "320px" }}
           aria-label="Essay editor"
         />
-        <div className="absolute bottom-2 right-3 text-xs text-surface-400">
+        <div className="absolute bottom-2 right-3 text-xs text-surface-400 dark:text-surface-500">
           {words} words
         </div>
       </div>

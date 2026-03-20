@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "poetry_10",
+    "title": "What We Carry",
+    "genre": "poetry",
+    "difficulty_level": 5,
+    "word_count": 380,
+    "tagged_skills": [
+      "rc_advanced_inference",
+      "rc_figurative_language",
+      "rc_advanced_structure",
+      "rc_advanced_vocab",
+      "rc_tone_mood"
+    ],
+    "source_description": "original",
+    "lexile_range": "1000L-1200L",
+    "themes": ["memories", "home"]
+  },
+  "pre_reading_context": "This poem reflects on the invisible things people carry with them when they leave the places where they grew up.",
+  "passage_text": "We packed the car on a Tuesday,\nboxes labeled in my father's careful hand —\nKITCHEN, FRAGILE, BOOKS —\nas if the life we'd built could be\ndivided into categories\nand stacked in a rented truck.\n\nBut what about the things\nthat don't fit into boxes?\n\nThe way the morning light fell\nthrough the living room window\nand made a golden rectangle on the floor\nthat the cat would sleep in every day\nat exactly two fifteen.\n\nThe creak of the third stair —\nthe one we all learned to skip\nwhen sneaking down for water after bedtime,\na conspiracy of footsteps\nbetween siblings who pretended,\nthe next morning, that no one had moved.\n\nThe pencil marks on the doorframe\nwhere my mother measured us each September,\na vertical history of growing\nthat we photographed but could not take,\nbecause the wall belonged to the house\nand the house no longer belonged to us.\n\nWhat we carry is not in the boxes.\n\nIt's in the muscle memory of a hand\nreaching for a light switch\nthat isn't where it used to be.\nIt's in the phantom sound\nof a neighbor's dog barking at six a.m.,\na sound I cursed for years\nand now miss like a heartbeat.\n\nIt's in the way my sister still says\n\"I'm going to my room\"\nand means a room three hundred miles away,\na room that someone else's child\nsleeps in now,\nunder someone else's stars\ntaped to someone else's ceiling —\nthe glow-in-the-dark kind\nthat we arranged in the shape\nof Orion, and got wrong,\nand never fixed,\nbecause the wrongness became ours.\n\nWe drove away on a Tuesday.\nThe house grew small in the mirror,\nthen smaller, then gone.\n\nBut I carry it.\nNot in my hands, not in the truck,\nbut in the architecture of who I am —\nevery room still standing,\nevery door still open,\nevery light still on.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "The poet describes pencil marks on a doorframe as \"a vertical history of growing.\" What does this metaphor reveal about the marks?",
+      "answer_choices": [
+        {"letter": "A", "text": "The marks damaged the wall and decreased the home's value."},
+        {"letter": "B", "text": "The marks represent a family record of the children's physical and emotional growth over the years, making the ordinary doorframe a meaningful artifact."},
+        {"letter": "C", "text": "The marks were made by a professional to measure the door for replacement."},
+        {"letter": "D", "text": "The marks prove that the family grew vegetables in their garden each year."},
+        {"letter": "E", "text": "The marks are graffiti that the family left on the wall as vandalism."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Calling the pencil marks 'a vertical history of growing' elevates a simple family tradition — measuring children's heights — into something that chronicles a family's life over time. The word 'history' suggests these marks record not just physical height but the passage of years and the children's development. The fact that the family photographed them but 'could not take' them shows how meaningful they are.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because marks on walls could affect property value, but the poem treats the marks with deep reverence, not as damage."},
+        {"letter": "C", "explanation": "This is tempting because measurements are involved, but the context clearly shows a mother measuring her children each September, not a professional measuring for a door."},
+        {"letter": "D", "explanation": "This is tempting because 'growing' could relate to gardening, but the marks are on a doorframe and track children's heights, not plants."},
+        {"letter": "E", "explanation": "This is tempting because marks on walls could be called graffiti, but the poem presents them as loving family tradition, not vandalism."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 2,
+      "question_text": "The speaker says they \"cursed\" the neighbor's dog barking at six a.m. for years but now \"miss like a heartbeat.\" What complex emotion does this reveal?",
+      "answer_choices": [
+        {"letter": "A", "text": "The speaker hates dogs and is glad to be away from them."},
+        {"letter": "B", "text": "The speaker realizes that even the annoying parts of a place become deeply woven into their sense of home, and losing them creates an unexpected emptiness."},
+        {"letter": "C", "text": "The speaker wants to adopt a dog in their new home."},
+        {"letter": "D", "text": "The speaker is confused about whether they liked or disliked their old neighborhood."},
+        {"letter": "E", "text": "The speaker believes that dogs are important for home security."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The contrast between cursing the dog for years and now missing it 'like a heartbeat' shows that home is made up of all experiences — even irritating ones. Once the speaker has left, the absence of that familiar sound creates a void. This reveals the complex way that even unwanted elements become essential parts of the fabric of belonging.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the speaker did curse the barking, but the fact that they now miss it shows attachment, not hatred."},
+        {"letter": "C", "explanation": "This is tempting because the speaker misses a dog's sound, but the longing is for the specific experience of their old home, not for pet ownership."},
+        {"letter": "D", "explanation": "This is tempting because there is a contradiction (cursed then missed), but this is not confusion — it is a mature recognition that feelings about home are complex and layered."},
+        {"letter": "E", "explanation": "This is tempting because dogs can serve as security, but the poem is about emotional attachment to sounds of home, not practical concerns about safety."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "How does the structure of the poem reinforce its meaning?",
+      "answer_choices": [
+        {"letter": "A", "text": "The poem uses strict rhyme and meter to create a musical, happy feeling throughout."},
+        {"letter": "B", "text": "The poem begins with the physical act of packing boxes, transitions to unpacked memories that cannot be boxed, and ends with the metaphor of carrying the house internally — moving from concrete to abstract."},
+        {"letter": "C", "text": "The poem is organized alphabetically by the items being packed."},
+        {"letter": "D", "text": "The poem alternates between two speakers — the parent and the child — in every other stanza."},
+        {"letter": "E", "text": "The poem is written as a list of instructions for how to move to a new house."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem opens with labeled boxes (physical, concrete), then asks 'what about the things that don't fit into boxes?' and shifts to sensory memories (light, sounds, habits). It ends with 'the architecture of who I am,' fully abstract. This structure mirrors the poem's argument: the most important things we carry from a home are not physical objects but internal experiences.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because some poems use strict rhyme, but this poem is free verse — its irregular line lengths and lack of consistent rhyme reflect the unpredictable, personal nature of memory."},
+        {"letter": "C", "explanation": "This is tempting because the poem lists items, but they are organized by emotional significance and type (physical items, then sensory memories, then abstract feelings), not alphabetically."},
+        {"letter": "D", "explanation": "This is tempting because family members are mentioned, but the poem has one consistent speaker throughout — there are no alternating voices."},
+        {"letter": "E", "explanation": "This is tempting because the poem involves moving, but it is a reflection on loss and memory, not a set of instructions."}
+      ],
+      "skill_tested": "rc_advanced_structure"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"phantom\" mean as used in the phrase \"the phantom sound of a neighbor's dog barking\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Extremely loud and frightening"},
+        {"letter": "B", "text": "A sound that is still heard in memory even though it no longer exists in reality"},
+        {"letter": "C", "text": "A sound made by a ghost dog that haunts the neighborhood"},
+        {"letter": "D", "text": "A sound that was imaginary and never actually existed"},
+        {"letter": "E", "text": "A musical note played on an instrument"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "A 'phantom' sensation is one that is felt or perceived even after its source is gone — like a phantom limb that still seems to ache after amputation. The 'phantom sound' of the dog barking means the speaker still hears it in their memory even though they have moved away and the actual dog is no longer part of their daily life.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'phantom' can sound ominous, but in this context it means lingering in memory, not loud or frightening."},
+        {"letter": "C", "explanation": "This is tempting because 'phantom' can mean ghost, but the poem is not about supernatural events — it is about how memories persist after leaving a place."},
+        {"letter": "D", "explanation": "This is tempting because 'phantom' can suggest unreality, but the dog's barking was very real — the speaker cursed it for years. It is 'phantom' now only because the speaker has moved away."},
+        {"letter": "E", "explanation": "This is tempting as a guess, but phantom has nothing to do with musical instruments — it describes something felt or perceived beyond its physical existence."}
+      ],
+      "skill_tested": "rc_advanced_vocab"
+    },
+    {
+      "question_number": 5,
+      "question_text": "What is the overall tone of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "Bitter and resentful about having to move away"},
+        {"letter": "B", "text": "Indifferent and emotionally detached from the old house"},
+        {"letter": "C", "text": "Deeply reflective and bittersweet, filled with love for what was lost but also a sense of enduring connection"},
+        {"letter": "D", "text": "Panicked and anxious about the future in a new place"},
+        {"letter": "E", "text": "Humorous and lighthearted, treating the move as a fun adventure"}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The poem is steeped in love for specific memories (the cat in the sunlight, the creaky stair, the mother's measurements) and sadness about leaving them behind. Yet the ending — 'every room still standing, every door still open, every light still on' — affirms that these experiences are permanently part of the speaker. The tone is bittersweet: sad about loss, but sustained by enduring internal connection.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the speaker is clearly sad about leaving, but the poem does not express bitterness or blame — it is full of love and gratitude for the experiences, not resentment."},
+        {"letter": "B", "explanation": "This is tempting because the opening stanza is somewhat matter-of-fact about packing, but the rest of the poem is intensely emotional — the speaker is deeply attached."},
+        {"letter": "D", "explanation": "This is tempting because moving can be anxiety-inducing, but the poem looks backward at what was lost, not forward in panic about the future."},
+        {"letter": "E", "explanation": "This is tempting because the glow-in-the-dark stars and sneaking downstairs have light moments, but the overall poem is reflective and emotional, not humorous."}
+      ],
+      "skill_tested": "rc_tone_mood"
+    }
+  ]
+}

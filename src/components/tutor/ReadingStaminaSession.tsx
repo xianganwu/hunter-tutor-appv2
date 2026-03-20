@@ -9,6 +9,9 @@ import {
   computeStaminaStats,
   STAMINA_LEVELS,
 } from "@/lib/reading-stamina";
+import { getRandomPassagePhrase } from "@/lib/loading-phrases";
+import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
+import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 
 export function ReadingStaminaSession() {
   const {
@@ -65,6 +68,7 @@ export function ReadingStaminaSession() {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          <DailyPlanProgress />
           {/* Stamina level indicator */}
           <div className="flex items-center gap-1.5">
             {STAMINA_LEVELS.map((sl) => (
@@ -100,7 +104,7 @@ export function ReadingStaminaSession() {
           <div className="flex flex-col items-center justify-center py-12 gap-3 animate-fade-in">
             <TypingIndicator />
             <p className="text-sm text-surface-500 dark:text-surface-400">
-              Preparing your next reading passage...
+              {getRandomPassagePhrase()}
             </p>
           </div>
         )}
@@ -344,11 +348,11 @@ function FeedbackPhase({
       {/* Stats cards */}
       <div className="grid grid-cols-3 gap-3">
         <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-3 text-center">
-          <div className="text-2xl font-bold text-brand-600">{wpm}</div>
+          <div className="text-2xl font-bold text-brand-600 dark:text-brand-400">{wpm}</div>
           <div className="text-xs text-surface-500 mt-0.5">Words/min</div>
         </div>
         <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-3 text-center">
-          <div className={`text-2xl font-bold ${accuracy >= 80 ? "text-success-500" : accuracy >= 60 ? "text-streak-500" : "text-red-500"}`}>
+          <div className={`text-2xl font-bold ${accuracy >= 80 ? "text-success-500 dark:text-success-400" : accuracy >= 60 ? "text-streak-500 dark:text-streak-400" : "text-red-500 dark:text-red-400"}`}>
             {accuracy}%
           </div>
           <div className="text-xs text-surface-500 mt-0.5">Accuracy</div>
@@ -597,12 +601,7 @@ function SummaryPhase({
         </div>
       </div>
 
-      <a
-        href="/dashboard"
-        className="block w-full rounded-xl bg-brand-600 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-brand-700 transition-colors"
-      >
-        Back to Dashboard
-      </a>
+      <NextTaskPrompt />
     </div>
   );
 }

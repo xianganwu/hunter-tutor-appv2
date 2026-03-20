@@ -31,7 +31,7 @@ export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
         onChange={(e) => setText(e.target.value)}
         disabled={disabled}
         placeholder={placeholder ?? "Type your answer..."}
-        className="flex-1 rounded-2xl border border-surface-300 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 px-4 py-2.5 text-body text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50 transition-colors"
+        className="flex-1 rounded-2xl border border-surface-300 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 px-4 py-2.5 text-body text-surface-900 dark:text-surface-100 placeholder-surface-400 dark:placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-50 transition-colors"
         aria-label="Type your message"
       />
       <button

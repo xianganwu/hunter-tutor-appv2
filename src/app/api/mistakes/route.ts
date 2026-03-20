@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
+import { MODEL_SONNET } from "@/lib/ai/tutor-agent";
 import type { MistakeDiagnosis, MistakeCategory } from "@/lib/mistakes";
 
 interface DiagnoseRequest {
@@ -23,12 +24,13 @@ interface AnalyzePatternsRequest {
 
 type MistakeAction = DiagnoseRequest | AnalyzePatternsRequest;
 
-const DIAGNOSIS_SYSTEM = `You are a tutoring analytics assistant. When given a student's wrong answer, diagnose WHY they got it wrong. Categorize into exactly one of:
+const DIAGNOSIS_SYSTEM_TEXT = `You are a tutoring analytics assistant. When given a student's wrong answer, diagnose WHY they got it wrong. Categorize into exactly one of:
 - conceptual_gap: The student doesn't understand the underlying concept
 - careless_error: The student knows the concept but made a small computational or reading mistake
 - misread_question: The student misunderstood what the question was asking
 
-Be specific and brief. Write at a level a 6th grader's parent could understand.`;
+Be specific and brief. Write at a level a parent could understand.`;
+const DIAGNOSIS_SYSTEM_CACHED = [{ type: "text" as const, text: DIAGNOSIS_SYSTEM_TEXT, cache_control: { type: "ephemeral" as const } }];
 
 function parseDiagnosis(text: string, skillId: string): MistakeDiagnosis {
   const categoryMatch = text.match(
@@ -60,9 +62,9 @@ export async function POST(
       case "diagnose": {
         const client = getAnthropicClient();
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 256,
-          system: DIAGNOSIS_SYSTEM,
+          system: DIAGNOSIS_SYSTEM_CACHED,
           messages: [
             {
               role: "user",
@@ -106,9 +108,9 @@ Then explain in 1-2 sentences why the student likely chose their answer.`,
           .join("\n");
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 512,
-          system: `You are a tutoring analytics assistant analyzing a 6th grader's mistake patterns. Be specific, encouraging, and actionable. Write 2-3 short observations.`,
+          system: [{ type: "text" as const, text: `You are a tutoring analytics assistant analyzing a student's mistake patterns. The student may be a rising 5th grader or a 6th grader. Be specific, encouraging, and actionable. Write 2-3 short observations.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",

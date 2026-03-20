@@ -6,6 +6,8 @@ import { loadStaminaProgress } from "@/lib/reading-stamina";
 import type { StaminaProgress, ReadingRecord } from "@/lib/reading-stamina";
 import { loadSimulationHistory } from "@/lib/simulation";
 import type { StoredSimulation } from "@/lib/simulation";
+import { loadDrillHistory } from "@/lib/drill";
+import type { DrillResult } from "@/lib/drill";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 
 // ─── Types ────────────────────────────────────────────────────────────
@@ -44,6 +46,24 @@ export interface ParentData {
   readonly readingLevel: number | null;
   readonly readingWpm: number | null;
   readonly latestSimPercentile: number | null;
+  readonly missedQuestionsByWeek: readonly MissedQuestionWeekGroup[];
+}
+
+export interface NormalizedMissedQuestion {
+  readonly id: string;
+  readonly questionText: string;
+  readonly studentAnswer: string;
+  readonly correctAnswer: string;
+  readonly skillName: string;
+  readonly source: "tutoring" | "drill" | "practice-exam";
+  readonly diagnosis: { readonly category: string; readonly explanation: string } | null;
+  readonly timestamp: string; // ISO
+}
+
+export interface MissedQuestionWeekGroup {
+  readonly weekLabel: string; // "Mar 9 – Mar 15, 2026"
+  readonly weekStartISO: string; // for sorting/keys
+  readonly questions: readonly NormalizedMissedQuestion[];
 }
 
 // ─── Constants ────────────────────────────────────────────────────────
@@ -53,14 +73,25 @@ const ESTIMATED_SESSION_MINUTES = 25;
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 
+function getWeekStartForDate(date: Date): Date {
+  const d = new Date(date);
+  const day = d.getDay(); // 0=Sun
+  d.setDate(d.getDate() - day);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 function startOfWeek(): Date {
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun
-  const diff = now.getDate() - day;
-  const start = new Date(now);
-  start.setDate(diff);
-  start.setHours(0, 0, 0, 0);
-  return start;
+  return getWeekStartForDate(new Date());
+}
+
+function formatWeekLabel(weekStart: Date): string {
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekEnd.getDate() + 6);
+  const fmt = (d: Date) =>
+    d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const year = weekEnd.getFullYear();
+  return `${fmt(weekStart)} \u2013 ${fmt(weekEnd)}, ${year}`;
 }
 
 function toDateKey(ts: number | string): string {
@@ -110,6 +141,101 @@ function domainMasteryFromMistakes(
   return Math.round(total / skillIds.length);
 }
 
+// ─── Missed Questions by Week ─────────────────────────────────────────
+
+function buildMissedQuestionsByWeek(
+  mistakes: readonly MistakeEntry[],
+  drills: readonly DrillResult[],
+  simulations: readonly StoredSimulation[]
+): MissedQuestionWeekGroup[] {
+  const questions: NormalizedMissedQuestion[] = [];
+
+  // Normalize MistakeEntry → source "tutoring"
+  for (const m of mistakes) {
+    questions.push({
+      id: m.id,
+      questionText: m.questionText,
+      studentAnswer: m.studentAnswer,
+      correctAnswer: m.correctAnswer,
+      skillName: m.skillName,
+      source: "tutoring",
+      diagnosis: {
+        category: m.diagnosis.category,
+        explanation: m.diagnosis.explanation,
+      },
+      timestamp: m.createdAt,
+    });
+  }
+
+  // Normalize incorrect DrillAttempts → source "drill"
+  for (const d of drills) {
+    d.attempts.forEach((a, index) => {
+      if (!a.isCorrect) {
+        questions.push({
+          id: `${d.id}_${index}`,
+          questionText: a.questionText,
+          studentAnswer: a.studentAnswer,
+          correctAnswer: a.correctAnswer,
+          skillName: d.skillName,
+          source: "drill",
+          diagnosis: null,
+          timestamp: d.completedAt,
+        });
+      }
+    });
+  }
+
+  // Normalize simulation missed questions → source "practice-exam"
+  for (const sim of simulations) {
+    const missed = sim.report.missedQuestions;
+    if (missed) {
+      for (const mq of missed) {
+        questions.push({
+          id: `${sim.id}_${mq.questionId}`,
+          questionText: mq.questionText,
+          studentAnswer: mq.studentAnswer,
+          correctAnswer: mq.correctAnswer,
+          skillName: mq.skillName,
+          source: "practice-exam",
+          diagnosis: null,
+          timestamp: sim.completedAt,
+        });
+      }
+    }
+  }
+
+  // Group by calendar week (Sunday start)
+  const weekMap = new Map<string, NormalizedMissedQuestion[]>();
+  for (const q of questions) {
+    const weekStart = getWeekStartForDate(new Date(q.timestamp));
+    const key = weekStart.toISOString();
+    const list = weekMap.get(key) ?? [];
+    list.push(q);
+    weekMap.set(key, list);
+  }
+
+  // Build groups, sort questions within each week newest first
+  const groups: MissedQuestionWeekGroup[] = [];
+  for (const [weekStartISO, weekQuestions] of weekMap) {
+    weekQuestions.sort(
+      (a, b) =>
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+    );
+    groups.push({
+      weekLabel: formatWeekLabel(new Date(weekStartISO)),
+      weekStartISO,
+      questions: weekQuestions,
+    });
+  }
+
+  // Sort weeks newest first, cap at 8
+  groups.sort(
+    (a, b) =>
+      new Date(b.weekStartISO).getTime() - new Date(a.weekStartISO).getTime()
+  );
+  return groups.slice(0, 8);
+}
+
 // ─── Main Aggregation ─────────────────────────────────────────────────
 
 export function aggregateParentData(): ParentData {
@@ -117,6 +243,7 @@ export function aggregateParentData(): ParentData {
   const teachingMoments = loadTeachingMoments();
   const stamina = loadStaminaProgress();
   const simulations = loadSimulationHistory();
+  const drills = loadDrillHistory();
 
   // ── Weekly time ──
   const activeDates = new Set<string>();
@@ -136,6 +263,14 @@ export function aggregateParentData(): ParentData {
       const ta = s.report.timeAnalysis;
       weeklyMinutes += ta.elaUsedMinutes + ta.mathUsedMinutes;
       activeDates.add(toDateKey(s.completedAt));
+    }
+  }
+
+  // Drills this week
+  for (const d of drills) {
+    if (isThisWeek(d.completedAt)) {
+      weeklyMinutes += d.durationSeconds / 60;
+      activeDates.add(toDateKey(d.completedAt));
     }
   }
 
@@ -163,7 +298,10 @@ export function aggregateParentData(): ParentData {
   const domainReadiness = buildDomainReadiness(mistakes, teachingMoments, simulations);
 
   // ── Session log ──
-  const sessionLog = buildSessionLog(mistakes, teachingMoments, stamina, simulations);
+  const sessionLog = buildSessionLog(mistakes, teachingMoments, stamina, simulations, drills);
+
+  // ── Missed questions by week ──
+  const missedQuestionsByWeek = buildMissedQuestionsByWeek(mistakes, drills, simulations);
 
   // ── Mistake patterns (parent-safe: counts only) ──
   const patternMap = new Map<string, number>();
@@ -201,6 +339,7 @@ export function aggregateParentData(): ParentData {
     readingLevel,
     readingWpm,
     latestSimPercentile,
+    missedQuestionsByWeek,
   };
 }
 
@@ -388,7 +527,8 @@ function buildSessionLog(
   mistakes: readonly MistakeEntry[],
   teachingMoments: readonly StoredTeachingMoment[],
   stamina: StaminaProgress,
-  simulations: readonly StoredSimulation[]
+  simulations: readonly StoredSimulation[],
+  drills: readonly DrillResult[] = []
 ): SessionLogEntry[] {
   const entries: SessionLogEntry[] = [];
 
@@ -444,6 +584,16 @@ function buildSessionLog(
       type: "simulation",
       summary: `Practice exam: ${r.overall.percentage}% overall, est. ${r.overall.estimatedPercentile}th percentile`,
       durationMinutes: totalMin,
+    });
+  }
+
+  // Drill sessions
+  for (const d of drills) {
+    entries.push({
+      date: d.completedAt,
+      type: "tutoring",
+      summary: `Timed drill: ${d.skillName} — ${d.accuracy}% accuracy, ${d.questionsPerMinute} q/min`,
+      durationMinutes: Math.round(d.durationSeconds / 60),
     });
   }
 

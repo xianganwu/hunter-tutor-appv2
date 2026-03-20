@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_06",
+    "title": "How 3D Printers Are Changing the World",
+    "genre": "nonfiction",
+    "difficulty_level": 2,
+    "word_count": 305,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_supporting_details",
+      "rc_vocab_context",
+      "rc_inference",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original",
+    "lexile_range": "400L-600L",
+    "themes": ["technology"]
+  },
+  "pre_reading_context": "This article explores how a new kind of printer is being used to create objects that were once impossible to build.",
+  "passage_text": "Imagine pressing a button and watching a machine build a toy, a tool, or even a part for a rocket — layer by layer, right before your eyes. That is exactly what a 3D printer does.\n\nUnlike a regular printer that puts ink on paper, a 3D printer creates solid objects. It works by laying down thin layers of material, usually plastic, one on top of another. Each layer is only about as thick as a sheet of paper. Over time, hundreds or even thousands of layers stack up to form a three-dimensional shape. The process can take anywhere from a few minutes to several hours, depending on the size and complexity of the object.\n\nEngineers and scientists have found many creative uses for 3D printing. Doctors use 3D printers to make custom casts for broken bones that fit a patient's arm perfectly. Some companies have printed entire houses using giant printers that lay down concrete instead of plastic. NASA has even sent a 3D printer to the International Space Station so that astronauts can print replacement parts without waiting for a supply ship from Earth.\n\nSchools are starting to use 3D printers too. Students can design objects on a computer and then watch as the printer brings their ideas to life. A student might create a model of a human heart for science class or design a phone stand as a gift. The experience teaches problem-solving, creativity, and patience.\n\nSome people believe that in the future, most homes will have a 3D printer, just like they have a microwave or a toaster today. Instead of ordering a product online and waiting for it to arrive, you might simply download a design and print it in your living room. The possibilities are just beginning.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "3D printers are too expensive for most people to own."},
+        {"letter": "B", "text": "3D printers create objects by stacking layers of material, and they are being used in many different fields."},
+        {"letter": "C", "text": "NASA is the most important user of 3D printing technology."},
+        {"letter": "D", "text": "Schools should replace all textbooks with 3D printers."},
+        {"letter": "E", "text": "3D printers will replace all factories within the next few years."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains how 3D printers work (stacking thin layers of material) and then describes their many uses in medicine, construction, space, and education. The main idea covers both how they work and their wide range of applications.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because cost might be a concern, but the passage never mentions the price of 3D printers — it focuses on their capabilities and uses."},
+        {"letter": "C", "explanation": "This is tempting because NASA is mentioned, but it is just one example among many — the passage covers doctors, construction companies, and schools too."},
+        {"letter": "D", "explanation": "This is tempting because schools are discussed, but the passage says schools are 'starting to use' 3D printers as a tool, not that they should replace textbooks."},
+        {"letter": "E", "explanation": "This is tempting because the passage discusses future possibilities, but it says homes 'might' have printers — it does not claim factories will be replaced."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, why did NASA send a 3D printer to the International Space Station?",
+      "answer_choices": [
+        {"letter": "A", "text": "To print food for the astronauts during long missions."},
+        {"letter": "B", "text": "To test whether 3D printers work in zero gravity for a science experiment."},
+        {"letter": "C", "text": "So astronauts can print replacement parts without waiting for a supply ship."},
+        {"letter": "D", "text": "To print decorations to make the space station more comfortable."},
+        {"letter": "E", "text": "To build a new section of the space station using printed materials."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage directly states that NASA sent the printer 'so that astronauts can print replacement parts without waiting for a supply ship from Earth.' This is the reason given in the text.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because astronauts do need food in space, but the passage says the printer is for replacement parts, not food."},
+        {"letter": "B", "explanation": "This is tempting because experiments are conducted on the space station, but the passage gives a practical reason — printing parts — not a scientific experiment."},
+        {"letter": "D", "explanation": "This is tempting because comfort matters in space, but the passage specifically mentions replacement parts, not decorations."},
+        {"letter": "E", "explanation": "This is tempting because 3D printers can build large things (like houses), but the passage says the printer is for parts, not for building new sections of the station."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the word \"complexity\" most likely mean as used in the second paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Color"},
+        {"letter": "B", "text": "Weight"},
+        {"letter": "C", "text": "How complicated or detailed something is"},
+        {"letter": "D", "text": "How old something is"},
+        {"letter": "E", "text": "How far away something is"}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage says printing time depends on 'the size and complexity of the object.' In this context, complexity refers to how complicated or detailed the object is — a simple cube would be less complex than a detailed figurine.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because objects can have different colors, but the passage is discussing how long printing takes — color is not mentioned as a factor."},
+        {"letter": "B", "explanation": "This is tempting because weight could affect printing, but the passage pairs complexity with size, suggesting it means detail level, not weight."},
+        {"letter": "D", "explanation": "This is tempting as a guess, but age has nothing to do with how long it takes to print a new object."},
+        {"letter": "E", "explanation": "This is tempting because distance could affect delivery time, but the passage is about printing time, not shipping — distance is irrelevant here."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 4,
+      "question_text": "Why does the author compare a future 3D printer to a microwave or toaster?",
+      "answer_choices": [
+        {"letter": "A", "text": "To suggest that 3D printers will be used for cooking food."},
+        {"letter": "B", "text": "To show that 3D printers might become as common and ordinary as other household appliances."},
+        {"letter": "C", "text": "To explain that 3D printers use the same technology as kitchen appliances."},
+        {"letter": "D", "text": "To argue that 3D printers are already in every home."},
+        {"letter": "E", "text": "To warn readers that 3D printers can be dangerous like hot appliances."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "By comparing 3D printers to microwaves and toasters — appliances found in nearly every home — the author suggests that 3D printers could eventually become just as common and unremarkable in everyday life.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because microwaves and toasters are for food, but the comparison is about how common these items are in homes, not about what they do."},
+        {"letter": "C", "explanation": "This is tempting because the items are compared, but the comparison is about commonness, not shared technology — 3D printers work very differently from kitchen appliances."},
+        {"letter": "D", "explanation": "This is tempting because the comparison involves household items, but the passage says this is a future possibility ('some people believe'), not a current reality."},
+        {"letter": "E", "explanation": "This is tempting because toasters can be hot, but the comparison is about everyday presence in homes, not about safety concerns."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 5,
+      "question_text": "Based on the passage, what can the reader conclude about the future of 3D printing?",
+      "answer_choices": [
+        {"letter": "A", "text": "3D printing will only be useful for scientists and engineers."},
+        {"letter": "B", "text": "3D printing technology is likely to become more widespread and affect many aspects of daily life."},
+        {"letter": "C", "text": "3D printers will completely replace all traditional manufacturing within five years."},
+        {"letter": "D", "text": "3D printers are a passing trend that will lose popularity soon."},
+        {"letter": "E", "text": "Only wealthy people will be able to afford 3D printers in the future."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes 3D printing being used in medicine, space, construction, and education, and it ends by suggesting homes may eventually have their own printers. This progression from professional use to everyday life supports the conclusion that the technology will become more widespread.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because scientists and engineers are mentioned, but the passage also discusses schools, homes, and everyday objects — the technology is not limited to professionals."},
+        {"letter": "C", "explanation": "This is tempting because the passage is optimistic about 3D printing, but it says 'the possibilities are just beginning' — it does not claim traditional manufacturing will be completely replaced soon."},
+        {"letter": "D", "explanation": "This is tempting because new technologies sometimes fade, but the passage presents increasingly diverse applications and a positive outlook, not signs of declining interest."},
+        {"letter": "E", "explanation": "This is tempting because new technology can be expensive, but the passage compares future 3D printers to common appliances like toasters, suggesting they will be affordable."}
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    }
+  ]
+}

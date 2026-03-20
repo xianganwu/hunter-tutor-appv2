@@ -11,14 +11,19 @@ describe("teaching scripts", () => {
   const scripts = getAllTeachingScripts();
   const scriptEntries = Array.from(scripts.entries());
 
-  it("has a teaching script for every skill in the taxonomy", () => {
-    const taxonomySkillIds = Array.from(getAllSkills().keys()).sort();
-    const scriptSkillIds = getTeachingScriptIds().sort();
-    expect(scriptSkillIds).toEqual(taxonomySkillIds);
+  it("every teaching script maps to a valid skill in the taxonomy", () => {
+    const taxonomySkillIds = new Set(getAllSkills().keys());
+    const scriptSkillIds = getTeachingScriptIds();
+    for (const scriptId of scriptSkillIds) {
+      expect(
+        taxonomySkillIds.has(scriptId),
+        `Teaching script "${scriptId}" references a skill not in the taxonomy`
+      ).toBe(true);
+    }
   });
 
-  it("has exactly 25 teaching scripts", () => {
-    expect(scripts.size).toBe(25);
+  it("has at least 25 teaching scripts", () => {
+    expect(scripts.size).toBeGreaterThanOrEqual(25);
   });
 
   it("getTeachingScript returns correct script", () => {

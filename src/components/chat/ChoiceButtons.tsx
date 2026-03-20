@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MathText } from "./MathText";
 
 interface ChoiceButtonsProps {
   readonly choices: readonly string[];
@@ -13,9 +14,9 @@ const LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
 export function ChoiceButtons({ choices, onSelect, disabled }: ChoiceButtonsProps) {
   const [selected, setSelected] = useState<string | null>(null);
 
-  const handleSelect = (choice: string, letter: string) => {
+  const handleSelect = (choice: string) => {
     setSelected(choice);
-    onSelect(letter);
+    onSelect(choice);
   };
 
   return (
@@ -28,7 +29,7 @@ export function ChoiceButtons({ choices, onSelect, disabled }: ChoiceButtonsProp
         return (
           <button
             key={choice}
-            onClick={() => handleSelect(choice, letter)}
+            onClick={() => handleSelect(choice)}
             disabled={disabled}
             className={`w-full text-left rounded-xl border-2 min-h-[56px] px-4 py-3 text-body text-surface-900 dark:text-surface-100 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-brand-500 disabled:opacity-50 flex items-center gap-3 ${
               isSelected
@@ -46,7 +47,7 @@ export function ChoiceButtons({ choices, onSelect, disabled }: ChoiceButtonsProp
             >
               {displayLetter}
             </span>
-            <span>{choice.slice(choice.indexOf(")") + 1).trim() || choice.slice(2).trim() || choice}</span>
+            <span><MathText text={choice.slice(choice.indexOf(")") + 1).trim() || choice.slice(2).trim() || choice} /></span>
           </button>
         );
       })}

@@ -1,15 +1,92 @@
 import { NextResponse } from "next/server";
-import { TutorAgent } from "@/lib/ai/tutor-agent";
+import type Anthropic from "@anthropic-ai/sdk";
+import { TutorAgent, MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { getSkillById } from "@/lib/exam/curriculum";
-import type { ChatAction, ChatApiResponse } from "@/components/tutor/types";
+import { prisma } from "@/lib/db";
+import { getCachedQuestion } from "@/lib/question-cache";
+import type { ChatAction } from "@/components/tutor/types";
 import type { DifficultyLevel } from "@/lib/types";
 
 const agent = new TutorAgent();
 
-export async function POST(request: Request): Promise<NextResponse<ChatApiResponse | { error: string }>> {
+// ─── Streaming helpers ─────────────────────────────────────────────────
+
+type StreamMeta = Record<string, unknown>;
+
+interface StreamParams {
+  model: string;
+  max_tokens: number;
+  system: string | Anthropic.TextBlockParam[];
+  messages: Anthropic.MessageParam[];
+}
+
+/**
+ * Create an SSE ReadableStream from an Anthropic streaming call.
+ * Events:
+ *   data: {"delta":"..."} — text chunk
+ *   data: {"done":true, ...meta} — final event with optional metadata
+ */
+function createSSEStream(params: StreamParams, meta?: StreamMeta): Response {
+  const client = getAnthropicClient();
+  const encoder = new TextEncoder();
+
+  const readable = new ReadableStream({
+    async start(controller) {
+      try {
+        const stream = client.messages.stream({
+          model: params.model,
+          max_tokens: params.max_tokens,
+          system: params.system,
+          messages: params.messages,
+        });
+
+        for await (const event of stream) {
+          if (
+            event.type === "content_block_delta" &&
+            event.delta.type === "text_delta"
+          ) {
+            controller.enqueue(
+              encoder.encode(`data: ${JSON.stringify({ delta: event.delta.text })}\n\n`)
+            );
+          }
+        }
+
+        controller.enqueue(
+          encoder.encode(
+            `data: ${JSON.stringify({ done: true, ...(meta ?? {}) })}\n\n`
+          )
+        );
+        controller.close();
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : "Stream error";
+        controller.enqueue(
+          encoder.encode(`data: ${JSON.stringify({ error: msg })}\n\n`)
+        );
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(readable, {
+    headers: {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive",
+    },
+  });
+}
+
+// ─── POST handler ─────────────────────────────────────────────────────
+
+interface StreamableAction extends Record<string, unknown> {
+  stream?: boolean;
+}
+
+export async function POST(request: Request): Promise<Response> {
   try {
-    const body = (await request.json()) as ChatAction;
+    const body = (await request.json()) as ChatAction & StreamableAction;
+    const wantStream = body.stream === true;
 
     switch (body.type) {
       case "teach": {
@@ -17,6 +94,16 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
+
+        if (wantStream) {
+          return createSSEStream({
+            model: MODEL_SONNET,
+            max_tokens: 4096,
+            system: agent.getCachedSystemBlock(),
+            messages: agent.buildTeachMessages(skill, body.mastery),
+          });
+        }
+
         const result = await agent.teachConcept(skill, body.mastery);
         return NextResponse.json({ text: result.explanation });
       }
@@ -26,11 +113,50 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
-        const question = await agent.generateQuestion(skill, body.difficultyTier as DifficultyLevel);
+        const question = await getCachedQuestion(
+          skill,
+          body.difficultyTier as DifficultyLevel,
+          agent
+        );
         return NextResponse.json({ text: question.questionText, question });
       }
 
       case "evaluate_answer": {
+        const { messages, isCorrect } = agent.buildEvaluateMessages(
+          body.questionText,
+          body.studentAnswer,
+          body.correctAnswer,
+          body.history ?? []
+        );
+
+        // Persist the attempt to DB if session context is provided (fire-and-forget)
+        if (body.sessionId && body.skillId) {
+          void prisma.questionAttempt.create({
+            data: {
+              sessionId: body.sessionId,
+              skillId: body.skillId,
+              questionText: body.questionText,
+              studentAnswer: body.studentAnswer,
+              correctAnswer: body.correctAnswer,
+              isCorrect,
+              timeSpentSeconds: body.timeSpentSeconds ?? null,
+              hintUsed: body.hintUsed ?? false,
+            },
+          }).catch((err: unknown) => console.error("[chat] QuestionAttempt persist error:", err));
+        }
+
+        if (wantStream) {
+          return createSSEStream(
+            {
+              model: MODEL_SONNET,
+              max_tokens: 768,
+              system: agent.getCachedSystemBlock(),
+              messages,
+            },
+            { isCorrect }
+          );
+        }
+
         const feedback = await agent.evaluateAnswer(
           body.questionText,
           body.studentAnswer,
@@ -44,6 +170,15 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
       }
 
       case "get_hint": {
+        if (wantStream) {
+          return createSSEStream({
+            model: MODEL_HAIKU,
+            max_tokens: 256,
+            system: agent.getCachedSystemBlock(),
+            messages: agent.buildHintMessages(body.context, body.history ?? []),
+          });
+        }
+
         const followUp = await agent.socraticFollowUp(body.context, body.history ?? []);
         return NextResponse.json({ text: followUp.question });
       }
@@ -53,6 +188,16 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
+
+        if (wantStream) {
+          return createSSEStream({
+            model: MODEL_SONNET,
+            max_tokens: 4096,
+            system: agent.getCachedSystemBlock(),
+            messages: agent.buildTeachMessages(skill, body.mastery),
+          });
+        }
+
         const result = await agent.teachConcept(skill, body.mastery);
         return NextResponse.json({ text: result.explanation });
       }
@@ -65,9 +210,9 @@ export async function POST(request: Request): Promise<NextResponse<ChatApiRespon
 
         const client = getAnthropicClient();
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 512,
-          system: `You are a warm tutor evaluating a 6th grader's explanation of a concept. They are trying to "teach it back" — explaining the concept as if teaching a friend. Evaluate their explanation for completeness and accuracy, then respond in a structured format.`,
+          system: [{ type: "text" as const, text: `You are a warm tutor evaluating a student's explanation of a concept. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). They are trying to "teach it back" — explaining the concept as if teaching a friend. Evaluate their explanation for completeness and accuracy, then respond in a structured format. Match your language to the student's age level.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -125,11 +270,127 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
       }
 
       case "emotional_response": {
+        if (wantStream) {
+          return createSSEStream({
+            model: MODEL_HAIKU,
+            max_tokens: 768,
+            system: agent.getCachedSystemBlock(),
+            messages: agent.buildEmotionalMessages(body.message, body.history ?? []),
+          });
+        }
+
         const response = await agent.respondToEmotionalCue(
           body.message,
           body.history ?? []
         );
         return NextResponse.json({ text: response });
+      }
+
+      case "generate_drill_batch": {
+        const skill = getSkillById(body.skillId);
+        if (!skill) {
+          return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
+        }
+        const questions = await agent.generateDrillBatch(skill, body.count ?? 10);
+        return NextResponse.json({ questions });
+      }
+
+      case "generate_mixed_drill_batch": {
+        const resolvedSkills = body.skills
+          .map((s: { skillId: string; tier: DifficultyLevel }) => {
+            const skill = getSkillById(s.skillId);
+            return skill ? { skill, tier: s.tier } : null;
+          })
+          .filter((s): s is NonNullable<typeof s> => s !== null);
+
+        if (resolvedSkills.length === 0) {
+          return NextResponse.json({ questions: [] });
+        }
+
+        const mixedQuestions = await agent.generateMixedDrillBatch(
+          resolvedSkills,
+          body.totalCount,
+        );
+        return NextResponse.json({ questions: mixedQuestions });
+      }
+
+      case "generate_diagnostic": {
+        // Build skill descriptions for a single batched API call
+        const skillEntries = body.skillIds
+          .map((id) => {
+            const skill = getSkillById(id);
+            return skill ? { id, name: skill.name, description: skill.description, level: skill.level } : null;
+          })
+          .filter((s): s is NonNullable<typeof s> => s !== null);
+
+        if (skillEntries.length === 0) {
+          return NextResponse.json({ questions: [] });
+        }
+
+        const skillList = skillEntries
+          .map((s, i) => `${i + 1}. skill_id: "${s.id}" — ${s.name}: ${s.description}`)
+          .join("\n");
+
+        const target = skillEntries[0].level === "hunter_prep"
+          ? "6th grader (age 11-12)"
+          : "rising 5th grader (age 9-10)";
+
+        const client = getAnthropicClient();
+        const response = await client.messages.create({
+          model: MODEL_SONNET,
+          max_tokens: 2048,
+          system: agent.getCachedSystemBlock(),
+          messages: [
+            {
+              role: "user",
+              content: `Generate exactly ${skillEntries.length} diagnostic placement questions, one per skill listed below.
+Target student: ${target}
+
+Skills:
+${skillList}
+
+Each question should be clear, age-appropriate, and directly test the skill.
+Each question should have 5 multiple choice answers (A through E).
+
+Respond with ONLY a JSON array, no other text:
+[
+  {
+    "skillId": "the_skill_id",
+    "questionText": "...",
+    "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ...", "E) ..."],
+    "correctAnswer": "A) ..."
+  }
+]`,
+            },
+          ],
+        });
+
+        const text = response.content[0].type === "text" ? response.content[0].text : "";
+
+        try {
+          const jsonMatch = text.match(/\[[\s\S]*\]/);
+          if (!jsonMatch) {
+            return NextResponse.json({ questions: [] });
+          }
+
+          const parsed = JSON.parse(jsonMatch[0]) as {
+            skillId: string;
+            questionText: string;
+            answerChoices: string[];
+            correctAnswer: string;
+          }[];
+
+          const questions = parsed.map((q) => ({
+            skillId: q.skillId,
+            questionText: q.questionText,
+            answerChoices: q.answerChoices,
+            correctAnswer: q.correctAnswer,
+          }));
+
+          return NextResponse.json({ questions });
+        } catch {
+          return NextResponse.json({ questions: [] });
+        }
       }
 
       case "get_summary": {

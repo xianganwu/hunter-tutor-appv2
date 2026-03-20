@@ -5,6 +5,7 @@ import type {
   ChatAction,
   ChatApiResponse,
   ChatMessageDisplay,
+  LevelUpEvent,
   SessionState,
   SessionSummaryData,
 } from "@/components/tutor/types";
@@ -17,20 +18,58 @@ import {
   advancePacingAfterQuestion,
   advancePacingAfterTeaching,
   getNextPacingAction,
+  tierLabel,
 } from "@/lib/adaptive";
 import type { AttemptRecord } from "@/lib/adaptive";
+import type { DifficultyLevel } from "@/lib/types";
 import { addMistake, createMistakeEntry } from "@/lib/mistakes";
 import type { MistakeDiagnosis } from "@/lib/mistakes";
-import { getSkillById } from "@/lib/exam/curriculum";
+import { getSkillById, getDomainForSkill } from "@/lib/exam/curriculum";
 import {
   shouldTriggerTeachBack,
   saveTeachingMoment,
   createTeachingMoment,
 } from "@/lib/teaching-moments";
 import type { TeachingMomentEvaluation } from "@/lib/teaching-moments";
-import { loadSkillMastery, saveSkillMastery } from "@/lib/skill-mastery-store";
+import { loadSkillMastery, saveSkillMastery, loadAllSkillMasteries, computeSkillReviewSchedule } from "@/lib/skill-mastery-store";
+import { selectNextSkills } from "@/lib/adaptive";
+import { getSkillIdsForDomain } from "@/lib/exam/curriculum";
+import { autoCompleteDailyTask } from "@/lib/daily-plan";
+import { checkAndAwardBadges, buildBadgeContext } from "@/lib/achievements";
 
 const ESTIMATED_QUESTIONS = 12;
+
+const SKILL_DOMAINS = [
+  "reading_comprehension",
+  "math_quantitative_reasoning",
+  "math_achievement",
+] as const;
+
+function pickNextSkill(currentSkillId: string): { skillId: string; skillName: string; route: string } | null {
+  const all = loadAllSkillMasteries();
+  const stateMap = new Map(
+    all.map((s) => [s.skillId, { ...s, lastPracticed: s.lastPracticed ? new Date(s.lastPracticed) : null }])
+  );
+
+  let bestSkillId: string | null = null;
+  let bestScore = -1;
+
+  for (const domain of SKILL_DOMAINS) {
+    const skillIds = getSkillIdsForDomain(domain);
+    const priorities = selectNextSkills(skillIds, stateMap);
+    if (priorities.length > 0 && priorities[0].score > bestScore && priorities[0].skillId !== currentSkillId) {
+      bestScore = priorities[0].score;
+      bestSkillId = priorities[0].skillId;
+    }
+  }
+
+  if (!bestSkillId) return null;
+  const skill = getSkillById(bestSkillId);
+  const route = bestSkillId.startsWith("rc_")
+    ? `/tutor/reading?skill=${bestSkillId}`
+    : `/tutor/math?skill=${bestSkillId}`;
+  return { skillId: bestSkillId, skillName: skill?.name ?? bestSkillId, route };
+}
 
 // ─── Frustration Detection ────────────────────────────────────────────
 
@@ -151,9 +190,62 @@ async function callApi(action: ChatAction): Promise<ChatApiResponse> {
   return res.json() as Promise<ChatApiResponse>;
 }
 
+/**
+ * Stream an API call. Returns text progressively via onDelta, and final metadata on completion.
+ */
+async function callApiStream(
+  action: ChatAction,
+  onDelta: (text: string) => void
+): Promise<Record<string, unknown>> {
+  const res = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...action, stream: true }),
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: "Request failed" }));
+    throw new Error((err as { error: string }).error);
+  }
+
+  const reader = res.body?.getReader();
+  if (!reader) throw new Error("No response body");
+
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let meta: Record<string, unknown> = {};
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() ?? "";
+
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      try {
+        const data = JSON.parse(line.slice(6));
+        if (data.error) throw new Error(data.error);
+        if (data.delta) onDelta(data.delta);
+        if (data.done) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { done: _done, ...rest } = data;
+          meta = rest;
+        }
+      } catch (e) {
+        if (e instanceof Error && e.message !== "Stream error") throw e;
+      }
+    }
+  }
+
+  return meta;
+}
+
 // ─── Hook ─────────────────────────────────────────────────────────────
 
-export function useTutoringSession(skillId: string) {
+export function useTutoringSession(skillId: string, isRetentionCheck: boolean = false, isFirstSession: boolean = false) {
   // Fix #1: Load prior mastery from localStorage instead of hardcoding 0.5
   const priorMastery = useMemo(() => {
     if (typeof window === "undefined") return null;
@@ -171,6 +263,7 @@ export function useTutoringSession(skillId: string) {
     difficultyTier: masteryToTier(initialMastery),
     questionCount: 0,
     correctCount: 0,
+    correctStreak: 0,
     skillsCovered: [skillId],
     startTime: Date.now(),
     estimatedQuestions: ESTIMATED_QUESTIONS,
@@ -178,9 +271,11 @@ export function useTutoringSession(skillId: string) {
 
   const [summary, setSummary] = useState<SessionSummaryData | null>(null);
   const [teachBackActive, setTeachBackActive] = useState(false);
+  const [levelUpEvent, setLevelUpEvent] = useState<LevelUpEvent | null>(null);
   const recentAttempts = useRef<AttemptRecord[]>([]);
   const initialized = useRef(false);
   const teachBackTriggeredSkills = useRef(new Set<string>());
+  const sessionDbId = useRef<string | null>(null);
 
   // Fix #2: Track when question was shown for time measurement
   const questionShownAt = useRef<number | null>(null);
@@ -191,6 +286,9 @@ export function useTutoringSession(skillId: string) {
   // Fix #4: Integrate session pacing module
   const pacingState = useRef(createPacingState(new Date()));
 
+  // Deferred question: after teaching, wait for student to respond before showing MC question
+  const pendingQuestion = useRef<{ skillId: string; tier: DifficultyLevel } | null>(null);
+
   // Use refs for state values accessed in callbacks to avoid stale closures
   const stateRef = useRef(state);
   stateRef.current = state;
@@ -198,6 +296,36 @@ export function useTutoringSession(skillId: string) {
   const addMessages = useCallback(
     (...msgs: ChatMessageDisplay[]) => {
       setState((s) => ({ ...s, messages: [...s.messages, ...msgs] }));
+    },
+    []
+  );
+
+  /**
+   * Add a streaming tutor message that updates progressively.
+   * Returns the message ID so the caller can finalize it.
+   */
+  const addStreamingMessage = useCallback(
+    (type: ChatMessageDisplay["type"]): { id: string; appendDelta: (delta: string) => void } => {
+      const id = makeId();
+      const msg: ChatMessageDisplay = {
+        id,
+        role: "tutor",
+        content: "",
+        type,
+        timestamp: Date.now(),
+      };
+      setState((s) => ({ ...s, messages: [...s.messages, msg] }));
+
+      const appendDelta = (delta: string) => {
+        setState((s) => ({
+          ...s,
+          messages: s.messages.map((m) =>
+            m.id === id ? { ...m, content: m.content + delta } : m
+          ),
+        }));
+      };
+
+      return { id, appendDelta };
     },
     []
   );
@@ -220,14 +348,24 @@ export function useTutoringSession(skillId: string) {
   const persistMastery = useCallback(() => {
     const s = stateRef.current;
     const update = calculateMasteryUpdate(recentAttempts.current, s.difficultyTier);
-    saveSkillMastery({
+    const sessionAccuracy = s.questionCount > 0 ? s.correctCount / s.questionCount : 0;
+
+    const base = {
       skillId: s.currentSkillId,
       masteryLevel: update.newMasteryLevel,
       attemptsCount: (priorMastery?.attemptsCount ?? 0) + s.questionCount,
       correctCount: (priorMastery?.correctCount ?? 0) + s.correctCount,
       lastPracticed: new Date().toISOString(),
       confidenceTrend: update.newConfidenceTrend,
-    });
+      // Carry forward existing SM-2 fields for the schedule computation
+      interval: priorMastery?.interval,
+      easeFactor: priorMastery?.easeFactor,
+      nextReviewDate: priorMastery?.nextReviewDate,
+      repetitions: priorMastery?.repetitions,
+    };
+
+    const schedule = computeSkillReviewSchedule(base, sessionAccuracy);
+    saveSkillMastery({ ...base, ...schedule });
   }, [priorMastery]);
 
   // End session — defined first so submitAnswer can reference it via ref
@@ -246,8 +384,52 @@ export function useTutoringSession(skillId: string) {
 
       setLoading(true);
 
+      // Compute progress diff before persisting (so we still have the "before" state)
+      let progressDiff: SessionSummaryData["progressDiff"];
+      if (questionsAnswered > 0) {
+        const beforeMastery = priorMastery?.masteryLevel ?? 0.5;
+        const afterUpdate = calculateMasteryUpdate(recentAttempts.current, s.difficultyTier);
+        const afterMastery = afterUpdate.newMasteryLevel;
+        const tBefore = masteryToTier(beforeMastery);
+        const tAfter = masteryToTier(afterMastery);
+        const skill = getSkillById(s.currentSkillId);
+        progressDiff = {
+          skillName: skill?.name ?? s.currentSkillId,
+          masteryBefore: beforeMastery,
+          masteryAfter: afterMastery,
+          tierBefore: tBefore,
+          tierAfter: tAfter,
+          tierLabelAfter: tierLabel(tAfter),
+        };
+      }
+
       // Persist mastery before ending
       persistMastery();
+
+      // Auto-complete daily plan task
+      autoCompleteDailyTask(s.currentSkillId, isRetentionCheck ? "retention_check" : "skill_practice");
+
+      // Check and award badges
+      const ctx = buildBadgeContext({
+        sessionQuestions: questionsAnswered,
+        sessionCorrect: correctCount,
+      });
+      checkAndAwardBadges(ctx);
+
+      // Close the DB session with final skills covered
+      if (sessionDbId.current) {
+        void fetch("/api/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "end",
+            sessionId: sessionDbId.current,
+            skillsCovered: s.skillsCovered,
+          }),
+        }).catch((err: unknown) => console.error("[session] end error:", err));
+      }
+
+      const nextSkill = pickNextSkill(s.currentSkillId);
 
       try {
         const res = await callApi({
@@ -265,6 +447,8 @@ export function useTutoringSession(skillId: string) {
           skillsCovered: s.skillsCovered,
           elapsedMinutes,
           tutorMessage: res.text,
+          nextSkill: nextSkill ?? undefined,
+          progressDiff,
         });
       } catch {
         setSummary({
@@ -274,50 +458,79 @@ export function useTutoringSession(skillId: string) {
           skillsCovered: s.skillsCovered,
           elapsedMinutes,
           tutorMessage: "Great effort today! Keep practicing!",
+          nextSkill: nextSkill ?? undefined,
+          progressDiff,
         });
       }
 
       setState((prev) => ({ ...prev, phase: "complete", activeQuestion: null }));
     },
-    [setLoading, persistMastery]
+    [setLoading, persistMastery, isRetentionCheck, priorMastery]
   );
 
-  // Start session: teach concept, then generate first question
+  // Start session: teach concept (streamed), then generate first question
   const startSession = useCallback(async () => {
     const s = stateRef.current;
     try {
       setLoading(true);
 
-      const teachRes = await callApi({
-        type: "teach",
-        skillId,
-        mastery: s.mastery,
-      });
-      addMessages(makeTutorMsg(teachRes.text, "teaching"));
+      // Create a DB session in the background — don't block the teaching stream
+      const domain = getDomainForSkill(skillId) ?? skillId;
+      void fetch("/api/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "create", domain }),
+      }).then(async (res) => {
+        if (res.ok) {
+          const data = await res.json() as { session?: { id: string } };
+          sessionDbId.current = data.session?.id ?? null;
+        }
+      }).catch((err: unknown) => console.error("[session] create error:", err));
 
-      const qRes = await callApi({
-        type: "generate_question",
-        skillId,
-        difficultyTier: s.difficultyTier,
-      });
+      if (isFirstSession) {
+        // First session: warm welcome, then jump straight to a question
+        const skill = getSkillById(skillId);
+        const skillName = skill?.name ?? skillId;
+        addMessages(makeTutorMsg(
+          `Welcome! Let's try a few questions on **${skillName}** — your strongest area. Ready? Here we go!`,
+          "text"
+        ));
 
-      if (qRes.question) {
-        addMessages(makeTutorMsg(qRes.question.questionText, "question"));
-        questionShownAt.current = Date.now();
-        setState((prev) => ({
-          ...prev,
-          activeQuestion: qRes.question ?? null,
-          phase: "ready",
-        }));
+        const nextQ = await callApi({
+          type: "generate_question",
+          skillId,
+          difficultyTier: s.difficultyTier,
+        });
+
+        if (nextQ.question) {
+          addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
+          questionShownAt.current = Date.now();
+          setState((prev) => ({
+            ...prev,
+            activeQuestion: nextQ.question ?? null,
+            phase: "ready",
+          }));
+        } else {
+          setLoading(false);
+        }
       } else {
-        setLoading(false);
+        // Normal session: stream the teaching explanation
+        const streaming = addStreamingMessage("teaching");
+        await callApiStream(
+          { type: "teach", skillId, mastery: s.mastery },
+          streaming.appendDelta
+        );
+
+        // Defer the first MC question — let the student respond to the teaching first
+        pendingQuestion.current = { skillId, tier: s.difficultyTier };
+        setState((prev) => ({ ...prev, phase: "ready" }));
       }
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : "Something went wrong";
       addMessages(makeTutorMsg(`Sorry, I had trouble starting. ${errMsg}`, "text"));
       setLoading(false);
     }
-  }, [skillId, setLoading, addMessages]);
+  }, [skillId, isFirstSession, setLoading, addMessages, addStreamingMessage]);
 
   // Initialize on mount
   useEffect(() => {
@@ -337,24 +550,35 @@ export function useTutoringSession(skillId: string) {
       setLoading(true);
 
       try {
-        const evalRes = await callApi({
-          type: "evaluate_answer",
-          questionText: s.activeQuestion.questionText,
-          studentAnswer: answer,
-          correctAnswer: s.activeQuestion.correctAnswer,
-          history: getHistory(),
-        });
-
-        // Fix #2: Record actual time spent on question
+        // Record time spent before starting evaluation stream
         const now = Date.now();
         const timeSpent = questionShownAt.current !== null
           ? Math.round((now - questionShownAt.current) / 1000)
           : null;
         questionShownAt.current = null;
 
+        // Stream the evaluation feedback
+        const streaming = addStreamingMessage("feedback");
+        const evalMeta = await callApiStream(
+          {
+            type: "evaluate_answer",
+            questionText: s.activeQuestion.questionText,
+            studentAnswer: answer,
+            correctAnswer: s.activeQuestion.correctAnswer,
+            history: getHistory(),
+            sessionId: sessionDbId.current ?? undefined,
+            skillId: s.currentSkillId,
+            timeSpentSeconds: timeSpent ?? undefined,
+            hintUsed: hintUsedForCurrent.current,
+          },
+          streaming.appendDelta
+        );
+
+        const isCorrect = (evalMeta.isCorrect as boolean) ?? false;
+
         // Fix #6: Record hint usage
         const attempt: AttemptRecord = {
-          isCorrect: evalRes.isCorrect ?? false,
+          isCorrect,
           timeSpentSeconds: timeSpent,
           hintUsed: hintUsedForCurrent.current,
         };
@@ -362,14 +586,13 @@ export function useTutoringSession(skillId: string) {
         hintUsedForCurrent.current = false;
 
         // Log wrong answers to mistake journal (non-blocking)
-        if (!evalRes.isCorrect && s.activeQuestion) {
+        if (!isCorrect && s.activeQuestion) {
           logMistakeInBackground(s.activeQuestion, answer);
         }
 
-        addMessages(makeTutorMsg(evalRes.text, "feedback"));
-
         const newQuestionCount = s.questionCount + 1;
-        const newCorrectCount = s.correctCount + (evalRes.isCorrect ? 1 : 0);
+        const newCorrectCount = s.correctCount + (isCorrect ? 1 : 0);
+        const newStreak = isCorrect ? s.correctStreak + 1 : 0;
 
         const decision = adjustDifficulty(s.mastery, recentAttempts.current);
 
@@ -379,11 +602,24 @@ export function useTutoringSession(skillId: string) {
           decision.tier
         );
 
+        // Level-up detection: compare old tier vs new tier
+        const oldTier = masteryToTier(s.mastery);
+        const newTier = masteryToTier(masteryUpdate.newMasteryLevel);
+        if (newTier > oldTier) {
+          const skill = getSkillById(s.currentSkillId);
+          setLevelUpEvent({
+            skillName: skill?.name ?? s.currentSkillId,
+            newTier,
+            newTierLabel: tierLabel(newTier),
+          });
+        }
+
         setState((prev) => ({
           ...prev,
           activeQuestion: null,
           questionCount: newQuestionCount,
           correctCount: newCorrectCount,
+          correctStreak: newStreak,
           difficultyTier: decision.tier,
           mastery: masteryUpdate.newMasteryLevel,
           phase: "ready",
@@ -402,6 +638,12 @@ export function useTutoringSession(skillId: string) {
           return;
         }
 
+        // First session: end after 3 questions
+        if (isFirstSession && pacingState.current.totalQuestions >= 3) {
+          await doEndSession(newQuestionCount, newCorrectCount);
+          return;
+        }
+
         // Fix #5: Handle rushing detection
         if (pacingAction.action === "slow_down") {
           addMessages(makeTutorMsg(pacingAction.reason, "text"));
@@ -414,7 +656,7 @@ export function useTutoringSession(skillId: string) {
 
         // Check if teach-it-back should trigger (Feynman technique)
         if (
-          evalRes.isCorrect &&
+          isCorrect &&
           shouldTriggerTeachBack(
             newQuestionCount,
             newCorrectCount,
@@ -428,21 +670,29 @@ export function useTutoringSession(skillId: string) {
           return;
         }
 
-        // If in teach mode or pacing says insert teaching, teach first
+        // If in teach mode or pacing says insert teaching, teach first (streamed)
         if (
           decision.mode === "teach" ||
           pacingAction.action === "insert_teaching"
         ) {
-          const teachRes = await callApi({
-            type: "teach",
-            skillId: s.currentSkillId,
-            mastery: masteryUpdate.newMasteryLevel,
-          });
-          addMessages(makeTutorMsg(teachRes.text, "teaching"));
+          const teachStreaming = addStreamingMessage("teaching");
+          await callApiStream(
+            {
+              type: "teach",
+              skillId: s.currentSkillId,
+              mastery: masteryUpdate.newMasteryLevel,
+            },
+            teachStreaming.appendDelta
+          );
           pacingState.current = advancePacingAfterTeaching(pacingState.current);
+
+          // Defer MC question — let student respond to teaching first
+          pendingQuestion.current = { skillId: s.currentSkillId, tier: decision.tier };
+          setState((prev) => ({ ...prev, phase: "ready" }));
+          return;
         }
 
-        // Generate next question
+        // No teaching — generate next question immediately
         const nextQ = await callApi({
           type: "generate_question",
           skillId: s.currentSkillId,
@@ -466,10 +716,10 @@ export function useTutoringSession(skillId: string) {
         setLoading(false);
       }
     },
-    [addMessages, setLoading, getHistory, doEndSession]
+    [addMessages, addStreamingMessage, setLoading, getHistory, doEndSession, isFirstSession]
   );
 
-  // Request hint — Fix #6: Mark hint as used for current question
+  // Request hint (streamed) — Fix #6: Mark hint as used for current question
   const requestHint = useCallback(async () => {
     const s = stateRef.current;
     if (s.phase === "loading") return;
@@ -481,19 +731,18 @@ export function useTutoringSession(skillId: string) {
         ? `Student is stuck on: "${s.activeQuestion.questionText}". The correct answer is "${s.activeQuestion.correctAnswer}". Give a nudge without revealing the answer.`
         : "Student needs help with the current topic.";
 
-      const res = await callApi({
-        type: "get_hint",
-        context,
-        history: getHistory(),
-      });
-      addMessages(makeTutorMsg(res.text, "hint"));
+      const streaming = addStreamingMessage("hint");
+      await callApiStream(
+        { type: "get_hint", context, history: getHistory() },
+        streaming.appendDelta
+      );
     } catch {
       addMessages(makeTutorMsg("Let me think... Try breaking the problem into smaller parts!", "hint"));
     }
     setLoading(false);
-  }, [addMessages, setLoading, getHistory]);
+  }, [addMessages, addStreamingMessage, setLoading, getHistory]);
 
-  // Explain more
+  // Explain more (streamed)
   const requestExplanation = useCallback(async () => {
     const s = stateRef.current;
     if (s.phase === "loading") return;
@@ -503,18 +752,21 @@ export function useTutoringSession(skillId: string) {
       const lastTutorMsg = [...s.messages]
         .reverse()
         .find((m) => m.role === "tutor");
-      const res = await callApi({
-        type: "explain_more",
-        skillId: s.currentSkillId,
-        mastery: s.mastery,
-        context: lastTutorMsg?.content ?? "",
-      });
-      addMessages(makeTutorMsg(res.text, "teaching"));
+      const streaming = addStreamingMessage("teaching");
+      await callApiStream(
+        {
+          type: "explain_more",
+          skillId: s.currentSkillId,
+          mastery: s.mastery,
+          context: lastTutorMsg?.content ?? "",
+        },
+        streaming.appendDelta
+      );
     } catch {
       addMessages(makeTutorMsg("Let me explain that differently...", "teaching"));
     }
     setLoading(false);
-  }, [addMessages, setLoading]);
+  }, [addMessages, addStreamingMessage, setLoading]);
 
   // Continue session after teach-it-back (generate next question)
   const continueAfterTeachBack = useCallback(async () => {
@@ -577,25 +829,20 @@ export function useTutoringSession(skillId: string) {
     void continueAfterTeachBack();
   }, [continueAfterTeachBack]);
 
-  // Fix #3: Send free-text message with frustration detection
   const sendMessage = useCallback(
     async (text: string) => {
-      if (stateRef.current.activeQuestion) {
-        void submitAnswer(text);
-        return;
-      }
-
-      addMessages(makeUserMsg(text));
-
+      // Bug 1 fix: check frustration BEFORE routing to submitAnswer —
+      // a student typing "I give up" while a question is active must get
+      // an emotional response, not have their words graded as an answer.
       if (detectFrustration(text)) {
+        addMessages(makeUserMsg(text));
         setLoading(true);
         try {
-          const res = await callApi({
-            type: "emotional_response",
-            message: text,
-            history: getHistory(),
-          });
-          addMessages(makeTutorMsg(res.text, "text"));
+          const streaming = addStreamingMessage("text");
+          await callApiStream(
+            { type: "emotional_response", message: text, history: getHistory() },
+            streaming.appendDelta
+          );
         } catch {
           addMessages(
             makeTutorMsg(
@@ -605,9 +852,57 @@ export function useTutoringSession(skillId: string) {
           );
         }
         setLoading(false);
+        return;
       }
+
+      if (stateRef.current.activeQuestion) {
+        void submitAnswer(text);
+        return;
+      }
+
+      addMessages(makeUserMsg(text));
+
+      // Bug 2 fix: no active question and not frustrated — respond with a
+      // Socratic follow-up instead of going silent.
+      setLoading(true);
+      try {
+        const streaming = addStreamingMessage("text");
+        await callApiStream(
+          { type: "get_hint", context: text, history: getHistory() },
+          streaming.appendDelta
+        );
+      } catch {
+        addMessages(makeTutorMsg("That's a great thought! Let's keep exploring.", "text"));
+      }
+
+      // If a MC question was deferred after teaching, generate it now
+      if (pendingQuestion.current) {
+        const pq = pendingQuestion.current;
+        pendingQuestion.current = null;
+        try {
+          const nextQ = await callApi({
+            type: "generate_question",
+            skillId: pq.skillId,
+            difficultyTier: pq.tier,
+          });
+          if (nextQ.question) {
+            addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
+            questionShownAt.current = Date.now();
+            setState((prev) => ({
+              ...prev,
+              activeQuestion: nextQ.question ?? null,
+              phase: "ready",
+            }));
+            return;
+          }
+        } catch {
+          // Fall through to setLoading(false)
+        }
+      }
+
+      setLoading(false);
     },
-    [submitAnswer, addMessages, setLoading, getHistory]
+    [submitAnswer, addMessages, addStreamingMessage, setLoading, getHistory]
   );
 
   // Restart with same skill — Fix #1: Load from store
@@ -616,9 +911,12 @@ export function useTutoringSession(skillId: string) {
     teachBackTriggeredSkills.current.clear();
     hintUsedForCurrent.current = false;
     questionShownAt.current = null;
+    pendingQuestion.current = null;
+    sessionDbId.current = null;
     pacingState.current = createPacingState(new Date());
     setSummary(null);
     setTeachBackActive(false);
+    setLevelUpEvent(null);
 
     const stored = loadSkillMastery(skillId);
     const mastery = stored?.masteryLevel ?? 0.5;
@@ -632,6 +930,7 @@ export function useTutoringSession(skillId: string) {
       difficultyTier: masteryToTier(mastery),
       questionCount: 0,
       correctCount: 0,
+      correctStreak: 0,
       skillsCovered: [skillId],
       startTime: Date.now(),
       estimatedQuestions: ESTIMATED_QUESTIONS,
@@ -647,10 +946,14 @@ export function useTutoringSession(skillId: string) {
     }
   }, [state.phase, startSession]);
 
+  const clearLevelUp = useCallback(() => setLevelUpEvent(null), []);
+
   return {
     state,
     summary,
     teachBackActive,
+    levelUpEvent,
+    clearLevelUp,
     submitAnswer,
     sendMessage,
     requestHint,

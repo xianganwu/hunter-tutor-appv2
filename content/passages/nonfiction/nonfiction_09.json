@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_09",
+    "title": "Why Sleep Is Your Brain's Secret Weapon",
+    "genre": "nonfiction",
+    "difficulty_level": 4,
+    "word_count": 648,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_evidence_reasoning",
+      "rc_advanced_inference",
+      "rc_vocab_context",
+      "rc_advanced_structure"
+    ],
+    "source_description": "original",
+    "lexile_range": "800L-1000L",
+    "themes": ["health"]
+  },
+  "pre_reading_context": "This article explains what happens inside your brain while you sleep and why getting enough rest is critical for learning and health.",
+  "passage_text": "Most people think of sleep as a time when the body shuts down, like a computer going into standby mode. But neuroscientists — scientists who study the brain — have discovered that sleep is one of the most active and important periods of the entire day. While you lie still with your eyes closed, your brain is working furiously, performing tasks that are essential for learning, memory, and physical health.\n\nOne of the brain's most important nighttime jobs is consolidating memories. During the day, your brain collects enormous amounts of information — vocabulary words from English class, the steps of a new dance routine, the face of someone you just met. All of this data is initially stored in a region called the hippocampus, which acts like a temporary holding area. During deep sleep, the brain replays these experiences and transfers the most important ones to the cortex, where they are stored as long-term memories. This process is called memory consolidation, and without it, much of what you learn during the day would simply fade away.\n\nResearchers at Harvard University conducted a study that illustrates this dramatically. They taught two groups of participants a complex pattern-recognition task. One group was tested twelve hours later, after a full night of sleep. The other group was tested twelve hours later but had stayed awake the entire time. The group that slept improved their performance by an average of fifteen percent, while the group that stayed awake showed no improvement at all. The sleep did not merely prevent forgetting — it actively strengthened the memories and the skills associated with them.\n\nSleep also plays a critical role in emotional regulation. The amygdala, the brain region responsible for processing emotions like fear and anger, becomes hyperactive when a person is sleep-deprived. This means that a tired brain is more likely to overreact to minor frustrations — a dropped pencil, a sarcastic comment from a classmate — as though they were major threats. Meanwhile, the prefrontal cortex, which helps with rational thinking and impulse control, becomes less active with insufficient sleep. The result is a brain that is simultaneously more emotional and less capable of managing those emotions.\n\nAnother recently discovered function of sleep involves the glymphatic system, a cleaning mechanism that operates primarily while you are asleep. During waking hours, brain cells produce waste products as a byproduct of their normal activity. When you sleep, the spaces between brain cells expand by up to sixty percent, allowing cerebrospinal fluid to flow through and flush out these toxins. Scientists believe that the failure to clear these waste products may contribute to neurodegenerative diseases later in life, making adequate sleep not just a matter of daily performance but of long-term brain health.\n\nDespite all of this evidence, many young people do not get enough sleep. The American Academy of Sleep Medicine recommends that children ages six to twelve get nine to twelve hours of sleep per night, and teenagers ages thirteen to eighteen need eight to ten hours. However, studies show that approximately seventy percent of high school students regularly sleep fewer than eight hours. The reasons are familiar: homework, extracurricular activities, screen time, and social media all compete for the hours that should be devoted to rest.\n\nThe consequences of chronic sleep deprivation extend beyond feeling tired. Students who consistently sleep too little perform worse on tests, have more difficulty concentrating in class, are more susceptible to illness, and experience higher rates of anxiety and depression. Ironically, many students sacrifice sleep to study more, not realizing that the sleep they are giving up would do more for their test scores than the extra hour of cramming.\n\nUnderstanding what sleep does — and what happens when we don't get enough of it — may be one of the most valuable lessons a student can learn. The brain is not a machine that runs on willpower alone. It is a biological organ that requires rest to function at its best.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the central argument of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Students should stop doing homework so they can sleep more."},
+        {"letter": "B", "text": "Sleep is an active, essential biological process that strengthens memory, regulates emotions, and maintains brain health, and insufficient sleep has serious consequences."},
+        {"letter": "C", "text": "The glymphatic system is the most important discovery in modern neuroscience."},
+        {"letter": "D", "text": "Sleeping twelve hours per night guarantees better test scores for all students."},
+        {"letter": "E", "text": "Neuroscientists have proven that the brain does not need sleep to function properly."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage systematically presents evidence that sleep is actively important (memory consolidation, emotional regulation, brain cleaning) and then discusses the consequences of not getting enough. The central argument is that sleep is essential and that insufficient sleep causes real harm.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because homework is listed as a reason students lose sleep, but the passage does not argue against homework — it argues for prioritizing adequate sleep."},
+        {"letter": "C", "explanation": "This is tempting because the glymphatic system is discussed, but it is one of several sleep functions covered — the passage is about sleep's overall importance, not just one system."},
+        {"letter": "D", "explanation": "This is tempting because the passage connects sleep to test performance, but it never guarantees specific results from a specific number of hours."},
+        {"letter": "E", "explanation": "This is tempting as a misreading, but the passage argues the exact opposite — that the brain absolutely needs sleep to function well."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "Which evidence from the passage most directly supports the claim that sleep improves learning?",
+      "answer_choices": [
+        {"letter": "A", "text": "The amygdala becomes hyperactive when a person is sleep-deprived."},
+        {"letter": "B", "text": "The Harvard study showed that participants who slept improved their performance by fifteen percent, while those who stayed awake showed no improvement."},
+        {"letter": "C", "text": "The spaces between brain cells expand by sixty percent during sleep."},
+        {"letter": "D", "text": "Seventy percent of high school students sleep fewer than eight hours."},
+        {"letter": "E", "text": "The brain produces waste products as a byproduct of normal activity."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The Harvard study directly tested whether sleep improves learning by comparing two groups on the same task. The group that slept improved by fifteen percent while the group that stayed awake did not improve, providing direct evidence that sleep enhances learning.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because an overactive amygdala affects behavior, but this relates to emotional regulation, not learning improvement specifically."},
+        {"letter": "C", "explanation": "This is tempting because it describes a sleep process, but it relates to the brain's cleaning system (glymphatic), not directly to learning."},
+        {"letter": "D", "explanation": "This is tempting because it is a concerning statistic about students, but it describes a problem with sleep habits, not evidence that sleep improves learning."},
+        {"letter": "E", "explanation": "This is tempting because waste products relate to brain function, but this is about brain cleaning, not about learning improvement."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 3,
+      "question_text": "The passage states that many students \"sacrifice sleep to study more, not realizing that the sleep they are giving up would do more for their test scores than the extra hour of cramming.\" What does this reveal about the relationship between sleep and studying?",
+      "answer_choices": [
+        {"letter": "A", "text": "Studying is completely useless and students should never study for tests."},
+        {"letter": "B", "text": "Students who study less always get higher test scores than students who study more."},
+        {"letter": "C", "text": "Beyond a certain point, losing sleep to study is counterproductive because sleep itself is necessary for the brain to consolidate and retain what was studied."},
+        {"letter": "D", "text": "Cramming is more effective than sleeping because it puts information directly into long-term memory."},
+        {"letter": "E", "text": "Students should only study during the daytime and never at night under any circumstances."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage explains that sleep is when the brain transfers information from short-term to long-term memory (consolidation). Sacrificing sleep to study means the brain cannot properly consolidate what was learned, making the extra study time counterproductive — the student ends up knowing less, not more.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the passage criticizes trading sleep for study time, but it does not say studying is useless — it says that adequate sleep is needed for studying to be effective."},
+        {"letter": "B", "explanation": "This is tempting because it relates sleep to test scores, but the passage does not say studying less is always better — it says losing sleep to study more is the specific problem."},
+        {"letter": "D", "explanation": "This is tempting as a belief many students hold, but the passage specifically argues against this — sleep, not cramming, is what moves information into long-term memory."},
+        {"letter": "E", "explanation": "This is tempting because the passage values sleep at night, but it never makes an absolute rule about when studying should occur — the point is about adequate total sleep, not study timing."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"consolidating\" most likely mean as used in the second paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "Erasing permanently"},
+        {"letter": "B", "text": "Strengthening and making more stable"},
+        {"letter": "C", "text": "Creating for the first time"},
+        {"letter": "D", "text": "Copying onto paper"},
+        {"letter": "E", "text": "Sending to another person"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes memory consolidation as the process of replaying experiences and transferring them from temporary storage (hippocampus) to long-term storage (cortex). To consolidate means to strengthen and stabilize — making memories more permanent and reliable.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the brain does discard some information, but consolidation is about keeping and strengthening memories, not erasing them."},
+        {"letter": "C", "explanation": "This is tempting because memories are being processed, but the memories were already created during the day — consolidation is about strengthening existing memories, not creating new ones."},
+        {"letter": "D", "explanation": "This is tempting because 'transferring' is involved, but the transfer is between brain regions, not onto paper."},
+        {"letter": "E", "explanation": "This is tempting because transfer is part of the process, but the transfer happens within one person's brain, not between people."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the author structure the argument in this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "The author tells a personal story about not getting enough sleep and then gives advice."},
+        {"letter": "B", "text": "The author presents the scientific functions of sleep, provides research evidence, and then discusses the consequences of sleep deprivation to build a comprehensive case."},
+        {"letter": "C", "text": "The author compares sleep habits in different countries and ranks them from best to worst."},
+        {"letter": "D", "text": "The author lists questions about sleep without providing any answers."},
+        {"letter": "E", "text": "The author focuses entirely on one study and draws all conclusions from that single source."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage first explains what sleep does (memory consolidation, emotional regulation, brain cleaning), then provides scientific evidence (the Harvard study, statistics), and then discusses the consequences of insufficient sleep. This structure builds a comprehensive argument by layering functions, evidence, and consequences.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because some health articles use personal stories, but this passage uses scientific research and data, not personal anecdotes."},
+        {"letter": "C", "explanation": "This is tempting because comparisons are a common text structure, but the passage does not compare different countries — it focuses on the science of sleep."},
+        {"letter": "D", "explanation": "This is tempting because the passage addresses questions about sleep, but it thoroughly answers them with scientific explanations and evidence."},
+        {"letter": "E", "explanation": "This is tempting because the Harvard study is prominent, but the passage also discusses the glymphatic system, the amygdala and prefrontal cortex, and statistics about teen sleep habits — it draws from multiple sources."}
+      ],
+      "skill_tested": "rc_advanced_structure"
+    }
+  ]
+}

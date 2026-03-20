@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { getAnthropicClient } from "@/lib/ai/client";
+import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
+
+// Allow up to 60s for AI question generation
+export const maxDuration = 60;
 
 // ─── Request Types ────────────────────────────────────────────────────
 
@@ -102,16 +106,19 @@ export async function POST(
             ? "Quantitative Reasoning"
             : "Math Achievement";
 
+        // Scale max_tokens to question count — smaller batches finish faster
+        const maxTokens = Math.min(16384, Math.max(4096, body.questionCount * 400));
+
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 16384,
-          system: `You are a math exam question writer for the Hunter College High School entrance exam. Create rigorous, age-appropriate multiple-choice questions for 6th graders. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.
+          model: MODEL_SONNET,
+          max_tokens: maxTokens,
+          system: [{ type: "text" as const, text: `You are a math exam question writer creating practice questions for students preparing for the Hunter College High School entrance exam. Students range from rising 5th graders (age 9-10) working on foundations to 6th graders (age 11-12) in intensive prep. Create rigorous, age-appropriate multiple-choice questions. Questions should vary in difficulty (mix of straightforward and challenging). Use clear, unambiguous wording. Each question must have exactly 5 answer choices (A-E) with exactly one correct answer.
 
 CRITICAL — Answer Uniqueness:
 - Before finalizing each question, verify that ONLY the answer marked as correct satisfies ALL conditions in the question. No other answer choice may also be valid.
 - For "which number" questions (e.g. place value, digit constraints), check EVERY answer choice against ALL stated conditions. If more than one choice satisfies the conditions, rewrite the question to add constraints that make the answer unique, or replace conflicting wrong answers.
 - For computation questions, double-check the arithmetic. The correct answer must actually equal the result of the computation.
-- Distractors (wrong answers) must be plausible but definitively wrong — they must fail at least one condition in the question.`,
+- Distractors (wrong answers) must be plausible but definitively wrong — they must fail at least one condition in the question.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -213,9 +220,9 @@ Requirements:
         }
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_SONNET,
           max_tokens: 1024,
-          system: `You are evaluating a 6th grader's essay written under timed exam conditions for the Hunter College High School entrance exam. Score fairly but kindly. The essay was written in approximately 25-30 minutes.`,
+          system: [{ type: "text" as const, text: `You are evaluating a student's essay written under timed practice conditions. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12) preparing for the Hunter College High School entrance exam. Score fairly but kindly, calibrating expectations to the student's apparent age and skill level. The essay was written in approximately 25-30 minutes.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -226,7 +233,7 @@ Student's essay:
 
 Evaluate this essay. Respond in this EXACT format:
 
-SCORE: [1-10, where 10 is exceptional for a 6th grader]
+SCORE: [1-10, where 10 is exceptional for the student's level]
 FEEDBACK: [2-3 sentences of overall assessment]
 STRENGTHS: [comma-separated list of 2-3 specific strengths]
 IMPROVEMENTS: [comma-separated list of 2-3 specific areas to improve]`,
@@ -269,9 +276,9 @@ IMPROVEMENTS: [comma-separated list of 2-3 specific areas to improve]`,
           .join("\n");
 
         const response = await client.messages.create({
-          model: "claude-sonnet-4-20250514",
+          model: MODEL_HAIKU,
           max_tokens: 1024,
-          system: `You are a warm, encouraging test prep tutor for a 6th grader preparing for the Hunter College High School entrance exam in January 2026. Provide specific, actionable study recommendations based on their practice exam results. Be positive but honest. The exam is approximately 10 months away.`,
+          system: [{ type: "text" as const, text: `You are a warm, encouraging test prep tutor for a student building skills toward the Hunter College High School entrance exam. The student may be a rising 5th grader building foundations or a 6th grader in intensive prep. Provide specific, actionable study recommendations based on their practice exam results. Be positive but honest.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",

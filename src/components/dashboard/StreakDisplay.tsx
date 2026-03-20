@@ -4,16 +4,19 @@ interface StreakDisplayProps {
   readonly data: StreakData;
 }
 
+type DayStatus = "practiced" | "rest";
+
 export function StreakDisplay({ data }: StreakDisplayProps) {
   const today = new Date();
-  const last14Days: { date: string; practiced: boolean }[] = [];
+  const last14Days: { date: string; status: DayStatus }[] = [];
 
   for (let i = 13; i >= 0; i--) {
     const d = new Date(today.getTime() - i * 86400000);
     const dateStr = d.toISOString().split("T")[0];
+    const practiced = data.practicedDates.includes(dateStr);
     last14Days.push({
       date: dateStr,
-      practiced: data.practicedDates.includes(dateStr),
+      status: practiced ? "practiced" : "rest",
     });
   }
 
@@ -46,12 +49,12 @@ export function StreakDisplay({ data }: StreakDisplayProps) {
           <div
             key={day.date}
             className={`w-4 h-4 rounded-full transition-colors duration-300 ${
-              day.practiced
+              day.status === "practiced"
                 ? "bg-streak-400"
                 : "bg-surface-200 dark:bg-surface-700"
             }`}
-            title={`${day.date}: ${day.practiced ? "Practiced" : "Rest day"}`}
-            aria-label={`${day.date}: ${day.practiced ? "Practiced" : "Rest day"}`}
+            title={`${day.date}: ${day.status === "practiced" ? "Practiced" : "Rest day"}`}
+            aria-label={`${day.date}: ${day.status === "practiced" ? "Practiced" : "Rest day"}`}
           />
         ))}
       </div>

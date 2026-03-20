@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "historical_document_09",
+    "title": "Angel Island: The Other Gateway to America",
+    "genre": "historical_document",
+    "difficulty_level": 4,
+    "word_count": 650,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_advanced_inference",
+      "rc_evidence_reasoning",
+      "rc_vocab_context",
+      "rc_comparing_viewpoints"
+    ],
+    "source_description": "original",
+    "lexile_range": "800L-1000L",
+    "themes": ["immigration"]
+  },
+  "pre_reading_context": "This passage tells the story of Angel Island, an immigration station in San Francisco Bay where hundreds of thousands of immigrants — especially from Asia — were processed under very different conditions than those at Ellis Island.",
+  "passage_text": "When Americans think of immigration history, they usually picture Ellis Island — the famous station in New York Harbor where twelve million Europeans entered the United States between 1892 and 1954. But on the opposite coast, another immigration station told a very different story. Angel Island, located in San Francisco Bay, processed approximately one million immigrants between 1910 and 1940, and for many of them — particularly Chinese immigrants — the experience was defined not by welcome but by suspicion, detention, and humiliation.\n\nThe contrast between the two stations was stark. At Ellis Island, the majority of European immigrants were processed and admitted within a few hours. They underwent medical examinations and answered a series of questions, and unless they had a serious health condition or a criminal record, they were allowed to enter the country. The process, while not always pleasant, was relatively quick.\n\nAt Angel Island, the experience was dramatically different, especially for immigrants from China. The Chinese Exclusion Act of 1882 — the first federal law to restrict immigration based on nationality — had severely limited Chinese immigration to the United States. Under this law, only certain categories of Chinese people, such as merchants, teachers, and diplomats, were permitted to enter. Laborers were banned entirely. As a result, immigration officials at Angel Island were not simply processing arrivals; they were actively trying to identify and deport anyone who did not fit the narrow categories allowed by law.\n\nChinese immigrants were subjected to intense interrogations that could last for days or even weeks. Officials asked detailed questions designed to catch inconsistencies: What direction does your village face? How many steps lead to your front door? Who lives in the third house on the left side of your street? Applicants and their family members in the United States were interviewed separately, and any discrepancy in their answers — even a minor one — could result in deportation.\n\nWhile awaiting their hearings, immigrants were detained in crowded barracks on the island. Men and women were separated, and detainees were not allowed to leave the building except for brief supervised walks. Some immigrants were held for weeks; others waited months; a few endured detention for nearly two years. The conditions were so distressing that some detainees carved poems into the wooden walls of the barracks, expressing their frustration, loneliness, and anger. One poem, translated from Chinese, reads: \"Instead of remaining a citizen of China, I willingly became an ox. I was detained in a wooden building for several tens of days. It is indeed a kind of imprisonment.\"\n\nThese wall poems, rediscovered during a renovation of the barracks in 1970, became a powerful historical record. They transformed Angel Island from a forgotten waystation into a recognized symbol of the injustice faced by Asian immigrants. In 1997, the station was designated a National Historic Landmark.\n\nThe story of Angel Island complicates the familiar narrative of America as a nation that has always welcomed immigrants with open arms. While that narrative holds true for many groups at certain periods in history, it obscures the experiences of those who faced legal barriers, racial prejudice, and institutional cruelty. Understanding both Ellis Island and Angel Island — the welcome and the rejection — is necessary for a complete and honest picture of American immigration history.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Ellis Island was a more important immigration station than Angel Island."},
+        {"letter": "B", "text": "Angel Island tells a lesser-known but critical part of American immigration history, revealing that many immigrants — especially Chinese — faced suspicion, detention, and discrimination rather than welcome."},
+        {"letter": "C", "text": "All immigrants to the United States in the early 1900s had the same experience."},
+        {"letter": "D", "text": "The Chinese Exclusion Act was fair because it protected American workers."},
+        {"letter": "E", "text": "Immigration stations are no longer needed in the United States."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage contrasts Angel Island with Ellis Island to show that the American immigration experience was not uniform. For Chinese immigrants especially, Angel Island meant harsh interrogations, long detention, and discriminatory laws. The main idea is that this lesser-known history is essential to understanding immigration in America.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because Ellis Island is more famous, but the passage argues that Angel Island's story is equally important — it is not ranking them by importance."},
+        {"letter": "C", "explanation": "This is tempting because both stations are discussed, but the entire point of the passage is that the experiences were vastly different depending on where immigrants came from."},
+        {"letter": "D", "explanation": "This is tempting because the law is described, but the passage presents it critically, noting it was 'the first federal law to restrict immigration based on nationality' and led to 'injustice.'"},
+        {"letter": "E", "explanation": "This is tempting because the passage discusses historical stations, but it makes no claims about current immigration needs."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "Why were the questions asked during interrogations at Angel Island so specific and detailed?",
+      "answer_choices": [
+        {"letter": "A", "text": "Officials were genuinely interested in learning about Chinese culture and villages."},
+        {"letter": "B", "text": "The questions were designed to catch inconsistencies between the applicant's answers and their family members' answers, providing grounds for deportation."},
+        {"letter": "C", "text": "Officials wanted to help immigrants feel comfortable by asking about familiar topics."},
+        {"letter": "D", "text": "The questions were required by a new educational program for all immigrants."},
+        {"letter": "E", "text": "Officials needed the information to build houses for the immigrants."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage explains that officials asked 'detailed questions designed to catch inconsistencies' and that applicants and family members were 'interviewed separately.' Any discrepancy could lead to deportation. The specificity of the questions was a tool for exclusion, not genuine curiosity.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the questions were about village life, but the passage makes clear the purpose was to catch lies, not to learn about culture."},
+        {"letter": "C", "explanation": "This is tempting because familiar topics might seem comforting, but the passage describes the interrogations as intense and the experience as distressing — not comfortable."},
+        {"letter": "D", "explanation": "This is tempting because questions could be part of a program, but the passage says the questions were tools for enforcement of the exclusion law, not for education."},
+        {"letter": "E", "explanation": "This is tempting because detailed information could theoretically be useful, but the passage clearly states the questions were for catching inconsistencies, not for construction."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Which evidence from the passage most effectively conveys the emotional impact of detention at Angel Island?",
+      "answer_choices": [
+        {"letter": "A", "text": "Angel Island processed approximately one million immigrants."},
+        {"letter": "B", "text": "Detainees carved poems into the wooden walls expressing frustration, loneliness, and anger, including one that compared the experience to imprisonment."},
+        {"letter": "C", "text": "Men and women were separated during detention."},
+        {"letter": "D", "text": "The station was designated a National Historic Landmark in 1997."},
+        {"letter": "E", "text": "Ellis Island processed twelve million immigrants between 1892 and 1954."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The wall poems are the most powerful evidence of emotional impact because they are direct expressions from the detainees themselves. The quoted poem — comparing willing immigration to becoming an ox and calling detention 'a kind of imprisonment' — conveys deep frustration and despair in the immigrants' own words.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the number is large, but a total count of immigrants does not convey emotional impact — it is a statistical fact."},
+        {"letter": "C", "explanation": "This is tempting because separation is a harsh condition, but as a standalone detail it does not convey the depth of emotion that the carved poems do."},
+        {"letter": "D", "explanation": "This is tempting because landmark status recognizes significance, but it is an official designation, not a direct expression of the detainees' emotional experience."},
+        {"letter": "E", "explanation": "This is tempting because it is a striking number, but it is about Ellis Island, not Angel Island, and does not address the emotional experience at Angel Island."}
+      ],
+      "skill_tested": "rc_evidence_reasoning"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the word \"stark\" mean as used in the phrase \"the contrast between the two stations was stark\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "Barely noticeable"},
+        {"letter": "B", "text": "Extremely clear and obvious"},
+        {"letter": "C", "text": "Beautifully decorated"},
+        {"letter": "D", "text": "Confusing and complicated"},
+        {"letter": "E", "text": "Slowly developing over time"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage uses 'stark' to describe the contrast between Ellis Island and Angel Island, then immediately demonstrates how different the experiences were — hours at Ellis Island versus weeks or months at Angel Island. 'Stark' means sharp, obvious, and unmistakable.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting as the opposite meaning, but the passage goes on to describe dramatic differences, showing the contrast was anything but subtle."},
+        {"letter": "C", "explanation": "This is tempting because 'stark' sounds like it could describe appearance, but in this context it describes the severity of a difference, not visual decoration."},
+        {"letter": "D", "explanation": "This is tempting because the situation was complex, but 'stark' means the difference was clear and obvious, not confusing."},
+        {"letter": "E", "explanation": "This is tempting because the passage covers a long time period, but 'stark' describes the immediate and obvious nature of the contrast, not its development over time."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "The passage describes two different narratives about American immigration. How do these narratives relate to each other?",
+      "answer_choices": [
+        {"letter": "A", "text": "The Ellis Island narrative of welcoming immigrants tells the complete truth, and Angel Island's story is irrelevant."},
+        {"letter": "B", "text": "The Angel Island narrative proves that America never welcomed any immigrants at any time in its history."},
+        {"letter": "C", "text": "The welcoming narrative is true for some groups at some times, but the Angel Island story reveals that other groups faced exclusion and prejudice, and both narratives are needed for a complete picture."},
+        {"letter": "D", "text": "Both narratives describe exactly the same experience for all immigrants."},
+        {"letter": "E", "text": "The two narratives have no connection to each other and should be studied separately."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The final paragraph states that the welcoming narrative 'holds true for many groups at certain periods' but 'obscures the experiences of those who faced legal barriers, racial prejudice, and institutional cruelty.' The passage argues that both the welcome (Ellis Island) and the rejection (Angel Island) must be understood together for an honest picture.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the welcoming narrative is dominant, but the passage argues it is incomplete — Angel Island's story is essential, not irrelevant."},
+        {"letter": "B", "explanation": "This is tempting because Angel Island reveals discrimination, but the passage acknowledges the welcoming narrative is true for 'many groups at certain periods' — it does not deny all welcome."},
+        {"letter": "D", "explanation": "This is tempting because both involve immigration, but the entire passage is built on the dramatic differences between the two experiences."},
+        {"letter": "E", "explanation": "This is tempting because they are geographically separate, but the passage explicitly argues they must be understood together for a 'complete and honest picture.'"}
+      ],
+      "skill_tested": "rc_comparing_viewpoints"
+    }
+  ]
+}

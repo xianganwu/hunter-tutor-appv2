@@ -1,19 +1,25 @@
-# CLAUDE.md — Hunter Tutor App
+# CLAUDE.md — Hunter Tutor App (Progressive Edition)
 
 ## Project Overview
 
-A web-based adaptive tutoring app that prepares 6th graders for the **Hunter College High School entrance exam** (January 2026 format). This is a **Socratic tutor**, not a test bank — it teaches through dialogue, worked examples, weakness identification, and dynamic difficulty adjustment.
+A web-based adaptive tutoring app with a **progressive two-level curriculum** for students building toward the **Hunter College High School entrance exam**. Students start with **foundations** (rising 5th graders, ages 9-10) and progress to **Hunter prep** (6th graders, ages 11-12). Everything is in one app — students advance naturally from foundational skills to exam-level content. This is a **Socratic tutor**, not a test bank — it teaches through dialogue, worked examples, weakness identification, and dynamic difficulty adjustment.
 
-### Target User
-- 6th grade students (ages 11–12)
-- Parents monitoring progress
+### Target Users
+- **Rising 5th graders** (ages 9–10): High-performing/gifted students building foundational skills
+- **6th graders** (ages 11–12): Students in intensive Hunter entrance exam preparation
+- Parents monitoring progress at either level
 - Language must be encouraging, age-appropriate, and never condescending
 
-### Exam Format (January 2026)
-The Hunter entrance exam tests:
-- **Reading Comprehension**: passage analysis, inference, vocabulary in context, author's purpose
-- **Mathematics**: arithmetic, fractions/decimals/percents, ratios, basic geometry, word problems, number theory, pre-algebra concepts
-- **Essay Writing**: written response to a prompt demonstrating clear thinking and organization
+### Two-Level Curriculum
+**Level 1 — Foundations (Rising 5th Grade)**
+- **Reading**: grade 4-5 passages, main idea, inference, vocabulary in context, basic author's purpose, figurative language
+- **Math**: multiplication/division fluency, fractions/decimals foundations, basic geometry, word problems, number sense, patterns, early algebra
+- **Writing**: paragraph and short essay structure, personal narratives, opinion writing, grammar basics
+
+**Level 2 — Hunter Prep (6th Grade)**
+- **Reading**: advanced inference, passage structure analysis, comparing viewpoints, advanced vocabulary
+- **Math**: fraction/decimal operations, percents, ratios/proportions, coordinate geometry, algebraic expressions, multi-step word problems
+- **Writing**: persuasive and expository essays, evidence-based arguments, sophisticated organization
 
 ---
 
@@ -210,7 +216,7 @@ NEXT_PUBLIC_APP_NAME="Hunter Tutor"
 - Squash merge to keep history clean
 
 ### Content Safety
-- All AI-generated content targets 6th grade reading level
+- All AI-generated content targets 4th-5th grade reading level
 - No violent, sexual, or otherwise inappropriate content can surface
 - System prompts must include content guardrails
 - Log and flag any AI response that bypasses content filters

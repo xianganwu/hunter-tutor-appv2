@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "fiction_10",
+    "title": "Crossing the Bridge",
+    "genre": "fiction",
+    "difficulty_level": 5,
+    "word_count": 798,
+    "tagged_skills": [
+      "rc_advanced_inference",
+      "rc_figurative_language",
+      "rc_advanced_structure",
+      "rc_tone_mood",
+      "rc_drawing_conclusions"
+    ],
+    "source_description": "original",
+    "lexile_range": "1000L-1200L",
+    "themes": ["courage", "family"]
+  },
+  "pre_reading_context": "During a family hiking trip, a girl confronts a fear that has followed her for years.",
+  "passage_text": "The suspension bridge stretched across the gorge like a giant's clothesline, swaying gently in the mountain wind. Below it, the river was a white ribbon of churning water, impossibly far down. Elena stood at the edge of the trail and felt her legs turn to cement.\n\n\"It's perfectly safe,\" her father said, adjusting the straps of his hiking pack. \"People cross it every day. There are steel cables on both sides.\"\n\nElena knew the statistics. She had looked them up the night before, the way she always researched things that scared her — methodically, thoroughly, as if facts could build a wall between herself and her fear. The bridge was inspected every six months. It could hold the weight of a small truck. No one had ever been injured on it. And yet, knowing all of this changed nothing about the way her body responded when she looked at the gap between the last solid ground and the first wooden plank.\n\nHer younger brother, Miguel, was already halfway across, practically skipping, his hands barely touching the cable railings. He turned around and waved. \"Elena! Come on! You can see the waterfall from here!\"\n\nElena's mother stood beside her, saying nothing. This was one of the things Elena appreciated most about her mother — she didn't minimize fears or rush past them. She simply waited, a quiet presence that said, \"I'm here when you're ready.\"\n\nThe fear had started three years ago, during a family trip to the Grand Canyon. Elena had been standing at an overlook, peering over the railing, when a sudden gust of wind pushed against her back. She hadn't been in any real danger — the railing was solid, her parents were right there — but her body had registered the sensation of empty air beneath her and filed it away as a threat. Ever since, heights made her dizzy and breathless. Tall buildings, Ferris wheels, even the bleachers at her brother's soccer games — they all triggered the same irrational alarm.\n\nShe had tried to explain it to her friends once, but they hadn't understood. \"Just don't look down,\" Aisha had said, as if fear were a choice you could simply unmake. Elena had smiled and changed the subject, but inside she felt the particular loneliness of being misunderstood about something that lived deep in her bones.\n\nNow, standing at the trailhead, she had a decision to make. She could wait here while her family crossed and came back. No one would judge her. Her mother would sit with her on the rocks and they would share trail mix and talk about school. It would be fine.\n\nBut Elena was tired of fine. She was tired of the fear making decisions on her behalf, as though it were a second person living inside her who got to choose what she could and couldn't do. She hadn't come all the way to the mountains to sit on a rock.\n\nShe put her right foot on the first plank. The bridge dipped slightly under her weight, and her stomach lurched. She gripped the steel cable so tightly that the braided wire pressed ridges into her palms. She took another step. The bridge swayed. She took another.\n\nShe did not look down. Not because Aisha's advice was right, but because she needed to look forward — at the trees on the other side, at Miguel's small figure jumping up and down near the far end, at the ridge beyond where her father said you could see three mountain peaks at once.\n\nHalfway across, something shifted. The fear was still there — it hummed in her chest like a low electrical current — but it was no longer in charge. She was walking alongside it instead of being dragged by it. Each step was a negotiation: the fear said stop, and she said not yet.\n\nWhen her foot touched solid ground on the other side, Miguel threw his arms around her waist. \"You did it!\" he shouted.\n\nElena looked back at the bridge, now behind her, still swaying innocently in the wind. She hadn't conquered her fear. She knew it would be there tomorrow, and the day after that, in some form. But today she had done something more important than conquering it: she had refused to let it speak for her.\n\nHer mother arrived a moment later, slightly out of breath. She put a hand on Elena's shoulder and said nothing. She didn't need to. The look that passed between them carried everything: pride, understanding, and the unspoken knowledge that courage is not the absence of fear but the decision to move forward despite it.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "When the passage describes Elena's fear as \"a second person living inside her who got to choose what she could and couldn't do,\" what literary technique is the author using, and what does it reveal?",
+      "answer_choices": [
+        {"letter": "A", "text": "Simile, showing that Elena has a split personality disorder."},
+        {"letter": "B", "text": "Personification, showing that Elena experiences her fear as something with its own will that controls her choices."},
+        {"letter": "C", "text": "Hyperbole, exaggerating how much Elena dislikes hiking with her family."},
+        {"letter": "D", "text": "Alliteration, creating a musical sound to make the passage more poetic."},
+        {"letter": "E", "text": "Foreshadowing, hinting that a second character will appear later in the story."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The author gives Elena's fear human qualities — the ability to make decisions and choose — which is personification. This technique reveals how powerless Elena feels against her fear, as though it has agency and authority over her life independent of her own wishes.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because a 'second person' could suggest two personalities, but this is figurative language describing fear, not a clinical condition. Additionally, the comparison uses 'as though,' making it a simile-like construction, but the core technique of giving fear human agency is personification."},
+        {"letter": "C", "explanation": "This is tempting because the description is dramatic, but it is not exaggeration for effect — Elena genuinely feels controlled by her fear. The passage treats this as her real experience, not an overstatement."},
+        {"letter": "D", "explanation": "This is tempting because alliteration is a real literary device, but this passage does not repeat consonant sounds for effect — it gives human qualities to an abstract concept."},
+        {"letter": "E", "explanation": "This is tempting because 'second person' could suggest a new character, but the passage is clearly describing Elena's internal experience of fear, not introducing another person."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 2,
+      "question_text": "How does the author structure the passage to build toward the climax of Elena crossing the bridge?",
+      "answer_choices": [
+        {"letter": "A", "text": "The author uses a series of flashbacks and contrasts to delay the crossing, building tension before the pivotal moment."},
+        {"letter": "B", "text": "The author tells the story in reverse chronological order, starting with Elena on the other side."},
+        {"letter": "C", "text": "The author switches between Elena's perspective and Miguel's perspective throughout the passage."},
+        {"letter": "D", "text": "The author uses short, choppy chapters to create a fast-paced adventure story."},
+        {"letter": "E", "text": "The author provides only dialogue with no narration, letting readers imagine the setting."}
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The author delays Elena's crossing by inserting a flashback to the Grand Canyon incident and a reflection on Aisha's unhelpful advice. These digressions build tension by helping the reader understand the depth of Elena's fear before she finally steps onto the bridge, making the crossing more powerful.",
+      "distractor_explanations": [
+        {"letter": "B", "explanation": "This is tempting because some stories use reverse chronology, but this passage moves forward in time — Elena approaches the bridge, hesitates, then crosses."},
+        {"letter": "C", "explanation": "This is tempting because Miguel is present, but the entire passage stays in Elena's perspective — we never see events through Miguel's eyes."},
+        {"letter": "D", "explanation": "This is tempting because the crossing itself is described in shorter sentences for effect, but the passage is not divided into chapters and much of it is deliberately paced."},
+        {"letter": "E", "explanation": "This is tempting because there is some dialogue, but the passage is heavily narrated with internal thoughts, descriptions, and reflections."}
+      ],
+      "skill_tested": "rc_advanced_structure"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the passage suggest about the relationship between Elena and her mother?",
+      "answer_choices": [
+        {"letter": "A", "text": "Her mother is impatient with Elena's fear and wishes she would just get over it."},
+        {"letter": "B", "text": "Her mother does not notice that Elena is afraid because she is focused on the hike."},
+        {"letter": "C", "text": "They share a deep understanding based on respect, and her mother supports Elena without pressuring her."},
+        {"letter": "D", "text": "Her mother is also afraid of heights but hides it from Elena."},
+        {"letter": "E", "text": "They have a difficult relationship and rarely communicate well."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Elena specifically appreciates that her mother 'didn't minimize fears or rush past them' and 'simply waited.' At the end, the look between them carries 'pride, understanding, and unspoken knowledge.' These details show a relationship built on deep mutual respect and non-pressuring support.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because some adults are impatient with fears, but the passage shows Elena's mother doing the opposite — waiting quietly and not rushing her."},
+        {"letter": "B", "explanation": "This is tempting because the mother says nothing at first, but her silence is deliberate and supportive — she is clearly aware of Elena's fear and choosing not to push."},
+        {"letter": "D", "explanation": "This is tempting because it would add dramatic irony, but the passage gives no evidence of the mother having a fear of heights — she crosses the bridge without issue."},
+        {"letter": "E", "explanation": "This is tempting because they exchange few words, but their communication is actually exceptional — they understand each other so well that words are often unnecessary."}
+      ],
+      "skill_tested": "rc_advanced_inference"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What is the overall tone of the passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Lighthearted and comedic, with humorous descriptions of family dynamics"},
+        {"letter": "B", "text": "Bitter and resentful, focusing on Elena's anger at her limitations"},
+        {"letter": "C", "text": "Introspective and emotionally layered, moving from vulnerability to quiet triumph"},
+        {"letter": "D", "text": "Suspenseful and action-packed, like an adventure thriller"},
+        {"letter": "E", "text": "Detached and clinical, presenting Elena's fear as a medical case study"}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage spends significant time inside Elena's thoughts, exploring her fear with sensitivity and depth. The tone moves from vulnerability (her fear and isolation) through determination to quiet triumph when she crosses. It is reflective rather than dramatic, making the emotional victory feel earned and real.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because Miguel's enthusiasm adds lightness, but the passage treats Elena's fear seriously and the overall tone is thoughtful, not comedic."},
+        {"letter": "B", "explanation": "This is tempting because Elena is frustrated by her fear, but she does not express bitterness or resentment — she is tired of the fear and determined to act despite it."},
+        {"letter": "D", "explanation": "This is tempting because crossing a gorge sounds adventurous, but the passage focuses on internal emotional struggle rather than external action or danger."},
+        {"letter": "E", "explanation": "This is tempting because Elena researches her fear with statistics, but the narration is deeply personal and emotional, not detached or clinical."}
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 5,
+      "question_text": "At the end of the passage, Elena thinks she has done \"something more important than conquering\" her fear. What conclusion can the reader draw about the passage's message regarding fear?",
+      "answer_choices": [
+        {"letter": "A", "text": "Fear can be permanently eliminated if you face it enough times."},
+        {"letter": "B", "text": "The passage suggests that courage means accepting fear as a permanent companion while choosing to act anyway."},
+        {"letter": "C", "text": "Elena believes fear is useful because it keeps people safe from real danger."},
+        {"letter": "D", "text": "The passage argues that people should avoid situations that make them afraid."},
+        {"letter": "E", "text": "Elena plans to do more research so she can finally eliminate her fear of heights."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "Elena acknowledges her fear 'would be there tomorrow,' and the final line defines courage as 'not the absence of fear but the decision to move forward despite it.' The passage's message is that true courage is not about eliminating fear but about choosing to act even when fear is present.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because facing fears can reduce them, but Elena explicitly recognizes her fear will still be there tomorrow — the passage does not claim fear can be permanently conquered."},
+        {"letter": "C", "explanation": "This is tempting because fear can serve a protective function, but Elena's fear of the safe, inspected bridge is described as 'irrational' — the passage does not present this particular fear as useful."},
+        {"letter": "D", "explanation": "This is tempting because avoidance is a common response to fear, but Elena rejects avoidance ('she was tired of fine') and the passage celebrates her decision to cross."},
+        {"letter": "E", "explanation": "This is tempting because Elena is described as someone who researches her fears, but she already acknowledges that facts 'changed nothing' about her body's response — more research is not the answer."}
+      ],
+      "skill_tested": "rc_drawing_conclusions"
+    }
+  ]
+}

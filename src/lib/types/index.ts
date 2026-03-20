@@ -17,10 +17,13 @@ export type TutoringState =
 
 // Curriculum taxonomy types
 
+export type SkillLevel = "foundations" | "hunter_prep";
+
 export interface Skill {
   skill_id: string;
   name: string;
   description: string;
+  level: SkillLevel;
   prerequisite_skills: readonly string[];
   difficulty_tier: DifficultyLevel;
   example_teaching_prompts: readonly string[];
@@ -42,7 +45,11 @@ export interface Domain {
 export interface CurriculumTaxonomy {
   version: string;
   exam: string;
-  target_grade: number;
+  target_grade_range: string;
+  levels: {
+    foundations: string;
+    hunter_prep: string;
+  };
   domains: readonly Domain[];
 }
 
@@ -121,6 +128,8 @@ export interface PassageMetadata {
   readonly word_count: number;
   readonly tagged_skills: readonly string[];
   readonly source_description: string;
+  readonly lexile_range?: string;
+  readonly themes?: readonly string[];
 }
 
 export interface Passage {

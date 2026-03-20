@@ -1,95 +1,86 @@
 "use client";
 
-import { useMemo } from "react";
-import katex from "katex";
+import dynamic from "next/dynamic";
 
 interface MathTextProps {
   readonly text: string;
 }
 
-interface TextPart {
-  readonly type: "text" | "inline-math" | "display-math";
-  readonly content: string;
+const MathTextRenderer = dynamic(() =>
+  import("./MathTextRenderer").then((mod) => ({ default: mod.MathTextRenderer })),
+  { ssr: false }
+);
+
+/** Fast check — does the text contain LaTeX math delimiters or SVG tags?
+ *  Skips currency patterns like $15 — only matches $ not followed by a digit. */
+function containsMathOrSvg(text: string): boolean {
+  if (text.includes("<svg")) return true;
+  return /\$(?!\d)/.test(text);
 }
 
-function parseText(text: string): TextPart[] {
-  const parts: TextPart[] = [];
-  // Match $$...$$ (display) or $...$ (inline), non-greedy
-  const regex = /(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$)/g;
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
-
-  while ((match = regex.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push({ type: "text", content: text.slice(lastIndex, match.index) });
-    }
-    const raw = match[0];
-    if (raw.startsWith("$$")) {
-      parts.push({ type: "display-math", content: raw.slice(2, -2) });
-    } else {
-      parts.push({ type: "inline-math", content: raw.slice(1, -1) });
-    }
-    lastIndex = regex.lastIndex;
-  }
-
-  if (lastIndex < text.length) {
-    parts.push({ type: "text", content: text.slice(lastIndex) });
-  }
-
-  return parts;
-}
-
-function renderKatex(math: string, displayMode: boolean): string {
-  try {
-    return katex.renderToString(math, {
-      displayMode,
-      throwOnError: false,
-      trust: false,
-    });
-  } catch {
-    return math;
-  }
-}
-
-export function MathText({ text }: MathTextProps) {
-  const parts = useMemo(() => parseText(text), [text]);
+/** Handle **bold** within a line */
+function renderInlineFormatting(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  if (parts.length === 1) return text;
 
   return (
     <>
       {parts.map((part, i) => {
-        if (part.type === "display-math") {
+        if (part.startsWith("**") && part.endsWith("**")) {
           return (
-            <div
-              key={i}
-              className="my-2 overflow-x-auto"
-              dangerouslySetInnerHTML={{
-                __html: renderKatex(part.content, true),
-              }}
-            />
+            <strong key={i} className="font-semibold">
+              {part.slice(2, -2)}
+            </strong>
           );
         }
-        if (part.type === "inline-math") {
-          return (
-            <span
-              key={i}
-              dangerouslySetInnerHTML={{
-                __html: renderKatex(part.content, false),
-              }}
-            />
-          );
-        }
-        // Plain text — preserve newlines
-        return (
-          <span key={i}>
-            {part.content.split("\n").map((line, j, arr) => (
-              <span key={j}>
-                {line}
-                {j < arr.length - 1 && <br />}
-              </span>
-            ))}
-          </span>
-        );
+        return <span key={i}>{part}</span>;
       })}
     </>
   );
+}
+
+/**
+ * Render a plain text line with basic markdown-like formatting:
+ * - ## or ### headers → bold text
+ * - Lines starting with "- " or "* " → bullet points
+ * - **bold** → bold spans
+ */
+function renderTextLine(line: string): React.ReactNode {
+  const headerMatch = line.match(/^#{1,3}\s+(.+)$/);
+  if (headerMatch) {
+    return (
+      <strong className="text-surface-900 dark:text-surface-100">
+        {renderInlineFormatting(headerMatch[1])}
+      </strong>
+    );
+  }
+
+  const bulletMatch = line.match(/^[-*]\s+(.+)$/);
+  if (bulletMatch) {
+    return (
+      <span className="flex gap-2">
+        <span className="text-brand-500 flex-shrink-0">&#x2022;</span>
+        <span>{renderInlineFormatting(bulletMatch[1])}</span>
+      </span>
+    );
+  }
+
+  return renderInlineFormatting(line);
+}
+
+export function MathText({ text }: MathTextProps) {
+  if (!containsMathOrSvg(text)) {
+    return (
+      <>
+        {text.split("\n").map((line, j, arr) => (
+          <span key={j}>
+            {renderTextLine(line)}
+            {j < arr.length - 1 && <br />}
+          </span>
+        ))}
+      </>
+    );
+  }
+
+  return <MathTextRenderer text={text} />;
 }

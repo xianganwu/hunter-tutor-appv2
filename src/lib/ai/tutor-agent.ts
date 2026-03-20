@@ -45,8 +45,9 @@ export interface ConversationMessage {
 
 // ─── Constants ────────────────────────────────────────────────────────
 
-const MODEL = "claude-sonnet-4-20250514";
-const MAX_TOKENS_LESSON = 1024;
+export const MODEL_SONNET = "claude-sonnet-4-20250514";
+export const MODEL_HAIKU = "claude-haiku-4-5-20251001";
+const MAX_TOKENS_LESSON = 4096;
 const MAX_TOKENS_QUESTION = 512;
 const MAX_TOKENS_FEEDBACK = 768;
 const MAX_TOKENS_ESSAY = 1024;
@@ -63,8 +64,9 @@ function buildCurriculumSummary(): string {
       skill.prerequisite_skills.length > 0
         ? skill.prerequisite_skills.join(", ")
         : "none";
+    const level = skill.level ?? "foundations";
     lines.push(
-      `- ${id}: "${skill.name}" (tier ${skill.difficulty_tier}, prereqs: ${prereqs})`
+      `- ${id}: "${skill.name}" [${level}] (tier ${skill.difficulty_tier}, prereqs: ${prereqs})`
     );
   }
 
@@ -74,7 +76,7 @@ function buildCurriculumSummary(): string {
 function buildSystemPrompt(): string {
   const curriculum = buildCurriculumSummary();
 
-  return `You are a warm, patient tutor helping a 6th grader (age 11-12) prepare for the Hunter College High School entrance exam. Your name is not important — the student is the star.
+  return `You are a warm, patient tutor helping a student build foundational skills for the Hunter College High School entrance exam. The student may be a rising 5th grader (age 9-10) working on foundations, or a 6th grader (age 11-12) doing intensive Hunter prep. Your name is not important — the student is the star.
 
 ## Your Teaching Philosophy
 
@@ -84,13 +86,15 @@ function buildSystemPrompt(): string {
 
 3. **Patient scaffolding**: If a student is stuck, break the problem into smaller steps. If they're still stuck, give a worked example of a similar (not identical) problem, then circle back.
 
-4. **Age-appropriate language**: Write at a 6th-grade reading level. Short sentences. Concrete examples. Avoid jargon — but introduce vocabulary naturally when relevant.
+4. **Age-appropriate language**: Write at a 4th-5th grade reading level for "foundations" level skills, and 6th grade level for "hunter_prep" skills. Short sentences. Concrete, relatable examples (sports, animals, games, school life). Avoid jargon — but introduce vocabulary naturally when relevant.
 
 5. **Encouraging tone**: Every response should leave the student feeling capable. End teaching moments with forward momentum: "Now you know X — let's try one together!"
 
+6. **Progressive learning**: Students start with foundational skills and progress to Hunter prep level skills. When a student masters a foundations-level skill, celebrate and introduce the next level: "You've gotten really strong at this! Ready for a bigger challenge?"
+
 ## Emotional Awareness
 
-Students preparing for a competitive exam often feel anxious, frustrated, or discouraged. Watch for signals:
+Students preparing for a competitive exam often feel anxious, frustrated, or discouraged. Younger students (ages 9-10) are especially sensitive. Watch for signals:
 
 - **Frustration**: "I don't get it", "this is too hard", "I give up", short or angry responses, repeated wrong answers
 - **Anxiety**: "I'm nervous", "what if I fail", "I'm scared", "I'm not smart enough"
@@ -112,17 +116,65 @@ A student who feels safe makes more progress than one who feels pressured.
 - Never break character or mention being an AI.
 - If a student gives a wrong answer, ask what their reasoning was before correcting.
 - Reference prerequisite skills when a gap appears (e.g., "Let's make sure we're solid on fractions before tackling ratios").
+- For younger students (foundations level), use more relatable examples: pizza slices, sports scores, classroom scenarios, animals, games.
+- When writing about money, write out the word "dollars" (or "cents") instead of using the $ symbol (e.g. "15 dollars" not "$15"), since $ is reserved for LaTeX math delimiters.
+
+## Diagrams
+Do NOT include SVG diagrams unless the concept is truly impossible to understand without a visual. Most math concepts can be taught effectively with text, LaTeX notation, and step-by-step explanations alone. When in doubt, do NOT include a diagram.
+
+Only include a diagram for concepts like: geometric shapes/angles that must be seen, coordinate plane plots, or spatial reasoning problems where text alone genuinely fails. Do NOT create diagrams for: number lines, bar charts, pie charts, fraction models, tables, Venn diagrams, or any concept that can be explained with words and numbers.
+
+When you do include a diagram (rare), follow these SVG rules:
+- CRITICAL ACCURACY: The visual MUST be mathematically correct. If angles are labeled, the drawn angles must visually match (e.g., a triangle with angles 60/50/70 must NOT look equilateral — the sides and angles must look different). If a shape is a right triangle, draw it with a visible right angle. Never draw a shape that contradicts the labels. Double-check that side lengths, angles, and proportions in your SVG are consistent with the math.
+- Output raw SVG tags inline (e.g., \`<svg width="300" height="200" viewBox="0 0 300 200">...</svg>\`).
+- CRITICAL: Keep SVGs compact — under 60 lines of SVG code. Use minimal grid lines (skip fine grids). Avoid verbose patterns/defs when simple shapes suffice.
+- Max dimensions: 300px wide, 200px tall.
+- The SVG will always be rendered on a white background. Use dark colors for text and labels.
+- Use these exact colors: bars/shapes \`#6366f1\` (indigo), \`#22c55e\` (green), \`#f59e0b\` (amber), \`#ef4444\` (red), \`#8b5cf6\` (purple). Text/labels \`#1e293b\`, axis/grid lines \`#94a3b8\`.
+- Always include text labels (axis labels, data labels).
+- Use \`font-family="system-ui, sans-serif"\` and \`font-size="12"\` for labels.
+- Do NOT reference external images or use \`<image>\` tags. Everything must be self-contained.
+- CRITICAL: Always close every SVG tag properly. The SVG MUST end with \`</svg>\`. Never leave SVG incomplete.
+- Place the SVG on its own line.
+
+Formatting rules:
+- Do NOT use markdown formatting (no ##, no **, no - bullets, no ### headers). The UI does not render markdown.
+- Use plain text for explanations. Separate paragraphs with blank lines.
+- For emphasis, simply state things clearly — do not wrap in asterisks or use header syntax.
+- For lists, write numbered steps like "1. First step" or use natural language ("First,... Then,... Finally,...").
+- Use $...$ for inline math and $$...$$ for display math (LaTeX).
 
 ## Curriculum Taxonomy
 
-The Hunter exam covers these skills. Each has a difficulty tier (1-5) and prerequisites:
+This curriculum has two levels:
+- **foundations**: Core skills for rising 5th graders (ages 9-10) building toward Hunter prep
+- **hunter_prep**: Advanced skills for 6th graders (ages 11-12) in intensive Hunter exam preparation
+
+Skills with difficulty tier (1-5), level, and prerequisites:
 
 ${curriculum}
 
 Use this taxonomy to:
+- Match your language complexity to the skill's level (simpler for foundations, more advanced for hunter_prep)
 - Reference prerequisite skills when a student struggles
 - Connect concepts across skills ("This is like what we practiced with main idea — same strategy!")
-- Calibrate your language and examples to the skill's difficulty tier`;
+- Celebrate when a student is ready to progress from foundations to hunter_prep level skills`;
+}
+
+/** Build a cached system prompt block for Anthropic API calls. */
+function buildCachedSystemBlock(text: string): Anthropic.TextBlockParam[] {
+  return [
+    {
+      type: "text" as const,
+      text,
+      cache_control: { type: "ephemeral" as const },
+    },
+  ];
+}
+
+/** Extract the choice letter from "B) text" or bare "B" formats */
+function extractChoiceLetter(s: string): string {
+  return s.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ?? s.trim().charAt(0).toUpperCase();
 }
 
 // ─── TutorAgent Class ─────────────────────────────────────────────────
@@ -130,30 +182,27 @@ Use this taxonomy to:
 export class TutorAgent {
   private readonly client: Anthropic;
   private readonly systemPrompt: string;
+  private readonly cachedSystemBlock: Anthropic.TextBlockParam[];
 
   constructor(client?: Anthropic) {
     this.client = client ?? getAnthropicClient();
     this.systemPrompt = buildSystemPrompt();
+    this.cachedSystemBlock = buildCachedSystemBlock(this.systemPrompt);
   }
 
-  /**
-   * Generate a lesson explanation calibrated to the student's mastery level.
-   */
-  async teachConcept(
-    skill: Skill,
-    studentMastery: number
-  ): Promise<TeachConceptResult> {
+  getCachedSystemBlock(): Anthropic.TextBlockParam[] {
+    return this.cachedSystemBlock;
+  }
+
+  /** Build messages for teachConcept (shared by streaming and non-streaming). */
+  buildTeachMessages(skill: Skill, studentMastery: number): Anthropic.MessageParam[] {
     const masteryLabel = describeMastery(studentMastery);
     const prereqNames = skill.prerequisite_skills.join(", ") || "none";
 
-    const response = await this.client.messages.create({
-      model: MODEL,
-      max_tokens: MAX_TOKENS_LESSON,
-      system: this.systemPrompt,
-      messages: [
-        {
-          role: "user",
-          content: `Teach me the concept: "${skill.name}"
+    return [
+      {
+        role: "user" as const,
+        content: `Teach me the concept: "${skill.name}"
 
 Skill description: ${skill.description}
 Difficulty tier: ${skill.difficulty_tier}/5
@@ -169,8 +218,22 @@ ${
 }
 
 Give me a clear explanation with one worked example. End by asking me a question to check my understanding.`,
-        },
-      ],
+      },
+    ];
+  }
+
+  /**
+   * Generate a lesson explanation calibrated to the student's mastery level.
+   */
+  async teachConcept(
+    skill: Skill,
+    studentMastery: number
+  ): Promise<TeachConceptResult> {
+    const response = await this.client.messages.create({
+      model: MODEL_SONNET,
+      max_tokens: MAX_TOKENS_LESSON,
+      system: this.cachedSystemBlock,
+      messages: this.buildTeachMessages(skill, studentMastery),
     });
 
     return {
@@ -186,9 +249,9 @@ Give me a clear explanation with one worked example. End by asking me a question
     difficultyTier: DifficultyLevel
   ): Promise<GeneratedQuestion> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_QUESTION,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: [
         {
           role: "user",
@@ -198,7 +261,7 @@ Skill: "${skill.name}" (${skill.skill_id})
 Description: ${skill.description}
 Difficulty tier: ${difficultyTier}/5
 
-Create an original question appropriate for a 6th grader at difficulty tier ${difficultyTier}. Format your response EXACTLY as:
+Create an original question appropriate for a ${skill.level === "hunter_prep" ? "6th grader (age 11-12)" : "rising 5th grader (age 9-10)"} at difficulty tier ${difficultyTier}. ${skill.level === "foundations" ? "Use simple, concrete scenarios that 9-10 year olds can relate to (school, sports, animals, games)." : ""} Format your response EXACTLY as:
 
 QUESTION: [the question text — include a short passage or scenario if this is a reading skill]
 A) [choice A]
@@ -208,7 +271,9 @@ D) [choice D]
 E) [choice E]
 CORRECT: [letter]
 
-Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.`,
+Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.
+
+CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.`,
         },
       ],
     });
@@ -216,17 +281,14 @@ Make the question test exactly the skill described. Make distractors plausible b
     return parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier);
   }
 
-  /**
-   * Evaluate a student's answer. If wrong, ask about their reasoning before explaining.
-   */
-  async evaluateAnswer(
+  /** Build messages for evaluateAnswer (shared by streaming and non-streaming). */
+  buildEvaluateMessages(
     questionText: string,
     studentAnswer: string,
     correctAnswer: string,
     conversationHistory: readonly ConversationMessage[] = []
-  ): Promise<AnswerFeedback> {
-    const isCorrect =
-      studentAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase();
+  ): { messages: Anthropic.MessageParam[]; isCorrect: boolean } {
+    const isCorrect = extractChoiceLetter(studentAnswer) === extractChoiceLetter(correctAnswer);
 
     const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
       (m) => ({ role: m.role, content: m.content })
@@ -253,14 +315,30 @@ IMPORTANT: Do NOT reveal the correct answer yet. Instead:
 
 Keep it encouraging. We want them to try again.`;
 
+    return {
+      messages: [...historyMessages, { role: "user" as const, content: prompt }],
+      isCorrect,
+    };
+  }
+
+  /**
+   * Evaluate a student's answer. If wrong, ask about their reasoning before explaining.
+   */
+  async evaluateAnswer(
+    questionText: string,
+    studentAnswer: string,
+    correctAnswer: string,
+    conversationHistory: readonly ConversationMessage[] = []
+  ): Promise<AnswerFeedback> {
+    const { messages, isCorrect } = this.buildEvaluateMessages(
+      questionText, studentAnswer, correctAnswer, conversationHistory
+    );
+
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_FEEDBACK,
-      system: this.systemPrompt,
-      messages: [
-        ...historyMessages,
-        { role: "user", content: prompt },
-      ],
+      system: this.cachedSystemBlock,
+      messages,
     });
 
     return {
@@ -277,9 +355,9 @@ Keep it encouraging. We want them to try again.`;
     essayText: string
   ): Promise<EssayFeedback> {
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_ESSAY,
-      system: this.systemPrompt,
+      system: this.cachedSystemBlock,
       messages: [
         {
           role: "user",
@@ -292,7 +370,7 @@ Student's essay:
 ${essayText}
 ---
 
-Evaluate this 6th grader's essay. Be encouraging but honest. Format your response EXACTLY as:
+Evaluate this student's essay. Be encouraging but honest. Format your response EXACTLY as:
 
 OVERALL: [2-3 sentences of overall feedback — start with something positive]
 
@@ -312,12 +390,31 @@ IMPROVEMENTS:
 - [another specific suggestion]
 - [another specific suggestion]
 
-Remember: this is an 11-year-old preparing for the Hunter exam. Be age-appropriate and encouraging.`,
+Remember: this student may be a 9-10 year old building foundations or an 11-12 year old preparing for the Hunter exam. Be age-appropriate and encouraging.`,
         },
       ],
     });
 
     return parseEssayFeedback(extractText(response));
+  }
+
+  /** Build messages for respondToEmotionalCue. */
+  buildEmotionalMessages(
+    message: string,
+    conversationHistory: readonly ConversationMessage[] = []
+  ): Anthropic.MessageParam[] {
+    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
+      (m) => ({ role: m.role, content: m.content })
+    );
+    return [
+      ...historyMessages,
+      {
+        role: "user" as const,
+        content: `The student just said: "${message}"
+
+This seems like they might be feeling frustrated, anxious, or discouraged. Respond with empathy and support. Do NOT jump back into academic content — acknowledge their feelings first, then gently offer options for how to proceed (try an easier question, take a break, or switch topics).`,
+      },
+    ];
   }
 
   /**
@@ -327,26 +424,35 @@ Remember: this is an 11-year-old preparing for the Hunter exam. Be age-appropria
     message: string,
     conversationHistory: readonly ConversationMessage[] = []
   ): Promise<string> {
-    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
-      (m) => ({ role: m.role, content: m.content })
-    );
-
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_HAIKU,
       max_tokens: MAX_TOKENS_FEEDBACK,
-      system: this.systemPrompt,
-      messages: [
-        ...historyMessages,
-        {
-          role: "user",
-          content: `The student just said: "${message}"
-
-This seems like they might be feeling frustrated, anxious, or discouraged. Respond with empathy and support. Do NOT jump back into academic content — acknowledge their feelings first, then gently offer options for how to proceed (try an easier question, take a break, or switch topics).`,
-        },
-      ],
+      system: this.cachedSystemBlock,
+      messages: this.buildEmotionalMessages(message, conversationHistory),
     });
 
     return extractText(response);
+  }
+
+  /** Build messages for socraticFollowUp. */
+  buildHintMessages(
+    context: string,
+    conversationHistory: readonly ConversationMessage[] = []
+  ): Anthropic.MessageParam[] {
+    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
+      (m) => ({ role: m.role, content: m.content })
+    );
+    return [
+      ...historyMessages,
+      {
+        role: "user" as const,
+        content: `Based on this context, ask me ONE thoughtful Socratic follow-up question to deepen my understanding. The question should push me to think more deeply, connect to related concepts, or apply what I just learned in a new way.
+
+Context: ${context}
+
+Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
+      },
+    ];
   }
 
   /**
@@ -356,34 +462,189 @@ This seems like they might be feeling frustrated, anxious, or discouraged. Respo
     context: string,
     conversationHistory: readonly ConversationMessage[] = []
   ): Promise<SocraticFollowUp> {
-    const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
-      (m) => ({ role: m.role, content: m.content })
-    );
-
     const response = await this.client.messages.create({
-      model: MODEL,
+      model: MODEL_HAIKU,
       max_tokens: MAX_TOKENS_FOLLOWUP,
-      system: this.systemPrompt,
-      messages: [
-        ...historyMessages,
-        {
-          role: "user",
-          content: `Based on this context, ask me ONE thoughtful Socratic follow-up question to deepen my understanding. The question should push me to think more deeply, connect to related concepts, or apply what I just learned in a new way.
-
-Context: ${context}
-
-Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
-        },
-      ],
+      system: this.cachedSystemBlock,
+      messages: this.buildHintMessages(context, conversationHistory),
     });
 
     return {
       question: extractText(response),
     };
   }
+
+  /**
+   * Generate a batch of drill questions for rapid-fire practice.
+   * Returns an array of question objects with choices and correct answers.
+   */
+  async generateDrillBatch(
+    skill: Skill,
+    count: number = 10
+  ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[] }[]> {
+    const response = await this.client.messages.create({
+      model: MODEL_SONNET,
+      max_tokens: 2048,
+      system: this.cachedSystemBlock,
+      messages: [
+        {
+          role: "user",
+          content: `Generate ${count} rapid-fire practice questions for a timed drill.
+
+Skill: "${skill.name}" (${skill.skill_id})
+Description: ${skill.description}
+Target: ${skill.level === "hunter_prep" ? "6th grader (age 11-12)" : "rising 5th grader (age 9-10)"}
+
+These are for speed practice — questions should be clear and solvable quickly (15-30 seconds each).
+Each question should have 4-5 multiple choice answers.
+
+Format your response as a JSON array. ONLY output the JSON array, no other text:
+[
+  {
+    "questionText": "...",
+    "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ..."],
+    "correctAnswer": "A) ..."
+  },
+  ...
+]
+
+Make sure:
+- Questions test the skill directly
+- Distractors are plausible but clearly wrong
+- Each question is distinct (no repeats)
+- Questions are appropriate difficulty for the student's age
+- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.`,
+        },
+      ],
+    });
+
+    const text = extractText(response);
+
+    try {
+      // Extract JSON from the response (may be wrapped in markdown code block)
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (!jsonMatch) return [];
+
+      const parsed = JSON.parse(jsonMatch[0]) as {
+        questionText: string;
+        correctAnswer: string;
+        answerChoices: string[];
+      }[];
+
+      return parsed
+        .filter((q) => hasDistinctChoices(q.answerChoices))
+        .map((q) => ({
+          questionText: q.questionText,
+          correctAnswer: q.correctAnswer,
+          answerChoices: q.answerChoices,
+        }));
+    } catch {
+      return [];
+    }
+  }
+
+  /**
+   * Generate a batch of mixed drill questions spanning multiple skills.
+   * Each returned question is tagged with its skillId.
+   */
+  async generateMixedDrillBatch(
+    skills: Array<{ skill: Skill; tier: DifficultyLevel }>,
+    totalCount: number
+  ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[]; skillId: string }[]> {
+    const skillList = skills
+      .map(
+        (s) =>
+          `- skill_id: "${s.skill.skill_id}", name: "${s.skill.name}", tier: ${s.tier}/5, description: ${s.skill.description}`
+      )
+      .join("\n");
+
+    const response = await this.client.messages.create({
+      model: MODEL_SONNET,
+      max_tokens: 2048,
+      system: this.cachedSystemBlock,
+      messages: [
+        {
+          role: "user",
+          content: `Generate exactly ${totalCount} rapid-fire practice questions spread across these skills. Distribute questions as evenly as possible across the skills.
+
+Skills:
+${skillList}
+
+These are for a mixed drill — questions should be clear and solvable quickly (15-30 seconds each).
+Each question should have 4-5 multiple choice answers.
+Each question MUST include the skill_id it belongs to.
+
+Format your response as a JSON array. ONLY output the JSON array, no other text:
+[
+  {
+    "skillId": "the_skill_id",
+    "questionText": "...",
+    "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ..."],
+    "correctAnswer": "A) ..."
+  },
+  ...
+]
+
+Make sure:
+- Questions test the specified skill directly
+- Distractors are plausible but clearly wrong
+- Each question is distinct (no repeats)
+- Questions are at the specified difficulty tier for each skill
+- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.`,
+        },
+      ],
+    });
+
+    const text = extractText(response);
+
+    try {
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      if (!jsonMatch) return [];
+
+      const parsed = JSON.parse(jsonMatch[0]) as {
+        skillId: string;
+        questionText: string;
+        correctAnswer: string;
+        answerChoices: string[];
+      }[];
+
+      return parsed
+        .filter((q) => hasDistinctChoices(q.answerChoices))
+        .map((q) => ({
+          skillId: q.skillId,
+          questionText: q.questionText,
+          correctAnswer: q.correctAnswer,
+          answerChoices: q.answerChoices,
+        }));
+    } catch {
+      return [];
+    }
+  }
+
+  /** Get the system prompt (for use by streaming route handler). */
+  getSystemPrompt(): string {
+    return this.systemPrompt;
+  }
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────
+
+/**
+ * Check that all answer choices are distinct after normalizing.
+ * Strips the leading letter prefix (e.g. "A) "), trims whitespace,
+ * and lower-cases before comparing to catch duplicates like "40%" vs ".40".
+ */
+function hasDistinctChoices(choices: string[]): boolean {
+  const normalized = choices.map((c) => {
+    // Strip leading letter+paren prefix: "A) 30%" → "30%"
+    const stripped = c.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+    // Normalize common equivalent representations
+    // Convert ".40" to "0.40" so it can be compared numerically
+    const withLeadingZero = stripped.replace(/^\.(\d)/, "0.$1");
+    return withLeadingZero;
+  });
+  return new Set(normalized).size === normalized.length;
+}
 
 function extractText(response: Anthropic.Message): string {
   const block = response.content[0];
@@ -414,8 +675,7 @@ function parseGeneratedQuestion(
   const answerChoices = choiceMatches?.map((c) => c.trim()) ?? [];
   const correctLetter = correctMatch?.[1]?.toUpperCase() ?? "A";
   const correctIndex = correctLetter.charCodeAt(0) - "A".charCodeAt(0);
-  const correctAnswer =
-    answerChoices[correctIndex]?.replace(/^[A-E]\)\s*/, "") ?? correctLetter;
+  const correctAnswer = answerChoices[correctIndex] ?? correctLetter;
 
   return {
     questionText,
@@ -463,3 +723,5 @@ function clampScore(n: number): number {
   if (isNaN(n)) return 5;
   return Math.max(1, Math.min(10, n));
 }
+
+

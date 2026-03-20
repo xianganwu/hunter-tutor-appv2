@@ -13,6 +13,7 @@ import {
   selectPassageForLevel,
   computeStaminaStats,
 } from "@/lib/reading-stamina";
+import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import type { StaminaProgress, ReadingRecord } from "@/lib/reading-stamina";
 
 // ─── Types ────────────────────────────────────────────────────────────
@@ -101,11 +102,12 @@ export function useReadingStamina() {
     const levelConfig = getStaminaLevel(s.progress.currentLevel);
     const allPassages = Array.from(getAllPassages().values());
 
-    // Try to find a library passage first
+    // Try to find a library passage first (pass recent records for genre diversity)
     const libraryPassage = selectPassageForLevel(
       s.progress.currentLevel,
       s.progress.completedPassageIds,
-      allPassages
+      allPassages,
+      s.progress.records
     );
 
     if (libraryPassage) {
@@ -303,6 +305,7 @@ export function useReadingStamina() {
         record
       );
       saveStaminaProgress(updated);
+      autoCompleteDailyTask(undefined, "skill_practice");
 
       // Check speed drop
       const drop = detectSpeedDrop(updated.records);

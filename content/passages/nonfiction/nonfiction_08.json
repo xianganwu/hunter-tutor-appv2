@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "nonfiction_08",
+    "title": "The Forgotten History of the Pony Express",
+    "genre": "nonfiction",
+    "difficulty_level": 3,
+    "word_count": 548,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_supporting_details",
+      "rc_inference",
+      "rc_vocab_context",
+      "rc_passage_structure"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["history"]
+  },
+  "pre_reading_context": "This article tells the story of one of the most famous — and shortest-lived — mail delivery services in American history.",
+  "passage_text": "In April 1860, a young rider galloped out of St. Joseph, Missouri, carrying a leather pouch full of mail. His destination was nearly two thousand miles away in Sacramento, California. He would not make the journey alone. Instead, he would ride at full speed for about ten miles, then pass the mail pouch to a fresh rider waiting at the next station. That rider would do the same, and then the next, and the next, in a chain that stretched across prairies, deserts, and mountain passes. This was the Pony Express, and it was about to become one of the most legendary operations in American history.\n\nBefore the Pony Express, sending a letter from the East Coast to California took about three weeks by stagecoach, or even longer by ship around the southern tip of South America. The founders of the Pony Express — the freight company Russell, Majors, and Waddell — believed they could cut that time dramatically. Their system used approximately 400 horses, 190 relay stations, and 80 riders. Each rider carried a specially designed leather pouch called a mochila, which fit over the saddle and had four locked compartments for mail. Riders were expected to cover about 75 miles per shift, changing horses every 10 to 15 miles.\n\nThe job was not for the faint of heart. Riders faced blizzards in the Sierra Nevada, scorching heat in the Utah desert, and the constant threat of attack from bandits or hostile groups. They rode through the night, navigating by starlight when trails were hard to see. The company's recruitment advertisements allegedly called for \"skinny, wiry fellows not over eighteen\" who were \"willing to risk death daily.\" Whether or not those exact words were used, the sentiment was accurate.\n\nRemarkably, the Pony Express delivered mail in roughly ten days — less than half the time of the old stagecoach routes. Its most famous achievement was delivering President Abraham Lincoln's inaugural address from the East Coast to California in just seven days and seventeen hours. For a brief moment, the Pony Express was the fastest communication link between the eastern and western halves of the nation.\n\nBut that moment was extraordinarily brief. The Pony Express operated for only eighteen months. In October 1861, the transcontinental telegraph was completed, allowing messages to be sent across the country in seconds rather than days. Overnight, the need for riders carrying mail at breakneck speed vanished. The company shut down, having lost an estimated two hundred thousand dollars — an enormous sum at the time.\n\nDespite its short life, the Pony Express captured the American imagination in a way that far outlasted its operations. It became a symbol of determination, speed, and the pioneer spirit. Books, movies, and television shows have celebrated its riders for over 160 years. Sometimes the most powerful stories are not about things that lasted, but about things that blazed brightly for a brief, unforgettable moment.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "The Pony Express was a brief but legendary mail service that transformed communication before being replaced by the telegraph."},
+        {"letter": "B", "text": "The Pony Express failed because the riders were not fast enough to compete with other mail services."},
+        {"letter": "C", "text": "The telegraph was the most important invention in American history."},
+        {"letter": "D", "text": "Mail delivery in the 1800s was too dangerous and should not have been attempted."},
+        {"letter": "E", "text": "Russell, Majors, and Waddell were the wealthiest businessmen in the country."}
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The passage tells the complete story of the Pony Express — its founding, how it worked, its achievements, its short life, and its lasting legacy. The main idea captures both its historical importance and its brief existence before the telegraph made it obsolete.",
+      "distractor_explanations": [
+        {"letter": "B", "explanation": "This is tempting because the Pony Express did end, but it did not fail due to slow riders — it was incredibly fast for its time. It was replaced by the telegraph, which was simply a faster technology."},
+        {"letter": "C", "explanation": "This is tempting because the telegraph is mentioned as a transformative technology, but the passage is about the Pony Express, not a ranking of inventions."},
+        {"letter": "D", "explanation": "This is tempting because the passage describes dangers, but it also celebrates the riders' bravery and the service's achievements — it does not argue against the attempt."},
+        {"letter": "E", "explanation": "This is tempting because the founders are named, but the passage says the company lost $200,000 — they were not portrayed as the wealthiest businessmen."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "According to the passage, how long did the Pony Express typically take to deliver mail from Missouri to California?",
+      "answer_choices": [
+        {"letter": "A", "text": "Three weeks"},
+        {"letter": "B", "text": "About ten days"},
+        {"letter": "C", "text": "Seven days and seventeen hours"},
+        {"letter": "D", "text": "Eighteen months"},
+        {"letter": "E", "text": "One day"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage states that 'the Pony Express delivered mail in roughly ten days.' The seven days and seventeen hours mentioned was a special record for delivering Lincoln's inaugural address, not the typical delivery time.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because three weeks is mentioned in the passage, but that was the old stagecoach delivery time that the Pony Express improved upon."},
+        {"letter": "C", "explanation": "This is tempting because this time is in the passage, but it was the record time for one specific delivery (Lincoln's inaugural address), not the typical delivery time."},
+        {"letter": "D", "explanation": "This is tempting because eighteen months appears in the passage, but that was how long the entire Pony Express operated, not a delivery time."},
+        {"letter": "E", "explanation": "This is tempting because the passage emphasizes speed, but one day for nearly two thousand miles was not possible even for the Pony Express."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What can the reader infer about why the Pony Express company lost so much money?",
+      "answer_choices": [
+        {"letter": "A", "text": "The riders stole the mail and kept the delivery fees for themselves."},
+        {"letter": "B", "text": "Running 190 stations, 400 horses, and 80 riders was extremely expensive, and the service lasted only 18 months — not long enough to earn back the investment."},
+        {"letter": "C", "text": "The founders spent all the money on advertising instead of on horses and stations."},
+        {"letter": "D", "text": "The government refused to pay for any of the mail that was delivered."},
+        {"letter": "E", "text": "Most of the horses were lost during blizzards and had to be replaced constantly."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage describes a massive operation with hundreds of horses, nearly 200 stations, and dozens of riders — all of which would be expensive to maintain. The service operated for only 18 months before being shut down, which means the company had very little time to earn revenue before the telegraph eliminated demand.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because theft is a possible business problem, but the passage never mentions riders stealing mail — they are portrayed as brave and dedicated."},
+        {"letter": "C", "explanation": "This is tempting because advertising is mentioned, but only one recruitment ad is referenced — the passage does not suggest advertising was a major expense."},
+        {"letter": "D", "explanation": "This is tempting because government contracts would matter, but the passage does not say the government refused to pay."},
+        {"letter": "E", "explanation": "This is tempting because blizzards are mentioned as a hazard, but the passage does not say horses were frequently lost — it describes dangers riders faced, not a pattern of horse losses."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 4,
+      "question_text": "What does the phrase \"faint of heart\" most likely mean as used in the third paragraph?",
+      "answer_choices": [
+        {"letter": "A", "text": "People who have a medical heart condition"},
+        {"letter": "B", "text": "People who are easily scared or lack courage"},
+        {"letter": "C", "text": "People who are physically weak and cannot ride horses"},
+        {"letter": "D", "text": "People who do not like animals"},
+        {"letter": "E", "text": "People who prefer to work indoors"}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The phrase 'not for the faint of heart' is an idiom meaning something requires bravery. The paragraph then lists dangerous conditions (blizzards, heat, bandits, night riding) that explain why courage was needed, confirming that 'faint of heart' means easily scared or lacking courage.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because 'heart' could be literal, but 'faint of heart' is a common expression about courage, not a medical term."},
+        {"letter": "C", "explanation": "This is tempting because physical fitness was important for riders, but the phrase specifically refers to emotional bravery, not physical strength."},
+        {"letter": "D", "explanation": "This is tempting because horses were involved, but the phrase is about courage in facing danger, not about feelings toward animals."},
+        {"letter": "E", "explanation": "This is tempting because the job was outdoors, but the phrase describes courage, not a preference for indoor work."}
+      ],
+      "skill_tested": "rc_vocab_context"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How is this passage organized?",
+      "answer_choices": [
+        {"letter": "A", "text": "It compares and contrasts two different mail delivery companies."},
+        {"letter": "B", "text": "It presents a problem and then offers multiple solutions."},
+        {"letter": "C", "text": "It follows a chronological structure, telling the story from the Pony Express's beginning to its end and legacy."},
+        {"letter": "D", "text": "It lists random facts about horses and mail delivery in no particular order."},
+        {"letter": "E", "text": "It argues that the Pony Express should be brought back today."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The passage moves through time: it starts with the Pony Express's founding in 1860, describes how it operated, covers its achievements, explains its end in 1861 when the telegraph arrived, and concludes with its lasting legacy. This is a chronological structure.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the old stagecoach system is mentioned for comparison, but the passage does not compare two companies side by side — it focuses on the Pony Express's story."},
+        {"letter": "B", "explanation": "This is tempting because the passage mentions challenges, but it is telling a historical story, not presenting a problem that needs solving."},
+        {"letter": "D", "explanation": "This is tempting if the reader does not notice the time progression, but the facts are carefully ordered from the service's founding through its operation to its end and legacy."},
+        {"letter": "E", "explanation": "This is tempting because the passage is positive about the Pony Express, but it ends by reflecting on its legacy, not by arguing for its revival."}
+      ],
+      "skill_tested": "rc_passage_structure"
+    }
+  ]
+}

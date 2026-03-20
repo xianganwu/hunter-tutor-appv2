@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "poetry_08",
+    "title": "The Hawk Above the Highway",
+    "genre": "poetry",
+    "difficulty_level": 3,
+    "word_count": 290,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_figurative_language",
+      "rc_author_purpose",
+      "rc_tone_mood",
+      "rc_passage_structure"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["animals"]
+  },
+  "pre_reading_context": "This poem contrasts the world of a red-tailed hawk soaring above a busy highway with the human world rushing below.",
+  "passage_text": "Above the roar of eighteen-wheelers,\nabove the brake lights bleeding red,\na red-tailed hawk hangs motionless,\na king upon a throne of wind.\n\nBelow, the traffic crawls and stutters,\nbumper pressed to bumper's steel.\nHorns blare. Tempers flare. The pavement\nshimmers in the August heat.\n\nBut up where the thermals spiral,\nthe hawk sees none of this.\nHis world is drawn in wider circles —\nfield and fence and sky's abyss.\n\nHe tilts one wing, a slight correction,\nand slides across the summer air\nthe way a pen moves over paper,\nsmooth, deliberate, and aware.\n\nHis shadow crosses six lanes briefly,\na dark brushstroke on the road,\nbut not one driver lifts their eyes\nto see the beauty overhead.\n\nThey are too busy going somewhere,\ntoo locked inside their hurried days,\nto notice what is freely given:\na masterpiece of flight and grace.\n\nAnd the hawk, for his part, does not care.\nHe does not need an audience.\nHe rides the updraft like a surfer,\npatient, silent, confident,\n\nand when he spots his prey below —\na flash of brown in golden grass —\nhe folds his wings and drops like thunder,\nand the highway holds its breath.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "Highways are dangerous places for birds and should be moved away from nature."},
+        {"letter": "B", "text": "The poem contrasts the grace and freedom of the hawk with the frantic busyness of human life, suggesting people miss the beauty around them."},
+        {"letter": "C", "text": "Red-tailed hawks are the fastest birds in North America."},
+        {"letter": "D", "text": "Driving in traffic is the worst part of modern life."},
+        {"letter": "E", "text": "Hawks are unfriendly animals because they do not care about humans."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poem sets up a clear contrast between the hawk (motionless, graceful, free) and the drivers below (crawling, frustrated, hurried). The poet observes that the drivers miss the 'masterpiece of flight and grace' above them, suggesting that busyness prevents people from noticing natural beauty.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the hawk flies near a highway, but the poem is about perspective and beauty, not about environmental planning or highway relocation."},
+        {"letter": "C", "explanation": "This is tempting because the hawk is impressive, but the poem does not make claims about speed rankings — it focuses on grace and freedom."},
+        {"letter": "D", "explanation": "This is tempting because the traffic is described negatively, but the poem uses traffic as a contrast to the hawk, not as its central complaint."},
+        {"letter": "E", "explanation": "This is tempting because the poem says the hawk 'does not care' about the drivers, but this is presented as confidence and independence, not unfriendliness."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "In the fourth stanza, the hawk's movement is compared to \"a pen moves over paper.\" What does this simile suggest about the hawk's flight?",
+      "answer_choices": [
+        {"letter": "A", "text": "The hawk is writing a message in the sky for the drivers to read."},
+        {"letter": "B", "text": "The hawk's flight is controlled, purposeful, and elegant, like the smooth motion of writing."},
+        {"letter": "C", "text": "The hawk is moving in a straight line, just like writing on lined paper."},
+        {"letter": "D", "text": "The hawk is as small as a pen from the ground."},
+        {"letter": "E", "text": "The hawk learned to fly by watching people write."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The simile compares the hawk's wing adjustment and glide to a pen moving over paper — 'smooth, deliberate, and aware.' This suggests the hawk's flight is graceful and intentional, with the same fluidity and control as confident writing.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because pens are for writing messages, but the comparison is about the quality of movement (smoothness), not about communication."},
+        {"letter": "C", "explanation": "This is tempting because writing often goes in lines, but the hawk's world is 'drawn in wider circles' — the comparison is about smoothness, not about straight-line movement."},
+        {"letter": "D", "explanation": "This is tempting because the hawk is far away, but the simile compares movement style, not size."},
+        {"letter": "E", "explanation": "This is tempting as a literal reading, but the simile is a poetic comparison, not a claim about how the hawk learned to fly."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 3,
+      "question_text": "Why does the poet include the detail that \"not one driver lifts their eyes\"?",
+      "answer_choices": [
+        {"letter": "A", "text": "To show that drivers are responsible and focused on the road for safety."},
+        {"letter": "B", "text": "To emphasize how people are so consumed by their busy lives that they miss the natural beauty happening right above them."},
+        {"letter": "C", "text": "To explain that the hawk is invisible and cannot be seen from the ground."},
+        {"letter": "D", "text": "To argue that people should look away from the road while driving."},
+        {"letter": "E", "text": "To suggest that the hawk is flying too high for anyone to notice."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The poet uses this detail to reinforce the poem's theme: that human busyness causes people to miss freely given beauty. The drivers are 'too busy going somewhere' and 'too locked inside their hurried days' — the hawk is there, but no one bothers to look up.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because safe driving involves watching the road, but the poet frames the drivers' inattention to the hawk as a loss, not as responsible behavior."},
+        {"letter": "C", "explanation": "This is tempting because the hawk is high up, but the poem describes its shadow crossing six lanes — it is visible. The problem is that people do not look, not that they cannot see."},
+        {"letter": "D", "explanation": "This is tempting because the poet values the hawk, but the poem is a philosophical observation, not practical driving advice."},
+        {"letter": "E", "explanation": "This is tempting because the hawk is above the highway, but the poem says the hawk's shadow crosses the road — it is close enough to be seen by anyone who looks up."}
+      ],
+      "skill_tested": "rc_author_purpose"
+    },
+    {
+      "question_number": 4,
+      "question_text": "How does the tone shift in the last stanza of the poem?",
+      "answer_choices": [
+        {"letter": "A", "text": "It becomes sad and mournful as the hawk flies away."},
+        {"letter": "B", "text": "It becomes humorous and lighthearted."},
+        {"letter": "C", "text": "It shifts from calm observation to sudden, dramatic intensity as the hawk dives for its prey."},
+        {"letter": "D", "text": "It becomes angry as the hawk attacks the drivers on the highway."},
+        {"letter": "E", "text": "It becomes boring and repetitive as the hawk continues circling."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "The poem's tone is mostly calm and observational, describing the hawk's graceful soaring. In the last stanza, the energy suddenly intensifies: the hawk 'folds his wings and drops like thunder.' The word 'thunder' and the phrase 'the highway holds its breath' create dramatic tension that contrasts with the earlier serenity.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the hawk dives, which could signal departure, but the tone is not sad — it is powerful and dramatic."},
+        {"letter": "B", "explanation": "This is tempting because tone shifts can go in any direction, but the hawk's hunting dive is intense and serious, not humorous."},
+        {"letter": "D", "explanation": "This is tempting because the hawk dives, but its prey is 'a flash of brown in golden grass' — a small animal in a field, not a driver."},
+        {"letter": "E", "explanation": "This is tempting because the hawk has been circling, but the dive breaks the pattern dramatically — the last stanza is the most exciting part of the poem."}
+      ],
+      "skill_tested": "rc_tone_mood"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How is this poem structured to create its meaning?",
+      "answer_choices": [
+        {"letter": "A", "text": "It alternates between the hawk's world above and the human world below, then brings them together in the final image."},
+        {"letter": "B", "text": "It tells a story in strict chronological order from morning to night."},
+        {"letter": "C", "text": "It is structured as a conversation between the hawk and the drivers."},
+        {"letter": "D", "text": "It uses only questions to make the reader think about nature."},
+        {"letter": "E", "text": "It is written as a series of unrelated observations with no connecting theme."}
+      ],
+      "correct_answer": "A",
+      "correct_answer_explanation": "The poem moves between the hawk above (stanzas 1, 3, 4, 7) and the traffic below (stanzas 2, 5, 6), building a contrast between freedom and busyness. The final stanza brings both worlds together as the hawk dives toward the ground and 'the highway holds its breath,' merging the two perspectives.",
+      "distractor_explanations": [
+        {"letter": "B", "explanation": "This is tempting because some poems follow a timeline, but this poem is organized spatially (above vs. below), not chronologically."},
+        {"letter": "C", "explanation": "This is tempting because both the hawk and drivers are present, but they never communicate — the hawk does not care about the drivers, and the drivers do not notice the hawk."},
+        {"letter": "D", "explanation": "This is tempting because poems sometimes use questions, but this poem uses declarative statements and images, not questions."},
+        {"letter": "E", "explanation": "This is tempting if the reader misses the connecting contrast, but every stanza relates to the central theme of the hawk's world versus the human world below."}
+      ],
+      "skill_tested": "rc_passage_structure"
+    }
+  ]
+}

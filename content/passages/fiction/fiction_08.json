@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "passage_id": "fiction_08",
+    "title": "The Photo on the Fridge",
+    "genre": "fiction",
+    "difficulty_level": 3,
+    "word_count": 548,
+    "tagged_skills": [
+      "rc_main_idea",
+      "rc_inference",
+      "rc_figurative_language",
+      "rc_supporting_details",
+      "rc_tone_mood"
+    ],
+    "source_description": "original",
+    "lexile_range": "600L-800L",
+    "themes": ["family", "identity"]
+  },
+  "pre_reading_context": "A girl discovers an old photograph that helps her understand her family history in a new way.",
+  "passage_text": "Maya was looking for the leftover lasagna when she noticed something tucked behind a magnet on the refrigerator — an old photograph she had never seen before. It showed a young woman standing in front of a small brick building with a hand-painted sign that read \"Delgado's Bakery.\" The woman wore a flour-dusted apron and held a tray of golden pastries, and she was smiling like she had just won the lottery.\n\nMaya pulled the photo free and studied it. The woman looked familiar, but Maya couldn't quite place her.\n\n\"Abuela?\" she called into the living room. \"Whose picture is this?\"\n\nHer grandmother appeared in the kitchen doorway, drying her hands on a dish towel. She took one look at the photograph and her eyes went soft, the way candle flames go soft in a breeze.\n\n\"That's me,\" Abuela said quietly. \"1978. I was twenty-three years old.\"\n\nMaya stared at the photo again. The young woman in the picture looked so different from the grandmother she knew — the one with silver-streaked hair who hummed while folding laundry and always smelled like cinnamon. But the smile was the same. It was unmistakable.\n\n\"You owned a bakery?\"\n\n\"For eleven years.\" Abuela sat down at the kitchen table and gestured for Maya to join her. \"Your grandfather and I opened it the year after we arrived in New York. We had nothing when we came from the Dominican Republic. Thirty-seven dollars between us and one suitcase. But I knew how to bake — my mother taught me — and your grandfather knew how to talk to people. So we found a tiny shop on 181st Street and we made it ours.\"\n\n\"What happened to it?\" Maya asked.\n\n\"The rent got too high. The neighborhood changed. We had to close.\" Abuela paused, running her finger along the edge of the photograph. \"I cried for a week. It felt like losing a part of myself. But then your mother was born, and I realized that the bakery was never really gone. Everything I put into that shop — the early mornings, the recipes, the way I learned to keep going when things got hard — all of that went into raising your mother. And she put it into raising you.\"\n\nMaya looked down at her own hands, the hands that her friends said made the best tres leches cake at every school bake sale. She had always thought it was just a hobby, something fun she was good at. Now it felt like something deeper, like a thread connecting her to a woman standing in front of a brick building forty-five years ago.\n\n\"Can you teach me Abuela's recipes?\" Maya asked. \"The real ones, from the bakery?\"\n\nAbuela reached across the table and squeezed Maya's hand. \"I thought you'd never ask.\"\n\nThat evening, Maya taped the photograph back on the fridge — not behind a magnet this time, but right in the center where everyone could see it. It wasn't just a picture of a bakery. It was a picture of where she came from.",
+  "questions": [
+    {
+      "question_number": 1,
+      "question_text": "What is the main idea of this passage?",
+      "answer_choices": [
+        {"letter": "A", "text": "Maya wants to open her own bakery someday."},
+        {"letter": "B", "text": "Discovering a family photograph helps Maya understand her connection to her grandmother's past and her own identity."},
+        {"letter": "C", "text": "Abuela is sad because she lost her bakery and misses the Dominican Republic."},
+        {"letter": "D", "text": "Baking is a skill that anyone can learn if they practice hard enough."},
+        {"letter": "E", "text": "Old photographs should always be displayed on the refrigerator."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage traces Maya's journey from finding an unfamiliar photograph to understanding that her grandmother's bakery, her family's immigrant story, and her own baking talent are all connected. The main idea is about discovering identity through family history.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because Maya is interested in baking, but the passage never says she wants to open a bakery — she asks to learn the recipes, which is about connection, not business."},
+        {"letter": "C", "explanation": "This is tempting because Abuela mentions crying when the bakery closed, but she also talks about how those experiences went into raising her family — the passage is ultimately hopeful, not sad."},
+        {"letter": "D", "explanation": "This is tempting because baking is important in the story, but the passage is about family heritage and identity, not about practicing a skill."},
+        {"letter": "E", "explanation": "This is tempting because Maya does put the photo on the fridge, but that is a symbolic gesture at the end, not the main idea of the entire passage."}
+      ],
+      "skill_tested": "rc_main_idea"
+    },
+    {
+      "question_number": 2,
+      "question_text": "What can the reader infer about why Maya moves the photograph to the center of the fridge?",
+      "answer_choices": [
+        {"letter": "A", "text": "She wants to remind Abuela to teach her the recipes."},
+        {"letter": "B", "text": "She thinks the photograph is more attractive than the other magnets."},
+        {"letter": "C", "text": "She wants to honor her family's story and make sure it is not hidden or forgotten."},
+        {"letter": "D", "text": "She is redecorating the kitchen as a surprise for her mother."},
+        {"letter": "E", "text": "She is angry that someone hid the photograph behind a magnet."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Maya moves the photo from behind a magnet to the center of the fridge 'where everyone could see it.' After learning about her grandmother's bakery and feeling connected to that history, she wants to make sure the story is visible and valued, not hidden away.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because Maya did ask about recipes, but the photo placement is symbolic — it represents pride in family history, not a reminder about cooking lessons."},
+        {"letter": "B", "explanation": "This is tempting because the photo is placed prominently, but Maya's motivation is emotional, not aesthetic — she calls it 'a picture of where she came from.'"},
+        {"letter": "D", "explanation": "This is tempting because her mother is mentioned in the passage, but there is no evidence Maya is redecorating or planning a surprise."},
+        {"letter": "E", "explanation": "This is tempting because the photo was tucked away, but there is no anger in Maya's reaction — she is inspired and proud, not upset."}
+      ],
+      "skill_tested": "rc_inference"
+    },
+    {
+      "question_number": 3,
+      "question_text": "What does the simile \"her eyes went soft, the way candle flames go soft in a breeze\" suggest about Abuela's reaction?",
+      "answer_choices": [
+        {"letter": "A", "text": "She is frightened by the photograph and wants to hide it."},
+        {"letter": "B", "text": "She is confused and does not recognize the person in the picture."},
+        {"letter": "C", "text": "She feels a gentle wave of emotion and nostalgia when she sees the photo."},
+        {"letter": "D", "text": "She is angry that Maya found the photograph without permission."},
+        {"letter": "E", "text": "She is about to blow out a candle in the kitchen."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Comparing Abuela's eyes to candle flames going soft in a breeze creates an image of gentle, warm emotion — something flickering and tender. This shows she feels nostalgia and tenderness when she sees the photo of her younger self.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because strong reactions can include fear, but 'soft' suggests warmth and tenderness, not fright."},
+        {"letter": "B", "explanation": "This is tempting because the photo is old, but Abuela immediately says 'That's me' — she recognizes herself right away."},
+        {"letter": "D", "explanation": "This is tempting because the photo was tucked away, but 'soft' eyes suggest gentleness, not anger."},
+        {"letter": "E", "explanation": "This is tempting because candles are mentioned, but the candle is part of a simile describing Abuela's expression, not a literal candle in the room."}
+      ],
+      "skill_tested": "rc_figurative_language"
+    },
+    {
+      "question_number": 4,
+      "question_text": "According to the passage, what caused Abuela and her husband to close the bakery?",
+      "answer_choices": [
+        {"letter": "A", "text": "They ran out of recipes to sell."},
+        {"letter": "B", "text": "They wanted to move back to the Dominican Republic."},
+        {"letter": "C", "text": "The rent became too expensive and the neighborhood changed."},
+        {"letter": "D", "text": "Maya's mother asked them to stop working so hard."},
+        {"letter": "E", "text": "A fire destroyed the building where the bakery was located."}
+      ],
+      "correct_answer": "C",
+      "correct_answer_explanation": "Abuela directly states 'The rent got too high. The neighborhood changed. We had to close.' These are the two reasons given in the passage for why the bakery closed.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because bakeries need products to sell, but Abuela had recipes passed down from her mother — running out of recipes is never mentioned."},
+        {"letter": "B", "explanation": "This is tempting because they originally came from the Dominican Republic, but the passage never says they wanted to return — they stayed in New York."},
+        {"letter": "D", "explanation": "This is tempting because Maya's mother is mentioned, but she was born after the bakery's challenges began — she did not ask them to close."},
+        {"letter": "E", "explanation": "This is tempting because it is a dramatic reason for a business to close, but no fire is mentioned in the passage."}
+      ],
+      "skill_tested": "rc_supporting_details"
+    },
+    {
+      "question_number": 5,
+      "question_text": "How does the tone of the passage change from beginning to end?",
+      "answer_choices": [
+        {"letter": "A", "text": "It starts as exciting and becomes boring."},
+        {"letter": "B", "text": "It starts as curious and ordinary, then becomes warm, emotional, and meaningful."},
+        {"letter": "C", "text": "It stays humorous and silly throughout."},
+        {"letter": "D", "text": "It starts as happy and becomes increasingly sad."},
+        {"letter": "E", "text": "It starts as frightening and becomes relaxing."}
+      ],
+      "correct_answer": "B",
+      "correct_answer_explanation": "The passage begins with Maya casually looking for leftovers and noticing a photograph — an ordinary, curious moment. As Abuela tells her story, the tone deepens into warmth, emotion, and meaning, ending with Maya proudly displaying the photo as a symbol of her heritage.",
+      "distractor_explanations": [
+        {"letter": "A", "explanation": "This is tempting because the beginning is casual, but the passage becomes more engaging as it goes on, not boring."},
+        {"letter": "C", "explanation": "This is tempting because the opening is light, but the passage is not humorous — it deals with serious themes of immigration, loss, and identity."},
+        {"letter": "D", "explanation": "This is tempting because there are sad elements (the bakery closing, Abuela crying), but the ending is hopeful and proud, not sad."},
+        {"letter": "E", "explanation": "This is tempting because the tone does shift, but there is nothing frightening at the beginning — Maya is simply looking in the fridge."}
+      ],
+      "skill_tested": "rc_tone_mood"
+    }
+  ]
+}
