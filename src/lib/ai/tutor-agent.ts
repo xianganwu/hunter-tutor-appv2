@@ -3,6 +3,7 @@ import type { DifficultyLevel, Skill } from "@/lib/types";
 import { getAnthropicClient } from "./client";
 import { getAllSkills } from "@/lib/exam/curriculum";
 import { parseWarn, parseError } from "./parse-logger";
+import { isValidQuestion } from "./validate-question";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -539,9 +540,9 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      const filtered = parsed.filter((q) => hasDistinctChoices(q.answerChoices));
+      const filtered = parsed.filter((q) => isValidQuestion(q.answerChoices, q.correctAnswer, "generateDrillBatch"));
       if (filtered.length < parsed.length) {
-        parseWarn({ parser: "generateDrillBatch", field: "distinctChoices", fallback: `${filtered.length}/${parsed.length} questions passed` });
+        parseWarn({ parser: "generateDrillBatch", field: "validation", fallback: `${filtered.length}/${parsed.length} questions passed` });
       }
       if (filtered.length === 0) {
         parseError({ parser: "generateDrillBatch", field: "result", fallback: "[] (all questions filtered out)", rawSnippet: text });
@@ -627,9 +628,9 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      const filtered = parsed.filter((q) => hasDistinctChoices(q.answerChoices));
+      const filtered = parsed.filter((q) => isValidQuestion(q.answerChoices, q.correctAnswer, "generateMixedDrillBatch"));
       if (filtered.length < parsed.length) {
-        parseWarn({ parser: "generateMixedDrillBatch", field: "distinctChoices", fallback: `${filtered.length}/${parsed.length} questions passed` });
+        parseWarn({ parser: "generateMixedDrillBatch", field: "validation", fallback: `${filtered.length}/${parsed.length} questions passed` });
       }
       if (filtered.length === 0) {
         parseError({ parser: "generateMixedDrillBatch", field: "result", fallback: "[] (all questions filtered out)", rawSnippet: text });
@@ -655,47 +656,6 @@ Make sure:
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────
-
-/**
- * Check that all answer choices are distinct after normalizing.
- * Strips the leading letter prefix (e.g. "A) "), trims whitespace,
- * and normalizes common equivalent representations before comparing.
- */
-function hasDistinctChoices(choices: string[]): boolean {
-  const normalized = choices.map((c) => normalizeChoiceValue(c));
-  return new Set(normalized).size === normalized.length;
-}
-
-/**
- * Normalize a single answer choice for equivalence comparison.
- * Handles: leading letter prefix, decimals, fractions, percentages,
- * currency symbols, trailing zeros, and whitespace variations.
- */
-function normalizeChoiceValue(choice: string): string {
-  // Strip leading letter+paren prefix: "A) 30%" → "30%"
-  let s = choice.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
-  // Remove currency symbols and commas: "$1,500" → "1500"
-  s = s.replace(/[$,]/g, "");
-  // Add leading zero: ".40" → "0.40"
-  s = s.replace(/^\.(\d)/, "0.$1");
-  // Remove trailing zeros after decimal: "0.40" → "0.4", "3.0" → "3"
-  s = s.replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
-  // Normalize simple fractions to decimals for comparison
-  const fractionMatch = s.match(/^(\d+)\/(\d+)$/);
-  if (fractionMatch) {
-    const num = parseInt(fractionMatch[1], 10);
-    const den = parseInt(fractionMatch[2], 10);
-    if (den !== 0) s = String(num / den);
-  }
-  // Normalize percentage to decimal: "50%" → "0.5"
-  const pctMatch = s.match(/^(\d+(?:\.\d+)?)%$/);
-  if (pctMatch) {
-    s = String(parseFloat(pctMatch[1]) / 100);
-  }
-  // Collapse whitespace
-  s = s.replace(/\s+/g, " ");
-  return s;
-}
 
 function extractText(response: Anthropic.Message): string {
   const block = response.content[0];
@@ -745,6 +705,11 @@ function parseGeneratedQuestion(
     return null;
   }
   const correctAnswer = answerChoices[correctIndex];
+
+  // Reject if any choices are equivalent after normalization
+  if (!isValidQuestion(answerChoices, correctAnswer, "parseGeneratedQuestion")) {
+    return null;
+  }
 
   return {
     questionText,

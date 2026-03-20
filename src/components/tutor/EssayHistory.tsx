@@ -19,7 +19,11 @@ function formatDate(iso: string): string {
 
 function avgScore(essay: StoredEssay): number {
   const s = essay.feedback.scores;
-  return Math.round((s.organization + s.clarity + s.evidence + s.grammar) / 4);
+  let total = s.organization + s.clarity + s.evidence + s.grammar;
+  let count = 4;
+  if (s.voice != null) { total += s.voice; count++; }
+  if (s.ideas != null) { total += s.ideas; count++; }
+  return Math.round(total / count);
 }
 
 function getRevisionLabel(essay: StoredEssay): string | null {

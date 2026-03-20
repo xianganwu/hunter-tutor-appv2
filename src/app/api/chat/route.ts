@@ -5,8 +5,8 @@ import { getAnthropicClient } from "@/lib/ai/client";
 import { getSkillById } from "@/lib/exam/curriculum";
 import { prisma } from "@/lib/db";
 import { getCachedQuestion, ensureCacheFlushed } from "@/lib/question-cache";
-import { verifyQuestionAnswers } from "@/lib/ai/verify-answers";
 import { parseError } from "@/lib/ai/parse-logger";
+import { isValidQuestion } from "@/lib/ai/validate-question";
 import type { ChatAction } from "@/components/tutor/types";
 import type { DifficultyLevel } from "@/lib/types";
 
@@ -300,8 +300,7 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
-        const rawQuestions = await agent.generateDrillBatch(skill, body.count ?? 10);
-        const questions = await verifyQuestionAnswers(rawQuestions);
+        const questions = await agent.generateDrillBatch(skill, body.count ?? 10);
         return NextResponse.json({ questions });
       }
 
@@ -317,12 +316,11 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
           return NextResponse.json({ questions: [] });
         }
 
-        const rawMixed = await agent.generateMixedDrillBatch(
+        const questions = await agent.generateMixedDrillBatch(
           resolvedSkills,
           body.totalCount,
         );
-        const mixedQuestions = await verifyQuestionAnswers(rawMixed);
-        return NextResponse.json({ questions: mixedQuestions });
+        return NextResponse.json({ questions });
       }
 
       case "generate_diagnostic": {
@@ -392,14 +390,15 @@ Respond with ONLY a JSON array, no other text:
             correctAnswer: string;
           }[];
 
-          const rawDiagnostic = parsed.map((q) => ({
-            skillId: q.skillId,
-            questionText: q.questionText,
-            answerChoices: q.answerChoices,
-            correctAnswer: q.correctAnswer,
-          }));
+          const questions = parsed
+            .filter((q) => isValidQuestion(q.answerChoices, q.correctAnswer, "chat/generate_diagnostic"))
+            .map((q) => ({
+              skillId: q.skillId,
+              questionText: q.questionText,
+              answerChoices: q.answerChoices,
+              correctAnswer: q.correctAnswer,
+            }));
 
-          const questions = await verifyQuestionAnswers(rawDiagnostic);
           return NextResponse.json({ questions });
         } catch (err) {
           parseError({ parser: "chat/generate_diagnostic", field: "JSON", fallback: "[] (parse exception)", rawSnippet: text });

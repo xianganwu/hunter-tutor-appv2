@@ -2,7 +2,6 @@ import { prisma } from "@/lib/db";
 import { TutorAgent } from "@/lib/ai/tutor-agent";
 import type { GeneratedQuestion } from "@/lib/ai/tutor-agent";
 import type { Skill, DifficultyLevel } from "@/lib/types";
-import { verifyQuestionAnswers } from "@/lib/ai/verify-answers";
 
 // ─── Constants ────────────────────────────────────────────────────────
 
@@ -85,8 +84,8 @@ export async function cleanupStaleQuestions(): Promise<number> {
 }
 
 /**
- * Flush all unused cached questions. Call after deploying answer-correctness
- * fixes to ensure old buggy questions are not served.
+ * Flush all unused cached questions. Useful after deploying prompt changes
+ * to ensure stale questions are not served.
  */
 export async function flushUnusedCache(): Promise<number> {
   const result = await prisma.questionCache.deleteMany({
@@ -102,8 +101,8 @@ export async function flushUnusedCache(): Promise<number> {
 
 // ─── One-time cache flush on deploy ──────────────────────────────────
 //
-// After deploying answer-verification fixes, we need to flush any
-// pre-existing cached questions that may have incorrect answer keys.
+// Flush stale cached questions on server startup to ensure students
+// always get questions generated with the latest prompts.
 // This runs once per server process startup.
 
 let cacheFlushDone = false;
@@ -234,14 +233,11 @@ async function generateAndCacheBatch(
 
   if (rawQuestions.length === 0) return null;
 
-  // Verify answers before caching to prevent wrong answer keys from persisting
-  const verifiedQuestions = await verifyQuestionAnswers(rawQuestions);
-
   // First question is served immediately → mark as used.
   // Remaining questions go into the pool as unused.
   try {
     await prisma.questionCache.createMany({
-      data: verifiedQuestions.map((q, i) => ({
+      data: rawQuestions.map((q, i) => ({
         skillId: skill.skill_id,
         difficultyTier,
         questionText: q.questionText,
@@ -255,7 +251,7 @@ async function generateAndCacheBatch(
     // Still return the first question even if caching failed
   }
 
-  const first = verifiedQuestions[0];
+  const first = rawQuestions[0];
   return {
     questionText: first.questionText,
     answerChoices: first.answerChoices,
