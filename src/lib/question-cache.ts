@@ -42,30 +42,36 @@ export async function getCachedQuestion(
   difficultyTier: DifficultyLevel,
   agent: TutorAgent
 ): Promise<GeneratedQuestion | null> {
-  // Try to serve from cache first
-  const cached = await popUnusedQuestion(skill.skill_id, difficultyTier);
+  // Try to serve from cache first — gracefully degrade if the table
+  // doesn't exist yet (e.g., prisma db push hasn't run on this deploy)
+  try {
+    const cached = await popUnusedQuestion(skill.skill_id, difficultyTier);
 
-  if (cached) {
-    // Check remaining pool size and refill in background if low
-    void checkAndRefillPool(skill, difficultyTier, agent);
+    if (cached) {
+      // Check remaining pool size and refill in background if low
+      void checkAndRefillPool(skill, difficultyTier, agent);
 
-    return {
-      questionText: cached.questionText,
-      answerChoices: cached.answerChoices,
-      correctAnswer: cached.correctAnswer,
-      skillId: skill.skill_id,
-      difficultyTier,
-    };
+      return {
+        questionText: cached.questionText,
+        answerChoices: cached.answerChoices,
+        correctAnswer: cached.correctAnswer,
+        skillId: skill.skill_id,
+        difficultyTier,
+      };
+    }
+
+    // Cache miss — generate a fresh batch, cache them, and serve one
+    const firstQuestion = await generateAndCacheBatch(skill, difficultyTier, agent);
+
+    if (firstQuestion) {
+      return firstQuestion;
+    }
+  } catch (err) {
+    // Table may not exist — fall through to direct generation
+    console.warn("[question-cache] Cache unavailable, falling back to direct generation:", err);
   }
 
-  // Cache miss — generate a fresh batch, cache them, and serve one
-  const firstQuestion = await generateAndCacheBatch(skill, difficultyTier, agent);
-
-  if (firstQuestion) {
-    return firstQuestion;
-  }
-
-  // Fallback: if batch generation failed, generate a single question directly
+  // Fallback: generate a single question directly (no caching)
   return agent.generateQuestion(skill, difficultyTier);
 }
 

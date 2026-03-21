@@ -86,6 +86,18 @@ const statements = [
     CONSTRAINT "WritingSubmission_sessionId_fkey" FOREIGN KEY ("sessionId") REFERENCES "TutoringSession" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
   )`,
 
+  `CREATE TABLE IF NOT EXISTS "QuestionCache" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "skillId" TEXT NOT NULL,
+    "difficultyTier" INTEGER NOT NULL,
+    "questionText" TEXT NOT NULL,
+    "answerChoices" TEXT NOT NULL,
+    "correctAnswer" TEXT NOT NULL,
+    "explanation" TEXT NOT NULL DEFAULT '',
+    "used" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`,
+
   `CREATE TABLE IF NOT EXISTS "UserData" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "studentId" TEXT NOT NULL,
@@ -103,6 +115,7 @@ const statements = [
   `CREATE INDEX IF NOT EXISTS "QuestionAttempt_sessionId_idx" ON "QuestionAttempt"("sessionId")`,
   `CREATE INDEX IF NOT EXISTS "QuestionAttempt_skillId_idx" ON "QuestionAttempt"("skillId")`,
   `CREATE INDEX IF NOT EXISTS "WritingSubmission_sessionId_idx" ON "WritingSubmission"("sessionId")`,
+  `CREATE INDEX IF NOT EXISTS "QuestionCache_skillId_difficultyTier_used_idx" ON "QuestionCache"("skillId", "difficultyTier", "used")`,
   `CREATE INDEX IF NOT EXISTS "UserData_studentId_idx" ON "UserData"("studentId")`,
   `CREATE UNIQUE INDEX IF NOT EXISTS "UserData_studentId_key_key" ON "UserData"("studentId", "key")`,
 ];
