@@ -613,6 +613,12 @@ These are for speed practice — questions should be clear and solvable quickly 
 Each question should have 4-5 multiple choice answers.
 Match the difficulty to tier ${difficultyTier ?? skill.difficulty_tier} (1=foundational, 3=grade-level, 5=exam-challenge).
 
+IMPORTANT — Question Variety:
+- Vary the question FORMAT: some should be "solve for X", some "which is equivalent to", some word problems, some "find the error", some "which statement is true".
+- Vary the NUMBERS and CONTEXTS: use different number ranges, real-world scenarios, and setups each time.
+- Vary SUB-TOPICS within the skill: e.g., for fractions, mix addition, comparison, word problems, and equivalence.
+- Do NOT generate questions that are structurally identical (same template with different numbers). Each question should feel distinct.
+
 Format your response as a JSON array. ONLY output the JSON array, no other text:
 [
   {
