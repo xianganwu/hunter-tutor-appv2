@@ -126,7 +126,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: "Something went wrong. Please try again.",
-        ...(process.env.NODE_ENV !== "production" ? { debug: message } : {}),
+        debug: message,
       },
       { status: 500 }
     );
