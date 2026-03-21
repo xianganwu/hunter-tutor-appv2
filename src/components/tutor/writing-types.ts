@@ -5,7 +5,7 @@ import type { EssayFeedback } from "@/lib/ai/tutor-agent";
 export interface EssayPrompt {
   readonly id: string;
   readonly text: string;
-  readonly category: "personal_narrative" | "persuasive" | "expository";
+  readonly category: "persuasive" | "expository";
   readonly level?: "foundations" | "hunter_prep";
 }
 

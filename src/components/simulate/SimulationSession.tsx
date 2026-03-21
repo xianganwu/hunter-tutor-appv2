@@ -586,8 +586,8 @@ function WritingSection({
           className="w-full rounded-2xl border border-surface-200 dark:border-surface-600 bg-surface-0 dark:bg-surface-900 px-4 py-3 text-sm leading-relaxed text-surface-900 dark:text-surface-100 placeholder-surface-400 focus:outline-none focus:ring-2 focus:ring-brand-500 min-h-[400px] resize-y"
           aria-label="Essay response"
         />
-        <div className="text-xs text-surface-400 text-right">
-          {wc} words
+        <div className={`text-xs text-right ${wc < 50 ? "text-error-500 dark:text-error-400" : wc < 150 ? "text-streak-500 dark:text-streak-400" : "text-surface-400"}`}>
+          {wc} words{wc > 0 && wc < 50 && " — aim for at least 150 words"}{wc >= 50 && wc < 150 && " — keep going! Aim for 150+ words"}
         </div>
       </div>
     </div>

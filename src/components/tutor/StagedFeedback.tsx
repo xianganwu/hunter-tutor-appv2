@@ -77,10 +77,10 @@ export function StagedFeedback({
           ["Clarity", feedback.scores.clarity],
           ["Evidence", feedback.scores.evidence],
           ["Grammar", feedback.scores.grammar],
-          ...(feedback.scores.voice != null ? [["Voice", feedback.scores.voice] as [string, number]] : []),
-          ...(feedback.scores.ideas != null ? [["Ideas", feedback.scores.ideas] as [string, number]] : []),
+          ["Voice", feedback.scores.voice ?? 5],
+          ["Ideas", feedback.scores.ideas ?? 5],
         ];
-        const hasExtended = scoreEntries.length > 4;
+        const hasExtended = true;
         return (
       <div className={`grid gap-2 ${hasExtended ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
         {scoreEntries.map(([label, score]) => (

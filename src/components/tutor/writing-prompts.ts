@@ -3,18 +3,6 @@ import type { EssayPrompt } from "./writing-types";
 export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
   // ── Foundations (Rising 5th Grade) ─────────────────────────────────
   {
-    id: "f_pn_favorite_day",
-    text: "Think about your favorite day ever. What happened that made it so special? Write about that day using lots of details so the reader can picture it.",
-    category: "personal_narrative",
-    level: "foundations",
-  },
-  {
-    id: "f_pn_new_thing",
-    text: "Write about a time you tried something new — like a sport, a food, or an activity. Were you nervous? What happened? What did you learn from the experience?",
-    category: "personal_narrative",
-    level: "foundations",
-  },
-  {
     id: "f_pe_recess",
     text: "Your school is thinking about making recess longer but cutting art class shorter. Do you think this is a good idea or a bad idea? Explain your opinion with reasons.",
     category: "persuasive",
@@ -27,28 +15,58 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     level: "foundations",
   },
   {
+    id: "f_pe_homework",
+    text: "Some teachers give homework every night, while others give very little. Do you think students should have homework every day? Write an essay explaining your opinion and giving at least two reasons to support it.",
+    category: "persuasive",
+    level: "foundations",
+  },
+  {
     id: "f_ex_friendship",
     text: "What makes someone a good friend? Think about the qualities that matter most and explain why they are important. Use examples from your own life.",
     category: "expository",
     level: "foundations",
   },
   {
-    id: "f_ex_superpower",
-    text: "If you could have one superpower, what would it be? Explain what you would do with it and how it would help people.",
+    id: "f_ex_invention",
+    text: "Think about an invention that changed how people live — like the telephone, the car, or the internet. Explain how this invention changed everyday life and why it is important.",
     category: "expository",
+    level: "foundations",
+  },
+  {
+    id: "f_ex_community_helper",
+    text: "Choose a person in your community who helps others — like a teacher, firefighter, or doctor. Explain what this person does and why their work matters to the community.",
+    category: "expository",
+    level: "foundations",
+  },
+  {
+    id: "f_pe_screen_time",
+    text: "Many parents limit how much time their children spend on screens. Do you think screen time should be limited, or should kids decide for themselves? Explain your opinion with reasons.",
+    category: "persuasive",
+    level: "foundations",
+  },
+  {
+    id: "f_ex_season",
+    text: "What is your favorite season of the year? Explain what makes it special. Describe the weather, activities, and feelings that make this season the best one.",
+    category: "expository",
+    level: "foundations",
+  },
+  {
+    id: "f_pe_lunch",
+    text: "Your school cafeteria is changing its menu. Some students want only healthy food, while others want more choices including pizza and burgers. What do you think the cafeteria should serve? Explain your opinion with reasons.",
+    category: "persuasive",
     level: "foundations",
   },
   // ── Hunter Prep (6th Grade) ────────────────────────────────────────
   {
-    id: "pn_difficult_decision",
-    text: "Think about a time when you had to make a difficult decision. What did you decide, and what did you learn from the experience? Use specific details to help the reader understand your situation.",
-    category: "personal_narrative",
+    id: "pe_uniforms",
+    text: "Some schools require students to wear uniforms. Others let students choose their own clothing. Should schools require uniforms? Write an essay taking a clear position and supporting it with specific reasons and examples.",
+    category: "persuasive",
     level: "hunter_prep",
   },
   {
-    id: "pn_unexpected_lesson",
-    text: "Write about a time when you learned something important from an unexpected source — maybe a younger child, a mistake, or an ordinary moment. What happened, and why was the lesson meaningful to you?",
-    category: "personal_narrative",
+    id: "ex_reading_importance",
+    text: "Many people say that reading is one of the most important skills a student can develop. Explain why reading matters beyond school. How does reading help a person in everyday life? Use specific examples to support your ideas.",
+    category: "expository",
     level: "hunter_prep",
   },
   {
@@ -75,11 +93,29 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     category: "expository",
     level: "hunter_prep",
   },
+  {
+    id: "pe_social_media",
+    text: "Should students your age be allowed to use social media? Some people believe it helps students stay connected, while others worry about its effects on mental health. Take a position and support it with specific reasons and examples.",
+    category: "persuasive",
+    level: "hunter_prep",
+  },
+  {
+    id: "ex_historical_event",
+    text: "Choose a historical event that changed the world — such as the invention of the printing press, the moon landing, or the civil rights movement. Explain what happened, why it was important, and how it still affects us today.",
+    category: "expository",
+    level: "hunter_prep",
+  },
+  {
+    id: "pe_arts_funding",
+    text: "Some people think schools should spend more money on arts programs like music, drama, and painting. Others think the money would be better spent on math and science. What do you think? Write an essay supporting your position with clear reasons.",
+    category: "persuasive",
+    level: "hunter_prep",
+  },
 ];
 
 /** Track recently used prompt IDs to avoid repeats. */
 const recentPromptIds: string[] = [];
-const MAX_RECENT = 3;
+const MAX_RECENT = 5;
 
 export function getRandomPrompt(level?: "foundations" | "hunter_prep"): EssayPrompt {
   const filtered = level

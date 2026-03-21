@@ -1,35 +1,47 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 import { parseWarn, parseError } from "@/lib/ai/parse-logger";
 import { isValidSimulateQuestion } from "@/lib/ai/validate-question";
+import { countWords } from "@/utils/count-words";
 
 // Allow up to 60s for AI question generation
 export const maxDuration = 60;
 
-// ─── Request Types ────────────────────────────────────────────────────
+// ─── Zod Schemas for Input Validation ────────────────────────────────
 
-type SimulateAction =
-  | {
-      type: "generate_math_questions";
-      section: "quantitative_reasoning" | "math_achievement";
-      questionCount: number;
-    }
-  | {
-      type: "evaluate_essay";
-      promptText: string;
-      essayText: string;
-    }
-  | {
-      type: "generate_recommendations";
-      readingPct: number;
-      writingScore: number;
-      qrPct: number;
-      maPct: number;
-      weakSkills: readonly { skillId: string; skillName: string; percentage: number }[];
-      timeVerdict: { ela: string; math: string };
-    };
+const SimulateActionSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("generate_math_questions"),
+    section: z.enum(["quantitative_reasoning", "math_achievement"]),
+    questionCount: z.number().int().min(1).max(50),
+  }),
+  z.object({
+    type: z.literal("evaluate_essay"),
+    promptText: z.string().min(1).max(2000),
+    essayText: z.string().max(30000),
+  }),
+  z.object({
+    type: z.literal("generate_recommendations"),
+    readingPct: z.number().min(0).max(100),
+    writingScore: z.number().min(0).max(10),
+    qrPct: z.number().min(0).max(100),
+    maPct: z.number().min(0).max(100),
+    weakSkills: z.array(z.object({
+      skillId: z.string().min(1),
+      skillName: z.string().min(1),
+      percentage: z.number().min(0).max(100),
+    })).max(20),
+    timeVerdict: z.object({
+      ela: z.string(),
+      math: z.string(),
+    }),
+  }),
+]);
+
+// Type is inferred from SimulateActionSchema via z.infer at use sites.
 
 // ─── Response Types ───────────────────────────────────────────────────
 
@@ -87,7 +99,15 @@ export async function POST(
   request: Request
 ): Promise<NextResponse<SimulateApiResponse>> {
   try {
-    const body = (await request.json()) as SimulateAction;
+    const rawBody: unknown = await request.json();
+    const parseResult = SimulateActionSchema.safeParse(rawBody);
+    if (!parseResult.success) {
+      return NextResponse.json(
+        { error: `Invalid request: ${parseResult.error.issues.map((i) => i.message).join(", ")}` } as SimulateApiResponse,
+        { status: 400 }
+      );
+    }
+    const body = parseResult.data;
     const client = getAnthropicClient();
 
     switch (body.type) {
@@ -222,7 +242,7 @@ Requirements:
         }
 
         // Reject extremely short submissions that can't be meaningfully evaluated
-        const wordCount = trimmed.split(/\s+/).length;
+        const wordCount = countWords(trimmed);
         if (wordCount < 10) {
           return NextResponse.json({
             essayScore: {
@@ -243,7 +263,17 @@ Requirements:
         const response = await client.messages.create({
           model: MODEL_SONNET,
           max_tokens: 1024,
-          system: [{ type: "text" as const, text: `You are evaluating a student's essay written under timed practice conditions. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12) preparing for the Hunter College High School entrance exam. Score fairly but kindly, calibrating expectations to the student's apparent age and skill level. The essay was written in approximately 25-30 minutes.`, cache_control: { type: "ephemeral" as const } }],
+          system: [{ type: "text" as const, text: `You are evaluating a student's essay written under timed practice conditions for the Hunter College High School entrance exam. The student may be a rising 5th grader (age 9-10) or a 6th grader (age 11-12). The essay was written in approximately 25-30 minutes.
+
+SCORING RUBRIC — use these calibration anchors for the 1-10 scale:
+- 1-2: Minimal response. Little or no development, frequent errors that impede meaning.
+- 3-4: Below grade level. Attempts to address the prompt but lacks development, weak organization, noticeable errors.
+- 5-6: Approaching grade level. Addresses the prompt with some support. Organization is present but may be uneven. Some errors but meaning is clear.
+- 7-8: At grade level. Clear thesis/position, well-organized with supporting details, mostly correct grammar, shows awareness of audience.
+- 9: Above grade level. Strong, engaging writing with thoughtful ideas, varied sentence structure, effective evidence, and a distinctive voice.
+- 10: Exceptional for age. Sophisticated argument or narrative, compelling evidence, polished prose with minimal errors. Rare at this age.
+
+Score fairly but kindly, calibrating to the student's apparent age and skill level.`, cache_control: { type: "ephemeral" as const } }],
           messages: [
             {
               role: "user",
@@ -258,8 +288,14 @@ Evaluate this essay. Respond in this EXACT format:
 
 SCORE: [1-10, where 10 is exceptional for the student's level]
 FEEDBACK: [2-3 sentences of overall assessment]
-STRENGTHS: [comma-separated list of 2-3 specific strengths]
-IMPROVEMENTS: [comma-separated list of 2-3 specific areas to improve]`,
+STRENGTHS:
+- [specific strength 1]
+- [specific strength 2]
+- [specific strength 3]
+IMPROVEMENTS:
+- [specific area to improve 1]
+- [specific area to improve 2]
+- [specific area to improve 3]`,
             },
           ],
         });
@@ -269,9 +305,9 @@ IMPROVEMENTS: [comma-separated list of 2-3 specific areas to improve]`,
 
         const scoreMatch = text.match(/SCORE:\s*(\d+)/i);
         const feedbackMatch = text.match(/FEEDBACK:\s*([\s\S]+?)(?=\nSTRENGTHS:)/i);
-        const strengthsMatch = text.match(/STRENGTHS:\s*([\s\S]+?)(?=\nIMPROVEMENTS:)/i);
+        const strengthsMatch = text.match(/STRENGTHS:\s*\n([\s\S]*?)(?=\nIMPROVEMENTS:)/i);
         const improvementsMatch = text.match(
-          /IMPROVEMENTS:\s*([\s\S]+?)$/i
+          /IMPROVEMENTS:\s*\n([\s\S]*?)$/i
         );
 
         if (!scoreMatch) {
@@ -290,18 +326,21 @@ IMPROVEMENTS: [comma-separated list of 2-3 specific areas to improve]`,
         const rawScore = parseInt(scoreMatch?.[1] ?? "5", 10);
         const score = Math.min(10, Math.max(1, isNaN(rawScore) ? 5 : rawScore));
 
+        /** Parse bullet-point list: split by newline, strip "- " prefix, filter empty. */
+        const parseBullets = (block: string | undefined): string[] => {
+          if (!block) return [];
+          return block
+            .split("\n")
+            .map((line) => line.replace(/^-\s*/, "").trim())
+            .filter((line) => line.length > 0);
+        };
+
         return NextResponse.json({
           essayScore: {
             score,
             feedback: feedbackMatch?.[1]?.trim() ?? text,
-            strengths: (strengthsMatch?.[1] ?? "")
-              .split(",")
-              .map((s) => s.trim())
-              .filter(Boolean),
-            improvements: (improvementsMatch?.[1] ?? "")
-              .split(",")
-              .map((s) => s.trim())
-              .filter(Boolean),
+            strengths: parseBullets(strengthsMatch?.[1]),
+            improvements: parseBullets(improvementsMatch?.[1]),
           },
         });
       }

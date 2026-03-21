@@ -96,6 +96,7 @@ export type ChatAction =
       type: "generate_drill_batch";
       skillId: string;
       count?: number;
+      difficultyTier?: DifficultyLevel;
     }
   | {
       type: "generate_mixed_drill_batch";

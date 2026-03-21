@@ -10,7 +10,7 @@ describe("ESSAY_PROMPTS", () => {
     for (const prompt of ESSAY_PROMPTS) {
       expect(prompt.id).toBeTruthy();
       expect(prompt.text.length).toBeGreaterThan(20);
-      expect(["personal_narrative", "persuasive", "expository"]).toContain(
+      expect(["persuasive", "expository"]).toContain(
         prompt.category
       );
     }
@@ -23,9 +23,13 @@ describe("ESSAY_PROMPTS", () => {
 
   it("has at least one prompt per category", () => {
     const categories = new Set(ESSAY_PROMPTS.map((p) => p.category));
-    expect(categories.has("personal_narrative")).toBe(true);
     expect(categories.has("persuasive")).toBe(true);
     expect(categories.has("expository")).toBe(true);
+  });
+
+  it("has no personal narrative prompts (Hunter exam tests persuasive/expository)", () => {
+    const categories = new Set(ESSAY_PROMPTS.map((p) => p.category));
+    expect(categories.has("personal_narrative" as never)).toBe(false);
   });
 });
 
@@ -40,9 +44,9 @@ describe("getRandomPrompt", () => {
 
 describe("getPromptById", () => {
   it("returns the correct prompt", () => {
-    const prompt = getPromptById("pn_difficult_decision");
+    const prompt = getPromptById("pe_technology");
     expect(prompt).toBeDefined();
-    expect(prompt!.category).toBe("personal_narrative");
+    expect(prompt!.category).toBe("persuasive");
   });
 
   it("returns undefined for unknown ID", () => {

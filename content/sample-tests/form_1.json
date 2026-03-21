@@ -1132,8 +1132,8 @@
         "correctAnswer": "A",
         "skillId": "rc_supporting_details",
         "confidence": "high",
-        "excluded": false,
-        "excludeReason": null
+        "excluded": true,
+        "excludeReason": "passage-truncated: stored passage text is missing the paragraph listing specific consumer products (cosmetics)"
       },
       {
         "id": "hunter_tg_1_v_40",
@@ -1632,7 +1632,7 @@
           }
         ],
         "correctAnswer": "B",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": true,
         "excludeReason": "image-dependent"
@@ -1792,7 +1792,7 @@
           }
         ],
         "correctAnswer": "C",
-        "skillId": "ma_fraction_decimal_ops",
+        "skillId": "ma_multistep_word_problems",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -2176,7 +2176,7 @@
           }
         ],
         "correctAnswer": "D",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null

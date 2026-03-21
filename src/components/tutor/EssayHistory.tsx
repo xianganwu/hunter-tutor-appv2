@@ -19,11 +19,8 @@ function formatDate(iso: string): string {
 
 function avgScore(essay: StoredEssay): number {
   const s = essay.feedback.scores;
-  let total = s.organization + s.clarity + s.evidence + s.grammar;
-  let count = 4;
-  if (s.voice != null) { total += s.voice; count++; }
-  if (s.ideas != null) { total += s.ideas; count++; }
-  return Math.round(total / count);
+  const total = s.organization + s.clarity + s.evidence + s.grammar + (s.voice ?? 5) + (s.ideas ?? 5);
+  return Math.round(total / 6);
 }
 
 function getRevisionLabel(essay: StoredEssay): string | null {
@@ -184,10 +181,10 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                           ["Clarity", essay.feedback.scores.clarity],
                           ["Evidence", essay.feedback.scores.evidence],
                           ["Grammar", essay.feedback.scores.grammar],
-                          ...(essay.feedback.scores.voice != null ? [["Voice", essay.feedback.scores.voice] as [string, number]] : []),
-                          ...(essay.feedback.scores.ideas != null ? [["Ideas", essay.feedback.scores.ideas] as [string, number]] : []),
+                          ["Voice", essay.feedback.scores.voice ?? 5],
+                          ["Ideas", essay.feedback.scores.ideas ?? 5],
                         ];
-                        const historyHasExtended = historyScoreEntries.length > 4;
+                        const historyHasExtended = true;
                         return (
                       <div className={`grid gap-2 text-center text-xs ${historyHasExtended ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
                         {historyScoreEntries.map(([label, score]) => (

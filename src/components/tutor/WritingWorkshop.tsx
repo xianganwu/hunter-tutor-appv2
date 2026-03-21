@@ -46,6 +46,7 @@ export function WritingWorkshop() {
   const [revisedFeedback, setRevisedFeedback] = useState<EssayFeedback | null>(null);
   const [revisionNumber, setRevisionNumber] = useState(0);
   const [submissionId, setSubmissionId] = useState<string | null>(null);
+  const [originalEssayText, setOriginalEssayText] = useState("");
 
   // Load saved essays on mount
   useEffect(() => {
@@ -96,20 +97,21 @@ export function WritingWorkshop() {
           void fetchEssays().then(setSavedEssays);
         }
       } else {
-        // Fallback feedback
+        // Server error — give honest fallback feedback
         setFeedback({
-          overallFeedback: "Great effort! Keep writing to improve your skills.",
-          scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5 },
+          overallFeedback: "We had trouble analyzing your essay, but don't worry — your writing has been saved. The scores below are placeholders. Try submitting again or start a new session.",
+          scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
           strengths: ["You completed the essay — that's the most important step!"],
-          improvements: ["Try to add more specific examples from your own experience."],
+          improvements: ["Try submitting again later for detailed feedback."],
         });
       }
     } catch {
+      // Network error — give honest fallback feedback
       setFeedback({
-        overallFeedback: "Great effort! Keep writing to improve your skills.",
-        scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5 },
+        overallFeedback: "We couldn't connect to the tutor right now. Your essay text is still here — please try submitting again in a moment.",
+        scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
         strengths: ["You completed the essay — that's the most important step!"],
-        improvements: ["Try to add more specific examples from your own experience."],
+        improvements: ["Try submitting again when your connection is stable."],
       });
     }
 
@@ -124,9 +126,10 @@ export function WritingWorkshop() {
   const handleRevise = useCallback(() => {
     if (!feedback || revisionNumber >= 2) return;
     setOriginalFeedback(feedback);
+    setOriginalEssayText(essayText); // Capture the current essay before the student edits it
     setRevisionNumber((n) => n + 1);
     setPhase("revising");
-  }, [feedback, revisionNumber]);
+  }, [feedback, revisionNumber, essayText]);
 
   const submitRevision = useCallback(async () => {
     if (!essayText.trim() || isSubmitting || !originalFeedback) return;
@@ -140,7 +143,7 @@ export function WritingWorkshop() {
         body: JSON.stringify({
           type: "evaluate_revision",
           promptText: prompt.text,
-          originalEssayText: essayText,
+          originalEssayText,
           revisedEssayText: essayText,
           originalFeedback: JSON.stringify(originalFeedback),
           originalSubmissionId: submissionId ?? "",
@@ -159,14 +162,18 @@ export function WritingWorkshop() {
             (originalFeedback.scores.organization +
               originalFeedback.scores.clarity +
               originalFeedback.scores.evidence +
-              originalFeedback.scores.grammar) /
-            4;
+              originalFeedback.scores.grammar +
+              (originalFeedback.scores.voice ?? 5) +
+              (originalFeedback.scores.ideas ?? 5)) /
+            6;
           const newAvg =
             (data.feedback.scores.organization +
               data.feedback.scores.clarity +
               data.feedback.scores.evidence +
-              data.feedback.scores.grammar) /
-            4;
+              data.feedback.scores.grammar +
+              (data.feedback.scores.voice ?? 5) +
+              (data.feedback.scores.ideas ?? 5)) /
+            6;
           if (newAvg > origAvg) {
             const ctx = buildBadgeContext({ revisionImproved: true });
             checkAndAwardBadges(ctx);
@@ -174,18 +181,33 @@ export function WritingWorkshop() {
 
           void fetchEssays().then(setSavedEssays);
         }
+      } else {
+        // Server error — provide fallback feedback so the UI isn't blank
+        setRevisedFeedback({
+          overallFeedback: "We had trouble analyzing your revision, but don't worry — your writing is still here. The scores below are placeholders. Try submitting again or start a new session.",
+          scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
+          strengths: ["You revised your essay — that shows real dedication!"],
+          improvements: ["Try submitting again later for detailed feedback."],
+        });
       }
     } catch {
-      // Fallback
+      // Network/server error — provide fallback feedback so the UI isn't blank
+      setRevisedFeedback({
+        overallFeedback: "We couldn't connect to the tutor right now to evaluate your revision. Your revised essay is still here — please try submitting again in a moment.",
+        scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
+        strengths: ["You revised your essay — that shows real dedication!"],
+        improvements: ["Try submitting again when your connection is stable."],
+      });
     }
 
     setIsSubmitting(false);
     setPhase("revision_feedback");
-  }, [essayText, isSubmitting, originalFeedback, prompt.text, submissionId, revisionNumber]);
+  }, [essayText, isSubmitting, originalFeedback, originalEssayText, prompt.text, submissionId, revisionNumber]);
 
   const startNewSession = useCallback(() => {
     setPrompt(getRandomPrompt());
     setEssayText("");
+    setOriginalEssayText("");
     setFeedback(null);
     setOriginalFeedback(null);
     setRevisedFeedback(null);

@@ -2,6 +2,7 @@ import { prisma } from "@/lib/db";
 import { TutorAgent } from "@/lib/ai/tutor-agent";
 import type { GeneratedQuestion } from "@/lib/ai/tutor-agent";
 import type { Skill, DifficultyLevel } from "@/lib/types";
+import { isValidQuestion } from "@/lib/ai/validate-question";
 
 // ─── Constants ────────────────────────────────────────────────────────
 
@@ -142,19 +143,30 @@ async function popUnusedQuestion(
 
     if (!row) return null;
 
-    await tx.questionCache.update({
-      where: { id: row.id },
-      data: { used: true },
-    });
-
+    // 1. Validate JSON structure BEFORE marking as used
     let answerChoices: string[];
     try {
       answerChoices = JSON.parse(row.answerChoices) as string[];
     } catch {
-      // Malformed JSON — skip this entry and treat as cache miss
+      // Malformed JSON — consume this entry so we don't retry it, but return null
       console.error(`[question-cache] Malformed answerChoices for id=${row.id}`);
+      await tx.questionCache.update({ where: { id: row.id }, data: { used: true } });
       return null;
     }
+
+    // 2. Re-validate the question against current validation logic
+    //    (catches issues if validation rules evolved since the question was cached)
+    if (!isValidQuestion(answerChoices, row.correctAnswer, "question-cache/pop")) {
+      console.warn(`[question-cache] Cached question id=${row.id} failed re-validation, discarding`);
+      await tx.questionCache.update({ where: { id: row.id }, data: { used: true } });
+      return null;
+    }
+
+    // 3. Mark as used only after validation passes
+    await tx.questionCache.update({
+      where: { id: row.id },
+      data: { used: true },
+    });
 
     return {
       id: row.id,
@@ -193,14 +205,16 @@ async function checkAndRefillPool(
 ): Promise<void> {
   const key = `${skill.skill_id}:${difficultyTier}`;
 
-  // Skip if a refill is already in-flight for this skill+tier
+  // Skip if a refill is already in-flight for this skill+tier.
+  // Claim the key immediately to prevent TOCTOU races between the
+  // has() check and the async countUnused() call.
   if (refillInProgress.has(key)) return;
+  refillInProgress.add(key);
 
   try {
     const remaining = await countUnused(skill.skill_id, difficultyTier);
 
     if (remaining < REFILL_THRESHOLD) {
-      refillInProgress.add(key);
       void generateAndCacheBatch(skill, difficultyTier, agent)
         .catch((err) => {
           console.error(
@@ -211,10 +225,14 @@ async function checkAndRefillPool(
         .finally(() => {
           refillInProgress.delete(key);
         });
+      return; // key will be cleaned up in the .finally() above
     }
   } catch (err) {
     console.error("[question-cache] Pool check failed:", err);
   }
+
+  // Release the key if we didn't start a refill
+  refillInProgress.delete(key);
 }
 
 /**
@@ -229,7 +247,7 @@ async function generateAndCacheBatch(
   difficultyTier: DifficultyLevel,
   agent: TutorAgent
 ): Promise<GeneratedQuestion | null> {
-  const rawQuestions = await agent.generateDrillBatch(skill, BATCH_SIZE);
+  const rawQuestions = await agent.generateDrillBatch(skill, BATCH_SIZE, difficultyTier);
 
   if (rawQuestions.length === 0) return null;
 

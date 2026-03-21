@@ -63,12 +63,16 @@ export function RevisionFeedback({
       before: originalFeedback.scores.grammar,
       after: revisedFeedback.scores.grammar,
     },
-    ...(originalFeedback.scores.voice != null && revisedFeedback.scores.voice != null
-      ? [{ category: "Voice", before: originalFeedback.scores.voice, after: revisedFeedback.scores.voice }]
-      : []),
-    ...(originalFeedback.scores.ideas != null && revisedFeedback.scores.ideas != null
-      ? [{ category: "Ideas", before: originalFeedback.scores.ideas, after: revisedFeedback.scores.ideas }]
-      : []),
+    {
+      category: "Voice",
+      before: originalFeedback.scores.voice ?? 5,
+      after: revisedFeedback.scores.voice ?? 5,
+    },
+    {
+      category: "Ideas",
+      before: originalFeedback.scores.ideas ?? 5,
+      after: revisedFeedback.scores.ideas ?? 5,
+    },
   ];
 
   // Use comparisons array for averages so both sides use the same denominator

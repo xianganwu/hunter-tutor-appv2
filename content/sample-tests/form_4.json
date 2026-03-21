@@ -1406,7 +1406,7 @@
           }
         ],
         "correctAnswer": "E",
-        "skillId": "rc_tone_mood",
+        "skillId": "rc_inference",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null

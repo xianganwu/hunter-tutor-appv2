@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { TutorAgent } from "./tutor-agent";
+import { TutorAgent, parseEssayFeedback } from "./tutor-agent";
 import type Anthropic from "@anthropic-ai/sdk";
 import { getSkillById } from "@/lib/exam/curriculum";
 
@@ -221,6 +221,8 @@ Organization: 7
 Clarity: 8
 Evidence: 6
 Grammar: 7
+Voice: 8
+Ideas: 7
 
 STRENGTHS:
 - Your opening sentence is strong and draws the reader in: "Every morning, the school bell rings at exactly 8:00."
@@ -232,26 +234,31 @@ IMPROVEMENTS:
 - Your third paragraph could use a topic sentence to tell the reader what it's about before diving into details.
 - Watch for run-on sentences — try breaking your longer sentences into two shorter ones.`;
 
+    // Test essays must be ≥10 words to bypass the short-essay guard
+    const TEST_ESSAY = "Every morning, the school bell rings at exactly eight o'clock and all the students rush to their classrooms to begin the day.";
+
     it("parses scores from the response", async () => {
       const mockClient = createMockClient(ESSAY_RESPONSE);
       const agent = new TutorAgent(mockClient);
 
       const result = await agent.evaluateEssay(
         "Should school start later?",
-        "Every morning, the school bell rings..."
+        TEST_ESSAY
       );
 
       expect(result.scores.organization).toBe(7);
       expect(result.scores.clarity).toBe(8);
       expect(result.scores.evidence).toBe(6);
       expect(result.scores.grammar).toBe(7);
+      expect(result.scores.voice).toBe(8);
+      expect(result.scores.ideas).toBe(7);
     });
 
     it("parses strengths and improvements", async () => {
       const mockClient = createMockClient(ESSAY_RESPONSE);
       const agent = new TutorAgent(mockClient);
 
-      const result = await agent.evaluateEssay("prompt", "essay text");
+      const result = await agent.evaluateEssay("prompt", TEST_ESSAY);
 
       expect(result.strengths.length).toBeGreaterThanOrEqual(2);
       expect(result.improvements.length).toBeGreaterThanOrEqual(2);
@@ -262,7 +269,7 @@ IMPROVEMENTS:
       const mockClient = createMockClient(ESSAY_RESPONSE);
       const agent = new TutorAgent(mockClient);
 
-      const result = await agent.evaluateEssay("prompt", "essay text");
+      const result = await agent.evaluateEssay("prompt", TEST_ESSAY);
 
       expect(result.overallFeedback).toContain("thoughtful essay");
     });
@@ -285,12 +292,14 @@ IMPROVEMENTS:
       const mockClient = createMockClient(badScores);
       const agent = new TutorAgent(mockClient);
 
-      const result = await agent.evaluateEssay("prompt", "essay");
+      const result = await agent.evaluateEssay("prompt", TEST_ESSAY);
 
       expect(result.scores.organization).toBe(10); // 15 clamped to 10
       expect(result.scores.clarity).toBe(1); // 0 clamped to 1
       expect(result.scores.evidence).toBe(5); // -3 doesn't match \d+, falls back to 5
       expect(result.scores.grammar).toBe(5); // "abc" doesn't match \d+, falls back to 5
+      expect(result.scores.voice).toBe(5); // Missing → defaults to 5
+      expect(result.scores.ideas).toBe(5); // Missing → defaults to 5
     });
   });
 
@@ -320,5 +329,176 @@ IMPROVEMENTS:
       const args = getLastCallArgs(mockClient);
       expect(args.messages).toHaveLength(3);
     });
+  });
+});
+
+// ─── parseEssayFeedback Direct Tests ─────────────────────────────────
+
+describe("parseEssayFeedback", () => {
+  it("parses a well-formatted response with all 6 dimensions", () => {
+    const text = `OVERALL: Great essay with strong ideas and clear organization.
+
+SCORES (1-10 each):
+Organization: 8
+Clarity: 7
+Evidence: 6
+Grammar: 9
+Voice: 8
+Ideas: 7
+
+STRENGTHS:
+- Strong opening paragraph that hooks the reader
+- Good use of specific examples to support the argument
+- Clear transitions between paragraphs
+
+IMPROVEMENTS:
+- Add a counterargument to strengthen your position
+- Vary your sentence structure more
+- Include a more compelling conclusion`;
+
+    const result = parseEssayFeedback(text);
+
+    expect(result.overallFeedback).toBe("Great essay with strong ideas and clear organization.");
+    expect(result.scores.organization).toBe(8);
+    expect(result.scores.clarity).toBe(7);
+    expect(result.scores.evidence).toBe(6);
+    expect(result.scores.grammar).toBe(9);
+    expect(result.scores.voice).toBe(8);
+    expect(result.scores.ideas).toBe(7);
+    expect(result.strengths).toHaveLength(3);
+    expect(result.strengths[0]).toContain("Strong opening paragraph");
+    expect(result.improvements).toHaveLength(3);
+    expect(result.improvements[0]).toContain("counterargument");
+  });
+
+  it("defaults voice and ideas to 5 when missing", () => {
+    const text = `OVERALL: Good work.
+
+SCORES (1-10 each):
+Organization: 6
+Clarity: 7
+Evidence: 5
+Grammar: 8
+
+STRENGTHS:
+- Nice effort
+
+IMPROVEMENTS:
+- Keep practicing`;
+
+    const result = parseEssayFeedback(text);
+
+    expect(result.scores.organization).toBe(6);
+    expect(result.scores.clarity).toBe(7);
+    expect(result.scores.evidence).toBe(5);
+    expect(result.scores.grammar).toBe(8);
+    expect(result.scores.voice).toBe(5);
+    expect(result.scores.ideas).toBe(5);
+  });
+
+  it("defaults all scores to 5 when format is completely wrong", () => {
+    const text = "This is just a random response without any structure.";
+
+    const result = parseEssayFeedback(text);
+
+    expect(result.overallFeedback).toBe(text.slice(0, 200));
+    expect(result.scores.organization).toBe(5);
+    expect(result.scores.clarity).toBe(5);
+    expect(result.scores.evidence).toBe(5);
+    expect(result.scores.grammar).toBe(5);
+    expect(result.scores.voice).toBe(5);
+    expect(result.scores.ideas).toBe(5);
+    expect(result.strengths).toEqual([]);
+    expect(result.improvements).toEqual([]);
+  });
+
+  it("clamps out-of-range scores", () => {
+    const text = `OVERALL: Decent effort.
+
+SCORES (1-10 each):
+Organization: 15
+Clarity: 0
+Evidence: 11
+Grammar: -5
+Voice: 99
+Ideas: 0
+
+STRENGTHS:
+- Tried hard
+
+IMPROVEMENTS:
+- Study more`;
+
+    const result = parseEssayFeedback(text);
+
+    expect(result.scores.organization).toBe(10); // 15 clamped to 10
+    expect(result.scores.clarity).toBe(1); // 0 clamped to 1
+    expect(result.scores.evidence).toBe(10); // 11 clamped to 10
+    // grammar: -5 doesn't match \d+, so falls back to 5
+    expect(result.scores.grammar).toBe(5);
+    expect(result.scores.voice).toBe(10); // 99 clamped to 10
+    expect(result.scores.ideas).toBe(1); // 0 clamped to 1
+  });
+
+  it("handles strengths and improvements with complex punctuation", () => {
+    const text = `OVERALL: Solid writing.
+
+SCORES (1-10 each):
+Organization: 7
+Clarity: 7
+Evidence: 7
+Grammar: 7
+Voice: 7
+Ideas: 7
+
+STRENGTHS:
+- Good use of dialogue, imagery, and sensory details
+- Your opening line — "The rain fell like a curtain" — was vivid and effective
+- You connected your personal experience to a broader theme
+
+IMPROVEMENTS:
+- Try using a semicolon instead of a comma splice in your second paragraph; it will tighten your prose
+- Consider adding a counterargument: "Some might say..."
+- Your conclusion, while adequate, could be more memorable`;
+
+    const result = parseEssayFeedback(text);
+
+    expect(result.strengths).toHaveLength(3);
+    // Verify commas within bullets are preserved, not split
+    expect(result.strengths[0]).toContain("dialogue, imagery, and sensory details");
+    expect(result.improvements).toHaveLength(3);
+    expect(result.improvements[0]).toContain("semicolon instead of a comma splice");
+  });
+
+  it("handles extra whitespace and blank lines in bullet sections", () => {
+    const text = `OVERALL: Nice work on this essay.
+
+SCORES (1-10 each):
+Organization: 6
+Clarity: 6
+Evidence: 6
+Grammar: 6
+Voice: 6
+Ideas: 6
+
+STRENGTHS:
+
+- First strength
+
+- Second strength
+
+IMPROVEMENTS:
+
+- First improvement
+
+- Second improvement
+`;
+
+    const result = parseEssayFeedback(text);
+
+    expect(result.strengths).toHaveLength(2);
+    expect(result.strengths[0]).toBe("First strength");
+    expect(result.improvements).toHaveLength(2);
+    expect(result.improvements[0]).toBe("First improvement");
   });
 });

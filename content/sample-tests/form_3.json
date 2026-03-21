@@ -62,7 +62,7 @@
           }
         ],
         "correctAnswer": "B",
-        "skillId": "rc_inference",
+        "skillId": "rc_supporting_details",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -190,7 +190,7 @@
           }
         ],
         "correctAnswer": "B",
-        "skillId": "rc_vocab_context",
+        "skillId": "rc_figurative_language",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -318,7 +318,7 @@
           }
         ],
         "correctAnswer": "E",
-        "skillId": "rc_inference",
+        "skillId": "rc_supporting_details",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -510,7 +510,7 @@
           }
         ],
         "correctAnswer": "B",
-        "skillId": "rc_inference",
+        "skillId": "rc_supporting_details",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -862,7 +862,7 @@
           }
         ],
         "correctAnswer": "E",
-        "skillId": "rc_inference",
+        "skillId": "rc_supporting_details",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -1086,7 +1086,7 @@
           }
         ],
         "correctAnswer": "A",
-        "skillId": "rc_inference",
+        "skillId": "rc_supporting_details",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -1632,7 +1632,7 @@
           }
         ],
         "correctAnswer": "C",
-        "skillId": "ma_fraction_decimal_ops",
+        "skillId": "ma_multistep_word_problems",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -1728,7 +1728,7 @@
           }
         ],
         "correctAnswer": "A",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -2240,7 +2240,7 @@
           }
         ],
         "correctAnswer": "B",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -2432,7 +2432,7 @@
           }
         ],
         "correctAnswer": "C",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null

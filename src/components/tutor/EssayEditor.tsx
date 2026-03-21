@@ -1,17 +1,12 @@
 "use client";
 
 import { useCallback, useRef } from "react";
+import { countWords } from "@/utils/count-words";
 
 interface EssayEditorProps {
   readonly value: string;
   readonly onChange: (value: string) => void;
   readonly disabled: boolean;
-}
-
-function countWords(text: string): number {
-  const trimmed = text.trim();
-  if (!trimmed) return 0;
-  return trimmed.split(/\s+/).length;
 }
 
 function countParagraphs(text: string): number {

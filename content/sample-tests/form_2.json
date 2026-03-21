@@ -1728,7 +1728,7 @@
           }
         ],
         "correctAnswer": "B",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": true,
         "excludeReason": "image-dependent"
@@ -1984,7 +1984,7 @@
           }
         ],
         "correctAnswer": "A",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": true,
         "excludeReason": "image-dependent"
@@ -2112,7 +2112,7 @@
           }
         ],
         "correctAnswer": "B",
-        "skillId": "mqr_number_sense",
+        "skillId": "mqr_logical_reasoning",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
@@ -2176,7 +2176,7 @@
           }
         ],
         "correctAnswer": "C",
-        "skillId": "ma_area_perimeter_volume",
+        "skillId": "ma_angles_shapes",
         "confidence": "high",
         "excluded": false,
         "excludeReason": null
