@@ -218,11 +218,10 @@ CORRECT: B`;
 
 SCORES (1-10 each):
 Organization: 7
-Clarity: 8
-Evidence: 6
-Grammar: 7
-Voice: 8
-Ideas: 7
+Development of Ideas: 6
+Word Choice: 8
+Sentence Structure: 8
+Mechanics: 7
 
 STRENGTHS:
 - Your opening sentence is strong and draws the reader in: "Every morning, the school bell rings at exactly 8:00."
@@ -247,11 +246,10 @@ IMPROVEMENTS:
       );
 
       expect(result.scores.organization).toBe(7);
-      expect(result.scores.clarity).toBe(8);
-      expect(result.scores.evidence).toBe(6);
-      expect(result.scores.grammar).toBe(7);
-      expect(result.scores.voice).toBe(8);
-      expect(result.scores.ideas).toBe(7);
+      expect(result.scores.developmentOfIdeas).toBe(6);
+      expect(result.scores.wordChoice).toBe(8);
+      expect(result.scores.sentenceStructure).toBe(8);
+      expect(result.scores.mechanics).toBe(7);
     });
 
     it("parses strengths and improvements", async () => {
@@ -279,9 +277,9 @@ IMPROVEMENTS:
 
 SCORES (1-10 each):
 Organization: 15
-Clarity: 0
-Evidence: -3
-Grammar: abc
+Development of Ideas: 0
+Word Choice: -3
+Sentence Structure: abc
 
 STRENGTHS:
 - Good effort
@@ -295,11 +293,10 @@ IMPROVEMENTS:
       const result = await agent.evaluateEssay("prompt", TEST_ESSAY);
 
       expect(result.scores.organization).toBe(10); // 15 clamped to 10
-      expect(result.scores.clarity).toBe(1); // 0 clamped to 1
-      expect(result.scores.evidence).toBe(5); // -3 doesn't match \d+, falls back to 5
-      expect(result.scores.grammar).toBe(5); // "abc" doesn't match \d+, falls back to 5
-      expect(result.scores.voice).toBe(5); // Missing → defaults to 5
-      expect(result.scores.ideas).toBe(5); // Missing → defaults to 5
+      expect(result.scores.developmentOfIdeas).toBe(1); // 0 clamped to 1
+      expect(result.scores.wordChoice).toBe(5); // -3 doesn't match \d+, falls back to 5
+      expect(result.scores.sentenceStructure).toBe(5); // "abc" doesn't match \d+, falls back to 5
+      expect(result.scores.mechanics).toBe(5); // Missing → defaults to 5
     });
   });
 
@@ -335,16 +332,15 @@ IMPROVEMENTS:
 // ─── parseEssayFeedback Direct Tests ─────────────────────────────────
 
 describe("parseEssayFeedback", () => {
-  it("parses a well-formatted response with all 6 dimensions", () => {
+  it("parses a well-formatted response with all 5 Hunter rubric categories", () => {
     const text = `OVERALL: Great essay with strong ideas and clear organization.
 
 SCORES (1-10 each):
 Organization: 8
-Clarity: 7
-Evidence: 6
-Grammar: 9
-Voice: 8
-Ideas: 7
+Development of Ideas: 6
+Word Choice: 7
+Sentence Structure: 8
+Mechanics: 9
 
 STRENGTHS:
 - Strong opening paragraph that hooks the reader
@@ -360,25 +356,23 @@ IMPROVEMENTS:
 
     expect(result.overallFeedback).toBe("Great essay with strong ideas and clear organization.");
     expect(result.scores.organization).toBe(8);
-    expect(result.scores.clarity).toBe(7);
-    expect(result.scores.evidence).toBe(6);
-    expect(result.scores.grammar).toBe(9);
-    expect(result.scores.voice).toBe(8);
-    expect(result.scores.ideas).toBe(7);
+    expect(result.scores.developmentOfIdeas).toBe(6);
+    expect(result.scores.wordChoice).toBe(7);
+    expect(result.scores.sentenceStructure).toBe(8);
+    expect(result.scores.mechanics).toBe(9);
+    expect(result.scoringNote).toBeUndefined(); // all parsed successfully
     expect(result.strengths).toHaveLength(3);
     expect(result.strengths[0]).toContain("Strong opening paragraph");
     expect(result.improvements).toHaveLength(3);
     expect(result.improvements[0]).toContain("counterargument");
   });
 
-  it("defaults voice and ideas to 5 when missing", () => {
+  it("defaults missing categories to 5 and sets scoringNote", () => {
     const text = `OVERALL: Good work.
 
 SCORES (1-10 each):
 Organization: 6
-Clarity: 7
-Evidence: 5
-Grammar: 8
+Word Choice: 7
 
 STRENGTHS:
 - Nice effort
@@ -389,11 +383,11 @@ IMPROVEMENTS:
     const result = parseEssayFeedback(text);
 
     expect(result.scores.organization).toBe(6);
-    expect(result.scores.clarity).toBe(7);
-    expect(result.scores.evidence).toBe(5);
-    expect(result.scores.grammar).toBe(8);
-    expect(result.scores.voice).toBe(5);
-    expect(result.scores.ideas).toBe(5);
+    expect(result.scores.developmentOfIdeas).toBe(5); // missing → fallback
+    expect(result.scores.wordChoice).toBe(7);
+    expect(result.scores.sentenceStructure).toBe(5); // missing → fallback
+    expect(result.scores.mechanics).toBe(5); // missing → fallback
+    expect(result.scoringNote).toBeDefined(); // fallback occurred
   });
 
   it("defaults all scores to 5 when format is completely wrong", () => {
@@ -403,11 +397,11 @@ IMPROVEMENTS:
 
     expect(result.overallFeedback).toBe(text.slice(0, 200));
     expect(result.scores.organization).toBe(5);
-    expect(result.scores.clarity).toBe(5);
-    expect(result.scores.evidence).toBe(5);
-    expect(result.scores.grammar).toBe(5);
-    expect(result.scores.voice).toBe(5);
-    expect(result.scores.ideas).toBe(5);
+    expect(result.scores.developmentOfIdeas).toBe(5);
+    expect(result.scores.wordChoice).toBe(5);
+    expect(result.scores.sentenceStructure).toBe(5);
+    expect(result.scores.mechanics).toBe(5);
+    expect(result.scoringNote).toBeDefined();
     expect(result.strengths).toEqual([]);
     expect(result.improvements).toEqual([]);
   });
@@ -417,11 +411,10 @@ IMPROVEMENTS:
 
 SCORES (1-10 each):
 Organization: 15
-Clarity: 0
-Evidence: 11
-Grammar: -5
-Voice: 99
-Ideas: 0
+Development of Ideas: 0
+Word Choice: 11
+Sentence Structure: -5
+Mechanics: 99
 
 STRENGTHS:
 - Tried hard
@@ -432,12 +425,11 @@ IMPROVEMENTS:
     const result = parseEssayFeedback(text);
 
     expect(result.scores.organization).toBe(10); // 15 clamped to 10
-    expect(result.scores.clarity).toBe(1); // 0 clamped to 1
-    expect(result.scores.evidence).toBe(10); // 11 clamped to 10
-    // grammar: -5 doesn't match \d+, so falls back to 5
-    expect(result.scores.grammar).toBe(5);
-    expect(result.scores.voice).toBe(10); // 99 clamped to 10
-    expect(result.scores.ideas).toBe(1); // 0 clamped to 1
+    expect(result.scores.developmentOfIdeas).toBe(1); // 0 clamped to 1
+    expect(result.scores.wordChoice).toBe(10); // 11 clamped to 10
+    // sentenceStructure: -5 doesn't match \d+, so falls back to 5
+    expect(result.scores.sentenceStructure).toBe(5);
+    expect(result.scores.mechanics).toBe(10); // 99 clamped to 10
   });
 
   it("handles strengths and improvements with complex punctuation", () => {
@@ -445,11 +437,10 @@ IMPROVEMENTS:
 
 SCORES (1-10 each):
 Organization: 7
-Clarity: 7
-Evidence: 7
-Grammar: 7
-Voice: 7
-Ideas: 7
+Development of Ideas: 7
+Word Choice: 7
+Sentence Structure: 7
+Mechanics: 7
 
 STRENGTHS:
 - Good use of dialogue, imagery, and sensory details
@@ -468,6 +459,7 @@ IMPROVEMENTS:
     expect(result.strengths[0]).toContain("dialogue, imagery, and sensory details");
     expect(result.improvements).toHaveLength(3);
     expect(result.improvements[0]).toContain("semicolon instead of a comma splice");
+    expect(result.scoringNote).toBeUndefined(); // all 5 parsed
   });
 
   it("handles extra whitespace and blank lines in bullet sections", () => {
@@ -475,11 +467,10 @@ IMPROVEMENTS:
 
 SCORES (1-10 each):
 Organization: 6
-Clarity: 6
-Evidence: 6
-Grammar: 6
-Voice: 6
-Ideas: 6
+Development of Ideas: 6
+Word Choice: 6
+Sentence Structure: 6
+Mechanics: 6
 
 STRENGTHS:
 

@@ -19,8 +19,8 @@ function formatDate(iso: string): string {
 
 function avgScore(essay: StoredEssay): number {
   const s = essay.feedback.scores;
-  const total = s.organization + s.clarity + s.evidence + s.grammar + (s.voice ?? 5) + (s.ideas ?? 5);
-  return Math.round(total / 6);
+  const total = s.organization + s.developmentOfIdeas + s.wordChoice + s.sentenceStructure + s.mechanics;
+  return Math.round(total / 5);
 }
 
 function getRevisionLabel(essay: StoredEssay): string | null {
@@ -178,15 +178,13 @@ export function EssayHistory({ essays, onClose }: EssayHistoryProps) {
                       {(() => {
                         const historyScoreEntries: [string, number][] = [
                           ["Org", essay.feedback.scores.organization],
-                          ["Clarity", essay.feedback.scores.clarity],
-                          ["Evidence", essay.feedback.scores.evidence],
-                          ["Grammar", essay.feedback.scores.grammar],
-                          ["Voice", essay.feedback.scores.voice ?? 5],
-                          ["Ideas", essay.feedback.scores.ideas ?? 5],
+                          ["Ideas", essay.feedback.scores.developmentOfIdeas],
+                          ["Words", essay.feedback.scores.wordChoice],
+                          ["Sentences", essay.feedback.scores.sentenceStructure],
+                          ["Mechanics", essay.feedback.scores.mechanics],
                         ];
-                        const historyHasExtended = true;
                         return (
-                      <div className={`grid gap-2 text-center text-xs ${historyHasExtended ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
+                      <div className="grid gap-2 text-center text-xs grid-cols-3 sm:grid-cols-5">
                         {historyScoreEntries.map(([label, score]) => (
                           <div key={label}>
                             <span className="font-bold">{score}</span>

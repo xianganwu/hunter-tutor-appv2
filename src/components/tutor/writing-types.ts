@@ -7,6 +7,11 @@ export interface EssayPrompt {
   readonly text: string;
   readonly category: "persuasive" | "expository";
   readonly level?: "foundations" | "hunter_prep";
+  /** Short passage or quote that students read before writing.
+   *  Matches the real Hunter exam format where essays respond to a source text. */
+  readonly passage?: string;
+  /** Attribution for the passage (author, title, date). */
+  readonly passageSource?: string;
 }
 
 // ─── Workshop Phases ─────────────────────────────────────────────────

@@ -74,15 +74,13 @@ export function StagedFeedback({
       {(() => {
         const scoreEntries: [string, number][] = [
           ["Organization", feedback.scores.organization],
-          ["Clarity", feedback.scores.clarity],
-          ["Evidence", feedback.scores.evidence],
-          ["Grammar", feedback.scores.grammar],
-          ["Voice", feedback.scores.voice ?? 5],
-          ["Ideas", feedback.scores.ideas ?? 5],
+          ["Ideas", feedback.scores.developmentOfIdeas],
+          ["Word Choice", feedback.scores.wordChoice],
+          ["Sentences", feedback.scores.sentenceStructure],
+          ["Mechanics", feedback.scores.mechanics],
         ];
-        const hasExtended = true;
         return (
-      <div className={`grid gap-2 ${hasExtended ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
+      <div className="grid gap-2 grid-cols-3 sm:grid-cols-5">
         {scoreEntries.map(([label, score]) => (
           <div
             key={label}
@@ -97,6 +95,13 @@ export function StagedFeedback({
       </div>
         );
       })()}
+
+      {/* Scoring note — shown when AI parse fell back to defaults */}
+      {feedback.scoringNote && (
+        <div className="text-xs text-streak-600 dark:text-streak-400 text-center">
+          {feedback.scoringNote}
+        </div>
+      )}
 
       {/* Stage 1: Praise */}
       <div className="rounded-2xl border-2 border-success-200 dark:border-success-600/30 bg-success-50 dark:bg-success-500/10 p-4">

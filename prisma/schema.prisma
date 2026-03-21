@@ -94,7 +94,7 @@ model WritingSubmission {
   prompt         String
   essayText      String
   aiFeedback     String?
-  scoresJson     String?  // JSON: { organization: number, clarity: number, evidence: number, grammar: number }
+  scoresJson     String?  // JSON: { organization, developmentOfIdeas, wordChoice, sentenceStructure, mechanics }
   revisionOf     String?  // ID of original submission
   revisionNumber Int      @default(0) // 0=original, 1=1st revision, 2=max
   createdAt      DateTime @default(now())

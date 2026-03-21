@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { getRandomQuestionPhrase, getRandomPassagePhrase } from "@/lib/loading-phrases";
 import {
   assembleReadingSection,
@@ -84,6 +84,124 @@ async function generateMathBatch(
   return [...data.questions];
 }
 
+// ─── localStorage Persistence ────────────────────────────────────────
+
+const SAVE_KEY_PREFIX = "hunter_sim_progress_";
+
+/** Fields we persist — excludes transient fields (report, error, generationProgress). */
+interface PersistedSimState {
+  readonly phase: SimPhase;
+  readonly exam: SimulationExam | null;
+  readonly elaTab: ElaTab;
+  readonly mathTab: MathTab;
+  readonly currentPassageIndex: number;
+  readonly currentReadingQuestion: number;
+  readonly currentQrQuestion: number;
+  readonly currentMaQuestion: number;
+  readonly currentMathQuestion: number;
+  readonly answers: Record<string, string>;
+  readonly essayText: string;
+  readonly timings: SectionTiming[];
+  readonly sectionStartedAt: number;
+  readonly savedAt: number;
+}
+
+/** Phases that represent an in-progress exam worth saving. */
+const RESUMABLE_PHASES: ReadonlySet<SimPhase> = new Set([
+  "instructions",
+  "ela",
+  "break",
+  "math",
+]);
+
+function getSaveKey(examId: string): string {
+  return `${SAVE_KEY_PREFIX}${examId}`;
+}
+
+function trySaveToLocalStorage(key: string, data: PersistedSimState): void {
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch {
+    // Quota exceeded or private browsing — silently ignore
+  }
+}
+
+function tryClearFromLocalStorage(key: string): void {
+  try {
+    localStorage.removeItem(key);
+  } catch {
+    // Ignore errors
+  }
+}
+
+/**
+ * Scan localStorage for any saved exam progress.
+ * Returns the most recent saved state, or null if none found.
+ */
+function findSavedExamState(): PersistedSimState | null {
+  try {
+    const keys: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith(SAVE_KEY_PREFIX)) {
+        keys.push(key);
+      }
+    }
+
+    let best: PersistedSimState | null = null;
+    for (const key of keys) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) continue;
+        const parsed = JSON.parse(raw) as PersistedSimState;
+        // Validate basic shape
+        if (
+          parsed &&
+          parsed.exam &&
+          parsed.phase &&
+          RESUMABLE_PHASES.has(parsed.phase) &&
+          typeof parsed.savedAt === "number"
+        ) {
+          if (!best || parsed.savedAt > best.savedAt) {
+            best = parsed;
+          }
+        } else {
+          // Invalid or non-resumable — clean it up
+          tryClearFromLocalStorage(key);
+        }
+      } catch {
+        // Corrupt entry — remove it
+        tryClearFromLocalStorage(key);
+      }
+    }
+
+    return best;
+  } catch {
+    // localStorage not available
+    return null;
+  }
+}
+
+/**
+ * Remove all saved exam progress entries from localStorage.
+ */
+function clearAllSavedExamStates(): void {
+  try {
+    const keysToRemove: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key?.startsWith(SAVE_KEY_PREFIX)) {
+        keysToRemove.push(key);
+      }
+    }
+    for (const key of keysToRemove) {
+      tryClearFromLocalStorage(key);
+    }
+  } catch {
+    // Ignore
+  }
+}
+
 // ─── Hook ─────────────────────────────────────────────────────────────
 
 export function useSimulation() {
@@ -108,6 +226,119 @@ export function useSimulation() {
   const stateRef = useRef(state);
   stateRef.current = state;
   const sectionStartRef = useRef<number>(0);
+
+  // Track whether we've checked for saved state on mount
+  const [savedExam, setSavedExam] = useState<PersistedSimState | null>(null);
+  const hasCheckedRef = useRef(false);
+
+  // ── Check for saved exam progress on mount ──
+  useEffect(() => {
+    if (hasCheckedRef.current) return;
+    hasCheckedRef.current = true;
+    const saved = findSavedExamState();
+    if (saved) {
+      setSavedExam(saved);
+    }
+  }, []);
+
+  // ── Persist state to localStorage on meaningful changes ──
+  // Individual state.* fields are listed intentionally; adding `state` itself would cause infinite loops.
+  useEffect(() => {
+    const { phase, exam } = state;
+    if (!exam) return;
+
+    // Only persist during resumable phases
+    if (!RESUMABLE_PHASES.has(phase)) {
+      // If we've reached results or gone back to gate, clear saved state
+      if (phase === "results" || phase === "gate") {
+        tryClearFromLocalStorage(getSaveKey(exam.id));
+      }
+      return;
+    }
+
+    const persisted: PersistedSimState = {
+      phase,
+      exam,
+      elaTab: state.elaTab,
+      mathTab: state.mathTab,
+      currentPassageIndex: state.currentPassageIndex,
+      currentReadingQuestion: state.currentReadingQuestion,
+      currentQrQuestion: state.currentQrQuestion,
+      currentMaQuestion: state.currentMaQuestion,
+      currentMathQuestion: state.currentMathQuestion,
+      answers: state.answers,
+      essayText: state.essayText,
+      timings: state.timings,
+      sectionStartedAt: sectionStartRef.current,
+      savedAt: Date.now(),
+    };
+
+    trySaveToLocalStorage(getSaveKey(exam.id), persisted);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    state.phase,
+    state.exam,
+    state.elaTab,
+    state.mathTab,
+    state.currentPassageIndex,
+    state.currentReadingQuestion,
+    state.currentQrQuestion,
+    state.currentMaQuestion,
+    state.currentMathQuestion,
+    state.answers,
+    state.essayText,
+    state.timings,
+  ]);
+
+  // ── beforeunload warning when exam is in progress ──
+  useEffect(() => {
+    const isInProgress = RESUMABLE_PHASES.has(state.phase);
+    if (!isInProgress) return;
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [state.phase]);
+
+  // Resume a saved exam
+  const resumeExam = useCallback(() => {
+    if (!savedExam || !savedExam.exam) return;
+
+    // Restore the section start time, adjusting for elapsed time since save
+    sectionStartRef.current = savedExam.sectionStartedAt;
+
+    setState({
+      phase: savedExam.phase,
+      exam: savedExam.exam,
+      elaTab: savedExam.elaTab,
+      mathTab: savedExam.mathTab,
+      currentPassageIndex: savedExam.currentPassageIndex,
+      currentReadingQuestion: savedExam.currentReadingQuestion,
+      currentQrQuestion: savedExam.currentQrQuestion,
+      currentMaQuestion: savedExam.currentMaQuestion,
+      currentMathQuestion: savedExam.currentMathQuestion,
+      answers: savedExam.answers,
+      essayText: savedExam.essayText,
+      timings: savedExam.timings,
+      report: null,
+      error: null,
+      generationProgress: "",
+    });
+
+    setSavedExam(null);
+  }, [savedExam]);
+
+  // Abandon a saved exam (dismiss the resume prompt and clear saved state)
+  const abandonSavedExam = useCallback(() => {
+    if (savedExam?.exam) {
+      tryClearFromLocalStorage(getSaveKey(savedExam.exam.id));
+    }
+    clearAllSavedExamStates();
+    setSavedExam(null);
+  }, [savedExam]);
 
   // Start exam generation — if formId is provided, assemble a sample test locally
   const startExam = useCallback(async (formId?: string) => {
@@ -419,6 +650,9 @@ export function useSimulation() {
       report,
     });
 
+    // Clear saved progress — exam is complete
+    tryClearFromLocalStorage(getSaveKey(s.exam.id));
+
     setState((prev) => ({
       ...prev,
       phase: "results",
@@ -472,7 +706,10 @@ export function useSimulation() {
 
   return {
     state,
+    savedExam,
     startExam,
+    resumeExam,
+    abandonSavedExam,
     beginEla,
     finishEla,
     beginMath,

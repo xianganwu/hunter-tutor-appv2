@@ -24,18 +24,51 @@ export interface AnswerFeedback {
   readonly feedback: string;
 }
 
+/**
+ * Essay feedback aligned with the real Hunter College High School entrance
+ * exam writing rubric: Organization, Development of Ideas, Word Choice,
+ * Sentence Structure, and Mechanics/Conventions.
+ */
 export interface EssayFeedback {
   readonly overallFeedback: string;
   readonly scores: {
     readonly organization: number;
-    readonly clarity: number;
-    readonly evidence: number;
-    readonly grammar: number;
-    readonly voice: number;
-    readonly ideas: number;
+    readonly developmentOfIdeas: number;
+    readonly wordChoice: number;
+    readonly sentenceStructure: number;
+    readonly mechanics: number;
   };
   readonly strengths: readonly string[];
   readonly improvements: readonly string[];
+  /** Set when one or more scores could not be parsed and fell back to defaults. */
+  readonly scoringNote?: string;
+}
+
+/** Normalize legacy score objects (old 6-category format) to the current 5-category format.
+ *  This ensures stored essays with old field names still display correctly. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function migrateEssayScores(raw: any): EssayFeedback["scores"] {
+  if (!raw || typeof raw !== "object") {
+    return { organization: 5, developmentOfIdeas: 5, wordChoice: 5, sentenceStructure: 5, mechanics: 5 };
+  }
+  // If new fields already exist, use them directly
+  if ("developmentOfIdeas" in raw) {
+    return {
+      organization: raw.organization ?? 5,
+      developmentOfIdeas: raw.developmentOfIdeas ?? 5,
+      wordChoice: raw.wordChoice ?? 5,
+      sentenceStructure: raw.sentenceStructure ?? 5,
+      mechanics: raw.mechanics ?? 5,
+    };
+  }
+  // Map legacy field names to new categories
+  return {
+    organization: raw.organization ?? 5,
+    developmentOfIdeas: raw.evidence ?? 5,
+    wordChoice: raw.clarity ?? 5,
+    sentenceStructure: raw.voice ?? 5,
+    mechanics: raw.grammar ?? 5,
+  };
 }
 
 export interface SocraticFollowUp {
@@ -396,7 +429,7 @@ Keep it encouraging. We want them to try again.`;
     if (!trimmed) {
       return {
         overallFeedback: "No essay was submitted. Try writing at least a few paragraphs!",
-        scores: { organization: 1, clarity: 1, evidence: 1, grammar: 1, voice: 1, ideas: 1 },
+        scores: { organization: 1, developmentOfIdeas: 1, wordChoice: 1, sentenceStructure: 1, mechanics: 1 },
         strengths: [],
         improvements: ["Start by writing your thoughts on the prompt — even a few sentences is a great beginning!"],
       };
@@ -404,7 +437,7 @@ Keep it encouraging. We want them to try again.`;
     if (trimmed.split(/\s+/).length < 10) {
       return {
         overallFeedback: "Your essay is very short. Try to write at least a few paragraphs to fully express your ideas.",
-        scores: { organization: 2, clarity: 2, evidence: 1, grammar: 3, voice: 2, ideas: 1 },
+        scores: { organization: 2, developmentOfIdeas: 1, wordChoice: 2, sentenceStructure: 2, mechanics: 3 },
         strengths: ["You started writing — that's the first step!"],
         improvements: [
           "Aim for at least 150 words to develop your ideas fully.",
@@ -442,17 +475,18 @@ Use these calibration anchors when assigning scores (1-10 scale):
 9 = Above grade level, engaging writing, varied sentences, effective evidence, distinctive voice
 10 = Exceptional for age, sophisticated argument, compelling evidence, polished prose (rare)
 
+These 5 categories match the actual Hunter College High School entrance exam writing rubric.
+
 Format your response EXACTLY as:
 
 OVERALL: [2-3 sentences of overall feedback — start with something positive]
 
 SCORES (1-10 each):
-Organization: [score — structure, paragraphs, logical flow]
-Clarity: [score — clear sentences, appropriate word choice]
-Evidence: [score — specific details, examples, support for ideas]
-Grammar: [score — mechanics, punctuation, spelling]
-Voice: [score — authentic, engaging tone; does the writing sound like a real person with something to say?]
-Ideas: [score — depth of thinking, addresses the prompt directly, develops ideas beyond surface level]
+Organization: [score — logical structure, clear introduction/body/conclusion, smooth transitions, paragraph breaks]
+Development of Ideas: [score — depth of thinking, specific details and examples that support the thesis, addresses the prompt fully]
+Word Choice: [score — precise and varied vocabulary, words fit the purpose and audience, avoids repetition]
+Sentence Structure: [score — varied sentence types and lengths, correct syntax, readable flow]
+Mechanics: [score — spelling, punctuation, capitalization, grammar conventions]
 
 STRENGTHS:
 - [specific thing they did well, with a quote from their essay]
@@ -808,11 +842,10 @@ export function parseEssayFeedback(text: string): EssayFeedback {
   const scoreRe = (label: string) =>
     new RegExp(`${label}\\s*[:\\-=]\\s*(?!-)(\\d+)`, "i");
   const orgMatch = text.match(scoreRe("Organization"));
-  const clarityMatch = text.match(scoreRe("Clarity"));
-  const evidenceMatch = text.match(scoreRe("Evidence"));
-  const grammarMatch = text.match(scoreRe("Grammar"));
-  const voiceMatch = text.match(scoreRe("Voice"));
-  const ideasMatch = text.match(scoreRe("Ideas"));
+  const devMatch = text.match(scoreRe("Development of Ideas")) ?? text.match(scoreRe("Development"));
+  const wcMatch = text.match(scoreRe("Word Choice"));
+  const ssMatch = text.match(scoreRe("Sentence Structure"));
+  const mechMatch = text.match(scoreRe("Mechanics"));
 
   // Match strengths/improvements with flexible whitespace and optional newline after header
   const strengthsMatch =
@@ -834,18 +867,21 @@ export function parseEssayFeedback(text: string): EssayFeedback {
     parseWarn({ parser: "parseEssayFeedback", field: "overallFeedback", fallback: "raw text (first 200 chars)", rawSnippet: text });
   }
 
-  // Parse each score, logging when any falls back to 5
+  // Parse each score, tracking fallbacks for the scoringNote field (#11)
   const scoreFields: [string, RegExpMatchArray | null][] = [
     ["organization", orgMatch],
-    ["clarity", clarityMatch],
-    ["evidence", evidenceMatch],
-    ["grammar", grammarMatch],
+    ["developmentOfIdeas", devMatch],
+    ["wordChoice", wcMatch],
+    ["sentenceStructure", ssMatch],
+    ["mechanics", mechMatch],
   ];
   const parsedScores: Record<string, number> = {};
+  let fallbackCount = 0;
   for (const [name, match] of scoreFields) {
     if (!match) {
       parseWarn({ parser: "parseEssayFeedback", field: name, fallback: 5, rawSnippet: text });
       parsedScores[name] = 5;
+      fallbackCount++;
     } else {
       parsedScores[name] = clampScore(parseInt(match[1], 10), "parseEssayFeedback", name, text);
     }
@@ -862,20 +898,16 @@ export function parseEssayFeedback(text: string): EssayFeedback {
     overallFeedback: overallMatch?.[1]?.trim() ?? text.slice(0, 200),
     scores: {
       organization: parsedScores["organization"],
-      clarity: parsedScores["clarity"],
-      evidence: parsedScores["evidence"],
-      grammar: parsedScores["grammar"],
-      voice: voiceMatch ? clampScore(parseInt(voiceMatch[1], 10), "parseEssayFeedback", "voice", text) : (() => {
-        parseWarn({ parser: "parseEssayFeedback", field: "voice", fallback: 5, rawSnippet: text });
-        return 5;
-      })(),
-      ideas: ideasMatch ? clampScore(parseInt(ideasMatch[1], 10), "parseEssayFeedback", "ideas", text) : (() => {
-        parseWarn({ parser: "parseEssayFeedback", field: "ideas", fallback: 5, rawSnippet: text });
-        return 5;
-      })(),
+      developmentOfIdeas: parsedScores["developmentOfIdeas"],
+      wordChoice: parsedScores["wordChoice"],
+      sentenceStructure: parsedScores["sentenceStructure"],
+      mechanics: parsedScores["mechanics"],
     },
     strengths: parseBullets(strengthsMatch?.[1]),
     improvements: parseBullets(improvementsMatch?.[1]),
+    ...(fallbackCount > 0
+      ? { scoringNote: "Some scores could not be fully parsed and are shown as estimates." }
+      : {}),
   };
 }
 

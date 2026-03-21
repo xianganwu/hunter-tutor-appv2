@@ -49,29 +49,24 @@ export function RevisionFeedback({
       after: revisedFeedback.scores.organization,
     },
     {
-      category: "Clarity",
-      before: originalFeedback.scores.clarity,
-      after: revisedFeedback.scores.clarity,
-    },
-    {
-      category: "Evidence",
-      before: originalFeedback.scores.evidence,
-      after: revisedFeedback.scores.evidence,
-    },
-    {
-      category: "Grammar",
-      before: originalFeedback.scores.grammar,
-      after: revisedFeedback.scores.grammar,
-    },
-    {
-      category: "Voice",
-      before: originalFeedback.scores.voice ?? 5,
-      after: revisedFeedback.scores.voice ?? 5,
-    },
-    {
       category: "Ideas",
-      before: originalFeedback.scores.ideas ?? 5,
-      after: revisedFeedback.scores.ideas ?? 5,
+      before: originalFeedback.scores.developmentOfIdeas,
+      after: revisedFeedback.scores.developmentOfIdeas,
+    },
+    {
+      category: "Word Choice",
+      before: originalFeedback.scores.wordChoice,
+      after: revisedFeedback.scores.wordChoice,
+    },
+    {
+      category: "Sentences",
+      before: originalFeedback.scores.sentenceStructure,
+      after: revisedFeedback.scores.sentenceStructure,
+    },
+    {
+      category: "Mechanics",
+      before: originalFeedback.scores.mechanics,
+      after: revisedFeedback.scores.mechanics,
     },
   ];
 
@@ -106,7 +101,7 @@ export function RevisionFeedback({
       </div>
 
       {/* Score comparison grid */}
-      <div className={`grid gap-2 ${comparisons.length > 4 ? "grid-cols-3 sm:grid-cols-6" : "grid-cols-2 sm:grid-cols-4"}`}>
+      <div className="grid gap-2 grid-cols-3 sm:grid-cols-5">
         {comparisons.map((c) => (
           <div
             key={c.category}

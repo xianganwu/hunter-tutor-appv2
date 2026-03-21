@@ -6,6 +6,7 @@ import type { WritingApiResponse, StoredEssay } from "@/components/tutor/writing
 import { prisma } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
 import type { EssayFeedback } from "@/lib/ai/tutor-agent";
+import { migrateEssayScores } from "@/lib/ai/tutor-agent";
 import { countWords } from "@/utils/count-words";
 import { sanitizePromptInput } from "@/utils/sanitize-prompt";
 
@@ -58,14 +59,24 @@ export async function GET(request: Request): Promise<NextResponse<{ essays: Stor
     });
 
     const essays: StoredEssay[] = submissions.map((s) => {
-      const feedback = s.aiFeedback
-        ? (JSON.parse(s.aiFeedback) as EssayFeedback)
-        : {
+      let feedback: EssayFeedback;
+      if (s.aiFeedback) {
+        const raw = JSON.parse(s.aiFeedback) as Record<string, unknown>;
+        // Migrate legacy score field names (clarity/evidence/grammar/voice/ideas → new categories)
+        feedback = {
+          overallFeedback: (raw.overallFeedback as string) ?? "",
+          scores: migrateEssayScores(raw.scores),
+          strengths: (raw.strengths as readonly string[]) ?? [],
+          improvements: (raw.improvements as readonly string[]) ?? [],
+        };
+      } else {
+        feedback = {
             overallFeedback: "",
-            scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
+            scores: { organization: 5, developmentOfIdeas: 5, wordChoice: 5, sentenceStructure: 5, mechanics: 5 },
             strengths: [],
             improvements: [],
           };
+      }
       return {
         id: s.id,
         promptText: s.prompt,
@@ -274,11 +285,10 @@ export async function POST(
         }
         const scoreComparison = [
           { category: "Organization", before: originalFeedbackParsed.scores.organization, after: revisedFeedback.scores.organization },
-          { category: "Clarity", before: originalFeedbackParsed.scores.clarity, after: revisedFeedback.scores.clarity },
-          { category: "Evidence", before: originalFeedbackParsed.scores.evidence, after: revisedFeedback.scores.evidence },
-          { category: "Grammar", before: originalFeedbackParsed.scores.grammar, after: revisedFeedback.scores.grammar },
-          { category: "Voice", before: originalFeedbackParsed.scores.voice ?? 5, after: revisedFeedback.scores.voice },
-          { category: "Ideas", before: originalFeedbackParsed.scores.ideas ?? 5, after: revisedFeedback.scores.ideas },
+          { category: "Development of Ideas", before: originalFeedbackParsed.scores.developmentOfIdeas, after: revisedFeedback.scores.developmentOfIdeas },
+          { category: "Word Choice", before: originalFeedbackParsed.scores.wordChoice, after: revisedFeedback.scores.wordChoice },
+          { category: "Sentence Structure", before: originalFeedbackParsed.scores.sentenceStructure, after: revisedFeedback.scores.sentenceStructure },
+          { category: "Mechanics", before: originalFeedbackParsed.scores.mechanics, after: revisedFeedback.scores.mechanics },
         ];
 
         return NextResponse.json({

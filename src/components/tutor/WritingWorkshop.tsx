@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import type { EssayFeedback } from "@/lib/ai/tutor-agent";
 import type {
   WorkshopPhase,
@@ -62,11 +62,17 @@ export function WritingWorkshop() {
     setPhase("writing");
   }, []);
 
+  // Refs to avoid stale closures in handleTimeUp — keeps the callback stable
+  // so CountdownTimer doesn't re-render when essayText changes.
+  const essayTextRef = useRef(essayText);
+  useEffect(() => { essayTextRef.current = essayText; }, [essayText]);
+  const submitEssayRef = useRef<() => Promise<void>>();
+
   const handleTimeUp = useCallback(() => {
-    if (essayText.trim()) {
-      void submitEssay();
+    if (essayTextRef.current.trim()) {
+      void submitEssayRef.current?.();
     }
-  }, [essayText]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const submitEssay = useCallback(async () => {
     if (!essayText.trim() || isSubmitting) return;
@@ -100,7 +106,7 @@ export function WritingWorkshop() {
         // Server error — give honest fallback feedback
         setFeedback({
           overallFeedback: "We had trouble analyzing your essay, but don't worry — your writing has been saved. The scores below are placeholders. Try submitting again or start a new session.",
-          scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
+          scores: { organization: 5, developmentOfIdeas: 5, wordChoice: 5, sentenceStructure: 5, mechanics: 5 },
           strengths: ["You completed the essay — that's the most important step!"],
           improvements: ["Try submitting again later for detailed feedback."],
         });
@@ -109,7 +115,7 @@ export function WritingWorkshop() {
       // Network error — give honest fallback feedback
       setFeedback({
         overallFeedback: "We couldn't connect to the tutor right now. Your essay text is still here — please try submitting again in a moment.",
-        scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
+        scores: { organization: 5, developmentOfIdeas: 5, wordChoice: 5, sentenceStructure: 5, mechanics: 5 },
         strengths: ["You completed the essay — that's the most important step!"],
         improvements: ["Try submitting again when your connection is stable."],
       });
@@ -118,6 +124,9 @@ export function WritingWorkshop() {
     setIsSubmitting(false);
     setPhase("feedback");
   }, [essayText, isSubmitting, prompt.text, savedEssays.length]);
+
+  // Keep ref current so handleTimeUp always calls the latest submitEssay
+  useEffect(() => { submitEssayRef.current = submitEssay; }, [submitEssay]);
 
   const handleFeedbackComplete = useCallback(() => {
     setPhase("complete");
@@ -160,19 +169,17 @@ export function WritingWorkshop() {
           // Check if score improved for badge
           const origAvg =
             (originalFeedback.scores.organization +
-              originalFeedback.scores.clarity +
-              originalFeedback.scores.evidence +
-              originalFeedback.scores.grammar +
-              (originalFeedback.scores.voice ?? 5) +
-              (originalFeedback.scores.ideas ?? 5)) /
-            6;
+              originalFeedback.scores.developmentOfIdeas +
+              originalFeedback.scores.wordChoice +
+              originalFeedback.scores.sentenceStructure +
+              originalFeedback.scores.mechanics) /
+            5;
           const newAvg =
             (data.feedback.scores.organization +
-              data.feedback.scores.clarity +
-              data.feedback.scores.evidence +
-              data.feedback.scores.grammar +
-              (data.feedback.scores.voice ?? 5) +
-              (data.feedback.scores.ideas ?? 5)) /
+              data.feedback.scores.developmentOfIdeas +
+              data.feedback.scores.wordChoice +
+              data.feedback.scores.sentenceStructure +
+              data.feedback.scores.mechanics) /
             6;
           if (newAvg > origAvg) {
             const ctx = buildBadgeContext({ revisionImproved: true });
@@ -185,7 +192,7 @@ export function WritingWorkshop() {
         // Server error — provide fallback feedback so the UI isn't blank
         setRevisedFeedback({
           overallFeedback: "We had trouble analyzing your revision, but don't worry — your writing is still here. The scores below are placeholders. Try submitting again or start a new session.",
-          scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
+          scores: { organization: 5, developmentOfIdeas: 5, wordChoice: 5, sentenceStructure: 5, mechanics: 5 },
           strengths: ["You revised your essay — that shows real dedication!"],
           improvements: ["Try submitting again later for detailed feedback."],
         });
@@ -194,7 +201,7 @@ export function WritingWorkshop() {
       // Network/server error — provide fallback feedback so the UI isn't blank
       setRevisedFeedback({
         overallFeedback: "We couldn't connect to the tutor right now to evaluate your revision. Your revised essay is still here — please try submitting again in a moment.",
-        scores: { organization: 5, clarity: 5, evidence: 5, grammar: 5, voice: 5, ideas: 5 },
+        scores: { organization: 5, developmentOfIdeas: 5, wordChoice: 5, sentenceStructure: 5, mechanics: 5 },
         strengths: ["You revised your essay — that shows real dedication!"],
         improvements: ["Try submitting again when your connection is stable."],
       });
@@ -278,8 +285,26 @@ export function WritingWorkshop() {
 
       {/* Prompt phase */}
       {phase === "prompt" && (
-        <div className="flex-1 flex items-center justify-center px-4 animate-fade-in">
-          <div className="max-w-md text-center space-y-6">
+        <div className="flex-1 overflow-y-auto px-4 py-6 animate-fade-in">
+          <div className="max-w-lg mx-auto space-y-6">
+            {/* Passage (if present — matches real Hunter exam format) */}
+            {prompt.passage && (
+              <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 border border-surface-200 dark:border-surface-800">
+                <div className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-3">
+                  Read the following passage
+                </div>
+                <blockquote className="text-sm text-surface-700 dark:text-surface-300 leading-relaxed font-serif italic border-l-2 border-brand-300 dark:border-brand-600 pl-4">
+                  {prompt.passage}
+                </blockquote>
+                {prompt.passageSource && (
+                  <p className="text-xs text-surface-400 mt-2 text-right">
+                    — {prompt.passageSource}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* Essay prompt */}
             <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 border border-surface-200 dark:border-surface-800">
               <div className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide mb-3">
                 Essay Prompt
@@ -288,7 +313,8 @@ export function WritingWorkshop() {
                 {prompt.text}
               </p>
             </div>
-            <div className="text-xs text-surface-500 space-y-1">
+
+            <div className="text-xs text-surface-500 space-y-1 text-center">
               <p>You&apos;ll have {ESSAY_DURATION_MINUTES} minutes to write.</p>
               <p>First, let&apos;s brainstorm to plan your essay.</p>
             </div>
@@ -323,7 +349,7 @@ export function WritingWorkshop() {
       {/* Brainstorm phase */}
       {phase === "brainstorm" && (
         <BrainstormChat
-          promptText={prompt.text}
+          promptText={prompt.passage ? `Passage: "${prompt.passage}"\n\nPrompt: ${prompt.text}` : prompt.text}
           onComplete={startWriting}
         />
       )}
@@ -331,11 +357,17 @@ export function WritingWorkshop() {
       {/* Writing phase */}
       {phase === "writing" && (
         <div className="flex-1 flex flex-col animate-fade-in">
-          <div className="px-4 py-2 bg-brand-50 dark:bg-brand-600/10 border-b border-brand-100 dark:border-brand-800">
-            <p className="text-xs text-brand-700 dark:text-brand-300">
-              <strong>Prompt:</strong> {prompt.text}
-            </p>
-          </div>
+          <details className="px-4 py-2 bg-brand-50 dark:bg-brand-600/10 border-b border-brand-100 dark:border-brand-800">
+            <summary className="text-xs text-brand-700 dark:text-brand-300 cursor-pointer">
+              <strong>Prompt:</strong> {prompt.text.length > 80 ? prompt.text.slice(0, 80) + "…" : prompt.text}
+            </summary>
+            {prompt.passage && (
+              <blockquote className="mt-2 text-xs text-surface-600 dark:text-surface-400 italic border-l-2 border-brand-300 dark:border-brand-600 pl-3 mb-1">
+                {prompt.passage.length > 200 ? prompt.passage.slice(0, 200) + "…" : prompt.passage}
+              </blockquote>
+            )}
+            <p className="text-xs text-brand-700 dark:text-brand-300 mt-1">{prompt.text}</p>
+          </details>
           <div className="flex-1 px-4 py-3">
             <div className="h-full rounded-2xl border border-surface-200 dark:border-surface-700 overflow-hidden flex flex-col shadow-card">
               <EssayEditor

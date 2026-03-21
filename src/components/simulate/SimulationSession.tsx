@@ -28,7 +28,15 @@ export function SimulationSession() {
 
   switch (state.phase) {
     case "gate":
-      return <GateScreen onStart={sim.startExam} error={state.error} />;
+      return (
+        <GateScreen
+          onStart={sim.startExam}
+          error={state.error}
+          savedExam={sim.savedExam}
+          onResume={sim.resumeExam}
+          onAbandon={sim.abandonSavedExam}
+        />
+      );
     case "generating":
       return <GeneratingScreen progress={state.generationProgress} />;
     case "instructions":
@@ -60,9 +68,20 @@ export function SimulationSession() {
 function GateScreen({
   onStart,
   error,
+  savedExam,
+  onResume,
+  onAbandon,
 }: {
   readonly onStart: (formId?: string) => void;
   readonly error: string | null;
+  readonly savedExam: {
+    readonly phase: string;
+    readonly exam: { readonly id: string; readonly mode: string; readonly formId?: string } | null;
+    readonly answers: Record<string, string>;
+    readonly savedAt: number;
+  } | null;
+  readonly onResume: () => void;
+  readonly onAbandon: () => void;
 }) {
   const cooldown = checkCooldown();
   const history = loadSimulationHistory();
@@ -82,6 +101,46 @@ function GateScreen({
           Simulate real Hunter exam conditions
         </p>
       </div>
+
+      {/* Resume Saved Exam */}
+      {savedExam && savedExam.exam && (
+        <div className="rounded-2xl border-2 border-brand-300 dark:border-brand-600/40 bg-brand-50 dark:bg-brand-600/10 p-5 space-y-3 shadow-card">
+          <h2 className="text-sm font-semibold text-surface-900 dark:text-surface-100">
+            Resume In-Progress Exam
+          </h2>
+          <p className="text-sm text-surface-600 dark:text-surface-400">
+            You have an unfinished{" "}
+            {savedExam.exam.mode === "sample"
+              ? (savedExam.exam.formId
+                  ? getSampleTestMetadata(savedExam.exam.formId)?.title ?? "sample"
+                  : "sample")
+              : "practice"}{" "}
+            exam ({savedExam.phase} section, {Object.keys(savedExam.answers).length} answers recorded).
+            Last saved{" "}
+            {new Date(savedExam.savedAt).toLocaleString("en-US", {
+              month: "short",
+              day: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+            })}
+            .
+          </p>
+          <div className="flex gap-3">
+            <button
+              onClick={onResume}
+              className="flex-1 rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
+            >
+              Resume Exam
+            </button>
+            <button
+              onClick={onAbandon}
+              className="rounded-xl border border-surface-300 dark:border-surface-600 px-4 py-2.5 text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-800 transition-colors"
+            >
+              Discard
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Exam Type Selector */}
       <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 space-y-3">
@@ -380,6 +439,13 @@ function ExamTimer({
   const startRef = useRef(Date.now());
   const calledRef = useRef(false);
 
+  // Store onTimeUp in a ref so the interval effect doesn't depend on callback identity.
+  // This prevents timer restarts when the parent passes an unstable arrow function.
+  const onTimeUpRef = useRef(onTimeUp);
+  useEffect(() => {
+    onTimeUpRef.current = onTimeUp;
+  });
+
   useEffect(() => {
     startRef.current = Date.now();
     setRemaining(durationMinutes * 60);
@@ -394,12 +460,12 @@ function ExamTimer({
 
       if (left <= 0 && !calledRef.current) {
         calledRef.current = true;
-        onTimeUp();
+        onTimeUpRef.current();
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [durationMinutes, onTimeUp]);
+  }, [durationMinutes]);
 
   const mins = Math.floor(remaining / 60);
   const secs = remaining % 60;
@@ -602,19 +668,28 @@ function BreakScreen({
   readonly onContinue: () => void;
 }) {
   const [countdown, setCountdown] = useState(300); // 5 minutes
+  const onContinueRef = useRef(onContinue);
+  const calledRef = useRef(false);
 
   useEffect(() => {
+    onContinueRef.current = onContinue;
+  });
+
+  // Decrement countdown every second — no side effects inside setState
+  useEffect(() => {
     const interval = setInterval(() => {
-      setCountdown((c) => {
-        if (c <= 1) {
-          onContinue();
-          return 0;
-        }
-        return c - 1;
-      });
+      setCountdown((c) => (c <= 1 ? 0 : c - 1));
     }, 1000);
     return () => clearInterval(interval);
-  }, [onContinue]);
+  }, []);
+
+  // Fire onContinue when countdown reaches zero (separate from timer logic)
+  useEffect(() => {
+    if (countdown <= 0 && !calledRef.current) {
+      calledRef.current = true;
+      onContinueRef.current();
+    }
+  }, [countdown]);
 
   const mins = Math.floor(countdown / 60);
   const secs = countdown % 60;

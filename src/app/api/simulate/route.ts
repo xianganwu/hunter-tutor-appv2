@@ -186,9 +186,10 @@ Requirements:
         // Extract JSON array
         const jsonMatch = text.match(/\[[\s\S]*\]/);
         if (!jsonMatch) {
-          return NextResponse.json({
-            error: "Failed to generate questions",
-          });
+          return NextResponse.json(
+            { error: "Failed to generate questions — no valid JSON returned" },
+            { status: 502 }
+          );
         }
 
         try {
@@ -212,17 +213,32 @@ Requirements:
             return true;
           });
 
-          if (structurallyValid.length < questions.length) {
+          const filtered = questions.length - structurallyValid.length;
+          if (filtered > 0) {
             console.warn(
-              `Filtered out ${questions.length - structurallyValid.length} malformed math questions`
+              `Filtered out ${filtered} malformed math questions`
+            );
+          }
+
+          // Require at least 80% of requested questions to pass validation.
+          // If too many were filtered, the AI output was unreliable — fail explicitly
+          // rather than silently returning a short exam.
+          const minRequired = Math.ceil(body.questionCount * 0.8);
+          if (structurallyValid.length < minRequired) {
+            return NextResponse.json(
+              {
+                error: `Only ${structurallyValid.length} of ${body.questionCount} questions passed validation. Please try again.`,
+              },
+              { status: 502 }
             );
           }
 
           return NextResponse.json({ questions: structurallyValid });
         } catch {
-          return NextResponse.json({
-            error: "Failed to parse generated questions",
-          });
+          return NextResponse.json(
+            { error: "Failed to parse generated questions" },
+            { status: 502 }
+          );
         }
       }
 

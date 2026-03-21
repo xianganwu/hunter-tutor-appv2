@@ -44,7 +44,7 @@ describe("getRandomPrompt", () => {
 
 describe("getPromptById", () => {
   it("returns the correct prompt", () => {
-    const prompt = getPromptById("pe_technology");
+    const prompt = getPromptById("hp_pb_curiosity");
     expect(prompt).toBeDefined();
     expect(prompt!.category).toBe("persuasive");
   });
