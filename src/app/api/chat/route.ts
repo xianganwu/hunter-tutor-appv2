@@ -33,6 +33,7 @@ const ChatActionSchema = z.discriminatedUnion("type", [
     type: z.literal("generate_question"),
     skillId: z.string().min(1),
     difficultyTier: DifficultyLevelSchema,
+    recentQuestions: z.array(z.string()).max(20).optional(),
     stream: z.boolean().optional(),
   }),
   z.object({
@@ -86,6 +87,7 @@ const ChatActionSchema = z.discriminatedUnion("type", [
     skillId: z.string().min(1),
     count: z.number().int().min(1).max(20).optional(),
     difficultyTier: DifficultyLevelSchema.optional(),
+    recentQuestions: z.array(z.string()).max(20).optional(),
     stream: z.boolean().optional(),
   }),
   z.object({
@@ -220,7 +222,8 @@ export async function POST(request: Request): Promise<Response> {
         const question = await getCachedQuestion(
           skill,
           body.difficultyTier as DifficultyLevel,
-          agent
+          agent,
+          body.recentQuestions
         );
         if (!question) {
           console.error("[chat] generate_question: all generation paths returned null for skill", body.skillId);
@@ -401,7 +404,7 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
         if (!skill) {
           return NextResponse.json({ error: `Unknown skill: ${body.skillId}` }, { status: 400 });
         }
-        const questions = await agent.generateDrillBatch(skill, body.count ?? 10, body.difficultyTier as DifficultyLevel | undefined);
+        const questions = await agent.generateDrillBatch(skill, body.count ?? 10, body.difficultyTier as DifficultyLevel | undefined, body.recentQuestions as string[] | undefined);
         return NextResponse.json({ questions });
       }
 

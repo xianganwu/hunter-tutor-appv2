@@ -80,9 +80,33 @@ export function buildStudyPlan(): SkillSlot[] {
     allPriorities.push(...priorities);
   }
 
-  // Sort by score descending, take top N
+  // Ensure cross-domain variety: pick the top skill from each domain first,
+  // then fill remaining slots by overall score.
   allPriorities.sort((a, b) => b.score - a.score);
-  const topPriorities = allPriorities.slice(0, SKILLS_PER_SESSION);
+
+  const topPriorities: SkillPriority[] = [];
+  const usedSkillIds = new Set<string>();
+
+  // Phase 1: one skill per domain (highest-scoring from each)
+  for (const domain of GUIDED_STUDY_DOMAINS) {
+    const domainSkillIds = new Set(getSkillIdsForDomain(domain));
+    const best = allPriorities.find(
+      (p) => domainSkillIds.has(p.skillId) && !usedSkillIds.has(p.skillId),
+    );
+    if (best) {
+      topPriorities.push(best);
+      usedSkillIds.add(best.skillId);
+    }
+  }
+
+  // Phase 2: fill remaining slots by overall score
+  for (const p of allPriorities) {
+    if (topPriorities.length >= SKILLS_PER_SESSION) break;
+    if (!usedSkillIds.has(p.skillId)) {
+      topPriorities.push(p);
+      usedSkillIds.add(p.skillId);
+    }
+  }
 
   // Map to SkillSlot objects
   return topPriorities.map((p): SkillSlot => {

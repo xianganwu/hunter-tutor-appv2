@@ -40,7 +40,8 @@ interface CachedQuestion {
 export async function getCachedQuestion(
   skill: Skill,
   difficultyTier: DifficultyLevel,
-  agent: TutorAgent
+  agent: TutorAgent,
+  recentQuestions?: string[]
 ): Promise<GeneratedQuestion | null> {
   // Try to serve from cache first — gracefully degrade if the table
   // doesn't exist yet (e.g., prisma db push hasn't run on this deploy)
@@ -49,7 +50,7 @@ export async function getCachedQuestion(
 
     if (cached) {
       // Check remaining pool size and refill in background if low
-      void checkAndRefillPool(skill, difficultyTier, agent);
+      void checkAndRefillPool(skill, difficultyTier, agent, recentQuestions);
 
       return {
         questionText: cached.questionText,
@@ -61,7 +62,7 @@ export async function getCachedQuestion(
     }
 
     // Cache miss — generate a fresh batch, cache them, and serve one
-    const firstQuestion = await generateAndCacheBatch(skill, difficultyTier, agent);
+    const firstQuestion = await generateAndCacheBatch(skill, difficultyTier, agent, recentQuestions);
 
     if (firstQuestion) {
       return firstQuestion;
@@ -72,7 +73,7 @@ export async function getCachedQuestion(
   }
 
   // Fallback: generate a single question directly (no caching)
-  return agent.generateQuestion(skill, difficultyTier);
+  return agent.generateQuestion(skill, difficultyTier, recentQuestions);
 }
 
 /**
@@ -207,7 +208,8 @@ async function countUnused(
 async function checkAndRefillPool(
   skill: Skill,
   difficultyTier: DifficultyLevel,
-  agent: TutorAgent
+  agent: TutorAgent,
+  recentQuestions?: string[]
 ): Promise<void> {
   const key = `${skill.skill_id}:${difficultyTier}`;
 
@@ -221,7 +223,7 @@ async function checkAndRefillPool(
     const remaining = await countUnused(skill.skill_id, difficultyTier);
 
     if (remaining < REFILL_THRESHOLD) {
-      void generateAndCacheBatch(skill, difficultyTier, agent)
+      void generateAndCacheBatch(skill, difficultyTier, agent, recentQuestions)
         .catch((err) => {
           console.error(
             `[question-cache] Background refill failed for ${skill.skill_id} tier ${difficultyTier}:`,
@@ -251,9 +253,10 @@ async function checkAndRefillPool(
 async function generateAndCacheBatch(
   skill: Skill,
   difficultyTier: DifficultyLevel,
-  agent: TutorAgent
+  agent: TutorAgent,
+  recentQuestions?: string[]
 ): Promise<GeneratedQuestion | null> {
-  const rawQuestions = await agent.generateDrillBatch(skill, BATCH_SIZE, difficultyTier);
+  const rawQuestions = await agent.generateDrillBatch(skill, BATCH_SIZE, difficultyTier, recentQuestions);
 
   if (rawQuestions.length === 0) return null;
 

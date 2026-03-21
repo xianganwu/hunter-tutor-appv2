@@ -316,7 +316,8 @@ Give me a clear explanation with one worked example. End by asking me a question
    */
   async generateQuestion(
     skill: Skill,
-    difficultyTier: DifficultyLevel
+    difficultyTier: DifficultyLevel,
+    recentQuestions?: string[]
   ): Promise<GeneratedQuestion | null> {
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
@@ -343,7 +344,10 @@ CORRECT: [letter]
 
 Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.
 
-CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.`,
+CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.${recentQuestions && recentQuestions.length > 0 ? `
+
+AVOID REPEATS — The student was recently shown these questions. Generate something DIFFERENT in structure, numbers, and scenario:
+${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
         },
       ],
     });
@@ -589,7 +593,8 @@ Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
   async generateDrillBatch(
     skill: Skill,
     count: number = 10,
-    difficultyTier?: DifficultyLevel
+    difficultyTier?: DifficultyLevel,
+    recentQuestions?: string[]
   ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[] }[]> {
     // Scale max_tokens to batch size — ~400 tokens per question is typical.
     // Minimum 2048 for small batches, cap at 8192 for large ones.
@@ -617,7 +622,10 @@ IMPORTANT — Question Variety:
 - Vary the question FORMAT: some should be "solve for X", some "which is equivalent to", some word problems, some "find the error", some "which statement is true".
 - Vary the NUMBERS and CONTEXTS: use different number ranges, real-world scenarios, and setups each time.
 - Vary SUB-TOPICS within the skill: e.g., for fractions, mix addition, comparison, word problems, and equivalence.
-- Do NOT generate questions that are structurally identical (same template with different numbers). Each question should feel distinct.
+- Do NOT generate questions that are structurally identical (same template with different numbers). Each question should feel distinct.${recentQuestions && recentQuestions.length > 0 ? `
+
+AVOID REPEATS — The student was recently shown these questions. Do NOT generate questions similar to them:
+${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}
 
 Format your response as a JSON array. ONLY output the JSON array, no other text:
 [

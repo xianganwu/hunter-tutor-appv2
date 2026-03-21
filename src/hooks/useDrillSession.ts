@@ -51,9 +51,10 @@ export function computeDrillDifficultyTier(
   stored: StoredSkillMastery | null,
   skillDefaultTier: number,
 ): DifficultyLevel {
-  if (!stored || stored.attemptsCount === 0) {
+  if (!stored) {
     return Math.max(1, Math.min(5, skillDefaultTier)) as DifficultyLevel;
   }
+  // Use mastery-derived tier even if attemptsCount is 0 (e.g. diagnostic set mastery)
   return masteryToTier(stored.masteryLevel);
 }
 
@@ -238,7 +239,7 @@ export function useDrillSession() {
   }, []);
 
   const fetchQuestions = useCallback(
-    async (skillId: string, count: number = 10, difficultyTier?: DifficultyLevel): Promise<DrillQuestion[]> => {
+    async (skillId: string, count: number = 10, difficultyTier?: DifficultyLevel, recentQuestions?: string[]): Promise<DrillQuestion[]> => {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -247,6 +248,7 @@ export function useDrillSession() {
           skillId,
           count,
           ...(difficultyTier !== undefined && { difficultyTier }),
+          ...(recentQuestions && recentQuestions.length > 0 && { recentQuestions }),
         }),
       });
 
@@ -332,17 +334,25 @@ export function useDrillSession() {
         // Fetch more in background — use streak-adjusted tier for next batch
         try {
           const streakTier = computeDrillStreakTier(s.currentTier, newAttempts);
-          const more = await fetchQuestions(s.skillId, 10, streakTier);
-          questionShownAt.current = Date.now();
-          setState((prev) => ({
-            ...prev,
-            attempts: newAttempts,
-            questions: [...prev.questions, ...more],
-            currentQuestionIndex: nextIndex,
-            currentTier: streakTier,
-            lastAnswerCorrect: isCorrect,
-          }));
-          return;
+          const recentTexts = s.questions.slice(-10).map((q) => q.questionText);
+          const more = await fetchQuestions(s.skillId, 10, streakTier, recentTexts);
+          // Deduplicate: skip questions whose text already appeared in this session
+          const existingTexts = new Set(s.questions.map((q) => q.questionText));
+          const unique = more.filter((q) => !existingTexts.has(q.questionText));
+          if (unique.length === 0) {
+            // All fetched questions were duplicates — fall through to end-drill check
+          } else {
+            questionShownAt.current = Date.now();
+            setState((prev) => ({
+              ...prev,
+              attempts: newAttempts,
+              questions: [...prev.questions, ...unique],
+              currentQuestionIndex: nextIndex,
+              currentTier: streakTier,
+              lastAnswerCorrect: isCorrect,
+            }));
+            return;
+          }
         } catch {
           // If fetch fails, end the drill
         }

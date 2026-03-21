@@ -46,7 +46,24 @@ describe("computeDrillDifficultyTier", () => {
     expect(computeDrillDifficultyTier(null, -1)).toBe(1);
   });
 
-  it("returns skill default when mastery has zero attempts", () => {
+  it("uses mastery-derived tier when attemptsCount is 0 but masteryLevel > 0 (diagnostic)", () => {
+    // Diagnostic sets mastery to 0.8 but leaves attemptsCount at 0
+    const tier = computeDrillDifficultyTier(
+      {
+        skillId: "test",
+        masteryLevel: 0.8,
+        attemptsCount: 0,
+        correctCount: 0,
+        lastPracticed: new Date().toISOString(),
+        confidenceTrend: "stable" as const,
+      },
+      2,
+    );
+    // 0.8 mastery should map to tier 4 or 5, NOT fall back to skill default (2)
+    expect(tier).toBeGreaterThanOrEqual(4);
+  });
+
+  it("uses mastery-derived tier when attemptsCount is 0 and masteryLevel is 0", () => {
     const tier = computeDrillDifficultyTier(
       {
         skillId: "test",
@@ -58,7 +75,8 @@ describe("computeDrillDifficultyTier", () => {
       },
       2,
     );
-    expect(tier).toBe(2);
+    // 0 mastery maps to tier 1 via masteryToTier
+    expect(tier).toBe(1);
   });
 
   it("maps high mastery to tier 5", () => {

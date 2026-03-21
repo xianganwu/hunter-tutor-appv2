@@ -51,6 +51,7 @@ export type ChatAction =
       type: "generate_question";
       skillId: string;
       difficultyTier: DifficultyLevel;
+      recentQuestions?: string[];
     }
   | {
       type: "evaluate_answer";

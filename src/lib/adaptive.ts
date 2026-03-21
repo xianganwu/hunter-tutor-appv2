@@ -131,8 +131,14 @@ function scoreSkill(
   dependents: Map<string, string[]>,
   now: Date
 ): SkillPriority {
-  // Brand new skill never attempted
-  if (!state || state.attemptsCount === 0) {
+  // Brand new skill — no data at all
+  if (!state) {
+    return { skillId, score: PRIORITY_NEW_SKILL, reason: "new_skill" };
+  }
+
+  // Skill with mastery data but no practice attempts (e.g. from diagnostic)
+  // Treat as new only if mastery is also 0; otherwise use mastery for scoring
+  if (state.attemptsCount === 0 && state.masteryLevel === 0) {
     return { skillId, score: PRIORITY_NEW_SKILL, reason: "new_skill" };
   }
 

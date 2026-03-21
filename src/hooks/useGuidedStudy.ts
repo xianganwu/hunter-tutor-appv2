@@ -4,6 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import type { ChatAction, ChatApiResponse } from "@/components/tutor/types";
 import type { GeneratedQuestion } from "@/lib/ai/tutor-agent";
 import type { AttemptRecord } from "@/lib/adaptive";
+import type { DifficultyLevel } from "@/lib/types";
 import { masteryToTier, calculateMasteryUpdate } from "@/lib/adaptive";
 import { loadSkillMastery, saveSkillMastery } from "@/lib/skill-mastery-store";
 import {
@@ -173,6 +174,7 @@ export function useGuidedStudy() {
   stateRef.current = state;
 
   const recentAttempts = useRef<AttemptRecord[]>([]);
+  const shownQuestionTexts = useRef<string[]>([]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -244,7 +246,20 @@ export function useGuidedStudy() {
     const difficultyTier = masteryToTier(
       s.skillSlots[s.currentSlotIndex]?.startMastery ?? 0.5,
     );
-    const update = calculateMasteryUpdate(recentAttempts.current, difficultyTier);
+
+    // Reconstruct prior history so mastery formula blends cumulative + session
+    // (avoids overwriting long-term mastery with a few session attempts)
+    const priorRecords: AttemptRecord[] = [];
+    if (prior && prior.attemptsCount > 0) {
+      for (let i = 0; i < prior.correctCount; i++) {
+        priorRecords.push({ isCorrect: true, timeSpentSeconds: null, hintUsed: false });
+      }
+      for (let i = 0; i < prior.attemptsCount - prior.correctCount; i++) {
+        priorRecords.push({ isCorrect: false, timeSpentSeconds: null, hintUsed: false });
+      }
+    }
+    const allRecords = [...priorRecords, ...recentAttempts.current];
+    const update = calculateMasteryUpdate(allRecords, difficultyTier);
 
     saveSkillMastery({
       skillId: s.currentSkillId,
@@ -343,8 +358,9 @@ export function useGuidedStudy() {
         skillCorrectStreak: 0,
       }));
 
-      // Reset per-skill attempt tracking
+      // Reset per-skill tracking
       recentAttempts.current = [];
+      shownQuestionTexts.current = [];
 
       try {
         await callApiStream(
@@ -432,9 +448,13 @@ export function useGuidedStudy() {
         type: "generate_question",
         skillId: s.currentSkillId!,
         difficultyTier: tier,
+        recentQuestions: shownQuestionTexts.current.length > 0
+          ? shownQuestionTexts.current
+          : undefined,
       });
 
       if (res.question) {
+        shownQuestionTexts.current.push(res.question.questionText);
         setState((prev) => ({
           ...prev,
           activeQuestion: res.question ?? null,
@@ -668,17 +688,29 @@ export function useGuidedStudy() {
     }));
 
     try {
-      const currentMastery =
+      // Adjust difficulty tier based on in-session streak (not just start mastery)
+      const baseMastery =
         s.skillSlots[s.currentSlotIndex]?.startMastery ?? 0.5;
-      const tier = masteryToTier(currentMastery);
+      const baseTier = masteryToTier(baseMastery);
+      const tier = (
+        s.skillCorrectStreak >= 3
+          ? Math.min(5, baseTier + 1)
+          : s.skillCorrectStreak === 0 && s.skillQuestionCount >= 2
+            ? Math.max(1, baseTier - 1)
+            : baseTier
+      ) as DifficultyLevel;
 
       const res = await callApi({
         type: "generate_question",
         skillId: s.currentSkillId!,
         difficultyTier: tier,
+        recentQuestions: shownQuestionTexts.current.length > 0
+          ? shownQuestionTexts.current
+          : undefined,
       });
 
       if (res.question) {
+        shownQuestionTexts.current.push(res.question.questionText);
         setState((prev) => ({
           ...prev,
           activeQuestion: res.question ?? null,
