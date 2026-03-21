@@ -546,6 +546,18 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
       const s = stateRef.current;
       if (!s.activeQuestion || s.phase === "loading") return;
 
+      // Resolve bare letter answers ("C") to the actual choice text.
+      // This prevents comparison bugs when correctAnswer is stored as full text
+      // (e.g., "Roosevelt High School") rather than letter-prefixed ("C) Roosevelt High School").
+      let resolvedAnswer = answer;
+      const bare = answer.trim();
+      if (/^[A-Ea-e]$/i.test(bare) && s.activeQuestion.answerChoices.length > 0) {
+        const idx = bare.toUpperCase().charCodeAt(0) - 65;
+        if (idx >= 0 && idx < s.activeQuestion.answerChoices.length) {
+          resolvedAnswer = s.activeQuestion.answerChoices[idx];
+        }
+      }
+
       addMessages(makeUserMsg(answer));
       setLoading(true);
 
@@ -563,7 +575,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           {
             type: "evaluate_answer",
             questionText: s.activeQuestion.questionText,
-            studentAnswer: answer,
+            studentAnswer: resolvedAnswer,
             correctAnswer: s.activeQuestion.correctAnswer,
             history: getHistory(),
             sessionId: sessionDbId.current ?? undefined,
@@ -587,7 +599,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
 
         // Log wrong answers to mistake journal (non-blocking)
         if (!isCorrect && s.activeQuestion) {
-          logMistakeInBackground(s.activeQuestion, answer);
+          logMistakeInBackground(s.activeQuestion, resolvedAnswer);
         }
 
         const newQuestionCount = s.questionCount + 1;

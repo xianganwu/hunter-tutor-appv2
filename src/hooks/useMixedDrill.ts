@@ -12,6 +12,24 @@ import {
   computeSkillReviewSchedule,
 } from "@/lib/skill-mastery-store";
 
+// ─── Helpers ──────────────────────────────────────────────────────────
+
+/** Compare answers handling letter-prefixed, bare letter, and plain text formats. */
+function answersMatchLocal(student: string, correct: string): boolean {
+  if (student.trim().toLowerCase() === correct.trim().toLowerCase()) return true;
+  const extractLetter = (s: string): string | null => {
+    const m = s.trim().match(/^([A-Ea-e])\)/);
+    if (m) return m[1].toUpperCase();
+    if (/^[A-Ea-e]$/i.test(s.trim())) return s.trim().toUpperCase();
+    return null;
+  };
+  const sL = extractLetter(student);
+  const cL = extractLetter(correct);
+  if (sL && cL) return sL === cL;
+  const strip = (s: string) => s.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+  return strip(student) === strip(correct);
+}
+
 // ─── Types ────────────────────────────────────────────────────────────
 
 export type MixedDrillPhase = "setup" | "loading" | "active" | "complete";
@@ -189,10 +207,7 @@ export function useMixedDrill() {
 
       const timeSpentMs = Date.now() - questionShownAt.current;
 
-      const normalize = (a: string) =>
-        a.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ??
-        a.trim().charAt(0).toUpperCase();
-      const isCorrect = normalize(answer) === normalize(question.correctAnswer);
+      const isCorrect = answersMatchLocal(answer, question.correctAnswer);
 
       const attempt: MixedDrillAttempt = {
         skillId: question.skillId,

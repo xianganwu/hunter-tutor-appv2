@@ -499,6 +499,16 @@ export function useGuidedStudy() {
       if (s.phase !== "practicing" || !s.activeQuestion || s.isStreaming)
         return;
 
+      // Resolve bare letter answers ("C") to full choice text
+      let resolvedAnswer = answer;
+      const bare = answer.trim();
+      if (/^[A-Ea-e]$/i.test(bare) && s.activeQuestion.answerChoices.length > 0) {
+        const idx = bare.toUpperCase().charCodeAt(0) - 65;
+        if (idx >= 0 && idx < s.activeQuestion.answerChoices.length) {
+          resolvedAnswer = s.activeQuestion.answerChoices[idx];
+        }
+      }
+
       setState((prev) => ({
         ...prev,
         isStreaming: true,
@@ -511,7 +521,7 @@ export function useGuidedStudy() {
           {
             type: "evaluate_answer",
             questionText: s.activeQuestion.questionText,
-            studentAnswer: answer,
+            studentAnswer: resolvedAnswer,
             correctAnswer: s.activeQuestion.correctAnswer,
             skillId: s.currentSkillId ?? undefined,
           },

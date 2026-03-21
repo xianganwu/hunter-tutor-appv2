@@ -11,6 +11,27 @@ import {
   type BadgeDefinition,
 } from "@/lib/achievements";
 
+// ─── Helpers ──────────────────────────────────────────────────────────
+
+/** Compare answers handling letter-prefixed, bare letter, and plain text formats. */
+function answersMatchLocal(student: string, correct: string): boolean {
+  // Direct match
+  if (student.trim().toLowerCase() === correct.trim().toLowerCase()) return true;
+  // Extract letter from "C) text" or bare "C"
+  const extractLetter = (s: string): string | null => {
+    const m = s.trim().match(/^([A-Ea-e])\)/);
+    if (m) return m[1].toUpperCase();
+    if (/^[A-Ea-e]$/i.test(s.trim())) return s.trim().toUpperCase();
+    return null;
+  };
+  const sL = extractLetter(student);
+  const cL = extractLetter(correct);
+  if (sL && cL) return sL === cL;
+  // Strip letter prefix and compare text
+  const strip = (s: string) => s.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+  return strip(student) === strip(correct);
+}
+
 // ─── Types ────────────────────────────────────────────────────────────
 
 export type DrillPhase = "setup" | "loading" | "active" | "complete";
@@ -150,11 +171,11 @@ export function useDrillSession() {
 
       const timeSpentMs = Date.now() - questionShownAt.current;
 
-      // Compare answers - extract letter
-      const normalize = (a: string) =>
-        a.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ??
-        a.trim().charAt(0).toUpperCase();
-      const isCorrect = normalize(answer) === normalize(question.correctAnswer);
+      // Compare answers — handle multiple formats:
+      // - "C) text" vs "C) text" (letter-prefixed)
+      // - "C" vs "C) text" (bare letter)
+      // - "text" vs "text" (plain text from drill batch JSON)
+      const isCorrect = answersMatchLocal(answer, question.correctAnswer);
 
       const attempt: DrillAttempt = {
         questionText: question.questionText,

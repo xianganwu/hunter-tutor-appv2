@@ -176,9 +176,42 @@ function buildCachedSystemBlock(text: string): Anthropic.TextBlockParam[] {
   ];
 }
 
-/** Extract the choice letter from "B) text" or bare "B" formats */
-function extractChoiceLetter(s: string): string {
-  return s.trim().match(/^([A-Ea-e])\)/)?.[1]?.toUpperCase() ?? s.trim().charAt(0).toUpperCase();
+/**
+ * Extract the choice letter from "B) text" or bare "B" formats.
+ * Returns null if the string doesn't look like a letter-based answer
+ * (e.g., "Roosevelt High School" should NOT return "R").
+ */
+function extractChoiceLetter(s: string): string | null {
+  const trimmed = s.trim();
+  // Match "C) text" format
+  const match = trimmed.match(/^([A-Ea-e])\)/);
+  if (match) return match[1].toUpperCase();
+  // Match bare single letter "C"
+  if (/^[A-Ea-e]$/i.test(trimmed)) return trimmed.toUpperCase();
+  return null;
+}
+
+/**
+ * Compare student answer and correct answer, handling mixed formats:
+ * - Both letter-prefixed: "C) text" vs "C) text"
+ * - Bare letter vs letter-prefixed: "C" vs "C) text"
+ * - Both plain text: "Roosevelt High School" vs "Roosevelt High School"
+ * - Plain text vs letter-prefixed: "Roosevelt High School" vs "C) Roosevelt High School"
+ */
+function answersMatch(studentAnswer: string, correctAnswer: string): boolean {
+  // Strategy 1: Direct text match (case-insensitive)
+  if (studentAnswer.trim().toLowerCase() === correctAnswer.trim().toLowerCase()) return true;
+
+  // Strategy 2: Both resolve to the same choice letter
+  const sLetter = extractChoiceLetter(studentAnswer);
+  const cLetter = extractChoiceLetter(correctAnswer);
+  if (sLetter && cLetter) return sLetter === cLetter;
+
+  // Strategy 3: Match after stripping letter prefix from both
+  const stripPrefix = (s: string) => s.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+  if (stripPrefix(studentAnswer) === stripPrefix(correctAnswer)) return true;
+
+  return false;
 }
 
 // ─── TutorAgent Class ─────────────────────────────────────────────────
@@ -292,7 +325,7 @@ CRITICAL: There must be exactly ONE correct answer. Every answer choice must be 
     correctAnswer: string,
     conversationHistory: readonly ConversationMessage[] = []
   ): { messages: Anthropic.MessageParam[]; isCorrect: boolean } {
-    const isCorrect = extractChoiceLetter(studentAnswer) === extractChoiceLetter(correctAnswer);
+    const isCorrect = answersMatch(studentAnswer, correctAnswer);
 
     const historyMessages: Anthropic.MessageParam[] = conversationHistory.map(
       (m) => ({ role: m.role, content: m.content })
