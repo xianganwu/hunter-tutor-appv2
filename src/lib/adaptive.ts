@@ -85,6 +85,7 @@ const MAX_QUESTIONS_BEFORE_TEACHING = 5;
 const SESSION_MIN_MINUTES = 25;
 const SESSION_MAX_MINUTES = 35;
 const RECENT_WINDOW = 10;
+const SESSION_MAX_QUESTIONS = 15;
 const RUSHING_THRESHOLD_SECONDS = 5;
 const RUSHING_STREAK = 3;
 
@@ -341,6 +342,14 @@ export function getNextPacingAction(
     return {
       action: "end_session",
       reason: `Session reached ${SESSION_MAX_MINUTES} minutes — time for a break.`,
+    };
+  }
+
+  // End session after reaching question limit
+  if (state.totalQuestions >= SESSION_MAX_QUESTIONS) {
+    return {
+      action: "end_session",
+      reason: "Great effort! You've answered a lot of questions — let's wrap up and see how you did.",
     };
   }
 

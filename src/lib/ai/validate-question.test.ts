@@ -5,6 +5,8 @@ import {
   findDuplicateChoices,
   isValidQuestion,
   isValidSimulateQuestion,
+  verifyPlaceValueAnswer,
+  verifyStatementQuestion,
 } from "./validate-question";
 
 // ─── normalizeChoiceValue ────────────────────────────────────────────
@@ -393,5 +395,180 @@ describe("isValidSimulateQuestion", () => {
         "test"
       )
     ).toBe(false);
+  });
+});
+
+// ─── verifyPlaceValueAnswer ─────────────────────────────────────────
+
+describe("verifyPlaceValueAnswer", () => {
+  const choices = [
+    "A) 4",
+    "B) 400",
+    "C) 4,000",
+    "D) 400,000",
+    "E) 40,000",
+  ];
+
+  it("returns undefined for non-place-value questions", () => {
+    expect(
+      verifyPlaceValueAnswer(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7", "D) 8", "E) 9"],
+        "C) 7"
+      )
+    ).toBeUndefined();
+  });
+
+  it("returns undefined when AI has the right answer (247,583, digit 4 → 40,000)", () => {
+    expect(
+      verifyPlaceValueAnswer(
+        "What is the value of the digit 4 in 247,583?",
+        choices,
+        "E) 40,000"
+      )
+    ).toBeUndefined();
+  });
+
+  it("corrects wrong answer: AI says 400 but correct is 40,000 for digit 4 in 247,583", () => {
+    const result = verifyPlaceValueAnswer(
+      "What is the value of the digit 4 in 247,583?",
+      choices,
+      "B) 400"
+    );
+    expect(result).toBe("E) 40,000");
+  });
+
+  it("corrects wrong answer: AI says 4,000 but correct is 40,000 for digit 4 in 247,583", () => {
+    const result = verifyPlaceValueAnswer(
+      "What is the value of the digit 4 in 247,583?",
+      choices,
+      "C) 4,000"
+    );
+    expect(result).toBe("E) 40,000");
+  });
+
+  it("handles 'the number' phrasing", () => {
+    const result = verifyPlaceValueAnswer(
+      "What is the value of the digit 4 in the number 247,836?",
+      choices,
+      "B) 400"
+    );
+    expect(result).toBe("E) 40,000");
+  });
+
+  it("handles ones digit", () => {
+    const result = verifyPlaceValueAnswer(
+      "What is the value of the digit 3 in 247,583?",
+      ["A) 3", "B) 30", "C) 300", "D) 3,000", "E) 30,000"],
+      "C) 300"
+    );
+    expect(result).toBe("A) 3");
+  });
+
+  it("handles hundreds digit", () => {
+    const result = verifyPlaceValueAnswer(
+      "What is the value of the digit 5 in 247,583?",
+      ["A) 5", "B) 50", "C) 500", "D) 5,000", "E) 50,000"],
+      "A) 5"
+    );
+    expect(result).toBe("C) 500");
+  });
+
+  it("returns null when correct value is not among choices", () => {
+    // Digit 2 in 247,583 → 200,000, which is not in choices
+    const result = verifyPlaceValueAnswer(
+      "What is the value of the digit 2 in 247,583?",
+      ["A) 2", "B) 20", "C) 200", "D) 2,000", "E) 20,000"],
+      "A) 2"
+    );
+    expect(result).toBeNull();
+  });
+
+  it("handles digit that appears multiple times (uses leftmost)", () => {
+    // In 343,521: first 3 is at position 5 (hundred-thousands) → 300,000
+    const result = verifyPlaceValueAnswer(
+      "What is the value of the digit 3 in 343,521?",
+      ["A) 3", "B) 30", "C) 300", "D) 3,000", "E) 300,000"],
+      "D) 3,000"
+    );
+    expect(result).toBe("E) 300,000");
+  });
+});
+
+// ─── verifyStatementQuestion ────────────────────────────────────────
+
+describe("verifyStatementQuestion", () => {
+  it("returns undefined for non-statement questions", () => {
+    expect(
+      verifyStatementQuestion(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7", "D) 8", "E) 9"]
+      )
+    ).toBeUndefined();
+  });
+
+  it("rejects when all place value statements are true (the zoo visitor bug)", () => {
+    const question = `The local zoo is celebrating its anniversary! Here are the visitor counts from different years:
+2019: 847,392 visitors
+2020: 478,629 visitors
+2021: 847,932 visitors
+2022: 478,926 visitors
+
+Which statement about these numbers is correct?`;
+    const choices = [
+      "A) The number 847,392 has a 9 in the tens place",
+      "B) In 478,629, the digit 6 represents 6 hundreds",
+      "C) The largest number of visitors was in 2021",
+      "D) In 847,932, the digit 4 is in the ten-thousands place",
+      "E) The numbers 478,629 and 478,926 have the same value in the thousands place",
+    ];
+    expect(verifyStatementQuestion(question, choices)).toBeNull();
+  });
+
+  it("accepts when exactly one statement is true", () => {
+    const question = "Which statement about the number 523,841 is correct?";
+    const choices = [
+      "A) 523,841 has a 3 in the tens place",        // false: tens digit is 4
+      "B) 523,841 has a 2 in the ten-thousands place", // true: 2 is at ten-thousands
+      "C) 523,841 has a 5 in the thousands place",     // false: thousands digit is 3
+      "D) 523,841 has a 1 in the hundreds place",      // false: hundreds digit is 8
+      "E) 523,841 has a 4 in the ones place",          // false: ones digit is 1
+    ];
+    expect(verifyStatementQuestion(question, choices)).toBeUndefined();
+  });
+
+  it("rejects when zero statements are true", () => {
+    const question = "Which statement about the number 523,841 is correct?";
+    const choices = [
+      "A) 523,841 has a 3 in the tens place",        // false
+      "B) 523,841 has a 9 in the ten-thousands place", // false
+      "C) 523,841 has a 5 in the thousands place",     // false
+      "D) 523,841 has a 1 in the hundreds place",      // false
+      "E) 523,841 has a 4 in the ones place",          // false
+    ];
+    expect(verifyStatementQuestion(question, choices)).toBeNull();
+  });
+
+  it("handles 'digit X is in the Y place' pattern", () => {
+    const question = "Which statement is correct?";
+    const choices = [
+      "A) In 847,392, the digit 4 is in the hundreds place",       // false: 4 is ten-thousands
+      "B) In 847,392, the digit 4 is in the ten-thousands place",  // true
+      "C) In 847,392, the digit 4 is in the thousands place",      // false
+      "D) In 847,392, the digit 4 is in the tens place",           // false
+    ];
+    expect(verifyStatementQuestion(question, choices)).toBeUndefined();
+  });
+
+  it("handles 'same value in the X place' pattern", () => {
+    const question = "Which statement is correct?";
+    const choices = [
+      "A) 123,456 and 789,456 have the same value in the thousands place",   // false: 3 vs 9
+      "B) 123,456 and 789,456 have the same value in the hundreds place",    // true: both 4
+      "C) 123,456 and 789,456 have the same value in the ten-thousands place", // false: 2 vs 8
+      "D) 123,456 and 789,456 have the same value in the ones place",        // true: both 6
+    ];
+    // Two are true → reject
+    expect(verifyStatementQuestion(question, choices)).toBeNull();
   });
 });

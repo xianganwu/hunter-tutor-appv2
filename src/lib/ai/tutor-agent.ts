@@ -3,7 +3,7 @@ import type { DifficultyLevel, Skill } from "@/lib/types";
 import { getAnthropicClient } from "./client";
 import { getAllSkills } from "@/lib/exam/curriculum";
 import { parseWarn, parseError } from "./parse-logger";
-import { isValidQuestion } from "./validate-question";
+import { isValidQuestion, verifyPlaceValueAnswer, verifyStatementQuestion } from "./validate-question";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -344,7 +344,11 @@ CORRECT: [letter]
 
 Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.
 
-CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.${recentQuestions && recentQuestions.length > 0 ? `
+CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.
+
+PLACE VALUE CHECK: If the question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
+
+STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing. Common mistake: creating distractors that are accidentally true (e.g., all five place value claims being correct). Build false statements by using wrong place names, wrong digits, or wrong comparisons — and double-check each one.${recentQuestions && recentQuestions.length > 0 ? `
 
 AVOID REPEATS — The student was recently shown these questions. Generate something DIFFERENT in structure, numbers, and scenario:
 ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
@@ -836,9 +840,25 @@ function parseGeneratedQuestion(
     return null;
   }
 
+  // Verify place value answers programmatically (AI often miscounts digit positions)
+  let verifiedCorrectAnswer = correctAnswer;
+  const placeValueResult = verifyPlaceValueAnswer(questionText, answerChoices, correctAnswer);
+  if (placeValueResult === null) {
+    // Correct value not among choices — reject the question entirely
+    return null;
+  } else if (placeValueResult !== undefined) {
+    // AI had the wrong answer — use the corrected one
+    verifiedCorrectAnswer = placeValueResult;
+  }
+
+  // Reject "which statement is correct" questions with multiple true statements
+  if (verifyStatementQuestion(questionText, answerChoices) === null) {
+    return null;
+  }
+
   return {
     questionText,
-    correctAnswer,
+    correctAnswer: verifiedCorrectAnswer,
     answerChoices,
     skillId,
     difficultyTier,
