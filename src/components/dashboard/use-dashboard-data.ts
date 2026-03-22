@@ -79,7 +79,7 @@ function saveStreakFreezes(data: StreakFreezeData): void {
     if (typeof window === "undefined") return;
     const key = getStorageKey(FREEZE_STORAGE_KEY);
     localStorage.setItem(key, JSON.stringify(data));
-    notifyProgressChanged();
+    notifyProgressChanged("streak-freezes");
   } catch {
     // localStorage unavailable
   }

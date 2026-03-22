@@ -44,6 +44,7 @@ export default function ProfilePicker() {
         // Verify the server session is still valid
         const serverUser = await authGetUser();
         if (serverUser) {
+          // ProgressHydrator in layout.tsx handles hydration — just redirect
           router.replace("/dashboard");
           return;
         }

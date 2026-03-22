@@ -258,7 +258,7 @@ export async function initializeFromServer(userName: string): Promise<boolean> {
 
 /**
  * Debounced background sync — saves progress to server.
- * Safe to call frequently; only syncs at most once per 5 seconds.
+ * Safe to call frequently; only syncs at most once per 2 seconds.
  * If offline or sync fails, queues for retry when connection returns.
  */
 let syncTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -285,5 +285,43 @@ export function scheduleSyncToServer(userName: string): void {
     if (!ok) {
       enqueueSyncRetry(userName);
     }
-  }, 5000);
+  }, 2000);
+}
+
+/**
+ * Immediately flush dirty keys to the server using navigator.sendBeacon().
+ * Designed for beforeunload — sendBeacon is reliable during page close.
+ * Returns true if beacon was sent, false otherwise.
+ */
+export function flushSyncImmediate(userName: string): boolean {
+  try {
+    const dirtyKeys = getDirtyKeys();
+    if (dirtyKeys.size === 0) return false;
+
+    const progress: Record<string, unknown> = {};
+    for (const key of dirtyKeys) {
+      const storageKey = `hunter-tutor:${userName}:${key}`;
+      const raw = localStorage.getItem(storageKey);
+      if (raw) {
+        try {
+          progress[key] = JSON.parse(raw);
+        } catch {
+          progress[key] = raw;
+        }
+      }
+    }
+
+    if (Object.keys(progress).length === 0) return false;
+
+    const blob = new Blob([JSON.stringify({ progress })], {
+      type: "application/json",
+    });
+    const sent = navigator.sendBeacon("/api/progress", blob);
+    if (sent) {
+      clearDirtyKeys();
+    }
+    return sent;
+  } catch {
+    return false;
+  }
 }

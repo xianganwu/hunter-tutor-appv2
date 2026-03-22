@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { TopNav } from "@/components/shared/TopNav";
+import { ProgressHydrator } from "@/components/shared/ProgressHydrator";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -45,7 +46,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <TopNav />
-        {children}
+        <ProgressHydrator>{children}</ProgressHydrator>
       </body>
     </html>
   );

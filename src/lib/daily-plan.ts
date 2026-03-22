@@ -79,6 +79,7 @@ function saveTimeBudget(minutes: number): void {
   try {
     if (typeof window === "undefined") return;
     localStorage.setItem(getStorageKey(TIME_BUDGET_KEY), String(minutes));
+    notifyProgressChanged("time-budget");
   } catch {
     // localStorage unavailable
   }
