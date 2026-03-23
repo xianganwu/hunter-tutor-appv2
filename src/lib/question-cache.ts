@@ -2,7 +2,7 @@ import { prisma } from "@/lib/db";
 import { TutorAgent } from "@/lib/ai/tutor-agent";
 import type { GeneratedQuestion } from "@/lib/ai/tutor-agent";
 import type { Skill, DifficultyLevel } from "@/lib/types";
-import { isValidQuestion } from "@/lib/ai/validate-question";
+import { validateGeneratedQuestion } from "@/lib/ai/validate-question";
 
 // ─── Constants ────────────────────────────────────────────────────────
 
@@ -161,9 +161,10 @@ async function popUnusedQuestion(
       return null;
     }
 
-    // 2. Re-validate the question against current validation logic
+    // 2. Re-validate through the full verification gateway
     //    (catches issues if validation rules evolved since the question was cached)
-    if (!isValidQuestion(answerChoices, row.correctAnswer, "question-cache/pop")) {
+    const verified = validateGeneratedQuestion(row.questionText, answerChoices, row.correctAnswer, "question-cache/pop");
+    if (verified === null) {
       console.warn(`[question-cache] Cached question id=${row.id} failed re-validation, discarding`);
       await tx.questionCache.update({ where: { id: row.id }, data: { used: true } });
       return null;
@@ -179,7 +180,7 @@ async function popUnusedQuestion(
       id: row.id,
       questionText: row.questionText,
       answerChoices,
-      correctAnswer: row.correctAnswer,
+      correctAnswer: verified,
     };
   });
 }

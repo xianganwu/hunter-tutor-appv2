@@ -231,6 +231,32 @@ export function isValidSimulateQuestion(
   return isValidQuestion(flat, correctAnswer, parser);
 }
 
+/**
+ * Full validation gateway for simulate-format questions ({letter, text}[] choices,
+ * bare letter correctAnswer like "A").
+ *
+ * Returns the (possibly corrected) bare-letter correctAnswer, or null to reject.
+ */
+export function validateSimulateQuestion(
+  questionText: string,
+  choices: { letter: string; text: string }[],
+  correctAnswer: string,
+  parser: string,
+): string | null {
+  const flat = choices.map((c) => `${c.letter}) ${c.text}`);
+  // Build the full "A) text" answer for the gateway
+  const correctChoice = choices.find((c) => c.letter === correctAnswer);
+  if (!correctChoice) return null;
+  const fullCorrectAnswer = `${correctChoice.letter}) ${correctChoice.text}`;
+
+  const verified = validateGeneratedQuestion(questionText, flat, fullCorrectAnswer, parser);
+  if (verified === null) return null;
+
+  // Extract the letter back from the (possibly corrected) full answer
+  const letter = verified.trim().charAt(0).toUpperCase();
+  return /^[A-E]$/.test(letter) ? letter : null;
+}
+
 // ─── Place Value Verification ─────────────────────────────────────────
 
 /**
@@ -487,4 +513,193 @@ export function verifyStatementQuestion(
   }
 
   return undefined; // looks fine or can't verify
+}
+
+// ─── Choice-Level Place Value Claim Verification ─────────────────────
+
+/**
+ * Verify a single choice for embedded place value claims against a known number.
+ *
+ * Checks two families of claim:
+ *   (a) Place-name claims: "the 7 is in the hundreds place"
+ *   (b) Value claims:      "worth 700", "represents 7,000", "value of 70"
+ *
+ * Returns true if ALL verifiable claims in the choice are correct,
+ * false if ANY verifiable claim is wrong, or null if no claims were parseable.
+ */
+function verifyChoicePlaceValueClaims(
+  choiceText: string,
+  contextNumberStr: string,
+): boolean | null {
+  const stripped = choiceText.replace(/^[A-Ea-e]\)\s*/, "").trim();
+  let verified = 0;
+  let allCorrect = true;
+
+  // (a) "[digit] is in the [place] place" / "has a [digit] in the [place] place"
+  const placePatterns = [
+    /\b(\d)\s+is\s+in\s+the\s+([\w\s-]+?)\s*place/gi,
+    /has\s+(?:a|an)\s+(\d)\s+in\s+the\s+([\w\s-]+?)\s*place/gi,
+  ];
+  for (const pp of placePatterns) {
+    pp.lastIndex = 0;
+    let pm;
+    while ((pm = pp.exec(stripped)) !== null) {
+      const claimedDigit = parseInt(pm[1], 10);
+      const actual = getDigitAtPlace(contextNumberStr, pm[2]);
+      if (actual !== null) {
+        verified++;
+        if (actual !== claimedDigit) allCorrect = false;
+      }
+    }
+  }
+
+  // (b) "worth/represents/value of/value is/valued at [NUMBER]"
+  //     Must be preceded by a digit reference so we know WHICH digit's value to check.
+  //     Pattern: "digit D ... worth V" or "the D ... worth V" or "D is worth V"
+  const valuePatterns = [
+    // "the 7 is worth 700", "digit 7 is worth 700"
+    /(?:the\s+)?(?:digit\s+)?(\d)\s+(?:\w+\s+){0,4}?(?:is\s+worth|worth|represents?|has\s+a\s+value\s+of|valued?\s+at|value\s+(?:of|is))\s+\$?\s*([0-9,]+)/gi,
+  ];
+  for (const vp of valuePatterns) {
+    vp.lastIndex = 0;
+    let vm;
+    while ((vm = vp.exec(stripped)) !== null) {
+      const digit = parseInt(vm[1], 10);
+      const claimedValue = parseInt(vm[2].replace(/,/g, ""), 10);
+      const actual = computePlaceValue(contextNumberStr, digit);
+      if (actual !== null && !isNaN(claimedValue)) {
+        verified++;
+        if (actual !== claimedValue) allCorrect = false;
+      }
+    }
+  }
+
+  if (verified === 0) return null; // no parseable claims
+  return allCorrect;
+}
+
+/**
+ * Format-agnostic place value verifier that examines claims WITHIN each choice.
+ *
+ * Works for any question format — direct, word problem, "Is X correct?", etc. —
+ * as long as the choices contain verifiable place value claims and the question
+ * text mentions a multi-digit number.
+ *
+ * Returns:
+ *   undefined — choices don't contain verifiable place value claims (no opinion)
+ *   null      — should reject (no correct choice, or ambiguous)
+ *   string    — the corrected correct-answer choice
+ */
+export function verifyPlaceValueChoiceClaims(
+  questionText: string,
+  choices: string[],
+  correctAnswer: string,
+): string | null | undefined {
+  // Extract comma-formatted numbers from the question (e.g., 492,736 or 1,000)
+  const numberMatches = questionText.match(/\b\d{1,3}(?:,\d{3})+\b/g);
+  if (!numberMatches || numberMatches.length === 0) return undefined;
+
+  // Sort longest-first: the biggest number is almost always the primary one
+  // in a place value question (e.g., 492,736 before a claimed value like 7,000).
+  const sorted = [...numberMatches].sort((a, b) => b.length - a.length);
+
+  // Try each context number — usually there's one primary number
+  // We pick the first number whose digits produce verifiable claims in the choices
+  for (const numMatch of sorted) {
+    const numStr = numMatch.replace(/,/g, "");
+
+    const results: { choice: string; correct: boolean | null }[] = choices.map(
+      (choice) => ({
+        choice,
+        correct: verifyChoicePlaceValueClaims(choice, numStr),
+      })
+    );
+
+    const verifiedCount = results.filter((r) => r.correct !== null).length;
+    if (verifiedCount < 2) continue; // not enough signal from this number
+
+    const trueChoices = results.filter((r) => r.correct === true);
+    const falseChoices = results.filter((r) => r.correct === false);
+
+    // Check if AI's answer is among the mathematically correct choices
+    if (trueChoices.some((r) => r.choice === correctAnswer)) {
+      return undefined; // AI got it right
+    }
+
+    // AI's answer has false claims — try to auto-correct
+    if (trueChoices.length === 1) {
+      parseWarn({
+        parser: "verifyPlaceValueChoiceClaims",
+        field: "correctAnswer",
+        fallback: `AUTO-CORRECTED to "${trueChoices[0].choice}"`,
+        rawSnippet: `AI said "${correctAnswer}" but choice claims don't match number ${numStr}. ${falseChoices.length} choices have false claims.`,
+      });
+      return trueChoices[0].choice;
+    }
+
+    // Zero or multiple "correct" choices — reject
+    if (trueChoices.length === 0) {
+      parseWarn({
+        parser: "verifyPlaceValueChoiceClaims",
+        field: "correctAnswer",
+        fallback: "REJECTED",
+        rawSnippet: `No choice has all-correct place value claims for number ${numStr}`,
+      });
+      return null;
+    }
+
+    // Multiple true choices — ambiguous, reject
+    parseWarn({
+      parser: "verifyPlaceValueChoiceClaims",
+      field: "correctAnswer",
+      fallback: "REJECTED",
+      rawSnippet: `${trueChoices.length} choices have correct claims for number ${numStr}: ${trueChoices.map((r) => r.choice).join(" | ")}`,
+    });
+    return null;
+  }
+
+  return undefined; // no context number produced enough verifiable claims
+}
+
+// ─── Centralized Validation Gateway ──────────────────────────────────
+
+/**
+ * Single chokepoint that ALL generated questions must pass through before
+ * reaching a student.  Composes every verifier in the correct order:
+ *
+ *   1. Format / distinctness  (isValidQuestion)
+ *   2. Direct place-value     (verifyPlaceValueAnswer — "value of digit X in N")
+ *   3. Choice-level claims    (verifyPlaceValueChoiceClaims — word problems, etc.)
+ *   4. Statement questions    (verifyStatementQuestion — "which statement is correct")
+ *
+ * Returns the (possibly auto-corrected) correctAnswer string if the question
+ * is safe to serve, or null if it should be rejected.
+ */
+export function validateGeneratedQuestion(
+  questionText: string,
+  choices: string[],
+  correctAnswer: string,
+  parser: string,
+): string | null {
+  // 1. Format: enough choices, all distinct, valid letter
+  if (!isValidQuestion(choices, correctAnswer, parser)) return null;
+
+  // 2. Direct place-value verification (narrow regex: "value of digit X in N")
+  let verified = correctAnswer;
+  const pvDirect = verifyPlaceValueAnswer(questionText, choices, correctAnswer);
+  if (pvDirect === null) return null;          // correct value not among choices
+  if (pvDirect !== undefined) verified = pvDirect; // auto-corrected
+
+  // 3. Choice-level place-value claim verification (word problems, "is X correct", etc.)
+  //    Only needed when step 2 had no opinion (didn't recognise the format).
+  if (pvDirect === undefined) {
+    const pvClaims = verifyPlaceValueChoiceClaims(questionText, choices, verified);
+    if (pvClaims === null) return null;
+    if (pvClaims !== undefined) verified = pvClaims;
+  }
+
+  // 4. "Which statement is correct" multi-truth guard
+  if (verifyStatementQuestion(questionText, choices) === null) return null;
+
+  return verified;
 }

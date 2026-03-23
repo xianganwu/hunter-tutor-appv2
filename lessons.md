@@ -106,6 +106,36 @@ The critical insight: if the stored correct answer is wrong (step 2), everything
 
 ---
 
+## Bug: Place Value Word Problems Bypass All Verification (Third Occurrence)
+
+### Symptoms
+- Student is asked: "Marcus's score is 492,736. His friend says digit 7 is worth 700. Is his friend correct?"
+- The friend IS correct (7 is in the hundreds place, value = 700)
+- Student answers "Yes" → marked wrong with red X
+- Tutor gives "Good try!" and guides student toward the AI's (incorrect) answer
+
+### Root Cause — Three Compounding Failures
+
+**Failure 1: Batch/cache code paths skip ALL place value verification.**
+The v1 fix added `verifyPlaceValueAnswer()` and `verifyStatementQuestion()` to `parseGeneratedQuestion()`, but this function is only called by `generateQuestion()` — the last-resort fallback path. The PRIMARY path (`generateDrillBatch()` → question cache) only called `isValidQuestion()` (format checks), completely bypassing place value and statement verification. Five of six question-serving paths had no mathematical verification.
+
+**Failure 2: The detection regex is too narrow.**
+`detectPlaceValueQuestion()` only matches: `"value of digit X in NUMBER"`. Word problems like "digit 7 is worth 700" use completely different phrasing and bypass the regex entirely.
+
+**Failure 3: Batch generation prompts lacked place value instructions.**
+The PLACE VALUE CHECK prompt paragraph (counting positions right-to-left) was only in `generateQuestion()`. The batch prompts (`generateDrillBatch`, `generateMixedDrillBatch`) had no place value instructions at all — while actively encouraging word problem formats.
+
+### Fix (Architectural)
+1. **Centralized validation gateway**: Created `validateGeneratedQuestion()` that composes ALL checks (format + direct place value + choice-level claims + statement verification). This is now the single chokepoint all six paths must pass through.
+2. **Choice-level claim verification** (format-agnostic): Added `verifyPlaceValueChoiceClaims()` that examines claims WITHIN each choice (e.g., "the 7 is in the hundreds place", "worth 700") against the number in the question. Works for any question format — direct, word problem, "Is X correct?", "which statement" — without needing to detect the question format.
+3. **Wired gateway into all paths**: `parseGeneratedQuestion()`, `generateDrillBatch()`, `generateMixedDrillBatch()`, `generate_diagnostic`, `popUnusedQuestion()` (cache), and `simulate/generate_math` all now call the gateway.
+4. **Prompt parity**: Added PLACE VALUE CHECK and STATEMENT QUESTIONS instructions to both batch generation prompts.
+
+### Key Lesson
+**Verification must be a chokepoint, not an annotation.** The v1 fix was correct in logic but wrong in architecture — it added verification to ONE code path while the system had SIX. When you fix a validation gap, audit EVERY path that produces or serves the affected data type. A validation function that isn't called is the same as no validation at all. Create a single gateway function and ensure all paths pass through it. The gateway pattern also means future verifiers only need to be added in one place.
+
+---
+
 ## General Principles
 
 - **Validate AI outputs deterministically wherever possible.** Don't rely on "verify your answer" instructions in prompts — they're unreliable for mechanical reasoning tasks.
@@ -114,3 +144,5 @@ The critical insight: if the stored correct answer is wrong (step 2), everything
 - **UI promises must match system behavior.** If the progress bar says "12 questions," the session should actually end near 12.
 - **Trace the full data flow when debugging.** The bug wasn't in `answersMatch()` or the AI evaluation — it was upstream in question generation. Following the data from creation to consumption revealed the true root cause.
 - **Layer defenses: prompt + programmatic + rejection.** Prompt instructions reduce error frequency but can't eliminate it. Programmatic verification catches what prompts miss. Rejection + regeneration ensures students only see correct questions. All three layers are needed.
+- **Verification must be a chokepoint, not an annotation.** When adding validation, create a single gateway function and route ALL code paths through it. Adding verification to one path while others bypass it is a false sense of safety. Audit every producer and consumer of the data type being validated.
+- **Verify claims at the choice level, not just the question level.** Detecting question format via regex is fragile — the AI generates infinite phrasings. Instead, verify the mathematical claims embedded within each answer choice. This is format-agnostic and catches errors regardless of how the question is worded.

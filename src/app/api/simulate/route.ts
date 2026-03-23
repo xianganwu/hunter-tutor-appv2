@@ -4,7 +4,7 @@ import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 import { parseWarn, parseError } from "@/lib/ai/parse-logger";
-import { isValidSimulateQuestion } from "@/lib/ai/validate-question";
+import { validateSimulateQuestion } from "@/lib/ai/validate-question";
 import { countWords } from "@/utils/count-words";
 
 // Allow up to 60s for AI question generation
@@ -197,21 +197,23 @@ Requirements:
             jsonMatch[0]
           ) as GeneratedMathQuestion[];
 
-          // Validate question structure and answer distinctness
+          // Validate question structure, answer distinctness, and mathematical correctness
           const validLetters = new Set(["A", "B", "C", "D", "E"]);
-          const structurallyValid = questions.filter((q) => {
-            if (!q.questionText?.trim()) return false;
+          const structurallyValid: GeneratedMathQuestion[] = [];
+          for (const q of questions) {
+            if (!q.questionText?.trim()) continue;
             if (!Array.isArray(q.answerChoices) || q.answerChoices.length !== 5)
-              return false;
+              continue;
             const letters = q.answerChoices.map((c) => c.letter);
-            if (!letters.every((l) => validLetters.has(l))) return false;
-            if (new Set(letters).size !== 5) return false;
-            if (!validLetters.has(q.correctAnswer)) return false;
-            if (!q.skillId?.trim()) return false;
-            // Reject questions with equivalent answer choices (e.g. "0.5" and "1/2")
-            if (!isValidSimulateQuestion(q.answerChoices, q.correctAnswer, "simulate/generate_math")) return false;
-            return true;
-          });
+            if (!letters.every((l) => validLetters.has(l))) continue;
+            if (new Set(letters).size !== 5) continue;
+            if (!validLetters.has(q.correctAnswer)) continue;
+            if (!q.skillId?.trim()) continue;
+            // Full validation: distinctness + place value + statement checks
+            const verified = validateSimulateQuestion(q.questionText, q.answerChoices as { letter: string; text: string }[], q.correctAnswer, "simulate/generate_math");
+            if (verified === null) continue;
+            structurallyValid.push(verified === q.correctAnswer ? q : { ...q, correctAnswer: verified });
+          }
 
           const filtered = questions.length - structurallyValid.length;
           if (filtered > 0) {

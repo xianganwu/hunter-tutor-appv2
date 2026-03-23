@@ -3,7 +3,7 @@ import type { DifficultyLevel, Skill } from "@/lib/types";
 import { getAnthropicClient } from "./client";
 import { getAllSkills } from "@/lib/exam/curriculum";
 import { parseWarn, parseError } from "./parse-logger";
-import { isValidQuestion, verifyPlaceValueAnswer, verifyStatementQuestion } from "./validate-question";
+import { validateGeneratedQuestion } from "./validate-question";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -646,7 +646,11 @@ Make sure:
 - Distractors are plausible but clearly wrong
 - Each question is distinct (no repeats)
 - Questions are appropriate difficulty for the student's age
-- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.`,
+- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
+
+PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
+
+STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing.`,
         },
       ],
     });
@@ -667,19 +671,21 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      const filtered = parsed.filter((q) => isValidQuestion(q.answerChoices, q.correctAnswer, "generateDrillBatch"));
-      if (filtered.length < parsed.length) {
-        parseWarn({ parser: "generateDrillBatch", field: "validation", fallback: `${filtered.length}/${parsed.length} questions passed` });
+      const validated: { questionText: string; correctAnswer: string; answerChoices: string[] }[] = [];
+      for (const q of parsed) {
+        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateDrillBatch");
+        if (verified !== null) {
+          validated.push({ questionText: q.questionText, correctAnswer: verified, answerChoices: q.answerChoices });
+        }
       }
-      if (filtered.length === 0) {
+      if (validated.length < parsed.length) {
+        parseWarn({ parser: "generateDrillBatch", field: "validation", fallback: `${validated.length}/${parsed.length} questions passed` });
+      }
+      if (validated.length === 0) {
         parseError({ parser: "generateDrillBatch", field: "result", fallback: "[] (all questions filtered out)", rawSnippet: text });
       }
 
-      return filtered.map((q) => ({
-          questionText: q.questionText,
-          correctAnswer: q.correctAnswer,
-          answerChoices: q.answerChoices,
-        }));
+      return validated;
     } catch (err) {
       parseError({ parser: "generateDrillBatch", field: "JSON", fallback: "[] (parse exception)", rawSnippet: text });
       console.error("[tutor-agent] generateDrillBatch JSON parse error:", err);
@@ -736,7 +742,11 @@ Make sure:
 - Distractors are plausible but clearly wrong
 - Each question is distinct (no repeats)
 - Questions are at the specified difficulty tier for each skill
-- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.`,
+- CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
+
+PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
+
+STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing.`,
         },
       ],
     });
@@ -757,20 +767,21 @@ Make sure:
         answerChoices: string[];
       }[];
 
-      const filtered = parsed.filter((q) => isValidQuestion(q.answerChoices, q.correctAnswer, "generateMixedDrillBatch"));
-      if (filtered.length < parsed.length) {
-        parseWarn({ parser: "generateMixedDrillBatch", field: "validation", fallback: `${filtered.length}/${parsed.length} questions passed` });
+      const validated: { skillId: string; questionText: string; correctAnswer: string; answerChoices: string[] }[] = [];
+      for (const q of parsed) {
+        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateMixedDrillBatch");
+        if (verified !== null) {
+          validated.push({ skillId: q.skillId, questionText: q.questionText, correctAnswer: verified, answerChoices: q.answerChoices });
+        }
       }
-      if (filtered.length === 0) {
+      if (validated.length < parsed.length) {
+        parseWarn({ parser: "generateMixedDrillBatch", field: "validation", fallback: `${validated.length}/${parsed.length} questions passed` });
+      }
+      if (validated.length === 0) {
         parseError({ parser: "generateMixedDrillBatch", field: "result", fallback: "[] (all questions filtered out)", rawSnippet: text });
       }
 
-      return filtered.map((q) => ({
-          skillId: q.skillId,
-          questionText: q.questionText,
-          correctAnswer: q.correctAnswer,
-          answerChoices: q.answerChoices,
-        }));
+      return validated;
     } catch (err) {
       parseError({ parser: "generateMixedDrillBatch", field: "JSON", fallback: "[] (parse exception)", rawSnippet: text });
       console.error("[tutor-agent] generateMixedDrillBatch JSON parse error:", err);
@@ -835,30 +846,13 @@ function parseGeneratedQuestion(
   }
   const correctAnswer = answerChoices[correctIndex];
 
-  // Reject if any choices are equivalent after normalization
-  if (!isValidQuestion(answerChoices, correctAnswer, "parseGeneratedQuestion")) {
-    return null;
-  }
-
-  // Verify place value answers programmatically (AI often miscounts digit positions)
-  let verifiedCorrectAnswer = correctAnswer;
-  const placeValueResult = verifyPlaceValueAnswer(questionText, answerChoices, correctAnswer);
-  if (placeValueResult === null) {
-    // Correct value not among choices — reject the question entirely
-    return null;
-  } else if (placeValueResult !== undefined) {
-    // AI had the wrong answer — use the corrected one
-    verifiedCorrectAnswer = placeValueResult;
-  }
-
-  // Reject "which statement is correct" questions with multiple true statements
-  if (verifyStatementQuestion(questionText, answerChoices) === null) {
-    return null;
-  }
+  // Run all validation checks through the centralized gateway
+  const verified = validateGeneratedQuestion(questionText, answerChoices, correctAnswer, "parseGeneratedQuestion");
+  if (verified === null) return null;
 
   return {
     questionText,
-    correctAnswer: verifiedCorrectAnswer,
+    correctAnswer: verified,
     answerChoices,
     skillId,
     difficultyTier,

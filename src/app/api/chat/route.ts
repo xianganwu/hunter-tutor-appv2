@@ -7,7 +7,7 @@ import { getSkillById } from "@/lib/exam/curriculum";
 import { prisma } from "@/lib/db";
 import { getCachedQuestion, ensureCacheFlushed } from "@/lib/question-cache";
 import { parseError } from "@/lib/ai/parse-logger";
-import { isValidQuestion } from "@/lib/ai/validate-question";
+import { validateGeneratedQuestion } from "@/lib/ai/validate-question";
 import { sanitizePromptInput } from "@/utils/sanitize-prompt";
 import type { DifficultyLevel } from "@/lib/types";
 
@@ -498,14 +498,13 @@ Respond with ONLY a JSON array, no other text:
             correctAnswer: string;
           }[];
 
-          const questions = parsed
-            .filter((q) => isValidQuestion(q.answerChoices, q.correctAnswer, "chat/generate_diagnostic"))
-            .map((q) => ({
-              skillId: q.skillId,
-              questionText: q.questionText,
-              answerChoices: q.answerChoices,
-              correctAnswer: q.correctAnswer,
-            }));
+          const questions: { skillId: string; questionText: string; answerChoices: string[]; correctAnswer: string }[] = [];
+          for (const q of parsed) {
+            const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "chat/generate_diagnostic");
+            if (verified !== null) {
+              questions.push({ skillId: q.skillId, questionText: q.questionText, answerChoices: q.answerChoices, correctAnswer: verified });
+            }
+          }
 
           return NextResponse.json({ questions });
         } catch (err) {

@@ -7,6 +7,8 @@ import {
   isValidSimulateQuestion,
   verifyPlaceValueAnswer,
   verifyStatementQuestion,
+  verifyPlaceValueChoiceClaims,
+  validateGeneratedQuestion,
 } from "./validate-question";
 
 // ─── normalizeChoiceValue ────────────────────────────────────────────
@@ -570,5 +572,168 @@ Which statement about these numbers is correct?`;
     ];
     // Two are true → reject
     expect(verifyStatementQuestion(question, choices)).toBeNull();
+  });
+});
+
+// ─── verifyPlaceValueChoiceClaims ──────────────────────────────────
+
+describe("verifyPlaceValueChoiceClaims", () => {
+  it("returns undefined for questions without comma-formatted numbers", () => {
+    expect(
+      verifyPlaceValueChoiceClaims(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7", "D) 8", "E) 9"],
+        "C) 7"
+      )
+    ).toBeUndefined();
+  });
+
+  it("returns undefined when choices have no verifiable place value claims", () => {
+    expect(
+      verifyPlaceValueChoiceClaims(
+        "Marcus scored 492,736 points. How many more to reach 500,000?",
+        ["A) 7,264", "B) 8,264", "C) 6,264", "D) 9,264", "E) 5,264"],
+        "A) 7,264"
+      )
+    ).toBeUndefined();
+  });
+
+  it("returns undefined when AI has the right answer (the screenshot bug scenario)", () => {
+    const question = `Marcus is playing a video game where he needs to collect points. His current score is 492,736 points. His friend tells him "The digit 7 in your score is worth 700 points." Is his friend correct, and why?`;
+    const choices = [
+      'A) Yes, because the 7 is in the hundreds place, so it\'s worth 700',
+      'B) No, because the 7 is in the thousands place, so it\'s worth 7,000',
+      'C) No, because the 7 is in the tens place, so it\'s worth 70',
+      'D) Yes, because the 7 is in the ones place, so it\'s worth 7',
+      'E) No, because the 7 is in the ten-thousands place, so it\'s worth 70,000',
+    ];
+    // AI correctly marked A
+    expect(verifyPlaceValueChoiceClaims(question, choices, choices[0])).toBeUndefined();
+  });
+
+  it("auto-corrects when AI marks the wrong choice (the screenshot bug)", () => {
+    const question = `Marcus is playing a video game where he needs to collect points. His current score is 492,736 points. His friend tells him "The digit 7 in your score is worth 700 points." Is his friend correct, and why?`;
+    const choices = [
+      'A) Yes, because the 7 is in the hundreds place, so it\'s worth 700',
+      'B) No, because the 7 is in the thousands place, so it\'s worth 7,000',
+      'C) No, because the 7 is in the tens place, so it\'s worth 70',
+      'D) Yes, because the 7 is in the ones place, so it\'s worth 7',
+      'E) No, because the 7 is in the ten-thousands place, so it\'s worth 70,000',
+    ];
+    // AI incorrectly marked B — should auto-correct to A
+    expect(verifyPlaceValueChoiceClaims(question, choices, choices[1])).toBe(choices[0]);
+  });
+
+  it("handles 'has a [digit] in the [place] place' pattern in choices", () => {
+    const question = "Look at the number 358,142. Which statement is true?";
+    const choices = [
+      "A) The number has a 5 in the ten-thousands place",
+      "B) The number has a 5 in the thousands place",
+      "C) The number has a 5 in the hundreds place",
+      "D) The number has a 5 in the tens place",
+    ];
+    // 358,142: digit 5 is at ten-thousands (position 4) → A is correct
+    // AI incorrectly says C
+    expect(verifyPlaceValueChoiceClaims(question, choices, choices[2])).toBe(choices[0]);
+  });
+
+  it("rejects when no choice has correct claims (digit not in number)", () => {
+    const question = "What place is the digit 9 in the number 123,456?";
+    const choices = [
+      "A) The 9 is in the hundreds place",
+      "B) The 9 is in the thousands place",
+      "C) The 9 is in the tens place",
+      "D) The 9 is in the ones place",
+    ];
+    // Digit 9 doesn't appear in 123,456 — all "9 is in X place" claims are
+    // verifiably false (the actual digit at each place ≠ 9), so reject.
+    expect(verifyPlaceValueChoiceClaims(question, choices, choices[0])).toBeNull();
+  });
+
+  it("handles value claims with 'worth' keyword", () => {
+    const question = "In the number 847,392, the digit 4 is worth how much?";
+    const choices = [
+      "A) The 4 is worth 400",
+      "B) The 4 is worth 4,000",
+      "C) The 4 is worth 40,000",
+      "D) The 4 is worth 40",
+      "E) The 4 is worth 400,000",
+    ];
+    // 847,392: digit 4 is at ten-thousands (position 4), value = 40,000
+    // AI says A, should be C
+    expect(verifyPlaceValueChoiceClaims(question, choices, choices[0])).toBe(choices[2]);
+  });
+
+  it("picks the largest number as context when multiple numbers appear", () => {
+    const question = "Emma's score is 365,218 points. Her friend says the 2 is worth 2,000.";
+    const choices = [
+      "A) Yes, the 2 is in the thousands place",
+      "B) No, the 2 is in the hundreds place",
+      "C) No, the 2 is in the tens place",
+      "D) No, the 2 is in the ones place",
+    ];
+    // 365,218: digit 2 is at hundreds (position 2), value = 200
+    // Friend's claim of 2,000 is wrong. B is the correct choice.
+    // AI says A → should correct to B
+    expect(verifyPlaceValueChoiceClaims(question, choices, choices[0])).toBe(choices[1]);
+  });
+});
+
+// ─── validateGeneratedQuestion (gateway) ────────────────────────────
+
+describe("validateGeneratedQuestion", () => {
+  it("passes a normal non-place-value question through", () => {
+    const result = validateGeneratedQuestion(
+      "What is 3 + 4?",
+      ["A) 5", "B) 6", "C) 7", "D) 8", "E) 9"],
+      "C) 7",
+      "test"
+    );
+    expect(result).toBe("C) 7");
+  });
+
+  it("rejects questions with fewer than 4 choices", () => {
+    expect(
+      validateGeneratedQuestion(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7"],
+        "C) 7",
+        "test"
+      )
+    ).toBeNull();
+  });
+
+  it("auto-corrects direct place value questions via verifyPlaceValueAnswer", () => {
+    // Digit 4 in 247,583 → 40,000 (ten-thousands)
+    const result = validateGeneratedQuestion(
+      "What is the value of the digit 4 in 247,583?",
+      ["A) 4", "B) 400", "C) 4,000", "D) 400,000", "E) 40,000"],
+      "B) 400",
+      "test"
+    );
+    expect(result).toBe("E) 40,000");
+  });
+
+  it("auto-corrects word problem place value via choice-level claims", () => {
+    const question = `Marcus is playing a video game. His score is 492,736. His friend says the digit 7 is worth 700. Is his friend correct?`;
+    const choices = [
+      'A) Yes, the 7 is in the hundreds place',
+      'B) No, the 7 is in the thousands place',
+      'C) No, the 7 is in the tens place',
+      'D) No, the 7 is in the ten-thousands place',
+    ];
+    const result = validateGeneratedQuestion(question, choices, choices[1], "test");
+    expect(result).toBe(choices[0]);
+  });
+
+  it("rejects 'which statement' questions with multiple true statements", () => {
+    const question = "Which statement about the number 523,841 is correct?";
+    const choices = [
+      "A) 523,841 has a 2 in the ten-thousands place",  // true
+      "B) 523,841 has a 4 in the tens place",            // true
+      "C) 523,841 has a 5 in the thousands place",       // false
+      "D) 523,841 has a 1 in the hundreds place",        // false
+    ];
+    expect(validateGeneratedQuestion(question, choices, choices[0], "test")).toBeNull();
   });
 });
