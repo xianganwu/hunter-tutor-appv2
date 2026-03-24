@@ -359,12 +359,17 @@ ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
     return parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier);
   }
 
-  /** Build messages for evaluateAnswer (shared by streaming and non-streaming). */
+  /** Build messages for evaluateAnswer (shared by streaming and non-streaming).
+   *  evaluationMode controls the feedback style:
+   *  - "chat" (default): Socratic — asks follow-up questions, doesn't reveal answer on wrong
+   *  - "study": Self-contained — no follow-up questions, reveals correct answer on wrong
+   */
   buildEvaluateMessages(
     questionText: string,
     studentAnswer: string,
     correctAnswer: string,
-    conversationHistory: readonly ConversationMessage[] = []
+    conversationHistory: readonly ConversationMessage[] = [],
+    evaluationMode: "chat" | "study" = "chat"
   ): { messages: Anthropic.MessageParam[]; isCorrect: boolean } {
     const isCorrect = answersMatch(studentAnswer, correctAnswer);
 
@@ -372,15 +377,40 @@ ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
       (m) => ({ role: m.role, content: m.content })
     );
 
-    const prompt = isCorrect
-      ? `The student answered correctly!
+    let prompt: string;
+
+    if (evaluationMode === "study") {
+      // Study mode: self-contained feedback, no follow-up questions
+      prompt = isCorrect
+        ? `The student answered correctly!
+
+Question: ${questionText}
+Student's answer: ${studentAnswer}
+Correct answer: ${correctAnswer}
+
+Give brief, enthusiastic praise (1-2 sentences). Acknowledge what they got right. Do NOT ask any follow-up questions — the student cannot respond in this mode.`
+        : `The student answered incorrectly.
+
+Question: ${questionText}
+Student's answer: ${studentAnswer}
+Correct answer: ${correctAnswer}
+
+1. Acknowledge their attempt positively ("Good try!" or "Nice effort!").
+2. Briefly explain why the correct answer is right (1-2 sentences).
+3. If helpful, mention why their answer was a common or understandable mistake.
+
+Keep it encouraging and concise. Do NOT ask the student any questions — they cannot respond in this mode.`;
+    } else {
+      // Chat mode: Socratic dialogue with follow-up questions
+      prompt = isCorrect
+        ? `The student answered correctly!
 
 Question: ${questionText}
 Student's answer: ${studentAnswer}
 Correct answer: ${correctAnswer}
 
 Give brief, enthusiastic praise (1-2 sentences). Acknowledge their specific reasoning if possible. Then ask if they want to try a harder one or move on.`
-      : `The student answered incorrectly.
+        : `The student answered incorrectly.
 
 Question: ${questionText}
 Student's answer: ${studentAnswer}
@@ -392,6 +422,7 @@ IMPORTANT: Do NOT reveal the correct answer yet. Instead:
 3. Give a small hint that nudges them toward the right thinking without giving it away.
 
 Keep it encouraging. We want them to try again.`;
+    }
 
     return {
       messages: [...historyMessages, { role: "user" as const, content: prompt }],
@@ -406,10 +437,11 @@ Keep it encouraging. We want them to try again.`;
     questionText: string,
     studentAnswer: string,
     correctAnswer: string,
-    conversationHistory: readonly ConversationMessage[] = []
+    conversationHistory: readonly ConversationMessage[] = [],
+    evaluationMode: "chat" | "study" = "chat"
   ): Promise<AnswerFeedback> {
     const { messages, isCorrect } = this.buildEvaluateMessages(
-      questionText, studentAnswer, correctAnswer, conversationHistory
+      questionText, studentAnswer, correctAnswer, conversationHistory, evaluationMode
     );
 
     const response = await this.client.messages.create({
@@ -648,6 +680,8 @@ Make sure:
 - Questions are appropriate difficulty for the student's age
 - CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
 
+FRACTIONS: Always use LaTeX notation for fractions and mixed numbers in BOTH questions AND answer choices. Write $\\frac{3}{8}$ not "3/8". Write $2\\frac{1}{4}$ not "2 1/4". Plain text fractions like "2 1/4 - 1 3/8" are confusing because "11/8" looks like "eleven-slash-eight" instead of a fraction.
+
 PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 
 STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing.`,
@@ -743,6 +777,8 @@ Make sure:
 - Each question is distinct (no repeats)
 - Questions are at the specified difficulty tier for each skill
 - CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
+
+FRACTIONS: Always use LaTeX notation for fractions and mixed numbers in BOTH questions AND answer choices. Write $\\frac{3}{8}$ not "3/8". Write $2\\frac{1}{4}$ not "2 1/4". Plain text fractions like "2 1/4 - 1 3/8" are confusing because "11/8" looks like "eleven-slash-eight" instead of a fraction.
 
 PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 

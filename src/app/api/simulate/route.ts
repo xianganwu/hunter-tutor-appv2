@@ -172,7 +172,7 @@ Requirements:
 - Exactly 5 choices per question (A through E)
 - correctAnswer is one of "A","B","C","D","E"
 - skillId must be one of the skill IDs listed above
-- Use LaTeX for math: $\\frac{3}{4}$, $x^2 + 3$, etc.
+- Use LaTeX for ALL math including fractions and mixed numbers: $\\frac{3}{4}$ not "3/4", $2\\frac{1}{4}$ not "2 1/4", $x^2 + 3$, etc.
 - Difficulty should range from straightforward to challenging
 - No duplicate questions
 - IMPORTANT: For each question, verify that exactly one answer choice is correct and the other four are definitively wrong. Check every answer choice against the question's conditions before including it.`,

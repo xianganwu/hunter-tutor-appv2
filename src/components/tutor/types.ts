@@ -59,6 +59,7 @@ export type ChatAction =
       studentAnswer: string;
       correctAnswer: string;
       history?: ConversationMessage[];
+      evaluationMode?: "chat" | "study";
       sessionId?: string;
       skillId?: string;
       timeSpentSeconds?: number;

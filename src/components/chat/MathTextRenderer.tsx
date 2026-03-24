@@ -97,8 +97,10 @@ function parseText(text: string): TextPart[] {
  * Parse a text segment for LaTeX math delimiters and push parts.
  */
 function parseMath(text: string, parts: TextPart[]): void {
-  // Negative lookahead: $<digit> is currency (e.g. $15), not LaTeX
-  const regex = /(\$\$[\s\S]+?\$\$|\$(?!\d)[^$\n]+?\$)/g;
+  // Match LaTeX math delimiters: $$display$$, $digit…operator…$ (e.g. $24 - 6 = 18$),
+  // or $non-digit…$ (original). The digit variant requires a math operator so bare
+  // currency like $15 is not mistaken for LaTeX.
+  const regex = /(\$\$[\s\S]+?\$\$|\$\d[^$\n]*?[+\-×÷=<>^_\\][^$\n]*?\$|\$(?!\d)[^$\n]+?\$)/g;
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 

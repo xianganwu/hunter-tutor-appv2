@@ -42,6 +42,7 @@ const ChatActionSchema = z.discriminatedUnion("type", [
     studentAnswer: z.string(),
     correctAnswer: z.string().min(1),
     history: z.array(ConversationMessageSchema).optional(),
+    evaluationMode: z.enum(["chat", "study"]).optional(),
     sessionId: z.string().optional(),
     skillId: z.string().optional(),
     timeSpentSeconds: z.number().optional(),
@@ -233,11 +234,13 @@ export async function POST(request: Request): Promise<Response> {
       }
 
       case "evaluate_answer": {
+        const mode = body.evaluationMode ?? "chat";
         const { messages, isCorrect } = agent.buildEvaluateMessages(
           body.questionText,
           body.studentAnswer,
           body.correctAnswer,
-          body.history ?? []
+          body.history ?? [],
+          mode
         );
 
         // Persist the attempt to DB if session context is provided (fire-and-forget)
@@ -272,7 +275,8 @@ export async function POST(request: Request): Promise<Response> {
           body.questionText,
           body.studentAnswer,
           body.correctAnswer,
-          body.history ?? []
+          body.history ?? [],
+          mode
         );
         return NextResponse.json({
           text: feedback.feedback,

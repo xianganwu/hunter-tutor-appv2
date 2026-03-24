@@ -387,14 +387,14 @@
             {
               "skill_id": "ma_factors_multiples",
               "name": "Factors and Multiples",
-              "description": "Find factors of a number, multiples, GCF (Greatest Common Factor), and LCM (Least Common Multiple).",
+              "description": "Find factors of a number, multiples, greatest common factor (GCF), and least common multiple (LCM).",
               "level": "foundations",
               "prerequisite_skills": ["ma_multiply_divide"],
               "difficulty_tier": 2,
               "example_teaching_prompts": [
                 "Factors are numbers that divide evenly into another number. The factors of 12 are: 1, 2, 3, 4, 6, 12. Can you find all the factors of 18?",
                 "Multiples are what you get when you skip-count. Multiples of 3: 3, 6, 9, 12, 15... Can you find the first number that's a multiple of BOTH 3 and 4?",
-                "The GCF is the biggest number that divides into both numbers. For 12 and 18, let's list both sets of factors and find the biggest one they share."
+                "The greatest common factor (GCF) is the biggest number that divides into both numbers. For 12 and 18, let's list both sets of factors and find the biggest one they share."
               ]
             },
             {
@@ -613,13 +613,13 @@
             {
               "skill_id": "ma_order_of_operations",
               "name": "Order of Operations",
-              "description": "Solve expressions in the right order using PEMDAS: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction.",
+              "description": "Solve expressions in the right order using the order of operations (PEMDAS): Parentheses, Exponents, Multiplication/Division, Addition/Subtraction.",
               "level": "foundations",
               "prerequisite_skills": ["ma_multiply_divide"],
               "difficulty_tier": 2,
               "example_teaching_prompts": [
                 "When you see 3 + 4 × 2, do you add first or multiply first? The rule is: multiply and divide BEFORE adding and subtracting. So it's 3 + 8 = 11, not 14!",
-                "PEMDAS helps you remember: Parentheses first, then Exponents, then Multiply/Divide, then Add/Subtract.",
+                "The order of operations (PEMDAS) helps you remember: Parentheses first, then Exponents, then Multiply/Divide, then Add/Subtract.",
                 "Parentheses are like a VIP pass — whatever is inside them goes first. In (3 + 4) × 2, we do 3 + 4 = 7 first, then 7 × 2 = 14."
               ]
             },

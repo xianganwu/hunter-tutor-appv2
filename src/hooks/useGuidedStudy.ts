@@ -543,6 +543,7 @@ export function useGuidedStudy() {
             questionText: s.activeQuestion.questionText,
             studentAnswer: resolvedAnswer,
             correctAnswer: s.activeQuestion.correctAnswer,
+            evaluationMode: "study",
             skillId: s.currentSkillId ?? undefined,
           },
           (delta) => {
