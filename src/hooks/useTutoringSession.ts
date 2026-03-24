@@ -106,8 +106,8 @@ function pickNextSkillInDomain(
   return null;
 }
 
-/** Streak threshold to trigger mid-session skill switch. */
-const SKILL_SWITCH_STREAK = 4;
+/** Streak threshold to trigger mid-session skill switch (matches STREAK_TO_ADVANCE). */
+const SKILL_SWITCH_STREAK = 3;
 
 /** Minimum mastery to consider a skill "well-practiced" for switching. */
 const SKILL_SWITCH_MASTERY = 0.7;
@@ -733,26 +733,12 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           };
         }
 
-        // Check if teach-it-back should trigger (Feynman technique)
-        if (
-          isCorrect &&
-          shouldTriggerTeachBack(
-            newQuestionCount,
-            newCorrectCount,
-            s.currentSkillId,
-            teachBackTriggeredSkills.current
-          )
-        ) {
-          teachBackTriggeredSkills.current.add(s.currentSkillId);
-          setTeachBackActive(true);
-          setLoading(false);
-          return;
-        }
-
         // ─── Mid-session skill switch ──────────────────────────────────
         // When the student has demonstrated strong mastery on the current
         // skill (high streak + high mastery), switch to a new skill in the
         // same domain rather than repeating the same topic.
+        // Checked BEFORE teach-back so mastery triggers a topic change
+        // instead of a teach-back exercise on an already-proven skill.
         if (
           isCorrect &&
           newStreak >= SKILL_SWITCH_STREAK &&
@@ -809,6 +795,22 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
             setState((prev) => ({ ...prev, phase: "ready" }));
             return;
           }
+        }
+
+        // Check if teach-it-back should trigger (Feynman technique)
+        if (
+          isCorrect &&
+          shouldTriggerTeachBack(
+            newQuestionCount,
+            newCorrectCount,
+            s.currentSkillId,
+            teachBackTriggeredSkills.current
+          )
+        ) {
+          teachBackTriggeredSkills.current.add(s.currentSkillId);
+          setTeachBackActive(true);
+          setLoading(false);
+          return;
         }
 
         // If in teach mode or pacing says insert teaching, teach first (streamed)

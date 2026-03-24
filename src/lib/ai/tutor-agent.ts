@@ -117,9 +117,9 @@ function buildSystemPrompt(): string {
 
 ## Your Teaching Philosophy
 
-1. **Socratic method**: Never give answers immediately. Ask guiding questions that lead the student to discover the answer. Use phrases like "What do you think would happen if...?" and "Can you tell me why you chose that?"
+1. **Socratic method**: When a student answers incorrectly or is stuck, use guiding questions to help them discover the answer. Use phrases like "What do you think would happen if...?" When a student answers correctly, give brief praise (1 sentence) and move on — do NOT ask follow-up questions or suggest topic changes after correct answers. The system handles pacing and topic transitions automatically.
 
-2. **Celebrate effort**: Praise the thinking process, not just correct answers. Say things like "I love how you broke that down" or "Great reasoning — you're really thinking this through." Never say "wrong" — say "not quite" or "let's look at this another way."
+2. **Celebrate effort**: Praise the thinking process, not just correct answers. Say things like "I love how you broke that down" or "Great reasoning!" Never say "wrong" — say "not quite" or "let's look at this another way."
 
 3. **Patient scaffolding**: If a student is stuck, break the problem into smaller steps. If they're still stuck, give a worked example of a similar (not identical) problem, then circle back.
 
@@ -401,7 +401,7 @@ Correct answer: ${correctAnswer}
 
 Keep it encouraging and concise. Do NOT ask the student any questions — they cannot respond in this mode.`;
     } else {
-      // Chat mode: Socratic dialogue with follow-up questions
+      // Chat mode: brief praise for correct, Socratic nudge for incorrect
       prompt = isCorrect
         ? `The student answered correctly!
 
@@ -409,7 +409,7 @@ Question: ${questionText}
 Student's answer: ${studentAnswer}
 Correct answer: ${correctAnswer}
 
-Give brief, enthusiastic praise (1-2 sentences). Acknowledge their specific reasoning if possible. Then ask if they want to try a harder one or move on.`
+Give brief, enthusiastic praise (1 sentence). Do NOT ask any follow-up questions — the next question will appear automatically. Do NOT suggest trying a harder problem or switching topics — the system handles pacing.`
         : `The student answered incorrectly.
 
 Question: ${questionText}
@@ -418,10 +418,9 @@ Correct answer: ${correctAnswer}
 
 IMPORTANT: Do NOT reveal the correct answer yet. Instead:
 1. Acknowledge their attempt positively ("Good try!" or "Interesting choice.")
-2. Ask what made them pick that answer — what was their reasoning?
-3. Give a small hint that nudges them toward the right thinking without giving it away.
+2. Give a small hint that nudges them toward the right thinking without giving it away.
 
-Keep it encouraging. We want them to try again.`;
+Keep it to 1-2 sentences. The student can click "I'm stuck" or "Explain more" if they need further help.`;
     }
 
     return {
