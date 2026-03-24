@@ -292,6 +292,42 @@ function Dashboard() {
       )}
 
       {!showWeeklyReport && <>
+      {/* Quick Actions */}
+      <div className="grid grid-cols-2 gap-3">
+        <a
+          href="/progress"
+          className="flex items-center gap-3 rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4 transition-colors hover:bg-surface-50 dark:hover:bg-surface-800"
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-lg dark:bg-brand-600/20">
+            📊
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-surface-900 dark:text-surface-100">
+              Student Progress
+            </p>
+            <p className="text-xs text-surface-400">
+              Skills, mastery &amp; sessions
+            </p>
+          </div>
+        </a>
+        <a
+          href="/simulate"
+          className="flex items-center gap-3 rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-4 transition-colors hover:bg-surface-50 dark:hover:bg-surface-800"
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-lg dark:bg-amber-600/20">
+            🎯
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-surface-900 dark:text-surface-100">
+              Practice Exam
+            </p>
+            <p className="text-xs text-surface-400">
+              Full-length simulation
+            </p>
+          </div>
+        </a>
+      </div>
+
       {/* Weekly Practice */}
       <WeeklyPracticeCard
         minutes={data.weeklyMinutes}
