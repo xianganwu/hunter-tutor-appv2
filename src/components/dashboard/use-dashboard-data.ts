@@ -119,12 +119,14 @@ function computeStreaks(
 ): {
   currentStreak: number;
   longestStreak: number;
+  longestStreakStart: string | null;
+  longestStreakEnd: string | null;
 } {
   // Combine practiced and frozen dates for streak counting
   const activeSet = new Set([...sortedDates, ...frozenDates]);
   const allSorted = [...activeSet].sort();
 
-  if (allSorted.length === 0) return { currentStreak: 0, longestStreak: 0 };
+  if (allSorted.length === 0) return { currentStreak: 0, longestStreak: 0, longestStreakStart: null, longestStreakEnd: null };
 
   const today = new Date().toISOString().split("T")[0];
   const yesterday = new Date(Date.now() - MS_PER_DAY)
@@ -133,31 +135,55 @@ function computeStreaks(
 
   // Current streak: consecutive days ending today or yesterday
   let currentStreak = 0;
+  let currentStreakStart: string | null = null;
+  let currentStreakEnd: string | null = null;
   if (activeSet.has(today) || activeSet.has(yesterday)) {
     const start = activeSet.has(today) ? today : yesterday;
+    currentStreakEnd = start;
     let d = new Date(start + "T00:00:00");
     while (activeSet.has(d.toISOString().split("T")[0])) {
+      currentStreakStart = d.toISOString().split("T")[0];
       currentStreak++;
       d = new Date(d.getTime() - MS_PER_DAY);
     }
   }
 
-  // Longest streak
+  // Longest streak — track start/end dates
   let longest = 1;
+  let longestStart = allSorted[0];
+  let longestEnd = allSorted[0];
   let streak = 1;
+  let streakStart = allSorted[0];
   for (let i = 1; i < allSorted.length; i++) {
     const prev = new Date(allSorted[i - 1] + "T00:00:00").getTime();
     const curr = new Date(allSorted[i] + "T00:00:00").getTime();
     if (curr - prev === MS_PER_DAY) {
       streak++;
     } else {
-      longest = Math.max(longest, streak);
+      if (streak > longest) {
+        longest = streak;
+        longestStart = streakStart;
+        longestEnd = allSorted[i - 1];
+      }
       streak = 1;
+      streakStart = allSorted[i];
     }
   }
-  longest = Math.max(longest, streak, currentStreak);
+  // Final run
+  if (streak > longest) {
+    longest = streak;
+    longestStart = streakStart;
+    longestEnd = allSorted[allSorted.length - 1];
+  }
 
-  return { currentStreak, longestStreak: longest };
+  // If current streak beats the iteration-based longest, use current streak dates
+  if (currentStreak > longest) {
+    longest = currentStreak;
+    longestStart = currentStreakStart!;
+    longestEnd = currentStreakEnd!;
+  }
+
+  return { currentStreak, longestStreak: longest, longestStreakStart: longestStart, longestStreakEnd: longestEnd };
 }
 
 export interface DashboardData {
@@ -173,7 +199,7 @@ export function useDashboardData(): DashboardData {
   const [data, setData] = useState<DashboardData>({
     skillStates: [],
     domainProgress: [],
-    streakData: { currentStreak: 0, longestStreak: 0, practicedDates: [] },
+    streakData: { currentStreak: 0, longestStreak: 0, longestStreakStart: null, longestStreakEnd: null, practicedDates: [] },
     weeklySummary: {
       skillsImproved: [],
       totalMinutesPracticed: 0,
@@ -265,7 +291,7 @@ export function useDashboardData(): DashboardData {
       saveStreakFreezes(freezeData);
     }
 
-    const { currentStreak, longestStreak } = computeStreaks(sortedDates, freezeData.frozenDates);
+    const { currentStreak, longestStreak, longestStreakStart, longestStreakEnd } = computeStreaks(sortedDates, freezeData.frozenDates);
     const fourteenDaysAgo = new Date(Date.now() - 14 * MS_PER_DAY)
       .toISOString()
       .split("T")[0];
@@ -342,6 +368,8 @@ export function useDashboardData(): DashboardData {
       streakData: {
         currentStreak,
         longestStreak,
+        longestStreakStart,
+        longestStreakEnd,
         practicedDates: recentDates,
       },
       weeklySummary: {

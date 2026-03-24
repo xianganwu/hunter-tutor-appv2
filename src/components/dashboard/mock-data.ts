@@ -118,9 +118,14 @@ export function getMockStreakData(): StreakData {
       );
     }
   }
+  // Best streak of 7: days ago 7 through 13 (the earliest block of consecutive days)
+  const bestEnd = new Date(now.getTime() - 7 * 86400000).toISOString().split("T")[0];
+  const bestStart = new Date(now.getTime() - 13 * 86400000).toISOString().split("T")[0];
   return {
     currentStreak: 5,
     longestStreak: 7,
+    longestStreakStart: bestStart,
+    longestStreakEnd: bestEnd,
     practicedDates: dates,
   };
 }

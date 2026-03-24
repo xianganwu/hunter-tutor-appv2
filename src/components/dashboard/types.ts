@@ -23,6 +23,8 @@ export interface DomainProgress {
 export interface StreakData {
   readonly currentStreak: number;
   readonly longestStreak: number;
+  readonly longestStreakStart: string | null; // ISO date string
+  readonly longestStreakEnd: string | null; // ISO date string
   readonly practicedDates: readonly string[]; // ISO date strings, last 14 days
 }
 

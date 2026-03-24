@@ -4,23 +4,28 @@ interface StreakDisplayProps {
   readonly data: StreakData;
 }
 
-type DayStatus = "practiced" | "rest";
+function formatDateRange(start: string | null, end: string | null): string | null {
+  if (!start || !end) return null;
+  const fmt = (iso: string) => {
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  };
+  // If same year as now, omit year; otherwise include it
+  const startYear = new Date(start + "T00:00:00").getFullYear();
+  const currentYear = new Date().getFullYear();
+  if (startYear !== currentYear) {
+    const fmtWithYear = (iso: string) => {
+      const d = new Date(iso + "T00:00:00");
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    };
+    return `${fmtWithYear(start)} – ${fmtWithYear(end)}`;
+  }
+  return `${fmt(start)} – ${fmt(end)}`;
+}
 
 export function StreakDisplay({ data }: StreakDisplayProps) {
-  const today = new Date();
-  const last14Days: { date: string; status: DayStatus }[] = [];
-
-  for (let i = 13; i >= 0; i--) {
-    const d = new Date(today.getTime() - i * 86400000);
-    const dateStr = d.toISOString().split("T")[0];
-    const practiced = data.practicedDates.includes(dateStr);
-    last14Days.push({
-      date: dateStr,
-      status: practiced ? "practiced" : "rest",
-    });
-  }
-
   const isActive = data.currentStreak > 0;
+  const bestRange = formatDateRange(data.longestStreakStart, data.longestStreakEnd);
 
   return (
     <div className="flex flex-col gap-3">
@@ -38,29 +43,15 @@ export function StreakDisplay({ data }: StreakDisplayProps) {
         </div>
         <div className="text-sm text-surface-500 dark:text-surface-400">
           <div className="font-medium">day streak</div>
-          <div>Best: {data.longestStreak} days</div>
+          <div>
+            Best: {data.longestStreak} days
+            {bestRange && (
+              <span className="text-xs text-surface-400 dark:text-surface-500 ml-1">
+                ({bestRange})
+              </span>
+            )}
+          </div>
         </div>
-      </div>
-      <div
-        className="flex gap-1.5"
-        aria-label={`Practice streak: ${data.currentStreak} days in a row`}
-      >
-        {last14Days.map((day) => (
-          <div
-            key={day.date}
-            className={`w-4 h-4 rounded-full transition-colors duration-300 ${
-              day.status === "practiced"
-                ? "bg-streak-400"
-                : "bg-surface-200 dark:bg-surface-700"
-            }`}
-            title={`${day.date}: ${day.status === "practiced" ? "Practiced" : "Rest day"}`}
-            aria-label={`${day.date}: ${day.status === "practiced" ? "Practiced" : "Rest day"}`}
-          />
-        ))}
-      </div>
-      <div className="flex justify-between text-xs text-surface-400 dark:text-surface-500">
-        <span>2 weeks ago</span>
-        <span>Today</span>
       </div>
     </div>
   );
