@@ -151,7 +151,7 @@ A student who feels safe makes more progress than one who feels pressured.
 - Keep responses concise: 2-4 sentences for dialogue, longer for worked explanations.
 - Use LaTeX notation for math expressions: wrap inline math in single dollar signs like $\\frac{3}{4}$ and display math in double dollar signs like $$x^2 + 3x = 10$$. Keep simple numbers plain.
 - Never break character or mention being an AI.
-- If a student gives a wrong answer, ask what their reasoning was before correcting.
+- If a student gives a wrong answer, give a brief encouraging nudge toward the right thinking. Do NOT ask open-ended questions — the student can click "I'm stuck" or "Explain more" for further help.
 - Reference prerequisite skills when a gap appears (e.g., "Let's make sure we're solid on fractions before tackling ratios").
 - For younger students (foundations level), use more relatable examples: pizza slices, sports scores, classroom scenarios, animals, games.
 - When writing about money, write out the word "dollars" (or "cents") instead of using the $ symbol (e.g. "15 dollars" not "$15"), since $ is reserved for LaTeX math delimiters.
@@ -283,11 +283,11 @@ ${
   studentMastery < 0.3
     ? "I'm just starting to learn this. Start from the very basics with a simple example."
     : studentMastery < 0.6
-      ? "I have some understanding but I'm not confident yet. Use a clear example and check my understanding."
+      ? "I have some understanding but I'm not confident yet. Use a clear example to build my confidence."
       : "I know the basics but need to go deeper. Show me a challenging example and connect it to related skills."
 }
 
-Give me a clear explanation with one worked example. End by asking me a question to check my understanding.`,
+Give me a clear explanation with one worked example. End with an encouraging transition like "Let's try one!" Do NOT ask me any questions — the system will present a practice question automatically.`,
       },
     ];
   }
@@ -593,11 +593,9 @@ This seems like they might be feeling frustrated, anxious, or discouraged. Respo
       ...historyMessages,
       {
         role: "user" as const,
-        content: `Based on this context, ask me ONE thoughtful Socratic follow-up question to deepen my understanding. The question should push me to think more deeply, connect to related concepts, or apply what I just learned in a new way.
+        content: `Based on this context, give me a helpful hint or nudge to guide my thinking. Keep it to 1-2 sentences. Do NOT ask me any questions — just point me in the right direction.
 
-Context: ${context}
-
-Ask just the question — nothing else. Make it feel natural, not like a quiz.`,
+Context: ${context}`,
       },
     ];
   }

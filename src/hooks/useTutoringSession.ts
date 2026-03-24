@@ -21,7 +21,6 @@ import {
   tierLabel,
 } from "@/lib/adaptive";
 import type { AttemptRecord } from "@/lib/adaptive";
-import type { DifficultyLevel } from "@/lib/types";
 import { addMistake, createMistakeEntry } from "@/lib/mistakes";
 import type { MistakeDiagnosis } from "@/lib/mistakes";
 import { getSkillById, getDomainForSkill } from "@/lib/exam/curriculum";
@@ -341,7 +340,6 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
   const pacingState = useRef(createPacingState(new Date()));
 
   // Deferred question: after teaching, wait for student to respond before showing MC question
-  const pendingQuestion = useRef<{ skillId: string; tier: DifficultyLevel } | null>(null);
 
   // Track recently shown question texts for deduplication (capped at 20)
   const recentQuestionTexts = useRef<string[]>([]);
@@ -588,9 +586,26 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           streaming.appendDelta
         );
 
-        // Defer the first MC question — let the student respond to the teaching first
-        pendingQuestion.current = { skillId, tier: s.difficultyTier };
-        setState((prev) => ({ ...prev, phase: "ready" }));
+        // Generate MC question immediately after teaching — no deferral
+        const nextQ = await callApi({
+          type: "generate_question",
+          skillId,
+          difficultyTier: s.difficultyTier,
+          recentQuestions: recentQuestionTexts.current,
+        });
+
+        if (nextQ.question) {
+          trackQuestion(recentQuestionTexts, nextQ.question.questionText);
+          addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
+          questionShownAt.current = Date.now();
+          setState((prev) => ({
+            ...prev,
+            activeQuestion: nextQ.question ?? null,
+            phase: "ready",
+          }));
+        } else {
+          setLoading(false);
+        }
       }
     } catch (err) {
       const errMsg = err instanceof Error ? err.message : "Something went wrong";
@@ -790,9 +805,26 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
             );
             pacingState.current = advancePacingAfterTeaching(pacingState.current);
 
-            // Defer question for new skill — let student absorb teaching first
-            pendingQuestion.current = { skillId: nextSkill.skillId, tier: newTierForSkill };
-            setState((prev) => ({ ...prev, phase: "ready" }));
+            // Generate MC question immediately after teaching new skill
+            const switchQ = await callApi({
+              type: "generate_question",
+              skillId: nextSkill.skillId,
+              difficultyTier: newTierForSkill,
+              recentQuestions: recentQuestionTexts.current,
+            });
+
+            if (switchQ.question) {
+              trackQuestion(recentQuestionTexts, switchQ.question.questionText);
+              addMessages(makeTutorMsg(switchQ.question.questionText, "question"));
+              questionShownAt.current = Date.now();
+              setState((prev) => ({
+                ...prev,
+                activeQuestion: switchQ.question ?? null,
+                phase: "ready",
+              }));
+            } else {
+              setLoading(false);
+            }
             return;
           }
         }
@@ -829,13 +861,11 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           );
           pacingState.current = advancePacingAfterTeaching(pacingState.current);
 
-          // Defer MC question — let student respond to teaching first
-          pendingQuestion.current = { skillId: s.currentSkillId, tier: decision.tier };
-          setState((prev) => ({ ...prev, phase: "ready" }));
-          return;
+          // Generate MC question immediately after teaching — no deferral
+          // (falls through to the generate_question block below)
         }
 
-        // No teaching — generate next question immediately
+        // Generate next MC question (immediately after teaching, or directly)
         const nextQ = await callApi({
           type: "generate_question",
           skillId: s.currentSkillId,
@@ -1009,44 +1039,23 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
 
       addMessages(makeUserMsg(text));
 
-      // Bug 2 fix: no active question and not frustrated — respond with a
-      // Socratic follow-up instead of going silent.
+      // No active question — student is asking a free-form question.
+      // Give a helpful response without Socratic probing.
       setLoading(true);
       try {
+        const s = stateRef.current;
         const streaming = addStreamingMessage("text");
         await callApiStream(
-          { type: "get_hint", context: text, history: getHistory() },
+          {
+            type: "explain_more",
+            skillId: s.currentSkillId,
+            mastery: s.mastery,
+            context: text,
+          },
           streaming.appendDelta
         );
       } catch {
-        addMessages(makeTutorMsg("That's a great thought! Let's keep exploring.", "text"));
-      }
-
-      // If a MC question was deferred after teaching, generate it now
-      if (pendingQuestion.current) {
-        const pq = pendingQuestion.current;
-        pendingQuestion.current = null;
-        try {
-          const nextQ = await callApi({
-            type: "generate_question",
-            skillId: pq.skillId,
-            difficultyTier: pq.tier,
-            recentQuestions: recentQuestionTexts.current,
-          });
-          if (nextQ.question) {
-            trackQuestion(recentQuestionTexts, nextQ.question.questionText);
-            addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
-            questionShownAt.current = Date.now();
-            setState((prev) => ({
-              ...prev,
-              activeQuestion: nextQ.question ?? null,
-              phase: "ready",
-            }));
-            return;
-          }
-        } catch {
-          // Fall through to setLoading(false)
-        }
+        addMessages(makeTutorMsg("Great question! Let me know if you'd like more help.", "text"));
       }
 
       setLoading(false);
@@ -1061,7 +1070,6 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
     teachBackTriggeredSkills.current.clear();
     hintUsedForCurrent.current = false;
     questionShownAt.current = null;
-    pendingQuestion.current = null;
     sessionDbId.current = null;
     pacingState.current = createPacingState(new Date());
     setSummary(null);

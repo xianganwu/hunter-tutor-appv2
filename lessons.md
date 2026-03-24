@@ -136,6 +136,46 @@ The PLACE VALUE CHECK prompt paragraph (counting positions right-to-left) was on
 
 ---
 
+## Bug: Tutor Asks Open-Ended Socratic Questions Instead of MC Questions
+
+### Symptoms
+- After teaching a concept, the tutor asks an open-ended question like "What numbers do you see, and what operation do you think you need? Tell me your thinking!"
+- Student types a free-form answer, then gets ANOTHER Socratic follow-up ("What would happen if Mike bought 4 packs instead of 3?")
+- The actual MC question (with A/B/C/D/E choices) only appears after this double interaction
+- The student experience is: teach → open-ended question → type answer → Socratic follow-up → MC question (3 interactions before the first real question)
+
+### Root Cause — Three Compounding Sources of Open-Ended Questions
+
+**Source 1: `buildTeachMessages()` prompt (tutor-agent.ts line 290)**
+The teach prompt ended with "End by asking me a question to check my understanding." Combined with the Socratic philosophy in the system prompt, the AI naturally generated probing questions like "What numbers do you see? Tell me your thinking!"
+
+**Source 2: Deferred MC question pattern (`useTutoringSession.ts`)**
+After teaching, the hook stored the MC question in `pendingQuestion.current` and set `phase: "ready"` — waiting for the student to respond to the open-ended question. The MC question was only generated AFTER the student typed something. This existed in 3 places: initial session start, mid-session skill switch, and teach-mode after answer evaluation.
+
+**Source 3: `buildHintMessages()` Socratic follow-up (tutor-agent.ts line 596)**
+When the student typed a response to the teaching (with no `activeQuestion` set), the `sendMessage` handler called `get_hint`, which had its own prompt: "Ask me ONE thoughtful Socratic follow-up question to deepen my understanding." This generated ANOTHER open-ended question before finally generating the deferred MC question.
+
+**Source 4: System prompt rule (tutor-agent.ts line 154)**
+"If a student gives a wrong answer, ask what their reasoning was before correcting" — this generated open-ended questions after wrong MC answers too.
+
+### Fix (Approach A: Remove all open-ended question sources + eliminate deferral)
+
+1. **`buildTeachMessages()` prompt**: Changed from "End by asking me a question to check my understanding" → "End with an encouraging transition like 'Let's try one!' Do NOT ask me any questions — the system will present a practice question automatically."
+2. **Removed deferral pattern**: At all 3 `pendingQuestion` sites, replaced the deferred pattern with immediate `generate_question` calls. The MC question now appears right after teaching, no student interaction required.
+3. **`sendMessage` free-text handler**: Replaced `get_hint` (Socratic follow-up) with `explain_more` (helpful response without questions). Removed all dead `pendingQuestion` consumer code.
+4. **`buildHintMessages()` prompt**: Changed from "ask me ONE thoughtful Socratic follow-up question" → "give me a helpful hint or nudge. Do NOT ask me any questions."
+5. **System prompt rule**: Changed "ask what their reasoning was" → "give a brief encouraging nudge. Do NOT ask open-ended questions."
+6. **Cleanup**: Removed `pendingQuestion` ref entirely (declaration + restart cleanup + import of unused `DifficultyLevel` type).
+
+### Key Lesson
+**Deferred interactions create invisible multi-step flows.** The `pendingQuestion` pattern seemed elegant (teach → let student absorb → then quiz) but created a confusing 3-step interaction before the first real question. For young students (ages 9-12), the flow should be as direct as possible: teach → MC question. If the student needs more help, they can click explicit buttons ("Explain more", "I'm stuck"). Don't force interactions — let the student pull help when they need it.
+
+**AI prompts that say "ask a question" will always generate questions.** Even with a system prompt that says "no follow-up questions after correct answers," a teach prompt that says "end by asking a question" will generate a question. Prompt instructions don't override each other — they compound. Be explicit about what the AI should NOT do in EVERY prompt that could generate unwanted behavior.
+
+**Audit every consumer of removed state.** When removing `pendingQuestion`, the ref was set in 3 places but consumed in 2 (sendMessage + restart). Removing the setters without removing the consumers would leave dead code. Always grep for all references when removing state.
+
+---
+
 ## General Principles
 
 - **Validate AI outputs deterministically wherever possible.** Don't rely on "verify your answer" instructions in prompts — they're unreliable for mechanical reasoning tasks.
