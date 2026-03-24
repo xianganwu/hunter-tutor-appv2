@@ -61,8 +61,14 @@ export async function getCachedQuestion(
       };
     }
 
-    // Cache miss — generate a fresh batch, cache them, and serve one
-    const firstQuestion = await generateAndCacheBatch(skill, difficultyTier, agent, recentQuestions);
+    // Cache miss — generate a fresh batch, cache them, and serve one.
+    // If all questions in the batch fail validation, retry once.
+    let firstQuestion = await generateAndCacheBatch(skill, difficultyTier, agent, recentQuestions);
+    if (!firstQuestion) {
+      console.warn("[question-cache] First batch failed, retrying with relaxed dedup");
+      const trimmed = recentQuestions?.slice(-5);
+      firstQuestion = await generateAndCacheBatch(skill, difficultyTier, agent, trimmed);
+    }
 
     if (firstQuestion) {
       return firstQuestion;
@@ -72,8 +78,14 @@ export async function getCachedQuestion(
     console.warn("[question-cache] Cache unavailable, falling back to direct generation:", err);
   }
 
-  // Fallback: generate a single question directly (no caching)
-  return agent.generateQuestion(skill, difficultyTier, recentQuestions);
+  // Fallback: generate a single question directly (no caching).
+  // Retry once with relaxed dedup if first attempt fails.
+  const direct = await agent.generateQuestion(skill, difficultyTier, recentQuestions);
+  if (direct) return direct;
+
+  console.warn("[question-cache] Direct generation failed, retrying with relaxed dedup");
+  const trimmed = recentQuestions?.slice(-3);
+  return agent.generateQuestion(skill, difficultyTier, trimmed);
 }
 
 /**

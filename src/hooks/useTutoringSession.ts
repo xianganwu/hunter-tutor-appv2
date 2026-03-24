@@ -589,6 +589,9 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           streaming.appendDelta
         );
 
+        // Brief pause to avoid back-to-back API rate pressure
+        await new Promise((r) => setTimeout(r, 150));
+
         // Generate MC question immediately after teaching — no deferral
         const nextQ = await callApi({
           type: "generate_question",
@@ -815,6 +818,9 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
             );
             pacingState.current = advancePacingAfterTeaching(pacingState.current);
 
+            // Brief pause to avoid back-to-back API rate pressure
+            await new Promise((r) => setTimeout(r, 150));
+
             // Generate MC question immediately after teaching new skill
             const switchQ = await callApi({
               type: "generate_question",
@@ -870,6 +876,9 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
             teachStreaming.appendDelta
           );
           pacingState.current = advancePacingAfterTeaching(pacingState.current);
+
+          // Brief pause to avoid back-to-back API rate pressure
+          await new Promise((r) => setTimeout(r, 150));
 
           // Generate MC question immediately after teaching — no deferral
           // (falls through to the generate_question block below)

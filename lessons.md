@@ -176,6 +176,33 @@ When the student typed a response to the teaching (with no `activeQuestion` set)
 
 ---
 
+## Bug: "Failed to Generate a Valid Question" After Teaching
+
+### Symptoms
+- After the tutor teaches a concept, instead of seeing a multiple choice question, the student sees: "Hmm, I had some trouble there. Failed to generate a valid question. Please try again."
+- This appeared after removing the deferred question pattern (teach → immediate MC question).
+
+### Root Cause
+The question generation pipeline (`getCachedQuestion` in `question-cache.ts`) has three fallback paths: cache lookup → batch generation → direct generation. ALL three must fail for the user to see the error. The failure is caused by two compounding factors:
+
+**Factor 1: Back-to-back API calls.** After removing the deferred question pattern, the teach streaming (Anthropic API) is immediately followed by a question generation call (also Anthropic API). With no gap between them, rate limit pressure or connection contention can degrade the second call, causing the AI to return malformed responses that fail parsing.
+
+**Factor 2: Zero retries + strict validation.** The validation gateway (`validateGeneratedQuestion`) runs 4 validators (format, place value, choice claims, statements). A question that fails any single check is rejected. With 5 questions per batch and strict validation, it's possible for all 5 to be rejected — and then the direct fallback is also rejected. With zero retries at any level, a single bad batch means total failure.
+
+**Factor 3: Dedup pressure.** As the student answers more questions, the `recentQuestions` array grows (up to 20 entries). This is injected into the AI prompt as "avoid these questions," making the prompt increasingly restrictive and harder for the AI to satisfy while also passing validation.
+
+### Fix
+1. **150ms delay** after teach streaming before question generation — avoids API rate contention.
+2. **Retry batch generation** once with trimmed dedup list (last 5 instead of all 20) when first batch fails.
+3. **Retry direct fallback** once with trimmed dedup list (last 3) when first attempt fails.
+
+### Key Lesson
+**Validation without retry is a cliff edge.** Strict validation is essential (we've seen what happens with invalid place-value questions), but each rejection point needs a retry mechanism. The retry should relax constraints progressively — first try with full dedup, then with partial dedup. The cost of one extra API call on failure is negligible compared to showing the user an error.
+
+**Sequential API calls need breathing room.** When one streaming API call is immediately followed by another, add a small delay. Streaming responses keep the connection alive until the last byte; a 150ms gap ensures the connection is fully released before the next request.
+
+---
+
 ## General Principles
 
 - **Validate AI outputs deterministically wherever possible.** Don't rely on "verify your answer" instructions in prompts — they're unreliable for mechanical reasoning tasks.
