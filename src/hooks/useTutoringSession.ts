@@ -71,6 +71,47 @@ function pickNextSkill(currentSkillId: string): { skillId: string; skillName: st
   return { skillId: bestSkillId, skillName: skill?.name ?? bestSkillId, route };
 }
 
+/**
+ * Pick the next best skill within the SAME domain as the current skill.
+ * Used for mid-session skill switching when the student demonstrates mastery.
+ */
+function pickNextSkillInDomain(
+  currentSkillId: string,
+  coveredSkills: readonly string[]
+): { skillId: string; skillName: string } | null {
+  const domain = getDomainForSkill(currentSkillId);
+  if (!domain) return null;
+
+  const domainSkillIds = getSkillIdsForDomain(domain);
+  if (domainSkillIds.length <= 1) return null;
+
+  const all = loadAllSkillMasteries();
+  const stateMap = new Map(
+    all.map((s) => [s.skillId, { ...s, lastPracticed: s.lastPracticed ? new Date(s.lastPracticed) : null }])
+  );
+
+  const priorities = selectNextSkills(domainSkillIds, stateMap);
+  const excludeSet = new Set(coveredSkills);
+
+  // Pick the highest-priority skill that hasn't been covered this session
+  for (const p of priorities) {
+    if (!excludeSet.has(p.skillId)) {
+      const skill = getSkillById(p.skillId);
+      if (skill) {
+        return { skillId: p.skillId, skillName: skill.name };
+      }
+    }
+  }
+
+  return null;
+}
+
+/** Streak threshold to trigger mid-session skill switch. */
+const SKILL_SWITCH_STREAK = 4;
+
+/** Minimum mastery to consider a skill "well-practiced" for switching. */
+const SKILL_SWITCH_MASTERY = 0.7;
+
 // ─── Frustration Detection ────────────────────────────────────────────
 
 const FRUSTRATION_PATTERNS = [
@@ -91,7 +132,20 @@ export function detectFrustration(text: string): boolean {
   return FRUSTRATION_PATTERNS.some((pattern) => pattern.test(text.trim()));
 }
 
+// ─── Constants ───────────────────────────────────────────────────────
+
+/** Max recent question texts to track for deduplication. */
+const MAX_RECENT_QUESTIONS = 20;
+
 // ─── Helpers ──────────────────────────────────────────────────────────
+
+/** Record a question text for dedup, keeping the list capped. */
+function trackQuestion(ref: { current: string[] }, text: string): void {
+  ref.current.push(text);
+  if (ref.current.length > MAX_RECENT_QUESTIONS) {
+    ref.current = ref.current.slice(-MAX_RECENT_QUESTIONS);
+  }
+}
 
 function makeId(): string {
   return Math.random().toString(36).slice(2, 10);
@@ -289,6 +343,9 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
   // Deferred question: after teaching, wait for student to respond before showing MC question
   const pendingQuestion = useRef<{ skillId: string; tier: DifficultyLevel } | null>(null);
 
+  // Track recently shown question texts for deduplication (capped at 20)
+  const recentQuestionTexts = useRef<string[]>([]);
+
   // Use refs for state values accessed in callbacks to avoid stale closures
   const stateRef = useRef(state);
   stateRef.current = state;
@@ -344,29 +401,34 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
     }));
   }, []);
 
-  // Persist mastery at session end
+  // Persist mastery for the current skill.
+  // Loads stored data dynamically so it works correctly after mid-session
+  // skill switches (where priorMastery would be stale).
   const persistMastery = useCallback(() => {
     const s = stateRef.current;
+    const stored = loadSkillMastery(s.currentSkillId);
     const update = calculateMasteryUpdate(recentAttempts.current, s.difficultyTier);
-    const sessionAccuracy = s.questionCount > 0 ? s.correctCount / s.questionCount : 0;
+    const skillQCount = recentAttempts.current.length;
+    const skillCCount = recentAttempts.current.filter((a) => a.isCorrect).length;
+    const sessionAccuracy = skillQCount > 0 ? skillCCount / skillQCount : 0;
 
     const base = {
       skillId: s.currentSkillId,
       masteryLevel: update.newMasteryLevel,
-      attemptsCount: (priorMastery?.attemptsCount ?? 0) + s.questionCount,
-      correctCount: (priorMastery?.correctCount ?? 0) + s.correctCount,
+      attemptsCount: (stored?.attemptsCount ?? 0) + skillQCount,
+      correctCount: (stored?.correctCount ?? 0) + skillCCount,
       lastPracticed: new Date().toISOString(),
       confidenceTrend: update.newConfidenceTrend,
       // Carry forward existing SM-2 fields for the schedule computation
-      interval: priorMastery?.interval,
-      easeFactor: priorMastery?.easeFactor,
-      nextReviewDate: priorMastery?.nextReviewDate,
-      repetitions: priorMastery?.repetitions,
+      interval: stored?.interval,
+      easeFactor: stored?.easeFactor,
+      nextReviewDate: stored?.nextReviewDate,
+      repetitions: stored?.repetitions,
     };
 
     const schedule = computeSkillReviewSchedule(base, sessionAccuracy);
     saveSkillMastery({ ...base, ...schedule });
-  }, [priorMastery]);
+  }, []);
 
   // End session — defined first so submitAnswer can reference it via ref
   const doEndSession = useCallback(
@@ -384,10 +446,13 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
 
       setLoading(true);
 
-      // Compute progress diff before persisting (so we still have the "before" state)
+      // Compute progress diff before persisting (so we still have the "before" state).
+      // Load stored mastery dynamically — after a mid-session skill switch,
+      // priorMastery (from mount) would be for the original skill, not the current one.
       let progressDiff: SessionSummaryData["progressDiff"];
       if (questionsAnswered > 0) {
-        const beforeMastery = priorMastery?.masteryLevel ?? 0.5;
+        const stored = loadSkillMastery(s.currentSkillId);
+        const beforeMastery = stored?.masteryLevel ?? 0.5;
         const afterUpdate = calculateMasteryUpdate(recentAttempts.current, s.difficultyTier);
         const afterMastery = afterUpdate.newMasteryLevel;
         const tBefore = masteryToTier(beforeMastery);
@@ -465,7 +530,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
 
       setState((prev) => ({ ...prev, phase: "complete", activeQuestion: null }));
     },
-    [setLoading, persistMastery, isRetentionCheck, priorMastery]
+    [setLoading, persistMastery, isRetentionCheck]
   );
 
   // Start session: teach concept (streamed), then generate first question
@@ -500,9 +565,11 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           type: "generate_question",
           skillId,
           difficultyTier: s.difficultyTier,
+          recentQuestions: recentQuestionTexts.current,
         });
 
         if (nextQ.question) {
+          trackQuestion(recentQuestionTexts, nextQ.question.questionText);
           addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
           questionShownAt.current = Date.now();
           setState((prev) => ({
@@ -682,6 +749,68 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           return;
         }
 
+        // ─── Mid-session skill switch ──────────────────────────────────
+        // When the student has demonstrated strong mastery on the current
+        // skill (high streak + high mastery), switch to a new skill in the
+        // same domain rather than repeating the same topic.
+        if (
+          isCorrect &&
+          newStreak >= SKILL_SWITCH_STREAK &&
+          masteryUpdate.newMasteryLevel >= SKILL_SWITCH_MASTERY &&
+          decision.mode !== "teach"
+        ) {
+          const nextSkill = pickNextSkillInDomain(s.currentSkillId, s.skillsCovered);
+          if (nextSkill) {
+            // Persist mastery for the current skill before switching
+            persistMastery();
+
+            // Reset attempts for the new skill
+            recentAttempts.current = [];
+            recentQuestionTexts.current = [];
+
+            // Load mastery for the new skill
+            const stored = loadSkillMastery(nextSkill.skillId);
+            const newMastery = stored?.masteryLevel ?? 0.5;
+            const newTierForSkill = masteryToTier(newMastery);
+
+            // Update state to the new skill
+            setState((prev) => ({
+              ...prev,
+              currentSkillId: nextSkill.skillId,
+              mastery: newMastery,
+              difficultyTier: newTierForSkill,
+              correctStreak: 0,
+              skillsCovered: prev.skillsCovered.includes(nextSkill.skillId)
+                ? prev.skillsCovered
+                : [...prev.skillsCovered, nextSkill.skillId],
+            }));
+
+            // Transition message + teach the new concept
+            addMessages(
+              makeTutorMsg(
+                `Great work on that topic! You're doing really well. Let's try something new — **${nextSkill.skillName}**.`,
+                "text"
+              )
+            );
+
+            const teachStreaming = addStreamingMessage("teaching");
+            await callApiStream(
+              {
+                type: "teach",
+                skillId: nextSkill.skillId,
+                mastery: newMastery,
+              },
+              teachStreaming.appendDelta
+            );
+            pacingState.current = advancePacingAfterTeaching(pacingState.current);
+
+            // Defer question for new skill — let student absorb teaching first
+            pendingQuestion.current = { skillId: nextSkill.skillId, tier: newTierForSkill };
+            setState((prev) => ({ ...prev, phase: "ready" }));
+            return;
+          }
+        }
+
         // If in teach mode or pacing says insert teaching, teach first (streamed)
         if (
           decision.mode === "teach" ||
@@ -709,9 +838,11 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           type: "generate_question",
           skillId: s.currentSkillId,
           difficultyTier: decision.tier,
+          recentQuestions: recentQuestionTexts.current,
         });
 
         if (nextQ.question) {
+          trackQuestion(recentQuestionTexts, nextQ.question.questionText);
           addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
           questionShownAt.current = Date.now();
           setState((prev) => ({
@@ -728,7 +859,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
         setLoading(false);
       }
     },
-    [addMessages, addStreamingMessage, setLoading, getHistory, doEndSession, isFirstSession]
+    [addMessages, addStreamingMessage, setLoading, getHistory, doEndSession, isFirstSession, persistMastery]
   );
 
   // Request hint (streamed) — Fix #6: Mark hint as used for current question
@@ -791,9 +922,11 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
         type: "generate_question",
         skillId: s.currentSkillId,
         difficultyTier: s.difficultyTier,
+        recentQuestions: recentQuestionTexts.current,
       });
 
       if (nextQ.question) {
+        trackQuestion(recentQuestionTexts, nextQ.question.questionText);
         addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
         questionShownAt.current = Date.now();
         setState((prev) => ({
@@ -896,8 +1029,10 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
             type: "generate_question",
             skillId: pq.skillId,
             difficultyTier: pq.tier,
+            recentQuestions: recentQuestionTexts.current,
           });
           if (nextQ.question) {
+            trackQuestion(recentQuestionTexts, nextQ.question.questionText);
             addMessages(makeTutorMsg(nextQ.question.questionText, "question"));
             questionShownAt.current = Date.now();
             setState((prev) => ({
@@ -920,6 +1055,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
   // Restart with same skill — Fix #1: Load from store
   const restart = useCallback(() => {
     recentAttempts.current = [];
+    recentQuestionTexts.current = [];
     teachBackTriggeredSkills.current.clear();
     hintUsedForCurrent.current = false;
     questionShownAt.current = null;
