@@ -344,6 +344,9 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
   // Track recently shown question texts for deduplication (capped at 20)
   const recentQuestionTexts = useRef<string[]>([]);
 
+  // Collect wrong-answer data for session summary review
+  const sessionMistakes = useRef<{ questionText: string; studentAnswer: string; correctAnswer: string; skillName: string }[]>([]);
+
   // Use refs for state values accessed in callbacks to avoid stale closures
   const stateRef = useRef(state);
   stateRef.current = state;
@@ -679,9 +682,16 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
         recentAttempts.current.push(attempt);
         hintUsedForCurrent.current = false;
 
-        // Log wrong answers to mistake journal (non-blocking)
+        // Log wrong answers to mistake journal (non-blocking) + collect for summary
         if (!isCorrect && s.activeQuestion) {
           logMistakeInBackground(s.activeQuestion, resolvedAnswer);
+          const skill = getSkillById(s.activeQuestion.skillId);
+          sessionMistakes.current.push({
+            questionText: s.activeQuestion.questionText,
+            studentAnswer: resolvedAnswer,
+            correctAnswer: s.activeQuestion.correctAnswer,
+            skillName: skill?.name ?? s.activeQuestion.skillId,
+          });
         }
 
         const newQuestionCount = s.questionCount + 1;
@@ -1067,6 +1077,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
   const restart = useCallback(() => {
     recentAttempts.current = [];
     recentQuestionTexts.current = [];
+    sessionMistakes.current = [];
     teachBackTriggeredSkills.current.clear();
     hintUsedForCurrent.current = false;
     questionShownAt.current = null;
@@ -1109,6 +1120,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
   return {
     state,
     summary,
+    sessionMistakes: sessionMistakes.current,
     teachBackActive,
     levelUpEvent,
     clearLevelUp,

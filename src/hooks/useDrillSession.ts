@@ -13,6 +13,8 @@ import {
   buildBadgeContext,
   type BadgeDefinition,
 } from "@/lib/achievements";
+import { addMistake, createMistakeEntry } from "@/lib/mistakes";
+import type { ReviewableMistake } from "@/components/shared/MistakeReviewCard";
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 
@@ -194,6 +196,7 @@ export function useDrillSession() {
   const [newBadges, setNewBadges] = useState<readonly BadgeDefinition[]>([]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const questionShownAt = useRef<number>(0);
+  const sessionMistakes = useRef<ReviewableMistake[]>([]);
   const stateRef = useRef(state);
   stateRef.current = state;
 
@@ -326,6 +329,30 @@ export function useDrillSession() {
         timeSpentMs,
       };
 
+      // Log wrong answers to mistake journal + collect for summary
+      if (!isCorrect) {
+        const entry = createMistakeEntry({
+          skillId: s.skillId,
+          skillName: s.skillName,
+          questionText: question.questionText,
+          studentAnswer: answer,
+          correctAnswer: question.correctAnswer,
+          answerChoices: question.answerChoices,
+          diagnosis: {
+            category: "conceptual_gap",
+            explanation: "Review this skill for a deeper understanding.",
+            relatedSkills: [s.skillId],
+          },
+        });
+        addMistake(entry);
+        sessionMistakes.current.push({
+          questionText: question.questionText,
+          studentAnswer: answer,
+          correctAnswer: question.correctAnswer,
+          skillName: s.skillName,
+        });
+      }
+
       const newAttempts = [...s.attempts, attempt];
       const nextIndex = s.currentQuestionIndex + 1;
 
@@ -430,6 +457,7 @@ export function useDrillSession() {
     if (timerRef.current) clearInterval(timerRef.current);
     setResult(null);
     setNewBadges([]);
+    sessionMistakes.current = [];
     setState({
       phase: "setup",
       skillId: "",
@@ -454,6 +482,7 @@ export function useDrillSession() {
     state,
     result,
     newBadges,
+    sessionMistakes: sessionMistakes.current,
     currentQuestion,
     startDrill,
     submitAnswer,

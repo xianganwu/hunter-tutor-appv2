@@ -22,6 +22,8 @@ import type {
 } from "@/lib/guided-study";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import { checkAndAwardBadges, buildBadgeContext } from "@/lib/achievements";
+import { addMistake, createMistakeEntry } from "@/lib/mistakes";
+import type { ReviewableMistake } from "@/components/shared/MistakeReviewCard";
 
 // ─── State ───────────────────────────────────────────────────────────
 
@@ -175,6 +177,7 @@ export function useGuidedStudy() {
 
   const recentAttempts = useRef<AttemptRecord[]>([]);
   const shownQuestionTexts = useRef<string[]>([]);
+  const sessionMistakes = useRef<ReviewableMistake[]>([]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -556,6 +559,30 @@ export function useGuidedStudy() {
 
         const isCorrect = (evalMeta.isCorrect as boolean) ?? false;
 
+        // Log wrong answers to mistake journal + collect for summary
+        if (!isCorrect && s.activeQuestion) {
+          const entry = createMistakeEntry({
+            skillId: s.currentSkillId ?? s.activeQuestion.skillId,
+            skillName: s.currentSkillName ?? s.activeQuestion.skillId,
+            questionText: s.activeQuestion.questionText,
+            studentAnswer: resolvedAnswer,
+            correctAnswer: s.activeQuestion.correctAnswer,
+            answerChoices: s.activeQuestion.answerChoices,
+            diagnosis: {
+              category: "conceptual_gap",
+              explanation: "Review this skill for a deeper understanding.",
+              relatedSkills: [s.currentSkillId ?? s.activeQuestion.skillId],
+            },
+          });
+          addMistake(entry);
+          sessionMistakes.current.push({
+            questionText: s.activeQuestion.questionText,
+            studentAnswer: resolvedAnswer,
+            correctAnswer: s.activeQuestion.correctAnswer,
+            skillName: s.currentSkillName ?? s.activeQuestion.skillId,
+          });
+        }
+
         // Record attempt
         const attempt: AttemptRecord = {
           isCorrect,
@@ -745,6 +772,7 @@ export function useGuidedStudy() {
 
   return {
     state,
+    sessionMistakes: sessionMistakes.current,
     startSession,
     proceedToPractice,
     submitAnswer,

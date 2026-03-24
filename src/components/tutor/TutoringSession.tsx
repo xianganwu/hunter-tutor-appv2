@@ -32,6 +32,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
   const {
     state,
     summary,
+    sessionMistakes,
     teachBackActive,
     levelUpEvent,
     clearLevelUp,
@@ -110,7 +111,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
   if (summary) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-8 bg-surface-50 dark:bg-surface-950 min-h-screen">
-        <SessionSummary data={summary} onClose={handleSummaryClose} isFirstSession={isFirstSession} onStartDrill={() => setDrillActive(true)} />
+        <SessionSummary data={summary} mistakes={sessionMistakes} onClose={handleSummaryClose} isFirstSession={isFirstSession} onStartDrill={() => setDrillActive(true)} />
       </div>
     );
   }

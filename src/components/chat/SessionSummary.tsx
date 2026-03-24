@@ -4,9 +4,11 @@ import type { SessionSummaryData, SkillProgressDiff } from "@/components/tutor/t
 import { getSkillById } from "@/lib/exam/curriculum";
 import { MASTERY_TIER_LABELS } from "@/lib/adaptive";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
+import { MistakeReviewList, type ReviewableMistake } from "@/components/shared/MistakeReviewCard";
 
 interface SessionSummaryProps {
   readonly data: SessionSummaryData;
+  readonly mistakes?: readonly ReviewableMistake[];
   readonly onClose: () => void;
   readonly isFirstSession?: boolean;
   readonly onStartDrill?: () => void;
@@ -73,7 +75,7 @@ function ProgressDiffSection({ diff }: { readonly diff: SkillProgressDiff }) {
   );
 }
 
-export function SessionSummary({ data, onClose, isFirstSession = false, onStartDrill }: SessionSummaryProps) {
+export function SessionSummary({ data, mistakes, onClose, isFirstSession = false, onStartDrill }: SessionSummaryProps) {
   const skillNames = data.skillsCovered.map(
     (id) => getSkillById(id)?.name ?? id
   );
@@ -116,6 +118,8 @@ export function SessionSummary({ data, onClose, isFirstSession = false, onStartD
       </div>
 
       <p className="text-sm text-surface-600 dark:text-surface-400 leading-relaxed">{data.tutorMessage}</p>
+
+      {mistakes && mistakes.length > 0 && <MistakeReviewList mistakes={mistakes} />}
 
       {/* Next up recommendation — hidden for first session */}
       {!isFirstSession && data.nextSkill && (

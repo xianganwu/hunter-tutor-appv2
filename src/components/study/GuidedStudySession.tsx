@@ -12,6 +12,7 @@ import {
   type SkillSlot,
   type GuidedStudySummary,
 } from "@/hooks/useGuidedStudy";
+import { MistakeReviewList, type ReviewableMistake } from "@/components/shared/MistakeReviewCard";
 
 // ─── Domain labels ───────────────────────────────────────────────────
 
@@ -36,6 +37,7 @@ export function GuidedStudySession() {
   const router = useRouter();
   const {
     state,
+    sessionMistakes,
     startSession,
     proceedToPractice,
     submitAnswer,
@@ -90,6 +92,7 @@ export function GuidedStudySession() {
     return (
       <SessionSummaryView
         summary={state.summary}
+        mistakes={sessionMistakes}
         onDashboard={() => router.push("/dashboard")}
       />
     );
@@ -428,9 +431,11 @@ function TransitionView({
 
 function SessionSummaryView({
   summary,
+  mistakes,
   onDashboard,
 }: {
   readonly summary: GuidedStudySummary;
+  readonly mistakes?: readonly ReviewableMistake[];
   readonly onDashboard: () => void;
 }) {
   return (
@@ -466,6 +471,8 @@ function SessionSummaryView({
             <SkillResultCard key={slot.skillId} slot={slot} />
           ))}
         </div>
+
+        {mistakes && mistakes.length > 0 && <MistakeReviewList mistakes={mistakes} />}
 
         {/* Actions */}
         <div className="space-y-3">

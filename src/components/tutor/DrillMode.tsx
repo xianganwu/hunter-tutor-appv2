@@ -13,6 +13,7 @@ import { getMascotTier } from "@/components/shared/Mascot";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
+import { MistakeReviewList } from "@/components/shared/MistakeReviewCard";
 
 const DOMAINS = [
   { id: "reading_comprehension", label: "Reading" },
@@ -31,6 +32,7 @@ export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillMod
   const {
     state,
     result,
+    sessionMistakes,
     currentQuestion,
     startDrill,
     submitAnswer,
@@ -328,6 +330,10 @@ export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillMod
             <div className="rounded-2xl bg-success-50 dark:bg-success-500/10 p-3 text-sm text-success-700 dark:text-success-300">
               New personal best! Previous: {prevBest?.accuracy}%
             </div>
+          )}
+
+          {sessionMistakes.length > 0 && (
+            <MistakeReviewList mistakes={sessionMistakes} />
           )}
 
           <div className="flex flex-col gap-3">
