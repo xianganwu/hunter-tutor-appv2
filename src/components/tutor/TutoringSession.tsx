@@ -8,8 +8,7 @@ import { ChatInput } from "@/components/chat/ChatInput";
 import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
 import { QuickActions } from "@/components/chat/QuickActions";
 import { TypingIndicator } from "@/components/chat/TypingIndicator";
-import { SessionTimer } from "@/components/chat/SessionTimer";
-import { ProgressIndicator } from "@/components/chat/ProgressIndicator";
+import { SessionInfoBar } from "@/components/chat/SessionInfoBar";
 import { SessionSummary } from "@/components/chat/SessionSummary";
 import { TeachItBack } from "./TeachItBack";
 import { useTutoringSession } from "@/hooks/useTutoringSession";
@@ -48,6 +47,8 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const skill = getSkillById(skillId);
+  const currentSkill = getSkillById(state.currentSkillId);
+  const currentSkillName = currentSkill?.name ?? skill?.name ?? skillId;
   const isLoading = state.phase === "loading" || state.phase === "initializing";
   const lastMsg = state.messages[state.messages.length - 1];
   const isStreaming = isLoading && lastMsg?.role === "tutor" && lastMsg.content.length > 0;
@@ -116,7 +117,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
 
   return (
     <div className="relative flex flex-col h-[calc(100vh-2rem)] max-w-2xl mx-auto bg-surface-50 dark:bg-surface-950">
-      {/* Header */}
+      {/* Header — navigation and session controls */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900">
         <div className="flex items-center gap-3">
           <a
@@ -132,21 +133,10 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
             <h1 className="text-sm font-semibold capitalize text-surface-900 dark:text-surface-100">
               {subject} Tutor
             </h1>
-            <p className="text-xs text-brand-600 dark:text-brand-400 font-medium">
-              {skill?.name ?? skillId}
-            </p>
           </div>
         </div>
         <div className="flex items-center gap-4">
           <DailyPlanProgress />
-          <ProgressIndicator
-            current={state.questionCount}
-            estimated={state.estimatedQuestions}
-          />
-          <SessionTimer
-            startTime={state.startTime}
-            stopped={state.phase === "complete"}
-          />
           <button
             onClick={endSession}
             className="text-xs text-surface-500 hover:text-surface-700 dark:hover:text-surface-300 transition-colors font-medium"
@@ -155,6 +145,15 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
           </button>
         </div>
       </header>
+
+      {/* Session info bar — timer, skill name, mastery */}
+      <SessionInfoBar
+        mastery={state.mastery}
+        difficultyTier={state.difficultyTier}
+        startTime={state.startTime}
+        stopped={state.phase === "complete"}
+        skillName={currentSkillName}
+      />
 
       {/* Session goal banner */}
       {state.messages.length === 0 && state.phase === "initializing" && (
