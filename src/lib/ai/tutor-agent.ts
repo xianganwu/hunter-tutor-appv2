@@ -319,6 +319,9 @@ Give me a clear explanation with one worked example. End with an encouraging tra
     difficultyTier: DifficultyLevel,
     recentQuestions?: string[]
   ): Promise<GeneratedQuestion | null> {
+    // Compute-first: for place value, generate the math deterministically
+    const pvSeed = isPlaceValueSkill(skill.skill_id) ? formatSeedPrompt(generatePlaceValueSeed(difficultyTier)) : "";
+
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
       max_tokens: MAX_TOKENS_QUESTION,
@@ -345,7 +348,7 @@ CORRECT: [letter]
 Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.
 
 CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.
-
+${pvSeed}
 PLACE VALUE CHECK: If the question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 
 STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing. Common mistake: creating distractors that are accidentally true (e.g., all five place value claims being correct). Build false statements by using wrong place names, wrong digits, or wrong comparisons — and double-check each one.${recentQuestions && recentQuestions.length > 0 ? `
@@ -633,6 +636,12 @@ Context: ${context}`,
     // Minimum 2048 for small batches, cap at 8192 for large ones.
     const maxTokens = Math.min(8192, Math.max(2048, count * 400));
 
+    // Compute-first: for place value, generate seeds for every question in the batch
+    const tier = difficultyTier ?? skill.difficulty_tier;
+    const pvBatchSeed = isPlaceValueSkill(skill.skill_id)
+      ? formatBatchSeedPrompt(Array.from({ length: count }, () => generatePlaceValueSeed(tier)))
+      : "";
+
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
       max_tokens: maxTokens,
@@ -645,11 +654,11 @@ Context: ${context}`,
 Skill: "${skill.name}" (${skill.skill_id})
 Description: ${skill.description}
 Target: ${skill.level === "hunter_prep" ? "6th grader (age 11-12)" : "rising 5th grader (age 9-10)"}
-Difficulty tier: ${difficultyTier ?? skill.difficulty_tier}/5
+Difficulty tier: ${tier}/5
 
 These are for speed practice — questions should be clear and solvable quickly (15-30 seconds each).
 Each question should have 4-5 multiple choice answers.
-Match the difficulty to tier ${difficultyTier ?? skill.difficulty_tier} (1=foundational, 3=grade-level, 5=exam-challenge).
+Match the difficulty to tier ${tier} (1=foundational, 3=grade-level, 5=exam-challenge).
 
 IMPORTANT — Question Variety:
 - Vary the question FORMAT: some should be "solve for X", some "which is equivalent to", some word problems, some "find the error", some "which statement is true".
@@ -678,7 +687,7 @@ Make sure:
 - CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
 
 FRACTIONS: Always use LaTeX notation for fractions and mixed numbers in BOTH questions AND answer choices. Write $\\frac{3}{8}$ not "3/8". Write $2\\frac{1}{4}$ not "2 1/4". Plain text fractions like "2 1/4 - 1 3/8" are confusing because "11/8" looks like "eleven-slash-eight" instead of a fraction.
-
+${pvBatchSeed}
 PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 
 STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing.`,
@@ -741,6 +750,15 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
 
     const mixedMaxTokens = Math.min(8192, Math.max(2048, totalCount * 400));
 
+    // Compute-first: inject seeds for place value questions if that skill is in the mix
+    const pvSkill = skills.find(s => isPlaceValueSkill(s.skill.skill_id));
+    const pvMixedSeed = pvSkill
+      ? (() => {
+          const pvCount = Math.ceil(totalCount / skills.length);
+          return formatBatchSeedPrompt(Array.from({ length: pvCount }, () => generatePlaceValueSeed(pvSkill.tier)));
+        })()
+      : "";
+
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
       max_tokens: mixedMaxTokens,
@@ -776,6 +794,7 @@ Make sure:
 - CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
 
 FRACTIONS: Always use LaTeX notation for fractions and mixed numbers in BOTH questions AND answer choices. Write $\\frac{3}{8}$ not "3/8". Write $2\\frac{1}{4}$ not "2 1/4". Plain text fractions like "2 1/4 - 1 3/8" are confusing because "11/8" looks like "eleven-slash-eight" instead of a fraction.
+${pvMixedSeed}
 
 PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 
@@ -844,6 +863,107 @@ function describeMastery(level: number): string {
   if (level < 0.6) return "emerging";
   if (level < 0.8) return "proficient";
   return "advanced";
+}
+
+// ─── Compute-First Place Value Seed Generator ────────────────────────
+
+/** Place name indexed by position from the right (0 = ones). */
+const PLACE_NAMES = ["ones", "tens", "hundreds", "thousands", "ten-thousands", "hundred-thousands", "millions"];
+
+interface PlaceValueSeed {
+  number: string;       // "2,649"  (formatted)
+  targetDigit: number;  // 6
+  placeName: string;    // "hundreds"
+  correctValue: number; // 600
+  distractors: number[];// [6, 60, 6000, 60000]
+}
+
+/**
+ * Generate a deterministic place value seed.
+ * The math is computed here — the AI only wraps it in a creative question.
+ */
+function generatePlaceValueSeed(tier: DifficultyLevel): PlaceValueSeed {
+  const numDigits = tier <= 2 ? 4 : tier <= 4 ? 5 : 6;
+  const min = Math.pow(10, numDigits - 1);
+  const max = Math.pow(10, numDigits) - 1;
+  const num = min + Math.floor(Math.random() * (max - min + 1));
+  const numStr = num.toString();
+
+  // Pick a target digit that isn't 0 (boring: "value of 0 = 0")
+  // Avoid the leading digit for variety
+  let targetIdx = -1;
+  let targetDigit = 0;
+  // Collect valid positions (non-zero, not leading digit)
+  const candidates: number[] = [];
+  for (let i = 1; i < numStr.length; i++) {
+    if (parseInt(numStr[i], 10) !== 0) candidates.push(i);
+  }
+  if (candidates.length > 0) {
+    targetIdx = candidates[Math.floor(Math.random() * candidates.length)];
+    targetDigit = parseInt(numStr[targetIdx], 10);
+  } else {
+    // All inner digits are 0 — use leading digit
+    targetIdx = 0;
+    targetDigit = parseInt(numStr[0], 10);
+  }
+
+  const posFromRight = numStr.length - 1 - targetIdx;
+  const correctValue = targetDigit * Math.pow(10, posFromRight);
+  const placeName = PLACE_NAMES[posFromRight] ?? `10^${posFromRight}`;
+
+  // Generate distractors: the same digit at WRONG place positions
+  const distractors: number[] = [];
+  for (let p = 0; p < Math.min(numStr.length, 7); p++) {
+    if (p === posFromRight) continue;
+    distractors.push(targetDigit * Math.pow(10, p));
+  }
+  // Ensure exactly 4 distractors; pad with more distant positions if needed
+  while (distractors.length < 4) {
+    const p = distractors.length + (distractors.length >= posFromRight ? 1 : 0);
+    distractors.push(targetDigit * Math.pow(10, p));
+  }
+  distractors.length = 4;
+
+  return {
+    number: num.toLocaleString("en-US"),
+    targetDigit,
+    placeName,
+    correctValue,
+    distractors,
+  };
+}
+
+/** Format a seed as prompt instructions for a single question. */
+function formatSeedPrompt(seed: PlaceValueSeed): string {
+  return `
+PLACE VALUE SEED — You MUST use these exact pre-computed values:
+- Number: ${seed.number}
+- Ask about: digit ${seed.targetDigit}
+- Correct answer: ${seed.correctValue.toLocaleString("en-US")} (the ${seed.placeName} place)
+- Use these as WRONG distractor values: ${seed.distractors.map(d => d.toLocaleString("en-US")).join(", ")}
+
+You may present this as a direct question ("What is the value of...") or a simple word problem, but:
+- The correct answer choice MUST be ${seed.correctValue.toLocaleString("en-US")}
+- The distractor choices MUST include the wrong values listed above
+- Do NOT create "which person is correct" or "which statement is correct" formats
+- Keep answer choices as numeric values`;
+}
+
+/** Format seeds for a batch of place value questions. */
+function formatBatchSeedPrompt(seeds: PlaceValueSeed[]): string {
+  const lines = seeds.map((s, i) =>
+    `  ${i + 1}. Number: ${s.number} | Digit: ${s.targetDigit} | Correct: ${s.correctValue.toLocaleString("en-US")} (${s.placeName}) | Distractors: ${s.distractors.map(d => d.toLocaleString("en-US")).join(", ")}`
+  );
+  return `
+PLACE VALUE SEEDS — For each question, use the corresponding pre-computed values below.
+The correct answer for each question MUST match the "Correct" value. Distractors MUST use the listed wrong values.
+Do NOT create "which person is correct" or "which statement is correct" formats — keep answer choices as numeric values.
+${lines.join("\n")}`;
+}
+
+/** Check if a skill is place value. */
+function isPlaceValueSkill(skillId: string): boolean {
+  return skillId === "mqr_place_value";
 }
 
 function parseGeneratedQuestion(

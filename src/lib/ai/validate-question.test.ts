@@ -8,6 +8,7 @@ import {
   verifyPlaceValueAnswer,
   verifyStatementQuestion,
   verifyPlaceValueChoiceClaims,
+  verifyPersonQuestion,
   validateGeneratedQuestion,
 } from "./validate-question";
 
@@ -735,5 +736,168 @@ describe("validateGeneratedQuestion", () => {
       "D) 523,841 has a 1 in the hundreds place",        // false
     ];
     expect(validateGeneratedQuestion(question, choices, choices[0], "test")).toBeNull();
+  });
+});
+
+// ─── verifyPersonQuestion ─────────────────────────────────────────────
+
+describe("verifyPersonQuestion", () => {
+  it("returns undefined for non-person questions", () => {
+    expect(
+      verifyPersonQuestion(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7", "D) 8"],
+        "C) 7"
+      )
+    ).toBeUndefined();
+  });
+
+  it("auto-corrects the exact IMG_1719 bug scenario", () => {
+    // The bug: AI designated wrong answer for "Which person is correct?"
+    const question = `Jose is organizing his baseball card collection. He has 2,649 cards total. His friend Alex says "The digit 6 is in the hundreds place, so it's worth 600." His sister Emma says "Since 2,649 is odd, if you add 1 it will be even." His dad says "2,649 is bigger than 2,694." Which person is correct?`;
+    const choices = [
+      "A) Only Alex is correct",
+      "B) Only Emma is correct",
+      "C) Only Dad is correct",
+      "D) Both Alex and Emma are correct",
+      "E) All three are correct",
+    ];
+    // Alex: 6 in hundreds = 600 → TRUE. Emma: 2649 odd, +1 = even → TRUE. Dad: 2649 > 2694 → FALSE.
+    // Correct answer: D. AI might say A or B.
+    expect(verifyPersonQuestion(question, choices, "A) Only Alex is correct")).toBe("D) Both Alex and Emma are correct");
+    expect(verifyPersonQuestion(question, choices, "B) Only Emma is correct")).toBe("D) Both Alex and Emma are correct");
+  });
+
+  it("returns undefined when AI already has the right answer", () => {
+    const question = `Jose has 2,649 cards. Alex says "The digit 6 is in the hundreds place, so it's worth 600." Emma says "Since 2,649 is odd, if you add 1 it will be even." Dad says "2,649 is bigger than 2,694." Which person is correct?`;
+    const choices = [
+      "A) Only Alex is correct",
+      "B) Only Emma is correct",
+      "C) Only Dad is correct",
+      "D) Both Alex and Emma are correct",
+      "E) All three are correct",
+    ];
+    expect(verifyPersonQuestion(question, choices, "D) Both Alex and Emma are correct")).toBeUndefined();
+  });
+
+  it("handles 'who is correct' phrasing", () => {
+    const question = `Maria scored 45,823 points. Tom says "The digit 5 is in the thousands place." Lisa says "The digit 8 is in the tens place." Who is correct?`;
+    const choices = [
+      "A) Only Tom",
+      "B) Only Lisa",
+      "C) Both Tom and Lisa",
+      "D) Neither of them",
+    ];
+    // 45,823: 5 is at thousands (position 3) → TRUE. 8 is at hundreds (position 2), NOT tens → FALSE.
+    // Only Tom is correct → A
+    expect(verifyPersonQuestion(question, choices, "C) Both Tom and Lisa")).toBe("A) Only Tom");
+  });
+
+  it("handles case where only one person with a comparison claim is correct", () => {
+    const question = `Sam says "7,432 is larger than 7,423." Mike says "7,432 is larger than 7,532." Which friend is correct?`;
+    const choices = [
+      "A) Only Sam",
+      "B) Only Mike",
+      "C) Both Sam and Mike",
+      "D) Neither of them",
+    ];
+    // Sam: 7432 > 7423 → TRUE. Mike: 7432 > 7532 → FALSE.
+    expect(verifyPersonQuestion(question, choices, "C) Both Sam and Mike")).toBe("A) Only Sam");
+  });
+
+  it("handles 'none' when all characters are wrong", () => {
+    const question = `Ava says "5,312 is bigger than 5,321." Ben says "5,312 is bigger than 6,312." Which person is correct?`;
+    const choices = [
+      "A) Only Ava",
+      "B) Only Ben",
+      "C) Both Ava and Ben",
+      "D) None of them",
+    ];
+    // Ava: 5312 > 5321 → FALSE. Ben: 5312 > 6312 → FALSE.
+    expect(verifyPersonQuestion(question, choices, "A) Only Ava")).toBe("D) None of them");
+  });
+
+  it("returns undefined when claims are not parseable", () => {
+    const question = `Jake says "I love math." Sarah says "Math is hard." Which person is correct?`;
+    const choices = ["A) Jake", "B) Sarah", "C) Both", "D) Neither"];
+    // These are opinion claims, not math — can't verify
+    expect(verifyPersonQuestion(question, choices, "A) Jake")).toBeUndefined();
+  });
+
+  it("returns undefined when fewer than 2 characters are found", () => {
+    const question = `Alex says "The digit 5 is in the hundreds place of 3,524." Which person is correct?`;
+    const choices = ["A) Alex is correct", "B) Alex is wrong", "C) Not sure", "D) None"];
+    // Only one character — not enough to verify
+    expect(verifyPersonQuestion(question, choices, "A) Alex is correct")).toBeUndefined();
+  });
+});
+
+// ─── validateGeneratedQuestion — "which person" integration ─────────
+
+describe("validateGeneratedQuestion — which person questions", () => {
+  it("auto-corrects the IMG_1719 bug through the full gateway", () => {
+    const question = `Jose has 2,649 cards. His friend Alex says "The digit 6 is in the hundreds place, so it's worth 600." His sister Emma says "Since 2,649 is odd, if you add 1 it will be even." His dad says "2,649 is bigger than 2,694." Which person is correct?`;
+    const choices = [
+      "A) Only Alex is correct",
+      "B) Only Emma is correct",
+      "C) Only Dad is correct",
+      "D) Both Alex and Emma are correct",
+      "E) All three are correct",
+    ];
+    // AI says A, should auto-correct to D
+    const result = validateGeneratedQuestion(question, choices, "A) Only Alex is correct", "test");
+    expect(result).toBe("D) Both Alex and Emma are correct");
+  });
+
+  it("passes through when AI has correct person answer", () => {
+    const question = `Jose has 2,649 cards. His friend Alex says "The digit 6 is in the hundreds place, so it's worth 600." His sister Emma says "Since 2,649 is odd, if you add 1 it will be even." His dad says "2,649 is bigger than 2,694." Which person is correct?`;
+    const choices = [
+      "A) Only Alex is correct",
+      "B) Only Emma is correct",
+      "C) Only Dad is correct",
+      "D) Both Alex and Emma are correct",
+      "E) All three are correct",
+    ];
+    const result = validateGeneratedQuestion(question, choices, "D) Both Alex and Emma are correct", "test");
+    expect(result).toBe("D) Both Alex and Emma are correct");
+  });
+});
+
+// ─── validateGeneratedQuestion — safety net for unverifiable PV ──────
+
+describe("validateGeneratedQuestion — unverifiable place value safety net", () => {
+  it("rejects place value questions that no verifier can evaluate", () => {
+    // A place-value-like question with claims only a human could parse
+    const question = `The number 456,789 is special. If you rearrange the hundreds digit and the tens digit, what happens?`;
+    const choices = [
+      "A) The number gets bigger",
+      "B) The number gets smaller",
+      "C) The number stays the same",
+      "D) It depends on which digits",
+    ];
+    // Contains "hundreds digit", "tens digit", and a big number — looks like place value
+    // But no verifier can evaluate the claim → safety net rejects
+    expect(validateGeneratedQuestion(question, choices, "A) The number gets bigger", "test")).toBeNull();
+  });
+
+  it("does NOT reject non-place-value questions", () => {
+    const result = validateGeneratedQuestion(
+      "What is 15 + 27?",
+      ["A) 40", "B) 41", "C) 42", "D) 43", "E) 44"],
+      "C) 42",
+      "test"
+    );
+    expect(result).toBe("C) 42");
+  });
+
+  it("does NOT reject place value questions that a verifier CAN evaluate", () => {
+    // Direct format — verifyPlaceValueAnswer handles this
+    const result = validateGeneratedQuestion(
+      "What is the value of the digit 4 in 247,583?",
+      ["A) 4", "B) 400", "C) 4,000", "D) 400,000", "E) 40,000"],
+      "E) 40,000",
+      "test"
+    );
+    expect(result).toBe("E) 40,000");
   });
 });

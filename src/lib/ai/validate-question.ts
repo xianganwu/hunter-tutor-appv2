@@ -661,6 +661,270 @@ export function verifyPlaceValueChoiceClaims(
   return undefined; // no context number produced enough verifiable claims
 }
 
+// ─── "Which person is correct" Verification ──────────────────────────
+
+interface CharacterClaim {
+  name: string;
+  text: string;
+}
+
+/**
+ * Extract character claims from question text.
+ * Matches patterns like:
+ *   Alex says "The digit 6 is in the hundreds place"
+ *   His dad says "2,649 is bigger than 2,694"
+ * Captures the last word before "says" as the character identifier.
+ * Handles straight quotes, curly quotes, and single quotes.
+ */
+function extractCharacterClaims(questionText: string): CharacterClaim[] {
+  const claims: CharacterClaim[] = [];
+  const seen = new Set<string>();
+
+  // Capture the word immediately before "says" + quoted claim
+  // This handles both "Alex says" and "His dad says" (captures "dad")
+  const patterns = [
+    /(\b[A-Za-z]\w+)\s+says\s*["\u201C](.+?)["\u201D]/g,
+    /(\b[A-Za-z]\w+)\s+says\s*['\u2018](.+?)['\u2019]/g,
+  ];
+
+  const skipWords = new Set(["he", "she", "it", "that", "this", "who", "the", "also", "then"]);
+
+  for (const pattern of patterns) {
+    pattern.lastIndex = 0;
+    let match;
+    while ((match = pattern.exec(questionText)) !== null) {
+      const name = match[1];
+      const text = match[2].trim();
+      const key = name.toLowerCase();
+      if (skipWords.has(key)) continue;
+      if (!seen.has(key)) {
+        seen.add(key);
+        claims.push({ name, text });
+      }
+    }
+  }
+
+  return claims;
+}
+
+/**
+ * Evaluate a math claim that may include place value, odd/even, or comparison.
+ * Claims may reference the context number implicitly (e.g., "The digit 6 is in
+ * the hundreds place" without mentioning the number — the number comes from the
+ * question context).
+ *
+ * Returns true/false if verifiable, null if not parseable.
+ */
+function evaluateMathClaim(claim: string, contextNumbers: string[]): boolean | null {
+  // First try the existing statement verifier (handles claims WITH embedded numbers)
+  const stmtResult = verifyNumberStatement(claim, contextNumbers);
+  if (stmtResult !== null) return stmtResult;
+
+  // Resolve the primary context number (largest = most likely the subject)
+  const sortedCtx = [...contextNumbers].sort((a, b) =>
+    b.replace(/,/g, "").length - a.replace(/,/g, "").length
+  );
+  const primaryNumStr = sortedCtx.length > 0 ? sortedCtx[0].replace(/,/g, "") : null;
+
+  // ── Place value claims with IMPLICIT number (from context) ──
+
+  // "The digit D is in the PLACE place" (no number in claim)
+  const digitInPlaceImplicit = claim.match(/(?:the\s+)?digit\s+(\d)\s+is\s+in\s+the\s+([\w\s-]+?)\s*place/i);
+  if (digitInPlaceImplicit && primaryNumStr) {
+    const digit = parseInt(digitInPlaceImplicit[1], 10);
+    const actual = getDigitAtPlace(primaryNumStr, digitInPlaceImplicit[2]);
+    if (actual !== null) return actual === digit;
+  }
+
+  // "digit D ... worth/represents/value V" (no number in claim)
+  const worthImplicit = claim.match(/(?:the\s+)?digit\s+(\d).*?(?:worth|represents?|value\s+(?:of|is)|valued?\s+at)\s+\$?\s*(\d[\d,]*)/i);
+  if (worthImplicit && primaryNumStr) {
+    const digit = parseInt(worthImplicit[1], 10);
+    const claimedValue = parseInt(worthImplicit[2].replace(/,/g, ""), 10);
+    const actual = computePlaceValue(primaryNumStr, digit);
+    if (actual !== null && !isNaN(claimedValue)) return actual === claimedValue;
+  }
+
+  // ── Odd/even claims ──
+
+  // "2,649 is odd" / "the number is even" (explicit number)
+  const oddEvenMatch = claim.match(/\b(\d[\d,]*)\s+is\s+(odd|even)\b/i);
+  if (oddEvenMatch) {
+    const num = parseInt(oddEvenMatch[1].replace(/,/g, ""), 10);
+    if (isNaN(num)) return null;
+    const isOdd = num % 2 !== 0;
+    return oddEvenMatch[2].toLowerCase() === "odd" ? isOdd : !isOdd;
+  }
+
+  // "add 1 it will be even/odd" (context number)
+  const addOneMatch = claim.match(/add\s+1.*(?:will\s+be|becomes?|is)\s+(odd|even)/i);
+  if (addOneMatch && primaryNumStr) {
+    const num = parseInt(primaryNumStr, 10);
+    if (isNaN(num)) return null;
+    const plusOne = num + 1;
+    const isOdd = plusOne % 2 !== 0;
+    return addOneMatch[1].toLowerCase() === "odd" ? isOdd : !isOdd;
+  }
+
+  // ── Comparison claims ──
+
+  // "2,649 is bigger/larger/greater than 2,694"
+  const greaterMatch = claim.match(/(\d[\d,]*)\s+is\s+(?:bigger|larger|greater|more)\s+than\s+(\d[\d,]*)/i);
+  if (greaterMatch) {
+    const a = parseInt(greaterMatch[1].replace(/,/g, ""), 10);
+    const b = parseInt(greaterMatch[2].replace(/,/g, ""), 10);
+    if (isNaN(a) || isNaN(b)) return null;
+    return a > b;
+  }
+
+  const lessMatch = claim.match(/(\d[\d,]*)\s+is\s+(?:smaller|less|fewer)\s+than\s+(\d[\d,]*)/i);
+  if (lessMatch) {
+    const a = parseInt(lessMatch[1].replace(/,/g, ""), 10);
+    const b = parseInt(lessMatch[2].replace(/,/g, ""), 10);
+    if (isNaN(a) || isNaN(b)) return null;
+    return a < b;
+  }
+
+  return null;
+}
+
+/**
+ * Parse a choice to determine which character names it claims are correct.
+ * Returns a Set of lowercase names, or null if unparseable.
+ */
+function parsePersonChoice(choiceText: string, allNames: string[]): Set<string> | null {
+  const text = choiceText.replace(/^[A-Ea-e]\)\s*/, "").toLowerCase();
+
+  // "none" patterns
+  if (/\bnone\b|\bno\s*one\b|\bnobody\b/.test(text)) return new Set<string>();
+
+  // "all" patterns
+  if (/\ball\s+(three|of\s+them|are)\b/.test(text)) {
+    return new Set(allNames.map(n => n.toLowerCase()));
+  }
+
+  // Find which names appear in this choice
+  const found = allNames.filter(name => text.includes(name.toLowerCase()));
+  if (found.length === 0) return null;
+
+  return new Set(found.map(n => n.toLowerCase()));
+}
+
+/**
+ * Verify "which person is correct" type questions where claims are embedded
+ * in the question text as character dialogue, not in the choices.
+ *
+ * Returns:
+ *   undefined — not a "which person" question or can't verify
+ *   null      — should reject (verified claims don't match any choice)
+ *   string    — the corrected correct-answer choice
+ */
+export function verifyPersonQuestion(
+  questionText: string,
+  choices: string[],
+  correctAnswer: string,
+): string | null | undefined {
+  // Detect "which person/friend/one is correct/right" or "who is correct"
+  if (!/which\s+(?:person|friend|one)|who\s+is\s+(?:correct|right)|who\s+(?:is|made)|person\s+is\s+correct/i.test(questionText)) {
+    return undefined;
+  }
+
+  // Extract character claims from question text
+  const claims = extractCharacterClaims(questionText);
+  if (claims.length < 2) return undefined; // need at least 2 characters
+
+  // Extract context numbers from the question text
+  const contextNumbers = questionText.match(/\b\d{2,}(?:,\d{3})*\b/g) ?? [];
+
+  // Evaluate each character's claim
+  const results: { name: string; correct: boolean | null }[] = claims.map(claim => ({
+    name: claim.name,
+    correct: evaluateMathClaim(claim.text, contextNumbers),
+  }));
+
+  // Need enough verifiable claims to be confident
+  const verifiedCount = results.filter(r => r.correct !== null).length;
+  if (verifiedCount < 2) return undefined;
+
+  // Determine which characters are correct
+  const correctNames = new Set(
+    results.filter(r => r.correct === true).map(r => r.name.toLowerCase())
+  );
+  const allNames = claims.map(c => c.name);
+
+  // Find the choice that matches the correct set of characters
+  let matchingChoice: string | null = null;
+  for (const choice of choices) {
+    const implied = parsePersonChoice(choice, allNames);
+    if (implied === null) continue;
+    // Check set equality
+    if (implied.size === correctNames.size && [...implied].every(n => correctNames.has(n))) {
+      matchingChoice = choice;
+      break;
+    }
+  }
+
+  if (!matchingChoice) {
+    // Can't map verified results to any choice — reject to be safe
+    parseWarn({
+      parser: "verifyPersonQuestion",
+      field: "correctAnswer",
+      fallback: "REJECTED",
+      rawSnippet: `Verified ${verifiedCount} claims (correct: ${[...correctNames].join(", ")}), but no choice matches that combination`,
+    });
+    return null;
+  }
+
+  // Check if AI already got it right
+  if (matchingChoice === correctAnswer) return undefined;
+
+  // Auto-correct
+  parseWarn({
+    parser: "verifyPersonQuestion",
+    field: "correctAnswer",
+    fallback: `AUTO-CORRECTED to "${matchingChoice}"`,
+    rawSnippet: `AI said "${correctAnswer}" but verified claims show correct characters: ${[...correctNames].join(", ")}`,
+  });
+  return matchingChoice;
+}
+
+// ─── Safety Net: Reject Unverifiable Place Value Questions ───────────
+
+/**
+ * Detect whether a question involves place value concepts based on keywords.
+ * Used as a safety net: if a question looks like place value but no verifier
+ * could evaluate it, we reject it rather than risk serving a wrong answer.
+ */
+function looksLikePlaceValueQuestion(questionText: string, choices: string[]): boolean {
+  const allText = questionText + " " + choices.join(" ");
+  // Must mention a multi-digit number (3+ digits)
+  if (!/\b\d{3,}(?:,\d{3})*\b/.test(questionText)) return false;
+  // Must mention place-value-related terms
+  return /\b(?:digit|place\s+value|hundreds?|thousands?|ten[\s-]thousands?|hundred[\s-]thousands?|ones\s+place|tens\s+place|represents?\s+\d|worth\s+\d)/i.test(allText);
+}
+
+/**
+ * Quick check: do at least 2 choices contain place-value claim patterns?
+ * Used by the safety net to determine if verifyPlaceValueChoiceClaims
+ * would have recognized (and therefore verified) this question format.
+ */
+function choicesContainPVClaimPatterns(questionText: string, choices: string[]): boolean {
+  // Need a multi-digit number in the question
+  if (!/\b\d{1,3}(?:,\d{3})+\b/.test(questionText)) return false;
+  let count = 0;
+  for (const choice of choices) {
+    const text = choice.replace(/^[A-Ea-e]\)\s*/, "");
+    if (
+      /\b\d\s+is\s+in\s+the\s+[\w\s-]+place/i.test(text) ||
+      /has\s+(?:a|an)\s+\d\s+in\s+the\s+/i.test(text) ||
+      /(?:worth|represents?|value\s+of)\s+\$?\d/i.test(text)
+    ) {
+      count++;
+    }
+  }
+  return count >= 2;
+}
+
 // ─── Centralized Validation Gateway ──────────────────────────────────
 
 /**
@@ -670,7 +934,9 @@ export function verifyPlaceValueChoiceClaims(
  *   1. Format / distinctness  (isValidQuestion)
  *   2. Direct place-value     (verifyPlaceValueAnswer — "value of digit X in N")
  *   3. Choice-level claims    (verifyPlaceValueChoiceClaims — word problems, etc.)
- *   4. Statement questions    (verifyStatementQuestion — "which statement is correct")
+ *   4. "Which person" claims  (verifyPersonQuestion — character dialogue in question)
+ *   5. Statement questions    (verifyStatementQuestion — "which statement is correct")
+ *   6. Safety net             (reject unverifiable place value questions)
  *
  * Returns the (possibly auto-corrected) correctAnswer string if the question
  * is safe to serve, or null if it should be rejected.
@@ -684,11 +950,12 @@ export function validateGeneratedQuestion(
   // 1. Format: enough choices, all distinct, valid letter
   if (!isValidQuestion(choices, correctAnswer, parser)) return null;
 
-  // 2. Direct place-value verification (narrow regex: "value of digit X in N")
   let verified = correctAnswer;
+
+  // 2. Direct place-value verification (narrow regex: "value of digit X in N")
   const pvDirect = verifyPlaceValueAnswer(questionText, choices, correctAnswer);
-  if (pvDirect === null) return null;          // correct value not among choices
-  if (pvDirect !== undefined) verified = pvDirect; // auto-corrected
+  if (pvDirect === null) return null;
+  if (pvDirect !== undefined) verified = pvDirect;
 
   // 3. Choice-level place-value claim verification (word problems, "is X correct", etc.)
   //    Only needed when step 2 had no opinion (didn't recognise the format).
@@ -698,8 +965,39 @@ export function validateGeneratedQuestion(
     if (pvClaims !== undefined) verified = pvClaims;
   }
 
-  // 4. "Which statement is correct" multi-truth guard
+  // 4. "Which person is correct" — claims embedded in question text as dialogue
+  const personResult = verifyPersonQuestion(questionText, choices, verified);
+  if (personResult === null) return null;
+  if (personResult !== undefined) verified = personResult;
+
+  // 5. "Which statement is correct" multi-truth guard
   if (verifyStatementQuestion(questionText, choices) === null) return null;
+
+  // 6. Safety net: if question looks like place value but NO verifier could
+  //    recognize its format, reject rather than risk serving a wrong answer.
+  //    Uses lightweight format detectors (not the full verifiers) so that
+  //    "AI got it right" (verifier returned undefined) doesn't trigger rejection.
+  if (looksLikePlaceValueQuestion(questionText, choices)) {
+    const formatRecognized =
+      // "value of digit X in N" — recognized by verifyPlaceValueAnswer
+      detectPlaceValueQuestion(questionText) !== null ||
+      // choices contain PV claim patterns — recognized by verifyPlaceValueChoiceClaims
+      choicesContainPVClaimPatterns(questionText, choices) ||
+      // "which person/who is correct" with extractable claims
+      extractCharacterClaims(questionText).length >= 2 ||
+      // "which statement is correct" — recognized by verifyStatementQuestion
+      /which\s+statement/i.test(questionText);
+
+    if (!formatRecognized) {
+      parseWarn({
+        parser,
+        field: "unverifiable",
+        fallback: "REJECTED",
+        rawSnippet: `Question appears to involve place value but no verifier can check its format: "${questionText.slice(0, 120)}..."`,
+      });
+      return null;
+    }
+  }
 
   return verified;
 }

@@ -203,6 +203,65 @@ The question generation pipeline (`getCachedQuestion` in `question-cache.ts`) ha
 
 ---
 
+## Bug: "Which Person Is Correct?" Questions Bypass All Place Value Verification (Fourth Occurrence)
+
+### Symptoms
+- Student is asked: "Jose has 2,649 cards. Alex says 'The digit 6 is in the hundreds place, so it's worth 600.' Emma says 'Since 2,649 is odd, if you add 1 it will be even.' Dad says '2,649 is bigger than 2,694.' Which person is correct?"
+- Student selects D) Both Alex and Emma are correct — which IS correct
+- Tutor says "Good try!" and guides student toward a wrong answer
+
+### Root Cause — A Fundamentally New Question Architecture
+
+This is the fourth occurrence of the same bug class, but with a structurally different failure mode.
+
+**All prior bugs had claims in the CHOICES:** "E) 40,000", "A) The 7 is in the hundreds place". Verifiers could examine each choice independently.
+
+**This question has claims in the QUESTION TEXT as character dialogue:** Alex says "...", Emma says "...", Dad says "...". The choices are META-REFERENCES: "Only Alex", "Both Alex and Emma". No verifier could evaluate them because:
+
+1. `verifyPlaceValueAnswer()` — regex `/value of digit X in N/` doesn't match "Which person is correct?"
+2. `verifyPlaceValueChoiceClaims()` — choices like "Both Alex and Emma are correct" contain zero mathematical claims
+3. `verifyStatementQuestion()` — regex `/which statement/` doesn't match "Which person is correct?"
+
+All four verifiers returned "no opinion" → question passed with the AI's wrong answer.
+
+Additionally, claims used IMPLICIT numbers from context: "The digit 6 is in the hundreds place" doesn't say WHICH number — the number 2,649 comes from the question context. And claims spanned multiple math domains: place value, odd/even, number comparison.
+
+### Fix (Three Layers — Architectural)
+
+**Layer 1 — Safety net: reject unverifiable place value questions.**
+Added format-detection check in the gateway: if a question contains place-value keywords (digit, place, hundreds, thousands) but no verifier's format detector recognized it, reject the question. Uses lightweight regex checks (`detectPlaceValueQuestion`, `choicesContainPVClaimPatterns`, `extractCharacterClaims`) to determine if the format is recognizable — separate from full verification. This prevents ANY future unrecognized format from reaching students.
+
+**Layer 2 — "Which person" verifier with embedded-claim extraction.**
+Added `verifyPersonQuestion()` to the validation gateway:
+1. Detects "which person/friend/one is correct", "who is correct/right" patterns
+2. `extractCharacterClaims()` parses "Name says '...'" dialogue (handles capitalized names, lowercase relations like "dad", straight and curly quotes)
+3. `evaluateMathClaim()` evaluates each claim against context numbers — handles: place-name claims with implicit numbers ("digit 6 is in the hundreds place"), value claims ("worth 600"), odd/even claims, comparison claims ("2,649 is bigger than 2,694")
+4. Maps truth values to meta-choices ("Both Alex and Emma", "Only Tom", "None of them")
+5. Auto-corrects or rejects based on the mapping
+
+**Layer 3 — Compute-first architecture for place value questions.**
+For skill `mqr_place_value`, the mathematical content is now generated DETERMINISTICALLY before the AI sees it:
+1. `generatePlaceValueSeed()` picks a random number, selects a target digit, computes the correct place name and value, generates wrong distractors (same digit at other positions)
+2. The seed is injected into the AI prompt: "Use these pre-computed values: Number 2,649, Digit 6, Correct answer 600 (hundreds), Distractors: 6, 60, 6000, 60000"
+3. AI wraps the seed in a creative question format but CANNOT compute the math itself
+4. Prompt explicitly bans "which person" and "which statement" formats for seeded questions
+5. Applied to all three generation paths: `generateQuestion`, `generateDrillBatch`, `generateMixedDrillBatch`
+
+### Key Lessons
+
+**Regex-based verification plays whack-a-mole with AI creativity.** Each of the four bugs was a new question format that bypassed existing regex patterns. The AI generates infinite phrasings; regex can only match finite patterns. The permanent fix is either (a) don't let the AI compute the math (compute-first), or (b) reject anything you can't verify (safety net).
+
+**Verification must check where the claims ARE, not where you expect them.** Prior verifiers only checked choice text. But claims can be in the question text (character dialogue), in the choices, or split across both. Each new question format moves claims to a different location.
+
+**Claims may reference implicit context.** "The digit 6 is in the hundreds place" doesn't say which number — the number comes from the surrounding question. Claim evaluators that require the number to be embedded in the claim text will miss these.
+
+**The three-layer defense in depth:**
+- Layer 1 (safety net) catches UNKNOWN formats — reject what you can't verify
+- Layer 2 (expanded verification) catches KNOWN complex formats — verify "which person" etc.
+- Layer 3 (compute-first) prevents the problem from occurring — correct by construction
+
+---
+
 ## General Principles
 
 - **Validate AI outputs deterministically wherever possible.** Don't rely on "verify your answer" instructions in prompts — they're unreliable for mechanical reasoning tasks.
@@ -213,3 +272,6 @@ The question generation pipeline (`getCachedQuestion` in `question-cache.ts`) ha
 - **Layer defenses: prompt + programmatic + rejection.** Prompt instructions reduce error frequency but can't eliminate it. Programmatic verification catches what prompts miss. Rejection + regeneration ensures students only see correct questions. All three layers are needed.
 - **Verification must be a chokepoint, not an annotation.** When adding validation, create a single gateway function and route ALL code paths through it. Adding verification to one path while others bypass it is a false sense of safety. Audit every producer and consumer of the data type being validated.
 - **Verify claims at the choice level, not just the question level.** Detecting question format via regex is fragile — the AI generates infinite phrasings. Instead, verify the mathematical claims embedded within each answer choice. This is format-agnostic and catches errors regardless of how the question is worded.
+- **Reject what you can't verify.** If a question looks like it involves a mechanically verifiable concept (place value) but no verifier can evaluate it, reject it. The cost of regenerating one question is negligible compared to showing a student a wrong answer.
+- **For mechanically computable topics, generate the math deterministically.** Don't let the AI compute place values, digit positions, or basic arithmetic. Generate the correct answer in code, then let the AI wrap it in a creative question. Correct by construction > correct by verification.
+- **Regex verification plays whack-a-mole with AI creativity.** Each time you add a regex pattern, the AI will generate a new format that bypasses it. The permanent solution is either compute-first (prevent the error) or reject-unverifiable (catch any bypass).
