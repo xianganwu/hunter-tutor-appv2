@@ -681,6 +681,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
           isCorrect,
           timeSpentSeconds: timeSpent,
           hintUsed: hintUsedForCurrent.current,
+          tier: s.difficultyTier,
         };
         recentAttempts.current.push(attempt);
         hintUsedForCurrent.current = false;

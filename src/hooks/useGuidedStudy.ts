@@ -255,10 +255,10 @@ export function useGuidedStudy() {
     const priorRecords: AttemptRecord[] = [];
     if (prior && prior.attemptsCount > 0) {
       for (let i = 0; i < prior.correctCount; i++) {
-        priorRecords.push({ isCorrect: true, timeSpentSeconds: null, hintUsed: false });
+        priorRecords.push({ isCorrect: true, timeSpentSeconds: null, hintUsed: false, tier: difficultyTier });
       }
       for (let i = 0; i < prior.attemptsCount - prior.correctCount; i++) {
-        priorRecords.push({ isCorrect: false, timeSpentSeconds: null, hintUsed: false });
+        priorRecords.push({ isCorrect: false, timeSpentSeconds: null, hintUsed: false, tier: difficultyTier });
       }
     }
     const allRecords = [...priorRecords, ...recentAttempts.current];
@@ -584,10 +584,13 @@ export function useGuidedStudy() {
         }
 
         // Record attempt
+        const slot = s.skillSlots[s.currentSlotIndex];
+        const attemptTier = masteryToTier(slot?.startMastery ?? 0.5);
         const attempt: AttemptRecord = {
           isCorrect,
           timeSpentSeconds: null,
           hintUsed: false,
+          tier: attemptTier,
         };
         recentAttempts.current.push(attempt);
 

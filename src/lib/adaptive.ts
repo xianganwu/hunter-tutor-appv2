@@ -20,6 +20,7 @@ export interface AttemptRecord {
   readonly isCorrect: boolean;
   readonly timeSpentSeconds: number | null;
   readonly hintUsed: boolean;
+  readonly tier: DifficultyLevel;
 }
 
 export interface SkillPriority {
@@ -93,6 +94,21 @@ const RUSHING_STREAK = 3;
 const WEIGHT_RECENT = 0.7;
 const WEIGHT_OVERALL = 0.2;
 const WEIGHT_TIME = 0.1;
+
+// Confidence multiplier: prevents high mastery from tiny sample sizes.
+// Mastery is blended with MASTERY_PRIOR until MIN_ATTEMPTS_FOR_CONFIDENCE
+// attempts are reached, at which point the formula fully trusts the data.
+const MIN_ATTEMPTS_FOR_CONFIDENCE = 8;
+const MASTERY_PRIOR = 0.3;
+
+// Difficulty-weighted accuracy: harder questions count more toward mastery.
+const TIER_ACCURACY_WEIGHT: Record<DifficultyLevel, number> = {
+  1: 0.4,
+  2: 0.6,
+  3: 0.8,
+  4: 1.0,
+  5: 1.2,
+};
 
 // Priority scoring weights
 const PRIORITY_PREREQUISITE_GAP = 100;
@@ -448,7 +464,12 @@ function computeTimeEfficiency(
 }
 
 /**
- * Compute rolling accuracy over the last N attempts.
+ * Compute difficulty-weighted rolling accuracy over the last N attempts.
+ *
+ * Each attempt is weighted by its difficulty tier (TIER_ACCURACY_WEIGHT).
+ * Correct answers earn the full tier weight (halved if hint-assisted).
+ * The result is the ratio of earned weight to maximum possible weight,
+ * so harder questions contribute more to (or detract more from) the score.
  */
 function rollingAccuracy(
   attempts: readonly AttemptRecord[],
@@ -456,13 +477,16 @@ function rollingAccuracy(
 ): number {
   if (attempts.length === 0) return 0;
   const recent = attempts.slice(-window);
-  let score = 0;
+  let earned = 0;
+  let maxPossible = 0;
   for (const a of recent) {
+    const w = TIER_ACCURACY_WEIGHT[a.tier] ?? 0.8; // fallback to tier-3 weight
+    maxPossible += w;
     if (a.isCorrect) {
-      score += a.hintUsed ? 0.5 : 1.0; // scaffolded success discounted
+      earned += a.hintUsed ? w * 0.5 : w; // scaffolded success discounted
     }
   }
-  return score / recent.length;
+  return maxPossible > 0 ? earned / maxPossible : 0;
 }
 
 /**
@@ -482,9 +506,16 @@ function computeTrend(
  * Calculate updated mastery level and confidence trend after new attempts.
  *
  * Formula:
- *   new_mastery = 0.7 * rolling_accuracy_last_10
- *               + 0.2 * overall_accuracy
- *               + 0.1 * time_efficiency_score
+ *   raw = 0.7 * weighted_rolling_accuracy_last_10
+ *       + 0.2 * weighted_overall_accuracy
+ *       + 0.1 * time_efficiency_score
+ *
+ *   confidence = min(1, total_attempts / MIN_ATTEMPTS_FOR_CONFIDENCE)
+ *   mastery    = confidence * raw + (1 - confidence) * MASTERY_PRIOR
+ *
+ * The confidence multiplier prevents tiny sample sizes (1-2 questions)
+ * from producing artificially high mastery. The difficulty-weighted accuracy
+ * ensures harder questions contribute more to the score.
  */
 export function calculateMasteryUpdate(
   allAttempts: readonly AttemptRecord[],
@@ -506,7 +537,12 @@ export function calculateMasteryUpdate(
     WEIGHT_OVERALL * overallAcc +
     WEIGHT_TIME * timeEff;
 
-  const newMasteryLevel = Math.max(0, Math.min(1, rawMastery));
+  // Confidence multiplier: blend raw score with a conservative prior
+  // until enough attempts have been collected to trust the data.
+  const confidence = Math.min(1, allAttempts.length / MIN_ATTEMPTS_FOR_CONFIDENCE);
+  const blended = confidence * rawMastery + (1 - confidence) * MASTERY_PRIOR;
+
+  const newMasteryLevel = Math.max(0, Math.min(1, blended));
   const newConfidenceTrend = computeTrend(recentAcc, overallAcc);
 
   return {

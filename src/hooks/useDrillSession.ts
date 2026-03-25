@@ -82,21 +82,21 @@ export function persistDrillMastery(
     isCorrect: a.isCorrect,
     timeSpentSeconds: Math.round(a.timeSpentMs / 1000),
     hintUsed: false, // drills never use hints
+    tier: currentTier,
   }));
 
   // Reconstruct a simplified prior history to feed the mastery formula.
   // This ensures returning users don't have their mastery reset by a single session.
-  const priorRecords: { isCorrect: boolean; timeSpentSeconds: number | null; hintUsed: boolean }[] = [];
+  const priorRecords: { isCorrect: boolean; timeSpentSeconds: number | null; hintUsed: boolean; tier: DifficultyLevel }[] = [];
   if (prior && prior.attemptsCount > 0) {
     const priorCorrect = prior.correctCount;
     const priorWrong = prior.attemptsCount - priorCorrect;
-    // Add correct records
+    // Use currentTier as best estimate for prior attempt difficulty
     for (let i = 0; i < priorCorrect; i++) {
-      priorRecords.push({ isCorrect: true, timeSpentSeconds: null, hintUsed: false });
+      priorRecords.push({ isCorrect: true, timeSpentSeconds: null, hintUsed: false, tier: currentTier });
     }
-    // Add wrong records
     for (let i = 0; i < priorWrong; i++) {
-      priorRecords.push({ isCorrect: false, timeSpentSeconds: null, hintUsed: false });
+      priorRecords.push({ isCorrect: false, timeSpentSeconds: null, hintUsed: false, tier: currentTier });
     }
   }
 
