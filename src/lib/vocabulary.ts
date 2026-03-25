@@ -35,12 +35,22 @@ export interface VocabStats {
   readonly streakDays: number;
 }
 
+export type WordStatus = "new" | "due" | "learning" | "mastered";
+
 // ─── Constants ────────────────────────────────────────────────────────
 
 const STORAGE_KEY = "hunter-tutor-vocab-deck";
 const MIN_EASE_FACTOR = 1.3;
 const MS_PER_DAY = 86_400_000;
 const LEARNED_INTERVAL_THRESHOLD = 21; // days
+
+/** Derives the review status of a card from its SM-2 fields. */
+export function getWordStatus(card: VocabCard): WordStatus {
+  if (card.repetitions === 0) return "new";
+  if (card.interval >= LEARNED_INTERVAL_THRESHOLD) return "mastered";
+  if (card.nextReviewDate <= Date.now()) return "due";
+  return "learning";
+}
 
 // ─── SM-2 Algorithm ──────────────────────────────────────────────────
 

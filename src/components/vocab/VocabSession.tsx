@@ -4,6 +4,9 @@ import { useVocabBuilder } from "@/hooks/useVocabBuilder";
 import type { VocabWord, VocabCard } from "@/lib/vocabulary";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
+import { PronounceButton } from "@/components/vocab/PronounceButton";
+import { WordBrowser } from "@/components/vocab/WordBrowser";
+import { MatchingQuiz, MatchingComplete } from "@/components/vocab/MatchingQuiz";
 
 // ─── Main Component ──────────────────────────────────────────────────
 
@@ -24,8 +27,14 @@ export function VocabSession() {
     submitSentence,
     skipUseWord,
     addWord,
+    removeWord,
     addRandomWords,
     backToOverview,
+    openWordBrowser,
+    startMatchingQuiz,
+    selectMatchWord,
+    selectMatchDefinition,
+    fetchContextSentences,
   } = useVocabBuilder();
 
   return (
@@ -81,8 +90,10 @@ export function VocabSession() {
         </div>
       </header>
 
-      {/* Progress bar during study */}
-      {state.phase !== "deck_overview" && state.phase !== "session_complete" && (
+      {/* Progress bar during flashcard study */}
+      {(state.phase === "card_front" ||
+        state.phase === "card_back" ||
+        state.phase === "use_word") && (
         <div className="h-1 bg-surface-200 dark:bg-surface-800">
           <div
             className="h-full bg-brand-500 transition-all duration-300"
@@ -100,9 +111,12 @@ export function VocabSession() {
             newCount={newCount}
             studyAvailable={studyAvailable}
             suggestedWords={state.suggestedWords}
+            canMatch={state.deck.cards.length >= 5}
             onStartStudy={startStudy}
             onAddWord={addWord}
             onAddRandomWords={addRandomWords}
+            onOpenWordBrowser={openWordBrowser}
+            onStartMatchingQuiz={startMatchingQuiz}
           />
         )}
 
@@ -119,8 +133,11 @@ export function VocabSession() {
         {state.phase === "card_back" && state.currentCard && (
           <CardBack
             card={state.currentCard}
+            contextSentences={state.contextSentences}
+            contextLoading={state.contextLoading}
             onRate={rateCard}
             onUseWord={startUseWord}
+            onFetchContext={fetchContextSentences}
           />
         )}
 
@@ -131,6 +148,7 @@ export function VocabSession() {
             feedback={state.useWordFeedback}
             correct={state.useWordCorrect}
             loading={state.useWordLoading}
+            isAutoPrompted={state.pendingRating !== null}
             onInputChange={setUseWordInput}
             onSubmit={submitSentence}
             onSkip={skipUseWord}
@@ -142,6 +160,30 @@ export function VocabSession() {
             stats={state.sessionStats}
             deckStats={stats}
             onBackToDashboard={backToOverview}
+          />
+        )}
+
+        {state.phase === "word_browser" && (
+          <WordBrowser
+            cards={state.deck.cards}
+            onRemoveWord={removeWord}
+            onBack={backToOverview}
+          />
+        )}
+
+        {state.phase === "matching_quiz" && state.matching && (
+          <MatchingQuiz
+            matching={state.matching}
+            onSelectWord={selectMatchWord}
+            onSelectDefinition={selectMatchDefinition}
+          />
+        )}
+
+        {state.phase === "matching_complete" && state.matching && (
+          <MatchingComplete
+            matching={state.matching}
+            onBackToDashboard={backToOverview}
+            onPlayAgain={startMatchingQuiz}
           />
         )}
       </div>
@@ -157,9 +199,12 @@ function DeckOverview({
   newCount,
   studyAvailable,
   suggestedWords,
+  canMatch,
   onStartStudy,
   onAddWord,
   onAddRandomWords,
+  onOpenWordBrowser,
+  onStartMatchingQuiz,
 }: {
   readonly stats: {
     readonly totalCards: number;
@@ -171,9 +216,12 @@ function DeckOverview({
   readonly newCount: number;
   readonly studyAvailable: boolean;
   readonly suggestedWords: readonly VocabWord[];
+  readonly canMatch: boolean;
   readonly onStartStudy: () => void;
   readonly onAddWord: (word: VocabWord) => void;
   readonly onAddRandomWords: (count: number) => void;
+  readonly onOpenWordBrowser: () => void;
+  readonly onStartMatchingQuiz: () => void;
 }) {
   return (
     <div className="space-y-6 animate-fade-in">
@@ -192,18 +240,37 @@ function DeckOverview({
         />
       </div>
 
-      {/* Study button */}
-      <button
-        onClick={onStartStudy}
-        disabled={!studyAvailable}
-        className="w-full rounded-2xl bg-brand-600 px-4 py-4 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50 disabled:hover:bg-brand-600 transition-colors shadow-soft"
-      >
-        {dueCount > 0
-          ? `Study Now (${dueCount} due${newCount > 0 ? ` + ${Math.min(newCount, 10)} new` : ""})`
-          : newCount > 0
-            ? `Learn ${Math.min(newCount, 10)} New Words`
-            : "All caught up! Add more words below."}
-      </button>
+      {/* Action buttons */}
+      <div className="space-y-2">
+        <button
+          onClick={onStartStudy}
+          disabled={!studyAvailable}
+          className="w-full rounded-2xl bg-brand-600 px-4 py-4 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50 disabled:hover:bg-brand-600 transition-colors shadow-soft"
+        >
+          {dueCount > 0
+            ? `Study Now (${dueCount} due${newCount > 0 ? ` + ${Math.min(newCount, 10)} new` : ""})`
+            : newCount > 0
+              ? `Learn ${Math.min(newCount, 10)} New Words`
+              : "All caught up! Add more words below."}
+        </button>
+
+        <div className="flex gap-2">
+          <button
+            onClick={onStartMatchingQuiz}
+            disabled={!canMatch}
+            className="flex-1 rounded-xl border border-brand-300 dark:border-brand-600/30 bg-brand-50 dark:bg-brand-600/10 px-4 py-3 text-sm font-medium text-brand-600 dark:text-brand-400 hover:bg-brand-100 dark:hover:bg-brand-600/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            Matching Quiz
+          </button>
+          <button
+            onClick={onOpenWordBrowser}
+            disabled={stats.totalCards === 0}
+            className="flex-1 rounded-xl border border-surface-300 dark:border-surface-600 bg-surface-0 dark:bg-surface-800 px-4 py-3 text-sm font-medium text-surface-600 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            My Words
+          </button>
+        </div>
+      </div>
 
       {/* Empty state */}
       {stats.totalCards === 0 && (
@@ -317,9 +384,12 @@ function CardFront({
       {/* Word card */}
       <div className="w-full max-w-md rounded-2xl shadow-soft bg-surface-0 dark:bg-surface-900 border border-surface-200 dark:border-surface-800 p-8 text-center space-y-3">
         <DifficultyDots difficulty={card.word.difficulty} />
-        <h2 className="text-3xl font-bold text-surface-900 dark:text-surface-100">
-          {card.word.word}
-        </h2>
+        <div className="flex items-center justify-center gap-2">
+          <h2 className="text-3xl font-bold text-surface-900 dark:text-surface-100">
+            {card.word.word}
+          </h2>
+          <PronounceButton word={card.word.word} />
+        </div>
         <p className="text-sm text-surface-400 italic">
           {card.word.partOfSpeech}
         </p>
@@ -348,21 +418,30 @@ function CardFront({
 
 function CardBack({
   card,
+  contextSentences,
+  contextLoading,
   onRate,
   onUseWord,
+  onFetchContext,
 }: {
   readonly card: VocabCard;
+  readonly contextSentences: readonly string[] | null;
+  readonly contextLoading: boolean;
   readonly onRate: (quality: 1 | 2 | 4 | 5) => void;
   readonly onUseWord: () => void;
+  readonly onFetchContext: () => void;
 }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] animate-fade-in">
       {/* Word + Definition card */}
       <div className="w-full max-w-md rounded-2xl shadow-soft bg-surface-0 dark:bg-surface-900 border border-surface-200 dark:border-surface-800 p-8 space-y-4">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-surface-900 dark:text-surface-100">
-            {card.word.word}
-          </h2>
+          <div className="flex items-center justify-center gap-2">
+            <h2 className="text-2xl font-bold text-surface-900 dark:text-surface-100">
+              {card.word.word}
+            </h2>
+            <PronounceButton word={card.word.word} />
+          </div>
           <p className="text-xs text-surface-400 italic mt-1">
             {card.word.partOfSpeech}
           </p>
@@ -380,13 +459,43 @@ function CardBack({
           </p>
         </div>
 
-        {/* Use in a sentence button */}
-        <button
-          onClick={onUseWord}
-          className="w-full rounded-xl border border-brand-200 dark:border-brand-600/30 bg-brand-50 dark:bg-brand-600/10 px-3 py-2 text-xs font-medium text-brand-600 dark:text-brand-400 hover:bg-brand-100 dark:hover:bg-brand-600/20 transition-colors"
-        >
-          Use in a sentence (optional)
-        </button>
+        {/* Context sentences */}
+        {contextSentences && contextSentences.length > 0 && (
+          <div className="space-y-2 animate-fade-in">
+            <p className="text-xs font-medium text-surface-500">
+              More examples:
+            </p>
+            {contextSentences.map((sentence, i) => (
+              <div
+                key={i}
+                className="rounded-xl bg-surface-50 dark:bg-surface-800 p-3"
+              >
+                <p className="text-xs text-surface-500 dark:text-surface-400 italic leading-relaxed">
+                  &ldquo;{sentence}&rdquo;
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Action buttons */}
+        <div className="flex gap-2">
+          <button
+            onClick={onUseWord}
+            className="flex-1 rounded-xl border border-brand-200 dark:border-brand-600/30 bg-brand-50 dark:bg-brand-600/10 px-3 py-2 text-xs font-medium text-brand-600 dark:text-brand-400 hover:bg-brand-100 dark:hover:bg-brand-600/20 transition-colors"
+          >
+            Use in a sentence
+          </button>
+          {!contextSentences && (
+            <button
+              onClick={onFetchContext}
+              disabled={contextLoading}
+              className="rounded-xl border border-surface-200 dark:border-surface-600 bg-surface-0 dark:bg-surface-800 px-3 py-2 text-xs font-medium text-surface-500 dark:text-surface-400 hover:bg-surface-100 dark:hover:bg-surface-700 disabled:opacity-50 transition-colors"
+            >
+              {contextLoading ? "Loading..." : "More examples"}
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Rating buttons */}
@@ -472,6 +581,7 @@ function UseWord({
   feedback,
   correct,
   loading,
+  isAutoPrompted,
   onInputChange,
   onSubmit,
   onSkip,
@@ -481,6 +591,7 @@ function UseWord({
   readonly feedback: string | null;
   readonly correct: boolean | null;
   readonly loading: boolean;
+  readonly isAutoPrompted?: boolean;
   readonly onInputChange: (input: string) => void;
   readonly onSubmit: () => void;
   readonly onSkip: () => void;
@@ -488,11 +599,23 @@ function UseWord({
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] animate-fade-in">
       <div className="w-full max-w-md space-y-4">
+        {/* Auto-prompt encouragement */}
+        {isAutoPrompted && !feedback && (
+          <div className="rounded-xl bg-brand-50 dark:bg-brand-600/10 border border-brand-200 dark:border-brand-600/30 px-4 py-3 text-center">
+            <p className="text-xs text-brand-600 dark:text-brand-400">
+              Let&apos;s practice this one! Try using it in a sentence to help it stick.
+            </p>
+          </div>
+        )}
+
         {/* Word reference */}
         <div className="rounded-2xl shadow-soft bg-surface-0 dark:bg-surface-900 border border-surface-200 dark:border-surface-800 p-5">
-          <h3 className="text-lg font-bold text-surface-900 dark:text-surface-100 text-center">
-            {card.word.word}
-          </h3>
+          <div className="flex items-center justify-center gap-2">
+            <h3 className="text-lg font-bold text-surface-900 dark:text-surface-100">
+              {card.word.word}
+            </h3>
+            <PronounceButton word={card.word.word} />
+          </div>
           <p className="text-xs text-surface-500 dark:text-surface-400 text-center mt-1">
             {card.word.definition}
           </p>

@@ -24,12 +24,28 @@ export type VocabPhase =
   | "card_front"
   | "card_back"
   | "use_word"
-  | "session_complete";
+  | "session_complete"
+  | "word_browser"
+  | "matching_quiz"
+  | "matching_complete";
 
 interface SessionStats {
   readonly reviewed: number;
   readonly correct: number;
   readonly newLearned: number;
+}
+
+export interface MatchingState {
+  readonly words: readonly VocabCard[];
+  readonly shuffledDefIds: readonly string[];
+  readonly matchedPairs: readonly string[];
+  readonly selectedWordId: string | null;
+  readonly wrongDefId: string | null;
+  readonly round: number;
+  readonly totalRounds: number;
+  readonly totalCorrect: number;
+  readonly totalAttempts: number;
+  readonly firstTryIds: ReadonlySet<string>;
 }
 
 export interface VocabBuilderState {
@@ -44,12 +60,58 @@ export interface VocabBuilderState {
   readonly useWordCorrect: boolean | null;
   readonly useWordLoading: boolean;
   readonly suggestedWords: readonly VocabWord[];
+  readonly pendingRating: (1 | 2 | 4 | 5) | null;
+  readonly matching: MatchingState | null;
+  readonly contextSentences: readonly string[] | null;
+  readonly contextLoading: boolean;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────
 
 const MAX_NEW_CARDS_PER_SESSION = 10;
 const SUGGESTED_WORDS_COUNT = 6;
+
+// ─── Helpers ─────────────────────────────────────────────────────────
+
+function shuffle<T>(arr: readonly T[]): T[] {
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+/** Select cards for a matching round, prioritizing struggling words. */
+function buildMatchingRound(
+  allCards: readonly VocabCard[],
+  excludeIds: readonly string[],
+  count: number
+): { words: VocabCard[]; shuffledDefIds: string[] } | null {
+  const excluded = new Set(excludeIds);
+  const candidates = allCards.filter((c) => !excluded.has(c.word.wordId));
+  if (candidates.length < count) {
+    // If not enough unused cards, allow reuse
+    const fallback = allCards.length >= count ? allCards : null;
+    if (!fallback) return null;
+    const picked = shuffle(fallback as VocabCard[]).slice(0, count);
+    return {
+      words: picked,
+      shuffledDefIds: shuffle(picked.map((c) => c.word.wordId)),
+    };
+  }
+  // Prioritize: cards with lastResult < 3 (struggling), then low repetitions
+  const sorted = [...candidates].sort((a, b) => {
+    if (a.lastResult < 3 && b.lastResult >= 3) return -1;
+    if (b.lastResult < 3 && a.lastResult >= 3) return 1;
+    return a.repetitions - b.repetitions;
+  });
+  const picked = sorted.slice(0, count);
+  return {
+    words: picked,
+    shuffledDefIds: shuffle(picked.map((c) => c.word.wordId)),
+  };
+}
 
 // ─── Hook ─────────────────────────────────────────────────────────────
 
@@ -66,6 +128,10 @@ export function useVocabBuilder() {
     useWordCorrect: null,
     useWordLoading: false,
     suggestedWords: [],
+    pendingRating: null,
+    matching: null,
+    contextSentences: null,
+    contextLoading: false,
   });
 
   const stateRef = useRef(state);
@@ -139,10 +205,24 @@ export function useVocabBuilder() {
   }, []);
 
   // ─── Rate Card (SM-2 quality) ────────────────────────────────────
+  // For struggling words (Again/Hard), auto-prompt sentence writing
 
   const rateCard = useCallback((quality: 1 | 2 | 4 | 5) => {
     const s = stateRef.current;
     if (!s.currentCard) return;
+
+    if (quality <= 2) {
+      // Auto-prompt: store pending rating, show sentence exercise
+      setState((prev) => ({
+        ...prev,
+        phase: "use_word",
+        pendingRating: quality,
+        useWordInput: "",
+        useWordFeedback: null,
+        useWordCorrect: null,
+      }));
+      return;
+    }
 
     const updated = computeNextReview(s.currentCard, quality);
     const isCorrect = quality >= 3;
@@ -190,6 +270,9 @@ export function useVocabBuilder() {
         useWordInput: "",
         useWordFeedback: null,
         useWordCorrect: null,
+        pendingRating: null,
+        contextSentences: null,
+        contextLoading: false,
       }));
     } else {
       autoCompleteDailyTask(undefined, "vocab_review");
@@ -202,6 +285,9 @@ export function useVocabBuilder() {
         useWordInput: "",
         useWordFeedback: null,
         useWordCorrect: null,
+        pendingRating: null,
+        contextSentences: null,
+        contextLoading: false,
       }));
     }
   }
@@ -268,6 +354,16 @@ export function useVocabBuilder() {
   }, []);
 
   const skipUseWord = useCallback(() => {
+    const s = stateRef.current;
+    // If we got here from auto-prompt (pendingRating set), advance with that rating
+    if (s.pendingRating !== null && s.currentCard) {
+      const updated = computeNextReview(s.currentCard, s.pendingRating);
+      const isCorrect = s.pendingRating >= 3;
+      const isNew = s.currentCard.repetitions === 0 && s.pendingRating >= 3;
+      setState((prev) => ({ ...prev, pendingRating: null }));
+      advanceCard(updated, isCorrect, isNew);
+      return;
+    }
     setState((prev) => ({
       ...prev,
       phase: "card_back",
@@ -346,6 +442,198 @@ export function useVocabBuilder() {
     }));
   }, []);
 
+  // ─── Word Browser ───────────────────────────────────────────────
+
+  const openWordBrowser = useCallback(() => {
+    setState((prev) => ({ ...prev, phase: "word_browser" }));
+  }, []);
+
+  // ─── Matching Quiz ─────────────────────────────────────────────
+
+  const MATCHING_WORDS_PER_ROUND = 5;
+  const MATCHING_TOTAL_ROUNDS = 3;
+
+  const startMatchingQuiz = useCallback(() => {
+    const s = stateRef.current;
+    if (s.deck.cards.length < MATCHING_WORDS_PER_ROUND) return;
+    const round = buildMatchingRound(s.deck.cards, [], MATCHING_WORDS_PER_ROUND);
+    if (!round) return;
+    setState((prev) => ({
+      ...prev,
+      phase: "matching_quiz",
+      matching: {
+        words: round.words,
+        shuffledDefIds: round.shuffledDefIds,
+        matchedPairs: [],
+        selectedWordId: null,
+        wrongDefId: null,
+        round: 1,
+        totalRounds: Math.min(
+          MATCHING_TOTAL_ROUNDS,
+          Math.floor(s.deck.cards.length / MATCHING_WORDS_PER_ROUND)
+        ),
+        totalCorrect: 0,
+        totalAttempts: 0,
+        firstTryIds: new Set(),
+      },
+    }));
+  }, []);
+
+  const selectMatchWord = useCallback((wordId: string) => {
+    setState((prev) => {
+      if (!prev.matching) return prev;
+      return {
+        ...prev,
+        matching: {
+          ...prev.matching,
+          selectedWordId:
+            prev.matching.selectedWordId === wordId ? null : wordId,
+          wrongDefId: null,
+        },
+      };
+    });
+  }, []);
+
+  const selectMatchDefinition = useCallback((defWordId: string) => {
+    const s = stateRef.current;
+    if (!s.matching || !s.matching.selectedWordId) return;
+    if (s.matching.matchedPairs.includes(defWordId)) return;
+
+    const isCorrect = s.matching.selectedWordId === defWordId;
+    const wordId = s.matching.selectedWordId;
+    const isFirstTry = !s.matching.firstTryIds.has(wordId);
+
+    if (isCorrect) {
+      const newMatched = [...s.matching.matchedPairs, defWordId];
+      const allMatched = newMatched.length === s.matching.words.length;
+
+      setState((prev) => {
+        if (!prev.matching) return prev;
+        const newFirstTryIds = new Set(prev.matching.firstTryIds);
+        return {
+          ...prev,
+          matching: {
+            ...prev.matching,
+            matchedPairs: newMatched,
+            selectedWordId: null,
+            wrongDefId: null,
+            totalAttempts: prev.matching.totalAttempts + 1,
+            totalCorrect:
+              prev.matching.totalCorrect + (isFirstTry ? 1 : 0),
+            firstTryIds: newFirstTryIds,
+          },
+        };
+      });
+
+      // After short delay, check if round is complete
+      if (allMatched) {
+        setTimeout(() => {
+          const current = stateRef.current;
+          if (!current.matching) return;
+          if (current.matching.round < current.matching.totalRounds) {
+            // Next round
+            const usedIds = current.matching.words.map((w) => w.word.wordId);
+            const round = buildMatchingRound(
+              current.deck.cards,
+              usedIds,
+              MATCHING_WORDS_PER_ROUND
+            );
+            if (round) {
+              setState((prev) => ({
+                ...prev,
+                matching: prev.matching
+                  ? {
+                      ...prev.matching,
+                      words: round.words,
+                      shuffledDefIds: round.shuffledDefIds,
+                      matchedPairs: [],
+                      selectedWordId: null,
+                      wrongDefId: null,
+                      round: prev.matching.round + 1,
+                    }
+                  : prev.matching,
+              }));
+            } else {
+              finishMatchingQuiz();
+            }
+          } else {
+            finishMatchingQuiz();
+          }
+        }, 1200);
+      }
+    } else {
+      // Wrong — flash red briefly
+      setState((prev) => {
+        if (!prev.matching) return prev;
+        const newFirstTryIds = new Set(prev.matching.firstTryIds);
+        newFirstTryIds.add(wordId);
+        return {
+          ...prev,
+          matching: {
+            ...prev.matching,
+            wrongDefId: defWordId,
+            selectedWordId: null,
+            totalAttempts: prev.matching.totalAttempts + 1,
+            firstTryIds: newFirstTryIds,
+          },
+        };
+      });
+      setTimeout(() => {
+        setState((prev) => ({
+          ...prev,
+          matching: prev.matching
+            ? { ...prev.matching, wrongDefId: null }
+            : prev.matching,
+        }));
+      }, 600);
+    }
+  }, []);
+
+  function finishMatchingQuiz() {
+    const s = stateRef.current;
+    // Update lastStudied
+    const newDeck = { ...s.deck, lastStudied: Date.now() };
+    saveVocabDeck(newDeck);
+    setState((prev) => ({
+      ...prev,
+      phase: "matching_complete",
+      deck: newDeck,
+    }));
+  }
+
+  // ─── Context Sentences ─────────────────────────────────────────
+
+  const fetchContextSentences = useCallback(async () => {
+    const s = stateRef.current;
+    if (!s.currentCard || s.contextSentences || s.contextLoading) return;
+    setState((prev) => ({ ...prev, contextLoading: true }));
+    try {
+      const res = await fetch("/api/vocab", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "generate_context",
+          word: s.currentCard.word.word,
+          definition: s.currentCard.word.definition,
+          partOfSpeech: s.currentCard.word.partOfSpeech,
+        }),
+      });
+      if (!res.ok) throw new Error("Failed to fetch");
+      const data = (await res.json()) as { sentences: string[] };
+      setState((prev) => ({
+        ...prev,
+        contextLoading: false,
+        contextSentences: data.sentences,
+      }));
+    } catch {
+      setState((prev) => ({
+        ...prev,
+        contextLoading: false,
+        contextSentences: [],
+      }));
+    }
+  }, []);
+
   // ─── Back to Overview ────────────────────────────────────────────
 
   const backToOverview = useCallback(() => {
@@ -369,6 +657,10 @@ export function useVocabBuilder() {
       useWordFeedback: null,
       useWordCorrect: null,
       suggestedWords: shuffled.slice(0, SUGGESTED_WORDS_COUNT),
+      pendingRating: null,
+      matching: null,
+      contextSentences: null,
+      contextLoading: false,
     }));
   }, []);
 
@@ -402,5 +694,10 @@ export function useVocabBuilder() {
     removeWord,
     addRandomWords,
     backToOverview,
+    openWordBrowser,
+    startMatchingQuiz,
+    selectMatchWord,
+    selectMatchDefinition,
+    fetchContextSentences,
   };
 }
