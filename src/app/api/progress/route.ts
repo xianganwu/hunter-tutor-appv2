@@ -62,23 +62,16 @@ export async function POST(request: Request) {
       ([key, value]) => validKeys.has(key) && value !== undefined && value !== null
     );
 
-    // Save each key-value pair sequentially (LibSQL doesn't support concurrent upserts well)
-    for (const [key, value] of entries) {
-      const jsonValue = JSON.stringify(value);
-      const existing = await prisma.userData.findFirst({
-        where: { studentId: session.sub, key },
-      });
-      if (existing) {
-        await prisma.userData.update({
-          where: { id: existing.id },
-          data: { value: jsonValue },
-        });
-      } else {
-        await prisma.userData.create({
-          data: { studentId: session.sub, key, value: jsonValue },
-        });
-      }
-    }
+    // Batch upsert all keys in a single transaction (atomic, 1 round-trip)
+    await prisma.$transaction(
+      entries.map(([key, value]) =>
+        prisma.userData.upsert({
+          where: { studentId_key: { studentId: session.sub, key } },
+          update: { value: JSON.stringify(value) },
+          create: { studentId: session.sub, key, value: JSON.stringify(value) },
+        })
+      )
+    );
 
     return NextResponse.json({ success: true, keysUpdated: entries.length });
   } catch (err) {

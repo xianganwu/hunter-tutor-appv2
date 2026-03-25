@@ -37,7 +37,13 @@ function getClientIp(request: NextRequest): string {
 // ─── Auth check ───────────────────────────────────────────────────────
 
 function getJwtSecret(): Uint8Array {
-  const secret = process.env.JWT_SECRET || "hunter-tutor-default-jwt-secret-key-min-32-chars";
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error(
+      "JWT_SECRET environment variable is required. " +
+        "Set it in .env or .env.local (minimum 32 characters)."
+    );
+  }
   return new TextEncoder().encode(secret);
 }
 
