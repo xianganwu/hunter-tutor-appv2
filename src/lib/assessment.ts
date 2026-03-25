@@ -434,7 +434,7 @@ export function checkAssessmentCooldown(): {
   const diffMs = now.getTime() - lastDate.getTime();
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
 
-  if (diffDays >= ASSESSMENT_CONFIG.cooldownDays) {
+  if (Math.floor(diffDays) >= ASSESSMENT_CONFIG.cooldownDays) {
     return {
       allowed: true,
       nextDate: null,

@@ -7,6 +7,7 @@ import { countWords } from "@/utils/count-words";
 interface AssessmentWritingProps {
   readonly prompt: string;
   readonly totalSeconds: number;
+  readonly timerStartTime: number; // epoch ms — when this section's timer started
   readonly onSubmit: (essay: string) => void;
   readonly onTimeUp: (essay: string) => void;
 }
@@ -14,12 +15,12 @@ interface AssessmentWritingProps {
 export function AssessmentWriting({
   prompt,
   totalSeconds,
+  timerStartTime,
   onSubmit,
   onTimeUp,
 }: AssessmentWritingProps) {
   const [essay, setEssay] = useState("");
   const essayRef = useRef(essay);
-  const timerStartRef = useRef(Date.now());
   const submittedRef = useRef(false);
 
   // Keep ref in sync so the timeUp callback has the latest text
@@ -36,8 +37,8 @@ export function AssessmentWriting({
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return;
     submittedRef.current = true;
-    onSubmit(essay);
-  }, [onSubmit, essay]);
+    onSubmit(essayRef.current);
+  }, [onSubmit]);
 
   const wordCount = countWords(essay);
   const durationMinutes = totalSeconds / 60;
@@ -51,7 +52,7 @@ export function AssessmentWriting({
         </div>
         <CountdownTimer
           durationMinutes={durationMinutes}
-          startTime={timerStartRef.current}
+          startTime={timerStartTime}
           onTimeUp={handleTimeUp}
           stopped={false}
         />

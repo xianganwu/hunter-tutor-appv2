@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useCallback } from "react";
 import type { ExamPassageBlock, ExamQuestion } from "@/lib/simulation";
 import { CountdownTimer } from "@/components/tutor/CountdownTimer";
 import { MathText } from "@/components/chat/MathText";
@@ -13,6 +13,7 @@ interface AssessmentSectionProps {
   readonly flagged: Set<string>;
   readonly currentIndex: number;
   readonly totalSeconds: number;
+  readonly timerStartTime: number; // epoch ms — when this section's timer started
   readonly onAnswer: (questionId: string, answer: string) => void;
   readonly onFlag: (questionId: string) => void;
   readonly onNavigate: (index: number) => void;
@@ -53,14 +54,28 @@ export function AssessmentSection({
   flagged,
   currentIndex,
   totalSeconds,
+  timerStartTime,
   onAnswer,
   onFlag,
   onNavigate,
   onSubmitSection,
   onTimeUp,
 }: AssessmentSectionProps) {
-  const timerStartRef = useRef(Date.now());
+  const submittedRef = useRef(false);
   const isReading = passageBlocks !== undefined && passageBlocks.length > 0;
+
+  // Guard against double-fire (manual submit + timer expiry racing)
+  const handleSubmit = useCallback(() => {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    onSubmitSection();
+  }, [onSubmitSection]);
+
+  const handleTimeExpired = useCallback(() => {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    onTimeUp();
+  }, [onTimeUp]);
 
   const flatQuestions = useMemo(
     () => flattenQuestions(questions, passageBlocks),
@@ -86,12 +101,12 @@ export function AssessmentSection({
         <div className="flex items-center gap-3">
           <CountdownTimer
             durationMinutes={durationMinutes}
-            startTime={timerStartRef.current}
-            onTimeUp={onTimeUp}
+            startTime={timerStartTime}
+            onTimeUp={handleTimeExpired}
             stopped={false}
           />
           <button
-            onClick={onSubmitSection}
+            onClick={handleSubmit}
             className="rounded-lg bg-amber-500 hover:bg-amber-600 px-3 py-1.5 text-xs font-medium text-white transition-colors"
           >
             Submit Section

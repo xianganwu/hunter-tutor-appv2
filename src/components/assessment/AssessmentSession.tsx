@@ -133,7 +133,11 @@ export function AssessmentSession() {
       setCurrentIndex(saved.currentIndex);
       setEssayText(saved.essayText);
       setTimings(saved.timings);
-      setSectionStartTime(Date.now()); // Reset timer for resumed section
+      // Compute how much time was already used in the current section,
+      // then offset the start time backward so the CountdownTimer picks
+      // up where it left off instead of giving a fresh timer.
+      const elapsedMs = saved.savedAt - saved.sectionStartTime;
+      setSectionStartTime(Date.now() - elapsedMs);
       setAnswerDetails(saved.answerDetails);
       setPhase(saved.phase);
       setSavedAssessment(null);
@@ -383,6 +387,7 @@ export function AssessmentSession() {
           flagged={flagged}
           currentIndex={currentIndex}
           totalSeconds={ASSESSMENT_CONFIG.readingMinutes * 60}
+          timerStartTime={sectionStartTime}
           onAnswer={(qId, ans) => handleAnswerWithDetails(qId, ans, "reading")}
           onFlag={handleFlag}
           onNavigate={setCurrentIndex}
@@ -410,6 +415,7 @@ export function AssessmentSession() {
           flagged={flagged}
           currentIndex={currentIndex}
           totalSeconds={ASSESSMENT_CONFIG.qrMinutes * 60}
+          timerStartTime={sectionStartTime}
           onAnswer={(qId, ans) => handleAnswerWithDetails(qId, ans, "qr")}
           onFlag={handleFlag}
           onNavigate={setCurrentIndex}
@@ -437,6 +443,7 @@ export function AssessmentSession() {
           flagged={flagged}
           currentIndex={currentIndex}
           totalSeconds={ASSESSMENT_CONFIG.maMinutes * 60}
+          timerStartTime={sectionStartTime}
           onAnswer={(qId, ans) => handleAnswerWithDetails(qId, ans, "ma")}
           onFlag={handleFlag}
           onNavigate={setCurrentIndex}
@@ -460,6 +467,7 @@ export function AssessmentSession() {
         <AssessmentWriting
           prompt={exam?.writingPrompt ?? ""}
           totalSeconds={ASSESSMENT_CONFIG.writingMinutes * 60}
+          timerStartTime={sectionStartTime}
           onSubmit={handleWritingSubmit}
           onTimeUp={handleWritingTimeUp}
         />
