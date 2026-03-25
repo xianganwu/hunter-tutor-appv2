@@ -16,6 +16,7 @@ import {
   recordSeenQuestionIds,
   ASSESSMENT_CONFIG,
 } from "@/lib/assessment";
+import { getStorageKey } from "@/lib/user-profile";
 import type {
   AssessmentPhase,
   AssessmentExam,
@@ -33,7 +34,12 @@ import { getSkillById } from "@/lib/exam/curriculum";
 
 // ─── localStorage Keys ───────────────────────────────────────────────
 
-const SAVE_KEY = "hunter-tutor-assessment-in-progress";
+const SAVE_BASE_KEY = "hunter-tutor-assessment-in-progress";
+
+/** User-scoped key so Student A can't see Student B's in-progress assessment. */
+function getSaveKey(): string {
+  return getStorageKey(SAVE_BASE_KEY);
+}
 
 interface SavedState {
   readonly phase: AssessmentPhase;
@@ -508,7 +514,7 @@ function ScoringScreen() {
 function persistState(state: SavedState): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+    localStorage.setItem(getSaveKey(), JSON.stringify(state));
   } catch {
     // localStorage unavailable or quota exceeded
   }
@@ -517,7 +523,7 @@ function persistState(state: SavedState): void {
 function loadSavedState(): SavedState | null {
   if (typeof window === "undefined") return null;
   try {
-    const data = localStorage.getItem(SAVE_KEY);
+    const data = localStorage.getItem(getSaveKey());
     if (!data) return null;
     return JSON.parse(data) as SavedState;
   } catch {
@@ -528,7 +534,7 @@ function loadSavedState(): SavedState | null {
 function clearSavedState(): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(getSaveKey());
   } catch {
     // ignore
   }
