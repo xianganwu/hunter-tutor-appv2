@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import type { VocabCard, VocabDeck } from "@/lib/vocabulary";
+import type { VocabCard, VocabDeck, VocabWord } from "@/lib/vocabulary";
 import {
   loadVocabDeck,
   saveVocabDeck,
@@ -10,11 +10,12 @@ import {
   computeNextReview,
   addWordToDeck,
   removeWordFromDeck,
+  unretireWord,
   computeVocabStats,
+  MATCH_STREAK_TO_RETIRE,
 } from "@/lib/vocabulary";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import { getRandomWords, getAllWords } from "@/lib/exam/vocabulary";
-import type { VocabWord } from "@/lib/vocabulary";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -46,6 +47,7 @@ export interface MatchingState {
   readonly totalCorrect: number;
   readonly totalAttempts: number;
   readonly firstTryIds: ReadonlySet<string>;
+  readonly recentlyRetiredWord: string | null; // word text for celebration
 }
 
 export interface VocabBuilderState {
@@ -82,17 +84,19 @@ function shuffle<T>(arr: readonly T[]): T[] {
   return out;
 }
 
-/** Select cards for a matching round, prioritizing struggling words. */
+/** Select cards for a matching round, prioritizing struggling words. Excludes retired. */
 function buildMatchingRound(
   allCards: readonly VocabCard[],
   excludeIds: readonly string[],
   count: number
 ): { words: VocabCard[]; shuffledDefIds: string[] } | null {
   const excluded = new Set(excludeIds);
-  const candidates = allCards.filter((c) => !excluded.has(c.word.wordId));
+  // Always exclude retired cards
+  const eligible = allCards.filter((c) => !c.retired);
+  const candidates = eligible.filter((c) => !excluded.has(c.word.wordId));
   if (candidates.length < count) {
-    // If not enough unused cards, allow reuse
-    const fallback = allCards.length >= count ? allCards : null;
+    // If not enough unused cards, allow reuse from eligible (non-retired)
+    const fallback = eligible.length >= count ? eligible : null;
     if (!fallback) return null;
     const picked = shuffle(fallback as VocabCard[]).slice(0, count);
     return {
@@ -411,6 +415,19 @@ export function useVocabBuilder() {
     }));
   }, []);
 
+  // ─── Un-retire Word ────────────────────────────────────────────
+
+  const handleUnretire = useCallback((wordId: string) => {
+    const s = stateRef.current;
+    const updatedDeck = unretireWord(s.deck, wordId);
+    saveVocabDeck(updatedDeck);
+
+    setState((prev) => ({
+      ...prev,
+      deck: updatedDeck,
+    }));
+  }, []);
+
   // ─── Add Random Words ────────────────────────────────────────────
 
   const addRandomWords = useCallback((count: number) => {
@@ -455,7 +472,8 @@ export function useVocabBuilder() {
 
   const startMatchingQuiz = useCallback(() => {
     const s = stateRef.current;
-    if (s.deck.cards.length < MATCHING_WORDS_PER_ROUND) return;
+    const eligibleCount = s.deck.cards.filter((c) => !c.retired).length;
+    if (eligibleCount < MATCHING_WORDS_PER_ROUND) return;
     const round = buildMatchingRound(s.deck.cards, [], MATCHING_WORDS_PER_ROUND);
     if (!round) return;
     setState((prev) => ({
@@ -470,11 +488,12 @@ export function useVocabBuilder() {
         round: 1,
         totalRounds: Math.min(
           MATCHING_TOTAL_ROUNDS,
-          Math.floor(s.deck.cards.length / MATCHING_WORDS_PER_ROUND)
+          Math.floor(eligibleCount / MATCHING_WORDS_PER_ROUND)
         ),
         totalCorrect: 0,
         totalAttempts: 0,
         firstTryIds: new Set(),
+        recentlyRetiredWord: null,
       },
     }));
   }, []);
@@ -507,11 +526,39 @@ export function useVocabBuilder() {
       const newMatched = [...s.matching.matchedPairs, defWordId];
       const allMatched = newMatched.length === s.matching.words.length;
 
+      // Update matchCorrectStreak on the card in the deck
+      let updatedDeck = s.deck;
+      let justRetiredWord: string | null = null;
+      if (isFirstTry) {
+        const card = s.deck.cards.find((c) => c.word.wordId === wordId);
+        if (card) {
+          const newStreak = (card.matchCorrectStreak ?? 0) + 1;
+          const shouldRetire = newStreak >= MATCH_STREAK_TO_RETIRE;
+          updatedDeck = {
+            ...s.deck,
+            cards: s.deck.cards.map((c) =>
+              c.word.wordId === wordId
+                ? {
+                    ...c,
+                    matchCorrectStreak: newStreak,
+                    retired: shouldRetire ? true : c.retired,
+                  }
+                : c
+            ),
+          };
+          if (shouldRetire) {
+            justRetiredWord = card.word.word;
+          }
+          saveVocabDeck(updatedDeck);
+        }
+      }
+
       setState((prev) => {
         if (!prev.matching) return prev;
         const newFirstTryIds = new Set(prev.matching.firstTryIds);
         return {
           ...prev,
+          deck: updatedDeck,
           matching: {
             ...prev.matching,
             matchedPairs: newMatched,
@@ -521,9 +568,22 @@ export function useVocabBuilder() {
             totalCorrect:
               prev.matching.totalCorrect + (isFirstTry ? 1 : 0),
             firstTryIds: newFirstTryIds,
+            recentlyRetiredWord: justRetiredWord,
           },
         };
       });
+
+      // Clear retirement celebration after a delay
+      if (justRetiredWord) {
+        setTimeout(() => {
+          setState((prev) => ({
+            ...prev,
+            matching: prev.matching
+              ? { ...prev.matching, recentlyRetiredWord: null }
+              : prev.matching,
+          }));
+        }, 2000);
+      }
 
       // After short delay, check if round is complete
       if (allMatched) {
@@ -550,6 +610,7 @@ export function useVocabBuilder() {
                       selectedWordId: null,
                       wrongDefId: null,
                       round: prev.matching.round + 1,
+                      recentlyRetiredWord: null,
                     }
                   : prev.matching,
               }));
@@ -562,13 +623,28 @@ export function useVocabBuilder() {
         }, 1200);
       }
     } else {
-      // Wrong — flash red briefly
+      // Wrong — flash red briefly AND reset matchCorrectStreak for the selected word
+      let updatedDeck = s.deck;
+      const card = s.deck.cards.find((c) => c.word.wordId === wordId);
+      if (card && (card.matchCorrectStreak ?? 0) > 0) {
+        updatedDeck = {
+          ...s.deck,
+          cards: s.deck.cards.map((c) =>
+            c.word.wordId === wordId
+              ? { ...c, matchCorrectStreak: 0 }
+              : c
+          ),
+        };
+        saveVocabDeck(updatedDeck);
+      }
+
       setState((prev) => {
         if (!prev.matching) return prev;
         const newFirstTryIds = new Set(prev.matching.firstTryIds);
         newFirstTryIds.add(wordId);
         return {
           ...prev,
+          deck: updatedDeck,
           matching: {
             ...prev.matching,
             wrongDefId: defWordId,
@@ -668,7 +744,7 @@ export function useVocabBuilder() {
 
   const stats = computeVocabStats(state.deck);
   const dueCount = stats.dueNow;
-  const newCount = state.deck.cards.filter((c) => c.repetitions === 0).length;
+  const newCount = state.deck.cards.filter((c) => !c.retired && c.repetitions === 0).length;
   const studyAvailable = dueCount + newCount > 0;
   const progress =
     state.studyQueue.length > 0
@@ -692,6 +768,7 @@ export function useVocabBuilder() {
     skipUseWord,
     addWord,
     removeWord,
+    handleUnretire,
     addRandomWords,
     backToOverview,
     openWordBrowser,

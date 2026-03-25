@@ -19,6 +19,8 @@ export interface VocabCard {
   nextReviewDate: number; // epoch ms
   repetitions: number; // successful consecutive reviews
   lastResult: 0 | 1 | 2 | 3 | 4 | 5; // SM-2 quality rating
+  matchCorrectStreak?: number; // consecutive first-try correct matches in quiz
+  retired?: boolean; // true = excluded from all study modes
 }
 
 export interface VocabDeck {
@@ -35,7 +37,7 @@ export interface VocabStats {
   readonly streakDays: number;
 }
 
-export type WordStatus = "new" | "due" | "learning" | "mastered";
+export type WordStatus = "new" | "due" | "learning" | "mastered" | "retired";
 
 // ─── Constants ────────────────────────────────────────────────────────
 
@@ -43,9 +45,11 @@ const STORAGE_KEY = "hunter-tutor-vocab-deck";
 const MIN_EASE_FACTOR = 1.3;
 const MS_PER_DAY = 86_400_000;
 const LEARNED_INTERVAL_THRESHOLD = 21; // days
+export const MATCH_STREAK_TO_RETIRE = 3;
 
 /** Derives the review status of a card from its SM-2 fields. */
 export function getWordStatus(card: VocabCard): WordStatus {
+  if (card.retired) return "retired";
   if (card.repetitions === 0) return "new";
   if (card.interval >= LEARNED_INTERVAL_THRESHOLD) return "mastered";
   if (card.nextReviewDate <= Date.now()) return "due";
@@ -102,20 +106,20 @@ export function computeNextReview(
 
 // ─── Deck Operations ─────────────────────────────────────────────────
 
-/** Returns cards that are due for review (nextReviewDate <= now). */
+/** Returns cards that are due for review (nextReviewDate <= now). Excludes retired. */
 export function getDueCards(deck: VocabDeck): readonly VocabCard[] {
   const now = Date.now();
   return deck.cards
-    .filter((c) => c.repetitions > 0 && c.nextReviewDate <= now)
+    .filter((c) => !c.retired && c.repetitions > 0 && c.nextReviewDate <= now)
     .sort((a, b) => a.nextReviewDate - b.nextReviewDate);
 }
 
-/** Returns cards with 0 repetitions (never studied), up to `count`. */
+/** Returns cards with 0 repetitions (never studied), up to `count`. Excludes retired. */
 export function getNewCards(
   deck: VocabDeck,
   count: number
 ): readonly VocabCard[] {
-  return deck.cards.filter((c) => c.repetitions === 0).slice(0, count);
+  return deck.cards.filter((c) => !c.retired && c.repetitions === 0).slice(0, count);
 }
 
 /** Adds a VocabWord to the deck as a new card. Returns updated deck. */
@@ -148,6 +152,28 @@ export function removeWordFromDeck(
   return {
     ...deck,
     cards: deck.cards.filter((c) => c.word.wordId !== wordId),
+  };
+}
+
+/** Marks a word as retired. Keeps it in the deck but excludes from all study modes. */
+export function retireWord(deck: VocabDeck, wordId: string): VocabDeck {
+  return {
+    ...deck,
+    cards: deck.cards.map((c) =>
+      c.word.wordId === wordId ? { ...c, retired: true } : c
+    ),
+  };
+}
+
+/** Un-retires a word, resetting its match streak so it can be studied again. */
+export function unretireWord(deck: VocabDeck, wordId: string): VocabDeck {
+  return {
+    ...deck,
+    cards: deck.cards.map((c) =>
+      c.word.wordId === wordId
+        ? { ...c, retired: false, matchCorrectStreak: 0 }
+        : c
+    ),
   };
 }
 
@@ -195,11 +221,11 @@ export function computeVocabStats(deck: VocabDeck): VocabStats {
   const totalCards = deck.cards.length;
 
   const dueNow = deck.cards.filter(
-    (c) => c.repetitions > 0 && c.nextReviewDate <= now
+    (c) => !c.retired && c.repetitions > 0 && c.nextReviewDate <= now
   ).length;
 
   const learned = deck.cards.filter(
-    (c) => c.interval >= LEARNED_INTERVAL_THRESHOLD
+    (c) => !c.retired && c.interval >= LEARNED_INTERVAL_THRESHOLD
   ).length;
 
   // Streak: count consecutive days ending today (or yesterday) that have reviews

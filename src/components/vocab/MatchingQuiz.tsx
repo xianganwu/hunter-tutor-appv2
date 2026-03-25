@@ -155,6 +155,15 @@ export function MatchingQuiz({
         </div>
       </div>
 
+      {/* Word retired celebration */}
+      {matching.recentlyRetiredWord && (
+        <div className="rounded-xl bg-success-50 dark:bg-success-500/10 border border-success-200 dark:border-success-600/30 px-4 py-3 text-center animate-fade-in">
+          <p className="text-sm font-medium text-success-700 dark:text-success-300">
+            &ldquo;{matching.recentlyRetiredWord}&rdquo; mastered! Retired from study.
+          </p>
+        </div>
+      )}
+
       {/* Round complete overlay */}
       {allMatched && (
         <div className="text-center py-4 animate-fade-in">

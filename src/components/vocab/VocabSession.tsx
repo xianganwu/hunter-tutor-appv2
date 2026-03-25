@@ -28,6 +28,7 @@ export function VocabSession() {
     skipUseWord,
     addWord,
     removeWord,
+    handleUnretire,
     addRandomWords,
     backToOverview,
     openWordBrowser,
@@ -111,7 +112,7 @@ export function VocabSession() {
             newCount={newCount}
             studyAvailable={studyAvailable}
             suggestedWords={state.suggestedWords}
-            canMatch={state.deck.cards.length >= 5}
+            canMatch={state.deck.cards.filter((c) => !c.retired).length >= 5}
             onStartStudy={startStudy}
             onAddWord={addWord}
             onAddRandomWords={addRandomWords}
@@ -167,6 +168,7 @@ export function VocabSession() {
           <WordBrowser
             cards={state.deck.cards}
             onRemoveWord={removeWord}
+            onUnretireWord={handleUnretire}
             onBack={backToOverview}
           />
         )}

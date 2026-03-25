@@ -13,6 +13,7 @@ type SortOption = "alpha" | "status" | "difficulty" | "next_review";
 interface WordBrowserProps {
   readonly cards: readonly VocabCard[];
   readonly onRemoveWord: (wordId: string) => void;
+  readonly onUnretireWord: (wordId: string) => void;
   readonly onBack: () => void;
 }
 
@@ -42,6 +43,11 @@ const STATUS_CONFIG: Record<
     dotClass: "bg-success-500",
     order: 3,
   },
+  retired: {
+    label: "Retired",
+    dotClass: "bg-surface-400",
+    order: 4,
+  },
 };
 
 const FILTER_OPTIONS: readonly FilterOption[] = [
@@ -50,11 +56,13 @@ const FILTER_OPTIONS: readonly FilterOption[] = [
   "due",
   "learning",
   "mastered",
+  "retired",
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 
 function formatNextReview(card: VocabCard): string {
+  if (card.retired) return "Retired";
   if (card.repetitions === 0) return "Not studied";
   const now = Date.now();
   const diff = card.nextReviewDate - now;
@@ -95,7 +103,7 @@ function sortCards(
 
 // ─── Component ────────────────────────────────────────────────────────
 
-export function WordBrowser({ cards, onRemoveWord, onBack }: WordBrowserProps) {
+export function WordBrowser({ cards, onRemoveWord, onUnretireWord, onBack }: WordBrowserProps) {
   const [filter, setFilter] = useState<FilterOption>("all");
   const [sort, setSort] = useState<SortOption>("alpha");
   const [search, setSearch] = useState("");
@@ -110,6 +118,7 @@ export function WordBrowser({ cards, onRemoveWord, onBack }: WordBrowserProps) {
       due: 0,
       learning: 0,
       mastered: 0,
+      retired: 0,
     };
     for (const card of cards) {
       counts[getWordStatus(card)]++;
@@ -230,9 +239,11 @@ export function WordBrowser({ cards, onRemoveWord, onBack }: WordBrowserProps) {
               <div
                 key={card.word.wordId}
                 className={`rounded-xl border bg-surface-0 dark:bg-surface-900 shadow-soft overflow-hidden transition-colors ${
-                  status === "mastered"
-                    ? "border-l-2 border-l-success-400 border-surface-200 dark:border-surface-700"
-                    : "border-surface-200 dark:border-surface-700"
+                  status === "retired"
+                    ? "border-l-2 border-l-surface-400 border-surface-200 dark:border-surface-700 opacity-70"
+                    : status === "mastered"
+                      ? "border-l-2 border-l-success-400 border-surface-200 dark:border-surface-700"
+                      : "border-surface-200 dark:border-surface-700"
                 }`}
               >
                 {/* Row */}
@@ -298,7 +309,9 @@ export function WordBrowser({ cards, onRemoveWord, onBack }: WordBrowserProps) {
                               ? "bg-streak-100 dark:bg-streak-600/20 text-streak-600 dark:text-streak-400"
                               : status === "mastered"
                                 ? "bg-success-100 dark:bg-success-600/20 text-success-600 dark:text-success-400"
-                                : "bg-surface-100 dark:bg-surface-700 text-surface-600 dark:text-surface-400"
+                                : status === "retired"
+                                  ? "bg-surface-200 dark:bg-surface-700 text-surface-500 dark:text-surface-400"
+                                  : "bg-surface-100 dark:bg-surface-700 text-surface-600 dark:text-surface-400"
                         }`}
                       >
                         {config.label}
@@ -341,8 +354,15 @@ export function WordBrowser({ cards, onRemoveWord, onBack }: WordBrowserProps) {
                       </div>
                     )}
 
-                    {/* Remove button */}
-                    {confirmRemoveId === card.word.wordId ? (
+                    {/* Actions */}
+                    {status === "retired" ? (
+                      <button
+                        onClick={() => onUnretireWord(card.word.wordId)}
+                        className="text-xs text-brand-500 hover:text-brand-600 dark:text-brand-400 dark:hover:text-brand-300 font-medium transition-colors"
+                      >
+                        Bring back for study
+                      </button>
+                    ) : confirmRemoveId === card.word.wordId ? (
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-red-500">
                           Remove this word?
