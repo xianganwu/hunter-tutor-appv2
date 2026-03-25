@@ -1,40 +1,84 @@
-# Retire Mastered Words from Matching Quiz
+# Assessment Stress Test — 10 Student Profiles
 
-## Step 1: Data model (`src/lib/vocabulary.ts`)
-- [x] Add `matchCorrectStreak?: number` and `retired?: boolean` to VocabCard
-- [x] Add `"retired"` to WordStatus type
-- [x] Update `getWordStatus()`: return "retired" if `card.retired === true`
-- [x] Update `getDueCards()`: filter out retired
-- [x] Update `getNewCards()`: filter out retired
-- [x] Update `computeVocabStats()`: exclude retired from due/learned counts
-- [x] Add `retireWord()` and `unretireWord()` functions
-- [x] Add `MATCH_STREAK_TO_RETIRE = 3` constant
-- [x] Unit tests: 14/14 pass
+## Results: 142 tests pass, 0 failures
 
-## Step 2: Matching quiz tracking (`src/hooks/useVocabBuilder.ts`)
-- [x] `buildMatchingRound()`: exclude retired cards
-- [x] `selectMatchDefinition()`: increment `matchCorrectStreak` on first-try correct
-- [x] `selectMatchDefinition()`: reset `matchCorrectStreak` to 0 on wrong
-- [x] Auto-retire when streak reaches 3
-- [x] Show retirement celebration via `recentlyRetiredWord` field
-- [x] `startMatchingQuiz()`: use non-retired count for totalRounds
-- [x] Fix `newCount` computed value to exclude retired
+### Ranking Summary (from diagnostic output)
 
-## Step 3: Word Browser UI (`src/components/vocab/WordBrowser.tsx`)
-- [x] Add "retired" to filter options with count and status config
-- [x] Status badge styling for retired
-- [x] Show "Bring back for study" button for retired words
-- [x] Left border + opacity for retired words
+```
+Name         Score     Range  Pctile    Conf Strong  Weak Missed
+Aisha          100    97-100   ~99th    high     24     0      0
+Iris            86     76-96   ~88th  medium     17     1      9
+Brian           79     68-90   ~70th  medium     16     6     14
+Diego           64     52-76   ~32nd  medium     12     9     22
+Emma            60     48-72   ~32nd  medium      7     7     27
+Chloe           53     40-66   ~15th  medium      7     9     33
+Hugo            52     39-65   ~15th  medium      7    10     32
+Grace           49     36-62    ~8th  medium      1    12     37
+Javier          49     37-61    ~8th  medium      8     8     29
+Felix           23     12-34    ~8th  medium      2    20     50
+```
 
-## Step 4: Suggested words exclusion
-- [x] Already handled — retired words are in deck, so excluded from `getAllWords().filter(!existingIds)`
+### Round 1: Exam Assembly — 8/8 pass
+- [x] Correct question counts (~25 reading, ~19 QR, ~23 MA)
+- [x] 3+ reading genres
+- [x] Valid answer choices with correct answer present
+- [x] No duplicate question IDs
+- [x] Substantive writing prompt
+- [x] Every reading block has passage text
 
-## Step 5: UI updates
-- [x] Retirement celebration banner in MatchingQuiz component
-- [x] `canMatch` uses non-retired count
+### Round 2: Per-Student Scoring Sanity — 90/90 pass (9 checks x 10 students)
+- [x] All section raw percentages in 0-100
+- [x] All section weighted percentages in 0-100
+- [x] correct <= total for every section
+- [x] Missed question count = total - correct
+- [x] Writing score matches input
+- [x] Time analysis matches input
+- [x] At least 1 recommendation per student
+- [x] All skill classifications valid (strong/moderate/weak)
+- [x] strongSkills all 'strong', weakSkills all 'weak'
 
-## Verification
-- [x] typecheck: 0 new errors (14 pre-existing)
-- [x] lint: 0 errors, 0 warnings
-- [x] vocabulary.test.ts: 14/14 pass
-- [x] full test suite: 0 new failures (17 pre-existing)
+### Round 3: Cross-Student Ordering — 5/5 pass
+- [x] Aisha (perfect) has highest score
+- [x] Felix (guesser) has lowest score
+- [x] Expected relative ordering maintained
+- [x] Percentiles follow same ordering as scores
+- [x] Top 3 have more strong than weak skills; bottom 2 have more weak than strong
+
+### Round 4: Confidence & Projection Quality — 22/22 pass
+- [x] All confidence intervals valid (low <= est <= high)
+- [x] All percentile ranges bracket point estimate
+- [x] All students show high or medium confidence (67 questions = good precision)
+- [x] Aisha (100%) has tighter range than Hugo (~50%)
+- [x] Felix (20%) has tighter range than Emma (60%) — binomial SE smallest at extremes
+
+### Round 5: Weighted vs Raw Divergence — 2/2 pass
+- [x] Multiple sections show raw ≠ weighted (difficulty tiers working)
+- [x] At least 5 divergences across 30 sections
+
+### Round 6: Edge Cases — 6/6 pass
+- [x] Grace (skips 40%): scores 45% overall (skipped = wrong)
+- [x] Felix (guesser): scores 23/100, doesn't crash
+- [x] Aisha (perfect): scores 100/100, 0 missed, doesn't crash
+- [x] Javier (collapse): reading 84% >> MA 17%, pattern visible
+- [x] Hugo (speed demon): used 14/35min reading, 7/17min QR
+- [x] Iris (cautious): used 34/35min reading, 20.5/21min MA
+
+### Round 7: Strength/Weakness Correctness — 6/6 pass
+- [x] Chloe: strong reading skills, weak math skills
+- [x] Diego: strong math skills, weak reading skills
+- [x] Emma: >= 30% moderate classifications
+- [x] Felix: >= 50% weak classifications
+- [x] Aisha: >= 80% strong classifications
+- [x] Brian: high reading/QR, low MA, weak skills in MA domain
+
+### Confidence Assessment
+
+With 67 MC questions, the binomial standard error model gives:
+- At p=0.50 (Hugo): SE ≈ 6.1%, margin ≈ 13 pts → **medium confidence**
+- At p=0.87 (Iris): SE ≈ 4.1%, margin ≈ 9 pts → **medium confidence**
+- At p=1.00 (Aisha): SE ≈ 0%, margin ≈ 3 pts → **high confidence**
+- At p=0.25 (Felix): SE ≈ 5.3%, margin ≈ 11 pts → **medium confidence**
+
+The half-test's 67 questions deliver medium-confidence projections (±9-13 pts).
+To reach high confidence (±8 pts) across all ability levels, need ~100+ questions
+or real calibration data. This is an inherent trade-off of half-length format.

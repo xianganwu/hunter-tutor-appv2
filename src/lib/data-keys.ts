@@ -17,6 +17,7 @@ export const DATA_KEYS = [
   "vocab-deck",
   "streak-freezes",
   "time-budget",
+  "assessments",
 ] as const;
 
 export type DataKey = (typeof DATA_KEYS)[number];

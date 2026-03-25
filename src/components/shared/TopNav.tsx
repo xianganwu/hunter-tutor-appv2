@@ -33,6 +33,7 @@ const NAV_ITEMS: NavItem[] = [
   },
   { href: "/tutor/writing", label: "Writing" },
   { href: "/study", label: "Study" },
+  { href: "/assessment", label: "Assessment" },
 ];
 
 /* ── Style constants ────────────────────────────────────────────────── */
