@@ -9,11 +9,10 @@ import { describe, it, expect, beforeAll } from "vitest";
 import { getSkillById, getDomainForSkill } from "./exam/curriculum";
 import { assembleAssessmentExam, ASSESSMENT_CONFIG } from "./assessment";
 import type { AssessmentExam, AssessmentAnswer } from "./assessment";
-import { generateAssessmentReport, computeScoreProjection } from "./assessment-scoring";
+import { generateAssessmentReport } from "./assessment-scoring";
 import type {
   WritingAssessmentScore,
   AssessmentReport,
-  SectionAssessmentScore,
   SkillAssessment,
 } from "./assessment-scoring";
 import type { ExamQuestion } from "./simulation";
