@@ -284,7 +284,10 @@ function AnsweringPhase({
             </div>
           )}
           <article className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-5 border border-surface-200 dark:border-surface-800 max-h-72 overflow-y-auto">
-            <div className="text-sm leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap">
+            <div
+              className="leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap"
+              style={{ fontSize: "var(--passage-font-size, 16px)" }}
+            >
               {passageText}
             </div>
           </article>

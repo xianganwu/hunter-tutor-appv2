@@ -58,7 +58,10 @@ export function PassageReader({
         <h2 className="text-lg font-semibold text-surface-900 dark:text-surface-100 mb-3">
           {title}
         </h2>
-        <div className="text-sm leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap">
+        <div
+          className="leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap"
+          style={{ fontSize: "var(--passage-font-size, 16px)" }}
+        >
           {passageText}
         </div>
         <div className="mt-3 text-xs text-surface-400">

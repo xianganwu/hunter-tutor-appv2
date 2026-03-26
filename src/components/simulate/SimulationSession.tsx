@@ -601,7 +601,10 @@ function ReadingSection({
         <h2 className="text-base font-semibold text-surface-900 dark:text-surface-100 mb-3">
           {passage.title}
         </h2>
-        <div className="text-sm leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap">
+        <div
+          className="leading-relaxed text-surface-800 dark:text-surface-200 whitespace-pre-wrap"
+          style={{ fontSize: "var(--passage-font-size, 16px)" }}
+        >
           {passage.passageText}
         </div>
       </article>

@@ -37,6 +37,9 @@ export default function RootLayout({
                 if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                   document.documentElement.classList.add('dark');
                 }
+                var fs = localStorage.getItem('hunter-tutor-font-size');
+                var sizes = { small: '14px', medium: '16px', large: '18px' };
+                document.documentElement.style.setProperty('--passage-font-size', sizes[fs] || '16px');
               } catch {}
             `,
           }}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DarkModeToggle } from "./DarkModeToggle";
+import { FontSizeToggle } from "./FontSizeToggle";
 import { getActiveUser } from "@/lib/user-profile";
 
 /* ── Navigation data ────────────────────────────────────────────────── */
@@ -150,6 +151,7 @@ export function TopNav() {
 
         {/* Right side: hamburger (mobile) + dark mode + avatar */}
         <div className="flex items-center gap-3">
+          <FontSizeToggle />
           <DarkModeToggle />
           {userName && (
             <Link
