@@ -30,6 +30,22 @@
 
 **Rule**: For every audit finding: (1) grep the codebase for the exact code cited, (2) check git log for recent fixes, (3) evaluate whether the recommended fix is actually sound engineering. Don't blindly implement audit recommendations.
 
+## Vercel Build Failures: Always Verify Locally Before Pushing
+
+**Pattern**: Before every push to main, run `npm run build` locally (not just `tsc --noEmit` or `next lint`). The full build command (`npx prisma generate && next build`) catches issues that typecheck and lint miss: SSR rendering errors, missing exports consumed during static page generation, dynamic import failures, and Edge Runtime incompatibilities.
+
+**Verification checklist before every push:**
+1. `npx tsc --noEmit` — type safety
+2. `npx next lint` — lint rules
+3. `npm run build` — full production build (Prisma generate + Next.js build + static page generation)
+4. `npx vitest run` — tests
+
+**Why not just typecheck?** Next.js build does additional work beyond TypeScript: it actually renders static pages, resolves all dynamic imports, tree-shakes unused code, and validates Edge Runtime compatibility. A file can typecheck perfectly but fail during static generation (e.g., server-side code importing a client-only module, or a component that crashes during SSR).
+
+**When Vercel fails but local passes:** If all 4 checks pass locally but Vercel still fails, the cause is usually: (1) Vercel build cache corruption — trigger a redeploy with an empty commit, (2) Node.js version mismatch — pin the version in `package.json` `engines` field, (3) missing env vars on Vercel that exist locally in `.env.local`.
+
+**Rule**: Never push to main without running `npm run build` locally first. Make this a habit, not an afterthought.
+
 ## HSTS Header Is a Free Win
 
 **Pattern**: If the app runs on HTTPS (all Vercel apps do), add `Strict-Transport-Security: max-age=63072000; includeSubDomains` to security headers. One line, zero risk, prevents HTTPS downgrade attacks.
