@@ -22,7 +22,7 @@ export function MixedDrill() {
   } = useMixedDrill();
 
   // Mascot moments
-  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
+  const { mascotType, mascotTier, mascotName, moment, momentKey, triggerMoment } = useMascotMoment();
 
   // Mixed drill completion moment
   const drillCompletedRef = useRef(false);
@@ -174,7 +174,7 @@ export function MixedDrill() {
           </div>
         </div>
 
-        <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
+        <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} mascotName={mascotName} />
       </div>
     );
   }

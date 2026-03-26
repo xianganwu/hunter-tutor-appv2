@@ -20,6 +20,8 @@ interface MascotMomentProps {
   readonly tier?: 1 | 2 | 3 | 4 | 5;
   /** Increment to trigger a new moment even if the type hasn't changed. */
   readonly momentKey?: number;
+  /** Mascot name for personalized messages (e.g., "Scout is on fire!"). */
+  readonly mascotName?: string | null;
 }
 
 // ─── Phase Machine ────────────────────────────────────────────────────
@@ -82,6 +84,7 @@ export function MascotMoment({
   mascotType = "penguin",
   tier = 1,
   momentKey = 0,
+  mascotName,
 }: MascotMomentProps) {
   const [phase, setPhase] = useState<Phase>("hidden");
   const [message, setMessage] = useState("");
@@ -98,7 +101,7 @@ export function MascotMoment({
     // Clear any pending timers
     if (timerRef.current) clearTimeout(timerRef.current);
 
-    const { message: msg, tone: t } = pickMomentMessage(moment);
+    const { message: msg, tone: t } = pickMomentMessage(moment, mascotName);
     setMessage(msg);
     setTone(t);
     setShowConfetti(shouldShowConfetti(moment));

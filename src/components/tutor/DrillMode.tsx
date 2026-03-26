@@ -42,7 +42,7 @@ export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillMod
   const [selectedSkillId, setSelectedSkillId] = useState(initialSkillId ?? "");
 
   // Mascot moments
-  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
+  const { mascotType, mascotTier, mascotName, moment, momentKey, triggerMoment } = useMascotMoment();
 
   // Drill completion moment
   const drillCompletedRef = useRef(false);
@@ -256,7 +256,7 @@ export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillMod
           </div>
         </div>
 
-        <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
+        <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} mascotName={mascotName} />
       </div>
     );
   }

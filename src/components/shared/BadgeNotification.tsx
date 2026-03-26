@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { BadgeDefinition } from "@/lib/achievements";
+import { ACCESSORY_UNLOCKS, type BadgeDefinition } from "@/lib/achievements";
 
 interface BadgeNotificationProps {
   readonly badges: readonly BadgeDefinition[];
@@ -51,6 +51,11 @@ export function BadgeNotification({ badges, onDismiss }: BadgeNotificationProps)
           <div className="text-xs text-surface-500 dark:text-surface-400">
             {badge.description}
           </div>
+          {ACCESSORY_UNLOCKS[badge.id] && (
+            <div className="text-xs font-medium text-success-600 dark:text-success-400 mt-0.5">
+              New accessory unlocked!
+            </div>
+          )}
         </div>
         <button
           onClick={() => {

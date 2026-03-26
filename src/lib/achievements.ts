@@ -256,7 +256,7 @@ export const BADGE_DEFINITIONS: readonly BadgeDefinition[] = [
 
 // ─── Accessory Unlock Mapping ────────────────────────────────────────
 
-const ACCESSORY_UNLOCKS: Record<string, MascotAccessory> = {
+export const ACCESSORY_UNLOCKS: Record<string, MascotAccessory> = {
   streak_3: "party_hat",
   century_club: "star_badge",
   scholar: "graduation_cap",

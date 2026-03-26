@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { getMascotTier, type MascotAnimal } from "@/components/shared/Mascot";
-import { getStoredMascotType } from "@/lib/user-profile";
+import { getStoredMascotType, getStoredMascotName } from "@/lib/user-profile";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
 import type { MascotMomentType } from "@/components/shared/mascot-moments";
 
@@ -15,6 +15,7 @@ import type { MascotMomentType } from "@/components/shared/mascot-moments";
  */
 export function useMascotMoment() {
   const mascotType: MascotAnimal = (getStoredMascotType() as MascotAnimal) ?? "penguin";
+  const mascotName = getStoredMascotName();
 
   const storedMasteries = loadAllSkillMasteries();
   const overallMastery =
@@ -36,5 +37,5 @@ export function useMascotMoment() {
     setMoment(null);
   }, []);
 
-  return { mascotType, mascotTier, moment, momentKey, triggerMoment, clearMoment };
+  return { mascotType, mascotTier, mascotName, moment, momentKey, triggerMoment, clearMoment };
 }

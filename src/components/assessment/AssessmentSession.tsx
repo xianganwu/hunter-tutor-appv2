@@ -96,7 +96,7 @@ export function AssessmentSession() {
   }, []);
 
   // Mascot moments
-  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
+  const { mascotType, mascotTier, mascotName, moment, momentKey, triggerMoment } = useMascotMoment();
 
   const assessmentCompletedRef = useRef(false);
   useEffect(() => {
@@ -504,7 +504,7 @@ export function AssessmentSession() {
             report={report}
             previousReport={previousReport}
           />
-          <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
+          <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} mascotName={mascotName} />
         </>
       );
   }

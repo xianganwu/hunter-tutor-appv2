@@ -152,19 +152,42 @@ function pickRandom(arr: readonly string[]): string {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+/**
+ * Pick a message for a mascot moment.
+ * If mascotName is provided, some messages are personalized
+ * (e.g., "Scout is on fire!" instead of "You're on fire!").
+ */
 export function pickMomentMessage(
-  moment: MascotMomentType
+  moment: MascotMomentType,
+  mascotName?: string | null
 ): { readonly message: string; readonly tone: MascotMomentTone } {
   const tone = getMomentTone(moment);
   const key = `${moment.kind}/${tone}`;
   const messages = MESSAGES[key];
 
   if (!messages || messages.length === 0) {
-    // Fallback — should never happen with complete message bank
     return { message: "Keep going!", tone };
   }
 
-  return { message: pickRandom(messages), tone };
+  let message = pickRandom(messages);
+
+  // Personalize with mascot name ~50% of the time for variety
+  if (mascotName && Math.random() < 0.5) {
+    message = personalize(message, mascotName);
+  }
+
+  return { message, tone };
+}
+
+/**
+ * Replace generic "You" phrasing with the mascot's name.
+ * Only transforms messages that start with common patterns.
+ */
+function personalize(message: string, name: string): string {
+  if (message.startsWith("You're ")) return `${name} is ${message.slice(7)}`;
+  if (message.startsWith("You ")) return `${name} ${message.slice(4)}`;
+  if (message.startsWith("You've ")) return `${name}'s ${message.slice(7)}`;
+  return message;
 }
 
 /**

@@ -53,7 +53,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
   const isStreaming = isLoading && lastMsg?.role === "tutor" && lastMsg.content.length > 0;
 
   // Mascot moments
-  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
+  const { mascotType, mascotTier, mascotName, moment, momentKey, triggerMoment } = useMascotMoment();
 
   // Session start moment (fires once)
   const sessionStartedRef = useRef(false);
@@ -226,7 +226,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
         <LevelUpBanner event={levelUpEvent} onDismiss={clearLevelUp} />
       )}
 
-      <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
+      <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} mascotName={mascotName} />
     </div>
   );
 }
