@@ -11,6 +11,7 @@ export interface AuthUser {
   name: string;
   email: string;
   mascotType?: MascotType;
+  mascotName?: string;
   onboardingComplete?: boolean;
 }
 
@@ -93,6 +94,17 @@ export async function authUpdateMascot(
   } catch {
     return { error: "Unable to connect to the server." };
   }
+}
+
+export async function authUpdateMascotName(
+  mascotName: string
+): Promise<{ user?: AuthUser; error?: string }> {
+  const res = await fetch("/api/auth", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "update_mascot_name", mascotName }),
+  });
+  return res.json();
 }
 
 export async function authResetPassword(

@@ -2,9 +2,12 @@
 
 import { useEffect, useState } from "react";
 import type { LevelUpEvent } from "@/components/tutor/types";
-import { Mascot, type MascotAnimal, getMascotTier } from "./Mascot";
+import type { MascotAnimal } from "./Mascot";
+import { getMascotTier } from "./Mascot";
+import { MascotWithAccessory } from "./MascotWithAccessory";
 import { getStoredMascotType } from "@/lib/user-profile";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { loadMascotCustomization } from "@/lib/achievements";
 
 interface LevelUpBannerProps {
   readonly event: LevelUpEvent;
@@ -37,7 +40,7 @@ export function LevelUpBanner({ event, onDismiss }: LevelUpBannerProps) {
     <div className="fixed bottom-20 left-1/2 z-50 -translate-x-1/2 animate-slide-up">
       <div className="flex items-center gap-3 rounded-2xl bg-success-50 px-5 py-3 shadow-glow border border-success-200 dark:bg-success-500/10 dark:border-success-600/30">
         <div className="animate-bounce">
-          <Mascot tier={mascotTier} size="sm" mascotType={mascotType} />
+          <MascotWithAccessory tier={mascotTier} size="sm" mascotType={mascotType} accessory={loadMascotCustomization().equipped} />
         </div>
         <div>
           <div className="text-xs font-medium text-success-600 dark:text-success-400 uppercase tracking-wide">

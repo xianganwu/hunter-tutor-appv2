@@ -6,14 +6,15 @@ import { StreakDisplay } from "./StreakDisplay";
 import { UserMenu } from "./UserMenu";
 import { DailyPracticePlan } from "./DailyPracticePlan";
 import { useDashboardData } from "./use-dashboard-data";
-import { Mascot, getMascotTier, getMascotLabel, type MascotAnimal } from "@/components/shared/Mascot";
+import { getMascotTier, getMascotLabel, type MascotAnimal } from "@/components/shared/Mascot";
+import { MascotWithAccessory } from "@/components/shared/MascotWithAccessory";
+import { EvolutionModal } from "@/components/shared/EvolutionModal";
 import { BadgeNotification } from "@/components/shared/BadgeNotification";
 import { Confetti } from "@/components/shared/Confetti";
-import { getStoredMascotType, getStoredAuthUser, setStoredAuthUser } from "@/lib/user-profile";
+import { getStoredMascotType, getStoredMascotName, setStoredMascotName, getStoredAuthUser, setStoredAuthUser } from "@/lib/user-profile";
 import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
-import { shouldTriggerConfetti, type BadgeDefinition } from "@/lib/achievements";
-import { authUpdateMascot } from "@/lib/auth-client";
-import { MascotPicker } from "@/components/shared/MascotPicker";
+import { shouldTriggerConfetti, canNameMascot, loadMascotCustomization, type BadgeDefinition } from "@/lib/achievements";
+import { authUpdateMascot, authUpdateMascotName } from "@/lib/auth-client";
 
 export function DashboardContent() {
   const router = useRouter();
@@ -34,7 +35,8 @@ export function DashboardContent() {
 
   const [showBadgeNotification, setShowBadgeNotification] = useState(true);
   const [mascotType, setMascotType] = useState<MascotAnimal>(getStoredMascotType());
-  const [showMascotPicker, setShowMascotPicker] = useState(false);
+  const [mascotName, setMascotName] = useState<string | null>(getStoredMascotName());
+  const [showEvolutionModal, setShowEvolutionModal] = useState(false);
 
   const handleBadgeDismiss = useCallback(() => {
     setShowBadgeNotification(false);
@@ -97,11 +99,16 @@ export function DashboardContent() {
           <div className="flex items-center gap-3">
             <div className="flex flex-col items-center gap-1">
               <button
-                onClick={() => setShowMascotPicker(true)}
+                onClick={() => setShowEvolutionModal(true)}
                 className="rounded-xl transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 dark:focus:ring-offset-surface-950"
-                title="Change mascot"
+                title="View evolution & accessories"
               >
-                <Mascot tier={mascotTier} size="lg" mascotType={mascotType} />
+                <MascotWithAccessory
+                  tier={mascotTier}
+                  size="lg"
+                  mascotType={mascotType}
+                  accessory={loadMascotCustomization().equipped}
+                />
               </button>
               <div
                 className="h-1.5 w-14 overflow-hidden rounded-full bg-surface-200 dark:bg-surface-700"
@@ -115,33 +122,40 @@ export function DashboardContent() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-surface-900 dark:text-surface-50 md:text-3xl">
-                Welcome back!
+                Welcome back{mascotName ? `, ${mascotName}` : ""}!
               </h1>
               <p className="text-xs font-medium text-surface-400 dark:text-surface-500">
-                Your {mascotType}: {getMascotLabel(mascotTier, mascotType)}{" "}
+                {mascotName ? `${mascotName} the ` : "Your "}{getMascotLabel(mascotTier, mascotType)}{" "}
                 <button
-                  onClick={() => setShowMascotPicker(true)}
+                  onClick={() => setShowEvolutionModal(true)}
                   className="text-brand-500 hover:text-brand-600 dark:text-brand-400 dark:hover:text-brand-300"
                 >
-                  (change)
+                  (customize)
                 </button>
               </p>
             </div>
           </div>
-          {showMascotPicker && (
-            <MascotPicker
-              currentMascot={mascotType}
-              onSelect={async (newType) => {
-                const result = await authUpdateMascot(newType);
-                if (result.user) {
-                  setStoredAuthUser(result.user);
-                  setMascotType(newType);
-                }
-                setShowMascotPicker(false);
-              }}
-              onClose={() => setShowMascotPicker(false)}
-            />
-          )}
+          <EvolutionModal
+            isOpen={showEvolutionModal}
+            onClose={() => setShowEvolutionModal(false)}
+            mascotType={mascotType}
+            currentTier={mascotTier}
+            overallMastery={overallMastery}
+            mascotName={mascotName}
+            canName={canNameMascot()}
+            onNameSave={async (name) => {
+              setStoredMascotName(name);
+              setMascotName(name);
+              await authUpdateMascotName(name);
+            }}
+            onMascotChange={async (newType) => {
+              const result = await authUpdateMascot(newType);
+              if (result.user) {
+                setStoredAuthUser(result.user);
+                setMascotType(newType);
+              }
+            }}
+          />
           <p className="mt-1 text-sm font-medium text-brand-600 dark:text-brand-400">
             {TIER_MESSAGES[mascotTier]}
           </p>

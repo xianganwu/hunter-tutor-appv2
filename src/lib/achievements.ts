@@ -23,7 +23,12 @@ export type BadgeCondition =
   | { type: "domain_mastered"; domainId: string }
   | { type: "tier_reached"; tier: number }
   | { type: "revision_improved" }
-  | { type: "daily_plan_streak"; days: number };
+  | { type: "daily_plan_streak"; days: number }
+  | { type: "first_assessment" }
+  | { type: "vocab_mastered"; count: number }
+  | { type: "all_reading_categories" }
+  | { type: "first_simulation" }
+  | { type: "all_math_tier3" };
 
 export interface BadgeDefinition {
   readonly id: string;
@@ -44,7 +49,13 @@ export type MascotAccessory =
   | "party_hat"
   | "graduation_cap"
   | "star_badge"
-  | "cape";
+  | "cape"
+  | "backpack"
+  | "book"
+  | "telescope"
+  | "quill"
+  | "medal"
+  | "wand";
 
 export interface MascotCustomization {
   equipped: MascotAccessory;
@@ -64,6 +75,10 @@ export interface BadgeCheckContext {
   readonly drillQuestionsPerMinute?: number;
   readonly overallMastery: number;
   readonly dailyPlanStreak?: number;
+  readonly assessmentCount?: number;
+  readonly vocabMastered?: number;
+  readonly readingCategoriesPracticed?: number;
+  readonly simulationCount?: number;
 }
 
 // ─── Badge Definitions (15) ──────────────────────────────────────────
@@ -189,6 +204,54 @@ export const BADGE_DEFINITIONS: readonly BadgeDefinition[] = [
     category: "milestone",
     condition: { type: "tier_reached", tier: 5 },
   },
+  {
+    id: "first_assessment",
+    name: "Test Taker",
+    description: "Complete your first assessment test",
+    icon: "📋",
+    category: "milestone",
+    condition: { type: "first_assessment" },
+  },
+  {
+    id: "vocab_collector",
+    name: "Word Collector",
+    description: "Master 10 vocabulary words",
+    icon: "📚",
+    category: "mastery",
+    condition: { type: "vocab_mastered", count: 10 },
+  },
+  {
+    id: "reading_explorer",
+    name: "Reading Explorer",
+    description: "Practice all reading skill categories",
+    icon: "🔭",
+    category: "mastery",
+    condition: { type: "all_reading_categories" },
+  },
+  {
+    id: "first_essay",
+    name: "First Draft",
+    description: "Write your first essay",
+    icon: "🪶",
+    category: "writing",
+    condition: { type: "essays_written", count: 1 },
+  },
+  {
+    id: "first_simulation",
+    name: "Exam Ready",
+    description: "Complete your first full practice exam",
+    icon: "🏅",
+    category: "milestone",
+    condition: { type: "first_simulation" },
+  },
+  {
+    id: "math_builder",
+    name: "Math Builder",
+    description: "Get all math skills to tier 3 or above",
+    icon: "🪄",
+    category: "mastery",
+    condition: { type: "all_math_tier3" },
+  },
 ];
 
 // ─── Accessory Unlock Mapping ────────────────────────────────────────
@@ -198,6 +261,12 @@ const ACCESSORY_UNLOCKS: Record<string, MascotAccessory> = {
   century_club: "star_badge",
   scholar: "graduation_cap",
   champion: "cape",
+  first_assessment: "backpack",
+  vocab_collector: "book",
+  reading_explorer: "telescope",
+  first_essay: "quill",
+  first_simulation: "medal",
+  math_builder: "wand",
 };
 
 // ─── Storage ─────────────────────────────────────────────────────────
@@ -339,6 +408,30 @@ function checkCondition(
         ctx.dailyPlanStreak !== undefined &&
         ctx.dailyPlanStreak >= condition.days
       );
+
+    case "first_assessment":
+      return ctx.assessmentCount !== undefined && ctx.assessmentCount >= 1;
+
+    case "vocab_mastered":
+      return ctx.vocabMastered !== undefined && ctx.vocabMastered >= condition.count;
+
+    case "all_reading_categories":
+      return ctx.readingCategoriesPracticed !== undefined && ctx.readingCategoriesPracticed >= 4;
+
+    case "first_simulation":
+      return ctx.simulationCount !== undefined && ctx.simulationCount >= 1;
+
+    case "all_math_tier3": {
+      const allSkillMasteries = loadAllSkillMasteries();
+      const qrSkillIds = getSkillIdsForDomain("math_quantitative_reasoning");
+      const maSkillIds = getSkillIdsForDomain("math_achievement");
+      const allMathSkillIds = [...qrSkillIds, ...maSkillIds];
+      if (allMathSkillIds.length === 0) return false;
+      return allMathSkillIds.every((id) => {
+        const s = allSkillMasteries.find((m) => m.skillId === id);
+        return s && s.masteryLevel >= 0.4;
+      });
+    }
   }
 }
 
@@ -427,4 +520,11 @@ export function shouldTriggerConfetti(badges: readonly BadgeDefinition[]): boole
     "fraction_master",
   ]);
   return badges.some((b) => specialIds.has(b.id));
+}
+
+/**
+ * Check whether the student has earned any badge — unlocks mascot naming.
+ */
+export function canNameMascot(): boolean {
+  return loadEarnedBadges().length > 0;
 }

@@ -16,6 +16,12 @@ const ACCESSORY_LABELS: Record<MascotAccessory, string> = {
   graduation_cap: "Graduation Cap",
   star_badge: "Star Badge",
   cape: "Hero Cape",
+  backpack: "Explorer Backpack",
+  book: "Book of Knowledge",
+  telescope: "Spyglass",
+  quill: "Writer's Quill",
+  medal: "Practice Medal",
+  wand: "Scholar's Wand",
 };
 
 export function BadgeGallery() {

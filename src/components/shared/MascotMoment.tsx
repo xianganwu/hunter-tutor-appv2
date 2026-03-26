@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Mascot, type MascotAnimal } from "./Mascot";
+import type { MascotAnimal } from "./Mascot";
+import { MascotWithAccessory } from "./MascotWithAccessory";
+import { loadMascotCustomization } from "@/lib/achievements";
 import { Confetti } from "./Confetti";
 import {
   pickMomentMessage,
@@ -155,7 +157,7 @@ export function MascotMoment({
 
         {/* Mascot with animation */}
         <div className={`relative ${isCelebration ? "animate-mascot-wobble" : ""}`}>
-          <Mascot tier={tier} size="xl" mascotType={mascotType} />
+          <MascotWithAccessory tier={tier} size="xl" mascotType={mascotType} accessory={loadMascotCustomization().equipped} />
           {isCelebration && <SparkleParticles />}
         </div>
       </div>

@@ -14,6 +14,7 @@ model Student {
   passwordHash     String
   parentPinHash    String?  // hashed 4-6 digit PIN for password reset
   mascotType          String   @default("penguin") // "penguin" | "monkey" | "phoenix" | "dragon"
+  mascotName          String?
   onboardingComplete  Boolean  @default(false)
   createdAt           DateTime @default(now())
   currentSessionId    String?
