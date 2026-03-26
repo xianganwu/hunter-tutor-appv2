@@ -46,6 +46,21 @@
 
 **Rule**: Never push to main without running `npm run build` locally first. Make this a habit, not an afterthought.
 
+## Prisma Schema Changes Require Production DB Migration
+
+**Pattern**: Adding a column to `prisma/schema.prisma` regenerates the Prisma client (which Vercel does via `npx prisma generate` at build time), but does NOT migrate the production database. The deployed app will crash on any query touching the new column.
+
+**What happened**: Added `mascotName String?` to the Student model. Vercel built successfully (Prisma client generated), but every login/signup failed with "Something went wrong" because the production Turso DB didn't have the `mascotName` column. Prisma's `findUnique()` SELECTs all columns by default.
+
+**Fix**: `turso db shell hunter-tutor "ALTER TABLE Student ADD COLUMN mascotName TEXT;"` — but this was discovered only after users couldn't log in.
+
+**Rule**: After any `schema.prisma` change, BEFORE pushing to main:
+1. Run the migration against production: `turso db shell <db-name> "ALTER TABLE ..."` for Turso, or `npx prisma db push` for standard databases
+2. Verify the column exists: `turso db shell <db-name> "PRAGMA table_info(<Table>);"`
+3. Note: `npx prisma db push` does NOT work with `libsql://` URLs — use the Turso CLI directly
+
+**Why not caught locally**: Local dev uses `file:./dev.db` (SQLite file) where `npx prisma db push` works fine. Production uses Turso (libsql://) which requires separate migration.
+
 ## HSTS Header Is a Free Win
 
 **Pattern**: If the app runs on HTTPS (all Vercel apps do), add `Strict-Transport-Security: max-age=63072000; includeSubDomains` to security headers. One line, zero risk, prevents HTTPS downgrade attacks.
