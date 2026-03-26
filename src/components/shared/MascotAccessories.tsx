@@ -242,80 +242,318 @@ function DragonCape() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════
-// REMAINING 6 — Universal placeholders (Release 3 will add variants)
+// BACKPACK — Animal-specific (Release 3)
 // ═══════════════════════════════════════════════════════════════════════
 
-function Backpack() {
+// Penguin: backpack on right side behind flipper, icy blue.
+function PenguinBackpack() {
   return (
     <g>
-      <rect x="42" y="28" width="12" height="16" rx="3" fill="#22c55e" />
-      <rect x="42" y="28" width="12" height="5" rx="2" fill="#16a34a" />
-      <rect x="46" y="32" width="4" height="3" rx="1" fill="#fbbf24" />
-      <line x1="42" y1="30" x2="38" y2="34" stroke="#16a34a" strokeWidth="1.5" />
+      <rect x="44" y="30" width="11" height="15" rx="3" fill="#38bdf8" />
+      <rect x="44" y="30" width="11" height="5" rx="2" fill="#0ea5e9" />
+      <rect x="48" y="34" width="4" height="3" rx="1" fill="#e2e8f0" />
+      <line x1="44" y1="32" x2="40" y2="36" stroke="#0ea5e9" strokeWidth="1.5" />
+    </g>
+  );
+}
+// Monkey: backpack on back, leafy green with banana buckle.
+function MonkeyBackpack() {
+  return (
+    <g>
+      <rect x="44" y="32" width="12" height="16" rx="3" fill="#22c55e" />
+      <rect x="44" y="32" width="12" height="5" rx="2" fill="#16a34a" />
+      <path d="M48,36 Q50,34.5 52,36" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.5" />
+      <line x1="44" y1="34" x2="40" y2="38" stroke="#16a34a" strokeWidth="1.5" />
+    </g>
+  );
+}
+// Phoenix: satchel behind wing, warm red-orange.
+function PhoenixBackpack() {
+  return (
+    <g>
+      <rect x="44" y="30" width="10" height="14" rx="3" fill="#f97316" />
+      <rect x="44" y="30" width="10" height="5" rx="2" fill="#ea580c" />
+      <rect x="47" y="34" width="4" height="3" rx="1" fill="#fbbf24" />
+      <line x1="44" y1="32" x2="41" y2="36" stroke="#ea580c" strokeWidth="1.5" />
+    </g>
+  );
+}
+// Dragon: rugged pack behind wing, dark with green trim.
+function DragonBackpack() {
+  return (
+    <g>
+      <rect x="46" y="30" width="12" height="16" rx="3" fill="#334155" />
+      <rect x="46" y="30" width="12" height="5" rx="2" fill="#1e293b" />
+      <rect x="50" y="34" width="4" height="3" rx="1" fill="#4ade80" />
+      <line x1="46" y1="32" x2="42" y2="36" stroke="#1e293b" strokeWidth="1.5" />
+      {/* Scale stitch detail */}
+      <path d="M49,40 L52,39 L55,40" fill="none" stroke="#475569" strokeWidth="0.5" />
     </g>
   );
 }
 
-function Book() {
+// ═══════════════════════════════════════════════════════════════════════
+// BOOK — Animal-specific (Release 3)
+// ═══════════════════════════════════════════════════════════════════════
+
+// Penguin: blue book held in flipper on right side.
+function PenguinBook() {
   return (
     <g>
-      <rect x="36" y="32" width="14" height="12" rx="1.5" fill="#3b82f6" />
-      <rect x="36" y="32" width="3" height="12" rx="1" fill="#2563eb" />
-      <rect x="39" y="33" width="10" height="10" rx="0.5" fill="#f8fafc" />
-      <line x1="41" y1="36" x2="47" y2="36" stroke="#cbd5e1" strokeWidth="0.5" />
-      <line x1="41" y1="38" x2="47" y2="38" stroke="#cbd5e1" strokeWidth="0.5" />
-      <line x1="41" y1="40" x2="46" y2="40" stroke="#cbd5e1" strokeWidth="0.5" />
+      <rect x="46" y="34" width="12" height="10" rx="1.5" fill="#3b82f6" />
+      <rect x="46" y="34" width="2.5" height="10" rx="1" fill="#2563eb" />
+      <rect x="49" y="35" width="8" height="8" rx="0.5" fill="#f8fafc" />
+      <line x1="51" y1="37.5" x2="55" y2="37.5" stroke="#cbd5e1" strokeWidth="0.5" />
+      <line x1="51" y1="39.5" x2="55" y2="39.5" stroke="#cbd5e1" strokeWidth="0.5" />
+    </g>
+  );
+}
+// Monkey: open book held in hands, brown cover.
+function MonkeyBook() {
+  return (
+    <g>
+      <rect x="10" y="36" width="13" height="10" rx="1.5" fill="#92400e" />
+      <rect x="10" y="36" width="2.5" height="10" rx="1" fill="#78350f" />
+      <rect x="13" y="37" width="9" height="8" rx="0.5" fill="#fef3c7" />
+      <line x1="15" y1="39.5" x2="20" y2="39.5" stroke="#d6d3d1" strokeWidth="0.5" />
+      <line x1="15" y1="41.5" x2="20" y2="41.5" stroke="#d6d3d1" strokeWidth="0.5" />
+    </g>
+  );
+}
+// Phoenix: fiery tome, red/orange cover with flame emblem.
+function PhoenixBook() {
+  return (
+    <g>
+      <rect x="46" y="34" width="12" height="10" rx="1.5" fill="#dc2626" />
+      <rect x="46" y="34" width="2.5" height="10" rx="1" fill="#b91c1c" />
+      <rect x="49" y="35" width="8" height="8" rx="0.5" fill="#fef3c7" />
+      <path d="M53,36 Q52,34 53,32 Q54,34 53,36" fill="#f97316" opacity="0.6" />
+      <line x1="50" y1="38" x2="56" y2="38" stroke="#fecaca" strokeWidth="0.5" />
+      <line x1="50" y1="40" x2="55" y2="40" stroke="#fecaca" strokeWidth="0.5" />
+    </g>
+  );
+}
+// Dragon: ancient tome, dark green with runes.
+function DragonBook() {
+  return (
+    <g>
+      <rect x="8" y="36" width="13" height="11" rx="1.5" fill="#15803d" />
+      <rect x="8" y="36" width="2.5" height="11" rx="1" fill="#14532d" />
+      <rect x="11" y="37" width="9" height="9" rx="0.5" fill="#ecfdf5" />
+      {/* Rune symbols */}
+      <path d="M13,39 L15,41 L17,39" fill="none" stroke="#16a34a" strokeWidth="0.6" />
+      <path d="M13,43 L16,43" fill="none" stroke="#16a34a" strokeWidth="0.6" />
     </g>
   );
 }
 
-function Telescope() {
+// ═══════════════════════════════════════════════════════════════════════
+// TELESCOPE — Animal-specific (Release 3)
+// ═══════════════════════════════════════════════════════════════════════
+
+// Penguin: silver telescope held in flipper, angled up-left.
+function PenguinTelescope() {
   return (
     <g>
-      <rect x="10" y="24" width="30" height="4" rx="2" fill="#64748b" transform="rotate(-30 25 26)" />
-      <rect x="6" y="22" width="6" height="6" rx="3" fill="#475569" transform="rotate(-30 9 25)" />
-      <rect x="38" y="25" width="4" height="3" rx="1" fill="#94a3b8" transform="rotate(-30 40 26.5)" />
-      <circle cx="9" cy="23" r="1.5" fill="#93c5fd" opacity="0.6" />
+      <rect x="6" y="22" width="28" height="3.5" rx="1.8" fill="#94a3b8" transform="rotate(-25 20 24)" />
+      <rect x="3" y="20" width="5" height="5" rx="2.5" fill="#64748b" transform="rotate(-25 5.5 22.5)" />
+      <circle cx="6" cy="20" r="1.5" fill="#bfdbfe" opacity="0.6" />
+    </g>
+  );
+}
+// Monkey: brass spyglass held to eye, pirate-style.
+function MonkeyTelescope() {
+  return (
+    <g>
+      <rect x="4" y="20" width="26" height="4" rx="2" fill="#b45309" transform="rotate(-20 17 22)" />
+      <rect x="1" y="18" width="5" height="5.5" rx="2.5" fill="#92400e" transform="rotate(-20 3.5 21)" />
+      <circle cx="4" cy="18.5" r="1.5" fill="#fde68a" opacity="0.5" />
+      {/* Brass rings */}
+      <rect x="14" y="20.5" width="2" height="3.5" rx="1" fill="#d97706" transform="rotate(-20 15 22)" />
+    </g>
+  );
+}
+// Phoenix: golden scope with flame-lens.
+function PhoenixTelescope() {
+  return (
+    <g>
+      <rect x="6" y="20" width="28" height="3.5" rx="1.8" fill="#d97706" transform="rotate(-28 20 22)" />
+      <rect x="3" y="18" width="5" height="5" rx="2.5" fill="#b45309" transform="rotate(-28 5.5 20.5)" />
+      <circle cx="5.5" cy="18.5" r="1.8" fill="#ef4444" opacity="0.5" />
+      <circle cx="5.5" cy="18.5" r="1" fill="#fbbf24" opacity="0.6" />
+    </g>
+  );
+}
+// Dragon: dark scope with green crystal lens.
+function DragonTelescope() {
+  return (
+    <g>
+      <rect x="4" y="20" width="28" height="4" rx="2" fill="#475569" transform="rotate(-22 18 22)" />
+      <rect x="1" y="18" width="5.5" height="5.5" rx="2.8" fill="#334155" transform="rotate(-22 3.7 20.8)" />
+      <circle cx="4" cy="19" r="1.8" fill="#4ade80" opacity="0.6" />
     </g>
   );
 }
 
-function Quill() {
+// ═══════════════════════════════════════════════════════════════════════
+// QUILL — Animal-specific (Release 3)
+// ═══════════════════════════════════════════════════════════════════════
+
+// Penguin: blue-tipped quill tucked behind head on right.
+function PenguinQuill() {
   return (
     <g>
-      <line x1="44" y1="8" x2="50" y2="24" stroke="#92400e" strokeWidth="1" />
-      <path d="M44,8 Q40,12 42,18 Q44,14 44,8 Z" fill="#f59e0b" />
-      <path d="M44,8 Q48,12 46,18 Q44,14 44,8 Z" fill="#fbbf24" />
-      <path d="M44,6 Q43,4 44,2 Q45,4 44,6 Z" fill="#d97706" />
-      <path d="M49,22 L50,24 L51,22" fill="#1e293b" />
+      <line x1="44" y1="10" x2="49" y2="24" stroke="#64748b" strokeWidth="1" />
+      <path d="M44,10 Q41,14 42.5,19 Q44,15 44,10 Z" fill="#3b82f6" />
+      <path d="M44,10 Q47,14 45.5,19 Q44,15 44,10 Z" fill="#60a5fa" />
+      <path d="M44,8 Q43,6 44,4 Q45,6 44,8 Z" fill="#2563eb" />
+      <path d="M48.5,22 L49,24 L50,22.5" fill="#1e293b" />
+    </g>
+  );
+}
+// Monkey: golden quill tucked behind ear.
+function MonkeyQuill() {
+  return (
+    <g>
+      <line x1="46" y1="8" x2="51" y2="22" stroke="#92400e" strokeWidth="1" />
+      <path d="M46,8 Q43,12 44.5,17 Q46,13 46,8 Z" fill="#f59e0b" />
+      <path d="M46,8 Q49,12 47.5,17 Q46,13 46,8 Z" fill="#fbbf24" />
+      <path d="M46,6 Q45,4 46,2 Q47,4 46,6 Z" fill="#d97706" />
+      <path d="M50.5,20 L51,22 L52,20.5" fill="#1e293b" />
+    </g>
+  );
+}
+// Phoenix: flame-feather quill — fiery colors.
+function PhoenixQuill() {
+  return (
+    <g>
+      <line x1="44" y1="8" x2="49" y2="22" stroke="#7c2d12" strokeWidth="1" />
+      <path d="M44,8 Q41,12 42.5,17 Q44,13 44,8 Z" fill="#ef4444" />
+      <path d="M44,8 Q47,12 45.5,17 Q44,13 44,8 Z" fill="#f97316" />
+      <path d="M44,6 Q43,4 44,2 Q45,4 44,6 Z" fill="#fbbf24" />
+      <path d="M48.5,20 L49,22 L50,20.5" fill="#1e293b" />
+    </g>
+  );
+}
+// Dragon: emerald quill with scale-pattern feather.
+function DragonQuill() {
+  return (
+    <g>
+      <line x1="46" y1="6" x2="52" y2="22" stroke="#14532d" strokeWidth="1" />
+      <path d="M46,6 Q43,10 44.5,16 Q46,12 46,6 Z" fill="#22c55e" />
+      <path d="M46,6 Q49,10 47.5,16 Q46,12 46,6 Z" fill="#4ade80" />
+      <path d="M46,4 Q45,2 46,0 Q47,2 46,4 Z" fill="#16a34a" />
+      <path d="M51.5,20 L52,22 L53,20.5" fill="#1e293b" />
     </g>
   );
 }
 
-function Medal() {
+// ═══════════════════════════════════════════════════════════════════════
+// MEDAL — Animal-specific (Release 3)
+// ═══════════════════════════════════════════════════════════════════════
+
+const MEDAL_STAR = "M0,-4.5 L1.2,-1.5 L4.2,-1.5 L2,0.5 L3,3.5 L0,1.8 L-3,3.5 L-2,0.5 L-4.2,-1.5 L-1.2,-1.5 Z";
+
+// Penguin: medal on chest, blue ribbon.
+function PenguinMedal() {
   return (
     <g>
-      <path d="M28,26 L24,34 L28,32" fill="#ef4444" />
-      <path d="M36,26 L40,34 L36,32" fill="#ef4444" />
-      <path d="M28,26 L32,28 L36,26 L36,32 L32,34 L28,32 Z" fill="#dc2626" />
-      <circle cx="32" cy="38" r="5" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.8" />
-      <polygon
-        points="32,34 33,36.5 35.5,36.5 33.5,38 34.5,40.5 32,39 29.5,40.5 30.5,38 28.5,36.5 31,36.5"
-        fill="#f59e0b"
-      />
+      <path d="M29,28 L26,35 L29,33.5" fill="#3b82f6" />
+      <path d="M35,28 L38,35 L35,33.5" fill="#3b82f6" />
+      <path d="M29,28 L32,30 L35,28 L35,33.5 L32,35 L29,33.5 Z" fill="#2563eb" />
+      <circle cx="32" cy="39" r="4.5" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.7" />
+      <g transform="translate(32,39)"><path d={MEDAL_STAR} fill="#f59e0b" /></g>
+    </g>
+  );
+}
+// Monkey: medal with red ribbon, slightly lower on belly.
+function MonkeyMedal() {
+  return (
+    <g>
+      <path d="M29,30 L26,37 L29,35.5" fill="#ef4444" />
+      <path d="M35,30 L38,37 L35,35.5" fill="#ef4444" />
+      <path d="M29,30 L32,32 L35,30 L35,35.5 L32,37 L29,35.5 Z" fill="#dc2626" />
+      <circle cx="32" cy="41" r="4.5" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.7" />
+      <g transform="translate(32,41)"><path d={MEDAL_STAR} fill="#f59e0b" /></g>
+    </g>
+  );
+}
+// Phoenix: medal with orange ribbon, fiery gold disc.
+function PhoenixMedal() {
+  return (
+    <g>
+      <path d="M29,28 L26,35 L29,33.5" fill="#f97316" />
+      <path d="M35,28 L38,35 L35,33.5" fill="#f97316" />
+      <path d="M29,28 L32,30 L35,28 L35,33.5 L32,35 L29,33.5 Z" fill="#ea580c" />
+      <circle cx="32" cy="39" r="4.5" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.7" />
+      <g transform="translate(32,39)"><path d={MEDAL_STAR} fill="#ef4444" /></g>
+    </g>
+  );
+}
+// Dragon: medal with green ribbon, emerald disc.
+function DragonMedal() {
+  return (
+    <g>
+      <path d="M29,28 L26,35 L29,33.5" fill="#22c55e" />
+      <path d="M35,28 L38,35 L35,33.5" fill="#22c55e" />
+      <path d="M29,28 L32,30 L35,28 L35,33.5 L32,35 L29,33.5 Z" fill="#16a34a" />
+      <circle cx="32" cy="39" r="4.5" fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.7" />
+      <g transform="translate(32,39)"><path d={MEDAL_STAR} fill="#4ade80" /></g>
     </g>
   );
 }
 
-function Wand() {
+// ═══════════════════════════════════════════════════════════════════════
+// WAND — Animal-specific (Release 3)
+// ═══════════════════════════════════════════════════════════════════════
+
+// Penguin: icy wand with blue crystal tip, held on right side.
+function PenguinWand() {
   return (
     <g>
-      <rect x="48" y="16" width="3" height="28" rx="1.5" fill="#92400e" transform="rotate(15 49.5 30)" />
-      <rect x="47" y="38" width="5" height="6" rx="2" fill="#78350f" transform="rotate(15 49.5 41)" />
-      <circle cx="48" cy="14" r="2" fill="#fbbf24" />
-      <circle cx="45" cy="12" r="1" fill="#fde68a" />
-      <circle cx="51" cy="11" r="1" fill="#fde68a" />
-      <circle cx="48" cy="10" r="0.8" fill="#fef3c7" />
+      <rect x="50" y="18" width="2.5" height="24" rx="1.2" fill="#94a3b8" transform="rotate(12 51.2 30)" />
+      <rect x="49" y="38" width="4.5" height="5" rx="2" fill="#64748b" transform="rotate(12 51.2 40.5)" />
+      <circle cx="50" cy="16" r="2.5" fill="#38bdf8" />
+      <circle cx="47.5" cy="14" r="1" fill="#bae6fd" />
+      <circle cx="52.5" cy="13.5" r="1" fill="#bae6fd" />
+    </g>
+  );
+}
+// Monkey: wooden staff with golden orb, playful.
+function MonkeyWand() {
+  return (
+    <g>
+      <rect x="50" y="16" width="3" height="26" rx="1.5" fill="#92400e" transform="rotate(12 51.5 29)" />
+      <rect x="49" y="36" width="5" height="6" rx="2" fill="#78350f" transform="rotate(12 51.5 39)" />
+      <circle cx="50" cy="14" r="2.5" fill="#fbbf24" />
+      <circle cx="47.5" cy="12" r="1" fill="#fde68a" />
+      <circle cx="52.5" cy="11.5" r="1" fill="#fde68a" />
+    </g>
+  );
+}
+// Phoenix: flame staff with fire orb.
+function PhoenixWand() {
+  return (
+    <g>
+      <rect x="50" y="16" width="2.5" height="26" rx="1.2" fill="#b45309" transform="rotate(14 51.2 29)" />
+      <rect x="49" y="36" width="4.5" height="6" rx="2" fill="#92400e" transform="rotate(14 51.2 39)" />
+      {/* Flame orb */}
+      <circle cx="50" cy="14" r="2.5" fill="#ef4444" />
+      <path d="M50,11 Q48.5,9 50,7 Q51.5,9 50,11" fill="#fbbf24" opacity="0.8" />
+      <circle cx="50" cy="14" r="1.2" fill="#f97316" />
+    </g>
+  );
+}
+// Dragon: dark staff with green crystal.
+function DragonWand() {
+  return (
+    <g>
+      <rect x="50" y="16" width="3" height="26" rx="1.5" fill="#334155" transform="rotate(10 51.5 29)" />
+      <rect x="49" y="36" width="5" height="6" rx="2" fill="#1e293b" transform="rotate(10 51.5 39)" />
+      {/* Green crystal */}
+      <path d="M51.5,10 L49,14.5 L51.5,16 L54,14.5 Z" fill="#22c55e" stroke="#15803d" strokeWidth="0.5" />
+      <circle cx="49" cy="11" r="0.8" fill="#4ade80" opacity="0.7" />
+      <circle cx="54" cy="11.5" r="0.8" fill="#4ade80" opacity="0.7" />
     </g>
   );
 }
@@ -349,28 +587,53 @@ const ANIMAL_SPECIFIC: Record<string, Record<MascotAnimal, () => React.JSX.Eleme
     phoenix: PhoenixCape,
     dragon: DragonCape,
   },
-};
-
-const UNIVERSAL: Record<string, () => React.JSX.Element> = {
-  backpack: Backpack,
-  book: Book,
-  telescope: Telescope,
-  quill: Quill,
-  medal: Medal,
-  wand: Wand,
+  backpack: {
+    penguin: PenguinBackpack,
+    monkey: MonkeyBackpack,
+    phoenix: PhoenixBackpack,
+    dragon: DragonBackpack,
+  },
+  book: {
+    penguin: PenguinBook,
+    monkey: MonkeyBook,
+    phoenix: PhoenixBook,
+    dragon: DragonBook,
+  },
+  telescope: {
+    penguin: PenguinTelescope,
+    monkey: MonkeyTelescope,
+    phoenix: PhoenixTelescope,
+    dragon: DragonTelescope,
+  },
+  quill: {
+    penguin: PenguinQuill,
+    monkey: MonkeyQuill,
+    phoenix: PhoenixQuill,
+    dragon: DragonQuill,
+  },
+  medal: {
+    penguin: PenguinMedal,
+    monkey: MonkeyMedal,
+    phoenix: PhoenixMedal,
+    dragon: DragonMedal,
+  },
+  wand: {
+    penguin: PenguinWand,
+    monkey: MonkeyWand,
+    phoenix: PhoenixWand,
+    dragon: DragonWand,
+  },
 };
 
 function getAccessoryComponent(
   accessory: Exclude<MascotAccessory, "none">,
   mascotType: MascotAnimal
 ): (() => React.JSX.Element) | null {
-  // Check animal-specific first
   const animalMap = ANIMAL_SPECIFIC[accessory];
   if (animalMap) {
     return animalMap[mascotType] ?? null;
   }
-  // Fall back to universal
-  return UNIVERSAL[accessory] ?? null;
+  return null;
 }
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -384,8 +647,7 @@ interface AccessoryOverlayProps {
 
 /**
  * Renders an accessory SVG overlay on top of the mascot.
- * Party hat, star badge, graduation cap, and cape have animal-specific
- * variants. Remaining accessories use universal placeholders.
+ * All 10 accessories have animal-specific variants for each of the 4 animals.
  */
 export function AccessoryOverlay({ accessory, mascotType }: AccessoryOverlayProps) {
   if (accessory === "none") return null;
