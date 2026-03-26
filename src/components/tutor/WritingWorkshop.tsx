@@ -287,22 +287,18 @@ export function WritingWorkshop() {
       {phase === "prompt" && (
         <div className="flex-1 overflow-y-auto px-4 py-6 animate-fade-in">
           <div className="max-w-lg mx-auto space-y-6">
-            {/* Passage (if present — matches real Hunter exam format) */}
-            {prompt.passage && (
-              <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 border border-surface-200 dark:border-surface-800">
-                <div className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-3">
-                  Read the following passage
-                </div>
-                <blockquote className="text-sm text-surface-700 dark:text-surface-300 leading-relaxed font-serif italic border-l-2 border-brand-300 dark:border-brand-600 pl-4">
-                  {prompt.passage}
-                </blockquote>
-                {prompt.passageSource && (
-                  <p className="text-xs text-surface-400 mt-2 text-right">
-                    — {prompt.passageSource}
-                  </p>
-                )}
+            {/* Passage — matches real Hunter exam format */}
+            <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 border border-surface-200 dark:border-surface-800">
+              <div className="text-xs font-medium text-surface-500 dark:text-surface-400 uppercase tracking-wide mb-3">
+                Read the following passage
               </div>
-            )}
+              <blockquote className="text-sm text-surface-700 dark:text-surface-300 leading-relaxed font-serif italic border-l-2 border-brand-300 dark:border-brand-600 pl-4">
+                {prompt.passage}
+              </blockquote>
+              <p className="text-xs text-surface-400 mt-2 text-right">
+                — {prompt.passageSource}
+              </p>
+            </div>
 
             {/* Essay prompt */}
             <div className="rounded-2xl shadow-card bg-surface-0 dark:bg-surface-900 p-6 border border-surface-200 dark:border-surface-800">
@@ -349,7 +345,7 @@ export function WritingWorkshop() {
       {/* Brainstorm phase */}
       {phase === "brainstorm" && (
         <BrainstormChat
-          promptText={prompt.passage ? `Passage: "${prompt.passage}"\n\nPrompt: ${prompt.text}` : prompt.text}
+          promptText={`Passage: "${prompt.passage}"\n\nPrompt: ${prompt.text}`}
           onComplete={startWriting}
         />
       )}
@@ -361,11 +357,9 @@ export function WritingWorkshop() {
             <summary className="text-xs text-brand-700 dark:text-brand-300 cursor-pointer">
               <strong>Prompt:</strong> {prompt.text.length > 80 ? prompt.text.slice(0, 80) + "…" : prompt.text}
             </summary>
-            {prompt.passage && (
-              <blockquote className="mt-2 text-xs text-surface-600 dark:text-surface-400 italic border-l-2 border-brand-300 dark:border-brand-600 pl-3 mb-1">
-                {prompt.passage.length > 200 ? prompt.passage.slice(0, 200) + "…" : prompt.passage}
-              </blockquote>
-            )}
+            <blockquote className="mt-2 text-xs text-surface-600 dark:text-surface-400 italic border-l-2 border-brand-300 dark:border-brand-600 pl-3 mb-1">
+              {prompt.passage.length > 200 ? prompt.passage.slice(0, 200) + "…" : prompt.passage}
+            </blockquote>
             <p className="text-xs text-brand-700 dark:text-brand-300 mt-1">{prompt.text}</p>
           </details>
           <div className="flex-1 px-4 py-3">

@@ -1,71 +1,15 @@
 import type { EssayPrompt } from "./writing-types";
 
 export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
-  // ── Foundations (Rising 5th Grade) ─────────────────────────────────
-  {
-    id: "f_pe_recess",
-    text: "Your school is thinking about making recess longer but cutting art class shorter. Do you think this is a good idea or a bad idea? Explain your opinion with reasons.",
-    category: "persuasive",
-    level: "foundations",
-  },
-  {
-    id: "f_pe_pet",
-    text: "If you could have any animal as a pet, what would you choose and why? Write a paragraph convincing your family that this would be the best pet.",
-    category: "persuasive",
-    level: "foundations",
-  },
-  {
-    id: "f_pe_homework",
-    text: "Some teachers give homework every night, while others give very little. Do you think students should have homework every day? Write an essay explaining your opinion and giving at least two reasons to support it.",
-    category: "persuasive",
-    level: "foundations",
-  },
-  {
-    id: "f_ex_friendship",
-    text: "What makes someone a good friend? Think about the qualities that matter most and explain why they are important. Use examples from your own life.",
-    category: "expository",
-    level: "foundations",
-  },
-  {
-    id: "f_ex_invention",
-    text: "Think about an invention that changed how people live — like the telephone, the car, or the internet. Explain how this invention changed everyday life and why it is important.",
-    category: "expository",
-    level: "foundations",
-  },
-  {
-    id: "f_ex_community_helper",
-    text: "Choose a person in your community who helps others — like a teacher, firefighter, or doctor. Explain what this person does and why their work matters to the community.",
-    category: "expository",
-    level: "foundations",
-  },
-  {
-    id: "f_pe_screen_time",
-    text: "Many parents limit how much time their children spend on screens. Do you think screen time should be limited, or should kids decide for themselves? Explain your opinion with reasons.",
-    category: "persuasive",
-    level: "foundations",
-  },
-  {
-    id: "f_ex_season",
-    text: "What is your favorite season of the year? Explain what makes it special. Describe the weather, activities, and feelings that make this season the best one.",
-    category: "expository",
-    level: "foundations",
-  },
-  {
-    id: "f_pe_lunch",
-    text: "Your school cafeteria is changing its menu. Some students want only healthy food, while others want more choices including pizza and burgers. What do you think the cafeteria should serve? Explain your opinion with reasons.",
-    category: "persuasive",
-    level: "foundations",
-  },
-  // ── Hunter Prep (6th Grade) — Passage-Based Prompts ────────────────
-  // These match the real Hunter exam format: students read a passage,
-  // then write an essay responding to or inspired by the ideas in it.
+  // ── Passage-Based Prompts (Hunter Exam Format) ────────────────────
+  // Students read a passage, then write an essay responding to or
+  // inspired by the ideas in it.
   {
     id: "hp_pb_curiosity",
     passage: "People say that curiosity killed the cat, but for human beings, curiosity is what makes us alive. The greatest discoveries in science did not come from people who already knew the answers. They came from people who asked the questions no one else thought to ask. Marie Curie did not set out to win a Nobel Prize. She set out to understand something that puzzled her. Albert Einstein once said, \"I have no special talents. I am only passionately curious.\" Curiosity is the engine that drives learning, and a mind that stops asking questions is a mind that has stopped growing.",
     passageSource: "Adapted from an educational essay on scientific curiosity",
     text: "The passage argues that curiosity is essential for learning and discovery. Do you agree that curiosity is more important than knowledge? Write an essay explaining your position. Use evidence from the passage and your own experience to support your ideas.",
     category: "persuasive",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_failure",
@@ -73,7 +17,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "Adapted from motivational speeches and biographical accounts",
     text: "According to the passage, failure is \"part of the path to success.\" Think about a time you or someone you know experienced failure or a setback. Write an essay explaining what happened, what was learned from the experience, and whether you agree with the passage's message about failure.",
     category: "expository",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_reading",
@@ -81,7 +24,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "George R.R. Martin and adapted commentary on reading",
     text: "The passage suggests that reading is like a \"rehearsal for real life.\" Do you agree that reading can prepare us for challenges we haven't faced yet? Write an essay explaining your position, using examples from books you've read and from your own experience.",
     category: "persuasive",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_kindness",
@@ -89,7 +31,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "Adapted from NPR's StoryCorps, 2008",
     text: "In the passage, Julio Diaz responds to being robbed with an unexpected act of kindness. Why do you think he chose to respond this way? Write an essay explaining what Diaz's actions reveal about the power of kindness, and discuss whether you think his approach could make a real difference in the world.",
     category: "expository",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_nature",
@@ -97,7 +38,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "Adapted from Richard Louv, Last Child in the Woods (2005)",
     text: "The passage describes \"nature-deficit disorder\" and argues that children need more time outdoors. Do you think spending time in nature is truly important for young people, or can technology provide similar benefits? Write an essay taking a clear position and supporting it with evidence from the passage and your own observations.",
     category: "persuasive",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_courage",
@@ -105,7 +45,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "Adapted from biographical accounts of Rosa Parks",
     text: "Rosa Parks said that \"knowing what must be done does away with fear.\" Write an essay explaining what you think she meant. Use evidence from the passage, and describe a time when you or someone you know found the courage to do what was right even when it was difficult.",
     category: "expository",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_teamwork",
@@ -113,7 +52,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "Adapted from news coverage of the Tham Luang cave rescue, 2018",
     text: "The passage describes a rescue that required teamwork on a massive scale. Think about the statement \"Everyone did their part.\" Write an essay explaining why teamwork is sometimes more powerful than individual effort. Use examples from the passage and from your own experience.",
     category: "expository",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_voice",
@@ -121,7 +59,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "Adapted from news coverage of the March for Our Lives movement, 2018",
     text: "Emma González said that adults \"like us when we have strong test scores, but they hate us when we have strong opinions.\" Do you think young people's voices should carry weight on important issues? Write an essay taking a clear position and supporting it with evidence from the passage and your own reasoning.",
     category: "persuasive",
-    level: "hunter_prep",
   },
   {
     id: "hp_pb_mistakes",
@@ -129,7 +66,6 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
     passageSource: "Adapted from the history of Alexander Fleming's discovery",
     text: "The passage suggests that mistakes and accidents can lead to important discoveries. Write an essay explaining whether you agree or disagree. Can mistakes truly be valuable, or is careful planning always better? Use evidence from the passage and examples from your own life to support your position.",
     category: "persuasive",
-    level: "hunter_prep",
   },
 ];
 
@@ -137,14 +73,10 @@ export const ESSAY_PROMPTS: readonly EssayPrompt[] = [
 const recentPromptIds: string[] = [];
 const MAX_RECENT = 5;
 
-export function getRandomPrompt(level?: "foundations" | "hunter_prep"): EssayPrompt {
-  const filtered = level
-    ? ESSAY_PROMPTS.filter((p) => p.level === level)
-    : ESSAY_PROMPTS;
-
+export function getRandomPrompt(): EssayPrompt {
   // Prefer prompts not recently used
-  const unused = filtered.filter((p) => !recentPromptIds.includes(p.id));
-  const pool = unused.length > 0 ? unused : filtered;
+  const unused = ESSAY_PROMPTS.filter((p) => !recentPromptIds.includes(p.id));
+  const pool = unused.length > 0 ? unused : ESSAY_PROMPTS;
 
   const index = Math.floor(Math.random() * pool.length);
   const selected = pool[index];
@@ -162,6 +94,3 @@ export function getPromptById(id: string): EssayPrompt | undefined {
   return ESSAY_PROMPTS.find((p) => p.id === id);
 }
 
-export function getPromptsByLevel(level: "foundations" | "hunter_prep"): readonly EssayPrompt[] {
-  return ESSAY_PROMPTS.filter((p) => p.level === level);
-}

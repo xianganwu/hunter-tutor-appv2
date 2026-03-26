@@ -13,6 +13,8 @@ describe("ESSAY_PROMPTS", () => {
       expect(["persuasive", "expository"]).toContain(
         prompt.category
       );
+      expect(prompt.passage.length).toBeGreaterThan(50);
+      expect(prompt.passageSource).toBeTruthy();
     }
   });
 
