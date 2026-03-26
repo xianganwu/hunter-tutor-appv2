@@ -13,10 +13,8 @@ import { SessionSummary } from "@/components/chat/SessionSummary";
 import { TeachItBack } from "./TeachItBack";
 import { useTutoringSession } from "@/hooks/useTutoringSession";
 import { getSkillById } from "@/lib/exam/curriculum";
-import { SessionMascot, type MascotReaction } from "@/components/shared/SessionMascot";
-import { getStoredMascotType } from "@/lib/user-profile";
-import { getMascotTier } from "@/components/shared/Mascot";
-import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { MascotMoment } from "@/components/shared/MascotMoment";
+import { useMascotMoment } from "@/hooks/useMascotMoment";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 import { LevelUpBanner } from "@/components/shared/LevelUpBanner";
 import { DrillMode } from "./DrillMode";
@@ -54,33 +52,35 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
   const lastMsg = state.messages[state.messages.length - 1];
   const isStreaming = isLoading && lastMsg?.role === "tutor" && lastMsg.content.length > 0;
 
-  // Mascot reactions
-  const mascotType = getStoredMascotType();
-  const storedMasteries = loadAllSkillMasteries();
-  const overallMastery = storedMasteries.length > 0
-    ? storedMasteries.reduce((sum, s) => sum + s.masteryLevel, 0) / storedMasteries.length
-    : 0;
-  const mascotTier = getMascotTier(overallMastery);
-  const [mascotReaction, setMascotReaction] = useState<MascotReaction>("idle");
-  const [mascotReactionKey, setMascotReactionKey] = useState(0);
-  const prevQuestionCountRef = useRef(state.questionCount);
+  // Mascot moments
+  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
 
+  // Session start moment (fires once)
+  const sessionStartedRef = useRef(false);
   useEffect(() => {
-    if (state.questionCount <= prevQuestionCountRef.current) return;
-    prevQuestionCountRef.current = state.questionCount;
+    if (sessionStartedRef.current) return;
+    sessionStartedRef.current = true;
+    triggerMoment({ kind: "session-start" });
+  }, [triggerMoment]);
 
-    // Level-up overrides normal reaction with bounce animation
-    if (levelUpEvent) {
-      setMascotReaction("streak");
-    } else if (state.correctStreak >= 3) {
-      setMascotReaction("streak");
-    } else if (state.correctStreak > 0) {
-      setMascotReaction("correct");
-    } else {
-      setMascotReaction("incorrect");
+  // Streak moments (fires at 5, 10, 15...)
+  const lastStreakMomentRef = useRef(0);
+  useEffect(() => {
+    if (state.correctStreak >= 5 && state.correctStreak % 5 === 0 && state.correctStreak !== lastStreakMomentRef.current) {
+      triggerMoment({ kind: "streak", streakCount: state.correctStreak });
+      lastStreakMomentRef.current = state.correctStreak;
     }
-    setMascotReactionKey((k) => k + 1);
-  }, [state.questionCount, state.correctStreak, levelUpEvent]);
+    if (state.correctStreak === 0) lastStreakMomentRef.current = 0;
+  }, [state.correctStreak, triggerMoment]);
+
+  // Session end moment (fires when summary appears)
+  const sessionEndedRef = useRef(false);
+  useEffect(() => {
+    if (summary && !sessionEndedRef.current) {
+      sessionEndedRef.current = true;
+      triggerMoment({ kind: "session-end", questionsAnswered: state.questionCount, correctCount: state.correctCount });
+    }
+  }, [summary, state.questionCount, state.correctCount, triggerMoment]);
 
   // Auto-scroll to bottom on new messages
   useEffect(() => {
@@ -226,12 +226,7 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
         <LevelUpBanner event={levelUpEvent} onDismiss={clearLevelUp} />
       )}
 
-      <SessionMascot
-        mascotType={mascotType}
-        tier={mascotTier}
-        reaction={mascotReaction}
-        reactionKey={mascotReactionKey}
-      />
+      <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
     </div>
   );
 }

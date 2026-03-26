@@ -5,7 +5,7 @@ export type MascotAnimal = "penguin" | "monkey" | "phoenix" | "dragon";
 interface MascotProps {
   /** 1=Rookie, 2=Explorer, 3=Bookworm, 4=Scholar, 5=Champion */
   readonly tier?: 1 | 2 | 3 | 4 | 5;
-  readonly size?: "sm" | "md" | "lg";
+  readonly size?: "sm" | "md" | "lg" | "xl";
   readonly className?: string;
   readonly mascotType?: MascotAnimal;
 }
@@ -14,6 +14,7 @@ const SIZE_CLASSES = {
   sm: "h-8 w-8",
   md: "h-10 w-10",
   lg: "h-16 w-16",
+  xl: "h-24 w-24",
 } as const;
 
 const PENGUIN_TIER_LABELS = [

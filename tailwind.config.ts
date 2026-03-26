@@ -90,6 +90,9 @@ const config: Config = {
         confetti: "confetti 0.6s ease-out forwards",
         "scale-in": "scaleIn 0.2s ease-out",
         shake: "shake 0.4s ease-in-out",
+        "mascot-enter": "mascotEnter 0.3s ease-out",
+        "mascot-wobble": "mascotWobble 0.8s ease-in-out infinite",
+        "sparkle-pop": "sparklePop 0.6s ease-out forwards",
       },
       keyframes: {
         fadeIn: {
@@ -126,6 +129,20 @@ const config: Config = {
           "40%": { transform: "translateX(4px)" },
           "60%": { transform: "translateX(-3px)" },
           "80%": { transform: "translateX(3px)" },
+        },
+        mascotEnter: {
+          "0%": { opacity: "0", transform: "scale(0.3) translateY(20px)" },
+          "100%": { opacity: "1", transform: "scale(1) translateY(0)" },
+        },
+        mascotWobble: {
+          "0%, 100%": { transform: "rotate(0deg) translateY(0)" },
+          "25%": { transform: "rotate(-3deg) translateY(-2px)" },
+          "75%": { transform: "rotate(3deg) translateY(-2px)" },
+        },
+        sparklePop: {
+          "0%": { opacity: "0", transform: "scale(0)" },
+          "50%": { opacity: "1", transform: "scale(1.2)" },
+          "100%": { opacity: "0", transform: "scale(0)" },
         },
       },
     },

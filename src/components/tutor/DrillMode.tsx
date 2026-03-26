@@ -7,10 +7,8 @@ import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
 import { getBestDrillForSkill } from "@/lib/drill";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
-import { SessionMascot, type MascotReaction } from "@/components/shared/SessionMascot";
-import { getStoredMascotType } from "@/lib/user-profile";
-import { getMascotTier } from "@/components/shared/Mascot";
-import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { MascotMoment } from "@/components/shared/MascotMoment";
+import { useMascotMoment } from "@/hooks/useMascotMoment";
 import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
 import { MistakeReviewList } from "@/components/shared/MistakeReviewCard";
@@ -42,29 +40,18 @@ export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillMod
   } = useDrillSession();
 
   const [selectedSkillId, setSelectedSkillId] = useState(initialSkillId ?? "");
-  // Mascot reactions
-  const mascotType = getStoredMascotType();
-  const storedMasteries = loadAllSkillMasteries();
-  const overallMastery = storedMasteries.length > 0
-    ? storedMasteries.reduce((sum, s) => sum + s.masteryLevel, 0) / storedMasteries.length
-    : 0;
-  const mascotTier = getMascotTier(overallMastery);
-  const [mascotReaction, setMascotReaction] = useState<MascotReaction>("idle");
-  const [mascotReactionKey, setMascotReactionKey] = useState(0);
-  const prevAttemptsRef = useRef(0);
 
+  // Mascot moments
+  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
+
+  // Drill completion moment
+  const drillCompletedRef = useRef(false);
   useEffect(() => {
-    const count = state.attempts.length;
-    if (count <= prevAttemptsRef.current) return;
-    prevAttemptsRef.current = count;
-
-    if (state.lastAnswerCorrect === true) {
-      setMascotReaction("correct");
-    } else {
-      setMascotReaction("incorrect");
+    if (state.phase === "complete" && result && !drillCompletedRef.current) {
+      drillCompletedRef.current = true;
+      triggerMoment({ kind: "drill-complete", accuracy: result.accuracy });
     }
-    setMascotReactionKey((k) => k + 1);
-  }, [state.attempts.length, state.lastAnswerCorrect]);
+  }, [state.phase, result, triggerMoment]);
 
   // Set initial skill
   useEffect(() => {
@@ -269,12 +256,7 @@ export function DrillMode({ initialSkillId, autoStart: autoStartProp }: DrillMod
           </div>
         </div>
 
-        <SessionMascot
-          mascotType={mascotType}
-          tier={mascotTier}
-          reaction={mascotReaction}
-          reactionKey={mascotReactionKey}
-        />
+        <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
       </div>
     );
   }

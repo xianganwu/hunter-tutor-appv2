@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef, useMemo } from "react";
+import { MascotMoment } from "@/components/shared/MascotMoment";
+import { useMascotMoment } from "@/hooks/useMascotMoment";
 import { AssessmentLanding } from "./AssessmentLanding";
 import { AssessmentSection } from "./AssessmentSection";
 import { AssessmentBreak } from "./AssessmentBreak";
@@ -92,6 +94,18 @@ export function AssessmentSession() {
       setPreviousReport(history[history.length - 1].report);
     }
   }, []);
+
+  // Mascot moments
+  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
+
+  const assessmentCompletedRef = useRef(false);
+  useEffect(() => {
+    if (phase === "results" && report && !assessmentCompletedRef.current) {
+      assessmentCompletedRef.current = true;
+      const accuracy = (report.reading.rawPercentage + report.qr.rawPercentage + report.ma.rawPercentage) / 3;
+      triggerMoment({ kind: "assessment-complete", accuracy });
+    }
+  }, [phase, report, triggerMoment]);
 
   // Persist state on answer/phase changes
   useEffect(() => {
@@ -485,10 +499,13 @@ export function AssessmentSession() {
     case "results":
       if (!report) return <ScoringScreen />;
       return (
-        <AssessmentResults
-          report={report}
-          previousReport={previousReport}
-        />
+        <>
+          <AssessmentResults
+            report={report}
+            previousReport={previousReport}
+          />
+          <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
+        </>
       );
   }
 }

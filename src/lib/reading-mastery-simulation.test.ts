@@ -21,10 +21,8 @@ import {
   saveSkillMastery,
   loadReadingAttemptWindow,
   saveReadingAttemptWindow,
-  loadAllSkillMasteries,
 } from "./skill-mastery-store";
 import { staminaLevelToTier, RC_SKILL_NAMES } from "./reading-stamina";
-import type { StoredSkillMastery } from "./skill-mastery-store";
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 
@@ -33,9 +31,6 @@ const READING_WEIGHTS: MasteryWeightConfig = {
   weightOverall: 0.2,
   weightTime: 0.0,
 };
-
-const MASTERY_PRIOR = 0.3;
-const MIN_ATTEMPTS = 8;
 
 /** Simulate what persistReadingSkillMastery does for one skill. */
 function simulateSkillUpdate(

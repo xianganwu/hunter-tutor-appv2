@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { useMixedDrill } from "@/hooks/useMixedDrill";
 import { MathText } from "@/components/chat/MathText";
 import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
-import { SessionMascot, type MascotReaction } from "@/components/shared/SessionMascot";
-import { getStoredMascotType } from "@/lib/user-profile";
-import { getMascotTier } from "@/components/shared/Mascot";
-import { loadAllSkillMasteries } from "@/lib/skill-mastery-store";
+import { MascotMoment } from "@/components/shared/MascotMoment";
+import { useMascotMoment } from "@/hooks/useMascotMoment";
 import { getRandomQuestionPhrase } from "@/lib/loading-phrases";
 import { getSkillById } from "@/lib/exam/curriculum";
 import type { SkillDrillBreakdown } from "@/lib/drill";
@@ -23,28 +21,17 @@ export function MixedDrill() {
     reset,
   } = useMixedDrill();
 
-  // Mascot
-  const mascotType = getStoredMascotType();
-  const storedMasteries = loadAllSkillMasteries();
-  const overallMastery = storedMasteries.length > 0
-    ? storedMasteries.reduce((sum, s) => sum + s.masteryLevel, 0) / storedMasteries.length
-    : 0;
-  const mascotTier = getMascotTier(overallMastery);
-  const [mascotReaction, setMascotReaction] = useState<MascotReaction>("idle");
-  const [mascotReactionKey, setMascotReactionKey] = useState(0);
-  const prevAttemptsRef = useRef(0);
+  // Mascot moments
+  const { mascotType, mascotTier, moment, momentKey, triggerMoment } = useMascotMoment();
 
+  // Mixed drill completion moment
+  const drillCompletedRef = useRef(false);
   useEffect(() => {
-    const count = state.attempts.length;
-    if (count <= prevAttemptsRef.current) return;
-    prevAttemptsRef.current = count;
-    if (state.lastAnswerCorrect === true) {
-      setMascotReaction("correct");
-    } else {
-      setMascotReaction("incorrect");
+    if (state.phase === "complete" && result && !drillCompletedRef.current) {
+      drillCompletedRef.current = true;
+      triggerMoment({ kind: "mixed-drill-complete", accuracy: result.accuracy });
     }
-    setMascotReactionKey((k) => k + 1);
-  }, [state.attempts.length, state.lastAnswerCorrect]);
+  }, [state.phase, result, triggerMoment]);
 
   // ─── Setup Phase ───────────────────────────────────────────────────
   if (state.phase === "setup") {
@@ -187,12 +174,7 @@ export function MixedDrill() {
           </div>
         </div>
 
-        <SessionMascot
-          mascotType={mascotType}
-          tier={mascotTier}
-          reaction={mascotReaction}
-          reactionKey={mascotReactionKey}
-        />
+        <MascotMoment moment={moment} mascotType={mascotType} tier={mascotTier} momentKey={momentKey} />
       </div>
     );
   }
