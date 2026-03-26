@@ -165,6 +165,93 @@ function renderTextLine(line: string): React.ReactNode {
   return renderInlineFormatting(line);
 }
 
+// ─── Markdown Table Detection & Rendering ────────────────────────────
+
+/**
+ * Detect if a block of consecutive lines forms a markdown pipe table.
+ * Returns the table rows or null if not a table.
+ */
+function parseMarkdownTable(
+  lines: string[],
+  startIdx: number
+): { rows: string[][]; endIdx: number } | null {
+  // Need at least 2 lines (header + separator or header + data)
+  if (startIdx >= lines.length) return null;
+  const firstLine = lines[startIdx].trim();
+  if (!firstLine.startsWith("|") || !firstLine.endsWith("|")) return null;
+
+  // Collect all consecutive pipe-delimited lines
+  const tableLines: string[] = [];
+  let idx = startIdx;
+  while (idx < lines.length) {
+    const line = lines[idx].trim();
+    if (!line.startsWith("|")) break;
+    tableLines.push(line);
+    idx++;
+  }
+
+  if (tableLines.length < 2) return null;
+
+  // Parse cells: split by | and trim, ignoring first/last empty from leading/trailing |
+  const rows = tableLines
+    .filter((line) => !line.match(/^\|[\s-:|]+\|$/)) // skip separator rows like |---|---|
+    .map((line) =>
+      line
+        .split("|")
+        .slice(1, -1)
+        .map((cell) => cell.trim())
+    );
+
+  if (rows.length === 0) return null;
+
+  return { rows, endIdx: idx };
+}
+
+function renderTable(rows: string[][]): React.ReactNode {
+  if (rows.length === 0) return null;
+  const [header, ...body] = rows;
+
+  return (
+    <div className="my-2 overflow-x-auto">
+      <table className="w-full text-sm border-collapse rounded-lg overflow-hidden">
+        <thead>
+          <tr className="bg-surface-100 dark:bg-surface-800">
+            {header.map((cell, i) => (
+              <th
+                key={i}
+                className="px-3 py-2 text-left font-semibold text-surface-700 dark:text-surface-200 border-b border-surface-200 dark:border-surface-700"
+              >
+                {cell}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {body.map((row, ri) => (
+            <tr
+              key={ri}
+              className={
+                ri % 2 === 0
+                  ? "bg-surface-0 dark:bg-surface-900"
+                  : "bg-surface-50 dark:bg-surface-800/50"
+              }
+            >
+              {row.map((cell, ci) => (
+                <td
+                  key={ci}
+                  className="px-3 py-1.5 text-surface-800 dark:text-surface-200 border-b border-surface-100 dark:border-surface-800"
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 /** Handle **bold** within a line */
 function renderInlineFormatting(text: string): React.ReactNode {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
@@ -224,17 +311,35 @@ export function MathTextRenderer({ text }: MathTextRendererProps) {
             />
           );
         }
-        // Plain text — render lines with basic formatting
-        return (
-          <span key={i}>
-            {part.content.split("\n").map((line, j, arr) => (
-              <span key={j}>
-                {renderTextLine(line)}
-                {j < arr.length - 1 && <br />}
+        // Plain text — render lines with basic formatting and table detection
+        {
+          const lines = part.content.split("\n");
+          const elements: React.ReactNode[] = [];
+          let lineIdx = 0;
+
+          while (lineIdx < lines.length) {
+            // Check if current line starts a markdown table
+            const table = parseMarkdownTable(lines, lineIdx);
+            if (table) {
+              elements.push(
+                <span key={`${i}-table-${lineIdx}`}>{renderTable(table.rows)}</span>
+              );
+              lineIdx = table.endIdx;
+              continue;
+            }
+
+            // Regular line
+            elements.push(
+              <span key={`${i}-${lineIdx}`}>
+                {renderTextLine(lines[lineIdx])}
+                {lineIdx < lines.length - 1 && <br />}
               </span>
-            ))}
-          </span>
-        );
+            );
+            lineIdx++;
+          }
+
+          return <span key={i}>{elements}</span>;
+        }
       })}
     </>
   );

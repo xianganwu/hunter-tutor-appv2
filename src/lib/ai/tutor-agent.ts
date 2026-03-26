@@ -80,6 +80,28 @@ export interface ConversationMessage {
   readonly content: string;
 }
 
+// ─── Visual Skill Detection ──────────────────────────────────────────
+
+/** Skills where SVG diagrams (charts, graphs, shapes) are essential. */
+const VISUAL_SKILLS = new Set([
+  // Geometry & Measurement
+  "ma_angles_shapes",
+  "ma_perimeter_area",
+  "ma_coordinate_basics",
+  "ma_area_perimeter_volume",
+  "ma_coordinate_geometry",
+  // Data & Probability
+  "ma_data_reading",
+  "ma_mean_median_mode",
+  "ma_basic_probability",
+  "ma_probability_statistics",
+  "ma_data_interpretation",
+]);
+
+function isVisualSkill(skillId: string): boolean {
+  return VISUAL_SKILLS.has(skillId);
+}
+
 // ─── Constants ────────────────────────────────────────────────────────
 
 export const MODEL_SONNET = "claude-sonnet-4-20250514";
@@ -159,7 +181,19 @@ A student who feels safe makes more progress than one who feels pressured.
 ## Diagrams
 Do NOT include SVG diagrams unless the concept is truly impossible to understand without a visual. Most math concepts can be taught effectively with text, LaTeX notation, and step-by-step explanations alone. When in doubt, do NOT include a diagram.
 
-Only include a diagram for concepts like: geometric shapes/angles that must be seen, coordinate plane plots, or spatial reasoning problems where text alone genuinely fails. Do NOT create diagrams for: number lines, bar charts, pie charts, fraction models, tables, Venn diagrams, or any concept that can be explained with words and numbers.
+Do NOT create diagrams for: number lines, fraction models, Venn diagrams, arithmetic concepts, algebra, or any concept that can be explained with words and numbers.
+
+DO create SVG diagrams for these skill categories (visuals are essential):
+
+GEOMETRY & MEASUREMENT skills (ma_angles_shapes, ma_perimeter_area, ma_coordinate_basics, ma_area_perimeter_volume, ma_coordinate_geometry):
+- Draw the actual shape, angle, or coordinate plot. Students cannot learn geometry without seeing the geometry.
+
+DATA & PROBABILITY skills (ma_data_reading, ma_mean_median_mode, ma_basic_probability, ma_probability_statistics, ma_data_interpretation):
+- Draw actual bar graphs, line graphs, or pie charts instead of describing them in text. A question about "reading a bar graph" MUST show a bar graph.
+- For bar graphs: draw vertical bars with labeled x-axis (categories) and y-axis (values), value labels above each bar.
+- For line graphs: draw dots connected by lines with labeled axes and data points.
+- For pie charts: draw a circle with colored slices and percentage/value labels.
+- For tables: use markdown pipe format (| Header | Header |) — the UI renders these as formatted HTML tables.
 
 When you do include a diagram (rare), follow these SVG rules:
 - CRITICAL ACCURACY: The visual MUST be mathematically correct. If angles are labeled, the drawn angles must visually match (e.g., a triangle with angles 60/50/70 must NOT look equilateral — the sides and angles must look different). If a shape is a right triangle, draw it with a visible right angle. Never draw a shape that contradicts the labels. Double-check that side lengths, angles, and proportions in your SVG are consistent with the math.
@@ -322,9 +356,14 @@ Give me a clear explanation with one worked example. End with an encouraging tra
     // Compute-first: for place value, generate the math deterministically
     const pvSeed = isPlaceValueSkill(skill.skill_id) ? formatSeedPrompt(generatePlaceValueSeed(difficultyTier)) : "";
 
+    const needsVisual = isVisualSkill(skill.skill_id);
+    const visualHint = needsVisual
+      ? `\n\nVISUAL REQUIRED: This is a visual skill. You MUST include an SVG diagram in the QUESTION text. For data skills, draw an actual chart (bar graph, line graph, or pie chart) with realistic data — do NOT just describe a chart in words. For geometry skills, draw the actual shape or coordinate plot. Place the <svg> block inside the QUESTION text before asking the question about it.`
+      : "";
+
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
-      max_tokens: MAX_TOKENS_QUESTION,
+      max_tokens: needsVisual ? 1024 : MAX_TOKENS_QUESTION,
       system: this.cachedSystemBlock,
       messages: [
         {
@@ -337,7 +376,7 @@ Difficulty tier: ${difficultyTier}/5
 
 Create an original question appropriate for a ${skill.level === "hunter_prep" ? "6th grader (age 11-12)" : "rising 5th grader (age 9-10)"} at difficulty tier ${difficultyTier}. ${skill.level === "foundations" ? "Use simple, concrete scenarios that 9-10 year olds can relate to (school, sports, animals, games)." : ""} Format your response EXACTLY as:
 
-QUESTION: [the question text — include a short passage or scenario if this is a reading skill]
+QUESTION: [the question text — include a short passage or scenario if this is a reading skill]${visualHint}
 A) [choice A]
 B) [choice B]
 C) [choice C]
