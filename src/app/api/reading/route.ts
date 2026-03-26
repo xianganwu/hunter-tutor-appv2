@@ -36,6 +36,7 @@ interface GeneratedQuestion {
   readonly choices: readonly string[];
   readonly correctIndex: number;
   readonly explanation: string;
+  readonly skillTested?: string;
 }
 
 interface ReadingApiResponse {
@@ -79,7 +80,8 @@ Respond in this EXACT JSON format (no markdown, just raw JSON):
       "questionText": "What is the main idea?",
       "choices": ["Choice A", "Choice B", "Choice C", "Choice D"],
       "correctIndex": 0,
-      "explanation": "Why this is correct..."
+      "explanation": "Why this is correct...",
+      "skillTested": "rc_main_idea"
     }
   ]
 }
@@ -89,6 +91,7 @@ Requirements:
 - Questions should test: main idea, inference, vocabulary in context, evidence, and author's purpose
 - Each question has exactly 4 choices
 - correctIndex is 0-based
+- Each question must include a skillTested field with one of: rc_main_idea, rc_inference, rc_vocab_context, rc_evidence_reasoning, rc_author_purpose
 - Age-appropriate content only`,
             },
           ],

@@ -7,6 +7,8 @@ import {
   selectPassageForLevel,
   computeStaminaStats,
   recordReading,
+  staminaLevelToTier,
+  RC_SKILL_NAMES,
   STAMINA_LEVELS,
   MIN_ACCEPTABLE_WPM,
   SPEED_DROP_THRESHOLD,
@@ -333,5 +335,56 @@ describe("constants", () => {
   it("starts at 200 words and ends at 850", () => {
     expect(STAMINA_LEVELS[0].minWords).toBe(200);
     expect(STAMINA_LEVELS[STAMINA_LEVELS.length - 1].maxWords).toBe(850);
+  });
+});
+
+// ─── staminaLevelToTier ─────────────────────────────────────────────
+
+describe("staminaLevelToTier", () => {
+  it("maps stamina level 1 to tier 1", () => {
+    expect(staminaLevelToTier(1)).toBe(1);
+  });
+
+  it("maps stamina level 2 to tier 2", () => {
+    expect(staminaLevelToTier(2)).toBe(2);
+  });
+
+  it("maps stamina level 3 to tier 3", () => {
+    expect(staminaLevelToTier(3)).toBe(3);
+  });
+
+  it("maps stamina levels 4-5 to tier 4", () => {
+    expect(staminaLevelToTier(4)).toBe(4);
+    expect(staminaLevelToTier(5)).toBe(4);
+  });
+
+  it("maps stamina level 6+ to tier 5", () => {
+    expect(staminaLevelToTier(6)).toBe(5);
+    expect(staminaLevelToTier(7)).toBe(5);
+  });
+
+  it("handles edge case of 0 or negative", () => {
+    expect(staminaLevelToTier(0)).toBe(1);
+    expect(staminaLevelToTier(-1)).toBe(1);
+  });
+});
+
+// ─── RC_SKILL_NAMES ─────────────────────────────────────────────────
+
+describe("RC_SKILL_NAMES", () => {
+  it("has entries for all 14 reading skills plus rc_general", () => {
+    expect(Object.keys(RC_SKILL_NAMES).length).toBe(15);
+  });
+
+  it("maps rc_main_idea to Main Idea", () => {
+    expect(RC_SKILL_NAMES["rc_main_idea"]).toBe("Main Idea");
+  });
+
+  it("maps rc_inference to Inference", () => {
+    expect(RC_SKILL_NAMES["rc_inference"]).toBe("Inference");
+  });
+
+  it("maps rc_general to Reading Comprehension", () => {
+    expect(RC_SKILL_NAMES["rc_general"]).toBe("Reading Comprehension");
   });
 });

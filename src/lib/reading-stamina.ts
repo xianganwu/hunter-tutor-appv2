@@ -1,4 +1,4 @@
-import type { Passage } from "@/lib/types";
+import type { DifficultyLevel, Passage } from "@/lib/types";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -222,3 +222,35 @@ export function recordReading(
 
   return { progress: updated, advanced };
 }
+
+// ─── Skill Mastery Helpers ───────────────────────────────────────────
+
+/**
+ * Map stamina level (1-6) to a DifficultyLevel (1-5) for mastery calculation.
+ */
+export function staminaLevelToTier(staminaLevel: number): DifficultyLevel {
+  if (staminaLevel <= 1) return 1;
+  if (staminaLevel <= 2) return 2;
+  if (staminaLevel <= 3) return 3;
+  if (staminaLevel <= 5) return 4;
+  return 5; // level 6+
+}
+
+/** Human-readable names for reading comprehension skill IDs. */
+export const RC_SKILL_NAMES: Readonly<Record<string, string>> = {
+  rc_main_idea: "Main Idea",
+  rc_supporting_details: "Supporting Details",
+  rc_evidence_reasoning: "Evidence & Reasoning",
+  rc_inference: "Inference",
+  rc_vocab_context: "Vocabulary in Context",
+  rc_drawing_conclusions: "Drawing Conclusions",
+  rc_author_purpose: "Author's Purpose",
+  rc_tone_mood: "Tone & Mood",
+  rc_figurative_language: "Figurative Language",
+  rc_passage_structure: "Passage Structure",
+  rc_advanced_inference: "Advanced Inference",
+  rc_advanced_structure: "Advanced Structure",
+  rc_comparing_viewpoints: "Comparing Viewpoints",
+  rc_advanced_vocab: "Advanced Vocabulary",
+  rc_general: "Reading Comprehension",
+};

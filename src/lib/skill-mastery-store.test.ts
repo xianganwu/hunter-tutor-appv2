@@ -1,8 +1,15 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { loadSkillMastery, saveSkillMastery } from "./skill-mastery-store";
+import {
+  loadSkillMastery,
+  saveSkillMastery,
+  loadReadingAttemptWindow,
+  saveReadingAttemptWindow,
+} from "./skill-mastery-store";
 import type { StoredSkillMastery } from "./skill-mastery-store";
+import type { AttemptRecord } from "./adaptive";
 
 const STORAGE_KEY = "hunter-tutor-skill-mastery";
+const READING_ATTEMPTS_KEY = "hunter-tutor-reading-attempts";
 
 function makeMastery(
   overrides: Partial<StoredSkillMastery> = {}
@@ -31,6 +38,7 @@ function isLocalStorageAvailable(): boolean {
 beforeEach(() => {
   if (isLocalStorageAvailable()) {
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(READING_ATTEMPTS_KEY);
   }
 });
 
@@ -84,5 +92,62 @@ describe("saveSkillMastery", () => {
 
     expect(loadSkillMastery("skill_a")!.masteryLevel).toBe(0.9);
     expect(loadSkillMastery("skill_b")!.masteryLevel).toBe(0.7);
+  });
+});
+
+// ─── Reading Attempt Rolling Window ──────────────────────────────────
+
+function makeAttempt(isCorrect: boolean, tier: 1 | 2 | 3 | 4 | 5 = 3): AttemptRecord {
+  return { isCorrect, timeSpentSeconds: null, hintUsed: false, tier };
+}
+
+describe("loadReadingAttemptWindow", () => {
+  it("returns empty array for unknown skill", () => {
+    expect(loadReadingAttemptWindow("rc_nonexistent")).toEqual([]);
+  });
+
+  it("returns empty array when localStorage is empty", () => {
+    expect(loadReadingAttemptWindow("rc_main_idea")).toEqual([]);
+  });
+});
+
+describe("saveReadingAttemptWindow", () => {
+  it("saves and loads attempts for a skill", () => {
+    if (!isLocalStorageAvailable()) return;
+    const attempts = [makeAttempt(true), makeAttempt(false)];
+    saveReadingAttemptWindow("rc_inference", attempts);
+
+    const loaded = loadReadingAttemptWindow("rc_inference");
+    expect(loaded).toHaveLength(2);
+    expect(loaded[0].isCorrect).toBe(true);
+    expect(loaded[1].isCorrect).toBe(false);
+  });
+
+  it("caps at 10 attempts", () => {
+    if (!isLocalStorageAvailable()) return;
+    const attempts = Array.from({ length: 15 }, (_, i) => makeAttempt(i % 2 === 0));
+    saveReadingAttemptWindow("rc_main_idea", attempts);
+
+    const loaded = loadReadingAttemptWindow("rc_main_idea");
+    expect(loaded).toHaveLength(10);
+    // Should keep the last 10
+    expect(loaded[0].isCorrect).toBe(false); // index 5 from original (odd)
+  });
+
+  it("preserves other skills when saving", () => {
+    if (!isLocalStorageAvailable()) return;
+    saveReadingAttemptWindow("rc_main_idea", [makeAttempt(true)]);
+    saveReadingAttemptWindow("rc_inference", [makeAttempt(false)]);
+
+    expect(loadReadingAttemptWindow("rc_main_idea")).toHaveLength(1);
+    expect(loadReadingAttemptWindow("rc_main_idea")[0].isCorrect).toBe(true);
+    expect(loadReadingAttemptWindow("rc_inference")).toHaveLength(1);
+    expect(loadReadingAttemptWindow("rc_inference")[0].isCorrect).toBe(false);
+  });
+
+  it("handles corrupted localStorage gracefully", () => {
+    if (!isLocalStorageAvailable()) return;
+    localStorage.setItem(READING_ATTEMPTS_KEY, "not json");
+    expect(loadReadingAttemptWindow("rc_main_idea")).toEqual([]);
   });
 });

@@ -17,9 +17,9 @@ describe("DATA_KEYS", () => {
     expect(DATA_KEYS).toContain("time-budget");
   });
 
-  it("has exactly 14 keys", async () => {
+  it("has exactly 16 keys", async () => {
     const { DATA_KEYS } = await import("./data-keys");
-    expect(DATA_KEYS).toHaveLength(14);
+    expect(DATA_KEYS).toHaveLength(16);
   });
 
   it("contains all original 12 keys", async () => {

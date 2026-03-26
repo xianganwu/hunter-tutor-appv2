@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import type { PassageQuestion } from "@/lib/types";
+import type { DifficultyLevel, PassageQuestion } from "@/lib/types";
 import { getAllPassages } from "@/lib/exam/passages";
 import {
   loadStaminaProgress,
@@ -12,9 +12,19 @@ import {
   getStaminaLevel,
   selectPassageForLevel,
   computeStaminaStats,
+  staminaLevelToTier,
+  RC_SKILL_NAMES,
 } from "@/lib/reading-stamina";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import type { StaminaProgress, ReadingRecord } from "@/lib/reading-stamina";
+import type { AttemptRecord, MasteryWeightConfig } from "@/lib/adaptive";
+import { calculateMasteryUpdate } from "@/lib/adaptive";
+import {
+  loadSkillMastery,
+  saveSkillMastery,
+  loadReadingAttemptWindow,
+  saveReadingAttemptWindow,
+} from "@/lib/skill-mastery-store";
 
 // ─── Types ────────────────────────────────────────────────────────────
 
@@ -37,11 +47,20 @@ interface ActivePassage {
   readonly isAiGenerated: boolean;
 }
 
-interface QuestionItem {
+export interface QuestionItem {
   readonly questionText: string;
   readonly choices: readonly string[];
   readonly correctIndex: number;
   readonly explanation: string;
+  readonly skillId: string;
+}
+
+export interface SkillResult {
+  readonly skillId: string;
+  readonly skillName: string;
+  readonly isCorrect: boolean;
+  readonly mastery: number;
+  readonly previousMastery: number;
 }
 
 export interface ReadingStaminaState {
@@ -57,7 +76,16 @@ export interface ReadingStaminaState {
   readonly newLevel: number | null;
   readonly passagesThisSession: number;
   readonly startTime: number;
+  readonly skillResults: readonly SkillResult[];
 }
+
+// ─── Constants ────────────────────────────────────────────────────────
+
+const READING_MASTERY_WEIGHTS: MasteryWeightConfig = {
+  weightRecent: 0.8,
+  weightOverall: 0.2,
+  weightTime: 0.0,
+};
 
 // ─── Helpers ──────────────────────────────────────────────────────────
 
@@ -69,7 +97,67 @@ function passageQuestionToItem(q: PassageQuestion): QuestionItem {
       (c) => c.letter === q.correct_answer
     ),
     explanation: q.correct_answer_explanation,
+    skillId: q.skill_tested ?? "rc_general",
   };
+}
+
+// ─── Skill Mastery Persistence ────────────────────────────────────────
+
+function persistReadingSkillMastery(
+  results: readonly { skillId: string; isCorrect: boolean }[],
+  tier: DifficultyLevel,
+): SkillResult[] {
+  const skillResults: SkillResult[] = [];
+
+  try {
+    for (const { skillId, isCorrect } of results) {
+      if (skillId === "rc_general") continue;
+
+      const previousMastery = loadSkillMastery(skillId)?.masteryLevel ?? 0;
+      const window = loadReadingAttemptWindow(skillId);
+      const attempt: AttemptRecord = {
+        isCorrect,
+        timeSpentSeconds: null,
+        hintUsed: false,
+        tier,
+      };
+      const updatedWindow = [...window, attempt].slice(-10);
+
+      const update = calculateMasteryUpdate(
+        updatedWindow,
+        tier,
+        READING_MASTERY_WEIGHTS,
+      );
+
+      const stored = loadSkillMastery(skillId);
+      saveSkillMastery({
+        skillId,
+        masteryLevel: update.newMasteryLevel,
+        attemptsCount: (stored?.attemptsCount ?? 0) + 1,
+        correctCount: (stored?.correctCount ?? 0) + (isCorrect ? 1 : 0),
+        lastPracticed: new Date().toISOString(),
+        confidenceTrend: update.newConfidenceTrend,
+        interval: stored?.interval,
+        easeFactor: stored?.easeFactor,
+        nextReviewDate: stored?.nextReviewDate,
+        repetitions: stored?.repetitions,
+      });
+
+      saveReadingAttemptWindow(skillId, updatedWindow);
+
+      skillResults.push({
+        skillId,
+        skillName: RC_SKILL_NAMES[skillId] ?? skillId,
+        isCorrect,
+        mastery: update.newMasteryLevel,
+        previousMastery,
+      });
+    }
+  } catch (err) {
+    console.error("[reading] skill mastery persist error:", err);
+  }
+
+  return skillResults;
 }
 
 // ─── Hook ─────────────────────────────────────────────────────────────
@@ -88,16 +176,19 @@ export function useReadingStamina() {
     newLevel: null,
     passagesThisSession: 0,
     startTime: Date.now(),
+    skillResults: [],
   });
 
   const stateRef = useRef(state);
   stateRef.current = state;
   const initialized = useRef(false);
+  const questionResults = useRef<{ skillId: string; isCorrect: boolean }[]>([]);
 
   // Load a passage for the current stamina level
   const loadPassage = useCallback(async () => {
     const s = stateRef.current;
-    setState((prev) => ({ ...prev, phase: "loading" }));
+    questionResults.current = [];
+    setState((prev) => ({ ...prev, phase: "loading", skillResults: [] }));
 
     const levelConfig = getStaminaLevel(s.progress.currentLevel);
     const allPassages = Array.from(getAllPassages().values());
@@ -176,6 +267,7 @@ export function useReadingStamina() {
             choices: readonly string[];
             correctIndex: number;
             explanation: string;
+            skillTested?: string;
           }[];
         };
       };
@@ -193,7 +285,10 @@ export function useReadingStamina() {
           preReadingContext: data.passage!.preReadingContext,
           passageText: data.passage!.passageText,
           wordCount: data.passage!.wordCount,
-          questions: data.passage!.questions,
+          questions: data.passage!.questions.map((q) => ({
+            ...q,
+            skillId: q.skillTested ?? "rc_general",
+          })),
           isAiGenerated: true,
         },
         currentQuestionIndex: 0,
@@ -274,6 +369,9 @@ export function useReadingStamina() {
     const newAnswers = [...s.answers];
     newAnswers[s.currentQuestionIndex] = choiceIndex;
 
+    // Collect skill result for mastery tracking
+    questionResults.current.push({ skillId: question.skillId, isCorrect });
+
     const newCorrect = s.questionsCorrect + (isCorrect ? 1 : 0);
     const nextIndex = s.currentQuestionIndex + 1;
     const isLastQuestion = nextIndex >= s.currentPassage.questions.length;
@@ -307,6 +405,12 @@ export function useReadingStamina() {
       saveStaminaProgress(updated);
       autoCompleteDailyTask(undefined, "skill_practice");
 
+      // Persist per-skill mastery using rolling window
+      const skillResults = persistReadingSkillMastery(
+        questionResults.current,
+        staminaLevelToTier(s.progress.currentLevel),
+      );
+
       // Check speed drop
       const drop = detectSpeedDrop(updated.records);
 
@@ -316,6 +420,7 @@ export function useReadingStamina() {
         phase: "feedback",
         passagesThisSession: prev.passagesThisSession + 1,
         newLevel: advanced ? updated.currentLevel : null,
+        skillResults,
       }));
 
       // Fetch speed feedback if there's a drop

@@ -12,6 +12,8 @@ import {
 import { getRandomPassagePhrase } from "@/lib/loading-phrases";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
+import { ReadingSkillsSummary } from "./ReadingSkillsSummary";
+import type { SkillResult } from "@/hooks/useReadingStamina";
 
 export function ReadingStaminaSession() {
   const {
@@ -141,6 +143,7 @@ export function ReadingStaminaSession() {
             questionsCorrect={state.questionsCorrect}
             wpm={state.currentWpm}
             readingTimeSeconds={state.readingTimeSeconds}
+            skillResults={state.skillResults}
             onContinue={proceedFromFeedback}
           />
         )}
@@ -316,6 +319,7 @@ function FeedbackPhase({
   questionsCorrect,
   wpm,
   readingTimeSeconds,
+  skillResults,
   onContinue,
 }: {
   readonly passage: {
@@ -332,6 +336,7 @@ function FeedbackPhase({
   readonly questionsCorrect: number;
   readonly wpm: number;
   readonly readingTimeSeconds: number;
+  readonly skillResults: readonly SkillResult[];
   readonly onContinue: () => void;
 }) {
   const total = passage.questions.length;
@@ -395,6 +400,9 @@ function FeedbackPhase({
           );
         })}
       </div>
+
+      {/* Skill mastery progress */}
+      <ReadingSkillsSummary skills={skillResults} />
 
       <button
         onClick={onContinue}

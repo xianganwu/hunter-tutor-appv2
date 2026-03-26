@@ -593,3 +593,102 @@ describe("masteryToTier", () => {
     expect(masteryToTier(1.0)).toBe(5);
   });
 });
+
+// ─── 8. calculateMasteryUpdate with custom weights ──────────────────
+
+describe("calculateMasteryUpdate with custom weights", () => {
+  it("produces identical results when no weights are passed (regression)", () => {
+    const attempts = makeAttempts([true, true, false, true, true, true, false, true, true, true], 45);
+    const result2arg = calculateMasteryUpdate(attempts, 3);
+    const result3arg = calculateMasteryUpdate(attempts, 3, undefined);
+    expect(result3arg.newMasteryLevel).toBe(result2arg.newMasteryLevel);
+    expect(result3arg.newConfidenceTrend).toBe(result2arg.newConfidenceTrend);
+  });
+
+  it("produces identical results when defaults are explicitly passed", () => {
+    const attempts = makeAttempts([true, false, true, true, false], 30);
+    const resultDefault = calculateMasteryUpdate(attempts, 2);
+    const resultExplicit = calculateMasteryUpdate(attempts, 2, {
+      weightRecent: 0.7,
+      weightOverall: 0.2,
+      weightTime: 0.1,
+    });
+    expect(resultExplicit.newMasteryLevel).toBe(resultDefault.newMasteryLevel);
+    expect(resultExplicit.newConfidenceTrend).toBe(resultDefault.newConfidenceTrend);
+  });
+
+  it("reading weights (0.8/0.2/0.0) produce high mastery for all correct", () => {
+    const attempts = makeAttempts(Array(10).fill(true) as boolean[], null, false, 3);
+    const result = calculateMasteryUpdate(attempts, 3, {
+      weightRecent: 0.8,
+      weightOverall: 0.2,
+      weightTime: 0.0,
+    });
+    // 10 attempts = full confidence. 100% accuracy, no time component.
+    // raw = 0.8 * 1.0 + 0.2 * 1.0 + 0 = 1.0
+    expect(result.newMasteryLevel).toBeGreaterThanOrEqual(0.95);
+  });
+
+  it("reading weights produce low mastery for all wrong", () => {
+    const attempts = makeAttempts(Array(10).fill(false) as boolean[], null, false, 3);
+    const result = calculateMasteryUpdate(attempts, 3, {
+      weightRecent: 0.8,
+      weightOverall: 0.2,
+      weightTime: 0.0,
+    });
+    // raw = 0.8 * 0 + 0.2 * 0 + 0 = 0
+    expect(result.newMasteryLevel).toBe(0);
+  });
+
+  it("reading weights with 1 attempt anchor heavily to prior", () => {
+    const attempts: AttemptRecord[] = [
+      { isCorrect: true, timeSpentSeconds: null, hintUsed: false, tier: 3 },
+    ];
+    const result = calculateMasteryUpdate(attempts, 3, {
+      weightRecent: 0.8,
+      weightOverall: 0.2,
+      weightTime: 0.0,
+    });
+    // confidence = 1/8 = 0.125, raw = 1.0
+    // blended = 0.125 * 1.0 + 0.875 * 0.3 = 0.125 + 0.2625 = 0.3875
+    expect(result.newMasteryLevel).toBeGreaterThan(0.35);
+    expect(result.newMasteryLevel).toBeLessThan(0.45);
+  });
+
+  it("reading weights build confidence across 8 passages", () => {
+    // Simulate 8 correct attempts accumulating (like 8 passages)
+    const attempts: AttemptRecord[] = Array.from({ length: 8 }, () => ({
+      isCorrect: true,
+      timeSpentSeconds: null,
+      hintUsed: false,
+      tier: 3 as const,
+    }));
+    const result = calculateMasteryUpdate(attempts, 3, {
+      weightRecent: 0.8,
+      weightOverall: 0.2,
+      weightTime: 0.0,
+    });
+    // confidence = 8/8 = 1.0, raw = 1.0 → mastery = 1.0
+    expect(result.newMasteryLevel).toBeGreaterThanOrEqual(0.95);
+  });
+
+  it("reading weights with mixed results across passages produce moderate mastery", () => {
+    // 6 correct, 4 wrong = 60% accuracy
+    const attempts: AttemptRecord[] = [
+      ...Array.from({ length: 6 }, () => ({
+        isCorrect: true, timeSpentSeconds: null, hintUsed: false, tier: 3 as const,
+      })),
+      ...Array.from({ length: 4 }, () => ({
+        isCorrect: false, timeSpentSeconds: null, hintUsed: false, tier: 3 as const,
+      })),
+    ];
+    const result = calculateMasteryUpdate(attempts, 3, {
+      weightRecent: 0.8,
+      weightOverall: 0.2,
+      weightTime: 0.0,
+    });
+    // Full confidence (10 attempts), raw = 0.8 * 0.6 + 0.2 * 0.6 = 0.6
+    expect(result.newMasteryLevel).toBeGreaterThan(0.5);
+    expect(result.newMasteryLevel).toBeLessThan(0.7);
+  });
+});

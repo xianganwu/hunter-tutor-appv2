@@ -1,4 +1,4 @@
-import type { ConfidenceTrend } from "./adaptive";
+import type { AttemptRecord, ConfidenceTrend } from "./adaptive";
 import { getStorageKey, notifyProgressChanged } from "./user-profile";
 
 // ─── Types ────────────────────────────────────────────────────────────
@@ -132,4 +132,45 @@ export function saveSkillMastery(data: StoredSkillMastery): void {
     all.push(data);
   }
   saveAll(all);
+}
+
+// ─── Reading Attempt Rolling Window ──────────────────────────────────
+//
+// Reading passages produce 1 attempt per skill per passage (unlike math
+// which produces 5-15 per session). We store the last 10 attempts per
+// skill so calculateMasteryUpdate has enough data to produce meaningful
+// mastery levels.
+
+const READING_ATTEMPTS_KEY = "hunter-tutor-reading-attempts";
+const MAX_READING_WINDOW = 10;
+
+type ReadingAttemptStore = Record<string, AttemptRecord[]>;
+
+export function loadReadingAttemptWindow(skillId: string): AttemptRecord[] {
+  try {
+    if (typeof window === "undefined") return [];
+    const data = localStorage.getItem(getStorageKey(READING_ATTEMPTS_KEY));
+    if (!data) return [];
+    const store = JSON.parse(data) as ReadingAttemptStore;
+    return store[skillId] ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveReadingAttemptWindow(
+  skillId: string,
+  attempts: readonly AttemptRecord[],
+): void {
+  try {
+    if (typeof window === "undefined") return;
+    const key = getStorageKey(READING_ATTEMPTS_KEY);
+    const raw = localStorage.getItem(key);
+    const store: ReadingAttemptStore = raw ? (JSON.parse(raw) as ReadingAttemptStore) : {};
+    store[skillId] = attempts.slice(-MAX_READING_WINDOW) as AttemptRecord[];
+    localStorage.setItem(key, JSON.stringify(store));
+    notifyProgressChanged("reading-attempts");
+  } catch {
+    // localStorage unavailable
+  }
 }

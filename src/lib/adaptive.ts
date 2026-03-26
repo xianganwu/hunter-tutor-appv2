@@ -60,6 +60,12 @@ export interface MasteryUpdate {
   readonly newConfidenceTrend: ConfidenceTrend;
 }
 
+export interface MasteryWeightConfig {
+  readonly weightRecent?: number;
+  readonly weightOverall?: number;
+  readonly weightTime?: number;
+}
+
 // ─── Tier Labels ─────────────────────────────────────────────────────
 
 export const MASTERY_TIER_LABELS: Record<DifficultyLevel, string> = {
@@ -519,11 +525,16 @@ function computeTrend(
  */
 export function calculateMasteryUpdate(
   allAttempts: readonly AttemptRecord[],
-  currentTier: DifficultyLevel
+  currentTier: DifficultyLevel,
+  weights?: MasteryWeightConfig,
 ): MasteryUpdate {
   if (allAttempts.length === 0) {
     return { newMasteryLevel: 0, newConfidenceTrend: "stable" };
   }
+
+  const wR = weights?.weightRecent ?? WEIGHT_RECENT;
+  const wO = weights?.weightOverall ?? WEIGHT_OVERALL;
+  const wT = weights?.weightTime ?? WEIGHT_TIME;
 
   const recentAcc = rollingAccuracy(allAttempts, RECENT_WINDOW);
   const overallAcc = rollingAccuracy(allAttempts, allAttempts.length);
@@ -532,10 +543,7 @@ export function calculateMasteryUpdate(
     currentTier
   );
 
-  const rawMastery =
-    WEIGHT_RECENT * recentAcc +
-    WEIGHT_OVERALL * overallAcc +
-    WEIGHT_TIME * timeEff;
+  const rawMastery = wR * recentAcc + wO * overallAcc + wT * timeEff;
 
   // Confidence multiplier: blend raw score with a conservative prior
   // until enough attempts have been collected to trust the data.
