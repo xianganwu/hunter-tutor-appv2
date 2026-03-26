@@ -672,8 +672,10 @@ Context: ${context}`,
     recentQuestions?: string[]
   ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[] }[]> {
     // Scale max_tokens to batch size — ~400 tokens per question is typical.
-    // Minimum 2048 for small batches, cap at 8192 for large ones.
-    const maxTokens = Math.min(8192, Math.max(2048, count * 400));
+    // Visual skills need ~800 tokens per question for SVG charts.
+    const needsVisual = isVisualSkill(skill.skill_id);
+    const tokensPerQ = needsVisual ? 800 : 400;
+    const maxTokens = Math.min(8192, Math.max(2048, count * tokensPerQ));
 
     // Compute-first: for place value, generate seeds for every question in the batch
     const tier = difficultyTier ?? skill.difficulty_tier;
@@ -703,7 +705,9 @@ IMPORTANT — Question Variety:
 - Vary the question FORMAT: some should be "solve for X", some "which is equivalent to", some word problems, some "find the error", some "which statement is true".
 - Vary the NUMBERS and CONTEXTS: use different number ranges, real-world scenarios, and setups each time.
 - Vary SUB-TOPICS within the skill: e.g., for fractions, mix addition, comparison, word problems, and equivalence.
-- Do NOT generate questions that are structurally identical (same template with different numbers). Each question should feel distinct.${recentQuestions && recentQuestions.length > 0 ? `
+- Do NOT generate questions that are structurally identical (same template with different numbers). Each question should feel distinct.${needsVisual ? `
+
+VISUAL REQUIRED: This is a visual skill. Each question MUST include an SVG diagram in the questionText field. For data skills (data reading, statistics, probability), draw an actual bar graph, line graph, or pie chart with data — do NOT describe charts in words. For geometry skills, draw the shape or coordinate plot. Keep SVGs compact (under 40 lines each). Use the color palette from your instructions.` : ""}${recentQuestions && recentQuestions.length > 0 ? `
 
 AVOID REPEATS — The student was recently shown these questions. Do NOT generate questions similar to them:
 ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}
@@ -787,7 +791,10 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
       )
       .join("\n");
 
-    const mixedMaxTokens = Math.min(8192, Math.max(2048, totalCount * 400));
+    // Check if any skills in the mix need visuals
+    const hasVisualSkills = skills.some(s => isVisualSkill(s.skill.skill_id));
+    const mixedTokensPerQ = hasVisualSkills ? 600 : 400;
+    const mixedMaxTokens = Math.min(8192, Math.max(2048, totalCount * mixedTokensPerQ));
 
     // Compute-first: inject seeds for place value questions if that skill is in the mix
     const pvSkill = skills.find(s => isPlaceValueSkill(s.skill.skill_id));
@@ -812,7 +819,9 @@ ${skillList}
 
 These are for a mixed drill — questions should be clear and solvable quickly (15-30 seconds each).
 Each question should have 4-5 multiple choice answers.
-Each question MUST include the skill_id it belongs to.
+Each question MUST include the skill_id it belongs to.${hasVisualSkills ? `
+
+VISUAL SKILLS: For questions about data skills (ma_data_reading, ma_data_interpretation, ma_probability_statistics, ma_mean_median_mode, ma_basic_probability) or geometry skills (ma_angles_shapes, ma_perimeter_area, ma_coordinate_basics, ma_area_perimeter_volume, ma_coordinate_geometry), include an SVG diagram in the questionText. Draw actual charts or shapes — do not describe them in words. Keep SVGs compact (under 40 lines each).` : ""}
 
 Format your response as a JSON array. ONLY output the JSON array, no other text:
 [
