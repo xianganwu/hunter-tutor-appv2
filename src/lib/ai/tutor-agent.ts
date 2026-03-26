@@ -398,7 +398,48 @@ ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
       ],
     });
 
-    return parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier);
+    const result = parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier);
+
+    // Safety net: if a visual question failed parsing, retry once without
+    // the visual requirement so the student always gets a question.
+    if (!result && needsVisual) {
+      console.warn(`[tutor-agent] Visual question failed for ${skill.skill_id}, retrying without SVG`);
+      const fallbackResponse = await this.client.messages.create({
+        model: MODEL_SONNET,
+        max_tokens: MAX_TOKENS_QUESTION,
+        system: this.cachedSystemBlock,
+        messages: [
+          {
+            role: "user",
+            content: `Generate a practice question for me.
+
+Skill: "${skill.name}" (${skill.skill_id})
+Description: ${skill.description}
+Difficulty tier: ${difficultyTier}/5
+
+Create an original question appropriate for a ${skill.level === "hunter_prep" ? "6th grader (age 11-12)" : "rising 5th grader (age 9-10)"} at difficulty tier ${difficultyTier}. ${skill.level === "foundations" ? "Use simple, concrete scenarios that 9-10 year olds can relate to (school, sports, animals, games)." : ""} Do NOT include any SVG diagrams. Use text descriptions and markdown tables for data.
+
+Format your response EXACTLY as:
+
+QUESTION: [the question text]
+A) [choice A]
+B) [choice B]
+C) [choice C]
+D) [choice D]
+E) [choice E]
+CORRECT: [letter]
+
+Make the question test exactly the skill described. Make distractors plausible but clearly wrong.
+
+CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value.
+${pvSeed}`,
+          },
+        ],
+      });
+      return parseGeneratedQuestion(extractText(fallbackResponse), skill.skill_id, difficultyTier);
+    }
+
+    return result;
   }
 
   /** Build messages for evaluateAnswer (shared by streaming and non-streaming).
@@ -1014,35 +1055,68 @@ function isPlaceValueSkill(skillId: string): boolean {
   return skillId === "mqr_place_value";
 }
 
+/**
+ * Strip SVG blocks from text before parsing choices, then re-insert
+ * @internal Exported for testing only.
+ * them into the question text. This prevents SVG content (axis labels,
+ * element IDs, text nodes) from being matched by the [A-E]) choice regex.
+ */
+export function stripSvgBlocks(text: string): { cleaned: string; svgs: string[] } {
+  const svgs: string[] = [];
+  const cleaned = text.replace(/<svg[\s\S]*?<\/svg>/gi, (match) => {
+    svgs.push(match);
+    return `__SVG_${svgs.length - 1}__`;
+  });
+  // Also handle truncated SVGs (has <svg but no </svg>)
+  const truncated = cleaned.replace(/<svg[\s\S]*/gi, (match) => {
+    svgs.push(match);
+    return `__SVG_${svgs.length - 1}__`;
+  });
+  return { cleaned: truncated, svgs };
+}
+
+export function restoreSvgBlocks(text: string, svgs: readonly string[]): string {
+  let result = text;
+  for (let i = 0; i < svgs.length; i++) {
+    result = result.replace(`__SVG_${i}__`, svgs[i]);
+  }
+  return result;
+}
+
 function parseGeneratedQuestion(
   text: string,
   skillId: string,
   difficultyTier: DifficultyLevel
 ): GeneratedQuestion | null {
-  const questionMatch = text.match(/QUESTION:\s*([\s\S]+?)(?=\n[A-E]\))/);
-  const choiceMatches = text.match(/[A-E]\)\s*.+/g);
-  const correctMatch = text.match(/CORRECT:\s*([A-E])/i);
+  // Strip SVG blocks so their content doesn't interfere with choice parsing
+  const { cleaned, svgs } = stripSvgBlocks(text);
+
+  const questionMatch = cleaned.match(/QUESTION:\s*([\s\S]+?)(?=\n[A-E]\))/);
+  const choiceMatches = cleaned.match(/[A-E]\)\s*.+/g);
+  const correctMatch = cleaned.match(/CORRECT:\s*([A-E])/i);
 
   if (!questionMatch) {
-    parseWarn({ parser: "parseGeneratedQuestion", field: "questionText", fallback: "raw text", rawSnippet: text });
+    parseWarn({ parser: "parseGeneratedQuestion", field: "questionText", fallback: "raw text", rawSnippet: cleaned });
   }
-  const questionText = questionMatch?.[1]?.trim() ?? text;
+  // Restore SVGs into the question text so they render in the chat
+  const rawQuestionText = questionMatch?.[1]?.trim() ?? text;
+  const questionText = restoreSvgBlocks(rawQuestionText, svgs);
 
   if (!choiceMatches || choiceMatches.length === 0) {
-    parseError({ parser: "parseGeneratedQuestion", field: "answerChoices", fallback: "[]", rawSnippet: text });
+    parseError({ parser: "parseGeneratedQuestion", field: "answerChoices", fallback: "[]", rawSnippet: cleaned });
     return null;
   }
   const answerChoices = choiceMatches.map((c) => c.trim());
 
   if (!correctMatch) {
-    parseError({ parser: "parseGeneratedQuestion", field: "correctAnswer", fallback: "REJECTED (no CORRECT: line)", rawSnippet: text });
+    parseError({ parser: "parseGeneratedQuestion", field: "correctAnswer", fallback: "REJECTED (no CORRECT: line)", rawSnippet: cleaned });
     return null;
   }
   const correctLetter = correctMatch[1].toUpperCase();
   const correctIndex = correctLetter.charCodeAt(0) - "A".charCodeAt(0);
 
   if (correctIndex < 0 || correctIndex >= answerChoices.length) {
-    parseError({ parser: "parseGeneratedQuestion", field: "correctAnswer", fallback: `REJECTED (letter ${correctLetter} out of range for ${answerChoices.length} choices)`, rawSnippet: text });
+    parseError({ parser: "parseGeneratedQuestion", field: "correctAnswer", fallback: `REJECTED (letter ${correctLetter} out of range for ${answerChoices.length} choices)`, rawSnippet: cleaned });
     return null;
   }
   const correctAnswer = answerChoices[correctIndex];

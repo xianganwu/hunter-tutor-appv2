@@ -66,3 +66,13 @@
 **Pattern**: If the app runs on HTTPS (all Vercel apps do), add `Strict-Transport-Security: max-age=63072000; includeSubDomains` to security headers. One line, zero risk, prevents HTTPS downgrade attacks.
 
 **What happened**: The app had 5 security headers configured but missed HSTS — the one that actually prevents a real attack vector (man-in-the-middle on first HTTP visit). The security audit also missed it while listing 7 medium-priority items of lower impact.
+
+## Strip Structured Content Before Regex Parsing
+
+**Pattern**: When AI responses contain embedded structured content (SVG, HTML, JSON blocks), regex parsers that scan the entire response will match patterns inside that content. Always strip/replace structured blocks with placeholders before running content-extraction regexes, then re-insert after parsing.
+
+**What happened**: Added SVG chart generation for data interpretation skills. The AI response contained SVG charts with text labels like `<text>A) Pepperoni</text>`. The choice-extraction regex `/[A-E]\)\s*.+/g` matched these SVG-internal patterns as answer choices, inflating the choice count from 5 to 7+. This caused the correct-answer index to be out of bounds, `parseGeneratedQuestion()` returned `null`, and students saw "Failed to generate a valid question."
+
+**Fix**: `stripSvgBlocks()` extracts all `<svg>...</svg>` blocks and replaces them with `__SVG_N__` placeholders before choice parsing. After parsing, `restoreSvgBlocks()` re-inserts them into the question text so they render in the chat. A non-visual fallback retry ensures students always get a question even if SVG parsing fails.
+
+**Rule**: Any time you add a new content type to AI responses (SVG, HTML tables, code blocks, JSON), audit all downstream parsers that use regexes on the raw response text. The parser was written for plain-text responses and has no concept of structured blocks. Either strip the blocks before parsing, or make the regexes structure-aware.
