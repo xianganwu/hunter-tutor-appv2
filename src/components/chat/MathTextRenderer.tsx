@@ -94,6 +94,22 @@ function parseText(text: string): TextPart[] {
 }
 
 /**
+ * Detect if content inside $...$ looks like English prose rather than math.
+ * Returns true if the content is likely prose that was incorrectly wrapped
+ * in LaTeX delimiters by the AI (e.g., "is 2 more than 45").
+ *
+ * Valid LaTeX commands (frac, times, sqrt, etc.) are excluded from the check.
+ */
+const LATEX_COMMANDS = /\\(?:frac|times|div|cdot|sqrt|pm|mp|leq|geq|neq|approx|infty|sum|prod|int|lim|log|ln|sin|cos|tan|text|mathrm|mathbf|left|right|big|Big|over|binom|choose|pmod|bmod|mod|quad|qquad|hspace|vspace|phantom|overline|underline|hat|bar|vec|dot|ddot|tilde|alpha|beta|gamma|delta|epsilon|theta|lambda|mu|pi|sigma|omega|phi|psi|cap|cup|subset|supset|forall|exists|nabla|partial|degree)\b/;
+
+function looksLikeProse(content: string): boolean {
+  // Strip valid LaTeX commands before checking for English words
+  const stripped = content.replace(LATEX_COMMANDS, "").replace(/[\\{}^_0-9.,+=\-×÷<>()[\]|/!:;\s]/g, "");
+  // If what remains has 3+ consecutive alpha chars, it's likely English prose
+  return /[a-zA-Z]{3,}/.test(stripped);
+}
+
+/**
  * Parse a text segment for LaTeX math delimiters and push parts.
  */
 function parseMath(text: string, parts: TextPart[]): void {
@@ -112,7 +128,15 @@ function parseMath(text: string, parts: TextPart[]): void {
     if (raw.startsWith("$$")) {
       parts.push({ type: "display-math", content: raw.slice(2, -2) });
     } else {
-      parts.push({ type: "inline-math", content: raw.slice(1, -1) });
+      const inner = raw.slice(1, -1);
+      // Guard: if the content looks like English prose rather than math,
+      // render as plain text instead of sending to KaTeX (which would
+      // produce broken italic text with no spaces).
+      if (looksLikeProse(inner)) {
+        parts.push({ type: "text", content: inner });
+      } else {
+        parts.push({ type: "inline-math", content: inner });
+      }
     }
     lastIndex = regex.lastIndex;
   }

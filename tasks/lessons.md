@@ -77,6 +77,16 @@
 
 **Rule**: Any time you add a new content type to AI responses (SVG, HTML tables, code blocks, JSON), audit all downstream parsers that use regexes on the raw response text. The parser was written for plain-text responses and has no concept of structured blocks. Either strip the blocks before parsing, or make the regexes structure-aware.
 
+## AI Wraps English Prose in LaTeX Delimiters
+
+**Pattern**: When the AI prompt says "use $...$ for math expressions" without explicitly prohibiting prose, the AI sometimes wraps entire English sentences containing numbers in `$...$`. The renderer faithfully sends this to KaTeX, which renders English words as broken italic math with no spaces.
+
+**What happened**: The system prompt (tutor-agent.ts:174) said "Use LaTeX notation for math expressions: wrap inline math in single dollar signs." The AI generated teach explanations like `$47 is 2 more than 45, while 23 is 2 less than 25$` — mixing prose with numbers in a single LaTeX block. KaTeX rendered this as garbled italic text. The renderer's regex (`MathTextRenderer.tsx:103`) has no concept of "this is English, not math" — it sends everything between `$...$` to KaTeX.
+
+**Fix**: Two layers: (1) Hardened the system prompt to explicitly prohibit English words inside `$...$` with concrete examples of what NOT to do. (2) Added a `looksLikeProse()` heuristic in `MathTextRenderer.tsx` that detects 3+ consecutive alphabetic characters (excluding valid LaTeX commands like `frac`, `times`, `sqrt`) inside `$...$` blocks and renders them as plain text instead of math.
+
+**Rule**: AI prompt instructions about formatting must include explicit negative examples ("do NOT do X") in addition to positive examples ("do X"). The AI is better at following format instructions when it sees concrete examples of the wrong format it should avoid. Additionally, any rendering pipeline that consumes AI-generated delimiters needs a validation layer — trust but verify.
+
 ## Safety Net Rejects Seeded Questions at Tier 5 (Fifth Occurrence)
 
 **Pattern**: When a validator safety net rejects "unverifiable" questions, it must distinguish between questions where the AI computed the math (needs verification) and questions where code pre-computed the math (correct by construction). A safety net that treats all questions identically will reject valid seeded questions whose format doesn't match the finite set of regexes.
