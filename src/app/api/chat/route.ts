@@ -472,6 +472,7 @@ ${skillList}
 
 Each question should be clear, age-appropriate, and directly test the skill.
 Each question should have 5 multiple choice answers (A through E).
+Vary which letter (A through E) is the correct answer across questions. Do NOT always place the correct answer as choice A.
 
 Respond with ONLY a JSON array, no other text:
 [
@@ -479,7 +480,7 @@ Respond with ONLY a JSON array, no other text:
     "skillId": "the_skill_id",
     "questionText": "...",
     "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ...", "E) ..."],
-    "correctAnswer": "A) ..."
+    "correctAnswer": "C) ..."
   }
 ]`,
             },

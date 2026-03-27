@@ -753,12 +753,14 @@ VISUAL REQUIRED: This is a visual skill. Each question MUST include an SVG diagr
 AVOID REPEATS — The student was recently shown these questions. Do NOT generate questions similar to them:
 ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}
 
+ANSWER POSITION: Vary which letter (A, B, C, or D) is the correct answer across questions. Do NOT always place the correct answer as choice A. Distribute correct answers roughly evenly among all positions.
+
 Format your response as a JSON array. ONLY output the JSON array, no other text:
 [
   {
     "questionText": "...",
     "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ..."],
-    "correctAnswer": "A) ..."
+    "correctAnswer": "C) ..."
   },
   ...
 ]
@@ -864,13 +866,15 @@ Each question MUST include the skill_id it belongs to.${hasVisualSkills ? `
 
 VISUAL SKILLS: For questions about data skills (ma_data_reading, ma_data_interpretation, ma_probability_statistics, ma_mean_median_mode, ma_basic_probability) or geometry skills (ma_angles_shapes, ma_perimeter_area, ma_coordinate_basics, ma_area_perimeter_volume, ma_coordinate_geometry), include an SVG diagram in the questionText. Draw actual charts or shapes — do not describe them in words. Keep SVGs compact (under 40 lines each).` : ""}
 
+ANSWER POSITION: Vary which letter (A, B, C, or D) is the correct answer across questions. Do NOT always place the correct answer as choice A. Distribute correct answers roughly evenly among all positions.
+
 Format your response as a JSON array. ONLY output the JSON array, no other text:
 [
   {
     "skillId": "the_skill_id",
     "questionText": "...",
     "answerChoices": ["A) ...", "B) ...", "C) ...", "D) ..."],
-    "correctAnswer": "A) ..."
+    "correctAnswer": "C) ..."
   },
   ...
 ]

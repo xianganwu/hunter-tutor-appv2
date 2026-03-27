@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import type { MixedDrillQuestion, MixedDrillAttempt, MixedDrillResult } from "@/lib/drill";
-import { computeMixedDrillResult, saveMixedDrillResult } from "@/lib/drill";
+import { computeMixedDrillResult, saveMixedDrillResult, shuffleQuestionChoices } from "@/lib/drill";
 import type { DifficultyLevel } from "@/lib/types";
 import { getSkillById, getSkillIdsForDomain } from "@/lib/exam/curriculum";
 import {
@@ -150,7 +150,7 @@ export function useMixedDrill() {
         return;
       }
 
-      const shuffled = roundRobinShuffle(questions);
+      const shuffled = roundRobinShuffle(questions).map(shuffleQuestionChoices);
       const now = Date.now();
       questionShownAt.current = now;
 

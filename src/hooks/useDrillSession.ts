@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import type { DrillQuestion, DrillAttempt, DrillResult } from "@/lib/drill";
-import { computeDrillResult, saveDrillResult } from "@/lib/drill";
+import { computeDrillResult, saveDrillResult, shuffleQuestionChoices } from "@/lib/drill";
 import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import { loadSkillMastery, saveSkillMastery, computeSkillReviewSchedule } from "@/lib/skill-mastery-store";
 import type { StoredSkillMastery } from "@/lib/skill-mastery-store";
@@ -258,7 +258,7 @@ export function useDrillSession() {
       if (!res.ok) throw new Error("Failed to generate drill questions");
 
       const data = (await res.json()) as { questions?: DrillQuestion[] };
-      return data.questions ?? [];
+      return (data.questions ?? []).map(shuffleQuestionChoices);
     },
     [],
   );

@@ -59,6 +59,49 @@ export interface MixedDrillResult {
   readonly completedAt: string; // ISO
 }
 
+// ─── Answer Choice Shuffling ─────────────────────────────────────────
+
+const CHOICE_LETTERS = ["A", "B", "C", "D", "E", "F", "G", "H"] as const;
+
+/**
+ * Strip the leading letter prefix (e.g. "A) ") from a choice string.
+ * Returns the text content only.
+ */
+function stripChoicePrefix(choice: string): string {
+  return choice.replace(/^[A-Ha-h]\)\s*/, "");
+}
+
+/**
+ * Shuffle the answer choices of a drill question using Fisher-Yates,
+ * then re-letter them A, B, C, ... and update correctAnswer to match.
+ *
+ * This prevents the AI's bias of always placing the correct answer as "A".
+ */
+export function shuffleQuestionChoices<T extends DrillQuestion>(question: T): T {
+  const choices = question.answerChoices;
+  if (choices.length === 0) return question;
+
+  // Strip prefixes to get raw text
+  const rawTexts = choices.map(stripChoicePrefix);
+  const correctText = stripChoicePrefix(question.correctAnswer);
+
+  // Fisher-Yates shuffle on a copy
+  const shuffled = [...rawTexts];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  // Re-letter choices with new positions
+  const newChoices = shuffled.map((text, i) => `${CHOICE_LETTERS[i]}) ${text}`);
+
+  // Find where the correct answer landed and build new correctAnswer
+  const correctIdx = shuffled.indexOf(correctText);
+  const newCorrectAnswer = correctIdx >= 0 ? newChoices[correctIdx] : question.correctAnswer;
+
+  return { ...question, answerChoices: newChoices, correctAnswer: newCorrectAnswer };
+}
+
 // ─── Storage ─────────────────────────────────────────────────────────
 
 const STORAGE_KEY = "hunter-tutor-drills";
