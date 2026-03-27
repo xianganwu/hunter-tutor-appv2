@@ -829,7 +829,8 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
    */
   async generateMixedDrillBatch(
     skills: Array<{ skill: Skill; tier: DifficultyLevel }>,
-    totalCount: number
+    totalCount: number,
+    recentQuestions?: string[]
   ): Promise<{ questionText: string; correctAnswer: string; answerChoices: string[]; skillId: string }[]> {
     const skillList = skills
       .map(
@@ -868,7 +869,10 @@ These are for a mixed drill — questions should be clear and solvable quickly (
 Each question should have 4-5 multiple choice answers.
 Each question MUST include the skill_id it belongs to.${hasVisualSkills ? `
 
-VISUAL SKILLS: For questions about data skills (ma_data_reading, ma_data_interpretation, ma_probability_statistics, ma_mean_median_mode, ma_basic_probability) or geometry skills (ma_angles_shapes, ma_perimeter_area, ma_coordinate_basics, ma_area_perimeter_volume, ma_coordinate_geometry), include an SVG diagram in the questionText. Draw actual charts or shapes — do not describe them in words. Keep SVGs compact (under 40 lines each).` : ""}
+VISUAL SKILLS: For questions about data skills (ma_data_reading, ma_data_interpretation, ma_probability_statistics, ma_mean_median_mode, ma_basic_probability) or geometry skills (ma_angles_shapes, ma_perimeter_area, ma_coordinate_basics, ma_area_perimeter_volume, ma_coordinate_geometry), include an SVG diagram in the questionText. Draw actual charts or shapes — do not describe them in words. Keep SVGs compact (under 40 lines each).` : ""}${recentQuestions && recentQuestions.length > 0 ? `
+
+AVOID REPEATS — The student was recently shown these questions. Do NOT generate questions similar to them:
+${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}
 
 ANSWER POSITION: Vary which letter (A, B, C, or D) is the correct answer across questions. Do NOT always place the correct answer as choice A. Distribute correct answers roughly evenly among all positions.
 

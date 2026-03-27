@@ -361,7 +361,7 @@ export function useDrillSession() {
         // Fetch more in background — use streak-adjusted tier for next batch
         try {
           const streakTier = computeDrillStreakTier(s.currentTier, newAttempts);
-          const recentTexts = s.questions.slice(-10).map((q) => q.questionText);
+          const recentTexts = s.questions.map((q) => q.questionText);
           const more = await fetchQuestions(s.skillId, 10, streakTier, recentTexts);
           // Deduplicate: skip questions whose text already appeared in this session
           const existingTexts = new Set(s.questions.map((q) => q.questionText));

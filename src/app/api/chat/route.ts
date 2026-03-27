@@ -98,6 +98,7 @@ const ChatActionSchema = z.discriminatedUnion("type", [
       tier: DifficultyLevelSchema,
     })).min(1).max(20),
     totalCount: z.number().int().min(1).max(50),
+    recentQuestions: z.array(z.string()).max(20).optional(),
     stream: z.boolean().optional(),
   }),
   z.object({
@@ -427,6 +428,7 @@ FEEDBACK: [2-3 sentences — start with specific praise for what they got right,
         const questions = await agent.generateMixedDrillBatch(
           resolvedSkills,
           body.totalCount,
+          body.recentQuestions as string[] | undefined,
         );
         return NextResponse.json({ questions });
       }

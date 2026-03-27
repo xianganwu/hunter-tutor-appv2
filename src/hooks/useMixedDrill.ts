@@ -150,7 +150,15 @@ export function useMixedDrill() {
         return;
       }
 
-      const shuffled = roundRobinShuffle(questions).map(shuffleQuestionChoices);
+      // Deduplicate: drop questions with identical questionText (rare AI edge case)
+      const seen = new Set<string>();
+      const deduped = questions.filter((q) => {
+        if (seen.has(q.questionText)) return false;
+        seen.add(q.questionText);
+        return true;
+      });
+
+      const shuffled = roundRobinShuffle(deduped).map(shuffleQuestionChoices);
       const now = Date.now();
       questionShownAt.current = now;
 
