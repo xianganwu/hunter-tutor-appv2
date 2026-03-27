@@ -44,7 +44,7 @@ const SKILL_DOMAINS = [
   "math_achievement",
 ] as const;
 
-function pickNextSkill(currentSkillId: string): { skillId: string; skillName: string; route: string } | null {
+export function pickNextSkill(currentSkillId: string): { skillId: string; skillName: string; route: string } | null {
   const all = loadAllSkillMasteries();
   const stateMap = new Map(
     all.map((s) => [s.skillId, { ...s, lastPracticed: s.lastPracticed ? new Date(s.lastPracticed) : null }])

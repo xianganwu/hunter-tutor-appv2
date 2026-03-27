@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import "katex/dist/katex.min.css";
 import { ChatBubble } from "@/components/chat/ChatBubble";
@@ -12,8 +12,9 @@ import { MathText } from "@/components/chat/MathText";
 import { SessionInfoBar } from "@/components/chat/SessionInfoBar";
 import { SessionSummary } from "@/components/chat/SessionSummary";
 import { TeachItBack } from "./TeachItBack";
-import { useTutoringSession } from "@/hooks/useTutoringSession";
+import { useTutoringSession, pickNextSkill } from "@/hooks/useTutoringSession";
 import { getSkillById } from "@/lib/exam/curriculum";
+import { loadSkillMastery } from "@/lib/skill-mastery-store";
 import { MascotMoment } from "@/components/shared/MascotMoment";
 import { useMascotMoment } from "@/hooks/useMascotMoment";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
@@ -27,7 +28,110 @@ interface TutoringSessionProps {
   readonly isFirstSession?: boolean;
 }
 
+const MASTERY_REDIRECT_THRESHOLD = 0.95;
+
 export function TutoringSession({ skillId, subject, isRetentionCheck = false, isFirstSession = false }: TutoringSessionProps) {
+  const [overrideMastery, setOverrideMastery] = useState(false);
+
+  const storedMastery = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return loadSkillMastery(skillId);
+  }, [skillId]);
+
+  // For fully mastered skills (not retention checks), show a redirect card
+  // instead of starting a session that may struggle to generate tier-5 questions.
+  if (
+    !overrideMastery &&
+    !isRetentionCheck &&
+    storedMastery &&
+    storedMastery.masteryLevel >= MASTERY_REDIRECT_THRESHOLD
+  ) {
+    return (
+      <MasteredSkillRedirect
+        skillId={skillId}
+        subject={subject}
+        masteryLevel={storedMastery.masteryLevel}
+        onContinueAnyway={() => setOverrideMastery(true)}
+      />
+    );
+  }
+
+  return (
+    <TutoringSessionInner
+      skillId={skillId}
+      subject={subject}
+      isRetentionCheck={isRetentionCheck}
+      isFirstSession={isFirstSession}
+    />
+  );
+}
+
+function useMemoOnce<T>(fn: () => T): T {
+  const ref = useRef<{ value: T } | null>(null);
+  if (!ref.current) ref.current = { value: fn() };
+  return ref.current.value;
+}
+
+function MasteredSkillRedirect({
+  skillId,
+  subject,
+  masteryLevel,
+  onContinueAnyway,
+}: {
+  readonly skillId: string;
+  readonly subject: string;
+  readonly masteryLevel: number;
+  readonly onContinueAnyway: () => void;
+}) {
+  const router = useRouter();
+  const skill = getSkillById(skillId);
+  const skillName = skill?.name ?? skillId;
+  const nextSkill = useMemoOnce(() => pickNextSkill(skillId));
+
+  return (
+    <div className="max-w-lg mx-auto px-4 py-16 text-center">
+      <div className="mb-6">
+        <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-4">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-emerald-600 dark:text-emerald-400">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+        <h2 className="text-xl font-bold text-surface-900 dark:text-surface-100 mb-2">
+          You&apos;ve mastered {skillName}!
+        </h2>
+        <p className="text-surface-500 dark:text-surface-400">
+          {Math.round(masteryLevel * 100)}% mastery. Great work!
+          {nextSkill ? " Ready to tackle something new?" : ""}
+        </p>
+      </div>
+
+      <div className="space-y-3">
+        {nextSkill && (
+          <button
+            onClick={() => router.push(nextSkill.route)}
+            className="w-full rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-700 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+          >
+            Practice {nextSkill.skillName} instead
+          </button>
+        )}
+        <button
+          onClick={() => router.push(`/tutor/${subject}`)}
+          className="w-full rounded-xl border border-surface-300 bg-surface-0 px-5 py-3 text-sm font-medium text-surface-700 hover:bg-surface-50 transition-colors dark:border-surface-600 dark:bg-surface-800 dark:text-surface-300 dark:hover:bg-surface-700"
+        >
+          Choose a different topic
+        </button>
+        <button
+          onClick={onContinueAnyway}
+          className="w-full rounded-xl px-5 py-2.5 text-xs text-surface-400 hover:text-surface-600 transition-colors dark:text-surface-500 dark:hover:text-surface-300"
+        >
+          Continue practicing {skillName} anyway
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function TutoringSessionInner({ skillId, subject, isRetentionCheck = false, isFirstSession = false }: TutoringSessionProps) {
   const {
     state,
     summary,

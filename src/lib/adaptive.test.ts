@@ -131,6 +131,37 @@ describe("selectNextSkills", () => {
     expect(staleEntry!.reason).toBe("stale");
   });
 
+  it("suppresses stale boost for fully mastered skills (mastery >= 0.85)", () => {
+    const states = new Map<string, StudentSkillState>([
+      [
+        "rc_main_idea",
+        makeState({
+          skillId: "rc_main_idea",
+          masteryLevel: 1.0, // fully mastered
+          lastPracticed: DAYS_AGO(21), // very stale
+        }),
+      ],
+      [
+        "rc_vocab_context",
+        makeState({
+          skillId: "rc_vocab_context",
+          masteryLevel: 0.3, // low mastery
+          lastPracticed: DAYS_AGO(1),
+        }),
+      ],
+    ]);
+
+    const result = selectNextSkills(RC_SKILLS, states, NOW);
+    const mastered = result.find((r) => r.skillId === "rc_main_idea");
+    const low = result.find((r) => r.skillId === "rc_vocab_context");
+    expect(mastered).toBeDefined();
+    expect(low).toBeDefined();
+    // Fully mastered skill should score 0 (stale damper eliminates the boost)
+    expect(mastered!.score).toBe(0);
+    // Low mastery skill should outrank the mastered-but-stale skill
+    expect(low!.score).toBeGreaterThan(mastered!.score);
+  });
+
   it("identifies near-mastery skills needing reinforcement", () => {
     const states = new Map<string, StudentSkillState>([
       [

@@ -263,35 +263,78 @@ export function validateSimulateQuestion(
  * Detect whether a question is asking about the VALUE of a specific digit
  * in a specific number — e.g. "What is the value of the digit 4 in 247,583?"
  *
+ * Supports multiple phrasings the AI may use:
+ *   - "value of digit X in N"
+ *   - "place value of digit X in N"
+ *   - "digit X worth in N" / "how much is digit X worth in N"
+ *   - "digit X represent(s) in N" / "digit X contribute(s) in N"
+ *   - "In N, ... digit X ... value/worth/represent"
+ *
  * Returns { digit, number } if detected, or null otherwise.
  */
 function detectPlaceValueQuestion(questionText: string): { digit: number; numberStr: string } | null {
-  // Match patterns like:
-  //   "What is the value of the digit 4 in 247,583?"
-  //   "What is the value of the digit 4 in the number 247,583?"
-  //   "...value of digit 7 in 358,792..."
-  const pattern = /value\s+of\s+(?:the\s+)?digit\s+(\d)\s+in\s+(?:the\s+number\s+)?([0-9,]+)/i;
-  const match = questionText.match(pattern);
-  if (!match) return null;
-  const digit = parseInt(match[1], 10);
-  const numberStr = match[2].replace(/,/g, "");
-  if (isNaN(digit) || isNaN(parseInt(numberStr, 10))) return null;
-  return { digit, numberStr };
+  // Patterns where digit appears BEFORE the number: "digit X ... in N"
+  const digitThenNumber: RegExp[] = [
+    // "value of (the) digit X in (the number) N"
+    /(?:place\s+)?value\s+of\s+(?:the\s+)?digit\s+(\d)\s+in\s+(?:the\s+number\s+)?([0-9,]+)/i,
+    // "digit X is worth in N" / "digit X worth in N" (requires "in" to avoid matching claimed values)
+    /digit\s+(\d)\s+(?:is\s+)?worth\s+in\s+(?:the\s+number\s+)?([0-9,]+)/i,
+    // "how much ... digit X ... in/of N"
+    /how\s+much[\s\S]{0,30}?digit\s+(\d)[\s\S]{0,30}?(?:in|of)\s+(?:the\s+number\s+)?([0-9,]+)/i,
+    // "digit X represent(s)/contribute(s) ... in/to N"
+    /digit\s+(\d)[\s\S]{0,30}?(?:represents?|contributes?)[\s\S]{0,15}?(?:in|to)\s+(?:the\s+(?:number|total|value)\s+(?:of\s+)?)?([0-9,]+)/i,
+  ];
+
+  for (const pattern of digitThenNumber) {
+    const match = questionText.match(pattern);
+    if (match) {
+      const digit = parseInt(match[1], 10);
+      const numberStr = match[2].replace(/,/g, "");
+      if (!isNaN(digit) && numberStr.length >= 3 && !isNaN(parseInt(numberStr, 10))) {
+        return { digit, numberStr };
+      }
+    }
+  }
+
+  // Patterns where number appears BEFORE the digit: "In N, ... digit X ..."
+  const numberThenDigit: RegExp[] = [
+    // "In (the number) N, ... (value|worth|represent) ... digit X"
+    /in\s+(?:the\s+number\s+)?([0-9,]+)[\s\S]{0,60}?(?:value|worth|represents?|contributes?)[\s\S]{0,30}?(?:the\s+)?digit\s+(\d)/i,
+    // "In (the number) N, ... digit X ... (value|worth|represent)"
+    /in\s+(?:the\s+number\s+)?([0-9,]+)[\s\S]{0,60}?(?:the\s+)?digit\s+(\d)[\s\S]{0,30}?(?:value|worth|represents?|contributes?)/i,
+  ];
+
+  for (const pattern of numberThenDigit) {
+    const match = questionText.match(pattern);
+    if (match) {
+      const numberStr = match[1].replace(/,/g, "");
+      const digit = parseInt(match[2], 10);
+      if (!isNaN(digit) && numberStr.length >= 3 && !isNaN(parseInt(numberStr, 10))) {
+        return { digit, numberStr };
+      }
+    }
+  }
+
+  return null;
 }
 
 /**
- * Given a number and a target digit, compute the place value of that digit.
- * For example, in 247583 the digit 4 has value 40000.
+ * Given a number and a target digit, compute ALL possible place values for
+ * every occurrence of that digit. For example, in "424583" the digit 4 appears
+ * at positions 0 and 2, giving values [400000, 400].
  *
- * If the digit appears multiple times, returns the value of the leftmost occurrence.
- * Returns null if the digit doesn't appear in the number.
+ * Returns an empty array if the digit doesn't appear in the number.
  */
-function computePlaceValue(numberStr: string, digit: number): number | null {
-  const idx = numberStr.indexOf(String(digit));
-  if (idx === -1) return null;
-  // Position from the right (0-indexed): ones=0, tens=1, hundreds=2, ...
-  const posFromRight = numberStr.length - 1 - idx;
-  return digit * Math.pow(10, posFromRight);
+function computeAllPlaceValues(numberStr: string, digit: number): number[] {
+  const values: number[] = [];
+  const d = String(digit);
+  for (let i = 0; i < numberStr.length; i++) {
+    if (numberStr[i] === d) {
+      const posFromRight = numberStr.length - 1 - i;
+      values.push(digit * Math.pow(10, posFromRight));
+    }
+  }
+  return values;
 }
 
 /**
@@ -310,37 +353,44 @@ export function verifyPlaceValueAnswer(
   const detected = detectPlaceValueQuestion(questionText);
   if (!detected) return undefined; // not a place value question — no opinion
 
-  const expected = computePlaceValue(detected.numberStr, detected.digit);
-  if (expected === null) return undefined; // digit not found — can't verify
+  const expectedValues = computeAllPlaceValues(detected.numberStr, detected.digit);
+  if (expectedValues.length === 0) return undefined; // digit not found — can't verify
 
-  // Check if the AI's marked answer matches the expected value
+  // Check if the AI's marked answer matches ANY valid occurrence of the digit
   const correctNorm = normalizeChoiceValue(correctAnswer);
   const correctNum = Number(correctNorm);
-  if (!isNaN(correctNum) && Math.abs(correctNum - expected) < NUMERIC_EPSILON) {
+  if (!isNaN(correctNum) && expectedValues.some(v => Math.abs(correctNum - v) < NUMERIC_EPSILON)) {
     return undefined; // AI got it right — no correction needed
   }
 
-  // AI got it wrong — look for the correct value among choices
-  for (const choice of choices) {
-    const choiceNorm = normalizeChoiceValue(choice);
-    const choiceNum = Number(choiceNorm);
-    if (!isNaN(choiceNum) && Math.abs(choiceNum - expected) < NUMERIC_EPSILON) {
-      parseWarn({
-        parser: "verifyPlaceValueAnswer",
-        field: "correctAnswer",
-        fallback: `AUTO-CORRECTED to "${choice}"`,
-        rawSnippet: `AI said "${correctAnswer}" but digit ${detected.digit} in ${detected.numberStr} has value ${expected}`,
-      });
-      return choice; // return the corrected choice
-    }
+  // AI's answer doesn't match any valid place value for this digit.
+  // Look for a valid value among the choices for auto-correction.
+  const validChoices = choices.filter(choice => {
+    const num = Number(normalizeChoiceValue(choice));
+    return !isNaN(num) && expectedValues.some(v => Math.abs(num - v) < NUMERIC_EPSILON);
+  });
+
+  if (validChoices.length === 1) {
+    parseWarn({
+      parser: "verifyPlaceValueAnswer",
+      field: "correctAnswer",
+      fallback: `AUTO-CORRECTED to "${validChoices[0]}"`,
+      rawSnippet: `AI said "${correctAnswer}" but digit ${detected.digit} in ${detected.numberStr} has valid values ${expectedValues.join(", ")}`,
+    });
+    return validChoices[0];
   }
 
-  // The correct value isn't among the choices at all — reject
+  if (validChoices.length > 1) {
+    // Multiple choices are valid place values (ambiguous digit) — can't auto-correct reliably
+    return undefined;
+  }
+
+  // No valid place value among choices — reject
   parseWarn({
     parser: "verifyPlaceValueAnswer",
     field: "correctAnswer",
     fallback: "REJECTED",
-    rawSnippet: `Expected value ${expected} for digit ${detected.digit} in ${detected.numberStr}, not found in choices`,
+    rawSnippet: `Expected one of ${expectedValues.join(", ")} for digit ${detected.digit} in ${detected.numberStr}, not found in choices`,
   });
   return null;
 }
@@ -394,9 +444,9 @@ function verifyNumberStatement(statement: string, contextNumbers: string[]): boo
     const numStr = representsMatch[1].replace(/,/g, "");
     const digit = parseInt(representsMatch[2], 10);
     const claimed = parseInt(representsMatch[3].replace(/,/g, ""), 10);
-    const actual = computePlaceValue(numStr, digit);
-    if (actual === null) return null;
-    return actual === claimed;
+    const actuals = computeAllPlaceValues(numStr, digit);
+    if (actuals.length === 0) return null;
+    return actuals.includes(claimed);
   }
 
   // Pattern 2b: "In [number], the digit [d] represents [d] [place]"
@@ -566,10 +616,10 @@ function verifyChoicePlaceValueClaims(
     while ((vm = vp.exec(stripped)) !== null) {
       const digit = parseInt(vm[1], 10);
       const claimedValue = parseInt(vm[2].replace(/,/g, ""), 10);
-      const actual = computePlaceValue(contextNumberStr, digit);
-      if (actual !== null && !isNaN(claimedValue)) {
+      const actuals = computeAllPlaceValues(contextNumberStr, digit);
+      if (actuals.length > 0 && !isNaN(claimedValue)) {
         verified++;
-        if (actual !== claimedValue) allCorrect = false;
+        if (!actuals.includes(claimedValue)) allCorrect = false;
       }
     }
   }
@@ -741,8 +791,8 @@ function evaluateMathClaim(claim: string, contextNumbers: string[]): boolean | n
   if (worthImplicit && primaryNumStr) {
     const digit = parseInt(worthImplicit[1], 10);
     const claimedValue = parseInt(worthImplicit[2].replace(/,/g, ""), 10);
-    const actual = computePlaceValue(primaryNumStr, digit);
-    if (actual !== null && !isNaN(claimedValue)) return actual === claimedValue;
+    const actuals = computeAllPlaceValues(primaryNumStr, digit);
+    if (actuals.length > 0 && !isNaN(claimedValue)) return actuals.includes(claimedValue);
   }
 
   // ── Odd/even claims ──

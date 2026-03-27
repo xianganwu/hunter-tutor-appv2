@@ -191,13 +191,18 @@ function scoreSkill(
   }
 
   // Stale: not practiced in 7+ days
+  // Mastery guard: highly mastered skills (>0.85) get a reduced stale boost,
+  // tapering to zero at 1.0. SM-2 retention checks handle review of mastered skills.
   if (state.lastPracticed) {
     const daysSince = Math.floor(
       (now.getTime() - state.lastPracticed.getTime()) / (1000 * 60 * 60 * 24)
     );
     if (daysSince >= STALE_DAYS) {
       const staleness = Math.min(daysSince / STALE_DAYS, PRIORITY_STALE_CAP);
-      const score = PRIORITY_STALE * staleness;
+      const masteryDamper = state.masteryLevel >= MASTERY_NEAR_HIGH
+        ? 1 - (state.masteryLevel - MASTERY_NEAR_HIGH) / (1 - MASTERY_NEAR_HIGH)
+        : 1;
+      const score = PRIORITY_STALE * staleness * masteryDamper;
       if (score > bestScore) {
         bestScore = score;
         bestReason = "stale";
