@@ -6,6 +6,7 @@ import {
   DIAGNOSTIC_DOMAINS,
   computeDiagnosticResults,
   buildInitialMasteries,
+  type DiagnosticDomain,
   type DiagnosticQuestion,
   type DiagnosticAnswer,
   type DiagnosticResult,
@@ -51,8 +52,8 @@ export function useDiagnostic() {
     setState((s) => ({ ...s, phase: "loading", error: null }));
 
     try {
-      // Fetch questions for all 3 domains in parallel
-      const fetches = DIAGNOSTIC_DOMAINS.map(async (domain) => {
+      // Fetch questions for all 3 domains in parallel, with per-domain retry
+      async function fetchDomain(domain: DiagnosticDomain): Promise<DiagnosticQuestion[]> {
         const skillIds = DIAGNOSTIC_SKILLS[domain];
         const res = await fetch("/api/chat", {
           method: "POST",
@@ -81,9 +82,23 @@ export function useDiagnostic() {
               : { letter: "?", text: String(c) };
           }),
         })) as DiagnosticQuestion[];
-      });
+      }
 
-      const domainQuestions = await Promise.all(fetches);
+      const settled = await Promise.allSettled(
+        DIAGNOSTIC_DOMAINS.map((domain) => fetchDomain(domain)),
+      );
+
+      // Retry any failed domains once (sequential to avoid overloading during outage)
+      const domainQuestions: DiagnosticQuestion[][] = [];
+      for (let i = 0; i < settled.length; i++) {
+        const r = settled[i];
+        if (r.status === "fulfilled") {
+          domainQuestions.push(r.value);
+        } else {
+          const retried = await fetchDomain(DIAGNOSTIC_DOMAINS[i]);
+          domainQuestions.push(retried);
+        }
+      }
 
       // Interleave: take one from each domain in round-robin order
       const interleaved: DiagnosticQuestion[] = [];

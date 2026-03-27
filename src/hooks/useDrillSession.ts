@@ -453,6 +453,33 @@ export function useDrillSession() {
     setState((prev) => ({ ...prev, phase: "complete" }));
   }, [persistMastery]);
 
+  // ── Protect against tab close / background / iOS Safari ──
+  useEffect(() => {
+    if (state.phase !== "active") return;
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        void endDrill();
+      }
+    };
+    const handlePageHide = () => {
+      void endDrill();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+    };
+  }, [state.phase, endDrill]);
+
   const reset = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
     setResult(null);

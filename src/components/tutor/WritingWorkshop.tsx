@@ -19,8 +19,11 @@ import { autoCompleteDailyTask } from "@/lib/daily-plan";
 import { checkAndAwardBadges, buildBadgeContext } from "@/lib/achievements";
 import { NextTaskPrompt } from "@/components/shared/NextTaskPrompt";
 import { DailyPlanProgress } from "@/components/shared/DailyPlanProgress";
+import { getStorageKey } from "@/lib/user-profile";
 
 const ESSAY_DURATION_MINUTES = 40;
+const ESSAY_DRAFT_KEY = "hunter-tutor-essay-draft";
+const DRAFT_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 async function fetchEssays(): Promise<StoredEssay[]> {
   try {
@@ -48,9 +51,30 @@ export function WritingWorkshop() {
   const [submissionId, setSubmissionId] = useState<string | null>(null);
   const [originalEssayText, setOriginalEssayText] = useState("");
 
-  // Load saved essays on mount
+  // Load saved essays on mount + restore draft if available
   useEffect(() => {
     void fetchEssays().then(setSavedEssays);
+
+    try {
+      const raw = localStorage.getItem(getStorageKey(ESSAY_DRAFT_KEY));
+      if (raw) {
+        const draft = JSON.parse(raw) as {
+          essayText: string;
+          prompt: EssayPrompt;
+          savedAt: number;
+        };
+        if (
+          draft.essayText?.trim() &&
+          draft.prompt &&
+          Date.now() - draft.savedAt < DRAFT_MAX_AGE_MS
+        ) {
+          setEssayText(draft.essayText);
+          setPrompt(draft.prompt);
+        }
+      }
+    } catch {
+      // Corrupted draft — ignore
+    }
   }, []);
 
   const startBrainstorm = useCallback(() => {
@@ -66,6 +90,33 @@ export function WritingWorkshop() {
   // so CountdownTimer doesn't re-render when essayText changes.
   const essayTextRef = useRef(essayText);
   useEffect(() => { essayTextRef.current = essayText; }, [essayText]);
+
+  // ── Auto-save essay draft to localStorage (debounced 2s) ──
+  useEffect(() => {
+    if (phase !== "writing" && phase !== "revising") return;
+    if (!essayText.trim()) return;
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem(
+          getStorageKey(ESSAY_DRAFT_KEY),
+          JSON.stringify({ essayText, prompt, savedAt: Date.now() }),
+        );
+      } catch {
+        // Quota exceeded or private browsing — silently ignore
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [essayText, phase, prompt]);
+
+  // ── Warn before closing tab during active writing ──
+  useEffect(() => {
+    if (phase !== "writing" && phase !== "revising") return;
+    if (!essayText.trim()) return;
+    const handler = (e: BeforeUnloadEvent) => { e.preventDefault(); };
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [phase, essayText]);
+
   const submitEssayRef = useRef<() => Promise<void>>();
 
   const handleTimeUp = useCallback(() => {
@@ -101,6 +152,7 @@ export function WritingWorkshop() {
           checkAndAwardBadges(ctx);
           // Reload essays from server (DB save happens in background on the server)
           void fetchEssays().then(setSavedEssays);
+          try { localStorage.removeItem(getStorageKey(ESSAY_DRAFT_KEY)); } catch {}
         }
       } else {
         // Server error — give honest fallback feedback
@@ -187,6 +239,7 @@ export function WritingWorkshop() {
           }
 
           void fetchEssays().then(setSavedEssays);
+          try { localStorage.removeItem(getStorageKey(ESSAY_DRAFT_KEY)); } catch {}
         }
       } else {
         // Server error — provide fallback feedback so the UI isn't blank
@@ -221,6 +274,7 @@ export function WritingWorkshop() {
     setRevisionNumber(0);
     setSubmissionId(null);
     setPhase("prompt");
+    try { localStorage.removeItem(getStorageKey(ESSAY_DRAFT_KEY)); } catch {}
   }, []);
 
   // History view

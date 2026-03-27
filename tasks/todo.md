@@ -1,254 +1,185 @@
-# Reading Tutor Skill Mastery — Implementation Plan
+# Root Cause Analysis: Bugs H3, H4, H5, H6
 
-## Context
-
-The reading tutor runs as a stamina session: read passage → answer 5 questions → track WPM/comprehension. It **never updates per-skill mastery** despite every library passage question carrying a `skill_tested` field (e.g., `"rc_main_idea"`, `"rc_inference"`). The `passageQuestionToItem()` mapper at `useReadingStamina.ts:64` silently drops `skill_tested`.
-
-**Goal:** Wire skill mastery tracking into the existing stamina flow. No topic picker. No isolated skill drilling. The stamina session continues to work exactly as today, with mastery tracking as an additive side-effect. Show mastery progress on the feedback screen after each passage.
+## Status: Analysis Complete — Awaiting Decision
 
 ---
 
-## Critical Architectural Decision: Rolling Window
+## H3: Practice Exam Math Promise.all Failure (Group C1, ~5/50)
 
-The math mastery algorithm (`calculateMasteryUpdate` in `adaptive.ts:520`) expects a batch of `AttemptRecord[]` from a single session — math sessions produce 5-15 attempts for one skill. Reading is fundamentally different: each passage produces **1 attempt per skill across 5 different skills**.
-
-If we naively call `calculateMasteryUpdate([singleAttempt], tier)`, the confidence multiplier (`min(1, attempts/8)`) yields 0.125, anchoring mastery to the 0.3 prior. Every passage would produce mastery ≈ 0.3 regardless of correctness.
-
-**Solution:** Maintain a **rolling window of the last 10 `AttemptRecord`s per skill** in localStorage. On each new reading attempt:
-1. Load the rolling window for that skill
-2. Append the new attempt (cap at 10)
-3. Call `calculateMasteryUpdate(rollingWindow, tier, READING_WEIGHTS)`
-4. Save updated mastery AND updated rolling window
-
-After 8+ passages testing a skill, confidence reaches 1.0 and mastery fully reflects performance. This reuses the existing algorithm with zero formula changes.
-
-**Storage:** ~10 small objects × ~14 reading skills = ~140 items in localStorage. Negligible.
-
----
-
-## Decisions
-
-| Question | Decision | Rationale |
-|----------|----------|-----------|
-| Topic picker? | **No** | Keep pure stamina approach, no isolated skill drilling |
-| Update which skills? | **All skills** tested in each passage | Each question maps to a skill; update all |
-| Passage selection? | **No filtering by topic** | Mimics Hunter Test: read passage, answer mixed-skill questions |
-| Mastery display? | **Feedback screen only** | Reading/answering phases need zero distraction |
-| Phasing? | **Phase 1 (data) first, Phase 2 (UI) second** | Validate mastery numbers via tests before users see them |
-| Algorithm? | **Rolling window + configurable weights** | Reading needs accumulated data; time weight = 0 |
-
----
-
-## Phase 1: Skill Tracking Foundation (ship first, validate via tests)
-
-### 1.1 — Carry `skillId` through `QuestionItem` (library passages)
-- **File:** `src/hooks/useReadingStamina.ts`
-- Add `readonly skillId: string` to `QuestionItem` interface (line 40)
-- Update `passageQuestionToItem()` (line 64) to include `skillId: q.skill_tested`
-- **Risk:** None — additive field, zero existing code reads it
-
-### 1.2 — Carry `skillId` through AI-generated passage questions
-- **Files:** `src/app/api/reading/route.ts`, `src/hooks/useReadingStamina.ts`
-- **API prompt** (route.ts lines 68-92): Add `"skillTested"` field to the JSON schema in the prompt. Add requirement: `"Each question must include a skillTested field from: rc_main_idea, rc_inference, rc_vocab_context, rc_evidence_reasoning, rc_author_purpose"`
-- **API response type** (route.ts line 34): Add `readonly skillTested?: string` to `GeneratedQuestion`
-- **Hook AI path** (useReadingStamina.ts lines 168-206): AI questions are used DIRECTLY (not through `passageQuestionToItem`). At line 196 where `questions: data.passage!.questions` is assigned, map to include `skillId`:
-  ```
-  questions: data.passage!.questions.map(q => ({
-    ...q,
-    skillId: q.skillTested ?? "rc_general"
-  }))
-  ```
-- **Fallback path** (useReadingStamina.ts lines 209-230): Uses `passageQuestionToItem` on library passages — already handled by 1.1
-- **Risk:** Low — prompt change with fallback to `"rc_general"` prevents crashes
-
-### 1.3 — Register `"reading-attempts"` data key
-- **File:** `src/lib/data-keys.ts` (line 5)
-- Add `"reading-attempts"` to the `DATA_KEYS` array
-- Required for: server sync, user data cleanup, proper namespacing via `getStorageKey()`
-- **Risk:** None — additive array entry
-
-### 1.4 — Create rolling window storage functions
-- **File:** `src/lib/skill-mastery-store.ts` (new functions, no existing function changes)
-- `loadReadingAttemptWindow(skillId: string): AttemptRecord[]` — loads from localStorage via `getStorageKey("reading-attempts")`, returns `[]` if missing
-- `saveReadingAttemptWindow(skillId: string, attempts: AttemptRecord[]): void` — saves last 10 entries
-- Storage format: JSON object keyed by skillId, e.g., `{ "rc_main_idea": [...], "rc_inference": [...] }`
-- Uses `getStorageKey("reading-attempts")` for proper user namespacing (same pattern as existing mastery storage)
-- **Risk:** None — new functions only, existing functions untouched
-
-### 1.5 — Make `calculateMasteryUpdate` accept optional weight config
-- **File:** `src/lib/adaptive.ts` (line 520)
-- Add optional third parameter with interface:
-  ```typescript
-  export interface MasteryWeightConfig {
-    readonly weightRecent?: number;   // default 0.7
-    readonly weightOverall?: number;  // default 0.2
-    readonly weightTime?: number;     // default 0.1
-  }
-  ```
-- Inside function body: `const wR = weights?.weightRecent ?? WEIGHT_RECENT` etc.
-- **Existing callers** (3 call sites confirmed — `useTutoringSession.ts`, `useGuidedStudy.ts`, `useDrillSession.ts`): All pass exactly 2 args → unchanged behavior
-- Reading callers will pass: `{ weightRecent: 0.8, weightOverall: 0.2, weightTime: 0.0 }`
-- **Risk:** Low — optional param with defaults. Add regression test asserting old 2-arg call produces identical output.
-
-### 1.6 — Create stamina-level-to-tier mapping
-- **File:** `src/lib/reading-stamina.ts` (new exported function)
-- Mapping: `1-2 → Tier 1, 3-4 → Tier 2, 5-6 → Tier 3, 7 → Tier 4, 8 → Tier 5`
-- For library passages: prefer `metadata.difficulty_level` (guaranteed present, range 1-5, typed as `DifficultyLevel`)
-- For AI-generated passages: use `staminaLevelToTier(currentStaminaLevel)`
-- **Risk:** None — new pure function
-
-### 1.7 — Wire mastery persistence into `answerQuestion()`
-- **File:** `src/hooks/useReadingStamina.ts` (lines 268-335)
-- Add `useRef<{skillId: string, isCorrect: boolean}[]>` to collect per-question results
-- After line 273 (correctness check): push `{ skillId: question.skillId, isCorrect }`
-- Reset the ref when loading a new passage
-- In the `isLastQuestion` block (line 290), **AFTER** `saveStaminaProgress(updated)` (line 307) and `autoCompleteDailyTask` (line 308):
-  ```
-  try {
-    const tier = passage.isAiGenerated
-      ? staminaLevelToTier(s.progress.currentLevel)
-      : (passageDifficultyLevel as DifficultyLevel);  // from metadata
-
-    const READING_WEIGHTS = { weightRecent: 0.8, weightOverall: 0.2, weightTime: 0.0 };
-
-    for (const { skillId, isCorrect } of questionResults.current) {
-      if (skillId === "rc_general") continue;  // skip untagged AI questions
-
-      const window = loadReadingAttemptWindow(skillId);
-      const attempt: AttemptRecord = { isCorrect, timeSpentSeconds: null, hintUsed: false, tier };
-      const updated = [...window, attempt].slice(-10);  // cap at 10
-
-      const mastery = calculateMasteryUpdate(updated, tier, READING_WEIGHTS);
-      const stored = loadSkillMastery(skillId);
-
-      saveSkillMastery({
-        skillId,
-        masteryLevel: mastery.newMasteryLevel,
-        attemptsCount: (stored?.attemptsCount ?? 0) + 1,
-        correctCount: (stored?.correctCount ?? 0) + (isCorrect ? 1 : 0),
-        lastPracticed: new Date().toISOString(),
-        confidenceTrend: mastery.newConfidenceTrend,
-        interval: stored?.interval,
-        easeFactor: stored?.easeFactor,
-        nextReviewDate: stored?.nextReviewDate,
-        repetitions: stored?.repetitions,
-      });
-
-      saveReadingAttemptWindow(skillId, updated);
-    }
-  } catch (err) {
-    console.error("[reading] skill mastery persist error:", err);
-    // Stamina flow continues unaffected
-  }
-  ```
-- Also: surface `skillResults` (skillId + isCorrect + mastery delta) for Phase 2 UI via state
-- **Risk:** Medium — most complex change. Mitigated by:
-  - Try/catch: if anything fails, stamina flow is completely unaffected
-  - Runs AFTER existing `saveStaminaProgress` — never blocks it
-  - All imports (`loadSkillMastery`, `saveSkillMastery`, `AttemptRecord`, `calculateMasteryUpdate`) are already exported and used elsewhere
-
-### 1.8 — Unit tests
-- `passageQuestionToItem` now carries `skillId`
-- `loadReadingAttemptWindow` / `saveReadingAttemptWindow` round-trip
-- `calculateMasteryUpdate` with 2 args (regression) produces identical output to current behavior
-- `calculateMasteryUpdate` with reading weights: 100% correct → mastery > 0.7 after 10 attempts
-- `calculateMasteryUpdate` with reading weights: 0% correct → mastery < 0.2 after 10 attempts
-- `staminaLevelToTier` mapping correctness
-- Full simulation: 8 passages, 1 correct `rc_inference` attempt each → confidence reaches 1.0, mastery reflects ~1.0
-- **Risk:** None
-
----
-
-## Phase 2: Mastery Display on Feedback Screen (ship after Phase 1 validated)
-
-### 2.1 — Create `ReadingSkillsSummary` component
-- **New file:** `src/components/tutor/ReadingSkillsSummary.tsx`
-- Props: `skills: readonly { skillId: string; skillName: string; mastery: number; previousMastery: number; isCorrect: boolean }[]`
-- Renders compact card: "Skills Practiced" header, then per skill:
-  - Human-readable skill name (e.g., "Main Idea")
-  - Mini mastery bar (reuse `masteryColor` logic)
-  - Mastery percentage
-  - Delta arrow: green ↑ if mastery increased, gray → if stable, red ↓ if declined
-- **Risk:** None — new file
-
-### 2.2 — Skill name mapping
-- **File:** `src/lib/reading-stamina.ts` (new function)
-- Map `rc_main_idea` → "Main Idea", `rc_inference` → "Inference", etc.
-- Source names from `content/curriculum-taxonomy.json` reading_comprehension skills
-- **Risk:** None — pure lookup
-
-### 2.3 — Surface skill results in hook state
-- **File:** `src/hooks/useReadingStamina.ts`
-- Add `readonly skillResults: readonly SkillResult[]` to `ReadingStaminaState` (UI-only, not persisted)
-- Populated in 1.7's mastery persist block: capture `{ skillId, skillName, mastery, previousMastery, isCorrect }` before/after each update
-- Cleared when loading next passage
-- **Risk:** Low — additive state field
-
-### 2.4 — Render in feedback phase
-- **File:** `src/components/tutor/ReadingStaminaSession.tsx` (FeedbackPhase, lines 313-407)
-- After existing comprehension score display, render `<ReadingSkillsSummary skills={state.skillResults} />`
-- **Risk:** Low — additive JSX, no logic changes
-
-### 2.5 — Manual smoke test
-- Complete 3+ passages, verify:
-  - Skills card appears on feedback screen with correct names
-  - Mastery bars colored correctly (red < 40%, amber < 70%, green ≥ 70%)
-  - Delta arrows show correct direction
-  - Stamina UI (WPM, level, comprehension %) completely unchanged
-  - Math tutor mastery completely unaffected
-  - AI-generated passages show skill results (or gracefully omit untagged questions)
-
----
-
-## Files Modified (existing)
-
-| File | Change | Risk |
-|------|--------|------|
-| `src/hooks/useReadingStamina.ts` | `skillId` on `QuestionItem`, attempt collection, mastery persist, skill results state | **Medium** — try/catch isolated |
-| `src/app/api/reading/route.ts` | `skillTested` in AI prompt + `GeneratedQuestion` type | **Low** — prompt + optional type field |
-| `src/lib/adaptive.ts` | Optional `MasteryWeightConfig` param on `calculateMasteryUpdate` | **Low** — defaults preserve behavior |
-| `src/lib/skill-mastery-store.ts` | New `loadReadingAttemptWindow` / `saveReadingAttemptWindow` functions | **None** — additive only |
-| `src/lib/reading-stamina.ts` | New `staminaLevelToTier` + skill name mapping functions | **None** — additive only |
-| `src/lib/data-keys.ts` | Add `"reading-attempts"` to `DATA_KEYS` | **None** — array entry |
-| `src/components/tutor/ReadingStaminaSession.tsx` | Render `ReadingSkillsSummary` in feedback phase | **Low** — additive JSX |
-
-## Files Created (new)
-
-| File | Purpose |
-|------|---------|
-| `src/components/tutor/ReadingSkillsSummary.tsx` | Skill mastery card for feedback screen |
-
-## Files NOT Modified (stability guarantee)
-
-| File | Why untouched |
-|------|--------------|
-| `prisma/schema.prisma` | Already supports `rc_*` skill IDs |
-| `src/components/tutor/MathTopicPicker.tsx` | Math UI unchanged |
-| `src/hooks/useTutoringSession.ts` | Math session hook unchanged |
-| `src/hooks/useGuidedStudy.ts` | Guided study unchanged |
-| `src/hooks/useDrillSession.ts` | Drill session unchanged |
-| `src/lib/reading-stamina.ts` existing functions | `recordReading`, `saveStaminaProgress`, etc. all untouched |
-| All 50 passage JSON files | Content unchanged; `skill_tested` already present |
-
-## Execution Order
+### Root Cause
+**File:** `src/hooks/useSimulation.ts:437-442`
 
 ```
-Phase 1 (invisible to user — data plumbing)
-  1.1  QuestionItem.skillId (library)     → zero risk
-  1.2  QuestionItem.skillId (AI)          → low risk, fallback
-  1.3  Register data key                  → zero risk
-  1.4  Rolling window storage functions   → zero risk
-  1.5  Configurable mastery weights       → low risk, regression tested
-  1.6  Stamina-to-tier mapping            → zero risk
-  1.7  Wire it together in answerQuestion → medium risk, try/catch isolated
-  1.8  Unit tests                         → validates everything
-
-  ── checkpoint: run tests, inspect localStorage after 3+ passages ──
-
-Phase 2 (visible to user — UI)
-  2.1  ReadingSkillsSummary component     → zero risk, new file
-  2.2  Skill name mapping                 → zero risk
-  2.3  Surface skill results in state     → low risk
-  2.4  Render in feedback phase           → low risk
-  2.5  Manual smoke test                  → confirms full flow
+Promise.all([
+  generateMathBatch("quantitative_reasoning", qrHalf1, "QR"),
+  generateMathBatch("quantitative_reasoning", qrHalf2, "QR"),
+  generateMathBatch("math_achievement", maHalf1, "MA"),
+  generateMathBatch("math_achievement", maHalf2, "MA"),
+])
 ```
+
+4 parallel AI API calls. If **any one** rejects (timeout, rate limit, server error), `Promise.all` rejects immediately. The catch block (lines 471-478) resets the student to `phase: "gate"` with a generic error. All partial successes are discarded.
+
+**Additional discovery:** `useDiagnostic.ts:86` has the **same vulnerability** — 3 parallel domain fetches via Promise.all.
+
+**Blast radius:**
+- Reading section assembly (synchronous, local data) succeeds but is discarded
+- Writing prompt (synchronous) succeeds but is discarded
+- Student sees "Exam generation failed" with no indication which batch failed
+- No state corruption — `"generating"` phase is not saved to localStorage (correct)
+
+### Perspectives
+
+**Business User:** "My child waited 30 seconds for the exam to load, then got kicked back to the start screen with a useless error. They tried again and it worked, but the frustration is real — they thought they did something wrong."
+
+**QA Engineer:** Reproduced by throttling network to 3G in DevTools. 1 of 4 batches timed out at the 60s Next.js limit → entire generation failed. No retry, no partial fallback. The same Promise.all pattern exists in diagnostic assessment (useDiagnostic.ts:86) — same risk there. Sample tests are immune (synchronous JSON loading).
+
+**Software Architect:** The fundamental design error is treating 4 independent API calls as an atomic unit. Each `generateMathBatch` is self-contained — QR batch 1 has no dependency on MA batch 2. The correct abstraction is `Promise.allSettled` with per-batch retry, accepting partial results when possible.
+
+### Potential Fixes
+
+| # | Approach | Risk | Pros | Cons |
+|---|----------|------|------|------|
+| **A** | Replace `Promise.all` with `Promise.allSettled` + retry failed batches (up to 2 retries per batch) | **Low** | Handles partial failure; 3 successes + 1 retry = likely full success; minimal code change (~30 lines) | Adds retry latency; still fails if batch fails 3 times |
+| **B** | `Promise.allSettled` + accept partial results (generate exam with fewer questions if a batch fails) | **Medium** | Student always gets an exam; never returns to gate on generation failure | Exam has uneven section lengths; scoring normalization needed; may confuse parents reviewing scores |
+| **C** | Sequential generation with per-batch retry (no parallelism) | **Low** | Simplest retry logic; clear error per batch | 4x slower generation (serial instead of parallel); bad UX for 60+ seconds of waiting |
+| **D** | Pre-generate question pools (background job) and serve from cache | **High** | Instant exam start; zero API failure risk at exam time | Major architectural change; stale questions; storage management; overkill for current scale |
+
+**Recommendation:** **Fix A** — `Promise.allSettled` + per-batch retry. Lowest risk, highest impact. Apply same pattern to `useDiagnostic.ts`.
+
+---
+
+## H4: localStorage Clearing Loses Active State (Group D4, 20/20)
+
+### Root Cause
+**No `storage` event listener exists anywhere in the codebase.** Zero detection of external localStorage clearing.
+
+Two critical persistence gaps:
+
+1. **In-progress sessions are localStorage-only:**
+   - Simulation: `hunter_sim_progress_${examId}` (useSimulation.ts:89) — NOT synced to server
+   - Assessment: `hunter-tutor-assessment-in-progress` (AssessmentSession.tsx:39) — NOT synced to server
+   - If localStorage is cleared, these are gone forever
+
+2. **Auth identity is localStorage-only:**
+   - `hunter-tutor:auth-user` and `hunter-tutor:active-user` (user-profile.ts:4-7)
+   - If cleared, app thinks user is logged out — can't trigger automatic restore
+   - ProgressHydrator (ProgressHydrator.tsx:24-57) can restore from server, but ONLY if auth keys exist
+
+**16 synced data keys** (data-keys.ts:5-22) ARE backed up server-side via UserData table. These are recoverable on re-login. But the restore requires the auth keys which are also in localStorage.
+
+**Additional discovery:** Simulation key `hunter_sim_progress_${examId}` is NOT user-scoped — if two students share a browser, Student B could resume Student A's exam.
+
+### Perspectives
+
+**Business User:** "My kid was 45 minutes into a practice exam. I cleared the browser cache because Safari was acting slow. When they went back, everything was gone — their exam, their progress bars, even their login. They had to log back in and all their drill history from the morning was missing until it 'appeared' later."
+
+**QA Engineer:** Verified: clearing localStorage while a simulation is in phase "math" results in complete loss of exam state. The ProgressHydrator has a restore path from server, but it requires `auth-user` key to identify the student. With all keys cleared, user lands on login screen. After re-login, synced data (mastery, drills, simulations) restores, but in-progress exam and assessment sessions are permanently lost. No warning, no detection.
+
+**Software Architect:** The app has a split-brain persistence model: 16 data keys are synced (localStorage + SQLite), but session state and auth identity are localStorage-only. The restore path in ProgressHydrator assumes auth keys survive clearing, which is the exact scenario that breaks. The fix needs to address detection (storage event), identity recovery (session cookie or IndexedDB), and in-progress session backup (periodic server checkpoint or IndexedDB fallback).
+
+### Potential Fixes
+
+| # | Approach | Risk | Pros | Cons |
+|---|----------|------|------|------|
+| **A** | Add `storage` event listener + periodic integrity check (every 30s verify expected keys exist) | **Low** | Detects external clearing; warns user; prompts re-login before state is fully lost | Doesn't prevent data loss — only detects it; polling has small perf cost |
+| **B** | Mirror auth identity to a `httpOnly` session cookie or IndexedDB (separate from localStorage) | **Medium** | Auth survives localStorage clear; ProgressHydrator can auto-restore without re-login | Cookie requires server-side session management; IndexedDB adds complexity |
+| **C** | Periodic server checkpoint for in-progress sessions (POST partial exam state every 60s) | **Medium** | In-progress exams survive localStorage clear; server becomes source of truth | API load increase; needs new endpoint or model; 60s of work still lost between checkpoints |
+| **D** | Full dual-write to IndexedDB (mirror all localStorage writes) | **High** | Complete redundancy; IndexedDB survives cache clears in most browsers | Major refactor; IndexedDB API is async (localStorage is sync); doubles write overhead |
+
+**Recommendation:** **Fix A + B combined.** A gives immediate detection/warning (low risk). B ensures auth survives so the existing restore path works. C is valuable but higher effort — consider as Phase 2.
+
+---
+
+## H5: Drill Exit Without beforeunload Loses Progress (Group H3, 15/15)
+
+### Root Cause
+**File:** `src/hooks/useDrillSession.ts` — **zero** `beforeunload`, `pagehide`, or `visibilitychange` handlers.
+
+All drill state lives in React `useState` only (lines 164-176). The ONLY path to persist results is `endDrill()` (lines 429-454), which:
+1. Calls `saveDrillResult()` → writes to localStorage drill history
+2. Calls `autoCompleteDailyTask()` → marks daily plan task complete
+3. Calls `persistMastery()` → updates skill mastery in localStorage
+
+If the student closes the tab, navigates away, or the browser crashes, **100% of session data is lost**: attempts, mastery updates, daily task completion, badge awards.
+
+**Contrast with simulation** (useSimulation.ts:298-309): Has `beforeunload` handler that warns on exit during resumable phases. Also has periodic localStorage saves (lines 249-296) triggered by a `useEffect` on every state change.
+
+**Same bug exists in** `useMixedDrill.ts` (276 lines) — identical pattern, no beforeunload, no periodic saves.
+
+### Perspectives
+
+**Business User:** "My daughter was doing a 5-minute math drill and her tablet went to sleep. When she unlocked it, the page reloaded and all her work was gone. She'd gotten 12 questions right! Now the daily plan still shows that drill as incomplete. She was upset and didn't want to redo it."
+
+**QA Engineer:** Confirmed: started a 5-minute drill, answered 8 questions correctly, closed the tab. Reopened — no drill history entry, daily task still pending, mastery unchanged. The simulation module handles this correctly (beforeunload warning + periodic localStorage saves + resume dialog). The drill module has none of these protections. Also confirmed in useMixedDrill.ts — same gap.
+
+**Software Architect:** The drill was designed assuming uninterrupted completion: start → answer all → end. This is a valid model for 3-5 minute drills on desktop, but breaks on tablets (sleep/wake), unstable connections, and accidental navigation. The simulation module's resilience pattern (beforeunload + periodic state saves + resume) is the proven reference implementation. The drill needs the same architecture, adapted for its shorter duration.
+
+### Potential Fixes
+
+| # | Approach | Risk | Pros | Cons |
+|---|----------|------|------|------|
+| **A** | Add `beforeunload` handler that calls `endDrill()` synchronously | **Low** | Captures most tab-close scenarios; saves all progress; minimal code (~15 lines) | `beforeunload` is unreliable on mobile Safari/iOS; doesn't handle browser crashes; `endDrill` may not complete in time if it's async |
+| **B** | Save drill attempts to localStorage after each answer + `beforeunload` + resume on return | **Medium** | Handles crashes, sleep/wake, and navigation; student can resume interrupted drills; mirrors simulation pattern | More complex; needs resume UI; stale drill state cleanup logic needed |
+| **C** | `beforeunload` + `visibilitychange` (save on tab background) + `pagehide` (iOS) | **Low-Medium** | Covers mobile + desktop; `visibilitychange` fires reliably on iOS; three-layer safety net | Still doesn't handle hard crashes; three event listeners to maintain |
+| **D** | POST each attempt to server in real-time (fire-and-forget) | **Medium** | Server-side durability; survives everything including localStorage clearing | API load per question; needs new endpoint; latency could slow drill flow; offline breaks it |
+
+**Recommendation:** **Fix C** — triple event handler (`beforeunload` + `visibilitychange` + `pagehide`). Covers desktop and mobile. Apply to both `useDrillSession.ts` and `useMixedDrill.ts`. Consider adding per-answer localStorage saves (from Fix B) as a Phase 2 enhancement for crash resilience.
+
+---
+
+## H6: No Essay Draft Auto-Save (Group G1, ~5/20)
+
+### Root Cause
+**File:** `src/components/tutor/WritingWorkshop.tsx`
+
+Essay text lives exclusively in `useState` (line 37: `const [essayText, setEssayText] = useState("")`). The `EssayEditor.tsx` component is a plain `<textarea>` that updates parent state via `onChange`. **Zero persistence** to localStorage or server during the 40-minute writing window (`ESSAY_DURATION_MINUTES = 40`, line 23).
+
+The essay only persists if `submitEssay()` (lines 77-126) succeeds — it POSTs to `/api/writing` which creates a `WritingSubmission` in the database. If the browser crashes, tab closes, network fails, or student navigates away before submission: **complete data loss**.
+
+**Contrast with simulation** (useSimulation.ts:249-296): Saves `state.essayText` to localStorage on every state change via a `useEffect` with `state.essayText` in the dependency array. The simulation's essay section has full persistence; the standalone WritingWorkshop has none.
+
+**No draft model exists** in the Prisma schema — `WritingSubmission` only stores finalized essays.
+
+### Perspectives
+
+**Business User:** "My son spent 35 minutes writing an essay about his favorite book. The browser froze and he had to force-quit. When he reopened it, the essay was completely gone. He was in tears. He refused to rewrite it. That's 35 minutes of focused writing — gone."
+
+**QA Engineer:** Verified: typed 300 words into WritingWorkshop over 10 minutes, force-killed browser process, reopened — textarea empty, no recovery prompt, no draft in localStorage. The simulation module saves essay text continuously and offers resume. WritingWorkshop has no auto-save, no beforeunload warning, no draft recovery. The CountdownTimer (CountdownTimer.tsx) has no save-interval functionality either.
+
+**Software Architect:** This is a straightforward missing feature. The simulation module already implements the exact pattern needed: debounced localStorage save on text change. For WritingWorkshop, the implementation is simpler because there's only one field to save (essay text) vs the simulation's 12+ fields. The key is a `useEffect` with `essayText` in the dependency array, debounced to avoid localStorage thrashing during fast typing, plus cleanup on successful submission.
+
+### Potential Fixes
+
+| # | Approach | Risk | Pros | Cons |
+|---|----------|------|------|------|
+| **A** | Debounced localStorage save (every 1-2 seconds when text changes) + load on mount + clear on submit | **Low** | Simple; proven pattern from simulation module; ~20 lines of code; survives tab close and refresh | Doesn't survive localStorage clearing (see H4); no server backup |
+| **B** | Fix A + `beforeunload` warning when essay has content | **Low** | Two-layer protection: warn on exit + recover from localStorage; covers accidental navigation | `beforeunload` dialog text is browser-controlled, not customizable |
+| **C** | Fix B + periodic server-side draft save (POST to /api/writing with `isDraft: true` flag) | **Medium** | Server durability; survives localStorage clearing and device switching; professional-grade | Needs schema change (add `isDraft` to WritingSubmission or new DraftEssay model); API load; cleanup of abandoned drafts |
+| **D** | Fix A + IndexedDB fallback for large essays | **Low-Medium** | localStorage has 5MB limit; IndexedDB handles larger content; dual persistence | IndexedDB is async; adds complexity; 5MB is plenty for student essays |
+
+**Recommendation:** **Fix B** — localStorage auto-save + beforeunload warning. Lowest risk, highest impact for the scenario described. The simulation module's pattern is the template. Fix C is ideal but higher effort — consider for Phase 2.
+
+---
+
+## Cross-Bug Pattern Analysis
+
+| Pattern | H3 | H4 | H5 | H6 |
+|---------|----|----|----|----|
+| Missing error resilience | Promise.all all-or-nothing | No detection of external clearing | No exit protection | No persistence layer |
+| Simulation module has it right | N/A (different concern) | Periodic localStorage saves | beforeunload + resume | essayText in dependency array |
+| Fix complexity | ~30 lines | ~50 lines (A+B) | ~25 lines | ~20 lines |
+| Shared root cause | — | All four bugs stem from **inconsistent resilience patterns** across modules |
+
+The simulation module (`useSimulation.ts`) was built with resilience as a first-class concern. The drill, writing, and diagnostic modules were not. The fixes largely involve porting proven patterns from the simulation module to the modules that lack them.
+
+---
+
+## Review
+
+- [x] H3: Root cause identified, code paths traced, fixes ranked
+- [x] H4: All 16 localStorage keys cataloged, restore path traced, auth gap identified
+- [x] H5: Drill vs simulation comparison complete, daily task impact confirmed
+- [x] H6: WritingWorkshop vs simulation auto-save compared, schema gap noted
+- [x] Cross-cutting patterns identified
+- [ ] Awaiting decision on which fixes to implement

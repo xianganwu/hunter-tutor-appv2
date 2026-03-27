@@ -20,6 +20,7 @@ import { DATA_KEYS } from "@/lib/data-keys";
 export function ProgressHydrator({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const hydrated = useRef(false);
+  const hadAuthKeysRef = useRef(false);
 
   useEffect(() => {
     if (hydrated.current) return;
@@ -85,6 +86,50 @@ export function ProgressHydrator({ children }: { children: React.ReactNode }) {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  // ── Detect external localStorage clearing ──
+  useEffect(() => {
+    hadAuthKeysRef.current = !!getStoredAuthUser() && !!getActiveUser();
+
+    // Cross-tab detection: storage event fires when another tab modifies localStorage
+    function handleStorageChange(e: StorageEvent) {
+      if (
+        (e.key === "hunter-tutor:auth-user" || e.key === "hunter-tutor:active-user") &&
+        e.newValue === null &&
+        hadAuthKeysRef.current
+      ) {
+        console.warn("[ProgressHydrator] Auth keys cleared externally, attempting recovery");
+        const activeUser = getActiveUser();
+        if (activeUser) {
+          initializeFromServer(activeUser).catch(() => {
+            // Recovery failed — user will need to re-login
+          });
+        }
+      }
+    }
+
+    // Same-tab detection: periodic integrity check (storage event only fires cross-tab)
+    const checkInterval = setInterval(() => {
+      const hasAuth = !!getStoredAuthUser();
+      const hasActive = !!getActiveUser();
+
+      if (hadAuthKeysRef.current && !hasAuth && !hasActive) {
+        console.warn("[ProgressHydrator] Auth keys missing (same-tab clear detected)");
+        hadAuthKeysRef.current = false;
+      }
+
+      if (hasAuth && hasActive) {
+        hadAuthKeysRef.current = true;
+      }
+    }, 30_000);
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      clearInterval(checkInterval);
     };
   }, []);
 

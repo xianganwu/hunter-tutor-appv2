@@ -131,6 +131,34 @@
 3. Log rejections with enough detail to diagnose false positives (the existing `parseWarn` logging was good — the problem was that nobody was monitoring it).
 4. Prefer "accept if plausible" over "reject if unverifiable" when the generator is trusted (e.g., seed-guided questions where the math is pre-computed).
 
+## Resilience Patterns Must Be Consistent Across Modules
+
+**Pattern**: When one module implements resilience features (auto-save, beforeunload, periodic persistence, retry), all modules with similar data-loss risk must implement them too. Inconsistency means users experience failures in some features but not others — and the "good" module proves the pattern works.
+
+**What happened**: Four bugs stemmed from the same root cause — the simulation module (`useSimulation.ts`) was built with resilience as a first-class concern, while drill, writing, and diagnostic modules were not:
+- **H3 (Promise.all)**: Simulation had no parallel retry, but all 4 math generation API calls used `Promise.all`. One failure killed the entire exam. Diagnostic had the same issue.
+- **H5 (Drill exit)**: Simulation had `beforeunload` + periodic localStorage saves + resume dialog. Drill had none — closing a tab lost 100% of drill progress.
+- **H6 (Essay auto-save)**: Simulation auto-saved `essayText` to localStorage on every change. WritingWorkshop's 40-minute essay sessions had zero persistence.
+- **H4 (localStorage clearing)**: No module had detection for external localStorage clearing.
+
+**Fixes applied**:
+- `Promise.allSettled` + per-batch retry in `useSimulation.ts` and `useDiagnostic.ts`
+- Triple event handler (`beforeunload` + `visibilitychange` + `pagehide`) in `useDrillSession.ts` and `useMixedDrill.ts`
+- Debounced localStorage auto-save + draft restore + beforeunload warning in `WritingWorkshop.tsx`
+- Storage event listener + periodic integrity check in `ProgressHydrator.tsx`
+
+**Rule**: When adding a new feature that holds user work in volatile state (React state, in-memory), check: (1) Does the simulation module handle this scenario? (2) Am I handling it too? The simulation module is the reference implementation for: auto-save to localStorage, beforeunload/pagehide/visibilitychange handlers, resume-from-saved-state, and graceful degradation on API failure. New modules must match its resilience level, or explicitly document why they don't need it.
+
+## Promise.all Is All-or-Nothing — Use allSettled for Independent Calls
+
+**Pattern**: `Promise.all` rejects immediately when ANY promise rejects. If the promises are independent (no data dependency between them), use `Promise.allSettled` so partial successes are preserved and failed calls can be retried individually.
+
+**What happened**: Practice exam generation fired 4 parallel `generateMathBatch` API calls via `Promise.all`. If any single call timed out (common on slow connections), the entire exam generation failed — even if 3 of 4 batches succeeded. Student was sent back to the gate screen with a generic error. Same vulnerability existed in diagnostic assessment (3 parallel domain fetches).
+
+**Fix**: Replaced `Promise.all` with `Promise.allSettled`, loop over results checking `status === "fulfilled"`, retry rejected batches once sequentially (sequential to avoid overloading during an outage). If retry also fails, the error propagates to the existing catch block.
+
+**Rule**: Before using `Promise.all`, ask: "Are these promises independent?" If yes, use `Promise.allSettled` + per-item retry. Reserve `Promise.all` for cases where ALL results are truly required simultaneously and partial success is meaningless.
+
 ## Mastery-Based Scoring Needs Guards at Boundary Values
 
 **Pattern**: Scoring algorithms that work well in the middle range (mastery 0.3–0.8) can produce counterintuitive results at the extremes (0.0 or 1.0). Always test boundary values.

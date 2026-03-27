@@ -434,12 +434,33 @@ export function useSimulation() {
       const maHalf1 = Math.ceil(MA_QUESTION_COUNT / 2);
       const maHalf2 = MA_QUESTION_COUNT - maHalf1;
 
-      const [qrBatch1, qrBatch2, maBatch1, maBatch2] = await Promise.all([
-        generateMathBatch("quantitative_reasoning", qrHalf1, "QR"),
-        generateMathBatch("quantitative_reasoning", qrHalf2, "QR"),
-        generateMathBatch("math_achievement", maHalf1, "MA"),
-        generateMathBatch("math_achievement", maHalf2, "MA"),
-      ]);
+      const batchConfigs = [
+        ["quantitative_reasoning", qrHalf1, "QR"],
+        ["quantitative_reasoning", qrHalf2, "QR"],
+        ["math_achievement", maHalf1, "MA"],
+        ["math_achievement", maHalf2, "MA"],
+      ] as const;
+
+      const settled = await Promise.allSettled(
+        batchConfigs.map(([section, count, label]) =>
+          generateMathBatch(section, count, label),
+        ),
+      );
+
+      // Retry any failed batches once (sequential to avoid overloading during outage)
+      const finalBatches: ExamQuestion[][] = [];
+      for (let i = 0; i < settled.length; i++) {
+        const r = settled[i];
+        if (r.status === "fulfilled") {
+          finalBatches.push(r.value);
+        } else {
+          const [section, count, label] = batchConfigs[i];
+          const retried = await generateMathBatch(section, count, label);
+          finalBatches.push(retried);
+        }
+      }
+
+      const [qrBatch1, qrBatch2, maBatch1, maBatch2] = finalBatches;
 
       const qrQuestions: ExamQuestion[] = [...qrBatch1, ...qrBatch2].map((q, i) => ({
         ...q,

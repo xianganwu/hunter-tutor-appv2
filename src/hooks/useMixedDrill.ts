@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import type { MixedDrillQuestion, MixedDrillAttempt, MixedDrillResult } from "@/lib/drill";
 import { computeMixedDrillResult, saveMixedDrillResult, shuffleQuestionChoices } from "@/lib/drill";
 import type { DifficultyLevel } from "@/lib/types";
@@ -204,6 +204,37 @@ export function useMixedDrill() {
     },
     [],
   );
+
+  // ── Protect against tab close / background / iOS Safari ──
+  useEffect(() => {
+    if (state.phase !== "active") return;
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        const s = stateRef.current;
+        if (s.phase !== "active") return;
+        finalizeDrill(s.attempts, s.startTime, s.selectedSkills);
+      }
+    };
+    const handlePageHide = () => {
+      const s = stateRef.current;
+      if (s.phase !== "active") return;
+      finalizeDrill(s.attempts, s.startTime, s.selectedSkills);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+    };
+  }, [state.phase, finalizeDrill]);
 
   const submitAnswer = useCallback(
     (answer: string) => {
