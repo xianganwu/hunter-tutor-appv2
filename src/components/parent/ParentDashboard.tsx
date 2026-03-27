@@ -7,6 +7,7 @@ import { TypingIndicator } from "@/components/chat/TypingIndicator";
 import { aggregateParentData } from "@/lib/parent-data";
 import type { ParentData, DomainReadiness, SessionLogEntry } from "@/lib/parent-data";
 import { MissedQuestionsByWeek } from "./MissedQuestionsByWeek";
+import { NarrativeSummary } from "./NarrativeSummary";
 import { computeWeeklyDigest, type WeeklyDigest } from "@/lib/weekly-digest";
 
 // ─── Main Component ───────────────────────────────────────────────────
@@ -327,6 +328,9 @@ function Dashboard() {
           </div>
         </a>
       </div>
+
+      {/* Narrative Summary */}
+      <NarrativeSummary data={data} />
 
       {/* Weekly Practice */}
       <WeeklyPracticeCard

@@ -49,6 +49,18 @@ const ParentActionSchema = z.discriminatedUnion("type", [
     streakCurrent: z.number().int().min(0),
     streakLongest: z.number().int().min(0),
   }),
+  z.object({
+    type: z.literal("generate_narrative"),
+    activeDays: z.number().int().min(0).max(7),
+    weeklyMinutes: z.number().min(0).max(100000),
+    weeklyTarget: z.number().min(0).max(100000),
+    subjects: z.array(z.string().max(100)).max(10),
+    improvingSkills: z.array(z.string().max(200)).max(20),
+    weakSkills: z.array(z.string().max(200)).max(20),
+    topMistake: z.string().max(200).nullable(),
+    readingLevel: z.number().nullable(),
+    simPercentile: z.number().nullable(),
+  }),
 ]);
 
 // ─── Response ─────────────────────────────────────────────────────────
@@ -182,6 +194,73 @@ ${skillsImpSummary ? `Skills improved:\n${skillsImpSummary}` : "No notable skill
 ${attentionSummary ? `Needs attention:\n${attentionSummary}` : ""}
 
 Keep it brief and parent-friendly. Focus on what went well and one area to encourage.`,
+            },
+          ],
+        });
+
+        const narrative =
+          response.content[0].type === "text" ? response.content[0].text : "";
+
+        return NextResponse.json({ narrative });
+      }
+
+      case "generate_narrative": {
+        const client = getAnthropicClient();
+
+        const subjectText =
+          body.subjects.length > 0
+            ? body.subjects.map((s) => sanitizePromptInput(s, 100)).join(", ")
+            : "general practice";
+
+        const improvingText =
+          body.improvingSkills.length > 0
+            ? body.improvingSkills
+                .slice(0, 3)
+                .map((s) => sanitizePromptInput(s, 200))
+                .join(", ")
+            : "none identified yet";
+
+        const weakText =
+          body.weakSkills.length > 0
+            ? body.weakSkills
+                .slice(0, 3)
+                .map((s) => sanitizePromptInput(s, 200))
+                .join(", ")
+            : "none identified yet";
+
+        const extras: string[] = [];
+        if (body.readingLevel !== null) {
+          extras.push(`Reading stamina: Level ${body.readingLevel}`);
+        }
+        if (body.simPercentile !== null) {
+          extras.push(
+            `Latest practice exam: around the ${body.simPercentile}th percentile`,
+          );
+        }
+
+        const response = await client.messages.create({
+          model: MODEL_HAIKU,
+          max_tokens: 128,
+          system: [
+            {
+              type: "text" as const,
+              text: "You are a warm, encouraging teacher writing a brief weekly update for a parent whose child is preparing for the Hunter College High School entrance exam. Write exactly 2-3 sentences. First sentence: what they did this week (days, minutes, subjects). Second sentence: what is going well (mention a specific skill). Third sentence: one gentle suggestion for next week. Sound like a caring teacher, not a report card. Never use jargon.",
+              cache_control: { type: "ephemeral" as const },
+            },
+          ],
+          messages: [
+            {
+              role: "user",
+              content: `Write a 2-3 sentence parent-friendly weekly summary from this data:
+
+Practice: ${body.activeDays} days, ${body.weeklyMinutes} of ${body.weeklyTarget} target minutes
+Subjects: ${subjectText}
+Improving skills: ${improvingText}
+Needs attention: ${weakText}
+${body.topMistake ? `Most common mistake area: ${sanitizePromptInput(body.topMistake, 200)}` : ""}
+${extras.join("\n")}
+
+Keep it to exactly 2-3 sentences. Be warm and specific.`,
             },
           ],
         });
