@@ -48,6 +48,8 @@ beforeEach(() => {
   mockGetSession.mockReset();
   mockGetSession.mockResolvedValue({ sub: "student-1", name: "Test", email: "t@t.com" });
   mockTransaction.mockResolvedValue([]);
+  // Default: no existing data on server (POST handler calls findMany for staleness check)
+  mockFindMany.mockResolvedValue([]);
 });
 
 describe("GET /api/progress", () => {
@@ -188,5 +190,134 @@ describe("POST /api/progress", () => {
 
     expect(res.status).toBe(200);
     expect(body.keysUpdated).toBe(0);
+  });
+
+  // ─── C1: Timestamp guard tests ───────────────────────────────────────
+
+  it("skips stale keys when client timestamps are older than server", async () => {
+    // Server has data updated at March 15
+    mockFindMany.mockResolvedValue([
+      makeRow("skill-mastery", { level: 5 }, new Date("2026-03-15T00:00:00Z")),
+    ]);
+
+    const res = await POST(
+      makePostRequest({
+        progress: { "skill-mastery": { level: 3 } },
+        timestamps: { "skill-mastery": "2026-03-10T00:00:00Z" }, // Client's is older
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(0);
+    expect(body.keysSkipped).toBe(1);
+    expect(mockTransaction).not.toHaveBeenCalled();
+  });
+
+  it("accepts keys with newer client timestamps", async () => {
+    // Server has data updated at March 10
+    mockFindMany.mockResolvedValue([
+      makeRow("skill-mastery", { level: 3 }, new Date("2026-03-10T00:00:00Z")),
+    ]);
+
+    const res = await POST(
+      makePostRequest({
+        progress: { "skill-mastery": { level: 5 } },
+        timestamps: { "skill-mastery": "2026-03-15T00:00:00Z" }, // Client's is newer
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(1);
+    expect(body.keysSkipped).toBe(0);
+  });
+
+  it("accepts all keys when no timestamps provided (backward compat)", async () => {
+    mockFindMany.mockResolvedValue([
+      makeRow("skill-mastery", { level: 3 }, new Date("2026-03-15T00:00:00Z")),
+    ]);
+
+    // No timestamps field — old client behavior
+    const res = await POST(
+      makePostRequest({
+        progress: { "skill-mastery": { level: 1 } },
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(1);
+    expect(body.keysSkipped).toBe(0);
+  });
+
+  // ─── C2: Empty-payload guard tests ───────────────────────────────────
+
+  it("rejects empty array replacing existing non-empty data", async () => {
+    mockFindMany.mockResolvedValue([
+      makeRow("skill-mastery", [{ skillId: "math", level: 5 }]),
+    ]);
+
+    const res = await POST(
+      makePostRequest({
+        progress: { "skill-mastery": [] },
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(0);
+    expect(body.keysSkipped).toBe(1);
+    expect(mockTransaction).not.toHaveBeenCalled();
+  });
+
+  it("rejects empty object replacing existing non-empty data", async () => {
+    mockFindMany.mockResolvedValue([
+      makeRow("daily-plan", { skills: ["math"], date: "2026-03-27" }),
+    ]);
+
+    const res = await POST(
+      makePostRequest({
+        progress: { "daily-plan": {} },
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(0);
+    expect(body.keysSkipped).toBe(1);
+  });
+
+  it("accepts empty array when no existing data (first sync)", async () => {
+    // No existing data on server
+    mockFindMany.mockResolvedValue([]);
+
+    const res = await POST(
+      makePostRequest({
+        progress: { "skill-mastery": [] },
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(1);
+    expect(body.keysSkipped).toBe(0);
+  });
+
+  it("accepts non-empty data replacing existing data normally", async () => {
+    mockFindMany.mockResolvedValue([
+      makeRow("skill-mastery", [{ skillId: "math", level: 3 }]),
+    ]);
+
+    const res = await POST(
+      makePostRequest({
+        progress: { "skill-mastery": [{ skillId: "math", level: 5 }] },
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(1);
+    expect(body.keysSkipped).toBe(0);
   });
 });

@@ -39,7 +39,15 @@ export async function GET() {
 
 const syncSchema = z.object({
   progress: z.record(z.string(), z.unknown()),
+  timestamps: z.record(z.string(), z.string()).optional(),
 });
+
+/** Returns true if value is an empty array, empty object, or has no meaningful content */
+function isEmptyPayload(value: unknown): boolean {
+  if (Array.isArray(value)) return value.length === 0;
+  if (typeof value === "object" && value !== null) return Object.keys(value).length === 0;
+  return false;
+}
 
 export async function POST(request: Request) {
   try {
@@ -62,18 +70,60 @@ export async function POST(request: Request) {
       ([key, value]) => validKeys.has(key) && value !== undefined && value !== null
     );
 
-    // Batch upsert all keys in a single transaction (atomic, 1 round-trip)
-    await prisma.$transaction(
-      entries.map(([key, value]) =>
-        prisma.userData.upsert({
-          where: { studentId_key: { studentId: session.sub, key } },
-          update: { value: JSON.stringify(value) },
-          create: { studentId: session.sub, key, value: JSON.stringify(value) },
+    const clientTimestamps = parsed.data.timestamps ?? {};
+
+    // Fetch existing rows for timestamp comparison and empty-payload protection
+    const keysToCheck = entries.map(([k]) => k);
+    const existingRows = keysToCheck.length > 0
+      ? await prisma.userData.findMany({
+          where: { studentId: session.sub, key: { in: keysToCheck } },
+          select: { key: true, value: true, updatedAt: true },
         })
-      )
+      : [];
+    const existingMap = new Map(
+      existingRows.map((r) => [r.key, { value: r.value, updatedAt: r.updatedAt }])
     );
 
-    return NextResponse.json({ success: true, keysUpdated: entries.length });
+    // Filter out stale entries (C1) and empty payloads replacing good data (C2)
+    const freshEntries = entries.filter(([key, value]) => {
+      const existing = existingMap.get(key);
+
+      // C1: Timestamp guard — skip if client data is older than server data
+      const clientTs = clientTimestamps[key];
+      if (clientTs && existing) {
+        const clientDate = new Date(clientTs);
+        if (!isNaN(clientDate.getTime()) && clientDate < existing.updatedAt) {
+          return false; // Client's last-known timestamp is older — stale data
+        }
+      }
+
+      // C2: Empty-payload guard — skip if incoming is empty but existing has data
+      if (isEmptyPayload(value) && existing && existing.value.length > 2) {
+        // existing.value.length > 2 filters out stored "[]" or "{}" (already empty)
+        return false;
+      }
+
+      return true;
+    });
+
+    // Batch upsert all fresh keys in a single transaction (atomic, 1 round-trip)
+    if (freshEntries.length > 0) {
+      await prisma.$transaction(
+        freshEntries.map(([key, value]) =>
+          prisma.userData.upsert({
+            where: { studentId_key: { studentId: session.sub, key } },
+            update: { value: JSON.stringify(value) },
+            create: { studentId: session.sub, key, value: JSON.stringify(value) },
+          })
+        )
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      keysUpdated: freshEntries.length,
+      keysSkipped: entries.length - freshEntries.length,
+    });
   } catch (err) {
     console.error("[progress] POST error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });

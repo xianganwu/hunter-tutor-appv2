@@ -155,12 +155,12 @@ describe("flushSyncImmediate", () => {
 
     const text = await capturedBlob!.text();
     const payload = JSON.parse(text);
-    expect(payload).toEqual({
-      progress: {
-        mistakes: [{ id: "m1" }],
-        badges: ["first_correct"],
-      },
+    expect(payload.progress).toEqual({
+      mistakes: [{ id: "m1" }],
+      badges: ["first_correct"],
     });
+    // Timestamps field is always included (C1 fix)
+    expect(payload).toHaveProperty("timestamps");
   });
 });
 
@@ -278,6 +278,74 @@ describe("initializeFromServer", () => {
 
     const result = await initializeFromServer("TestUser");
     expect(result).toBe(false);
+  });
+
+  it("caches server timestamps from GET response", async () => {
+    const mod = await import("./auth-client");
+    mod._resetServerTimestamps();
+
+    const serverData = {
+      progress: { "skill-mastery": [{ skillId: "math_1", level: 3 }] },
+      timestamps: { "skill-mastery": "2026-03-15T00:00:00.000Z" },
+    };
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(serverData),
+    });
+
+    await initializeFromServer("TestUser");
+
+    const cached = mod._getServerTimestamps();
+    expect(cached["skill-mastery"]).toBe("2026-03-15T00:00:00.000Z");
+  });
+
+  it("sends cached timestamps in dirty-key POST", async () => {
+    const mod = await import("./auth-client");
+    mod._resetServerTimestamps();
+
+    // Simulate a prior GET that cached timestamps
+    const firstGetData = {
+      progress: { "skill-mastery": [{ skillId: "math_1", level: 3 }] },
+      timestamps: { "skill-mastery": "2026-03-10T00:00:00.000Z" },
+    };
+
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(firstGetData),
+    });
+
+    // First call caches timestamps
+    await initializeFromServer("TestUser");
+
+    // Now simulate dirty keys for a second call
+    localStorage.setItem(
+      "hunter-tutor:dirty-keys",
+      JSON.stringify(["skill-mastery"])
+    );
+    localStorage.setItem(
+      "hunter-tutor:TestUser:skill-mastery",
+      JSON.stringify([{ skillId: "math_1", level: 5 }])
+    );
+
+    const fetchCalls: { method?: string; body?: string }[] = [];
+    global.fetch = vi.fn().mockImplementation((_url: string, opts?: RequestInit) => {
+      fetchCalls.push({ method: opts?.method, body: opts?.body as string });
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({
+          progress: { "skill-mastery": [{ skillId: "math_1", level: 5 }] },
+          timestamps: { "skill-mastery": "2026-03-15T00:00:00.000Z" },
+        }),
+      });
+    });
+
+    await initializeFromServer("TestUser");
+
+    // First call is POST (dirty keys), verify it includes timestamps
+    expect(fetchCalls[0].method).toBe("POST");
+    const postBody = JSON.parse(fetchCalls[0].body!);
+    expect(postBody.timestamps).toEqual({ "skill-mastery": "2026-03-10T00:00:00.000Z" });
   });
 });
 

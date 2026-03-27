@@ -48,8 +48,14 @@ export const MIN_ACCEPTABLE_WPM = 120;
 /** Number of solid readings needed to advance to next level */
 const PASSAGES_TO_ADVANCE = 2;
 
+/** Minimum comprehension accuracy (questionsCorrect / questionsTotal) to count as "good" */
+const MIN_COMPREHENSION_ACCURACY = 0.6;
+
 /** WPM drop percentage threshold that triggers intervention */
 export const SPEED_DROP_THRESHOLD = 0.20;
+
+/** Fastest plausible WPM — college speed-reader territory; no child reads this fast */
+const MAX_PLAUSIBLE_WPM = 500;
 
 /** Minimum passages needed to detect a meaningful speed drop */
 const MIN_RECORDS_FOR_DROP = 3;
@@ -58,6 +64,8 @@ const MIN_RECORDS_FOR_DROP = 3;
 
 export function computeWPM(wordCount: number, readingTimeSeconds: number): number {
   if (readingTimeSeconds <= 0) return 0;
+  const minSeconds = (wordCount / MAX_PLAUSIBLE_WPM) * 60;
+  if (readingTimeSeconds < minSeconds) return 0;
   return Math.round(wordCount / (readingTimeSeconds / 60));
 }
 
@@ -91,7 +99,12 @@ export function shouldAdvanceLevel(
   if (currentLevel >= STAMINA_LEVELS.length) return false;
 
   const atLevel = records.filter((r) => r.staminaLevel === currentLevel);
-  const goodReadings = atLevel.filter((r) => r.wpm >= MIN_ACCEPTABLE_WPM);
+  const goodReadings = atLevel.filter(
+    (r) =>
+      r.wpm >= MIN_ACCEPTABLE_WPM &&
+      r.questionsTotal > 0 &&
+      r.questionsCorrect / r.questionsTotal >= MIN_COMPREHENSION_ACCURACY,
+  );
   return goodReadings.length >= PASSAGES_TO_ADVANCE;
 }
 

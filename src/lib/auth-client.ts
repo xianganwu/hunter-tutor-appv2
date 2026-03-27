@@ -162,11 +162,45 @@ export async function authGetUser(): Promise<AuthUser | null> {
 // ─── Progress sync ────────────────────────────────────────────────────
 
 /**
+ * Quick write-read-delete test to verify localStorage is functional.
+ * Returns false when privacy extensions or storage quotas block access (C2 fix).
+ */
+function isLocalStorageAvailable(): boolean {
+  try {
+    const key = "__ls_avail_test__";
+    localStorage.setItem(key, "1");
+    const val = localStorage.getItem(key);
+    localStorage.removeItem(key);
+    return val === "1";
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Cached server timestamps from the last GET /api/progress response.
+ * Sent with POST requests so the server can reject stale writes (C1 fix).
+ */
+let serverTimestamps: Record<string, string> = {};
+
+/** Exported for testing only */
+export function _getServerTimestamps(): Record<string, string> {
+  return serverTimestamps;
+}
+
+/** Exported for testing only */
+export function _resetServerTimestamps(): void {
+  serverTimestamps = {};
+}
+
+/**
  * Upload all localStorage progress data to the server.
  * Call this after significant progress updates.
  */
 export async function syncProgressToServer(userName: string): Promise<boolean> {
   try {
+    if (!isLocalStorageAvailable()) return false;
+
     const progress: Record<string, unknown> = {};
     for (const key of DATA_KEYS) {
       const storageKey = `hunter-tutor:${userName}:${key}`;
@@ -185,7 +219,7 @@ export async function syncProgressToServer(userName: string): Promise<boolean> {
     const res = await fetch("/api/progress", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ progress }),
+      body: JSON.stringify({ progress, timestamps: serverTimestamps }),
     });
     return res.ok;
   } catch {
@@ -205,6 +239,11 @@ export async function syncProgressFromServer(
     if (!res.ok) return false;
     const data = await res.json();
     const progress = data.progress as Record<string, unknown>;
+
+    // Cache server timestamps for future POST conflict detection (C1 fix)
+    if (data.timestamps) {
+      serverTimestamps = data.timestamps as Record<string, string>;
+    }
 
     for (const [key, value] of Object.entries(progress)) {
       const storageKey = `hunter-tutor:${userName}:${key}`;
@@ -243,7 +282,7 @@ export async function initializeFromServer(userName: string): Promise<boolean> {
         await fetch("/api/progress", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ progress: dirtyProgress }),
+          body: JSON.stringify({ progress: dirtyProgress, timestamps: serverTimestamps }),
         });
       }
     }
@@ -253,6 +292,11 @@ export async function initializeFromServer(userName: string): Promise<boolean> {
     if (!res.ok) return false;
     const data = await res.json();
     const progress = data.progress as Record<string, unknown>;
+
+    // Cache server timestamps for future POST conflict detection (C1 fix)
+    if (data.timestamps) {
+      serverTimestamps = data.timestamps as Record<string, string>;
+    }
 
     // 3. Populate localStorage with server data
     for (const [key, value] of Object.entries(progress)) {
@@ -307,6 +351,8 @@ export function scheduleSyncToServer(userName: string): void {
  */
 export function flushSyncImmediate(userName: string): boolean {
   try {
+    if (!isLocalStorageAvailable()) return false;
+
     const dirtyKeys = getDirtyKeys();
     if (dirtyKeys.size === 0) return false;
 
@@ -325,7 +371,7 @@ export function flushSyncImmediate(userName: string): boolean {
 
     if (Object.keys(progress).length === 0) return false;
 
-    const blob = new Blob([JSON.stringify({ progress })], {
+    const blob = new Blob([JSON.stringify({ progress, timestamps: serverTimestamps })], {
       type: "application/json",
     });
     const sent = navigator.sendBeacon("/api/progress", blob);

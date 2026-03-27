@@ -73,6 +73,20 @@ describe("computeWPM", () => {
     // 800 words in 240 seconds = 200 WPM
     expect(computeWPM(800, 240)).toBe(200);
   });
+
+  it("returns 0 for implausibly fast reading", () => {
+    // 300 words in 1 second = 18,000 WPM — clearly gaming
+    expect(computeWPM(300, 1)).toBe(0);
+    // 300 words in 10 seconds = 1,800 WPM — still gaming
+    expect(computeWPM(300, 10)).toBe(0);
+  });
+
+  it("allows fast but plausible reading", () => {
+    // 300 words in 40 seconds = 450 WPM — fast reader, within plausible range
+    expect(computeWPM(300, 40)).toBe(450);
+    // 300 words in 36 seconds = 500 WPM — boundary of MAX_PLAUSIBLE_WPM
+    expect(computeWPM(300, 36)).toBe(500);
+  });
 });
 
 // ─── detectSpeedDrop ──────────────────────────────────────────────────
@@ -165,6 +179,22 @@ describe("shouldAdvanceLevel", () => {
     const records = [
       makeRecord({ staminaLevel: 2, wpm: 200 }),
       makeRecord({ staminaLevel: 2, wpm: 200 }),
+    ];
+    expect(shouldAdvanceLevel(1, records)).toBe(false);
+  });
+
+  it("ignores readings with low comprehension despite good WPM", () => {
+    const records = [
+      makeRecord({ staminaLevel: 1, wpm: 200, questionsCorrect: 1, questionsTotal: 5 }),
+      makeRecord({ staminaLevel: 1, wpm: 200, questionsCorrect: 2, questionsTotal: 5 }),
+    ];
+    expect(shouldAdvanceLevel(1, records)).toBe(false);
+  });
+
+  it("ignores readings with zero questions", () => {
+    const records = [
+      makeRecord({ staminaLevel: 1, wpm: 200, questionsCorrect: 0, questionsTotal: 0 }),
+      makeRecord({ staminaLevel: 1, wpm: 200, questionsCorrect: 0, questionsTotal: 0 }),
     ];
     expect(shouldAdvanceLevel(1, records)).toBe(false);
   });
