@@ -8,6 +8,7 @@ import { ChatInput } from "@/components/chat/ChatInput";
 import { ChoiceButtons } from "@/components/chat/ChoiceButtons";
 import { QuickActions } from "@/components/chat/QuickActions";
 import { TypingIndicator } from "@/components/chat/TypingIndicator";
+import { MathText } from "@/components/chat/MathText";
 import { SessionInfoBar } from "@/components/chat/SessionInfoBar";
 import { SessionSummary } from "@/components/chat/SessionSummary";
 import { TeachItBack } from "./TeachItBack";
@@ -82,10 +83,15 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
     }
   }, [summary, state.questionCount, state.correctCount, triggerMoment]);
 
-  // Auto-scroll to bottom on new messages
+  // Auto-scroll to bottom only when user is already near the bottom.
+  // This prevents the scroll from hijacking the user's position when they
+  // scroll up to re-read the question while a hint streams in.
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    const el = scrollRef.current;
+    if (!el) return;
+    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+    if (distanceFromBottom < 150) {
+      el.scrollTop = el.scrollHeight;
     }
   }, [state.messages, isLoading]);
 
@@ -176,6 +182,16 @@ export function TutoringSession({ skillId, subject, isRetentionCheck = false, is
         ref={scrollRef}
         className="flex-1 overflow-y-auto px-4 py-6 space-y-2"
       >
+        {/* Sticky question header — keeps question visible when hints push it off-screen */}
+        {state.activeQuestion && state.messages.length > 2 && (
+          <div className="sticky top-0 z-10 -mx-4 px-4 py-2 bg-surface-50/95 dark:bg-surface-950/95 backdrop-blur-sm border-b border-surface-200 dark:border-surface-800">
+            <p className="text-xs font-semibold text-brand-600 dark:text-brand-400 mb-0.5 uppercase tracking-wide">Current Question</p>
+            <p className="text-sm text-surface-800 dark:text-surface-200 line-clamp-3">
+              <MathText text={state.activeQuestion.questionText.replace(/<svg[\s\S]*?<\/svg>/gi, "").replace(/<svg[\s\S]*/gi, "").trim()} />
+            </p>
+          </div>
+        )}
+
         {state.messages.map((msg) => (
           <ChatBubble key={msg.id} message={msg} />
         ))}
