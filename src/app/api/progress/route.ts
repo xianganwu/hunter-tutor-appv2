@@ -98,9 +98,12 @@ export async function POST(request: Request) {
       }
 
       // C2: Empty-payload guard — skip if incoming is empty but existing has data
-      if (isEmptyPayload(value) && existing && existing.value.length > 2) {
-        // existing.value.length > 2 filters out stored "[]" or "{}" (already empty)
-        return false;
+      if (isEmptyPayload(value) && existing) {
+        const storedValue = existing.value.trim();
+        // Only block if server actually has meaningful data (not already empty)
+        if (storedValue !== "[]" && storedValue !== "{}") {
+          return false;
+        }
       }
 
       return true;

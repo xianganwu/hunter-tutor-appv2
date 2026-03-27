@@ -55,6 +55,9 @@ export async function authLogin(
 }
 
 export async function authLogout(): Promise<void> {
+  // Clear cached server timestamps to prevent cross-user contamination (C1 fix)
+  serverTimestamps = {};
+
   await fetch("/api/auth", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

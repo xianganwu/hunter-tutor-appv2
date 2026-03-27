@@ -304,6 +304,22 @@ describe("POST /api/progress", () => {
     expect(body.keysSkipped).toBe(0);
   });
 
+  it("accepts empty array replacing existing empty array", async () => {
+    // Server already has empty array — no data to protect
+    mockFindMany.mockResolvedValue([makeRow("skill-mastery", [])]);
+
+    const res = await POST(
+      makePostRequest({
+        progress: { "skill-mastery": [] },
+      })
+    );
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.keysUpdated).toBe(1);
+    expect(body.keysSkipped).toBe(0);
+  });
+
   it("accepts non-empty data replacing existing data normally", async () => {
     mockFindMany.mockResolvedValue([
       makeRow("skill-mastery", [{ skillId: "math", level: 3 }]),
