@@ -109,8 +109,13 @@ function makeId(): string {
 /**
  * Build a prioritized list of tasks that fit within the given time budget.
  * Priority: mistake review → vocab review → retention checks → skill practice → writing → speed rounds
+ *
+ * @param excludeSkillIds - skill IDs to exclude (e.g. already completed today during a mid-day regen)
  */
-function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
+function buildTaskList(
+  timeBudgetMinutes: number,
+  excludeSkillIds: ReadonlySet<string> = new Set(),
+): DailyTask[] {
   const tasks: DailyTask[] = [];
   let remaining = timeBudgetMinutes;
 
@@ -158,6 +163,7 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
   let retentionCount = 0;
   for (const skill of dueSkills) {
     if (remaining < 5 || retentionCount >= 2) break;
+    if (excludeSkillIds.has(skill.skillId)) continue;
     const skillInfo = getSkillById(skill.skillId);
     const daysSince = skill.lastPracticed
       ? Math.round((Date.now() - new Date(skill.lastPracticed).getTime()) / 86400000)
@@ -183,9 +189,11 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
     const skillIds = getSkillIdsForDomain(domain);
     const priorities = selectNextSkills(skillIds, stateMap);
 
-    // Skip skills already covered by retention checks
+    // Skip skills already covered by retention checks or completed earlier today
     const filtered = priorities.filter(
-      (p) => !tasks.some((t) => t.skillId === p.skillId),
+      (p) =>
+        !excludeSkillIds.has(p.skillId) &&
+        !tasks.some((t) => t.skillId === p.skillId),
     );
     if (filtered.length > 0 && !usedDomains.has(domain)) {
       const top = filtered[0];
@@ -226,14 +234,15 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
   }
 
   // 6. Speed rounds (5 min each) — fill remaining time
-  if (remaining >= 5) {
-    const allPriorities = DOMAINS.flatMap((d) => {
-      const ids = getSkillIdsForDomain(d);
-      return selectNextSkills(ids, stateMap);
-    }).sort((a, b) => b.score - a.score);
+  const allPriorities = DOMAINS.flatMap((d) => {
+    const ids = getSkillIdsForDomain(d);
+    return selectNextSkills(ids, stateMap);
+  }).sort((a, b) => b.score - a.score);
 
+  if (remaining >= 5) {
     for (const candidate of allPriorities) {
       if (remaining < 5) break;
+      if (excludeSkillIds.has(candidate.skillId)) continue;
       if (tasks.some((t) => t.skillId === candidate.skillId)) continue;
 
       const skill = getSkillById(candidate.skillId);
@@ -248,6 +257,21 @@ function buildTaskList(timeBudgetMinutes: number): DailyTask[] {
       });
       remaining -= 5;
     }
+  }
+
+  // 7. Guarantee at least one task — prevents an empty plan
+  if (tasks.length === 0 && allPriorities.length > 0) {
+    const fallback = allPriorities[0];
+    const skill = getSkillById(fallback.skillId);
+    tasks.push({
+      id: makeId(),
+      type: "drill",
+      skillId: fallback.skillId,
+      skillName: skill?.name ?? fallback.skillId,
+      estimatedMinutes: Math.min(5, timeBudgetMinutes),
+      reason: REASON_MAP[fallback.reason] ?? "Recommended practice",
+      masteryLevel: stateMap.get(fallback.skillId)?.masteryLevel,
+    });
   }
 
   return tasks;
@@ -292,7 +316,15 @@ export function regeneratePlanWithBudget(
         )
       : [];
 
-  const tasks = buildTaskList(timeBudgetMinutes);
+  // Exclude skill IDs already completed today so the regenerated plan
+  // doesn't recommend the same skill the student just practiced.
+  const completedSkillIds = new Set<string>(
+    completedOldTasks
+      .map((t) => t.skillId)
+      .filter((id): id is string => id !== undefined),
+  );
+
+  const tasks = buildTaskList(timeBudgetMinutes, completedSkillIds);
 
   // Carry over completion state by matching type + skillId
   const completedTaskIds: string[] = [];

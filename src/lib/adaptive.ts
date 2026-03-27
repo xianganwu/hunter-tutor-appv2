@@ -117,12 +117,15 @@ const TIER_ACCURACY_WEIGHT: Record<DifficultyLevel, number> = {
 };
 
 // Priority scoring weights
+// Ranking: prerequisite (100+) > declining (80-100) > low mastery (65-95)
+//        > stale (40-80, capped) > near mastery (50-57) > new (35)
 const PRIORITY_PREREQUISITE_GAP = 100;
-const PRIORITY_DECLINING = 70;
-const PRIORITY_STALE = 50;
-const PRIORITY_NEAR_MASTERY = 30;
-const PRIORITY_LOW_MASTERY = 60;
-const PRIORITY_NEW_SKILL = 40;
+const PRIORITY_DECLINING = 80;
+const PRIORITY_STALE = 40;
+const PRIORITY_STALE_CAP = 2; // cap staleness multiplier at 2x (was 3x)
+const PRIORITY_NEAR_MASTERY = 50;
+const PRIORITY_LOW_MASTERY = 65;
+const PRIORITY_NEW_SKILL = 35;
 
 // ─── 1. Skill Selection ──────────────────────────────────────────────
 
@@ -193,7 +196,7 @@ function scoreSkill(
       (now.getTime() - state.lastPracticed.getTime()) / (1000 * 60 * 60 * 24)
     );
     if (daysSince >= STALE_DAYS) {
-      const staleness = Math.min(daysSince / STALE_DAYS, 3); // cap at 3x
+      const staleness = Math.min(daysSince / STALE_DAYS, PRIORITY_STALE_CAP);
       const score = PRIORITY_STALE * staleness;
       if (score > bestScore) {
         bestScore = score;
