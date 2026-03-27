@@ -9,6 +9,8 @@ import {
   verifyStatementQuestion,
   verifyPlaceValueChoiceClaims,
   verifyPersonQuestion,
+  verifyDivisibilityQuestion,
+  verifyRepeatingSequenceQuestion,
   validateGeneratedQuestion,
 } from "./validate-question";
 
@@ -948,5 +950,362 @@ describe("validateGeneratedQuestion — unverifiable place value safety net", ()
       "test"
     );
     expect(result).toBe("E) 40,000");
+  });
+});
+
+// ─── verifyDivisibilityQuestion ─────────────────────────────────────
+
+describe("verifyDivisibilityQuestion", () => {
+  // --- Non-divisibility questions return undefined ---
+
+  it("returns undefined for non-divisibility questions", () => {
+    expect(
+      verifyDivisibilityQuestion(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7", "D) 8", "E) 9"],
+        "C) 7"
+      )
+    ).toBeUndefined();
+  });
+
+  // --- Family A: target in question, divisors in choices ---
+
+  it("rejects when no choice divides the target (the 4826 bug)", () => {
+    expect(
+      verifyDivisibilityQuestion(
+        "Maya is organizing her sticker collection. She has 4,826 stickers total. She wants to divide them equally into groups, with no stickers left over. Which of these group sizes would work?",
+        ["A) 3 groups", "B) 5 groups", "C) 6 groups", "D) 8 groups", "E) 9 groups"],
+        "E) 9 groups"
+      )
+    ).toBeNull();
+  });
+
+  it("passes correct AI answer for 'divides equally' question", () => {
+    // 120 / 8 = 15 ✓
+    expect(
+      verifyDivisibilityQuestion(
+        "Which number divides 120 equally?",
+        ["A) 7", "B) 9", "C) 8", "D) 11", "E) 13"],
+        "C) 8"
+      )
+    ).toBeUndefined();
+  });
+
+  it("auto-corrects wrong AI answer when exactly 1 valid choice", () => {
+    // 24: factors include 6, but not 5, 7, or 9
+    expect(
+      verifyDivisibilityQuestion(
+        "Which number divides 24 equally?",
+        ["A) 5", "B) 7", "C) 6", "D) 9", "E) 11"],
+        "A) 5"
+      )
+    ).toBe("C) 6");
+  });
+
+  it("rejects when multiple choices divide the target", () => {
+    // 24: 3, 4, and 6 all divide it
+    expect(
+      verifyDivisibilityQuestion(
+        "Which number divides 24 equally?",
+        ["A) 3", "B) 4", "C) 6", "D) 9", "E) 11"],
+        "A) 3"
+      )
+    ).toBeNull();
+  });
+
+  it("handles 'groups' suffix in choices", () => {
+    // 120 / 8 = 15 ✓
+    expect(
+      verifyDivisibilityQuestion(
+        "Which group size divides 120 equally into groups?",
+        ["A) 7 groups", "B) 9 groups", "C) 8 groups", "D) 11 groups", "E) 13 groups"],
+        "B) 9 groups"
+      )
+    ).toBe("C) 8 groups");
+  });
+
+  it("handles comma-formatted target number", () => {
+    // 1,200 / 8 = 150 ✓
+    expect(
+      verifyDivisibilityQuestion(
+        "Which number divides 1,200 equally?",
+        ["A) 7", "B) 11", "C) 8", "D) 13", "E) 17"],
+        "A) 7"
+      )
+    ).toBe("C) 8");
+  });
+
+  it("detects 'factor of N' phrasing", () => {
+    // 36: factor 9 ✓, but not 5, 7, 8, 11
+    expect(
+      verifyDivisibilityQuestion(
+        "Which of these is a factor of 36?",
+        ["A) 5", "B) 7", "C) 8", "D) 9", "E) 11"],
+        "A) 5"
+      )
+    ).toBe("D) 9");
+  });
+
+  it("detects 'no stickers left over' phrasing with target number", () => {
+    // 100 / 5 = 20 ✓
+    expect(
+      verifyDivisibilityQuestion(
+        "Sam has 100 stickers. He wants to share them with no stickers left over. Which group size works?",
+        ["A) 3", "B) 7", "C) 5", "D) 9", "E) 11"],
+        "A) 3"
+      )
+    ).toBe("C) 5");
+  });
+
+  // --- Family B: divisor in question, dividends in choices ---
+
+  it("detects 'divisible by D' and auto-corrects", () => {
+    // 15 is divisible by 3 ✓
+    expect(
+      verifyDivisibilityQuestion(
+        "Which of the following is divisible by 3?",
+        ["A) 10", "B) 14", "C) 15", "D) 16", "E) 17"],
+        "A) 10"
+      )
+    ).toBe("C) 15");
+  });
+
+  it("detects 'divisible by both D1 and D2'", () => {
+    // 24 is divisible by both 3 and 4 ✓
+    expect(
+      verifyDivisibilityQuestion(
+        "Which is divisible by both 3 and 4?",
+        ["A) 16", "B) 18", "C) 24", "D) 28", "E) 32"],
+        "A) 16"
+      )
+    ).toBe("C) 24");
+  });
+
+  it("passes correct answer for 'divisible by both'", () => {
+    expect(
+      verifyDivisibilityQuestion(
+        "Which is divisible by both 3 and 4?",
+        ["A) 16", "B) 18", "C) 24", "D) 28", "E) 32"],
+        "C) 24"
+      )
+    ).toBeUndefined();
+  });
+
+  it("detects 'multiple of D' phrasing", () => {
+    // 42 = 7 × 6 ✓
+    expect(
+      verifyDivisibilityQuestion(
+        "Which of these is a multiple of 7?",
+        ["A) 22", "B) 33", "C) 42", "D) 50", "E) 55"],
+        "A) 22"
+      )
+    ).toBe("C) 42");
+  });
+
+  it("rejects Family B when no choice is valid", () => {
+    // None of 10, 14, 16, 17, 19 are divisible by 3
+    expect(
+      verifyDivisibilityQuestion(
+        "Which of the following is divisible by 3?",
+        ["A) 10", "B) 14", "C) 16", "D) 17", "E) 19"],
+        "A) 10"
+      )
+    ).toBeNull();
+  });
+
+  it("rejects Family B when multiple choices are valid", () => {
+    // 12 and 24 are both divisible by both 3 and 4
+    expect(
+      verifyDivisibilityQuestion(
+        "Which is divisible by both 3 and 4?",
+        ["A) 12", "B) 18", "C) 24", "D) 28", "E) 32"],
+        "A) 12"
+      )
+    ).toBeNull();
+  });
+});
+
+// ─── validateGeneratedQuestion — divisibility integration ────────────
+
+describe("validateGeneratedQuestion — divisibility integration", () => {
+  it("rejects impossible divisibility question through the full gateway", () => {
+    expect(
+      validateGeneratedQuestion(
+        "Maya is organizing her sticker collection. She has 4,826 stickers total. She wants to divide them equally into groups, with no stickers left over. Which of these group sizes would work?",
+        ["A) 3 groups", "B) 5 groups", "C) 6 groups", "D) 8 groups", "E) 9 groups"],
+        "E) 9 groups",
+        "test"
+      )
+    ).toBeNull();
+  });
+
+  it("auto-corrects divisibility through the full gateway", () => {
+    expect(
+      validateGeneratedQuestion(
+        "Which number divides 24 equally?",
+        ["A) 5", "B) 7", "C) 6", "D) 9", "E) 11"],
+        "A) 5",
+        "test"
+      )
+    ).toBe("C) 6");
+  });
+
+  it("passes correct divisibility answer through the full gateway", () => {
+    expect(
+      validateGeneratedQuestion(
+        "Which number divides 120 equally?",
+        ["A) 7", "B) 9", "C) 8", "D) 11", "E) 13"],
+        "C) 8",
+        "test"
+      )
+    ).toBe("C) 8");
+  });
+
+  it("non-divisibility questions still pass through unaffected", () => {
+    expect(
+      validateGeneratedQuestion(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7", "D) 8", "E) 9"],
+        "C) 7",
+        "test"
+      )
+    ).toBe("C) 7");
+  });
+});
+
+// ─── verifyStatementQuestion — implicit claims (Bug 1 fix) ──────────
+
+describe("verifyStatementQuestion — implicit number references", () => {
+  it("rejects the 52,739 bug: multiple true statements with implicit refs", () => {
+    const question = "Alex is counting the points scored by his favorite basketball team this season. The team scored 52,739 points total. Which statement about 52,739 is correct?";
+    const choices = [
+      "A) The digit 7 has a value of 700",           // TRUE: 7 in hundreds
+      "B) The number is even because it ends in 9",   // FALSE: ends in 9 = odd
+      "C) The digit 2 is in the ten-thousands place",  // FALSE: 2 in thousands
+      "D) If you multiply this number by 10, you get 527,390", // TRUE: 52739*10=527390
+      "E) The digit 5 has a value of 5,000",           // FALSE: 5 in ten-thousands = 50,000
+    ];
+    expect(verifyStatementQuestion(question, choices)).toBeNull();
+  });
+
+  it("passes statement questions with exactly 1 true implicit claim", () => {
+    const question = "Which statement about 38,472 is correct?";
+    const choices = [
+      "A) The digit 3 has a value of 300",             // FALSE: 3 in ten-thousands = 30,000
+      "B) The digit 4 is in the hundreds place",        // TRUE: 4 is in hundreds
+      "C) The digit 8 has a value of 800",             // FALSE: 8 in thousands = 8,000
+      "D) The number is odd",                          // FALSE: ends in 2 = even
+    ];
+    expect(verifyStatementQuestion(question, choices)).toBeUndefined();
+  });
+
+  it("rejects when all implicit claims are false", () => {
+    const question = "Which statement about 52,739 is correct?";
+    const choices = [
+      "A) The digit 7 has a value of 7,000",           // FALSE: 700
+      "B) The number is even because it ends in 9",     // FALSE
+      "C) The digit 2 is in the ten-thousands place",   // FALSE: thousands
+      "E) The digit 5 has a value of 5,000",           // FALSE: 50,000
+    ];
+    expect(verifyStatementQuestion(question, choices)).toBeNull();
+  });
+
+  it("catches 'number is even because ends in 9' as false", () => {
+    const question = "Which statement about 52,739 is correct?";
+    const choices = [
+      "A) The number is even because it ends in 9",     // FALSE: 9 is odd
+      "B) The digit 7 has a value of 700",             // TRUE
+      "C) The digit 2 is in the ten-thousands place",   // FALSE
+      "D) The digit 5 has a value of 5,000",           // FALSE
+    ];
+    // B is the only true one → should pass
+    expect(verifyStatementQuestion(question, choices)).toBeUndefined();
+  });
+});
+
+// ─── verifyRepeatingSequenceQuestion ────────────────────────────────
+
+describe("verifyRepeatingSequenceQuestion", () => {
+  it("returns undefined for non-sequence questions", () => {
+    expect(
+      verifyRepeatingSequenceQuestion(
+        "What is 3 + 4?",
+        ["A) 5", "B) 6", "C) 7", "D) 8"],
+        "C) 7"
+      )
+    ).toBeUndefined();
+  });
+
+  it("auto-corrects the bracelet bug (18th bead in red,red,blue,green cycle)", () => {
+    const question = "Sophia is making friendship bracelets and decides to use different colored beads in a repeating pattern. Looking at her first bracelet, she used this sequence: red, red, blue, green, red, red, blue, green, red, red, blue, green. If Sophia continues this exact pattern, what color will the 18th bead be?";
+    const choices = ["A) red", "B) blue", "C) green", "D) yellow", "E) purple"];
+    // Cycle: red, red, blue, green (length 4)
+    // 18 mod 4 = 2 → index 1 → "red"
+    expect(
+      verifyRepeatingSequenceQuestion(question, choices, "B) blue")
+    ).toBe("A) red");
+  });
+
+  it("passes correct AI answer for sequence question", () => {
+    const question = "A pattern uses: red, blue, green, red, blue, green, red, blue, green. What is the 10th item?";
+    const choices = ["A) red", "B) blue", "C) green", "D) yellow"];
+    // Cycle: red, blue, green (length 3). 10 mod 3 = 1 → index 0 → "red"
+    expect(
+      verifyRepeatingSequenceQuestion(question, choices, "A) red")
+    ).toBeUndefined();
+  });
+
+  it("rejects when no choice matches computed answer", () => {
+    const question = "Pattern: red, blue, green, red, blue, green. What is the 7th item?";
+    const choices = ["A) yellow", "B) purple", "C) orange", "D) pink"];
+    // Cycle: red, blue, green (length 3). 7 mod 3 = 1 → index 0 → "red" — not in choices
+    expect(
+      verifyRepeatingSequenceQuestion(question, choices, "A) yellow")
+    ).toBeNull();
+  });
+
+  it("handles longer cycles", () => {
+    const question = "A necklace follows this pattern: red, blue, yellow, green, red, blue, yellow, green. What color is the 11th bead?";
+    const choices = ["A) red", "B) blue", "C) yellow", "D) green"];
+    // Cycle: red, blue, yellow, green (length 4). 11 mod 4 = 3 → index 2 → "yellow"
+    expect(
+      verifyRepeatingSequenceQuestion(question, choices, "A) red")
+    ).toBe("C) yellow");
+  });
+
+  it("handles position phrased as 'bead number N'", () => {
+    const question = "Beads follow this order: pink, white, pink, white, pink, white. What color is bead number 7?";
+    const choices = ["A) pink", "B) white", "C) red", "D) blue"];
+    // Cycle: pink, white (length 2). 7 mod 2 = 1 → index 0 → "pink"
+    expect(
+      verifyRepeatingSequenceQuestion(question, choices, "B) white")
+    ).toBe("A) pink");
+  });
+});
+
+// ─── validateGeneratedQuestion — sequence integration ────────────────
+
+describe("validateGeneratedQuestion — sequence integration", () => {
+  it("auto-corrects pattern question through the full gateway", () => {
+    const question = "A bracelet follows this sequence: red, blue, green, red, blue, green, red, blue, green. What is the 10th bead?";
+    const choices = ["A) red", "B) blue", "C) green", "D) yellow", "E) purple"];
+    // Cycle: red, blue, green (length 3). 10 mod 3 = 1 → index 0 → "red"
+    expect(
+      validateGeneratedQuestion(question, choices, "B) blue", "test")
+    ).toBe("A) red");
+  });
+
+  it("rejects multi-true statement question through the full gateway", () => {
+    const question = "Which statement about 52,739 is correct?";
+    const choices = [
+      "A) The digit 7 has a value of 700",
+      "B) The number is even because it ends in 9",
+      "C) The digit 2 is in the ten-thousands place",
+      "D) If you multiply this number by 10, you get 527,390",
+      "E) The digit 5 has a value of 5,000",
+    ];
+    expect(
+      validateGeneratedQuestion(question, choices, "A) The digit 7 has a value of 700", "test")
+    ).toBeNull();
   });
 });

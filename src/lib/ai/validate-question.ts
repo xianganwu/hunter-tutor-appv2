@@ -530,7 +530,7 @@ export function verifyStatementQuestion(
   const trueStatements: string[] = [];
 
   for (const choice of choices) {
-    const result = verifyNumberStatement(choice, contextNumbers);
+    const result = evaluateMathClaim(choice, contextNumbers);
     if (result !== null) {
       verifiedCount++;
       if (result) {
@@ -835,6 +835,50 @@ function evaluateMathClaim(claim: string, contextNumbers: string[]): boolean | n
     return a < b;
   }
 
+  // ── Arithmetic operation claims ──
+
+  // "multiply this number by X, you get Y" / "times X equals Y"
+  const multiplyMatch = claim.match(/(?:multiply|times|×)\s+(?:this\s+)?(?:number\s+)?(?:by\s+)?(\d+).*?(?:get|equals?|results?\s+in|is|=)\s+(\d[\d,]*)/i);
+  if (multiplyMatch && primaryNumStr) {
+    const multiplier = parseInt(multiplyMatch[1], 10);
+    const claimed = parseInt(multiplyMatch[2].replace(/,/g, ""), 10);
+    const expected = parseInt(primaryNumStr, 10) * multiplier;
+    if (!isNaN(multiplier) && !isNaN(claimed) && !isNaN(expected)) return expected === claimed;
+  }
+
+  // "divide this number by X, you get Y"
+  const divideMatch = claim.match(/(?:divide)\s+(?:this\s+)?(?:number\s+)?(?:by\s+)?(\d+).*?(?:get|equals?|results?\s+in|is|=)\s+(\d[\d,]*)/i);
+  if (divideMatch && primaryNumStr) {
+    const divisor = parseInt(divideMatch[1], 10);
+    const claimed = parseInt(divideMatch[2].replace(/,/g, ""), 10);
+    const num = parseInt(primaryNumStr, 10);
+    if (divisor > 0 && !isNaN(claimed) && !isNaN(num)) return Math.floor(num / divisor) === claimed;
+  }
+
+  // "number is even/odd" with implicit context number (no explicit number in claim)
+  const implicitOddEven = claim.match(/(?:the\s+)?number\s+is\s+(odd|even)/i);
+  if (implicitOddEven && primaryNumStr) {
+    const num = parseInt(primaryNumStr, 10);
+    if (!isNaN(num)) {
+      const isOdd = num % 2 !== 0;
+      return implicitOddEven[1].toLowerCase() === "odd" ? isOdd : !isOdd;
+    }
+  }
+
+  // "number is even/odd because it ends in D"
+  const endsInMatch = claim.match(/(?:the\s+)?number\s+is\s+(odd|even)\s+because\s+it\s+ends\s+in\s+(\d)/i);
+  if (endsInMatch) {
+    const claimedParity = endsInMatch[1].toLowerCase();
+    const lastDigit = parseInt(endsInMatch[2], 10);
+    // First verify the ending digit matches the context number
+    if (primaryNumStr) {
+      const actualLastDigit = parseInt(primaryNumStr[primaryNumStr.length - 1], 10);
+      if (actualLastDigit !== lastDigit) return false; // wrong ending digit
+    }
+    const digitIsEven = lastDigit % 2 === 0;
+    return claimedParity === "even" ? digitIsEven : !digitIsEven;
+  }
+
   return null;
 }
 
@@ -938,6 +982,348 @@ export function verifyPersonQuestion(
   return matchingChoice;
 }
 
+// ─── Divisibility / Factor Verification ─────────────────────────────
+
+/**
+ * Extract the leading integer from a choice, ignoring trailing text.
+ * "A) 3 groups" → 3, "A) 4,826" → 4826, "A) 3" → 3.
+ * Returns NaN if no leading number found.
+ */
+function extractLeadingNumber(choice: string): number {
+  const stripped = choice.replace(/^[A-Ea-e]\)\s*/, "").trim();
+  const match = stripped.match(/^([0-9,]+)/);
+  if (!match) return NaN;
+  return parseInt(match[1].replace(/,/g, ""), 10);
+}
+
+/**
+ * Family A: question names a target number; choices are candidate divisors.
+ * e.g. "Which group size divides 4,826 equally?"
+ */
+const DIVISOR_IN_CHOICES_PATTERNS: RegExp[] = [
+  // "divide(s) N equally/evenly" or "split N equally"
+  /(?:divides?|splits?|breaks?)\s+(?:the\s+)?(?:number\s+)?([0-9,]+)\s+(?:equally|evenly|into\s+equal)/i,
+  // "N divided equally/evenly into groups"
+  /([0-9,]+)\s+(?:stickers?|items?|objects?|things?|pieces?|books?|cards?|marbles?|coins?|candies|apples?|cookies?)?\s*(?:\.?\s*(?:she|he|they|it)\s+)?.*?divide[sd]?\s+(?:them\s+)?(?:equally|evenly)/i,
+  // "factor(s) of N"
+  /factors?\s+of\s+([0-9,]+)/i,
+  // "divides evenly into N"
+  /divides?\s+(?:evenly\s+)?into\s+([0-9,]+)/i,
+  // "N with no remainder / no left over / no [stuff] left over"
+  /([0-9,]+)\s+.*?(?:no|without|zero)\s+.*?(?:remainder|left\s*over)/i,
+  // "group size(s) ... would work" with number earlier in text
+  /(\d{2,}(?:,\d{3})*)\s+.*?group\s+sizes?\s+(?:would|could|will)\s+work/i,
+];
+
+/**
+ * Family B: question names a divisor; choices are candidate dividends.
+ * e.g. "Which of the following is divisible by 3?"
+ */
+const DIVIDEND_IN_CHOICES_PATTERNS: RegExp[] = [
+  // "divisible by D" / "divisible by both D1 and D2"
+  /divisible\s+by\s+(?:both\s+)?(\d+)(?:\s+and\s+(\d+))?/i,
+  // "can be divided (evenly) by D"
+  /(?:can\s+be\s+)?divided\s+(?:evenly\s+)?by\s+(\d+)/i,
+  // "is a multiple of D"
+  /multiple\s+of\s+(\d+)/i,
+];
+
+function verifyDivisorsInChoices(
+  target: number,
+  choices: string[],
+  correctAnswer: string,
+): string | null | undefined {
+  const validChoices: string[] = [];
+  let allParseable = true;
+
+  for (const choice of choices) {
+    const divisor = extractLeadingNumber(choice);
+    if (isNaN(divisor) || divisor <= 0) {
+      allParseable = false;
+      continue;
+    }
+    if (target % divisor === 0) {
+      validChoices.push(choice);
+    }
+  }
+
+  // If we couldn't parse most choices, bail out — not confident enough
+  if (!allParseable && validChoices.length === 0) return undefined;
+
+  // Check if AI's answer is valid
+  const correctDivisor = extractLeadingNumber(correctAnswer);
+  if (!isNaN(correctDivisor) && correctDivisor > 0 && target % correctDivisor === 0) {
+    // AI got it right — but reject if multiple choices are also valid (ambiguous)
+    if (validChoices.length > 1) {
+      parseWarn({
+        parser: "verifyDivisibilityQuestion",
+        field: "correctAnswer",
+        fallback: "REJECTED",
+        rawSnippet: `${validChoices.length} choices divide ${target}: ${validChoices.map(c => c.replace(/^[A-Ea-e]\)\s*/, "").trim()).join(", ")}`,
+      });
+      return null;
+    }
+    return undefined; // AI correct, exactly 1 valid choice
+  }
+
+  // AI's answer is wrong
+  if (validChoices.length === 1) {
+    parseWarn({
+      parser: "verifyDivisibilityQuestion",
+      field: "correctAnswer",
+      fallback: `AUTO-CORRECTED to "${validChoices[0]}"`,
+      rawSnippet: `AI said "${correctAnswer}" but ${correctDivisor} does not divide ${target}. Valid: ${validChoices[0]}`,
+    });
+    return validChoices[0];
+  }
+
+  if (validChoices.length === 0) {
+    parseWarn({
+      parser: "verifyDivisibilityQuestion",
+      field: "correctAnswer",
+      fallback: "REJECTED",
+      rawSnippet: `No choice divides ${target} evenly. Choices: ${choices.map(c => extractLeadingNumber(c)).join(", ")}`,
+    });
+    return null;
+  }
+
+  // Multiple valid but AI picked wrong one — ambiguous
+  parseWarn({
+    parser: "verifyDivisibilityQuestion",
+    field: "correctAnswer",
+    fallback: "REJECTED",
+    rawSnippet: `AI wrong and ${validChoices.length} choices divide ${target}: ${validChoices.map(c => c.replace(/^[A-Ea-e]\)\s*/, "").trim()).join(", ")}`,
+  });
+  return null;
+}
+
+function verifyDividendsInChoices(
+  divisors: number[],
+  choices: string[],
+  correctAnswer: string,
+): string | null | undefined {
+  const validChoices: string[] = [];
+  let allParseable = true;
+
+  for (const choice of choices) {
+    const candidate = extractLeadingNumber(choice);
+    if (isNaN(candidate) || candidate <= 0) {
+      allParseable = false;
+      continue;
+    }
+    if (divisors.every(d => candidate % d === 0)) {
+      validChoices.push(choice);
+    }
+  }
+
+  if (!allParseable && validChoices.length === 0) return undefined;
+
+  // Check if AI's answer is valid
+  const correctCandidate = extractLeadingNumber(correctAnswer);
+  if (!isNaN(correctCandidate) && correctCandidate > 0 && divisors.every(d => correctCandidate % d === 0)) {
+    if (validChoices.length > 1) {
+      parseWarn({
+        parser: "verifyDivisibilityQuestion",
+        field: "correctAnswer",
+        fallback: "REJECTED",
+        rawSnippet: `${validChoices.length} choices are divisible by ${divisors.join(" and ")}: ${validChoices.map(c => c.replace(/^[A-Ea-e]\)\s*/, "").trim()).join(", ")}`,
+      });
+      return null;
+    }
+    return undefined;
+  }
+
+  if (validChoices.length === 1) {
+    parseWarn({
+      parser: "verifyDivisibilityQuestion",
+      field: "correctAnswer",
+      fallback: `AUTO-CORRECTED to "${validChoices[0]}"`,
+      rawSnippet: `AI said "${correctAnswer}" but ${correctCandidate} is not divisible by ${divisors.join(" and ")}. Valid: ${validChoices[0]}`,
+    });
+    return validChoices[0];
+  }
+
+  if (validChoices.length === 0) {
+    parseWarn({
+      parser: "verifyDivisibilityQuestion",
+      field: "correctAnswer",
+      fallback: "REJECTED",
+      rawSnippet: `No choice is divisible by ${divisors.join(" and ")}. Choices: ${choices.map(c => extractLeadingNumber(c)).join(", ")}`,
+    });
+    return null;
+  }
+
+  parseWarn({
+    parser: "verifyDivisibilityQuestion",
+    field: "correctAnswer",
+    fallback: "REJECTED",
+    rawSnippet: `AI wrong and ${validChoices.length} choices are divisible by ${divisors.join(" and ")}: ${validChoices.map(c => c.replace(/^[A-Ea-e]\)\s*/, "").trim()).join(", ")}`,
+  });
+  return null;
+}
+
+/**
+ * Verify a divisibility/factor question's correct answer is mathematically valid.
+ *
+ * Handles two families:
+ *   (A) "Which divides N?" — choices are candidate divisors, question has target N
+ *   (B) "Which is divisible by D?" — choices are candidate dividends, question has divisor D
+ *
+ * Returns undefined if not a divisibility question (no opinion).
+ * Returns null if no choice satisfies the divisibility constraint (reject).
+ * Returns string if the AI's answer was wrong but a single correct choice exists (auto-correct).
+ */
+export function verifyDivisibilityQuestion(
+  questionText: string,
+  choices: string[],
+  correctAnswer: string,
+): string | null | undefined {
+  // --- Try Family A: target number in question, divisors in choices ---
+  for (const pattern of DIVISOR_IN_CHOICES_PATTERNS) {
+    const match = questionText.match(pattern);
+    if (match) {
+      const targetNumber = parseInt(match[1].replace(/,/g, ""), 10);
+      if (!isNaN(targetNumber) && targetNumber > 0) {
+        return verifyDivisorsInChoices(targetNumber, choices, correctAnswer);
+      }
+    }
+  }
+
+  // --- Try Family B: divisor(s) in question, dividends in choices ---
+  for (const pattern of DIVIDEND_IN_CHOICES_PATTERNS) {
+    const match = questionText.match(pattern);
+    if (match) {
+      const divisors: number[] = [];
+      const d1 = parseInt(match[1], 10);
+      if (!isNaN(d1) && d1 > 0) divisors.push(d1);
+      if (match[2]) {
+        const d2 = parseInt(match[2], 10);
+        if (!isNaN(d2) && d2 > 0) divisors.push(d2);
+      }
+      if (divisors.length > 0) {
+        return verifyDividendsInChoices(divisors, choices, correctAnswer);
+      }
+    }
+  }
+
+  return undefined; // not a divisibility question
+}
+
+// ─── Repeating Sequence / Pattern Verification ──────────────────────
+
+/**
+ * Extract a repeating sequence from question text.
+ * Looks for comma-separated lists of words (colors, letters, shapes, etc.)
+ * and finds the shortest repeating cycle.
+ *
+ * Returns the cycle array, or null if no repeating pattern found.
+ */
+function extractRepeatingCycle(sequenceText: string): string[] | null {
+  // Normalize: lowercase, collapse whitespace
+  const items = sequenceText.split(/,\s*/).map(s => s.trim().toLowerCase()).filter(Boolean);
+  if (items.length < 4) return null; // need at least 2 full cycles
+
+  // Try cycle lengths from 2 up to half the sequence
+  for (let len = 2; len <= Math.floor(items.length / 2); len++) {
+    const cycle = items.slice(0, len);
+    let matches = true;
+    for (let i = len; i < items.length; i++) {
+      if (items[i] !== cycle[i % len]) {
+        matches = false;
+        break;
+      }
+    }
+    if (matches) return cycle;
+  }
+  return null;
+}
+
+/**
+ * Verify a repeating sequence/pattern question.
+ *
+ * Detects questions like:
+ *   "Pattern: red, red, blue, green, red, red, blue, green. What color is the 18th bead?"
+ *
+ * Extracts the cycle, computes the answer via modular arithmetic, and verifies.
+ *
+ * Returns undefined if not a sequence question (no opinion).
+ * Returns null if no choice matches the computed answer (reject).
+ * Returns string if the AI's answer was wrong but the correct choice exists (auto-correct).
+ */
+export function verifyRepeatingSequenceQuestion(
+  questionText: string,
+  choices: string[],
+  correctAnswer: string,
+): string | null | undefined {
+  // Must mention position/ordinal ("18th", "25th", "position 18", "bead number 18")
+  const positionMatch = questionText.match(
+    /(?:the\s+)?(\d+)(?:st|nd|rd|th)\s+(?:bead|item|element|shape|color|number|letter|term|object|piece|block|tile|position)/i
+  ) ?? questionText.match(
+    /(?:position|number|bead|item|term)\s+(?:#?\s*)?(\d+)/i
+  );
+  if (!positionMatch) return undefined;
+
+  const position = parseInt(positionMatch[1], 10);
+  if (isNaN(position) || position <= 0) return undefined;
+
+  // Find a comma-separated sequence in the question text
+  // Look for patterns like "sequence: X, X, X, X" or "pattern: X, X, X, X"
+  // or just a long comma-separated list of words (4+ items)
+  const seqMatch = questionText.match(
+    /(?:sequence|pattern|order|used|arrangement|:)\s*:?\s*((?:[a-zA-Z]+,\s*){3,}[a-zA-Z]+)/i
+  ) ?? questionText.match(
+    /((?:[a-zA-Z]+,\s*){5,}[a-zA-Z]+)/i
+  );
+  if (!seqMatch) return undefined;
+
+  const cycle = extractRepeatingCycle(seqMatch[1]);
+  if (!cycle) return undefined;
+
+  // Compute the correct answer using modular arithmetic
+  // Position is 1-indexed: position 1 → cycle[0]
+  const cycleIndex = (position - 1) % cycle.length;
+  const correctItem = cycle[cycleIndex];
+
+  // Check which choices match the computed correct item
+  const matchingChoices: string[] = [];
+  for (const choice of choices) {
+    const stripped = choice.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+    if (stripped === correctItem) {
+      matchingChoices.push(choice);
+    }
+  }
+
+  // Check if AI's answer matches
+  const aiAnswer = correctAnswer.replace(/^[A-Ea-e]\)\s*/, "").trim().toLowerCase();
+  if (aiAnswer === correctItem) {
+    return undefined; // AI got it right
+  }
+
+  // AI's answer is wrong
+  if (matchingChoices.length === 1) {
+    parseWarn({
+      parser: "verifyRepeatingSequenceQuestion",
+      field: "correctAnswer",
+      fallback: `AUTO-CORRECTED to "${matchingChoices[0]}"`,
+      rawSnippet: `Position ${position} in cycle [${cycle.join(", ")}] (len=${cycle.length}) → index ${cycleIndex} → "${correctItem}". AI said "${correctAnswer}"`,
+    });
+    return matchingChoices[0];
+  }
+
+  if (matchingChoices.length === 0) {
+    parseWarn({
+      parser: "verifyRepeatingSequenceQuestion",
+      field: "correctAnswer",
+      fallback: "REJECTED",
+      rawSnippet: `Position ${position} → "${correctItem}" but no choice matches. Cycle: [${cycle.join(", ")}]`,
+    });
+    return null;
+  }
+
+  // Multiple choices match (shouldn't happen with distinct choices, but be safe)
+  return undefined;
+}
+
 // ─── Safety Net: Reject Unverifiable Place Value Questions ───────────
 
 /**
@@ -1023,6 +1409,16 @@ export function validateGeneratedQuestion(
 
   // 5. "Which statement is correct" multi-truth guard
   if (verifyStatementQuestion(questionText, choices) === null) return null;
+
+  // 5.5. Divisibility / factor verification
+  const divResult = verifyDivisibilityQuestion(questionText, choices, verified);
+  if (divResult === null) return null;
+  if (divResult !== undefined) verified = divResult;
+
+  // 5.6. Repeating sequence / pattern verification
+  const seqResult = verifyRepeatingSequenceQuestion(questionText, choices, verified);
+  if (seqResult === null) return null;
+  if (seqResult !== undefined) verified = seqResult;
 
   // 6. Safety net: if question looks like place value but NO verifier could
   //    recognize its format, reject rather than risk serving a wrong answer.

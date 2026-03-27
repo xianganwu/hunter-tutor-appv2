@@ -178,3 +178,26 @@
 **Fix**: Added a `masteryDamper` that tapers the stale boost to zero as mastery goes from 0.85 → 1.0: `masteryDamper = 1 - (mastery - 0.85) / 0.15`. A fully mastered skill now scores 0 when stale, correctly deferring to the SM-2 retention check system for review scheduling.
 
 **Rule**: For any scoring function that combines multiple signals (mastery, staleness, prerequisites), test all combinations of extreme values: {mastery=0, mastery=1} × {stale, fresh} × {has dependents, no dependents}. A scoring function that "looks right" for typical students can badly misbehave for edge-case students.
+
+## Validators Must Use the Most Powerful Verifier Available
+
+**Pattern**: When a validation function can call either a narrow verifier or a broader one with the same return type, always use the broader one. Leaving a weaker verifier in place creates a false sense of coverage.
+
+**What happened**: `verifyStatementQuestion` called `verifyNumberStatement` to check "which statement is correct" choices. But `verifyNumberStatement` only handles statements with EXPLICIT number references ("In 52,739, the digit 7..."). Choices using IMPLICIT references ("The digit 7 has a value of 700" — inferring 52,739 from context) returned `null` (unparseable), so `verifiedCount` stayed below the threshold and questions with 2+ true statements passed validation. Meanwhile, `evaluateMathClaim` — already used by `verifyPersonQuestion` — handles both explicit AND implicit references, plus odd/even, comparisons, and arithmetic claims. Same return type (`boolean | null`), strictly more coverage.
+
+**Fix**: Replaced `verifyNumberStatement` with `evaluateMathClaim` in `verifyStatementQuestion`. Added multiplication/division and implicit odd/even patterns to `evaluateMathClaim`.
+
+**Rule**: When adding a new verifier or modifying validation logic, audit all callers to ensure they use the most capable verifier available. If function A is a strict superset of function B and shares the same interface, no caller should use B. A weaker verifier is a latent bug — it will pass through questions that the stronger verifier would catch.
+
+## AI-Generated Questions Need Deterministic Verification for Every Computable Claim
+
+**Pattern**: If a question's correct answer can be computed deterministically (divisibility, modular arithmetic, place value, odd/even), the validation pipeline MUST compute it — never trust the AI's `CORRECT: [letter]` tag alone. Every new question type that involves computable math needs a corresponding verifier function.
+
+**What happened**: Three classes of AI-generated math questions had no deterministic verification:
+1. **Divisibility**: "Which divides 4,826 equally?" with choices [3,5,6,8,9] — none are factors. No verifier existed.
+2. **Statement questions with implicit claims**: "The digit 7 has value 700" AND "multiply by 10 = 527,390" both true — verifier couldn't parse implicit claims.
+3. **Repeating sequences**: "Pattern: red,red,blue,green. What's the 18th bead?" — AI said blue, correct is red (18 mod 4 = 2 → index 1 → red). No verifier existed.
+
+**Fix**: Added `verifyDivisibilityQuestion`, upgraded `verifyStatementQuestion` to use `evaluateMathClaim`, and added `verifyRepeatingSequenceQuestion` — all following the same return-type contract (`undefined`/`null`/`string`) and wired into the centralized gateway.
+
+**Rule**: For every math skill in the curriculum taxonomy, ask: "Can I verify the correct answer with TypeScript arithmetic?" If yes, write the verifier. If no (e.g., open-ended reading comprehension), document why. The validation gateway comment block should list every skill and its verification status. Unverified computable questions are bugs waiting to happen.
