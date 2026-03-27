@@ -430,13 +430,18 @@ function InstructionsScreen({
 
 function ExamTimer({
   durationMinutes,
+  initialElapsedSeconds = 0,
   onTimeUp,
 }: {
   readonly durationMinutes: number;
+  readonly initialElapsedSeconds?: number;
   readonly onTimeUp: () => void;
 }) {
-  const [remaining, setRemaining] = useState(durationMinutes * 60);
-  const startRef = useRef(Date.now());
+  const totalSeconds = durationMinutes * 60;
+  const [remaining, setRemaining] = useState(Math.max(0, totalSeconds - initialElapsedSeconds));
+  // Shift startRef back by initialElapsedSeconds so the interval calculation
+  // correctly accounts for time already used before this mount.
+  const startRef = useRef(Date.now() - initialElapsedSeconds * 1000);
   const calledRef = useRef(false);
 
   // Store onTimeUp in a ref so the interval effect doesn't depend on callback identity.
@@ -447,10 +452,28 @@ function ExamTimer({
   });
 
   useEffect(() => {
-    startRef.current = Date.now();
-    setRemaining(durationMinutes * 60);
+    startRef.current = Date.now() - initialElapsedSeconds * 1000;
+    setRemaining(Math.max(0, totalSeconds - initialElapsedSeconds));
     calledRef.current = false;
-  }, [durationMinutes]);
+  }, [durationMinutes, initialElapsedSeconds, totalSeconds]);
+
+  // Pause the timer when the tab is hidden (computer sleep, tab switch).
+  // On return, shift startRef forward by the hidden duration so that
+  // background wall-clock time is not counted as exam time.
+  const hiddenAtRef = useRef<number | null>(null);
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.hidden) {
+        hiddenAtRef.current = Date.now();
+      } else if (hiddenAtRef.current !== null) {
+        const away = Date.now() - hiddenAtRef.current;
+        startRef.current += away;
+        hiddenAtRef.current = null;
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -514,6 +537,7 @@ function ElaBooklet({
         <div className="flex items-center gap-4">
           <ExamTimer
             durationMinutes={ELA_DURATION_MINUTES}
+            initialElapsedSeconds={sim.sectionElapsedOnResume}
             onTimeUp={sim.finishEla}
           />
           <button
@@ -749,6 +773,7 @@ function MathBooklet({
         <div className="flex items-center gap-4">
           <ExamTimer
             durationMinutes={MATH_DURATION_MINUTES}
+            initialElapsedSeconds={sim.sectionElapsedOnResume}
             onTimeUp={() => void sim.finishMath()}
           />
           <button
@@ -865,6 +890,7 @@ function SampleMathBooklet({
         <div className="flex items-center gap-4">
           <ExamTimer
             durationMinutes={MATH_DURATION_MINUTES}
+            initialElapsedSeconds={sim.sectionElapsedOnResume}
             onTimeUp={() => void sim.finishMath()}
           />
           <button

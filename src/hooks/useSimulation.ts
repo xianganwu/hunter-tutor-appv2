@@ -227,6 +227,11 @@ export function useSimulation() {
   stateRef.current = state;
   const sectionStartRef = useRef<number>(0);
 
+  // Seconds of exam time already used in the current section before a resume.
+  // 0 on a fresh section start; set to the pre-save work time on resume.
+  // ExamTimer uses this to start at the correct remaining time.
+  const [sectionElapsedOnResume, setSectionElapsedOnResume] = useState(0);
+
   // Track whether we've checked for saved state on mount
   const [savedExam, setSavedExam] = useState<PersistedSimState | null>(null);
   const hasCheckedRef = useRef(false);
@@ -303,12 +308,42 @@ export function useSimulation() {
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, [state.phase]);
 
+  // ── Pause sectionStartRef during tab background/sleep ──
+  // When the tab is hidden, shift sectionStartRef forward by the hidden
+  // duration so finishEla/finishMath only count active exam time.
+  const hiddenAtRef = useRef<number | null>(null);
+  useEffect(() => {
+    const isInProgress = state.phase === "ela" || state.phase === "math";
+    if (!isInProgress) return;
+
+    const onVisibility = () => {
+      if (document.hidden) {
+        hiddenAtRef.current = Date.now();
+      } else if (hiddenAtRef.current !== null) {
+        const away = Date.now() - hiddenAtRef.current;
+        sectionStartRef.current += away;
+        hiddenAtRef.current = null;
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, [state.phase]);
+
   // Resume a saved exam
   const resumeExam = useCallback(() => {
     if (!savedExam || !savedExam.exam) return;
 
-    // Restore the section start time, adjusting for elapsed time since save
-    sectionStartRef.current = savedExam.sectionStartedAt;
+    // Restore the section start time, excluding time the student was away.
+    // elapsedBeforeSave = actual work time between section start and save.
+    // Shift sectionStartRef forward so Date.now() - sectionStartRef gives
+    // only the accumulated work time, not the wall-clock time since original start.
+    const elapsedBeforeSave = savedExam.savedAt - savedExam.sectionStartedAt;
+    sectionStartRef.current = Date.now() - elapsedBeforeSave;
+
+    // Tell ExamTimer how many seconds were already used before the save,
+    // so it starts at the correct remaining time instead of the full duration.
+    const elapsedSec = Math.max(0, Math.floor(elapsedBeforeSave / 1000));
+    setSectionElapsedOnResume(elapsedSec);
 
     setState({
       phase: savedExam.phase,
@@ -446,6 +481,7 @@ export function useSimulation() {
   // Begin ELA section
   const beginEla = useCallback(() => {
     sectionStartRef.current = Date.now();
+    setSectionElapsedOnResume(0);
     setState((s) => ({ ...s, phase: "ela", elaTab: "reading" }));
   }, []);
 
@@ -470,6 +506,7 @@ export function useSimulation() {
   // Begin Math section
   const beginMath = useCallback(() => {
     sectionStartRef.current = Date.now();
+    setSectionElapsedOnResume(0);
     setState((s) => ({
       ...s,
       phase: "math",
@@ -708,6 +745,7 @@ export function useSimulation() {
     state,
     savedExam,
     startExam,
+    sectionElapsedOnResume,
     resumeExam,
     abandonSavedExam,
     beginEla,
