@@ -76,3 +76,67 @@
 **Fix**: `stripSvgBlocks()` extracts all `<svg>...</svg>` blocks and replaces them with `__SVG_N__` placeholders before choice parsing. After parsing, `restoreSvgBlocks()` re-inserts them into the question text so they render in the chat. A non-visual fallback retry ensures students always get a question even if SVG parsing fails.
 
 **Rule**: Any time you add a new content type to AI responses (SVG, HTML tables, code blocks, JSON), audit all downstream parsers that use regexes on the raw response text. The parser was written for plain-text responses and has no concept of structured blocks. Either strip the blocks before parsing, or make the regexes structure-aware.
+
+## Safety Net Rejects Seeded Questions at Tier 5 (Fifth Occurrence)
+
+**Pattern**: When a validator safety net rejects "unverifiable" questions, it must distinguish between questions where the AI computed the math (needs verification) and questions where code pre-computed the math (correct by construction). A safety net that treats all questions identically will reject valid seeded questions whose format doesn't match the finite set of regexes.
+
+**What happened**: A student with 100% mastery on place value (mqr_place_value) always gets tier 5 difficulty. `generatePlaceValueSeed(5)` correctly pre-computes a 6-digit number, target digit, correct value, and distractors. But the seed prompt permits word problems ("You may present as a direct question or a simple word problem"). At tier 5, the AI generates creative word problems where the number appears in a story preamble far from the "digit X" / "value of" phrase. The safety net in `validateGeneratedQuestion()` (validate-question.ts:1030-1049) detects place-value keywords (`looksLikePlaceValueQuestion = true`) but none of the 4 format detectors can parse the creative format (`formatRecognized = false`). Question is rejected. All retry paths generate similar creative formats → all rejected → "Failed to generate a valid question."
+
+**Fix**: Layered approach: (1) Verify seeded questions against the seed's `correctValue` directly instead of parsing English — the seed IS the verification. (2) Cap retention-check difficulty at tier 3-4 since retention tests memory, not ceiling performance. (3) Add tier fallback in `getCachedQuestion()` — if all tier-N attempts fail, retry at tier N-1. (4) Replace raw error strings with child-friendly UI and retry/redirect buttons.
+
+**Rule**: When adding a "reject what you can't verify" safety net, always create an escape hatch for data whose correctness is guaranteed by construction. A safety net that doesn't know the difference between AI-computed and code-computed answers will reject valid questions. The validation pipeline needs a concept of provenance — seeded questions should verify against the seed, not against regex parsing of English. More broadly: validation strictness must be proportional to the uncertainty of the data source.
+
+## Never Use Wall-Clock Timestamps for Elapsed Time in Pausable Contexts
+
+**Pattern**: If a timer can be interrupted (tab background, computer sleep, page close + resume), tracking "when did it start" with `Date.now()` and computing elapsed as `Date.now() - startTime` will include all inactive time. This applies to any feature with a countdown, time limit, or duration measurement.
+
+**What happened**: The practice exam timer stored `sectionStartedAt` (a wall-clock timestamp) and used `Date.now() - sectionStartedAt` for both the countdown display and the final `usedMinutes` calculation. Three bugs resulted:
+1. **Tab background/sleep**: Student minimizes tab for 60 min → timer jumps forward 60 min on return, potentially auto-submitting the section instantly.
+2. **Resume timing corruption**: `sectionStartRef` was restored to the original start timestamp on resume, so `finishEla()` recorded `usedMinutes` that included the entire away period.
+3. **Timer reset on resume**: `ExamTimer` remounted fresh with full duration, giving the student extra time (the pre-resume work was forgotten).
+
+**Fix**: Three coordinated changes:
+- On resume, compute `elapsedBeforeSave = savedAt - sectionStartedAt` and set `sectionStartRef = Date.now() - elapsedBeforeSave` (shift the origin forward to exclude away time).
+- Add `visibilitychange` listeners on both the UI timer and the hook-level ref that shift the start time forward by the hidden duration.
+- Pass `initialElapsedSeconds` to the timer component on resume so it starts at the correct remaining time.
+
+**Rule**: When building any timed feature:
+1. Store **cumulative elapsed time** (seconds used), not a start timestamp.
+2. Add `visibilitychange` handling to pause during tab background.
+3. On resume from persistence, restore elapsed time — not the original start time.
+4. If using `Date.now() - ref` patterns, ensure the ref is shifted forward by any inactive gaps.
+
+## Validation Logic Must Handle All Occurrences, Not Just the First
+
+**Pattern**: `String.indexOf()` returns the first (leftmost) match. When verifying a claim about "digit X in number N," if X appears multiple times, `indexOf` silently picks the wrong occurrence and the validator rejects a correct answer.
+
+**What happened**: `computePlaceValue("424583", 4)` used `indexOf("4")` → index 0 → value 400,000. But the question was about the 4 at the hundreds place (value 400). The validator rejected the correct answer because it only checked the leftmost occurrence. At tier 5 (6-digit numbers), ~85% of numbers have repeated digits, causing near-total question generation failure for students at 100% mastery.
+
+**Fix**: Changed `computePlaceValue` to `computeAllPlaceValues`, returning a `number[]` of values for every occurrence of the digit. All 4 callers updated to check if the claimed value matches *any* valid occurrence.
+
+**Rule**: Whenever verifying a property of a character/digit/token within a string, always consider that it may appear multiple times. Use a loop or `matchAll`/`indexOf` in a loop rather than a single `indexOf` or `match`. If the result is ambiguous (multiple valid values), accept any valid interpretation rather than picking the first.
+
+## Overly Strict Safety Nets Cause Silent Failures
+
+**Pattern**: A safety net that rejects "anything it can't verify" will reject valid inputs when the verifier's format coverage doesn't match the generator's format diversity. The rejection is silent (logged server-side, user sees a generic error), making it hard to diagnose.
+
+**What happened**: The place-value question safety net rejected any question that "looked like place value" (had a multi-digit number + keywords like "digit" or "hundreds") but didn't match any of the narrow verification regexes. The AI was instructed to "vary question format" in batches, generating creative phrasings like "how much does digit 4 contribute" that the narrow regex `/value\s+of\s+(?:the\s+)?digit\s+(\d)\s+in/` couldn't match. Valid questions with correct answers were silently rejected.
+
+**Fix**: Broadened `detectPlaceValueQuestion` from 1 regex pattern to 6, covering "place value of," "how much ... digit X," "digit X represent/contribute," and inverted "In N, ... digit X" word orders.
+
+**Rule**: When adding a safety net that rejects unverifiable inputs:
+1. Ensure the verifier's format coverage matches or exceeds the generator's output diversity.
+2. If the generator is instructed to "vary format," either constrain it to verifiable formats or expand the verifier.
+3. Log rejections with enough detail to diagnose false positives (the existing `parseWarn` logging was good — the problem was that nobody was monitoring it).
+4. Prefer "accept if plausible" over "reject if unverifiable" when the generator is trusted (e.g., seed-guided questions where the math is pre-computed).
+
+## Mastery-Based Scoring Needs Guards at Boundary Values
+
+**Pattern**: Scoring algorithms that work well in the middle range (mastery 0.3–0.8) can produce counterintuitive results at the extremes (0.0 or 1.0). Always test boundary values.
+
+**What happened**: The `scoreSkill` function's "stale" check gave priority score `40 * staleness` to any skill not practiced in 7+ days, regardless of mastery. A skill at 100% mastery (fully learned, no need for practice) that was "stale" for 14 days scored 80 — higher than near-mastery skills (50–57) and new skills (35). The daily plan kept routing students back to already-mastered topics.
+
+**Fix**: Added a `masteryDamper` that tapers the stale boost to zero as mastery goes from 0.85 → 1.0: `masteryDamper = 1 - (mastery - 0.85) / 0.15`. A fully mastered skill now scores 0 when stale, correctly deferring to the SM-2 retention check system for review scheduling.
+
+**Rule**: For any scoring function that combines multiple signals (mastery, staleness, prerequisites), test all combinations of extreme values: {mastery=0, mastery=1} × {stale, fresh} × {has dependents, no dependents}. A scoring function that "looks right" for typical students can badly misbehave for edge-case students.

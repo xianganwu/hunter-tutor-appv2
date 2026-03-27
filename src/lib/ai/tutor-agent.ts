@@ -358,7 +358,8 @@ Give me a clear explanation with one worked example. End with an encouraging tra
     recentQuestions?: string[]
   ): Promise<GeneratedQuestion | null> {
     // Compute-first: for place value, generate the math deterministically
-    const pvSeed = isPlaceValueSkill(skill.skill_id) ? formatSeedPrompt(generatePlaceValueSeed(difficultyTier)) : "";
+    const seed = isPlaceValueSkill(skill.skill_id) ? generatePlaceValueSeed(difficultyTier) : undefined;
+    const pvSeed = seed ? formatSeedPrompt(seed) : "";
 
     const needsVisual = isVisualSkill(skill.skill_id);
     const visualHint = needsVisual
@@ -402,7 +403,7 @@ ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
       ],
     });
 
-    const result = parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier);
+    const result = parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier, seed?.correctValue);
 
     // Safety net: if a visual question failed parsing, retry once without
     // the visual requirement so the student always gets a question.
@@ -440,7 +441,7 @@ ${pvSeed}`,
           },
         ],
       });
-      return parseGeneratedQuestion(extractText(fallbackResponse), skill.skill_id, difficultyTier);
+      return parseGeneratedQuestion(extractText(fallbackResponse), skill.skill_id, difficultyTier, seed?.correctValue);
     }
 
     return result;
@@ -724,9 +725,10 @@ Context: ${context}`,
 
     // Compute-first: for place value, generate seeds for every question in the batch
     const tier = difficultyTier ?? skill.difficulty_tier;
-    const pvBatchSeed = isPlaceValueSkill(skill.skill_id)
-      ? formatBatchSeedPrompt(Array.from({ length: count }, () => generatePlaceValueSeed(tier)))
-      : "";
+    const batchSeeds = isPlaceValueSkill(skill.skill_id)
+      ? Array.from({ length: count }, () => generatePlaceValueSeed(tier))
+      : undefined;
+    const pvBatchSeed = batchSeeds ? formatBatchSeedPrompt(batchSeeds) : "";
 
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
@@ -802,8 +804,10 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
       }[];
 
       const validated: { questionText: string; correctAnswer: string; answerChoices: string[] }[] = [];
-      for (const q of parsed) {
-        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateDrillBatch");
+      for (let i = 0; i < parsed.length; i++) {
+        const q = parsed[i];
+        const seedValue = batchSeeds?.[i]?.correctValue;
+        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateDrillBatch", seedValue);
         if (verified !== null) {
           validated.push({ questionText: q.questionText, correctAnswer: verified, answerChoices: q.answerChoices });
         }
@@ -846,12 +850,11 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
 
     // Compute-first: inject seeds for place value questions if that skill is in the mix
     const pvSkill = skills.find(s => isPlaceValueSkill(s.skill.skill_id));
-    const pvMixedSeed = pvSkill
-      ? (() => {
-          const pvCount = Math.ceil(totalCount / skills.length);
-          return formatBatchSeedPrompt(Array.from({ length: pvCount }, () => generatePlaceValueSeed(pvSkill.tier)));
-        })()
-      : "";
+    const mixedSeeds = pvSkill
+      ? Array.from({ length: Math.ceil(totalCount / skills.length) }, () => generatePlaceValueSeed(pvSkill.tier))
+      : undefined;
+    const mixedSeedValues = mixedSeeds ? new Set(mixedSeeds.map(s => s.correctValue)) : undefined;
+    const pvMixedSeed = mixedSeeds ? formatBatchSeedPrompt(mixedSeeds) : "";
 
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
@@ -922,7 +925,18 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
 
       const validated: { skillId: string; questionText: string; correctAnswer: string; answerChoices: string[] }[] = [];
       for (const q of parsed) {
-        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateMixedDrillBatch");
+        // For PV questions in a mixed batch, find the seed whose correctValue appears in a choice
+        let seedValue: number | undefined;
+        if (isPlaceValueSkill(q.skillId) && mixedSeedValues) {
+          for (const sv of mixedSeedValues) {
+            const svStr = sv.toLocaleString("en-US");
+            if (q.answerChoices.some(c => c.includes(svStr))) {
+              seedValue = sv;
+              break;
+            }
+          }
+        }
+        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateMixedDrillBatch", seedValue);
         if (verified !== null) {
           validated.push({ skillId: q.skillId, questionText: q.questionText, correctAnswer: verified, answerChoices: q.answerChoices });
         }
@@ -1098,7 +1112,8 @@ export function restoreSvgBlocks(text: string, svgs: readonly string[]): string 
 function parseGeneratedQuestion(
   text: string,
   skillId: string,
-  difficultyTier: DifficultyLevel
+  difficultyTier: DifficultyLevel,
+  seedCorrectValue?: number,
 ): GeneratedQuestion | null {
   // Strip SVG blocks so their content doesn't interfere with choice parsing
   const { cleaned, svgs } = stripSvgBlocks(text);
@@ -1134,7 +1149,7 @@ function parseGeneratedQuestion(
   const correctAnswer = answerChoices[correctIndex];
 
   // Run all validation checks through the centralized gateway
-  const verified = validateGeneratedQuestion(questionText, answerChoices, correctAnswer, "parseGeneratedQuestion");
+  const verified = validateGeneratedQuestion(questionText, answerChoices, correctAnswer, "parseGeneratedQuestion", seedCorrectValue);
   if (verified === null) return null;
 
   return {

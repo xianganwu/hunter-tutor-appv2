@@ -10,6 +10,7 @@ import type {
   SessionSummaryData,
 } from "@/components/tutor/types";
 import type { ConversationMessage, GeneratedQuestion } from "@/lib/ai/tutor-agent";
+import type { DifficultyLevel } from "@/lib/types";
 import {
   adjustDifficulty,
   masteryToTier,
@@ -306,6 +307,11 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
   }, [skillId]);
 
   const initialMastery = priorMastery?.masteryLevel ?? 0.5;
+  // Retention checks test memory, not ceiling performance — cap at tier 4
+  // to avoid tier 5 question generation issues with creative formats
+  const initialTier = isRetentionCheck
+    ? Math.min(masteryToTier(initialMastery), 4) as DifficultyLevel
+    : masteryToTier(initialMastery);
 
   const [state, setState] = useState<SessionState>({
     phase: "initializing",
@@ -313,7 +319,7 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
     activeQuestion: null,
     currentSkillId: skillId,
     mastery: initialMastery,
-    difficultyTier: masteryToTier(initialMastery),
+    difficultyTier: initialTier,
     questionCount: 0,
     correctCount: 0,
     correctStreak: 0,
@@ -579,6 +585,10 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
             phase: "ready",
           }));
         } else {
+          addMessages(makeTutorMsg(
+            "Hmm, I'm having a little trouble finding a question right now. Let's head back and try a different skill!",
+            "text"
+          ));
           setLoading(false);
         }
       } else {
@@ -610,12 +620,19 @@ export function useTutoringSession(skillId: string, isRetentionCheck: boolean = 
             phase: "ready",
           }));
         } else {
+          addMessages(makeTutorMsg(
+            "Hmm, I'm having a little trouble finding a question right now. Let's head back and try a different skill!",
+            "text"
+          ));
           setLoading(false);
         }
       }
     } catch (err) {
-      const errMsg = err instanceof Error ? err.message : "Something went wrong";
-      addMessages(makeTutorMsg(`Sorry, I had trouble starting. ${errMsg}`, "text"));
+      console.error("[session] startSession error:", err);
+      addMessages(makeTutorMsg(
+        "Oops! Something didn't work quite right. Let's try again or pick a different topic!",
+        "text"
+      ));
       setLoading(false);
     }
   }, [skillId, isFirstSession, setLoading, addMessages, addStreamingMessage]);

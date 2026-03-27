@@ -85,7 +85,19 @@ export async function getCachedQuestion(
 
   console.warn("[question-cache] Direct generation failed, retrying with relaxed dedup");
   const trimmed = recentQuestions?.slice(-3);
-  return agent.generateQuestion(skill, difficultyTier, trimmed);
+  const directRetry = await agent.generateQuestion(skill, difficultyTier, trimmed);
+  if (directRetry) return directRetry;
+
+  // Last resort: if all attempts at the current tier failed, drop one tier.
+  // A slightly easier question is always better than an error.
+  if (difficultyTier > 1) {
+    const lowerTier = (difficultyTier - 1) as DifficultyLevel;
+    console.warn(`[question-cache] All tier ${difficultyTier} attempts failed, falling back to tier ${lowerTier}`);
+    const fallback = await agent.generateQuestion(skill, lowerTier, trimmed);
+    if (fallback) return fallback;
+  }
+
+  return null;
 }
 
 /**

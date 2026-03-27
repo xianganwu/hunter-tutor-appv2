@@ -996,6 +996,7 @@ export function validateGeneratedQuestion(
   choices: string[],
   correctAnswer: string,
   parser: string,
+  seedCorrectValue?: number,
 ): string | null {
   // 1. Format: enough choices, all distinct, valid letter
   if (!isValidQuestion(choices, correctAnswer, parser)) return null;
@@ -1025,9 +1026,27 @@ export function validateGeneratedQuestion(
 
   // 6. Safety net: if question looks like place value but NO verifier could
   //    recognize its format, reject rather than risk serving a wrong answer.
-  //    Uses lightweight format detectors (not the full verifiers) so that
-  //    "AI got it right" (verifier returned undefined) doesn't trigger rejection.
+  //    EXCEPTION: seeded questions have pre-computed correct answers — verify
+  //    against the seed value directly instead of parsing English with regexes.
   if (looksLikePlaceValueQuestion(questionText, choices)) {
+    // Seeded questions: the math was computed in code, not by the AI.
+    // Verify the correct answer choice contains the seed's correct value.
+    if (seedCorrectValue !== undefined) {
+      const seedStr = seedCorrectValue.toLocaleString("en-US");
+      const correctText = verified.replace(/^[A-Ea-e]\)\s*/, "").trim();
+      if (!correctText.includes(seedStr)) {
+        parseWarn({
+          parser,
+          field: "seed-mismatch",
+          fallback: "REJECTED",
+          rawSnippet: `Seeded correct value ${seedStr} not found in correct answer "${correctText}"`,
+        });
+        return null;
+      }
+      // Seed matches — question is correct by construction, skip regex format checks
+      return verified;
+    }
+
     const formatRecognized =
       // "value of digit X in N" — recognized by verifyPlaceValueAnswer
       detectPlaceValueQuestion(questionText) !== null ||
