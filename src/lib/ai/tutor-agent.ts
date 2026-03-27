@@ -187,6 +187,10 @@ DO create SVG diagrams for these skill categories (visuals are essential):
 
 GEOMETRY & MEASUREMENT skills (ma_angles_shapes, ma_perimeter_area, ma_coordinate_basics, ma_area_perimeter_volume, ma_coordinate_geometry):
 - Draw the actual shape, angle, or coordinate plot. Students cannot learn geometry without seeing the geometry.
+- Use \`width="350" height="250"\` for geometry SVGs (larger than charts) so labels have room.
+- ANGLE LABELS: Use \`font-size="14"\` and \`font-weight="bold"\` for all angle degree labels (e.g., "65°"). Place each label INSIDE the angle, offset at least 20px from the vertex along the angle bisector. Never place a label directly on top of a vertex point.
+- ANGLE ARCS: For every labeled angle, draw a small arc (radius 18-22px) near the vertex to show exactly which angle is being measured. For 90° angles, draw a small square instead of an arc. The degree label must be positioned next to its own arc, never near a different vertex.
+- Make sure each angle label is unambiguous — a student must be able to tell at a glance which angle each number refers to.
 
 DATA & PROBABILITY skills (ma_data_reading, ma_mean_median_mode, ma_basic_probability, ma_probability_statistics, ma_data_interpretation):
 - Draw actual bar graphs, line graphs, or pie charts instead of describing them in text. A question about "reading a bar graph" MUST show a bar graph.
@@ -199,11 +203,11 @@ When you do include a diagram (rare), follow these SVG rules:
 - CRITICAL ACCURACY: The visual MUST be mathematically correct. If angles are labeled, the drawn angles must visually match (e.g., a triangle with angles 60/50/70 must NOT look equilateral — the sides and angles must look different). If a shape is a right triangle, draw it with a visible right angle. Never draw a shape that contradicts the labels. Double-check that side lengths, angles, and proportions in your SVG are consistent with the math.
 - Output raw SVG tags inline (e.g., \`<svg width="300" height="200" viewBox="0 0 300 200">...</svg>\`).
 - CRITICAL: Keep SVGs compact — under 60 lines of SVG code. Use minimal grid lines (skip fine grids). Avoid verbose patterns/defs when simple shapes suffice.
-- Max dimensions: 300px wide, 200px tall.
+- Max dimensions: 300px wide, 200px tall (except geometry shapes: 350px wide, 250px tall).
 - The SVG will always be rendered on a white background. Use dark colors for text and labels.
 - Use these exact colors: bars/shapes \`#6366f1\` (indigo), \`#22c55e\` (green), \`#f59e0b\` (amber), \`#ef4444\` (red), \`#8b5cf6\` (purple). Text/labels \`#1e293b\`, axis/grid lines \`#94a3b8\`.
 - Always include text labels (axis labels, data labels).
-- Use \`font-family="system-ui, sans-serif"\` and \`font-size="12"\` for labels.
+- Use \`font-family="system-ui, sans-serif"\` and \`font-size="12"\` for labels (\`font-size="14"\` for geometry angle labels).
 - Do NOT reference external images or use \`<image>\` tags. Everything must be self-contained.
 - CRITICAL: Always close every SVG tag properly. The SVG MUST end with \`</svg>\`. Never leave SVG incomplete.
 - Place the SVG on its own line.
