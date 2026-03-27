@@ -1,26 +1,29 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_HAIKU, MODEL_SONNET } from "@/lib/ai/tutor-agent";
+import { sanitizePromptInput } from "@/utils/sanitize-prompt";
 
-// ─── Request Types ────────────────────────────────────────────────────
+// ─── Zod Schemas ──────────────────────────────────────────────────────
 
-type VocabAction =
-  | {
-      type: "generate_context";
-      word: string;
-      definition: string;
-      partOfSpeech: string;
-    }
-  | {
-      type: "evaluate_usage";
-      word: string;
-      definition: string;
-      studentSentence: string;
-    }
-  | {
-      type: "extract_vocab";
-      passageText: string;
-    };
+const VocabActionSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("generate_context"),
+    word: z.string().min(1).max(100),
+    definition: z.string().min(1).max(500),
+    partOfSpeech: z.string().min(1).max(50),
+  }),
+  z.object({
+    type: z.literal("evaluate_usage"),
+    word: z.string().min(1).max(100),
+    definition: z.string().min(1).max(500),
+    studentSentence: z.string().min(1).max(1000),
+  }),
+  z.object({
+    type: z.literal("extract_vocab"),
+    passageText: z.string().min(1).max(10000),
+  }),
+]);
 
 // ─── Response Types ───────────────────────────────────────────────────
 
@@ -54,7 +57,12 @@ export async function POST(
   request: Request
 ): Promise<NextResponse<VocabApiResponse | { error: string }>> {
   try {
-    const body = (await request.json()) as VocabAction;
+    const raw = await request.json();
+    const parsed = VocabActionSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    }
+    const body = parsed.data;
     const client = getAnthropicClient();
 
     switch (body.type) {
@@ -66,7 +74,7 @@ export async function POST(
           messages: [
             {
               role: "user",
-              content: `Generate exactly 3 example sentences for the word "${body.word}" (${body.partOfSpeech}: ${body.definition}). Each sentence should use the word in a different context to help a student understand its meaning.
+              content: `Generate exactly 3 example sentences for the word "${sanitizePromptInput(body.word, 100)}" (${sanitizePromptInput(body.partOfSpeech, 50)}: ${sanitizePromptInput(body.definition, 500)}). Each sentence should use the word in a different context to help a student understand its meaning.
 
 Respond in this EXACT JSON format (no markdown, just raw JSON):
 
@@ -117,9 +125,9 @@ Requirements:
           messages: [
             {
               role: "user",
-              content: `The student is practicing the word "${body.word}" (definition: ${body.definition}).
+              content: `The student is practicing the word "${sanitizePromptInput(body.word, 100)}" (definition: ${sanitizePromptInput(body.definition, 500)}).
 
-They wrote this sentence: "${body.studentSentence}"
+They wrote this sentence: "${sanitizePromptInput(body.studentSentence, 1000)}"
 
 Evaluate whether they used the word correctly and meaningfully. Respond in this EXACT JSON format (no markdown, just raw JSON):
 
@@ -167,7 +175,7 @@ If incorrect: gently explain how the word should be used and give a tip.`,
               content: `Extract 5 to 8 challenging vocabulary words from this passage that a 4th-6th grade student should learn. Choose words that are important for reading comprehension and likely to appear on standardized tests.
 
 Passage:
-${body.passageText}
+${sanitizePromptInput(body.passageText, 10000)}
 
 Respond in this EXACT JSON format (no markdown, just raw JSON):
 

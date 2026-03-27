@@ -1,42 +1,55 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
+import { sanitizePromptInput } from "@/utils/sanitize-prompt";
 
-// ─── Request Types ────────────────────────────────────────────────────
+// ─── Zod Schemas ──────────────────────────────────────────────────────
 
-type ParentAction =
-  | {
-      type: "verify_pin";
-      pin: string;
-    }
-  | {
-      type: "get_assessment";
-      domains: readonly {
-        name: string;
-        mastery: number;
-        strongSkills: readonly string[];
-        weakSkills: readonly string[];
-        trend: string;
-      }[];
-      weeklyMinutes: number;
-      weeklyTarget: number;
-      latestSimPercentile: number | null;
-      readingLevel: number | null;
-      readingWpm: number | null;
-      mistakePatterns: readonly { skillName: string; count: number }[];
-    }
-  | {
-      type: "generate_weekly_digest";
-      practiceDays: number;
-      totalMinutes: number;
-      skillsImproved: readonly { name: string; before: number; after: number }[];
-      areasNeedingAttention: readonly { name: string; mastery: number }[];
-      essaysWritten: number;
-      drillsCompleted: number;
-      badgesEarned: readonly string[];
-      streakCurrent: number;
-      streakLongest: number;
-    };
+const ParentActionSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("verify_pin"),
+    pin: z.string().regex(/^\d{4,6}$/),
+  }),
+  z.object({
+    type: z.literal("get_assessment"),
+    domains: z.array(z.object({
+      name: z.string().min(1).max(200),
+      mastery: z.number().min(0).max(100),
+      strongSkills: z.array(z.string().max(200)).max(50),
+      weakSkills: z.array(z.string().max(200)).max(50),
+      trend: z.string().max(50),
+    })).max(20),
+    weeklyMinutes: z.number().min(0).max(100000),
+    weeklyTarget: z.number().min(0).max(100000),
+    latestSimPercentile: z.number().nullable(),
+    readingLevel: z.number().nullable(),
+    readingWpm: z.number().nullable(),
+    mistakePatterns: z.array(z.object({
+      skillName: z.string().max(200),
+      count: z.number().int().min(0),
+    })).max(50),
+  }),
+  z.object({
+    type: z.literal("generate_weekly_digest"),
+    practiceDays: z.number().int().min(0).max(7),
+    totalMinutes: z.number().min(0).max(100000),
+    skillsImproved: z.array(z.object({
+      name: z.string().max(200),
+      before: z.number().min(0).max(100),
+      after: z.number().min(0).max(100),
+    })).max(50),
+    areasNeedingAttention: z.array(z.object({
+      name: z.string().max(200),
+      mastery: z.number().min(0).max(100),
+    })).max(50),
+    essaysWritten: z.number().int().min(0),
+    drillsCompleted: z.number().int().min(0),
+    badgesEarned: z.array(z.string().max(100)).max(50),
+    streakCurrent: z.number().int().min(0),
+    streakLongest: z.number().int().min(0),
+  }),
+]);
 
 // ─── Response ─────────────────────────────────────────────────────────
 
@@ -54,7 +67,12 @@ export async function POST(
   request: Request
 ): Promise<NextResponse<ParentApiResponse>> {
   try {
-    const body = (await request.json()) as ParentAction;
+    const raw = await request.json();
+    const parsed = ParentActionSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    }
+    const body = parsed.data;
 
     switch (body.type) {
       case "verify_pin": {
@@ -74,13 +92,13 @@ export async function POST(
         const domainSummary = body.domains
           .map(
             (d) =>
-              `- ${d.name}: ${d.mastery}% mastery (trend: ${d.trend})\n  Strong: ${d.strongSkills.join(", ") || "none identified yet"}\n  Needs work: ${d.weakSkills.join(", ") || "none identified yet"}`
+              `- ${sanitizePromptInput(d.name, 200)}: ${d.mastery}% mastery (trend: ${sanitizePromptInput(d.trend, 50)})\n  Strong: ${d.strongSkills.map((s) => sanitizePromptInput(s, 200)).join(", ") || "none identified yet"}\n  Needs work: ${d.weakSkills.map((s) => sanitizePromptInput(s, 200)).join(", ") || "none identified yet"}`
           )
           .join("\n");
 
         const mistakeSummary = body.mistakePatterns
           .slice(0, 5)
-          .map((p) => `- ${p.skillName}: ${p.count} mistakes`)
+          .map((p) => `- ${sanitizePromptInput(p.skillName, 200)}: ${p.count} mistakes`)
           .join("\n");
 
         const response = await client.messages.create({
@@ -141,10 +159,10 @@ FOCUS_AREAS: ["rec1", "rec2", "rec3", "rec4"]`,
         const client = getAnthropicClient();
 
         const skillsImpSummary = body.skillsImproved
-          .map((s) => `- ${s.name}: ${s.before}% → ${s.after}%`)
+          .map((s) => `- ${sanitizePromptInput(s.name, 200)}: ${s.before}% → ${s.after}%`)
           .join("\n");
         const attentionSummary = body.areasNeedingAttention
-          .map((a) => `- ${a.name}: ${a.mastery}% mastery`)
+          .map((a) => `- ${sanitizePromptInput(a.name, 200)}: ${a.mastery}% mastery`)
           .join("\n");
 
         const response = await client.messages.create({
@@ -159,7 +177,7 @@ FOCUS_AREAS: ["rec1", "rec2", "rec3", "rec4"]`,
 Practice: ${body.practiceDays} days, ${body.totalMinutes} minutes
 Streak: ${body.streakCurrent} days (longest: ${body.streakLongest})
 Essays: ${body.essaysWritten}, Drills: ${body.drillsCompleted}
-Badges earned: ${body.badgesEarned.length > 0 ? body.badgesEarned.join(", ") : "none"}
+Badges earned: ${body.badgesEarned.length > 0 ? body.badgesEarned.map((b) => sanitizePromptInput(b, 100)).join(", ") : "none"}
 ${skillsImpSummary ? `Skills improved:\n${skillsImpSummary}` : "No notable skill improvements this week."}
 ${attentionSummary ? `Needs attention:\n${attentionSummary}` : ""}
 

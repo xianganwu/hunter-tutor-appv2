@@ -1,25 +1,28 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET, MODEL_HAIKU } from "@/lib/ai/tutor-agent";
 import { parseError } from "@/lib/ai/parse-logger";
+import { sanitizePromptInput } from "@/utils/sanitize-prompt";
 
-// ─── Request Types ────────────────────────────────────────────────────
+// ─── Zod Schemas ──────────────────────────────────────────────────────
 
-type ReadingAction =
-  | {
-      type: "generate_passage";
-      targetWordCount: number;
-      genre?: string;
-      difficulty?: number;
-    }
-  | {
-      type: "speed_feedback";
-      currentWpm: number;
-      averageWpm: number;
-      dropPercent: number;
-      passageWordCount: number;
-      passageTitle: string;
-    };
+const ReadingActionSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("generate_passage"),
+    targetWordCount: z.number().int().min(50).max(2000),
+    genre: z.string().min(1).max(100).optional(),
+    difficulty: z.number().int().min(1).max(5).optional(),
+  }),
+  z.object({
+    type: z.literal("speed_feedback"),
+    currentWpm: z.number().min(0).max(10000),
+    averageWpm: z.number().min(0).max(10000),
+    dropPercent: z.number().min(0).max(100),
+    passageWordCount: z.number().int().min(1).max(10000),
+    passageTitle: z.string().min(1).max(500),
+  }),
+]);
 
 // ─── Response Types ───────────────────────────────────────────────────
 
@@ -50,12 +53,17 @@ export async function POST(
   request: Request
 ): Promise<NextResponse<ReadingApiResponse | { error: string }>> {
   try {
-    const body = (await request.json()) as ReadingAction;
+    const raw = await request.json();
+    const parsed = ReadingActionSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    }
+    const body = parsed.data;
     const client = getAnthropicClient();
 
     switch (body.type) {
       case "generate_passage": {
-        const genre = body.genre ?? "nonfiction";
+        const genre = sanitizePromptInput(body.genre ?? "nonfiction", 100);
         const difficulty = body.difficulty ?? 3;
         const target = body.targetWordCount;
 
@@ -134,7 +142,7 @@ Requirements:
           messages: [
             {
               role: "user",
-              content: `The student just read "${body.passageTitle}" (${body.passageWordCount} words).
+              content: `The student just read "${sanitizePromptInput(body.passageTitle, 500)}" (${body.passageWordCount} words).
 
 Their speed was ${body.currentWpm} WPM, compared to their average of ${body.averageWpm} WPM — a ${body.dropPercent}% drop.
 

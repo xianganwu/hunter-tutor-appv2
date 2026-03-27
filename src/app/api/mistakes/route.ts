@@ -1,28 +1,34 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 import { getAnthropicClient } from "@/lib/ai/client";
 import { MODEL_SONNET } from "@/lib/ai/tutor-agent";
 import type { MistakeDiagnosis, MistakeCategory } from "@/lib/mistakes";
+import { sanitizePromptInput } from "@/utils/sanitize-prompt";
 
-interface DiagnoseRequest {
-  type: "diagnose";
-  skillId: string;
-  skillName: string;
-  questionText: string;
-  studentAnswer: string;
-  correctAnswer: string;
-  answerChoices: readonly string[];
-}
+// ─── Zod Schemas ──────────────────────────────────────────────────────
 
-interface AnalyzePatternsRequest {
-  type: "analyze_patterns";
-  mistakes: readonly {
-    skillName: string;
-    questionText: string;
-    diagnosis: { category: string; explanation: string };
-  }[];
-}
-
-type MistakeAction = DiagnoseRequest | AnalyzePatternsRequest;
+const MistakeActionSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("diagnose"),
+    skillId: z.string().min(1).max(100),
+    skillName: z.string().min(1).max(200),
+    questionText: z.string().min(1).max(5000),
+    studentAnswer: z.string().max(1000),
+    correctAnswer: z.string().min(1).max(1000),
+    answerChoices: z.array(z.string().max(500)).max(10),
+  }),
+  z.object({
+    type: z.literal("analyze_patterns"),
+    mistakes: z.array(z.object({
+      skillName: z.string().max(200),
+      questionText: z.string().max(5000),
+      diagnosis: z.object({
+        category: z.string().max(50),
+        explanation: z.string().max(1000),
+      }),
+    })).max(50),
+  }),
+]);
 
 const DIAGNOSIS_SYSTEM_TEXT = `You are a tutoring analytics assistant. When given a student's wrong answer, diagnose WHY they got it wrong. Categorize into exactly one of:
 - conceptual_gap: The student doesn't understand the underlying concept
@@ -56,7 +62,12 @@ export async function POST(
   request: Request
 ): Promise<NextResponse<{ diagnosis?: MistakeDiagnosis; analysis?: string; error?: string }>> {
   try {
-    const body = (await request.json()) as MistakeAction;
+    const raw = await request.json();
+    const parsed = MistakeActionSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    }
+    const body = parsed.data;
 
     switch (body.type) {
       case "diagnose": {
@@ -68,15 +79,15 @@ export async function POST(
           messages: [
             {
               role: "user",
-              content: `Skill: ${body.skillName} (${body.skillId})
+              content: `Skill: ${sanitizePromptInput(body.skillName, 200)} (${sanitizePromptInput(body.skillId, 100)})
 
-Question: ${body.questionText}
+Question: ${sanitizePromptInput(body.questionText, 5000)}
 
 Answer choices:
-${body.answerChoices.join("\n")}
+${body.answerChoices.map((c) => sanitizePromptInput(c, 500)).join("\n")}
 
-Student picked: ${body.studentAnswer}
-Correct answer: ${body.correctAnswer}
+Student picked: ${sanitizePromptInput(body.studentAnswer, 1000)}
+Correct answer: ${sanitizePromptInput(body.correctAnswer, 1000)}
 
 First, state the category (conceptual_gap, careless_error, or misread_question).
 Then explain in 1-2 sentences why the student likely chose their answer.`,
@@ -103,7 +114,7 @@ Then explain in 1-2 sentences why the student likely chose their answer.`,
           .slice(-20)
           .map(
             (m, i) =>
-              `${i + 1}. Skill: ${m.skillName} | Category: ${m.diagnosis.category} | ${m.diagnosis.explanation}`
+              `${i + 1}. Skill: ${sanitizePromptInput(m.skillName, 200)} | Category: ${sanitizePromptInput(m.diagnosis.category, 50)} | ${sanitizePromptInput(m.diagnosis.explanation, 500)}`
           )
           .join("\n");
 
