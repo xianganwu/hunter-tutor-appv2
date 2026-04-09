@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — {{ app_name }}{% endblock %}
+
+{% block content %}
+<div x-data="dashboard()" x-init="init()">
+  <!-- Loading -->
+  <div x-show="loading" class="flex items-center justify-center py-20" x-cloak>
+    <div class="text-center">
+      <div class="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p class="text-gray-500">Loading your dashboard...</p>
+    </div>
+  </div>
+
+  <!-- Dashboard content -->
+  <div x-show="!loading" x-cloak>
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">
+        Welcome back, <span x-text="user?.name || 'Student'"></span>! 👋
+      </h1>
+      <p class="text-gray-500 mt-1">Ready to keep building toward the Hunter exam?</p>
+    </div>
+
+    <!-- Subject cards -->
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <a href="/tutor/reading_comprehension"
+         class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition-all group">
+        <div class="text-3xl mb-3">📖</div>
+        <h2 class="text-xl font-bold mb-2 group-hover:text-blue-600">Reading</h2>
+        <p class="text-gray-500 text-sm mb-4">Main idea, inference, vocabulary, author's purpose</p>
+        <div class="text-blue-600 font-medium text-sm">Start session →</div>
+      </a>
+
+      <a href="/tutor/math_achievement"
+         class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-green-300 hover:shadow-md transition-all group">
+        <div class="text-3xl mb-3">🔢</div>
+        <h2 class="text-xl font-bold mb-2 group-hover:text-green-600">Math</h2>
+        <p class="text-gray-500 text-sm mb-4">Arithmetic, fractions, decimals, geometry, algebra</p>
+        <div class="text-green-600 font-medium text-sm">Start session →</div>
+      </a>
+
+      <a href="/writing"
+         class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-purple-300 hover:shadow-md transition-all group">
+        <div class="text-3xl mb-3">✍️</div>
+        <h2 class="text-xl font-bold mb-2 group-hover:text-purple-600">Writing</h2>
+        <p class="text-gray-500 text-sm mb-4">Essays, persuasive writing, brainstorming</p>
+        <div class="text-purple-600 font-medium text-sm">Start writing →</div>
+      </a>
+    </div>
+
+    <!-- Recent sessions -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <h2 class="text-xl font-bold mb-4">Recent Sessions</h2>
+      <div x-show="sessions.length === 0" class="text-gray-400 text-center py-8">
+        No sessions yet. Pick a subject above to start!
+      </div>
+      <div x-show="sessions.length > 0" class="space-y-3">
+        <template x-for="s in sessions" :key="s.id">
+          <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-0">
+            <div>
+              <div class="font-medium" x-text="domainLabel(s.domain)"></div>
+              <div class="text-sm text-gray-500">
+                <span x-text="formatDate(s.started_at)"></span>
+                <span x-show="s.question_count > 0" class="ml-2">· <span x-text="s.question_count"></span> questions</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span x-show="s.ended_at" class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Complete</span>
+              <span x-show="!s.ended_at" class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">In progress</span>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function dashboard() {
+  return {
+    loading: true,
+    user: null,
+    sessions: [],
+
+    async init() {
+      try {
+        const [authR, sessionsR] = await Promise.all([
+          fetch('/api/auth'),
+          fetch('/api/session?limit=10'),
+        ]);
+        const authData = await authR.json();
+        if (!authData.user) { window.location.href = '/'; return; }
+        this.user = authData.user;
+        const sessData = await sessionsR.json();
+        this.sessions = sessData.sessions || [];
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    domainLabel(domain) {
+      const labels = {
+        reading_comprehension: '📖 Reading',
+        math_achievement: '🔢 Math',
+        math_quantitative_reasoning: '📊 Quantitative Reasoning',
+      };
+      return labels[domain] || domain;
+    },
+
+    formatDate(iso) {
+      return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    },
+  }
+}
+</script>
+{% endblock %}

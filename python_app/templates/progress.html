@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}My Progress — {{ app_name }}{% endblock %}
+{% block content %}
+<div x-data="progressPage()" x-init="init()">
+  <h1 class="text-3xl font-bold mb-6">My Progress</h1>
+
+  <div x-show="loading" class="text-center py-20 text-gray-400">Loading progress...</div>
+
+  <div x-show="!loading" x-cloak>
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Sessions summary -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold mb-4">Recent Sessions</h2>
+        <div x-show="sessions.length === 0" class="text-gray-400">No sessions yet.</div>
+        <div class="space-y-3">
+          <template x-for="s in sessions" :key="s.id">
+            <div class="flex items-center justify-between py-2 border-b border-gray-50">
+              <div>
+                <div class="font-medium text-sm" x-text="domainLabel(s.domain)"></div>
+                <div class="text-xs text-gray-400" x-text="formatDate(s.started_at)"></div>
+              </div>
+              <span class="text-xs px-2 py-1 rounded-full"
+                    :class="s.ended_at ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'"
+                    x-text="s.ended_at ? 'Done' : 'Active'"></span>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <h2 class="text-xl font-bold mb-4">Stats</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Total sessions</span>
+            <span class="font-bold text-2xl" x-text="sessions.length"></span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600">Completed sessions</span>
+            <span class="font-bold text-2xl" x-text="sessions.filter(s=>s.ended_at).length"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="mt-8 grid md:grid-cols-3 gap-4">
+      <a href="/tutor/reading_comprehension" class="bg-blue-50 border border-blue-200 text-blue-700 rounded-xl p-4 text-center hover:bg-blue-100 font-medium">
+        Practice Reading
+      </a>
+      <a href="/tutor/math_achievement" class="bg-green-50 border border-green-200 text-green-700 rounded-xl p-4 text-center hover:bg-green-100 font-medium">
+        Practice Math
+      </a>
+      <a href="/writing" class="bg-purple-50 border border-purple-200 text-purple-700 rounded-xl p-4 text-center hover:bg-purple-100 font-medium">
+        Practice Writing
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function progressPage() {
+  return {
+    loading: true,
+    sessions: [],
+    async init() {
+      const r = await fetch('/api/auth');
+      const data = await r.json();
+      if (!data.user) { window.location.href = '/'; return; }
+      const sR = await fetch('/api/session?limit=20');
+      const sData = await sR.json();
+      this.sessions = sData.sessions || [];
+      this.loading = false;
+    },
+    domainLabel(d) {
+      return {reading_comprehension:'📖 Reading',math_achievement:'🔢 Math',math_quantitative_reasoning:'📊 Quantitative'}[d] || d;
+    },
+    formatDate(iso) { return new Date(iso).toLocaleDateString(); },
+  }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Welcome — {{ app_name }}{% endblock %}
+{% block content %}
+<div x-data="onboarding()" x-init="init()" class="max-w-2xl mx-auto">
+  <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+    <div class="text-5xl mb-4">🦁</div>
+    <h1 class="text-3xl font-bold mb-2">Welcome to Hunter Tutor!</h1>
+    <p class="text-gray-600 mb-8">You're on your way to the Hunter College High School entrance exam. Let's get you set up!</p>
+
+    <!-- Mascot selection -->
+    <h2 class="text-xl font-bold mb-4">Pick your learning mascot</h2>
+    <div class="grid grid-cols-4 gap-4 mb-8">
+      <template x-for="m in mascots" :key="m.type">
+        <button @click="selectedMascot = m.type"
+                :class="selectedMascot === m.type ? 'border-blue-500 bg-blue-50' : 'border-gray-200'"
+                class="border-2 rounded-2xl p-4 flex flex-col items-center gap-2 hover:border-blue-400 transition-colors">
+          <span class="text-3xl" x-text="m.emoji"></span>
+          <span class="text-sm font-medium" x-text="m.name"></span>
+        </button>
+      </template>
+    </div>
+
+    <button @click="complete()" :disabled="loading"
+            class="brand-gradient text-white px-8 py-3 rounded-xl font-semibold text-lg hover:opacity-90 disabled:opacity-50">
+      <span x-text="loading ? 'Setting up...' : 'Let\'s go!'"></span>
+    </button>
+    <p x-show="error" x-text="error" class="text-red-600 mt-3" x-cloak></p>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function onboarding() {
+  return {
+    loading: false,
+    error: '',
+    selectedMascot: 'penguin',
+    mascots: [
+      { type: 'penguin', emoji: '🐧', name: 'Penny' },
+      { type: 'monkey', emoji: '🐵', name: 'Max' },
+      { type: 'phoenix', emoji: '🦅', name: 'Finn' },
+      { type: 'dragon', emoji: '🐉', name: 'Dex' },
+    ],
+    async init() {
+      const r = await fetch('/api/auth');
+      const data = await r.json();
+      if (!data.user) { window.location.href = '/'; return; }
+      if (data.user.onboarding_complete) { window.location.href = '/dashboard'; }
+    },
+    async complete() {
+      this.loading = true;
+      try {
+        await apiPost('/api/auth', { action: 'update_mascot', mascot_type: this.selectedMascot });
+        await apiPost('/api/auth', { action: 'complete_onboarding' });
+        window.location.href = '/dashboard';
+      } catch (e) {
+        this.error = e.message;
+        this.loading = false;
+      }
+    },
+  }
+}
+</script>
+{% endblock %}

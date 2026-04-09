@@ -1,0 +1,373 @@
+{% extends "base.html" %}
+
+{% block title %}{{ subject|title }} Tutor — {{ app_name }}{% endblock %}
+
+{% block main_class %}h-full flex flex-col{% endblock %}
+
+{% block content %}
+<div x-data="tutorSession('{{ subject }}')" x-init="init()" class="flex flex-col h-full max-w-4xl mx-auto px-4 py-4">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center gap-3">
+      <a href="/dashboard" class="text-gray-500 hover:text-gray-700">← Back</a>
+      <div>
+        <h1 class="font-bold text-lg" x-text="subjectLabel"></h1>
+        <p class="text-sm text-gray-500" x-text="currentSkillName || 'Loading...'"></p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div x-show="sessionId" class="text-sm text-gray-400" x-text="'Session active'"></div>
+      <button @click="endSession()" x-show="sessionId"
+              class="text-sm text-red-500 hover:text-red-700 border border-red-200 px-3 py-1 rounded-lg">
+        End session
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat window -->
+  <div class="flex-1 overflow-y-auto bg-white rounded-2xl border border-gray-200 p-4 mb-4 space-y-4" id="chatWindow">
+    <template x-for="(msg, i) in messages" :key="i">
+      <div :class="msg.role === 'tutor' ? 'chat-bubble-tutor rounded-xl p-4' : 'chat-bubble-student rounded-xl p-4'">
+        <div class="text-xs font-medium mb-1 opacity-60" x-text="msg.role === 'tutor' ? '🦁 Tutor' : '👤 You'"></div>
+        <div class="prose prose-sm max-w-none" x-html="renderMessage(msg.content)"></div>
+
+        <!-- Answer choices -->
+        <div x-show="msg.choices && msg.choices.length > 0" class="mt-3 space-y-2">
+          <template x-for="(choice, ci) in (msg.choices || [])" :key="ci">
+            <button @click="selectAnswer(choice, msg.questionId)"
+                    :disabled="msg.answered"
+                    :class="getChoiceClass(choice, msg)"
+                    class="w-full text-left px-4 py-2 rounded-lg border transition-colors text-sm">
+              <span x-text="choice"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+    </template>
+
+    <!-- Typing indicator -->
+    <div x-show="typing" x-cloak class="chat-bubble-tutor rounded-xl p-4">
+      <div class="text-xs font-medium mb-1 opacity-60">🦁 Tutor</div>
+      <div class="flex gap-1">
+        <div class="w-2 h-2 bg-blue-400 rounded-full typing-dot"></div>
+        <div class="w-2 h-2 bg-blue-400 rounded-full typing-dot"></div>
+        <div class="w-2 h-2 bg-blue-400 rounded-full typing-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick actions -->
+  <div class="flex gap-2 mb-3 flex-wrap">
+    <button @click="askHint()" :disabled="!currentQuestion || typing"
+            class="text-sm px-3 py-2 bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 disabled:opacity-40">
+      💡 Hint
+    </button>
+    <button @click="askExplainMore()" :disabled="typing"
+            class="text-sm px-3 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 disabled:opacity-40">
+      📖 Explain more
+    </button>
+    <button @click="sendMessage("I don't understand")" :disabled="typing"
+            class="text-sm px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-40">
+      ❓ I don't understand
+    </button>
+    <button @click="nextQuestion()" :disabled="typing"
+            class="text-sm px-3 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 disabled:opacity-40 ml-auto">
+      Next question →
+    </button>
+  </div>
+
+  <!-- Input -->
+  <div class="flex gap-2">
+    <input x-model="inputText" @keydown.enter.prevent="sendMessage(inputText)"
+           :disabled="typing"
+           type="text"
+           placeholder="Type your answer or question..."
+           class="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none disabled:opacity-50">
+    <button @click="sendMessage(inputText)" :disabled="typing || !inputText.trim()"
+            class="bg-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-700 disabled:opacity-50">
+      Send
+    </button>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function tutorSession(subject) {
+  return {
+    subject,
+    sessionId: null,
+    currentSkill: null,
+    currentQuestion: null,
+    messages: [],
+    inputText: '',
+    typing: false,
+    masteryLevel: 0.3,
+
+    get subjectLabel() {
+      const labels = {
+        reading_comprehension: '📖 Reading Comprehension',
+        math_achievement: '🔢 Math Achievement',
+        math_quantitative_reasoning: '📊 Quantitative Reasoning',
+        reading: '📖 Reading', math: '🔢 Math', writing: '✍️ Writing',
+      };
+      return labels[this.subject] || this.subject;
+    },
+
+    get currentSkillName() {
+      return this.currentSkill?.name || '';
+    },
+
+    async init() {
+      // Check auth
+      const r = await fetch('/api/auth');
+      const data = await r.json();
+      if (!data.user) { window.location.href = '/'; return; }
+
+      // Create session
+      const sessR = await fetch('/api/session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'create', domain: this.subject }),
+      });
+      const sessData = await sessR.json();
+      this.sessionId = sessData.session?.id;
+
+      // Load curriculum and pick first skill
+      await this.pickNextSkill();
+      await this.teachConcept();
+    },
+
+    async pickNextSkill() {
+      // Simple: fetch curriculum info and pick a skill for this domain
+      // In a full implementation this would use adaptive selection
+      const domainSkillMap = {
+        reading_comprehension: 'rc_main_idea',
+        math_achievement: 'ma_arithmetic',
+        math_quantitative_reasoning: 'mqr_word_problems',
+        reading: 'rc_main_idea',
+        math: 'ma_arithmetic',
+      };
+      const skillId = domainSkillMap[this.subject] || 'ma_arithmetic';
+      this.currentSkill = { skill_id: skillId, name: 'Getting Started', description: 'Let\'s learn!' };
+    },
+
+    async teachConcept() {
+      this.typing = true;
+      this.addMessage('tutor', '');
+      const msgIdx = this.messages.length - 1;
+      let text = '';
+      try {
+        for await (const event of streamSSE('/api/chat', {
+          type: 'teach',
+          skill_id: this.currentSkill.skill_id,
+          mastery: this.masteryLevel,
+          stream: true,
+        })) {
+          if (event.delta) {
+            text += event.delta;
+            this.messages[msgIdx].content = text;
+          }
+          if (event.done) break;
+          if (event.error) throw new Error(event.error);
+        }
+      } catch (e) {
+        this.messages[msgIdx].content = "Let's get started! I'll help you learn this step by step.";
+      }
+      this.typing = false;
+      // Auto-generate first question
+      setTimeout(() => this.nextQuestion(), 500);
+    },
+
+    async nextQuestion() {
+      if (this.typing) return;
+      this.typing = true;
+      try {
+        const r = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'generate_question',
+            skill_id: this.currentSkill.skill_id,
+            difficulty_tier: Math.max(1, Math.min(5, Math.ceil(this.masteryLevel * 5) || 2)),
+          }),
+        });
+        const data = await r.json();
+        if (data.question) {
+          this.currentQuestion = data.question;
+          this.addMessage('tutor', data.question.question_text, {
+            choices: data.question.answer_choices,
+            questionId: Date.now().toString(),
+            correctAnswer: data.question.correct_answer,
+            answered: false,
+          });
+        }
+      } catch (e) {
+        this.addMessage('tutor', 'Let me think of another question for you...');
+      }
+      this.typing = false;
+    },
+
+    async selectAnswer(choice, questionId) {
+      if (!this.currentQuestion) return;
+      const msgIdx = this.messages.findIndex(m => m.questionId === questionId);
+      if (msgIdx >= 0) {
+        this.messages[msgIdx].answered = true;
+        this.messages[msgIdx].selectedAnswer = choice;
+      }
+
+      this.addMessage('student', choice);
+      await this.evaluateAnswer(
+        this.currentQuestion.question_text,
+        choice,
+        this.currentQuestion.correct_answer,
+      );
+    },
+
+    async evaluateAnswer(questionText, studentAnswer, correctAnswer) {
+      this.typing = true;
+      this.addMessage('tutor', '');
+      const msgIdx = this.messages.length - 1;
+      let text = '';
+      let isCorrect = false;
+      try {
+        for await (const event of streamSSE('/api/chat', {
+          type: 'evaluate_answer',
+          question_text: questionText,
+          student_answer: studentAnswer,
+          correct_answer: correctAnswer,
+          session_id: this.sessionId,
+          skill_id: this.currentSkill.skill_id,
+          stream: true,
+        })) {
+          if (event.delta) {
+            text += event.delta;
+            this.messages[msgIdx].content = text;
+          }
+          if (event.done) {
+            isCorrect = event.isCorrect || false;
+            break;
+          }
+          if (event.error) throw new Error(event.error);
+        }
+        // Simple mastery update
+        if (isCorrect) this.masteryLevel = Math.min(1, this.masteryLevel + 0.05);
+        else this.masteryLevel = Math.max(0, this.masteryLevel - 0.03);
+      } catch (e) {
+        this.messages[msgIdx].content = 'Great attempt! Let\'s keep going.';
+      }
+      this.typing = false;
+      this.currentQuestion = null;
+    },
+
+    async sendMessage(text) {
+      if (!text || !text.trim() || this.typing) return;
+      this.addMessage('student', text);
+      this.inputText = '';
+
+      // Send as emotional or hint depending on context
+      this.typing = true;
+      this.addMessage('tutor', '');
+      const msgIdx = this.messages.length - 1;
+      let responseText = '';
+      try {
+        for await (const event of streamSSE('/api/chat', {
+          type: 'emotional_response',
+          message: text,
+          stream: true,
+        })) {
+          if (event.delta) {
+            responseText += event.delta;
+            this.messages[msgIdx].content = responseText;
+          }
+          if (event.done || event.error) break;
+        }
+      } catch (e) {
+        this.messages[msgIdx].content = 'I hear you! Let\'s work through this together.';
+      }
+      this.typing = false;
+    },
+
+    async askHint() {
+      if (!this.currentQuestion || this.typing) return;
+      this.typing = true;
+      this.addMessage('tutor', '');
+      const msgIdx = this.messages.length - 1;
+      let text = '';
+      try {
+        for await (const event of streamSSE('/api/chat', {
+          type: 'get_hint',
+          context: this.currentQuestion.question_text,
+          stream: true,
+        })) {
+          if (event.delta) { text += event.delta; this.messages[msgIdx].content = text; }
+          if (event.done || event.error) break;
+        }
+      } catch (e) {
+        this.messages[msgIdx].content = 'Think carefully about what the question is asking. What information do you have?';
+      }
+      this.typing = false;
+    },
+
+    async askExplainMore() {
+      if (this.typing) return;
+      this.typing = true;
+      this.addMessage('tutor', '');
+      const msgIdx = this.messages.length - 1;
+      let text = '';
+      try {
+        for await (const event of streamSSE('/api/chat', {
+          type: 'explain_more',
+          skill_id: this.currentSkill.skill_id,
+          mastery: this.masteryLevel,
+          stream: true,
+        })) {
+          if (event.delta) { text += event.delta; this.messages[msgIdx].content = text; }
+          if (event.done || event.error) break;
+        }
+      } catch (e) {
+        this.messages[msgIdx].content = "Let me break this down differently for you.";
+      }
+      this.typing = false;
+    },
+
+    async endSession() {
+      if (this.sessionId) {
+        await fetch('/api/session', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ action: 'end', session_id: this.sessionId }),
+        });
+      }
+      window.location.href = '/dashboard';
+    },
+
+    addMessage(role, content, extra = {}) {
+      this.messages.push({ role, content, ...extra });
+      this.$nextTick(() => {
+        const win = document.getElementById('chatWindow');
+        if (win) win.scrollTop = win.scrollHeight;
+      });
+    },
+
+    renderMessage(content) {
+      if (!content) return '<span class="opacity-40 text-sm">Thinking...</span>';
+      // Basic markdown-like rendering
+      return content
+        .replace(/\n\n/g, '</p><p class="mt-2">')
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    },
+
+    getChoiceClass(choice, msg) {
+      const base = 'border ';
+      if (!msg.answered) return base + 'border-gray-200 hover:border-blue-400 hover:bg-blue-50';
+      if (choice === msg.correctAnswer) return base + 'border-green-400 bg-green-50 text-green-800';
+      if (choice === msg.selectedAnswer && choice !== msg.correctAnswer) return base + 'border-red-400 bg-red-50 text-red-800';
+      return base + 'border-gray-200 opacity-50';
+    },
+  }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ app_name }}{% endblock %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦁</text></svg>">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js for reactivity -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+  <style>
+    [x-cloak] { display: none !important; }
+    .brand-gradient { background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
+    .chat-bubble-tutor { background: #f0f9ff; border-left: 3px solid #3b82f6; }
+    .chat-bubble-student { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .typing-dot { animation: typing-bounce 1.4s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing-bounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="h-full bg-gray-50 text-gray-900 antialiased">
+  {% block nav %}
+  <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 font-bold text-xl text-blue-600 hover:text-blue-700">
+        <span>🦁</span>
+        <span>{{ app_name }}</span>
+      </a>
+      <div class="flex items-center gap-4" x-data="navState()">
+        <template x-if="user">
+          <div class="flex items-center gap-4">
+            <a href="/dashboard" class="text-gray-600 hover:text-blue-600 font-medium">Dashboard</a>
+            <a href="/progress" class="text-gray-600 hover:text-blue-600 font-medium">Progress</a>
+            <button @click="logout()" class="text-sm text-gray-500 hover:text-red-500">Sign out</button>
+          </div>
+        </template>
+        <template x-if="!user">
+          <div class="flex items-center gap-3">
+            <a href="/?login=true" class="text-gray-600 hover:text-blue-600 font-medium">Log in</a>
+            <a href="/?signup=true" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">Sign up</a>
+          </div>
+        </template>
+      </div>
+    </div>
+  </nav>
+  {% endblock %}
+
+  <main class="{% block main_class %}max-w-6xl mx-auto px-4 py-8{% endblock %}">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script>
+    // Global state
+    function navState() {
+      return {
+        user: null,
+        async init() {
+          try {
+            const r = await fetch('/api/auth');
+            const data = await r.json();
+            this.user = data.user;
+          } catch {}
+        },
+        async logout() {
+          await fetch('/api/auth', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({action: 'logout'}) });
+          this.user = null;
+          window.location.href = '/';
+        }
+      }
+    }
+
+    // Utility: fetch API helper
+    async function apiPost(url, data) {
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+        credentials: 'include',
+      });
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(err.error || `HTTP ${r.status}`);
+      }
+      return r.json();
+    }
+
+    // SSE streaming helper
+    async function* streamSSE(url, data) {
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+        credentials: 'include',
+      });
+      const reader = r.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop();
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              yield JSON.parse(line.slice(6));
+            } catch {}
+          }
+        }
+      }
+    }
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

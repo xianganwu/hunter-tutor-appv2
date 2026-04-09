@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% block title %}Writing Workshop — {{ app_name }}{% endblock %}
+{% block content %}
+<div x-data="writingWorkshop()" x-init="init()" class="max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 mb-6">
+    <a href="/dashboard" class="text-gray-500 hover:text-gray-700">← Back</a>
+    <h1 class="text-2xl font-bold">✍️ Writing Workshop</h1>
+  </div>
+
+  <!-- Prompt selection -->
+  <div x-show="step === 'prompt'" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+    <h2 class="text-xl font-bold mb-4">Choose a writing prompt</h2>
+    <div class="space-y-3">
+      <template x-for="(p, i) in prompts" :key="i">
+        <button @click="selectPrompt(p)"
+                class="w-full text-left border border-gray-200 rounded-xl p-4 hover:border-blue-400 hover:bg-blue-50 transition-colors">
+          <p x-text="p"></p>
+        </button>
+      </template>
+    </div>
+    <div class="mt-4">
+      <p class="text-sm text-gray-500 mb-2">Or write your own prompt:</p>
+      <textarea x-model="customPrompt" rows="2"
+                class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                placeholder="Type your own essay prompt..."></textarea>
+      <button @click="selectPrompt(customPrompt)" :disabled="!customPrompt.trim()"
+              class="mt-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50">
+        Use this prompt
+      </button>
+    </div>
+  </div>
+
+  <!-- Writing area -->
+  <div x-show="step === 'write'" x-cloak>
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
+      <p class="font-medium text-blue-800">Prompt:</p>
+      <p x-text="selectedPrompt" class="text-blue-700 mt-1"></p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold">Your Essay</h2>
+        <div class="text-sm text-gray-400"><span x-text="wordCount"></span> words</div>
+      </div>
+      <textarea x-model="essayText" @input="updateWordCount()" rows="15"
+                class="w-full border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none resize-none font-mono text-sm"
+                placeholder="Start writing your essay here..."></textarea>
+      <div class="flex gap-3 mt-4">
+        <button @click="brainstorm()" :disabled="loading"
+                class="bg-amber-50 text-amber-700 border border-amber-200 px-4 py-2 rounded-lg hover:bg-amber-100 disabled:opacity-50">
+          💡 Help me brainstorm
+        </button>
+        <button @click="submitEssay()" :disabled="loading || wordCount < 50"
+                class="brand-gradient text-white px-6 py-2 rounded-lg hover:opacity-90 disabled:opacity-50 ml-auto">
+          <span x-text="loading ? 'Evaluating...' : 'Get feedback'"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Brainstorm panel -->
+    <div x-show="brainstormText" x-cloak class="bg-amber-50 border border-amber-200 rounded-2xl p-6 mt-4">
+      <h3 class="font-bold text-amber-800 mb-3">💡 Brainstorm Ideas</h3>
+      <div class="text-amber-900 whitespace-pre-wrap text-sm" x-text="brainstormText"></div>
+    </div>
+  </div>
+
+  <!-- Feedback -->
+  <div x-show="step === 'feedback'" x-cloak>
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-4">
+      <h2 class="text-xl font-bold mb-4">Your Feedback</h2>
+      <p class="text-gray-700 leading-relaxed" x-text="feedback.overall"></p>
+
+      <!-- Scores -->
+      <div class="mt-6 space-y-3">
+        <template x-for="[key, score] in Object.entries(feedback.scores || {})" :key="key">
+          <div class="flex items-center gap-3">
+            <span class="w-48 text-sm text-gray-600" x-text="scoreLabel(key)"></span>
+            <div class="flex-1 bg-gray-100 rounded-full h-3">
+              <div class="bg-blue-500 h-3 rounded-full transition-all"
+                   :style="`width: ${score * 10}%`"></div>
+            </div>
+            <span class="text-sm font-bold" x-text="score + '/10'"></span>
+          </div>
+        </template>
+      </div>
+
+      <!-- Strengths & improvements -->
+      <div class="grid md:grid-cols-2 gap-4 mt-6">
+        <div x-show="(feedback.strengths || []).length > 0">
+          <h3 class="font-bold text-green-700 mb-2">✅ Strengths</h3>
+          <ul class="space-y-1">
+            <template x-for="s in feedback.strengths">
+              <li class="text-sm text-green-800" x-text="'• ' + s"></li>
+            </template>
+          </ul>
+        </div>
+        <div x-show="(feedback.improvements || []).length > 0">
+          <h3 class="font-bold text-blue-700 mb-2">📈 To improve</h3>
+          <ul class="space-y-1">
+            <template x-for="s in feedback.improvements">
+              <li class="text-sm text-blue-800" x-text="'• ' + s"></li>
+            </template>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button @click="step = 'write'" class="border border-gray-300 px-6 py-2 rounded-lg hover:bg-gray-50">
+        Revise essay
+      </button>
+      <button @click="step = 'prompt'; essayText = ''; selectedPrompt = ''"
+              class="brand-gradient text-white px-6 py-2 rounded-lg hover:opacity-90">
+        New essay
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function writingWorkshop() {
+  return {
+    step: 'prompt',
+    loading: false,
+    selectedPrompt: '',
+    customPrompt: '',
+    essayText: '',
+    wordCount: 0,
+    brainstormText: '',
+    feedback: {},
+    prompts: [
+      'Some people think that animals should not be kept in zoos. Do you agree or disagree? Use specific reasons and examples to support your position.',
+      'Think about a time you had to make a difficult decision. Write about the experience and what you learned from it.',
+      'Some students prefer learning in a classroom with a teacher, while others prefer learning online. Which do you prefer and why?',
+      'If you could change one thing about your school, what would it be and why?',
+      'Write about a person who has had a positive influence on your life. Explain why this person is important to you.',
+    ],
+
+    async init() {
+      const r = await fetch('/api/auth');
+      const data = await r.json();
+      if (!data.user) { window.location.href = '/'; }
+    },
+
+    selectPrompt(p) {
+      if (!p || !p.trim()) return;
+      this.selectedPrompt = p.trim();
+      this.step = 'write';
+      this.brainstormText = '';
+    },
+
+    updateWordCount() {
+      this.wordCount = this.essayText.trim().split(/\s+/).filter(w => w).length;
+    },
+
+    async brainstorm() {
+      if (this.loading) return;
+      this.loading = true;
+      try {
+        const r = await apiPost('/api/writing', { type: 'brainstorm', prompt: this.selectedPrompt });
+        this.brainstormText = r.text || '';
+      } catch (e) {
+        this.brainstormText = 'Could not load brainstorm ideas. Try again!';
+      }
+      this.loading = false;
+    },
+
+    async submitEssay() {
+      if (this.loading || this.wordCount < 50) return;
+      this.loading = true;
+      try {
+        const r = await apiPost('/api/writing', {
+          type: 'evaluate_essay',
+          prompt: this.selectedPrompt,
+          essay_text: this.essayText,
+        });
+        this.feedback = {
+          overall: r.feedback,
+          scores: r.scores || {},
+          strengths: r.strengths || [],
+          improvements: r.improvements || [],
+        };
+        this.step = 'feedback';
+      } catch (e) {
+        alert('Could not get feedback: ' + e.message);
+      }
+      this.loading = false;
+    },
+
+    scoreLabel(key) {
+      return {
+        organization: 'Organization',
+        developmentOfIdeas: 'Development of Ideas',
+        wordChoice: 'Word Choice',
+        sentenceStructure: 'Sentence Structure',
+        mechanics: 'Mechanics',
+      }[key] || key;
+    },
+  }
+}
+</script>
+{% endblock %}

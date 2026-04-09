@@ -1,0 +1,38 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# SQLite databases (test and dev)
+*.db
+*.db-shm
+*.db-wal
+
+# Environment files
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Alembic generated (keep the config, not auto-generated)
+# alembic/versions/ is checked in
+
+# IDE
+.idea/
+.vscode/
+*.swp
