@@ -17,9 +17,9 @@ describe("curriculum taxonomy", () => {
     expect(domainIds).toContain("writing");
   });
 
-  it("has 56 total skills (foundations + hunter_prep)", () => {
+  it("has 55 total skills (foundations + hunter_prep)", () => {
     const skills = getAllSkills();
-    expect(skills.size).toBe(56);
+    expect(skills.size).toBe(55);
   });
 
   it("has 11 writing skills", () => {
@@ -32,9 +32,9 @@ describe("curriculum taxonomy", () => {
     expect(ids).toHaveLength(14);
   });
 
-  it("has 9 quantitative reasoning skills", () => {
+  it("has 8 quantitative reasoning skills", () => {
     const ids = getSkillIdsForDomain("math_quantitative_reasoning");
-    expect(ids).toHaveLength(9);
+    expect(ids).toHaveLength(8);
   });
 
   it("has 22 math achievement skills", () => {

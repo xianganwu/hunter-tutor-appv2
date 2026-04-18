@@ -11,7 +11,6 @@ export const DIAGNOSTIC_SKILLS = {
     "rc_author_purpose",
   ],
   math_quantitative_reasoning: [
-    "mqr_place_value",
     "mqr_number_sense",
     "mqr_estimation",
     "mqr_word_problem_translation",

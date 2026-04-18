@@ -230,19 +230,6 @@
           "name": "Number Sense and Operations",
           "skills": [
             {
-              "skill_id": "mqr_place_value",
-              "name": "Place Value and Large Numbers",
-              "description": "Understand what each digit means in a number — ones, tens, hundreds, thousands — and how to compare and order large numbers.",
-              "level": "foundations",
-              "prerequisite_skills": [],
-              "difficulty_tier": 1,
-              "example_teaching_prompts": [
-                "In the number 4,567, the 4 isn't just '4' — it means 4 thousands, or 4,000! What does the 5 mean?",
-                "Let's compare these numbers: 3,482 and 3,824. Start from the left — which digit is different first? That tells us which number is bigger.",
-                "What happens when you multiply a number by 10? All the digits shift left one place. Let's see this in action with 345 × 10."
-              ]
-            },
-            {
               "skill_id": "mqr_number_sense",
               "name": "Number Sense",
               "description": "Understand how numbers work — which is bigger, what happens when you multiply or divide, odd/even, and divisibility rules.",
