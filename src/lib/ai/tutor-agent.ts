@@ -357,10 +357,6 @@ Give me a clear explanation with one worked example. End with an encouraging tra
     difficultyTier: DifficultyLevel,
     recentQuestions?: string[]
   ): Promise<GeneratedQuestion | null> {
-    // Compute-first: for place value, generate the math deterministically
-    const seed = isPlaceValueSkill(skill.skill_id) ? generatePlaceValueSeed(difficultyTier) : undefined;
-    const pvSeed = seed ? formatSeedPrompt(seed) : "";
-
     const needsVisual = isVisualSkill(skill.skill_id);
     const visualHint = needsVisual
       ? `\n\nVISUAL REQUIRED: This is a visual skill. You MUST include an SVG diagram in the QUESTION text. For data skills, draw an actual chart (bar graph, line graph, or pie chart) with realistic data — do NOT just describe a chart in words. For geometry skills, draw the actual shape or coordinate plot. Place the <svg> block inside the QUESTION text before asking the question about it.`
@@ -392,10 +388,8 @@ CORRECT: [letter]
 Make the question test exactly the skill described. Make distractors plausible but clearly wrong to someone who understands the concept.
 
 CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify your answer is correct before responding.
-${pvSeed}
-PLACE VALUE CHECK: If the question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 
-STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing. Common mistake: creating distractors that are accidentally true (e.g., all five place value claims being correct). Build false statements by using wrong place names, wrong digits, or wrong comparisons — and double-check each one.${recentQuestions && recentQuestions.length > 0 ? `
+STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing. Build false statements by using wrong values, wrong digits, or wrong comparisons — and double-check each one.${recentQuestions && recentQuestions.length > 0 ? `
 
 AVOID REPEATS — The student was recently shown these questions. Generate something DIFFERENT in structure, numbers, and scenario:
 ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
@@ -403,7 +397,7 @@ ${recentQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` : ""}`,
       ],
     });
 
-    const result = parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier, seed?.correctValue);
+    const result = parseGeneratedQuestion(extractText(response), skill.skill_id, difficultyTier);
 
     // Safety net: if a visual question failed parsing, retry once without
     // the visual requirement so the student always gets a question.
@@ -436,12 +430,11 @@ CORRECT: [letter]
 
 Make the question test exactly the skill described. Make distractors plausible but clearly wrong.
 
-CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value.
-${pvSeed}`,
+CRITICAL: There must be exactly ONE correct answer. Every answer choice must be a distinct value.`,
           },
         ],
       });
-      return parseGeneratedQuestion(extractText(fallbackResponse), skill.skill_id, difficultyTier, seed?.correctValue);
+      return parseGeneratedQuestion(extractText(fallbackResponse), skill.skill_id, difficultyTier);
     }
 
     return result;
@@ -723,12 +716,7 @@ Context: ${context}`,
     const tokensPerQ = needsVisual ? 800 : 400;
     const maxTokens = Math.min(8192, Math.max(2048, count * tokensPerQ));
 
-    // Compute-first: for place value, generate seeds for every question in the batch
     const tier = difficultyTier ?? skill.difficulty_tier;
-    const batchSeeds = isPlaceValueSkill(skill.skill_id)
-      ? Array.from({ length: count }, () => generatePlaceValueSeed(tier))
-      : undefined;
-    const pvBatchSeed = batchSeeds ? formatBatchSeedPrompt(batchSeeds) : "";
 
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
@@ -779,8 +767,6 @@ Make sure:
 - CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
 
 FRACTIONS: Always use LaTeX notation for fractions and mixed numbers in BOTH questions AND answer choices. Write $\\frac{3}{8}$ not "3/8". Write $2\\frac{1}{4}$ not "2 1/4". Plain text fractions like "2 1/4 - 1 3/8" are confusing because "11/8" looks like "eleven-slash-eight" instead of a fraction.
-${pvBatchSeed}
-PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 
 STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing.`,
         },
@@ -806,8 +792,7 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
       const validated: { questionText: string; correctAnswer: string; answerChoices: string[] }[] = [];
       for (let i = 0; i < parsed.length; i++) {
         const q = parsed[i];
-        const seedValue = batchSeeds?.[i]?.correctValue;
-        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateDrillBatch", seedValue);
+        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateDrillBatch");
         if (verified !== null) {
           validated.push({ questionText: q.questionText, correctAnswer: verified, answerChoices: q.answerChoices });
         }
@@ -847,14 +832,6 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
     const hasVisualSkills = skills.some(s => isVisualSkill(s.skill.skill_id));
     const mixedTokensPerQ = hasVisualSkills ? 600 : 400;
     const mixedMaxTokens = Math.min(8192, Math.max(2048, totalCount * mixedTokensPerQ));
-
-    // Compute-first: inject seeds for place value questions if that skill is in the mix
-    const pvSkill = skills.find(s => isPlaceValueSkill(s.skill.skill_id));
-    const mixedSeeds = pvSkill
-      ? Array.from({ length: Math.ceil(totalCount / skills.length) }, () => generatePlaceValueSeed(pvSkill.tier))
-      : undefined;
-    const mixedSeedValues = mixedSeeds ? new Set(mixedSeeds.map(s => s.correctValue)) : undefined;
-    const pvMixedSeed = mixedSeeds ? formatBatchSeedPrompt(mixedSeeds) : "";
 
     const response = await this.client.messages.create({
       model: MODEL_SONNET,
@@ -898,9 +875,6 @@ Make sure:
 - CRITICAL: Each question has exactly ONE correct answer. Every answer choice must be a distinct value — no two choices may be mathematically equivalent (e.g., do NOT include both "0.5" and "1/2", or "40%" and ".40", or "$20" and "20%"). Verify each answer is correct before including it.
 
 FRACTIONS: Always use LaTeX notation for fractions and mixed numbers in BOTH questions AND answer choices. Write $\\frac{3}{8}$ not "3/8". Write $2\\frac{1}{4}$ not "2 1/4". Plain text fractions like "2 1/4 - 1 3/8" are confusing because "11/8" looks like "eleven-slash-eight" instead of a fraction.
-${pvMixedSeed}
-
-PLACE VALUE CHECK: If any question involves the value of a digit in a number, count positions carefully from RIGHT to LEFT: position 1 = ones, position 2 = tens, position 3 = hundreds, position 4 = thousands, position 5 = ten-thousands, position 6 = hundred-thousands. For example, in 247,583: the digit 3 is in position 1 (ones, value 3), 8 is in position 2 (tens, value 80), 5 is in position 3 (hundreds, value 500), 7 is in position 4 (thousands, value 7,000), 4 is in position 5 (ten-thousands, value 40,000), 2 is in position 6 (hundred-thousands, value 200,000). Double-check your digit position count.
 
 STATEMENT QUESTIONS: If you create a "which statement is correct" question, you MUST ensure exactly ONE statement is true and ALL others are false. Verify each statement individually before finalizing.`,
         },
@@ -925,18 +899,7 @@ STATEMENT QUESTIONS: If you create a "which statement is correct" question, you 
 
       const validated: { skillId: string; questionText: string; correctAnswer: string; answerChoices: string[] }[] = [];
       for (const q of parsed) {
-        // For PV questions in a mixed batch, find the seed whose correctValue appears in a choice
-        let seedValue: number | undefined;
-        if (isPlaceValueSkill(q.skillId) && mixedSeedValues) {
-          for (const sv of mixedSeedValues) {
-            const svStr = sv.toLocaleString("en-US");
-            if (q.answerChoices.some(c => c.includes(svStr))) {
-              seedValue = sv;
-              break;
-            }
-          }
-        }
-        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateMixedDrillBatch", seedValue);
+        const verified = validateGeneratedQuestion(q.questionText, q.answerChoices, q.correctAnswer, "generateMixedDrillBatch");
         if (verified !== null) {
           validated.push({ skillId: q.skillId, questionText: q.questionText, correctAnswer: verified, answerChoices: q.answerChoices });
         }
@@ -978,107 +941,6 @@ function describeMastery(level: number): string {
   if (level < 0.6) return "emerging";
   if (level < 0.8) return "proficient";
   return "advanced";
-}
-
-// ─── Compute-First Place Value Seed Generator ────────────────────────
-
-/** Place name indexed by position from the right (0 = ones). */
-const PLACE_NAMES = ["ones", "tens", "hundreds", "thousands", "ten-thousands", "hundred-thousands", "millions"];
-
-interface PlaceValueSeed {
-  number: string;       // "2,649"  (formatted)
-  targetDigit: number;  // 6
-  placeName: string;    // "hundreds"
-  correctValue: number; // 600
-  distractors: number[];// [6, 60, 6000, 60000]
-}
-
-/**
- * Generate a deterministic place value seed.
- * The math is computed here — the AI only wraps it in a creative question.
- */
-function generatePlaceValueSeed(tier: DifficultyLevel): PlaceValueSeed {
-  const numDigits = tier <= 2 ? 4 : tier <= 4 ? 5 : 6;
-  const min = Math.pow(10, numDigits - 1);
-  const max = Math.pow(10, numDigits) - 1;
-  const num = min + Math.floor(Math.random() * (max - min + 1));
-  const numStr = num.toString();
-
-  // Pick a target digit that isn't 0 (boring: "value of 0 = 0")
-  // Avoid the leading digit for variety
-  let targetIdx = -1;
-  let targetDigit = 0;
-  // Collect valid positions (non-zero, not leading digit)
-  const candidates: number[] = [];
-  for (let i = 1; i < numStr.length; i++) {
-    if (parseInt(numStr[i], 10) !== 0) candidates.push(i);
-  }
-  if (candidates.length > 0) {
-    targetIdx = candidates[Math.floor(Math.random() * candidates.length)];
-    targetDigit = parseInt(numStr[targetIdx], 10);
-  } else {
-    // All inner digits are 0 — use leading digit
-    targetIdx = 0;
-    targetDigit = parseInt(numStr[0], 10);
-  }
-
-  const posFromRight = numStr.length - 1 - targetIdx;
-  const correctValue = targetDigit * Math.pow(10, posFromRight);
-  const placeName = PLACE_NAMES[posFromRight] ?? `10^${posFromRight}`;
-
-  // Generate distractors: the same digit at WRONG place positions
-  const distractors: number[] = [];
-  for (let p = 0; p < Math.min(numStr.length, 7); p++) {
-    if (p === posFromRight) continue;
-    distractors.push(targetDigit * Math.pow(10, p));
-  }
-  // Ensure exactly 4 distractors; pad with more distant positions if needed
-  while (distractors.length < 4) {
-    const p = distractors.length + (distractors.length >= posFromRight ? 1 : 0);
-    distractors.push(targetDigit * Math.pow(10, p));
-  }
-  distractors.length = 4;
-
-  return {
-    number: num.toLocaleString("en-US"),
-    targetDigit,
-    placeName,
-    correctValue,
-    distractors,
-  };
-}
-
-/** Format a seed as prompt instructions for a single question. */
-function formatSeedPrompt(seed: PlaceValueSeed): string {
-  return `
-PLACE VALUE SEED — You MUST use these exact pre-computed values:
-- Number: ${seed.number}
-- Ask about: digit ${seed.targetDigit}
-- Correct answer: ${seed.correctValue.toLocaleString("en-US")} (the ${seed.placeName} place)
-- Use these as WRONG distractor values: ${seed.distractors.map(d => d.toLocaleString("en-US")).join(", ")}
-
-You may present this as a direct question ("What is the value of...") or a simple word problem, but:
-- The correct answer choice MUST be ${seed.correctValue.toLocaleString("en-US")}
-- The distractor choices MUST include the wrong values listed above
-- Do NOT create "which person is correct" or "which statement is correct" formats
-- Keep answer choices as numeric values`;
-}
-
-/** Format seeds for a batch of place value questions. */
-function formatBatchSeedPrompt(seeds: PlaceValueSeed[]): string {
-  const lines = seeds.map((s, i) =>
-    `  ${i + 1}. Number: ${s.number} | Digit: ${s.targetDigit} | Correct: ${s.correctValue.toLocaleString("en-US")} (${s.placeName}) | Distractors: ${s.distractors.map(d => d.toLocaleString("en-US")).join(", ")}`
-  );
-  return `
-PLACE VALUE SEEDS — For each question, use the corresponding pre-computed values below.
-The correct answer for each question MUST match the "Correct" value. Distractors MUST use the listed wrong values.
-Do NOT create "which person is correct" or "which statement is correct" formats — keep answer choices as numeric values.
-${lines.join("\n")}`;
-}
-
-/** Check if a skill is place value. */
-function isPlaceValueSkill(skillId: string): boolean {
-  return skillId === "mqr_place_value";
 }
 
 /**
